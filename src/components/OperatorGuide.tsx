@@ -1,0 +1,310 @@
+import { ExternalLink } from 'lucide-react';
+import { localizedOperators, withUtm, matrixCategoryLabels, type Operator } from '../lib/operators';
+import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
+
+const HEADINGS: Record<CopyLang, {
+  eyebrow: string;
+  h2: string;
+  lead: string;
+  visit: string;
+  tier: string;
+  length: string;
+  departures: string;
+  bases: string;
+  bestFor: string;
+  strongIn: string;
+}> = {
+  en: {
+    eyebrow: 'Path two',
+    h2: 'Or buy a bundle',
+    lead:
+      'Six tour operators that fly UK and European travellers to Finnish Lapland on ready-made packages. There is no commercial agreement with any of them. This is editorial signposting, not a storefront. Updated every six months.',
+    visit: 'Visit',
+    tier: 'Tier',
+    length: 'Length',
+    departures: 'Departures',
+    bases: 'Bases',
+    bestFor: 'Best for',
+    strongIn: 'Strong in',
+  },
+  fi: {
+    eyebrow: 'Polku 2',
+    h2: 'Tai osta matkapaketti',
+    lead:
+      'Kuusi matkanjärjestäjää, jotka vievät brittejä ja eurooppalaisia Suomen Lappiin valmiilla matkapaketeilla. Yhdenkään kanssa ei ole kaupallista sopimusta. Kyseessä on toimituksellinen opas, ei kauppapaikka. Päivitetään puolen vuoden välein. Lähteet näkyvillä.',
+    visit: 'Vieraile',
+    tier: 'Hintaluokka',
+    length: 'Kesto',
+    departures: 'Lähtökentät',
+    bases: 'Tukikohdat',
+    bestFor: 'Sopii parhaiten',
+    strongIn: 'Vahva osa-alue',
+  },
+  de: {
+    eyebrow: 'Weg zwei',
+    h2: 'Oder ein Reisepaket buchen',
+    lead:
+      'Sechs Reiseveranstalter, die britische und europäische Gäste mit Fertigpaketen nach Finnisch-Lappland bringen. Mit keinem besteht eine Geschäftsbeziehung. Dies ist ein redaktioneller Wegweiser, kein Shop. Aktualisiert alle sechs Monate.',
+    visit: 'Besuchen',
+    tier: 'Klasse',
+    length: 'Dauer',
+    departures: 'Abflughäfen',
+    bases: 'Standorte',
+    bestFor: 'Geeignet für',
+    strongIn: 'Stark in',
+  },
+  ja: {
+    eyebrow: 'ルート2',
+    h2: 'パッケージを購入する',
+    lead:
+      'イギリスとヨーロッパの旅行者をフィンランド・ラップランドへ既成のパッケージで運ぶ6社のツアーオペレーターをご紹介します。いずれとも商業的な提携はありません。これは編集による道しるべであり、販売窓口ではありません。6か月ごとに更新されます。',
+    visit: 'サイトを見る',
+    tier: 'クラス',
+    length: '日数',
+    departures: '出発空港',
+    bases: '拠点',
+    bestFor: 'おすすめ',
+    strongIn: '得意分野',
+  },
+  ko: {
+    eyebrow: '경로 2',
+    h2: '또는 패키지 구매',
+    lead:
+      '영국과 유럽 여행자들을 핀란드 라플란드로 보내는 여섯 곳의 운영사를 소개합니다. 이들 중 누구와도 상업적 제휴는 없습니다. 이것은 편집 가이드이지 판매 창구가 아닙니다. 6개월마다 업데이트됩니다.',
+    visit: '방문',
+    tier: '가격대',
+    length: '일정',
+    departures: '출발 공항',
+    bases: '거점',
+    bestFor: '추천 대상',
+    strongIn: '강점 분야',
+  },
+  fr: {
+    eyebrow: 'Voie 2',
+    h2: 'Ou réservez un forfait',
+    lead:
+      'Six voyagistes qui acheminent des visiteurs britanniques et européens vers la Laponie finlandaise avec des circuits prêts à partir. Aucun accord commercial avec aucun d\'eux. Il s\'agit d\'un repérage éditorial, pas d\'une boutique. Mis à jour tous les six mois.',
+    visit: 'Visiter',
+    tier: 'Gamme',
+    length: 'Durée',
+    departures: 'Départs',
+    bases: 'Bases',
+    bestFor: 'Convient à',
+    strongIn: 'Points forts',
+  },
+  it: {
+    eyebrow: 'Strada 2',
+    h2: 'O compra un pacchetto',
+    lead:
+      'Sei tour operator che portano viaggiatori britannici ed europei nella Lapponia finlandese con pacchetti già pronti. Nessun accordo commerciale con loro. È una guida editoriale, non una vetrina. Aggiornata ogni sei mesi.',
+    visit: 'Visita',
+    tier: 'Fascia',
+    length: 'Durata',
+    departures: 'Partenze',
+    bases: 'Basi',
+    bestFor: 'Indicato per',
+    strongIn: 'Punto forte',
+  },
+  nl: {
+    eyebrow: 'Route 2',
+    h2: 'Of boek een pakket',
+    lead:
+      'Zes reisorganisaties die Britse en Europese reizigers met kant-en-klare arrangementen naar Fins Lapland brengen. Met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Elke zes maanden bijgewerkt.',
+    visit: 'Bezoeken',
+    tier: 'Klasse',
+    length: 'Duur',
+    departures: 'Vertrek',
+    bases: 'Bases',
+    bestFor: 'Geschikt voor',
+    strongIn: 'Sterk in',
+  },
+  es: {
+    eyebrow: 'Camino 2',
+    h2: 'O compre un paquete',
+    lead:
+      'Seis operadores que llevan a viajeros británicos y europeos a la Laponia finlandesa con paquetes ya organizados. No hay acuerdo comercial con ninguno de ellos: esto es una guía editorial, no una tienda. Se actualiza cada seis meses.',
+    visit: 'Visitar',
+    tier: 'Gama',
+    length: 'Duración',
+    departures: 'Salidas',
+    bases: 'Bases',
+    bestFor: 'Ideal para',
+    strongIn: 'Fuertes en',
+  },
+  'pt-BR': {
+    eyebrow: 'Caminho 2',
+    h2: 'Ou compre um pacote',
+    lead:
+      'Seis operadoras que levam viajantes britânicos e europeus à Lapônia finlandesa com pacotes prontos. Não há acordo comercial com nenhuma delas: isto é uma orientação editorial, não uma loja. Atualizado a cada seis meses.',
+    visit: 'Visitar',
+    tier: 'Categoria',
+    length: 'Duração',
+    departures: 'Saídas',
+    bases: 'Bases',
+    bestFor: 'Ideal para',
+    strongIn: 'Fortes em',
+  },
+  'zh-CN': {
+    eyebrow: '路线 2',
+    h2: '或者直接买套餐',
+    lead:
+      '六家运营商，用现成套餐把英国和欧洲旅客送往芬兰拉普兰。我们与其中任何一家都没有商业协议，这是编辑性的指引，而非购物商店。每六个月更新一次。',
+    visit: '访问',
+    tier: '档位',
+    length: '时长',
+    departures: '出发地',
+    bases: '基地',
+    bestFor: '适合',
+    strongIn: '强项',
+  },
+};
+
+/**
+ * Honest operator profiles. Paragraph-form (not bullet-card). Image
+ * alternates left/right per row, aspect varies (4/3 or 5/4) to break the
+ * card-grid look. Marginal item number 01–06 in the LEFT outer margin on
+ * desktop, like a printed catalog.
+ *
+ * No fake badges, no invented product names, no "Most Popular" labels —
+ * we have no commercial relationship with any of these operators.
+ */
+
+function StarRow({ value, max = 4 }: { value: number; max?: number }) {
+  return (
+    <span className="inline-flex gap-0.5" aria-label={`${value} of ${max}`}>
+      {Array.from({ length: max }).map((_, i) => (
+        <span
+          key={i}
+          className={`w-1.5 h-1.5 rounded-full ${i < value ? 'bg-vibe-pink' : 'bg-snow/15'}`}
+          aria-hidden="true"
+        />
+      ))}
+    </span>
+  );
+}
+
+function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; eager?: boolean; lang: Lang }) {
+  const labels = HEADINGS[copyLang(lang)];
+  const starLabels = matrixCategoryLabels[copyLang(lang)];
+  const imageLeft = index % 2 === 0;
+  const aspect = index % 3 === 0 ? 'aspect-[4/3]' : 'aspect-[5/4]';
+  const num = String(index + 1).padStart(2, '0');
+
+  return (
+    <article className="relative grid grid-cols-12 gap-x-5 sm:gap-x-10 gap-y-6 py-16 sm:py-20 border-t border-white/8 first:border-t-0">
+      {/* Margin number — desktop-only, sits in negative-margin column */}
+      <span
+        aria-hidden="true"
+        className="hidden lg:block absolute -left-12 xl:-left-16 top-20 cap-meta !text-[12px] !tracking-[0.18em] text-snow/30 select-none"
+      >
+        {num}
+      </span>
+
+      {/* Image */}
+      <a
+        href={withUtm(op.url, op.slug)}
+        target="_blank"
+        rel="sponsored nofollow noopener"
+        aria-label={`Visit ${op.name}`}
+        className={`col-span-12 ${
+          imageLeft ? 'sm:col-span-5 sm:order-1' : 'sm:col-span-5 sm:col-start-8 sm:order-2'
+        } relative block ${aspect} overflow-hidden bg-deep-night`}
+      >
+        <img
+          src={op.image}
+          alt={op.alt}
+          loading={eager ? 'eager' : 'lazy'}
+          fetchPriority={eager ? 'high' : undefined}
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+        />
+      </a>
+
+      {/* Body */}
+      <div
+        className={`col-span-12 ${
+          imageLeft ? 'sm:col-span-7 sm:order-2' : 'sm:col-span-7 sm:col-start-1 sm:row-start-1 sm:order-1'
+        } flex flex-col`}
+      >
+        <p className="cap-meta mb-3 lg:hidden">№ {num} &nbsp;·&nbsp; {op.basedIn}</p>
+        <p className="cap-meta mb-3 hidden lg:block">{op.basedIn}</p>
+
+        <h3 className="font-heading text-snow tracking-tight leading-[0.92] text-4xl sm:text-5xl lg:text-6xl mb-3">
+          {op.name}
+        </h3>
+
+        <p className="text-vibe-pink font-body italic text-base sm:text-lg mb-6 max-w-2xl">
+          {op.tagline}
+        </p>
+
+        {/* Editorial paragraph — runs as one block instead of bullet-card */}
+        <p className="text-snow/75 font-body text-[15.5px] sm:text-base leading-[1.8] mb-6 max-w-2xl">
+          {op.whatTheyDoWell}{' '}
+          <span className="text-snow/75">{op.whatTheyDont}</span>
+        </p>
+
+        {/* Spec rail — flat data, no card boxes */}
+        <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2.5 mb-7 max-w-2xl text-[14px]">
+          <dt className="cap-meta self-center">{labels.tier}</dt>
+          <dd className="text-snow/85 font-body italic">{op.tierLabel}</dd>
+          <dt className="cap-meta self-center">{labels.length}</dt>
+          <dd className="text-snow/85 font-body">{op.typicalLength}</dd>
+          <dt className="cap-meta self-center">{labels.departures}</dt>
+          <dd className="text-snow/85 font-mono text-[13px]">{op.departures.join(' · ')}</dd>
+          <dt className="cap-meta self-center">{labels.bases}</dt>
+          <dd className="text-snow/85 font-body">{op.bases.join(', ')}</dd>
+          <dt className="cap-meta self-center">{labels.bestFor}</dt>
+          <dd className="text-snow/85 font-body italic">{op.bestFor}</dd>
+        </dl>
+
+        {/* Star strengths — inline horizontal */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-7 max-w-2xl">
+          <span className="cap-meta">{labels.strongIn}</span>
+          {(['family', 'aurora', 'glassIgloo', 'luxury', 'selfDrive'] as const).map((k) => (
+            <span key={k} className="inline-flex items-center gap-2 text-snow/65 text-[13px] font-body">
+              <StarRow value={op.stars[k]} />
+              <span>{starLabels[k]}</span>
+            </span>
+          ))}
+        </div>
+
+        <a
+          href={withUtm(op.url, op.slug)}
+          target="_blank"
+          rel="sponsored nofollow noopener"
+          className="inline-flex items-center gap-2 text-snow hover:text-vibe-pink border-b border-snow/40 hover:border-vibe-pink pb-1 self-start font-body font-medium transition-colors text-[15px]"
+        >
+          {labels.visit} {op.domain}
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </article>
+  );
+}
+
+export default function OperatorGuide() {
+  const lang = useLang();
+  const c = HEADINGS[copyLang(lang)];
+  const ops = localizedOperators(copyLang(lang));
+  return (
+    <section id="operators" className="bg-deep-night pt-20 sm:pt-28 pb-12 sm:pb-16">
+      <div className="max-w-[1100px] mx-auto px-6 sm:px-10">
+        <header className="mb-12 sm:mb-16 max-w-[820px]">
+          <p className="cap-meta">{c.eyebrow}</p>
+          <h2 className="mt-2 font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl break-words hyphens-auto [text-wrap:balance]">
+            {c.h2}
+          </h2>
+          <p className="mt-5 text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-2xl">
+            {c.lead}
+          </p>
+        </header>
+
+        <div>
+          {ops.map((op, idx) => (
+            <OperatorRow key={op.slug} op={op} index={idx} eager={idx === 0} lang={lang} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@source "../../shared/**/*.{ts,tsx,js,jsx}";
+
+@theme {
+  --color-vibe-pink:    #EC4899;
+  --color-arctic-cyan:  #06B6D4;
+  --color-snow:         #F9FAFB;
+  --color-asphalt:      #1F2937;
+  --color-aurora-green: #10B981;
+  --color-deep-night:   #0F172A;
+  --color-deeper-night: #0A1020;
+  --color-finland-blue: #002F6C;
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-snow);
+    background-color: var(--color-deep-night);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* ── Editorial helpers ───────────────────────────────────────────── */
+
+/* Tiny mono caption used on image-breaks and section eyebrows.
+   Replaces the default vibe-pink eyebrow on most sections so the page
+   reads less like a SaaS template. */
+.cap-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;       /* 11px */
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(249,250,251,0.8);
+}
+
+/* Magazine drop cap — first letter floats large in vibe-pink. Apply to
+   the wrapping paragraph, NOT to a span. Used at the start of editorial
+   intros (PracticalInfo, LaplandHolidays). */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-heading);
+  font-size: 5.6em;
+  line-height: 0.82;
+  padding: 0.04em 0.18em 0 0;
+  color: var(--color-vibe-pink);
+}
+
+/* Pull quote — italic Bebas, vibe-pink rule on left, oversized. */
+.pull-quote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  color: var(--color-snow);
+  border-left: 2px solid var(--color-vibe-pink);
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Hairline rule used between editorial blocks. Subtle, not the
+   tinny `border-t border-white/5` Lovable default. */
+.rule-hairline {
+  border-top: 1px solid rgba(249, 250, 251, 0.07);
+}
+
+@keyframes auroraShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes aurora {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-bg {
+  background: linear-gradient(
+    135deg,
+    #0F172A 0%, #0d2818 15%, #10B981 30%,
+    #06B6D4 50%, #1e1b4b 70%, #EC4899 85%, #0F172A 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora 12s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg { animation: none; }
+}

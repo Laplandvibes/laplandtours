@@ -1,0 +1,32 @@
+# robots.txt for laplandtours.online
+# Generated 2026-05-08 — LaplandVibes ecosystem-wide AI-crawler allowlist.
+
+User-agent: *
+Allow: /
+
+# AI assistant crawlers — explicitly allowed for AI Overview / SGE / Perplexity citation.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://laplandtours.online/sitemap.xml
+
+# LaplandVibes ecosystem
+# https://laplandvibes.com

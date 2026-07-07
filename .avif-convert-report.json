@@ -1,0 +1,74 @@
+{
+  "site": "laplandtours-new",
+  "scanned_webp": 10,
+  "converted": 10,
+  "skipped_exists": 0,
+  "skipped_avif_larger": 0,
+  "errors": 0,
+  "total_webp_bytes": 975880,
+  "total_avif_bytes": 663729,
+  "saved_mb": "0.30",
+  "saved_pct": "32.0",
+  "report": [
+    {
+      "file": "public\\images\\card-arctic-adventure.webp",
+      "webp_bytes": 53524,
+      "avif_bytes": 31296,
+      "saved_pct": "41.5"
+    },
+    {
+      "file": "public\\images\\card-christmas-santa.webp",
+      "webp_bytes": 36182,
+      "avif_bytes": 21314,
+      "saved_pct": "41.1"
+    },
+    {
+      "file": "public\\images\\card-family-holiday.webp",
+      "webp_bytes": 85436,
+      "avif_bytes": 61262,
+      "saved_pct": "28.3"
+    },
+    {
+      "file": "public\\images\\card-luxury-aurora.webp",
+      "webp_bytes": 24638,
+      "avif_bytes": 15147,
+      "saved_pct": "38.5"
+    },
+    {
+      "file": "public\\images\\card-midnight-sun.webp",
+      "webp_bytes": 26598,
+      "avif_bytes": 19633,
+      "saved_pct": "26.2"
+    },
+    {
+      "file": "public\\images\\card-northern-lights.webp",
+      "webp_bytes": 24092,
+      "avif_bytes": 15084,
+      "saved_pct": "37.4"
+    },
+    {
+      "file": "public\\images\\hero-age-guide.webp",
+      "webp_bytes": 139006,
+      "avif_bytes": 86024,
+      "saved_pct": "38.1"
+    },
+    {
+      "file": "public\\images\\hero-holidays.webp",
+      "webp_bytes": 106706,
+      "avif_bytes": 55965,
+      "saved_pct": "47.6"
+    },
+    {
+      "file": "public\\images\\hero-home.webp",
+      "webp_bytes": 292596,
+      "avif_bytes": 237754,
+      "saved_pct": "18.7"
+    },
+    {
+      "file": "public\\images\\hero-practical.webp",
+      "webp_bytes": 187102,
+      "avif_bytes": 120250,
+      "saved_pct": "35.7"
+    }
+  ]
+}
