@@ -1,4 +1,4 @@
-import SharedNewsletterPopup, { type NewsletterPopupDict } from '../../../shared/NewsletterPopup';
+import SharedNewsletterPopup, { type NewsletterPopupDict } from '../shared/NewsletterPopup';
 import { trackNewsletterSignup } from '../lib/analytics';
 import { useLang, type Lang } from '../i18n/useLang';
 

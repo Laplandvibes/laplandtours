@@ -3,8 +3,8 @@ import { useEffect, lazy, Suspense } from 'react';
 import type { JSX } from 'react';
 import { onRouteChange, initOutboundTracking, initScrollDepth } from './lib/analytics';
 import Nav from './components/Nav';
-import Footer from '../../shared/Footer';
-import CookieBanner from '../../shared/CookieBanner';
+import Footer from './shared/Footer';
+import CookieBanner from './shared/CookieBanner';
 import NewsletterPopup from './components/NewsletterPopup';
 const Home = lazy(() => import('./pages/Home'))
 const LaplandHolidays = lazy(() => import('./pages/LaplandHolidays'))

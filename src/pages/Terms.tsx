@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import TermsContent from '../../../shared/Legal/TermsContent';
+import TermsContent from '../shared/Legal/TermsContent';
 import { setPageMeta } from '../lib/meta';
 import { useLang } from '../i18n/useLang';
 

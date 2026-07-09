@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import PrivacyContent from '../../../shared/Legal/PrivacyContent';
+import PrivacyContent from '../shared/Legal/PrivacyContent';
 import { setPageMeta } from '../lib/meta';
 import { useLang } from '../i18n/useLang';
 

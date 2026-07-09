@@ -1,4 +1,4 @@
-import Breadcrumbs from '../../../shared/Breadcrumbs';
+import Breadcrumbs from '../shared/Breadcrumbs';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 
 // Short localized crumb labels for each CONTENT subpage (logical path → label).

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build:nossg": "tsc -b && vite build",
-    "build": "tsc -b && vite build && node ../_prerender_routes.mjs --site=https://laplandtours.online --siteName=LaplandTours --twitter=@laplandvibes --defaultOg=/og-default.jpg --routes=scripts/routes.json",
+    "build": "tsc -b && vite build && node scripts/_prerender_routes.mjs --site=https://laplandtours.online --siteName=LaplandTours --twitter=@laplandvibes --defaultOg=/og-default.jpg --routes=scripts/routes.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },

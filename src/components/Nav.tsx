@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
-import EcosystemMenu from '../../../shared/EcosystemMenu';
+import EcosystemMenu from '../shared/EcosystemMenu';
 
 const COPY: Record<Lang, { operators: string; practical: string; age: string; bespoke: string; cta: string; menu: string; close: string }> = {
   en: {
