@@ -188,18 +188,9 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
   const starLabels = matrixCategoryLabels[copyLang(lang)];
   const imageLeft = index % 2 === 0;
   const aspect = index % 3 === 0 ? 'aspect-[4/3]' : 'aspect-[5/4]';
-  const num = String(index + 1).padStart(2, '0');
 
   return (
     <article className="relative grid grid-cols-12 gap-x-5 sm:gap-x-10 gap-y-6 py-16 sm:py-20 border-t border-white/8 first:border-t-0">
-      {/* Margin number — desktop-only, sits in negative-margin column */}
-      <span
-        aria-hidden="true"
-        className="hidden lg:block absolute -left-12 xl:-left-16 top-20 cap-meta !text-[12px] !tracking-[0.18em] text-snow/30 select-none"
-      >
-        {num}
-      </span>
-
       {/* Image */}
       <a
         href={withUtm(op.url, op.slug)}
@@ -226,7 +217,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
           imageLeft ? 'sm:col-span-7 sm:order-2' : 'sm:col-span-7 sm:col-start-1 sm:row-start-1 sm:order-1'
         } flex flex-col`}
       >
-        <p className="cap-meta mb-3 lg:hidden">№ {num} &nbsp;·&nbsp; {op.basedIn}</p>
+        <p className="cap-meta mb-3 lg:hidden">{op.basedIn}</p>
         <p className="cap-meta mb-3 hidden lg:block">{op.basedIn}</p>
 
         <h3 className="font-heading text-snow tracking-tight leading-[0.92] text-4xl sm:text-5xl lg:text-6xl mb-3">
