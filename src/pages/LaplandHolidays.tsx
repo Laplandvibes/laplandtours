@@ -5,7 +5,6 @@ import OperatorMatrix from '../components/OperatorMatrix';
 import ImageBreak from '../components/ImageBreak';
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
-import EditorialStandards from '../components/EditorialStandards';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
@@ -564,8 +563,6 @@ export default function LaplandHolidays() {
           </Link>
         </div>
       </section>
-
-      <EditorialStandards />
 
       <div className="bg-deep-night py-6 px-4">
         <AffiliateDisclosure variant="full" />

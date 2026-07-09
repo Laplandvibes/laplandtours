@@ -6,7 +6,6 @@ import OperatorGuide from '../components/OperatorGuide';
 import SeasonStrip from '../components/SeasonStrip';
 import SectionTeasers from '../components/SectionTeasers';
 import FAQ, { FAQ_BY_LANG } from '../components/FAQ';
-import EditorialStandards from '../components/EditorialStandards';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import { setPageMeta, breadcrumbList, faqPageSchema, travelAgencySchema } from '../lib/meta';
 import { useLang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
@@ -115,9 +114,7 @@ export default function Home() {
       <OperatorGuide />
       <SeasonStrip />
       <SectionTeasers />
-      <FAQ />
-      <EditorialStandards />
-      <div className="bg-deep-night py-6 px-4">
+      <FAQ />      <div className="bg-deep-night py-6 px-4">
         <AffiliateDisclosure variant="full" />
       </div>
     </>
