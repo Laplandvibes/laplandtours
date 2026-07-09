@@ -194,6 +194,153 @@ export const operators: Operator[] = [
   },
 ];
 
+// =====================================================================
+// LOCAL operator set — real Finland-based Lapland activity operators /
+// DMCs, shown on every NON-English locale (see `localizedOperators`).
+//
+// Unlike the UK package operators above, these do NOT bundle flights:
+// the traveller arranges their own travel and books activities (or a
+// stay / tailor-made trip) directly with the operator. All six were
+// verified against their official sites in July 2026.
+//
+// `departures` here means the NEAREST airport(s) for their bases
+// (arrival, not a chartered UK departure) — the non-EN OperatorGuide
+// relabels the field. `glassIgloo` / `selfDrive` stars are low across
+// the board because these are guided-activity specialists, not
+// accommodation or car-rental sellers — that is an honest read of what
+// they do, not a gap in our coverage.
+// =====================================================================
+export const OPERATORS_LOCAL: Operator[] = [
+  {
+    slug: 'lapland-safaris',
+    name: 'Lapland Safaris',
+    domain: 'laplandsafaris.com',
+    url: 'https://www.laplandsafaris.com',
+    tagline: "Lapland's biggest activity operator",
+    bestFor:
+      'Travellers who want one operator for the whole activity slate — husky, snowmobile, reindeer, aurora — across several resorts.',
+    basedIn: 'Rovaniemi, Finland',
+    bases: ['Rovaniemi', 'Levi', 'Ylläs', 'Saariselkä', 'Luosto'],
+    departures: ['RVN', 'KTT', 'IVL'],
+    typicalLength: 'Half-day to multi-day',
+    tier: 'mid',
+    tierLabel: 'Full-range activity operator',
+    stars: { family: 4, aurora: 3, husky: 4, snowmobile: 4, glassIgloo: 1, selfDrive: 0, luxury: 2 },
+    whatTheyDoWell:
+      "Running since 1982, with bases in Rovaniemi, Levi, Ylläs, Saariselkä and Luosto and the widest activity range in Finnish Lapland: husky and reindeer farms, snowmobile safaris, aurora tours, snowshoeing and equipment hire. Guiding is rooted in local and Sámi knowledge, and they hold Finland's national tourism safety award.",
+    whatTheyDont:
+      'They sell activities, not flights or full holiday packages — you arrange your own travel and accommodation. As the largest operator, group tours can be busier than a small-group specialist.',
+    image: '/images/card-family-holiday.webp',
+    alt: 'Snowy Lapland forest path at golden afternoon light with two empty wooden sleds',
+    isFeatured: true,
+  },
+  {
+    slug: 'beyond-arctic',
+    name: 'Beyond Arctic',
+    domain: 'beyondarctic.com',
+    url: 'https://www.beyondarctic.com',
+    tagline: 'Small-group aurora & photography specialist',
+    bestFor: 'Photographers and couples who want groups capped small and a guide who chases clear skies.',
+    basedIn: 'Rovaniemi, Finland',
+    bases: ['Rovaniemi', 'Levi', 'Pyhä-Luosto'],
+    departures: ['RVN', 'KTT'],
+    typicalLength: '3–8 h, small group',
+    tier: 'premium',
+    tierLabel: 'Small-group specialist',
+    stars: { family: 2, aurora: 4, husky: 3, snowmobile: 3, glassIgloo: 0, selfDrive: 0, luxury: 3 },
+    whatTheyDoWell:
+      'A Rovaniemi company (also Levi and Pyhä-Luosto) that never runs a tour over eight people. Northern-lights photography is the core, with reindeer and husky visits, national-park hikes and summer midnight-sun shoots. Holds the Sustainable Travel Finland label.',
+    whatTheyDont:
+      'Not built for large families or big groups. No accommodation or self-drive — activities only.',
+    image: '/images/card-northern-lights.webp',
+    alt: 'Faint green-cyan aurora arc above a frozen Lapland lake',
+  },
+  {
+    slug: 'safartica',
+    name: 'Safartica',
+    domain: 'safartica.com',
+    url: 'https://safartica.com',
+    tagline: 'Full activity range, including electric sleds',
+    bestFor: 'Travellers who want a broad activity menu and a lower-emission option, with the choice of a stay bundled in.',
+    basedIn: 'Rovaniemi, Finland',
+    bases: ['Rovaniemi', 'Ylläs', 'Levi', 'Saariselkä'],
+    departures: ['RVN', 'KTT', 'IVL'],
+    typicalLength: 'Half-day to multi-day',
+    tier: 'mid',
+    tierLabel: 'Activities & lodging',
+    stars: { family: 3, aurora: 3, husky: 4, snowmobile: 4, glassIgloo: 1, selfDrive: 0, luxury: 2 },
+    whatTheyDoWell:
+      "Based in Rovaniemi with bases in Ylläs, Levi and Saariselkä. Husky, reindeer and snowmobile safaris, aurora hunts, ice fishing and winter swimming — and the world's first electric snowmobile (eSled) safaris. Also runs its own chalets and wilderness lodging for stay-plus-activity bundles.",
+    whatTheyDont:
+      'A busy, multi-base operation rather than an intimate one-guide outfit. Flights are on you.',
+    image: '/images/card-arctic-adventure.webp',
+    alt: 'A single snowmobile track curving across a vast frozen Lapland lake',
+  },
+  {
+    slug: 'harriniva',
+    name: 'Harriniva',
+    domain: 'harriniva.fi',
+    url: 'https://harriniva.fi',
+    tagline: 'Third-generation Muonio wilderness family',
+    bestFor: 'Husky lovers and anyone after a multi-day wilderness trip rather than a single afternoon excursion.',
+    basedIn: 'Muonio, Finland',
+    bases: ['Muonio', 'Jeris', 'Torassieppi'],
+    departures: ['KTT'],
+    typicalLength: 'Day trips to multi-day expeditions',
+    tier: 'premium',
+    tierLabel: 'Wilderness resorts & safaris',
+    stars: { family: 3, aurora: 3, husky: 4, snowmobile: 3, glassIgloo: 1, selfDrive: 0, luxury: 3 },
+    whatTheyDoWell:
+      'A family business in Muonio since 1973, now third generation, built around its own large husky kennel and multi-day safaris. Runs three resorts — Harriniva, Jeris Lakeside and Torassieppi reindeer farm — with in-house restaurants, plus summer rafting and hiking. Transfers from Kittilä airport and Kolari railway.',
+    whatTheyDont:
+      'Muonio is remote — roughly 1.5 hours from Kittilä airport. Not a Rovaniemi day-trip operator.',
+    image: '/images/card-christmas-santa.webp',
+    alt: 'Two reindeer grazing in a snowy Lapland forest at twilight',
+  },
+  {
+    slug: 'nordic-unique',
+    name: 'Nordic Unique Travels',
+    domain: 'nordictravels.eu',
+    url: 'https://nordictravels.eu',
+    tagline: 'Rovaniemi DMC, group or tailor-made',
+    bestFor: 'Travellers who want a local specialist to shape a full itinerary, not just book one activity.',
+    basedIn: 'Rovaniemi, Finland',
+    bases: ['Rovaniemi'],
+    departures: ['RVN'],
+    typicalLength: 'Half-day to full itinerary',
+    tier: 'mid',
+    tierLabel: 'DMC & tailor-made',
+    stars: { family: 3, aurora: 4, husky: 3, snowmobile: 3, glassIgloo: 2, selfDrive: 1, luxury: 2 },
+    whatTheyDoWell:
+      'A Rovaniemi destination-management company running aurora hunts (their specialty), husky and reindeer visits, wildlife safaris and Santa visits, in fixed group departures or fully tailor-made holidays arranged by a local specialist.',
+    whatTheyDont:
+      'Tailor-made planning takes a conversation and time — not an instant one-click booking. Single-base, so activities cluster around Rovaniemi.',
+    image: '/images/card-midnight-sun.webp',
+    alt: 'Lapland river bend at midnight sun, low warm horizontal golden light',
+  },
+  {
+    slug: 'arctic-gm',
+    name: 'Arctic GM',
+    domain: 'arcticgm.com',
+    url: 'https://arcticgm.com',
+    tagline: 'The Original Aurora Hunters®',
+    bestFor: 'Couples and photographers who want a high-end, small-group aurora chase with mobility.',
+    basedIn: 'Rovaniemi, Finland',
+    bases: ['Rovaniemi', 'Levi'],
+    departures: ['RVN', 'KTT'],
+    typicalLength: '3–8 h, small group',
+    tier: 'premium',
+    tierLabel: 'Aurora specialist',
+    stars: { family: 1, aurora: 4, husky: 3, snowmobile: 3, glassIgloo: 0, selfDrive: 0, luxury: 3 },
+    whatTheyDoWell:
+      "A Rovaniemi and Levi operator from the Rytilahti family, focused on northern-lights hunting with groups capped around five and 2025 luxury vans that drive to wherever the sky is clearest. Most aurora tours include photography and 24/7 aurora tracking. Rated Tripadvisor 'Best of the Best' (top 1%).",
+    whatTheyDont:
+      'Aurora-led and premium, not a broad family-activity operator. Winter-weighted; summer choice is thinner.',
+    image: '/images/card-luxury-aurora.webp',
+    alt: 'Premium glass-roofed wilderness suite at blue hour with faint aurora through the roof',
+  },
+];
+
 export const matrixCategories: { key: keyof Operator['stars']; label: string }[] = [
   { key: 'family',      label: 'Family' },
   { key: 'aurora',      label: 'Aurora' },
@@ -972,9 +1119,686 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
 },
 };
 
-/** Returns a copy of `op` with prose fields swapped for the requested language. */
-export function localizeOperator(op: Operator, lang: OperatorLang): Operator {
-  const l = L10N[op.slug]?.[lang];
+// i18n for the LOCAL (Finland-based) operator set. 'en' is omitted — the
+// base OPERATORS_LOCAL fields are already English, and the EN locale renders
+// the UK set anyway. Every non-EN locale is present.
+const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = {
+  'lapland-safaris': {
+    fi: {
+      tagline: 'Lapin suurin ohjelmapalveluyritys',
+      bestFor: 'Matkaajalle, joka haluaa yhden toimijan koko aktiviteettivalikoimaan — husky, kelkka, poro, revontulet — usealla matkailukeskuksella.',
+      basedIn: 'Rovaniemi, Suomi',
+      typicalLength: 'Puolikkaasta päivästä monipäiväretkeen',
+      tierLabel: 'Koko kirjon ohjelmapalvelu',
+      whatTheyDoWell:
+        'Toiminut vuodesta 1982. Tukikohdat Rovaniemellä, Levillä, Ylläksellä, Saariselällä ja Luostolla ja Suomen Lapin laajin aktiviteettivalikoima: husky- ja porotilat, kelkkasafarit, revontuliretket, lumikenkäily ja välinevuokraus. Opastus nojaa paikalliseen ja saamelaiseen osaamiseen, ja yrityksellä on Suomen kansallinen matkailun turvallisuuspalkinto.',
+      whatTheyDont:
+        'Yritys myy aktiviteetteja, ei lentoja tai valmiita matkapaketteja — matkat ja majoituksen järjestät itse. Suurimpana toimijana ryhmäretket voivat olla vilkkaampia kuin pienryhmäerikoistujalla.',
+    },
+    de: {
+      tagline: 'Lapplands größter Aktivanbieter',
+      bestFor: 'Für Reisende, die einen Anbieter für das gesamte Aktivitätenprogramm möchten — Husky, Schneemobil, Rentier, Polarlicht — an mehreren Standorten.',
+      basedIn: 'Rovaniemi, Finnland',
+      typicalLength: 'Vom halben Tag bis zur Mehrtagestour',
+      tierLabel: 'Aktivanbieter mit vollem Programm',
+      whatTheyDoWell:
+        'Seit 1982 aktiv, mit Standorten in Rovaniemi, Levi, Ylläs, Saariselkä und Luosto und dem breitesten Aktivitätenangebot in Finnisch-Lappland: Husky- und Rentierfarmen, Schneemobil-Safaris, Polarlichttouren, Schneeschuhwandern und Ausrüstungsverleih. Die Führung basiert auf lokalem und samischem Wissen, und das Unternehmen trägt Finnlands nationalen Preis für Tourismussicherheit.',
+      whatTheyDont:
+        'Verkauft Aktivitäten, keine Flüge oder Komplettpakete — An- und Abreise sowie Unterkunft organisieren Sie selbst. Als größter Anbieter können Gruppentouren voller sein als bei einem Kleingruppen-Spezialisten.',
+    },
+    ja: {
+      tagline: 'ラップランド最大のアクティビティ運営会社',
+      bestFor: 'ハスキー、スノーモービル、トナカイ、オーロラまで、複数の拠点で一社にまとめて任せたい方に。',
+      basedIn: 'ロヴァニエミ、フィンランド',
+      typicalLength: '半日から数日',
+      tierLabel: 'フルレンジのアクティビティ会社',
+      whatTheyDoWell:
+        '1982年から続く老舗で、ロヴァニエミ、レヴィ、ユッラス、サーリセルカ、ルオストに拠点を持ち、フィンランド・ラップランド最大級のアクティビティの幅を誇ります。ハスキー・トナカイ牧場、スノーモービルサファリ、オーロラツアー、スノーシュー、用具レンタル。ガイドは地元とサーミの知識に根ざし、フィンランドの国家観光安全賞を受賞しています。',
+      whatTheyDont:
+        '販売するのはアクティビティであり、航空券や旅行パッケージ一式ではありません。移動と宿泊はご自身で手配します。最大手ゆえ、グループツアーは小規模専門業者より賑やかになることがあります。',
+    },
+    ko: {
+      tagline: '라플란드 최대 액티비티 운영사',
+      bestFor: '허스키, 스노모빌, 순록, 오로라까지 여러 리조트에서 한 운영사로 해결하고 싶은 여행자에게.',
+      basedIn: '핀란드 로바니에미',
+      typicalLength: '반나절에서 여러 날까지',
+      tierLabel: '전 종목 액티비티 운영사',
+      whatTheyDoWell:
+        '1982년부터 운영해 왔으며 로바니에미, 레비, 윌래스, 사리셀카, 루오스토에 거점을 두고 핀란드 라플란드에서 가장 폭넓은 액티비티를 제공합니다. 허스키·순록 농장, 스노모빌 사파리, 오로라 투어, 스노슈잉, 장비 대여까지. 가이드는 현지와 사미족의 지식에 뿌리를 두고 있으며, 핀란드 국가 관광 안전상을 보유하고 있습니다.',
+      whatTheyDont:
+        '항공권이나 전체 패키지가 아니라 액티비티를 판매합니다 — 이동과 숙박은 직접 준비하셔야 합니다. 최대 규모인 만큼 그룹 투어는 소규모 전문 운영사보다 붐빌 수 있습니다.',
+    },
+    fr: {
+      tagline: "Le plus grand opérateur d'activités de Laponie",
+      bestFor: 'Pour le voyageur qui veut un seul opérateur pour tout le programme — husky, motoneige, renne, aurore — sur plusieurs stations.',
+      basedIn: 'Rovaniemi, Finlande',
+      typicalLength: 'De la demi-journée à plusieurs jours',
+      tierLabel: "Opérateur d'activités complet",
+      whatTheyDoWell:
+        "En activité depuis 1982, avec des bases à Rovaniemi, Levi, Ylläs, Saariselkä et Luosto et la plus large gamme d'activités de Laponie finlandaise : fermes de huskies et de rennes, safaris en motoneige, sorties aurores, raquettes et location de matériel. L'encadrement s'appuie sur un savoir local et sâme, et l'entreprise détient le prix national finlandais de la sécurité touristique.",
+      whatTheyDont:
+        "Ils vendent des activités, pas des vols ni des forfaits complets — le transport et l'hébergement sont à votre charge. En tant que plus grand opérateur, les sorties de groupe peuvent être plus fréquentées que chez un spécialiste des petits groupes.",
+    },
+    it: {
+      tagline: 'Il più grande operatore di attività della Lapponia',
+      bestFor: 'Per chi vuole un solo operatore per tutte le attività — husky, motoslitta, renna, aurora — in più località.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: 'Da mezza giornata a più giorni',
+      tierLabel: 'Operatore di attività a gamma completa',
+      whatTheyDoWell:
+        "Attivo dal 1982, con basi a Rovaniemi, Levi, Ylläs, Saariselkä e Luosto e la più ampia gamma di attività della Lapponia finlandese: fattorie di husky e renne, safari in motoslitta, uscite per l'aurora, ciaspolate e noleggio attrezzatura. Le guide si fondano sul sapere locale e sami, e l'azienda detiene il premio nazionale finlandese per la sicurezza turistica.",
+      whatTheyDont:
+        'Vendono attività, non voli o pacchetti completi — viaggio e alloggio li organizza lei. Essendo il più grande operatore, le uscite di gruppo possono essere più affollate rispetto a uno specialista dei piccoli gruppi.',
+    },
+    nl: {
+      tagline: 'Laplands grootste activiteitenaanbieder',
+      bestFor: 'Voor de reiziger die één aanbieder wil voor het hele activiteitenaanbod — husky, sneeuwscooter, rendier, aurora — op meerdere bestemmingen.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Halve dag tot meerdaags',
+      tierLabel: 'Activiteitenaanbieder met volledig aanbod',
+      whatTheyDoWell:
+        "Actief sinds 1982, met bases in Rovaniemi, Levi, Ylläs, Saariselkä en Luosto en het breedste activiteitenaanbod van Fins Lapland: husky- en rendierboerderijen, sneeuwscootersafari's, aurorotochten, sneeuwschoenwandelen en materiaalverhuur. De begeleiding stoelt op lokale en Samische kennis, en het bedrijf heeft de Finse nationale prijs voor toerismeveiligheid.",
+      whatTheyDont:
+        'Ze verkopen activiteiten, geen vluchten of complete pakketten — vervoer en verblijf regelt u zelf. Als grootste aanbieder kunnen groepstochten drukker zijn dan bij een kleinegroep-specialist.',
+    },
+    es: {
+      tagline: 'El mayor operador de actividades de Laponia',
+      bestFor: 'Para quien quiere un solo operador para todo el programa — husky, motonieve, reno, aurora — en varias estaciones.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: 'De media jornada a varios días',
+      tierLabel: 'Operador de actividades de gama completa',
+      whatTheyDoWell:
+        'En activo desde 1982, con bases en Rovaniemi, Levi, Ylläs, Saariselkä y Luosto y la mayor variedad de actividades de la Laponia finlandesa: granjas de huskies y renos, safaris en motonieve, salidas de auroras, raquetas de nieve y alquiler de equipo. El guiado se apoya en el saber local y sami, y la empresa posee el premio nacional finlandés de seguridad turística.',
+      whatTheyDont:
+        'Venden actividades, no vuelos ni paquetes completos: el viaje y el alojamiento los organiza usted. Como operador más grande, las salidas de grupo pueden estar más concurridas que en un especialista de grupos pequeños.',
+    },
+    'pt-BR': {
+      tagline: 'A maior operadora de atividades da Lapônia',
+      bestFor: 'Para quem quer uma só operadora para todo o programa — husky, snowmobile, rena, aurora — em várias estações.',
+      basedIn: 'Rovaniemi, Finlândia',
+      typicalLength: 'De meio período a vários dias',
+      tierLabel: 'Operadora de atividades de gama completa',
+      whatTheyDoWell:
+        'Em atividade desde 1982, com bases em Rovaniemi, Levi, Ylläs, Saariselkä e Luosto e a maior variedade de atividades da Lapônia finlandesa: fazendas de huskies e renas, safáris de snowmobile, saídas para a aurora, caminhadas com raquetes de neve e aluguel de equipamento. A condução se apoia no saber local e sami, e a empresa detém o prêmio nacional finlandês de segurança turística.',
+      whatTheyDont:
+        'Vendem atividades, não voos nem pacotes completos — o transporte e a hospedagem ficam por sua conta. Por ser a maior operadora, as saídas em grupo podem ser mais movimentadas do que em uma especialista de grupos pequenos.',
+    },
+    'zh-CN': {
+      tagline: '拉普兰最大的活动运营商',
+      bestFor: '适合想用一家运营商搞定全部活动——哈士奇、雪地摩托、驯鹿、极光——并覆盖多个度假地的旅客。',
+      basedIn: '芬兰罗瓦涅米',
+      typicalLength: '半日至多日',
+      tierLabel: '全项目活动运营商',
+      whatTheyDoWell:
+        '自 1982 年运营至今，在罗瓦涅米、莱维、于莱斯、萨里塞尔卡和卢奥斯托设有基地，拥有芬兰拉普兰最广的活动种类：哈士奇与驯鹿农场、雪地摩托、极光团、雪鞋行走以及装备租赁。向导植根于当地与萨米人的知识，公司还获得芬兰国家旅游安全奖。',
+      whatTheyDont:
+        '他们销售的是活动，而非机票或整套打包行程——交通和住宿需你自行安排。作为最大的运营商，团队出行可能比小团专营者更热闹。',
+    },
+  },
+  'beyond-arctic': {
+    fi: {
+      tagline: 'Pienryhmien revontuli- ja valokuvauserikoistuja',
+      bestFor: 'Valokuvaajalle ja pariskunnalle, joka haluaa pienen ryhmäkoon ja oppaan, joka ajaa selkeän taivaan perässä.',
+      basedIn: 'Rovaniemi, Suomi',
+      typicalLength: '3–8 h, pieni ryhmä',
+      tierLabel: 'Pienryhmäerikoistuja',
+      whatTheyDoWell:
+        'Rovaniemeläinen yritys (myös Levi ja Pyhä-Luosto), joka ei koskaan vie retkelle yli kahdeksaa henkeä. Ydin on revontulivalokuvaus, lisäksi poro- ja huskyvierailut, kansallispuistoretket ja kesän yöttömän yön kuvaukset. Yrityksellä on Sustainable Travel Finland -merkki.',
+      whatTheyDont:
+        'Ei suurille perheille tai isoille ryhmille. Ei majoitusta eikä vuokra-autoa — vain aktiviteetteja.',
+    },
+    de: {
+      tagline: 'Kleingruppen-Spezialist für Polarlicht & Fotografie',
+      bestFor: 'Für Fotografen und Paare, die kleine Gruppen und einen Guide wollen, der dem klaren Himmel nachfährt.',
+      basedIn: 'Rovaniemi, Finnland',
+      typicalLength: '3–8 Std., kleine Gruppe',
+      tierLabel: 'Kleingruppen-Spezialist',
+      whatTheyDoWell:
+        'Ein Unternehmen aus Rovaniemi (auch Levi und Pyhä-Luosto), das nie mehr als acht Personen mitnimmt. Kern ist die Polarlichtfotografie, dazu Rentier- und Huskybesuche, Nationalparkwanderungen und Mitternachtssonnen-Shootings im Sommer. Trägt das Label Sustainable Travel Finland.',
+      whatTheyDont:
+        'Nicht für große Familien oder große Gruppen gemacht. Keine Unterkunft, kein Selbstfahren — nur Aktivitäten.',
+    },
+    ja: {
+      tagline: '少人数オーロラ・写真の専門会社',
+      bestFor: '少人数と、晴れ間を追うガイドを求める写真好き・カップルに。',
+      basedIn: 'ロヴァニエミ、フィンランド',
+      typicalLength: '3〜8時間、少人数',
+      tierLabel: '少人数専門',
+      whatTheyDoWell:
+        'ロヴァニエミの会社(レヴィ、ピュハ・ルオストにも拠点)で、1回のツアーは8人を超えません。中心はオーロラ写真で、トナカイ・ハスキー訪問、国立公園ハイキング、夏の白夜撮影も。Sustainable Travel Finlandラベルを取得しています。',
+      whatTheyDont:
+        '大人数の家族や大きなグループ向けではありません。宿泊や自由運転はなく、アクティビティのみです。',
+    },
+    ko: {
+      tagline: '소규모 오로라·사진 전문 운영사',
+      bestFor: '소규모 인원과 맑은 하늘을 좇는 가이드를 원하는 사진가와 커플에게.',
+      basedIn: '핀란드 로바니에미',
+      typicalLength: '3~8시간, 소규모',
+      tierLabel: '소규모 전문',
+      whatTheyDoWell:
+        '로바니에미 회사(레비, 퓌해-루오스토에도 거점)로, 한 투어에 여덟 명을 넘기지 않습니다. 핵심은 오로라 사진이며, 순록·허스키 방문, 국립공원 하이킹, 여름 백야 촬영도 진행합니다. Sustainable Travel Finland 라벨을 보유하고 있습니다.',
+      whatTheyDont:
+        '대가족이나 큰 그룹을 위한 곳은 아닙니다. 숙박이나 자유 운전은 없고 액티비티만 제공합니다.',
+    },
+    fr: {
+      tagline: 'Spécialiste des petits groupes pour aurore et photo',
+      bestFor: 'Pour les photographes et les couples qui veulent de petits groupes et un guide qui poursuit le ciel dégagé.',
+      basedIn: 'Rovaniemi, Finlande',
+      typicalLength: '3 à 8 h, petit groupe',
+      tierLabel: 'Spécialiste des petits groupes',
+      whatTheyDoWell:
+        "Une entreprise de Rovaniemi (également Levi et Pyhä-Luosto) qui ne dépasse jamais huit personnes par sortie. Le cœur, c'est la photographie des aurores, avec visites de rennes et de huskies, randonnées en parc national et prises de vue sous le soleil de minuit en été. Détient le label Sustainable Travel Finland.",
+      whatTheyDont:
+        "Pas conçu pour les grandes familles ni les grands groupes. Pas d'hébergement ni d'autotour — uniquement des activités.",
+    },
+    it: {
+      tagline: 'Specialista di piccoli gruppi per aurora e fotografia',
+      bestFor: 'Per fotografi e coppie che vogliono gruppi ridotti e una guida che insegue il cielo sereno.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: '3–8 h, piccolo gruppo',
+      tierLabel: 'Specialista dei piccoli gruppi',
+      whatTheyDoWell:
+        "Un'azienda di Rovaniemi (anche Levi e Pyhä-Luosto) che non supera mai le otto persone per uscita. Il cuore è la fotografia dell'aurora, con visite a renne e husky, escursioni nei parchi nazionali e servizi al sole di mezzanotte in estate. Detiene il marchio Sustainable Travel Finland.",
+      whatTheyDont:
+        'Non è pensata per famiglie numerose o grandi gruppi. Niente alloggio né autotour — solo attività.',
+    },
+    nl: {
+      tagline: 'Kleinegroep-specialist voor aurora en fotografie',
+      bestFor: 'Voor fotografen en stellen die kleine groepen willen en een gids die de heldere hemel opzoekt.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: '3–8 u, kleine groep',
+      tierLabel: 'Kleinegroep-specialist',
+      whatTheyDoWell:
+        "Een bedrijf uit Rovaniemi (ook Levi en Pyhä-Luosto) dat nooit meer dan acht personen meeneemt. De kern is noorderlichtfotografie, met rendier- en huskybezoeken, wandelingen in nationale parken en midzomerzon-shoots in de zomer. Draagt het label Sustainable Travel Finland.",
+      whatTheyDont:
+        'Niet gemaakt voor grote gezinnen of grote groepen. Geen accommodatie of zelfrijden — alleen activiteiten.',
+    },
+    es: {
+      tagline: 'Especialista en grupos pequeños para aurora y fotografía',
+      bestFor: 'Para fotógrafos y parejas que quieren grupos reducidos y un guía que persigue el cielo despejado.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: '3–8 h, grupo pequeño',
+      tierLabel: 'Especialista en grupos pequeños',
+      whatTheyDoWell:
+        'Una empresa de Rovaniemi (también Levi y Pyhä-Luosto) que nunca lleva más de ocho personas por salida. El núcleo es la fotografía de auroras, con visitas a renos y huskies, rutas por parques nacionales y sesiones bajo el sol de medianoche en verano. Posee el sello Sustainable Travel Finland.',
+      whatTheyDont:
+        'No está pensada para familias numerosas ni grupos grandes. Sin alojamiento ni autotour: solo actividades.',
+    },
+    'pt-BR': {
+      tagline: 'Especialista em grupos pequenos para aurora e fotografia',
+      bestFor: 'Para fotógrafos e casais que querem grupos reduzidos e um guia que persegue o céu limpo.',
+      basedIn: 'Rovaniemi, Finlândia',
+      typicalLength: '3–8 h, grupo pequeno',
+      tierLabel: 'Especialista em grupos pequenos',
+      whatTheyDoWell:
+        'Uma empresa de Rovaniemi (também Levi e Pyhä-Luosto) que nunca leva mais de oito pessoas por saída. O núcleo é a fotografia da aurora, com visitas a renas e huskies, trilhas em parques nacionais e ensaios sob o sol da meia-noite no verão. Detém o selo Sustainable Travel Finland.',
+      whatTheyDont:
+        'Não é feita para famílias grandes ou grupos numerosos. Sem hospedagem ou autotour — apenas atividades.',
+    },
+    'zh-CN': {
+      tagline: '小团极光与摄影专营',
+      bestFor: '适合想要小团人数、并有向导追逐晴朗天空的摄影爱好者与情侣。',
+      basedIn: '芬兰罗瓦涅米',
+      typicalLength: '3–8 小时，小团',
+      tierLabel: '小团专营',
+      whatTheyDoWell:
+        '一家罗瓦涅米的公司（在莱维和皮哈-卢奥斯托也设点），每次出行不超过八人。核心是极光摄影，另有驯鹿与哈士奇探访、国家公园徒步以及夏季午夜阳光拍摄。持有 Sustainable Travel Finland 可持续旅行标识。',
+      whatTheyDont:
+        '不适合大家庭或大型团队。不含住宿或自驾——只做活动。',
+    },
+  },
+  safartica: {
+    fi: {
+      tagline: 'Koko aktiviteettikirjo, myös sähkökelkat',
+      bestFor: 'Matkaajalle, joka haluaa laajan aktiviteettivalikoiman ja vähäpäästöisemmän vaihtoehdon, ja halutessaan majoituksen samaan pakettiin.',
+      basedIn: 'Rovaniemi, Suomi',
+      typicalLength: 'Puolikkaasta päivästä monipäiväretkeen',
+      tierLabel: 'Aktiviteetit ja majoitus',
+      whatTheyDoWell:
+        'Kotipaikka Rovaniemi, tukikohdat Ylläksellä, Levillä ja Saariselällä. Husky-, poro- ja kelkkasafarit, revontuliretket, pilkkiminen ja avantouinti — sekä maailman ensimmäiset sähkökelkka- eli eSled-safarit. Tarjoaa myös omat mökit ja erämaamajoituksen majoitus-plus-aktiviteetti-paketteihin.',
+      whatTheyDont:
+        'Vilkas monen tukikohdan toimija, ei intiimi yhden oppaan yritys. Lennot järjestät itse.',
+    },
+    de: {
+      tagline: 'Volles Aktivitätenangebot, auch E-Schlitten',
+      bestFor: 'Für Reisende, die ein breites Angebot und eine emissionsärmere Option wollen — mit optional gebündelter Unterkunft.',
+      basedIn: 'Rovaniemi, Finnland',
+      typicalLength: 'Vom halben Tag bis zur Mehrtagestour',
+      tierLabel: 'Aktivitäten & Unterkunft',
+      whatTheyDoWell:
+        'Sitz in Rovaniemi, mit Standorten in Ylläs, Levi und Saariselkä. Husky-, Rentier- und Schneemobil-Safaris, Polarlichtjagden, Eisangeln und Winterschwimmen — und die weltweit ersten Elektro-Schneemobil-Safaris (eSled). Betreibt zudem eigene Chalets und Wildnisunterkünfte für Kombi-Pakete aus Übernachtung und Aktivität.',
+      whatTheyDont:
+        'Ein betriebsamer Anbieter mit mehreren Standorten, kein intimer Ein-Guide-Betrieb. Flüge organisieren Sie selbst.',
+    },
+    ja: {
+      tagline: '電動ソリまで揃うフルレンジ',
+      bestFor: '幅広いアクティビティと低排出の選択肢を求め、希望すれば宿泊も一括にしたい方に。',
+      basedIn: 'ロヴァニエミ、フィンランド',
+      typicalLength: '半日から数日',
+      tierLabel: 'アクティビティと宿泊',
+      whatTheyDoWell:
+        '本拠はロヴァニエミ、ユッラス・レヴィ・サーリセルカに拠点。ハスキー・トナカイ・スノーモービルサファリ、オーロラハント、氷上釣り、冬の水泳、そして世界初の電動スノーモービル(eSled)サファリ。自社のシャレーや原野の宿も持ち、宿泊+アクティビティのパッケージにできます。',
+      whatTheyDont:
+        '少人数の一ガイド制ではなく、複数拠点の活気ある運営です。航空券はご自身で手配します。',
+    },
+    ko: {
+      tagline: '전동 썰매까지 갖춘 풀 라인업',
+      bestFor: '폭넓은 액티비티와 저배출 옵션을 원하고, 원하면 숙박까지 한 번에 묶고 싶은 여행자에게.',
+      basedIn: '핀란드 로바니에미',
+      typicalLength: '반나절에서 여러 날까지',
+      tierLabel: '액티비티 & 숙박',
+      whatTheyDoWell:
+        '본사는 로바니에미, 거점은 윌래스·레비·사리셀카. 허스키·순록·스노모빌 사파리, 오로라 헌팅, 얼음낚시, 겨울 수영 — 그리고 세계 최초의 전동 스노모빌(eSled) 사파리. 자체 샬레와 야생 숙소도 운영해 숙박+액티비티 패키지가 가능합니다.',
+      whatTheyDont:
+        '가이드 한 명의 아담한 운영이 아니라 여러 거점의 분주한 운영입니다. 항공편은 직접 준비하셔야 합니다.',
+    },
+    fr: {
+      tagline: 'Gamme complète, y compris traîneaux électriques',
+      bestFor: "Pour le voyageur qui veut un large choix d'activités et une option à plus faibles émissions, avec la possibilité d'y joindre l'hébergement.",
+      basedIn: 'Rovaniemi, Finlande',
+      typicalLength: 'De la demi-journée à plusieurs jours',
+      tierLabel: 'Activités et hébergement',
+      whatTheyDoWell:
+        "Basée à Rovaniemi, avec des points d'attache à Ylläs, Levi et Saariselkä. Safaris husky, renne et motoneige, chasses aux aurores, pêche blanche et baignade hivernale — et les premiers safaris en motoneige électrique (eSled) au monde. Gère aussi ses propres chalets et hébergements en pleine nature pour des formules séjour + activité.",
+      whatTheyDont:
+        'Un opérateur animé à plusieurs bases, pas une structure intime à guide unique. Les vols restent à votre charge.',
+    },
+    it: {
+      tagline: 'Gamma completa, slitte elettriche incluse',
+      bestFor: "Per chi vuole un'ampia scelta di attività e un'opzione a minori emissioni, con la possibilità di aggiungere il soggiorno.",
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: 'Da mezza giornata a più giorni',
+      tierLabel: 'Attività e alloggio',
+      whatTheyDoWell:
+        "Con sede a Rovaniemi e basi a Ylläs, Levi e Saariselkä. Safari con husky, renne e motoslitte, cacce all'aurora, pesca sul ghiaccio e bagno invernale — e i primi safari al mondo in motoslitta elettrica (eSled). Gestisce anche chalet e alloggi nella natura per pacchetti soggiorno + attività.",
+      whatTheyDont:
+        'Un operatore vivace su più basi, non una struttura intima con una sola guida. I voli sono a suo carico.',
+    },
+    nl: {
+      tagline: 'Volledig aanbod, inclusief elektrische sleeën',
+      bestFor: 'Voor de reiziger die veel keuze wil en een optie met minder uitstoot, met eventueel het verblijf erbij.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Halve dag tot meerdaags',
+      tierLabel: 'Activiteiten & verblijf',
+      whatTheyDoWell:
+        "Gevestigd in Rovaniemi, met bases in Ylläs, Levi en Saariselkä. Husky-, rendier- en sneeuwscootersafari's, aurorajachten, ijsvissen en winterzwemmen — en 's werelds eerste elektrische sneeuwscooter- (eSled) safari's. Runt ook eigen chalets en wildernisverblijven voor verblijf-plus-activiteit-pakketten.",
+      whatTheyDont:
+        'Een drukke aanbieder met meerdere bases, geen intiem één-gidsbedrijf. Vluchten regelt u zelf.',
+    },
+    es: {
+      tagline: 'Gama completa, incluidos trineos eléctricos',
+      bestFor: 'Para quien quiere una amplia oferta de actividades y una opción de menores emisiones, con la posibilidad de sumar el alojamiento.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: 'De media jornada a varios días',
+      tierLabel: 'Actividades y alojamiento',
+      whatTheyDoWell:
+        'Con sede en Rovaniemi y bases en Ylläs, Levi y Saariselkä. Safaris de husky, reno y motonieve, cazas de auroras, pesca en hielo y baño invernal, y los primeros safaris del mundo en motonieve eléctrica (eSled). También gestiona sus propios chalets y alojamientos en plena naturaleza para paquetes de estancia más actividad.',
+      whatTheyDont:
+        'Un operador dinámico con varias bases, no una estructura íntima de un solo guía. Los vuelos corren de su cuenta.',
+    },
+    'pt-BR': {
+      tagline: 'Gama completa, incluindo trenós elétricos',
+      bestFor: 'Para quem quer um leque amplo de atividades e uma opção de menor emissão, com a possibilidade de incluir a hospedagem.',
+      basedIn: 'Rovaniemi, Finlândia',
+      typicalLength: 'De meio período a vários dias',
+      tierLabel: 'Atividades e hospedagem',
+      whatTheyDoWell:
+        'Com sede em Rovaniemi e bases em Ylläs, Levi e Saariselkä. Safáris de husky, rena e snowmobile, caças à aurora, pesca no gelo e banho de inverno — e os primeiros safáris do mundo em snowmobile elétrico (eSled). Também opera seus próprios chalés e hospedagens na natureza para pacotes de estadia mais atividade.',
+      whatTheyDont:
+        'Uma operadora movimentada com várias bases, não uma estrutura intimista de guia único. Os voos ficam por sua conta.',
+    },
+    'zh-CN': {
+      tagline: '项目齐全，含电动雪橇',
+      bestFor: '适合想要丰富活动选择与更低排放选项、并可将住宿一并打包的旅客。',
+      basedIn: '芬兰罗瓦涅米',
+      typicalLength: '半日至多日',
+      tierLabel: '活动与住宿',
+      whatTheyDoWell:
+        '总部位于罗瓦涅米，在于莱斯、莱维和萨里塞尔卡设有基地。哈士奇、驯鹿与雪地摩托、极光追寻、冰钓和冬泳——以及全球首创的电动雪地摩托（eSled）团。还经营自有小木屋和荒野住宿，可组合“住宿+活动”套餐。',
+      whatTheyDont:
+        '这是一家多基地、节奏繁忙的运营商，而非单向导的小而精团队。机票需你自理。',
+    },
+  },
+  harriniva: {
+    fi: {
+      tagline: 'Kolmannen polven Muonion erämaayritys',
+      bestFor: 'Huskyn ystäville ja kaikille, jotka haluavat monipäiväisen erämaaretken yhden iltapäiväretken sijaan.',
+      basedIn: 'Muonio, Suomi',
+      typicalLength: 'Päiväretkistä monipäiväretkiin',
+      tierLabel: 'Erämaakeskukset ja safarit',
+      whatTheyDoWell:
+        'Muoniolainen perheyritys vuodesta 1973, nyt kolmannessa polvessa, ja sen ytimenä on oma iso huskytarha ja monipäiväiset safarit. Yritys pyörittää kolmea keskusta — Harriniva, Jeris Lakeside ja Torassiepin porotila — omine ravintoloineen, sekä kesäisin koskenlaskua ja vaellusta. Kuljetukset Kittilän lentoasemalta ja Kolarin rautatieasemalta.',
+      whatTheyDont:
+        'Muonio on syrjässä — noin 1,5 tuntia Kittilän lentoasemalta. Ei Rovaniemen päiväretkitoimija.',
+    },
+    de: {
+      tagline: 'Wildnis-Familie aus Muonio in dritter Generation',
+      bestFor: 'Für Husky-Fans und alle, die eine mehrtägige Wildnistour statt eines einzelnen Nachmittagsausflugs suchen.',
+      basedIn: 'Muonio, Finnland',
+      typicalLength: 'Von Tagesausflügen bis Mehrtagesexpeditionen',
+      tierLabel: 'Wildnis-Resorts & Safaris',
+      whatTheyDoWell:
+        'Ein Familienbetrieb in Muonio seit 1973, heute in dritter Generation, aufgebaut rund um den eigenen großen Husky-Zwinger und mehrtägige Safaris. Betreibt drei Resorts — Harriniva, Jeris Lakeside und die Rentierfarm Torassieppi — mit eigenen Restaurants, dazu im Sommer Rafting und Wandern. Transfers ab Flughafen Kittilä und Bahnhof Kolari.',
+      whatTheyDont:
+        'Muonio liegt abgelegen — rund 1,5 Stunden vom Flughafen Kittilä. Kein Tagesausflugs-Anbieter ab Rovaniemi.',
+    },
+    ja: {
+      tagline: 'ムオニオの三代続く原野ファミリー',
+      bestFor: 'ハスキー好き、そして半日の遠足ではなく数日の原野の旅を求める方に。',
+      basedIn: 'ムオニオ、フィンランド',
+      typicalLength: '日帰りから数日の遠征まで',
+      tierLabel: '原野リゾートとサファリ',
+      whatTheyDoWell:
+        '1973年創業、いまや三代目のムオニオの家族経営。自前の大きなハスキー犬舎と数日がかりのサファリが柱です。ハリニヴァ、イェリス湖畔、トラシエッピのトナカイ牧場という3つのリゾートを直営レストランとともに運営し、夏はラフティングやハイキングも。送迎はキッティラ空港とコラリ駅から。',
+      whatTheyDont:
+        'ムオニオは辺境で、キッティラ空港から約1.5時間。ロヴァニエミ発の日帰り業者ではありません。',
+    },
+    ko: {
+      tagline: '무오니오의 3대째 야생 가족 기업',
+      bestFor: '허스키를 좋아하는 분, 그리고 반나절 나들이보다 여러 날의 야생 여행을 원하는 분에게.',
+      basedIn: '핀란드 무오니오',
+      typicalLength: '당일치기부터 여러 날 원정까지',
+      tierLabel: '야생 리조트 & 사파리',
+      whatTheyDoWell:
+        '1973년부터 이어온 무오니오의 가족 기업으로 지금은 3대째이며, 자체 대형 허스키 견사와 여러 날에 걸친 사파리가 중심입니다. 하리니바, 예리스 레이크사이드, 토라시에피 순록 농장 등 세 곳의 리조트를 직영 레스토랑과 함께 운영하며, 여름에는 래프팅과 하이킹도 진행합니다. 키틸레 공항과 콜라리 기차역에서 이동 서비스를 제공합니다.',
+      whatTheyDont:
+        '무오니오는 외진 곳으로 키틸레 공항에서 약 1.5시간 거리입니다. 로바니에미 당일 투어 업체가 아닙니다.',
+    },
+    fr: {
+      tagline: 'Famille de la nature à Muonio, troisième génération',
+      bestFor: "Pour les amoureux des huskies et tous ceux qui veulent une sortie de plusieurs jours en pleine nature plutôt qu'un simple après-midi.",
+      basedIn: 'Muonio, Finlande',
+      typicalLength: "De l'excursion à la journée à l'expédition de plusieurs jours",
+      tierLabel: 'Complexes nature & safaris',
+      whatTheyDoWell:
+        "Une entreprise familiale de Muonio depuis 1973, aujourd'hui à la troisième génération, articulée autour de son grand chenil de huskies et de safaris de plusieurs jours. Elle gère trois complexes — Harriniva, Jeris Lakeside et la ferme de rennes de Torassieppi — avec leurs restaurants, plus rafting et randonnée en été. Transferts depuis l'aéroport de Kittilä et la gare de Kolari.",
+      whatTheyDont:
+        "Muonio est isolé — environ 1 h 30 de l'aéroport de Kittilä. Ce n'est pas un opérateur de sorties à la journée depuis Rovaniemi.",
+    },
+    it: {
+      tagline: 'Famiglia della natura di Muonio, terza generazione',
+      bestFor: 'Per gli amanti degli husky e per chi cerca un viaggio nella natura di più giorni, non una singola uscita pomeridiana.',
+      basedIn: 'Muonio, Finlandia',
+      typicalLength: 'Da gite in giornata a spedizioni di più giorni',
+      tierLabel: 'Resort nella natura & safari',
+      whatTheyDoWell:
+        "Un'azienda familiare di Muonio dal 1973, oggi alla terza generazione, imperniata sul proprio grande canile di husky e su safari di più giorni. Gestisce tre resort — Harriniva, Jeris Lakeside e la fattoria di renne Torassieppi — con ristoranti interni, oltre a rafting ed escursioni in estate. Transfer dall'aeroporto di Kittilä e dalla stazione di Kolari.",
+      whatTheyDont:
+        "Muonio è isolata — circa 1,5 ore dall'aeroporto di Kittilä. Non è un operatore di gite in giornata da Rovaniemi.",
+    },
+    nl: {
+      tagline: 'Muonio-natuurfamilie in de derde generatie',
+      bestFor: 'Voor husky-liefhebbers en iedereen die een meerdaagse wildernistocht wil in plaats van één middagexcursie.',
+      basedIn: 'Muonio, Finland',
+      typicalLength: 'Dagtochten tot meerdaagse expedities',
+      tierLabel: "Wildernisresorts & safari's",
+      whatTheyDoWell:
+        "Een familiebedrijf in Muonio sinds 1973, nu in de derde generatie, opgebouwd rond de eigen grote huskykennel en meerdaagse safari's. Runt drie resorts — Harriniva, Jeris Lakeside en de rendierboerderij Torassieppi — met eigen restaurants, plus raften en wandelen in de zomer. Transfers vanaf luchthaven Kittilä en station Kolari.",
+      whatTheyDont:
+        'Muonio ligt afgelegen — ongeveer 1,5 uur van luchthaven Kittilä. Geen dagtochtaanbieder vanuit Rovaniemi.',
+    },
+    es: {
+      tagline: 'Familia de naturaleza de Muonio, tercera generación',
+      bestFor: 'Para los amantes de los huskies y para quien busca un viaje de varios días en plena naturaleza, no una simple excursión de tarde.',
+      basedIn: 'Muonio, Finlandia',
+      typicalLength: 'De excursiones de un día a expediciones de varios días',
+      tierLabel: 'Complejos en la naturaleza y safaris',
+      whatTheyDoWell:
+        'Un negocio familiar de Muonio desde 1973, hoy en la tercera generación, centrado en su propia gran perrera de huskies y en safaris de varios días. Gestiona tres complejos — Harriniva, Jeris Lakeside y la granja de renos de Torassieppi — con restaurantes propios, además de rafting y senderismo en verano. Traslados desde el aeropuerto de Kittilä y la estación de tren de Kolari.',
+      whatTheyDont:
+        'Muonio está apartada: a alrededor de 1,5 horas del aeropuerto de Kittilä. No es un operador de excursiones de un día desde Rovaniemi.',
+    },
+    'pt-BR': {
+      tagline: 'Família da natureza de Muonio, terceira geração',
+      bestFor: 'Para os amantes de huskies e para quem quer uma viagem de vários dias na natureza, e não um único passeio de tarde.',
+      basedIn: 'Muonio, Finlândia',
+      typicalLength: 'De passeios de um dia a expedições de vários dias',
+      tierLabel: 'Resorts na natureza & safáris',
+      whatTheyDoWell:
+        'Um negócio familiar em Muonio desde 1973, hoje na terceira geração, centrado no próprio grande canil de huskies e em safáris de vários dias. Opera três resorts — Harriniva, Jeris Lakeside e a fazenda de renas Torassieppi — com restaurantes próprios, além de rafting e caminhadas no verão. Traslados do aeroporto de Kittilä e da estação de trem de Kolari.',
+      whatTheyDont:
+        'Muonio é remota — cerca de 1,5 hora do aeroporto de Kittilä. Não é uma operadora de bate-volta a partir de Rovaniemi.',
+    },
+    'zh-CN': {
+      tagline: '穆奥尼奥三代传承的荒野家族',
+      bestFor: '适合哈士奇爱好者，以及想要数日荒野之旅而非单个下午短游的旅客。',
+      basedIn: '芬兰穆奥尼奥',
+      typicalLength: '从一日游到多日探险',
+      tierLabel: '荒野度假村与团队游',
+      whatTheyDoWell:
+        '穆奥尼奥的家族企业，始于 1973 年，如今已是第三代，核心是自有的大型哈士奇犬舍和多日团队游。经营三处度假村——Harriniva、Jeris 湖畔和 Torassieppi 驯鹿农场——并配有自营餐厅，夏季还有漂流和徒步。提供从基蒂莱机场和科拉里火车站的接送。',
+      whatTheyDont:
+        '穆奥尼奥地处偏远——距基蒂莱机场约 1.5 小时。并非从罗瓦涅米出发的一日游运营商。',
+    },
+  },
+  'nordic-unique': {
+    fi: {
+      tagline: 'Rovaniemeläinen DMC, ryhmä tai räätälöity',
+      bestFor: 'Matkaajalle, joka haluaa paikallisen asiantuntijan rakentavan koko matkasuunnitelman, ei vain yhtä retkeä.',
+      basedIn: 'Rovaniemi, Suomi',
+      typicalLength: 'Puolikkaasta päivästä koko matkaan',
+      tierLabel: 'DMC ja räätälöinti',
+      whatTheyDoWell:
+        'Rovaniemeläinen matkakohteen hallintayritys (DMC), joka tekee revontuliretkiä (erikoisalansa), husky- ja porovierailuja, luontosafareita ja joulupukkikäyntejä, joko kiinteinä ryhmälähtöinä tai täysin räätälöityinä matkoina paikallisen asiantuntijan suunnittelemina.',
+      whatTheyDont:
+        'Räätälöinti vaatii keskustelun ja aikaa — ei yhden klikkauksen pikavarausta. Yksi tukikohta, joten aktiviteetit keskittyvät Rovaniemen ympärille.',
+    },
+    de: {
+      tagline: 'DMC aus Rovaniemi, Gruppe oder maßgeschneidert',
+      bestFor: 'Für Reisende, die einen lokalen Spezialisten wollen, der die ganze Reise gestaltet, nicht nur eine Aktivität bucht.',
+      basedIn: 'Rovaniemi, Finnland',
+      typicalLength: 'Vom halben Tag bis zur kompletten Reise',
+      tierLabel: 'DMC & Maßanfertigung',
+      whatTheyDoWell:
+        'Ein Destinationsmanagement-Unternehmen (DMC) aus Rovaniemi mit Polarlichtjagden (ihr Spezialgebiet), Husky- und Rentierbesuchen, Wildtier-Safaris und Weihnachtsmann-Besuchen — als feste Gruppenabfahrten oder als vollständig maßgeschneiderte Reisen, geplant von einem lokalen Spezialisten.',
+      whatTheyDont:
+        'Maßgeschneiderte Planung braucht ein Gespräch und Zeit — keine sofortige Ein-Klick-Buchung. Nur ein Standort, daher konzentrieren sich die Aktivitäten auf Rovaniemi.',
+    },
+    ja: {
+      tagline: 'ロヴァニエミのDMC、団体もオーダーメイドも',
+      bestFor: 'アクティビティを1つ予約するだけでなく、地元の専門家に旅程全体を組んでほしい方に。',
+      basedIn: 'ロヴァニエミ、フィンランド',
+      typicalLength: '半日から旅程一式まで',
+      tierLabel: 'DMC・オーダーメイド',
+      whatTheyDoWell:
+        'ロヴァニエミのデスティネーション・マネジメント会社(DMC)。オーロラハント(得意分野)、ハスキー・トナカイ訪問、野生動物サファリ、サンタ訪問を、定発の団体、または地元専門家が組む完全オーダーメイドの旅として提供します。',
+      whatTheyDont:
+        'オーダーメイドは相談と時間が必要で、ワンクリックの即時予約ではありません。拠点は1か所のため、アクティビティはロヴァニエミ周辺に集まります。',
+    },
+    ko: {
+      tagline: '로바니에미 DMC, 단체 또는 맞춤형',
+      bestFor: '액티비티 하나만 예약하기보다 현지 전문가가 전체 일정을 짜주길 원하는 여행자에게.',
+      basedIn: '핀란드 로바니에미',
+      typicalLength: '반나절부터 전체 일정까지',
+      tierLabel: 'DMC & 맞춤형',
+      whatTheyDoWell:
+        '로바니에미의 목적지 관리 회사(DMC)로, 오로라 헌팅(전문 분야), 허스키·순록 방문, 야생동물 사파리, 산타 방문을 고정 단체 출발이나 현지 전문가가 짜는 완전 맞춤형 여행으로 제공합니다.',
+      whatTheyDont:
+        '맞춤형 기획은 상담과 시간이 필요합니다 — 원클릭 즉시 예약이 아닙니다. 거점이 한 곳이라 액티비티가 로바니에미 주변에 몰려 있습니다.',
+    },
+    fr: {
+      tagline: 'Réceptif à Rovaniemi, groupe ou sur mesure',
+      bestFor: "Pour le voyageur qui veut un spécialiste local pour bâtir tout l'itinéraire, pas seulement réserver une activité.",
+      basedIn: 'Rovaniemi, Finlande',
+      typicalLength: "De la demi-journée à l'itinéraire complet",
+      tierLabel: 'Réceptif & sur mesure',
+      whatTheyDoWell:
+        'Une agence réceptive (DMC) de Rovaniemi proposant des chasses aux aurores (sa spécialité), des visites de huskies et de rennes, des safaris animaliers et des visites du Père Noël, en départs de groupe fixes ou en voyages entièrement sur mesure conçus par un spécialiste local.',
+      whatTheyDont:
+        'Le sur-mesure demande un échange et du temps — pas une réservation instantanée en un clic. Base unique : les activités se concentrent autour de Rovaniemi.',
+    },
+    it: {
+      tagline: 'DMC di Rovaniemi, gruppo o su misura',
+      bestFor: "Per chi vuole uno specialista locale che costruisca l'intero itinerario, non solo prenotare una singola attività.",
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: "Da mezza giornata all'itinerario completo",
+      tierLabel: 'DMC & su misura',
+      whatTheyDoWell:
+        "Un'agenzia incoming (DMC) di Rovaniemi che propone cacce all'aurora (la sua specialità), visite a husky e renne, safari faunistici e visite a Babbo Natale, con partenze di gruppo fisse o viaggi interamente su misura ideati da uno specialista locale.",
+      whatTheyDont:
+        'La progettazione su misura richiede un confronto e tempo — non una prenotazione immediata con un clic. Base unica: le attività si concentrano intorno a Rovaniemi.',
+    },
+    nl: {
+      tagline: 'DMC in Rovaniemi, groep of op maat',
+      bestFor: 'Voor de reiziger die een lokale specialist wil die de hele reis vormgeeft, niet alleen één activiteit boekt.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Halve dag tot volledige reis',
+      tierLabel: 'DMC & maatwerk',
+      whatTheyDoWell:
+        "Een destinatiemanagementbedrijf (DMC) uit Rovaniemi met aurorajachten (hun specialiteit), husky- en rendierbezoeken, wildlifesafari's en bezoeken aan de Kerstman, als vaste groepsvertrekken of als volledig op maat gemaakte reizen, samengesteld door een lokale specialist.",
+      whatTheyDont:
+        'Maatwerk vraagt om een gesprek en tijd — geen directe boeking met één klik. Eén base, dus de activiteiten liggen rond Rovaniemi.',
+    },
+    es: {
+      tagline: 'DMC de Rovaniemi, en grupo o a medida',
+      bestFor: 'Para quien quiere un especialista local que diseñe todo el itinerario, no solo reservar una actividad.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: 'De media jornada al itinerario completo',
+      tierLabel: 'DMC y a medida',
+      whatTheyDoWell:
+        'Una empresa de gestión de destino (DMC) de Rovaniemi que ofrece cazas de auroras (su especialidad), visitas a huskies y renos, safaris de fauna y visitas a Papá Noel, en salidas de grupo fijas o en viajes totalmente a medida diseñados por un especialista local.',
+      whatTheyDont:
+        'La planificación a medida requiere una conversación y tiempo: no es una reserva instantánea de un clic. Base única, así que las actividades se concentran alrededor de Rovaniemi.',
+    },
+    'pt-BR': {
+      tagline: 'DMC de Rovaniemi, em grupo ou sob medida',
+      bestFor: 'Para quem quer um especialista local para montar todo o roteiro, não apenas reservar uma atividade.',
+      basedIn: 'Rovaniemi, Finlândia',
+      typicalLength: 'De meio período ao roteiro completo',
+      tierLabel: 'DMC e sob medida',
+      whatTheyDoWell:
+        'Uma empresa de gestão de destino (DMC) de Rovaniemi que oferece caças à aurora (sua especialidade), visitas a huskies e renas, safáris de vida selvagem e visitas ao Papai Noel, em saídas de grupo fixas ou em viagens totalmente sob medida montadas por um especialista local.',
+      whatTheyDont:
+        'O planejamento sob medida exige conversa e tempo — não é uma reserva instantânea de um clique. Base única, então as atividades se concentram em torno de Rovaniemi.',
+    },
+    'zh-CN': {
+      tagline: '罗瓦涅米地接社，团队或定制',
+      bestFor: '适合希望由当地专家规划整段行程、而不只是预订单个活动的旅客。',
+      basedIn: '芬兰罗瓦涅米',
+      typicalLength: '半日至整段行程',
+      tierLabel: '地接社与定制',
+      whatTheyDoWell:
+        '一家罗瓦涅米的目的地管理公司（DMC），提供极光追寻（其专长）、哈士奇与驯鹿探访、野生动物团和圣诞老人探访，可选固定团期出发，或由当地专家规划的完全定制行程。',
+      whatTheyDont:
+        '定制规划需要沟通和时间——并非一键即订。仅一个基地，活动集中在罗瓦涅米周边。',
+    },
+  },
+  'arctic-gm': {
+    fi: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Pariskunnille ja valokuvaajille, jotka haluavat korkeatasoisen pienryhmän revontulijahdin liikkuvuudella.',
+      basedIn: 'Rovaniemi, Suomi',
+      typicalLength: '3–8 h, pieni ryhmä',
+      tierLabel: 'Revontulierikoistuja',
+      whatTheyDoWell:
+        "Rovaniemellä ja Levillä toimiva Rytilahden suvun yritys, joka keskittyy revontulijahtiin noin viiden hengen ryhmillä ja vuoden 2025 luksuspakuilla, jotka ajavat sinne, missä taivas on selkein. Useimpiin revontuliretkiin kuuluu valokuvaus ja jatkuva revontuliseuranta. Tripadvisorin 'Best of the Best' -arvio (paras 1 %).",
+      whatTheyDont:
+        'Revontulivetoinen ja premium, ei laaja perheaktiviteettitoimija. Talvipainotteinen; kesävalikoima on ohuempi.',
+    },
+    de: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Für Paare und Fotografen, die eine hochwertige Polarlichtjagd in kleiner Gruppe mit Mobilität wollen.',
+      basedIn: 'Rovaniemi, Finnland',
+      typicalLength: '3–8 Std., kleine Gruppe',
+      tierLabel: 'Polarlicht-Spezialist',
+      whatTheyDoWell:
+        "Ein Anbieter aus Rovaniemi und Levi der Familie Rytilahti, spezialisiert auf die Polarlichtjagd mit Gruppen von rund fünf Personen und Luxus-Vans (Baujahr 2025), die dorthin fahren, wo der Himmel am klarsten ist. Die meisten Touren umfassen Fotografie und rund um die Uhr Polarlicht-Tracking. Von Tripadvisor als 'Best of the Best' (Top 1 %) ausgezeichnet.",
+      whatTheyDont:
+        'Polarlicht-orientiert und Premium, kein breiter Familien-Aktivanbieter. Winterlastig; die Sommerauswahl ist dünner.',
+    },
+    ja: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: '機動力のある少人数で、上質なオーロラ追跡を求めるカップルや写真好きに。',
+      basedIn: 'ロヴァニエミ、フィンランド',
+      typicalLength: '3〜8時間、少人数',
+      tierLabel: 'オーロラ専門',
+      whatTheyDoWell:
+        'ロヴァニエミとレヴィで営むRytilahti一家の会社。約5名までの少人数でのオーロラハントに特化し、2025年式の高級バンで空が最も晴れる場所へ向かいます。多くのツアーに写真撮影と24時間体制のオーロラ追跡が含まれます。トリップアドバイザーの「Best of the Best」(上位1%)。',
+      whatTheyDont:
+        'オーロラ中心のプレミアムで、幅広い家族向けアクティビティ業者ではありません。冬に偏り、夏の選択肢は少なめです。',
+    },
+    ko: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: '기동력 있는 소규모로 고급 오로라 추적을 원하는 커플과 사진가에게.',
+      basedIn: '핀란드 로바니에미',
+      typicalLength: '3~8시간, 소규모',
+      tierLabel: '오로라 전문',
+      whatTheyDoWell:
+        "로바니에미와 레비에서 운영하는 뤼틸라흐티(Rytilahti) 가문의 업체로, 약 다섯 명 규모의 소규모 오로라 헌팅에 특화되어 있으며 하늘이 가장 맑은 곳으로 이동하는 2025년형 럭셔리 밴을 운용합니다. 대부분의 오로라 투어에 사진 촬영과 24시간 오로라 추적이 포함됩니다. 트립어드바이저 'Best of the Best'(상위 1%) 등급.",
+      whatTheyDont:
+        '오로라 중심의 프리미엄으로, 폭넓은 가족 액티비티 업체가 아닙니다. 겨울에 치우쳐 있고 여름 선택지는 얇습니다.',
+    },
+    fr: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Pour les couples et les photographes qui veulent une chasse aux aurores haut de gamme, en petit groupe et mobile.',
+      basedIn: 'Rovaniemi, Finlande',
+      typicalLength: '3 à 8 h, petit groupe',
+      tierLabel: 'Spécialiste des aurores',
+      whatTheyDoWell:
+        "Un opérateur de Rovaniemi et Levi, de la famille Rytilahti, spécialisé dans la chasse aux aurores en groupes d'environ cinq personnes, avec des vans de luxe de 2025 qui roulent là où le ciel est le plus dégagé. La plupart des sorties incluent la photographie et un suivi des aurores 24 h/24. Classé 'Best of the Best' (top 1 %) sur Tripadvisor.",
+      whatTheyDont:
+        "Axé aurores et haut de gamme, pas un opérateur d'activités familiales polyvalent. Surtout hivernal ; l'offre estivale est plus mince.",
+    },
+    it: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Per coppie e fotografi che vogliono una caccia all\'aurora di alto livello, in piccolo gruppo e con mobilità.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: '3–8 h, piccolo gruppo',
+      tierLabel: "Specialista dell'aurora",
+      whatTheyDoWell:
+        "Un operatore di Rovaniemi e Levi, della famiglia Rytilahti, dedicato alla caccia all'aurora in gruppi di circa cinque persone, con van di lusso del 2025 che raggiungono i cieli più sereni. La maggior parte delle uscite include fotografia e monitoraggio dell'aurora 24 ore su 24. Valutato 'Best of the Best' (top 1%) su Tripadvisor.",
+      whatTheyDont:
+        "Incentrato sull'aurora e di fascia alta, non un operatore di attività per famiglie a tutto tondo. Sbilanciato sull'inverno; l'offerta estiva è più ridotta.",
+    },
+    nl: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Voor stellen en fotografen die een hoogwaardige, mobiele aurorajacht in een kleine groep willen.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: '3–8 u, kleine groep',
+      tierLabel: 'Aurora-specialist',
+      whatTheyDoWell:
+        "Een aanbieder uit Rovaniemi en Levi van de familie Rytilahti, gericht op noorderlichtjacht met groepen van ongeveer vijf personen en luxe bestelbussen uit 2025 die naar de helderste hemel rijden. De meeste tochten omvatten fotografie en 24/7 auroramonitoring. Door Tripadvisor beoordeeld als 'Best of the Best' (top 1%).",
+      whatTheyDont:
+        'Aurora-gericht en premium, geen brede aanbieder van gezinsactiviteiten. Wintergericht; het zomeraanbod is dunner.',
+    },
+    es: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Para parejas y fotógrafos que quieren una caza de auroras de alto nivel, en grupo pequeño y con movilidad.',
+      basedIn: 'Rovaniemi, Finlandia',
+      typicalLength: '3–8 h, grupo pequeño',
+      tierLabel: 'Especialista en auroras',
+      whatTheyDoWell:
+        "Un operador de Rovaniemi y Levi, de la familia Rytilahti, centrado en la caza de auroras en grupos de unas cinco personas, con furgonetas de lujo de 2025 que conducen hasta donde el cielo está más despejado. La mayoría de las salidas incluyen fotografía y seguimiento de auroras 24/7. Valorado 'Best of the Best' (top 1 %) en Tripadvisor.",
+      whatTheyDont:
+        'Centrado en auroras y de gama alta, no un operador amplio de actividades familiares. Orientado al invierno; la oferta de verano es más escasa.',
+    },
+    'pt-BR': {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'Para casais e fotógrafos que querem uma caça à aurora de alto nível, em grupo pequeno e com mobilidade.',
+      basedIn: 'Rovaniemi, Finlândia',
+      typicalLength: '3–8 h, grupo pequeno',
+      tierLabel: 'Especialista em aurora',
+      whatTheyDoWell:
+        "Uma operadora de Rovaniemi e Levi, da família Rytilahti, focada na caça à aurora em grupos de cerca de cinco pessoas, com vans de luxo de 2025 que dirigem até onde o céu está mais limpo. A maioria das saídas inclui fotografia e rastreamento de aurora 24 horas. Avaliada como 'Best of the Best' (top 1%) no Tripadvisor.",
+      whatTheyDont:
+        'Focada em aurora e premium, não uma operadora ampla de atividades para famílias. Voltada ao inverno; a oferta de verão é mais enxuta.',
+    },
+    'zh-CN': {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: '适合想要高端、小团且机动灵活的极光追逐的情侣与摄影爱好者。',
+      basedIn: '芬兰罗瓦涅米',
+      typicalLength: '3–8 小时，小团',
+      tierLabel: '极光专营',
+      whatTheyDoWell:
+        '一家由 Rytilahti 家族在罗瓦涅米和莱维经营的运营商，专注极光追寻，团队约五人上限，配 2025 款豪华厢车，开往天空最晴朗的地方。多数极光团含摄影和全天候极光追踪。获猫途鹰（Tripadvisor）"Best of the Best"（前 1%）评级。',
+      whatTheyDont:
+        '以极光为主、走高端路线，并非面面俱到的家庭活动运营商。偏重冬季，夏季选择较少。',
+    },
+  },
+};
+
+/** Copy an operator with its prose fields swapped for a resolved L10n entry. */
+function withL10n(op: Operator, l?: OperatorL10n): Operator {
   if (!l) return op;
   return {
     ...op,
@@ -988,8 +1812,20 @@ export function localizeOperator(op: Operator, lang: OperatorLang): Operator {
   };
 }
 
+/** Returns a copy of a UK operator with prose fields swapped for the requested language. */
+export function localizeOperator(op: Operator, lang: OperatorLang): Operator {
+  return withL10n(op, L10N[op.slug]?.[lang]);
+}
+
+/**
+ * Locale-aware operator list. The English locale serves the UK & European
+ * package operators (that market's audience). Every other locale serves the
+ * Finland-based local operators, since a Finnish, German or Japanese reader
+ * has no use for "departs Gatwick" package trips. (Vesa 2026-07-08.)
+ */
 export function localizedOperators(lang: OperatorLang): Operator[] {
-  return operators.map((op) => localizeOperator(op, lang));
+  if (lang === 'en') return operators.map((op) => localizeOperator(op, 'en'));
+  return OPERATORS_LOCAL.map((op) => withL10n(op, L10N_LOCAL[op.slug]?.[lang]));
 }
 
 export const matrixCategoryLabels: Record<

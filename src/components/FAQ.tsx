@@ -64,9 +64,9 @@ const FAQS_EN: Faq[] = [
 const FAQS_FI: Faq[] = [
   {
     q: 'Mitä Lapin matkapakettiin yleensä kuuluu?',
-    a: 'Useimmissa kaiken kattavissa paketeissa (Inghams, Transun, TUI) on lennot edestakaisin, kentältä siirtokuljetus, majoitus, aamiainen ja illallinen, lämpöhaalareiden vuokraus, opastetut päiväretket ja englanninkielinen opas.',
+    a: 'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä — hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
     aHtml:
-      'Useimmissa kaiken kattavissa matkapaketeissa (kuten <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> ja <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a>) sisältyy lennot edestakaisin, kentältä siirtokuljetus, majoitus, aamiainen ja illallinen, lämpöhaalareiden vuokraus, opastetut päiväretket ja englanninkielinen opas.',
+      'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä — hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
   },
   {
     q: 'Milloin revontulet näkyvät parhaiten?',
@@ -82,15 +82,15 @@ const FAQS_FI: Faq[] = [
   },
   {
     q: 'Sopivatko paketit lapsille?',
-    a: "Sopivat, sillä Santa's Lapland ja TUI ovat erikoistuneet perhepaketteihin. Suurin osa retkistä sopii 3 vuotta täyttäneille. Lue ikäkohtainen opas yksityiskohtia varten.",
+    a: 'Kyllä — paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue ikäkohtainen opas yksityiskohtia varten.',
     aHtml:
-      'Sopivat, sillä esimerkiksi <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> ja TUI ovat erikoistuneet perhepaketteihin. Suurin osa retkistä sopii 3 vuotta täyttäneille. Lue <a href="/fi/age-guide" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
+      'Kyllä — paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue <a href="/fi/age-guide" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
   },
   {
     q: 'Miten Lappiin pääsee?',
-    a: 'Useimmat matkanjärjestäjät lentävät Brittein saarilta ja Euroopasta Rovaniemen (RVN), Kittilän (KTT) tai Ivalon (IVL) kentälle. Helsingin kautta lennot myös Finnairilla.',
+    a: 'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla.',
     aHtml:
-      'Useimmat matkanjärjestäjät lentävät Brittein saarilta ja Euroopasta Rovaniemen (RVN), Kittilän (KTT) tai Ivalon (IVL) kentälle. Helsingin kautta lennot myös Finnairilla. Katso kaikki matkavaihtoehdot, junat ja vuokra-autot mukaan lukien, sivustolta <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>. target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>:sta.',
+      'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla. Katso kaikki matkavaihtoehdot, junat ja vuokra-autot mukaan lukien, sivustolta <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Mihin majoittua?',
@@ -115,9 +115,9 @@ const FAQS_FI: Faq[] = [
 const FAQS_DE: Faq[] = [
   {
     q: 'Was ist in einem Lappland-Reisepaket üblicherweise enthalten?',
-    a: 'Die meisten All-inclusive-Pakete von Reiseveranstaltern wie Inghams, Transun und TUI enthalten Hin- und Rückflüge, Transfers, Unterkunft, Frühstück und Abendessen, Thermokleidung, geführte Tagestouren und einen englischsprachigen Reiseleiter.',
+    a: 'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren — im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
     aHtml:
-      'Die meisten All-inclusive-Pakete von Reiseveranstaltern wie <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> und <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> enthalten Hin- und Rückflüge, Transfers, Unterkunft, Frühstück und Abendessen, Thermokleidung, geführte Tagestouren und einen englischsprachigen Reiseleiter.',
+      'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren — im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
   },
   {
     q: 'Wann sieht man Polarlichter am besten?',
@@ -133,15 +133,15 @@ const FAQS_DE: Faq[] = [
   },
   {
     q: 'Sind die Pakete für Kinder geeignet?',
-    a: "Ja, Reiseveranstalter wie Santa's Lapland und TUI haben sich auf Familienreisen spezialisiert. Die meisten Tagestouren eignen sich ab 3 Jahren. Detaillierte Hinweise finden Sie im Alters-Guide.",
+    a: 'Ja — lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im Alters-Guide.',
     aHtml:
-      'Ja, Reiseveranstalter wie <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> und TUI haben sich auf Familienreisen spezialisiert. Die meisten Tagestouren eignen sich ab 3 Jahren. Detaillierte Hinweise finden Sie im <a href="/de/age-guide" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
+      'Ja — lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im <a href="/de/age-guide" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
   },
   {
     q: 'Wie reise ich nach Lappland?',
-    a: 'Die meisten Reiseveranstalter fliegen aus dem Vereinigten Königreich und Europa nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL). Auch eine Anreise über Helsinki mit Finnair ist möglich.',
+    a: 'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug.',
     aHtml:
-      'Die meisten Reiseveranstalter fliegen aus dem Vereinigten Königreich und Europa nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL). Auch eine Anreise über Helsinki mit Finnair ist möglich. Alle Optionen (Zug, Mietwagen, Inlandsflug) finden Sie auf <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug. Alle Optionen (Zug, Mietwagen, Inlandsflug) finden Sie auf <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Wo sollte ich übernachten?',
@@ -166,9 +166,9 @@ const FAQS_DE: Faq[] = [
 const FAQS_JA: Faq[] = [
   {
     q: 'ラップランドのパッケージには通常何が含まれていますか?',
-    a: 'Inghams、Transun、TUIなどのオペレーターのオールインクルーシブパッケージには通常、往復航空券、空港送迎、宿泊、朝食と夕食、防寒着のレンタル、ガイド付きアクティビティ、英語を話すガイドが含まれます。',
+    a: '事業者によって異なります。地元の事業者は主に個別のガイド付きツアーを販売しており、料金には通常ガイド、用具一式、暖かい防寒着、街の中心部からの送迎が含まれ、焚き火のそばでの温かい飲み物が付くことも多いです。HarrinivaやNordic Unique Travelsのように、宿泊+アクティビティやオーダーメイドの旅を手配するところもあります。航空券とホテルはご自身で予約します。',
     aHtml:
-      '<a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>、<a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a>、<a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a>などのオペレーターのオールインクルーシブパッケージには通常、往復航空券、空港送迎、宿泊、朝食と夕食、防寒着のレンタル、ガイド付きアクティビティ、英語を話すガイドが含まれます。',
+      '事業者によって異なります。地元の事業者は主に個別のガイド付きツアーを販売しており、料金には通常ガイド、用具一式、暖かい防寒着、街の中心部からの送迎が含まれ、焚き火のそばでの温かい飲み物が付くことも多いです。HarrinivaやNordic Unique Travelsのように、宿泊+アクティビティやオーダーメイドの旅を手配するところもあります。航空券とホテルはご自身で予約します。',
   },
   {
     q: 'オーロラを観察するのに最適な時期はいつですか?',
@@ -184,15 +184,15 @@ const FAQS_JA: Faq[] = [
   },
   {
     q: 'パッケージは子供にも適していますか?',
-    a: 'はい、Santa\'s LaplandやTUIは家族向けパッケージを専門としています。ほとんどのアクティビティは3歳以上のお子様向けです。詳しい推奨事項については年齢別ガイドをご覧ください。',
+    a: 'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については年齢別ガイドをご覧ください。',
     aHtml:
-      'はい、<a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a>やTUIは家族向けパッケージを専門としています。ほとんどのアクティビティは3歳以上のお子様向けです。詳しい推奨事項については<a href="/ja/age-guide" class="text-vibe-pink hover:underline">年齢別ガイド</a>をご覧ください。',
+      'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については<a href="/ja/age-guide" class="text-vibe-pink hover:underline">年齢別ガイド</a>をご覧ください。',
   },
   {
     q: 'ラップランドへの行き方を教えてください。',
-    a: 'ほとんどのオペレーターは、イギリスとヨーロッパの都市からロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)の各空港へ運航しています。フィンエアーでヘルシンキ経由で行くこともできます。',
+    a: 'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由(約1時間の国内線)が一般的です。夜行のVR寝台列車もご利用いただけます。',
     aHtml:
-      'ほとんどのオペレーターは、イギリスとヨーロッパの都市からロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)の各空港へ運航しています。フィンエアーでヘルシンキ経由で行くこともできます。鉄道やレンタカーを含むすべての移動手段については<a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>をご覧ください。',
+      'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由(約1時間の国内線)が一般的です。夜行のVR寝台列車もご利用いただけます。鉄道やレンタカーを含むすべての移動手段については<a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>をご覧ください。',
   },
   {
     q: 'どこに宿泊すべきですか?',
@@ -217,9 +217,9 @@ const FAQS_JA: Faq[] = [
 const FAQS_KO: Faq[] = [
   {
     q: '라플란드 패키지에는 보통 무엇이 포함되나요?',
-    a: 'Inghams, Transun, TUI 같은 운영사의 올인클루시브 패키지에는 보통 왕복 항공권, 공항 픽업, 숙박, 조식과 석식, 방한복 대여, 가이드 동반 액티비티, 영어 가이드가 포함됩니다.',
+    a: '운영사에 따라 다릅니다. 현지 운영사는 주로 개별 가이드 투어를 판매하며, 요금에는 보통 가이드, 모든 장비, 따뜻한 방한복, 시내에서의 이동이 포함되고, 모닥불 옆의 따뜻한 음료가 함께 제공되는 경우도 많습니다. Harriniva나 Nordic Unique Travels처럼 숙박+액티비티나 맞춤형 여행을 준비하는 곳도 있습니다. 항공권과 호텔은 직접 예약하셔야 합니다.',
     aHtml:
-      '<a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a>, <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> 같은 운영사의 올인클루시브 패키지에는 보통 왕복 항공권, 공항 픽업, 숙박, 조식과 석식, 방한복 대여, 가이드 동반 액티비티, 영어 가이드가 포함됩니다.',
+      '운영사에 따라 다릅니다. 현지 운영사는 주로 개별 가이드 투어를 판매하며, 요금에는 보통 가이드, 모든 장비, 따뜻한 방한복, 시내에서의 이동이 포함되고, 모닥불 옆의 따뜻한 음료가 함께 제공되는 경우도 많습니다. Harriniva나 Nordic Unique Travels처럼 숙박+액티비티나 맞춤형 여행을 준비하는 곳도 있습니다. 항공권과 호텔은 직접 예약하셔야 합니다.',
   },
   {
     q: '오로라를 보기에 가장 좋은 시기는 언제인가요?',
@@ -235,15 +235,15 @@ const FAQS_KO: Faq[] = [
   },
   {
     q: '패키지가 아이들에게도 적합한가요?',
-    a: "네, Santa's Lapland와 TUI는 가족 패키지에 특화되어 있습니다. 대부분의 액티비티는 3세 이상에게 적합합니다. 자세한 추천은 연령별 가이드를 참고하세요.",
+    a: '네 — 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 연령별 가이드를 참고하세요.',
     aHtml:
-      '네, <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a>와 TUI는 가족 패키지에 특화되어 있습니다. 대부분의 액티비티는 3세 이상에게 적합합니다. 자세한 추천은 <a href="/kr/age-guide" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
+      '네 — 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 <a href="/kr/age-guide" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
   },
   {
     q: '라플란드에는 어떻게 가나요?',
-    a: '대부분의 운영사는 영국 및 유럽 도시에서 로바니에미(RVN), 키틸레(KTT), 이발로(IVL) 공항으로 운항합니다. Finnair로 헬싱키를 경유할 수도 있습니다.',
+    a: '로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다.',
     aHtml:
-      '대부분의 운영사는 영국 및 유럽 도시에서 로바니에미(RVN), 키틸레(KTT), 이발로(IVL) 공항으로 운항합니다. Finnair로 헬싱키를 경유할 수도 있습니다. 기차와 렌터카를 포함한 모든 이동 수단은 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> 에서 확인하세요.',
+      '로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다. 기차와 렌터카를 포함한 모든 이동 수단은 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> 에서 확인하세요.',
   },
   {
     q: '어디에 묵어야 하나요?',
@@ -268,9 +268,9 @@ const FAQS_KO: Faq[] = [
 const FAQS_FR: Faq[] = [
   {
     q: 'Que contient généralement un forfait Laponie ?',
-    a: 'La plupart des forfaits tout compris de voyagistes comme Inghams, Transun et TUI incluent les vols aller-retour, les transferts aéroport, l\'hébergement, le petit-déjeuner et le dîner, la location de vêtements thermiques, les activités guidées et un guide anglophone.',
+    a: 'Cela dépend de l\'opérateur. Les opérateurs locaux vendent surtout des activités guidées individuelles : le prix comprend généralement le guide, tout l\'équipement, des vêtements thermiques chauds et le transfert depuis le centre-ville, souvent avec des boissons chaudes près d\'un feu. Certains, comme Harriniva ou Nordic Unique Travels, organisent aussi des formules hébergement + activité ou sur mesure. Les vols et les hôtels, vous les réservez vous-même.',
     aHtml:
-      'La plupart des forfaits tout compris de voyagistes comme <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> et <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> incluent les vols aller-retour, les transferts aéroport, l\'hébergement, le petit-déjeuner et le dîner, la location de vêtements thermiques, les activités guidées et un guide anglophone.',
+      'Cela dépend de l\'opérateur. Les opérateurs locaux vendent surtout des activités guidées individuelles : le prix comprend généralement le guide, tout l\'équipement, des vêtements thermiques chauds et le transfert depuis le centre-ville, souvent avec des boissons chaudes près d\'un feu. Certains, comme Harriniva ou Nordic Unique Travels, organisent aussi des formules hébergement + activité ou sur mesure. Les vols et les hôtels, vous les réservez vous-même.',
   },
   {
     q: 'Quelle est la meilleure période pour voir les aurores boréales ?',
@@ -286,15 +286,15 @@ const FAQS_FR: Faq[] = [
   },
   {
     q: 'Les forfaits conviennent-ils aux enfants ?',
-    a: "Oui, des voyagistes comme Santa's Lapland et TUI sont spécialisés dans les forfaits familles. La plupart des activités conviennent aux enfants de 3 ans et plus. Voir le guide par âge pour les recommandations détaillées.",
+    a: 'Oui — les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le guide par âge pour les recommandations détaillées.',
     aHtml:
-      'Oui, des voyagistes comme <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> et TUI sont spécialisés dans les forfaits familles. La plupart des activités conviennent aux enfants de 3 ans et plus. Voir le <a href="/fr/age-guide" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
+      'Oui — les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le <a href="/fr/age-guide" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
   },
   {
     q: 'Comment se rendre en Laponie ?',
-    a: 'La plupart des voyagistes opèrent des vols depuis les villes du Royaume-Uni et d\'Europe vers Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Il est aussi possible de transiter par Helsinki avec Finnair.',
+    a: 'Rejoignez Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL), généralement via Helsinki avec Finnair (environ 1 h de vol intérieur). Le train de nuit VR est une autre option.',
     aHtml:
-      'La plupart des voyagistes opèrent des vols depuis les villes du Royaume-Uni et d\'Europe vers Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Il est aussi possible de transiter par Helsinki avec Finnair. Voir toutes les options de transport (trains et location de voiture compris) sur <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Rejoignez Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL), généralement via Helsinki avec Finnair (environ 1 h de vol intérieur). Le train de nuit VR est une autre option. Voir toutes les options de transport (trains et location de voiture compris) sur <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Où séjourner ?',
@@ -319,9 +319,9 @@ const FAQS_FR: Faq[] = [
 const FAQS_IT: Faq[] = [
   {
     q: 'Cosa è generalmente incluso in un pacchetto per la Lapponia ?',
-    a: 'La maggior parte dei pacchetti tutto compreso di operatori come Inghams, Transun e TUI include voli di andata e ritorno, transfer dall\'aeroporto, alloggio, colazione e cena, noleggio di abbigliamento termico, attività guidate e una guida di lingua inglese.',
+    a: 'Dipende dall\'operatore. Gli operatori locali vendono soprattutto singole attività guidate: il prezzo comprende di solito la guida, tutta l\'attrezzatura, indumenti termici caldi e il transfer dal centro, spesso con bevande calde accanto a un fuoco. Alcuni, come Harriniva o Nordic Unique Travels, organizzano anche formule alloggio + attività o su misura. Voli e hotel li prenota lei.',
     aHtml:
-      'La maggior parte dei pacchetti tutto compreso di operatori come <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> e <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> include voli di andata e ritorno, transfer dall\'aeroporto, alloggio, colazione e cena, noleggio di abbigliamento termico, attività guidate e una guida di lingua inglese.',
+      'Dipende dall\'operatore. Gli operatori locali vendono soprattutto singole attività guidate: il prezzo comprende di solito la guida, tutta l\'attrezzatura, indumenti termici caldi e il transfer dal centro, spesso con bevande calde accanto a un fuoco. Alcuni, come Harriniva o Nordic Unique Travels, organizzano anche formule alloggio + attività o su misura. Voli e hotel li prenota lei.',
   },
   {
     q: 'Qual è il momento migliore per vedere l\'aurora boreale ?',
@@ -337,15 +337,15 @@ const FAQS_IT: Faq[] = [
   },
   {
     q: 'I pacchetti sono adatti ai bambini ?',
-    a: "Sì, operatori come Santa's Lapland e TUI sono specializzati in pacchetti per famiglie. La maggior parte delle attività è adatta dai 3 anni in su. Veda la guida per età per consigli dettagliati.",
+    a: 'Sì — gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la guida per età per consigli dettagliati.',
     aHtml:
-      'Sì, operatori come <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> e TUI sono specializzati in pacchetti per famiglie. La maggior parte delle attività è adatta dai 3 anni in su. Veda la <a href="/it/age-guide" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
+      'Sì — gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la <a href="/it/age-guide" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
   },
   {
     q: 'Come si arriva in Lapponia ?',
-    a: 'La maggior parte degli operatori vola dalle città del Regno Unito e dell\'Europa verso Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). È anche possibile passare da Helsinki con Finnair.',
+    a: 'Raggiunga Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL), di solito via Helsinki con Finnair (circa 1 ora di volo interno). In alternativa c\'è il treno notturno VR.',
     aHtml:
-      'La maggior parte degli operatori vola dalle città del Regno Unito e dell\'Europa verso Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). È anche possibile passare da Helsinki con Finnair. Per tutte le opzioni di trasporto, treni e noleggio auto compresi, vedi <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Raggiunga Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL), di solito via Helsinki con Finnair (circa 1 ora di volo interno). In alternativa c\'è il treno notturno VR. Per tutte le opzioni di trasporto, treni e noleggio auto compresi, vedi <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Dove conviene alloggiare ?',
@@ -370,9 +370,9 @@ const FAQS_IT: Faq[] = [
 const FAQS_NL: Faq[] = [
   {
     q: 'Wat zit er meestal in een Lapland-arrangement ?',
-    a: 'De meeste all-inclusive arrangementen van reisorganisaties als Inghams, Transun en TUI bevatten retourvluchten, transfers, accommodatie, ontbijt en diner, huur van thermokleding, begeleide activiteiten en een Engelstalige gids.',
+    a: 'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten — de prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
     aHtml:
-      'De meeste all-inclusive arrangementen van reisorganisaties als <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> en <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> bevatten retourvluchten, transfers, accommodatie, ontbijt en diner, huur van thermokleding, begeleide activiteiten en een Engelstalige gids.',
+      'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten — de prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
   },
   {
     q: 'Wanneer is de beste tijd om het noorderlicht te zien ?',
@@ -388,15 +388,15 @@ const FAQS_NL: Faq[] = [
   },
   {
     q: 'Zijn de arrangementen geschikt voor kinderen ?',
-    a: "Ja, organisaties als Santa's Lapland en TUI zijn gespecialiseerd in gezinsarrangementen. De meeste activiteiten zijn geschikt vanaf 3 jaar. Zie de leeftijdsgids voor gedetailleerde aanbevelingen.",
+    a: 'Ja — lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de leeftijdsgids voor gedetailleerde aanbevelingen.',
     aHtml:
-      'Ja, organisaties als <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> en TUI zijn gespecialiseerd in gezinsarrangementen. De meeste activiteiten zijn geschikt vanaf 3 jaar. Zie de <a href="/nl/age-guide" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
+      'Ja — lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de <a href="/nl/age-guide" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
   },
   {
     q: 'Hoe kom ik in Lapland ?',
-    a: 'De meeste reisorganisaties vliegen vanuit Britse en Europese steden naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL). U kunt ook via Helsinki vliegen met Finnair.',
+    a: 'Vlieg naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL), meestal via Helsinki met Finnair (ongeveer 1 uur binnenlandse vlucht). Ook de VR-nachttrein is een optie.',
     aHtml:
-      'De meeste reisorganisaties vliegen vanuit Britse en Europese steden naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL). U kunt ook via Helsinki vliegen met Finnair. Bekijk alle reisopties, inclusief trein en huurauto, op <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Vlieg naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL), meestal via Helsinki met Finnair (ongeveer 1 uur binnenlandse vlucht). Ook de VR-nachttrein is een optie. Bekijk alle reisopties, inclusief trein en huurauto, op <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Waar kan ik verblijven ?',
@@ -421,9 +421,9 @@ const FAQS_NL: Faq[] = [
 const FAQS_ES: Faq[] = [
   {
     q: '¿Qué suele incluir un paquete a Laponia?',
-    a: 'La mayoría de los paquetes todo incluido de operadores como Inghams, Transun y TUI incluyen vuelos de ida y vuelta, traslados al aeropuerto, alojamiento, desayuno y cena, alquiler de ropa térmica, actividades guiadas y un guía de habla inglesa.',
+    a: 'Depende del operador. Los operadores locales venden sobre todo actividades guiadas sueltas: el precio suele incluir el guía, todo el equipo, ropa térmica de abrigo y el traslado desde el centro, a menudo con bebidas calientes junto a una hoguera. Algunos, como Harriniva o Nordic Unique Travels, también organizan fórmulas de alojamiento más actividad o a medida. Los vuelos y los hoteles los reserva usted.',
     aHtml:
-      'La mayoría de los paquetes todo incluido de operadores como <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> y <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> incluyen vuelos de ida y vuelta, traslados al aeropuerto, alojamiento, desayuno y cena, alquiler de ropa térmica, actividades guiadas y un guía de habla inglesa.',
+      'Depende del operador. Los operadores locales venden sobre todo actividades guiadas sueltas: el precio suele incluir el guía, todo el equipo, ropa térmica de abrigo y el traslado desde el centro, a menudo con bebidas calientes junto a una hoguera. Algunos, como Harriniva o Nordic Unique Travels, también organizan fórmulas de alojamiento más actividad o a medida. Los vuelos y los hoteles los reserva usted.',
   },
   {
     q: '¿Cuál es la mejor época para ver auroras boreales?',
@@ -439,15 +439,15 @@ const FAQS_ES: Faq[] = [
   },
   {
     q: '¿Los paquetes son adecuados para niños?',
-    a: "Sí: operadores como Santa's Lapland y TUI están especializados en paquetes familiares. La mayoría de las actividades sirven a partir de los 3 años. Consulte la guía por edades para recomendaciones detalladas.",
+    a: 'Sí — los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la guía por edades para recomendaciones detalladas.',
     aHtml:
-      'Sí: operadores como <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> y TUI están especializados en paquetes familiares. La mayoría de las actividades sirven a partir de los 3 años. Consulte la <a href="/es/age-guide" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
+      'Sí — los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la <a href="/es/age-guide" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
   },
   {
     q: '¿Cómo se llega a Laponia?',
-    a: 'La mayoría de los operadores vuelan desde ciudades del Reino Unido y de Europa a los aeropuertos de Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). También puede volar vía Helsinki con Finnair.',
+    a: 'Vuele a Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL), normalmente vía Helsinki con Finnair (aproximadamente 1 hora de vuelo doméstico). También está el tren nocturno VR.',
     aHtml:
-      'La mayoría de los operadores vuelan desde ciudades del Reino Unido y de Europa a los aeropuertos de Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). También puede volar vía Helsinki con Finnair. Consulte <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> para todas las opciones de viaje, incluidos trenes y alquiler de coche.',
+      'Vuele a Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL), normalmente vía Helsinki con Finnair (aproximadamente 1 hora de vuelo doméstico). También está el tren nocturno VR. Consulte <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> para todas las opciones de viaje, incluidos trenes y alquiler de coche.',
   },
   {
     q: '¿Dónde alojarse?',
@@ -472,9 +472,9 @@ const FAQS_ES: Faq[] = [
 const FAQS_PTBR: Faq[] = [
   {
     q: 'O que costuma estar incluído em um pacote para a Lapônia?',
-    a: 'A maioria dos pacotes all-inclusive de operadoras como Inghams, Transun e TUI inclui voos de ida e volta, traslados do aeroporto, hospedagem, café da manhã e jantar, aluguel de roupas térmicas, atividades guiadas e um guia que fala inglês.',
+    a: 'Depende da operadora. As operadoras locais vendem sobretudo atividades guiadas avulsas: o preço costuma incluir o guia, todo o equipamento, roupas térmicas quentes e o traslado do centro, muitas vezes com bebidas quentes junto a uma fogueira. Algumas, como Harriniva ou Nordic Unique Travels, também organizam fórmulas de hospedagem mais atividade ou sob medida. Voos e hotéis você reserva por conta própria.',
     aHtml:
-      'A maioria dos pacotes all-inclusive de operadoras como <a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>, <a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> e <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> inclui voos de ida e volta, traslados do aeroporto, hospedagem, café da manhã e jantar, aluguel de roupas térmicas, atividades guiadas e um guia que fala inglês.',
+      'Depende da operadora. As operadoras locais vendem sobretudo atividades guiadas avulsas: o preço costuma incluir o guia, todo o equipamento, roupas térmicas quentes e o traslado do centro, muitas vezes com bebidas quentes junto a uma fogueira. Algumas, como Harriniva ou Nordic Unique Travels, também organizam fórmulas de hospedagem mais atividade ou sob medida. Voos e hotéis você reserva por conta própria.',
   },
   {
     q: 'Qual é a melhor época para ver a aurora boreal?',
@@ -490,15 +490,15 @@ const FAQS_PTBR: Faq[] = [
   },
   {
     q: 'Os pacotes são adequados para crianças?',
-    a: "Sim, operadoras como Santa's Lapland e TUI são especializadas em pacotes para famílias. A maioria das atividades serve para crianças a partir de 3 anos. Veja o guia por idade para recomendações detalhadas.",
+    a: 'Sim — as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o guia por idade para recomendações detalhadas.',
     aHtml:
-      'Sim, operadoras como <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> e TUI são especializadas em pacotes para famílias. A maioria das atividades serve para crianças a partir de 3 anos. Veja o <a href="/br/age-guide" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
+      'Sim — as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o <a href="/br/age-guide" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
   },
   {
     q: 'Como chego à Lapônia?',
-    a: 'A maioria das operadoras voa de cidades do Reino Unido e da Europa para os aeroportos de Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Você também pode voar via Helsinque pela Finnair.',
+    a: 'Voe para Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL), normalmente via Helsinque pela Finnair (cerca de 1 hora de voo doméstico). O trem-leito noturno VR é outra opção.',
     aHtml:
-      'A maioria das operadoras voa de cidades do Reino Unido e da Europa para os aeroportos de Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Você também pode voar via Helsinque pela Finnair. Veja <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> para todas as opções de viagem, incluindo trens e aluguel de carro.',
+      'Voe para Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL), normalmente via Helsinque pela Finnair (cerca de 1 hora de voo doméstico). O trem-leito noturno VR é outra opção. Veja <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> para todas as opções de viagem, incluindo trens e aluguel de carro.',
   },
   {
     q: 'Onde devo ficar?',
@@ -523,9 +523,9 @@ const FAQS_PTBR: Faq[] = [
 const FAQS_ZH: Faq[] = [
   {
     q: '拉普兰套餐通常包含哪些内容？',
-    a: 'Inghams、Transun 和 TUI 等运营商的多数全包套餐包含往返机票、机场接送、住宿、早餐和晚餐、保暖服装租赁、有向导的活动以及一名讲英语的向导。',
+    a: '视运营商而定。本地运营商主要出售单项有向导的活动——价格通常包含向导、全套装备、保暖服装以及从市中心出发的接送，往往还有篝火旁的热饮。有些运营商（如 Harriniva 或 Nordic Unique Travels）也会安排“住宿+活动”或定制行程。机票和酒店需你自行预订。',
     aHtml:
-      '<a href="https://www.inghams.co.uk/lapland-holidays?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Inghams</a>、<a href="https://www.transun.co.uk?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Transun</a> 和 <a href="https://www.tui.co.uk/destinations/lapland?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">TUI</a> 等运营商的多数全包套餐包含往返机票、机场接送、住宿、早餐和晚餐、保暖服装租赁、有向导的活动以及一名讲英语的向导。',
+      '视运营商而定。本地运营商主要出售单项有向导的活动——价格通常包含向导、全套装备、保暖服装以及从市中心出发的接送，往往还有篝火旁的热饮。有些运营商（如 Harriniva 或 Nordic Unique Travels）也会安排“住宿+活动”或定制行程。机票和酒店需你自行预订。',
   },
   {
     q: '什么时候最适合看极光？',
@@ -541,15 +541,15 @@ const FAQS_ZH: Faq[] = [
   },
   {
     q: '套餐适合儿童吗？',
-    a: "适合，Santa's Lapland 和 TUI 等运营商专做家庭套餐。多数活动适合 3 岁以上的儿童。详细建议请参阅年龄指南。",
+    a: '适合——本地运营商提供适合家庭的项目，多数活动适合 3 岁以上的儿童。驯鹿与哈士奇探访、拜访圣诞老人以及短途雪地摩托同乘都很合适。详细建议请参阅年龄指南。',
     aHtml:
-      '适合，<a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> 和 TUI 等运营商专做家庭套餐。多数活动适合 3 岁以上的儿童。详细建议请参阅<a href="/cn/age-guide" class="text-vibe-pink hover:underline">年龄指南</a>。',
+      '适合——本地运营商提供适合家庭的项目，多数活动适合 3 岁以上的儿童。驯鹿与哈士奇探访、拜访圣诞老人以及短途雪地摩托同乘都很合适。详细建议请参阅<a href="/cn/age-guide" class="text-vibe-pink hover:underline">年龄指南</a>。',
   },
   {
     q: '如何前往拉普兰？',
-    a: '多数运营商从英国和欧洲城市直飞罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL）机场。你也可以搭乘芬兰航空经赫尔辛基转机。',
+    a: '前往罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL），通常搭乘芬兰航空经赫尔辛基转机（约 1 小时国内航班）。也可乘坐 VR 夜间卧铺列车。',
     aHtml:
-      '多数运营商从英国和欧洲城市直飞罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL）机场。你也可以搭乘芬兰航空经赫尔辛基转机。包括火车和租车在内的全部出行方式，请参阅 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>。',
+      '前往罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL），通常搭乘芬兰航空经赫尔辛基转机（约 1 小时国内航班）。也可乘坐 VR 夜间卧铺列车。包括火车和租车在内的全部出行方式，请参阅 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>。',
   },
   {
     q: '应该住在哪里？',

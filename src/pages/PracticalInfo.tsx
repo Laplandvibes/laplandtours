@@ -105,7 +105,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Perille pääsy',
         body:
-          'Useimmat matkanjärjestäjät lentävät brittilähdöistä (LGW / MAN / BHX / BRS / EDI / EMA / GLA) Rovaniemen (RVN), Kittilän (KTT) tai Ivalon (IVL) kentälle. Helsingistä Finnair vie noin tunnissa, ja yöllä kulkee VR:n yöjuna (12 tuntia, makuuvaunut).',
+          'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingistä Finnair vie noin tunnissa, ja yöllä kulkee VR:n yöjuna (12 tuntia, makuuvaunut).',
       },
       {
         n: '02',
@@ -164,7 +164,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Anreise',
         body:
-          'Die meisten Reiseveranstalter fliegen ab britischen Regionalflughäfen (LGW / MAN / BHX / BRS / EDI / EMA / GLA) nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL). Alternativ über Helsinki mit Finnair und ein einstündiger Inlandsflug oder der VR-Nachtzug (12 Stunden, Liegewagen).',
+          'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — über Helsinki mit Finnair und einen einstündigen Inlandsflug, oder mit dem VR-Nachtzug (12 Stunden, Liegewagen).',
       },
       {
         n: '02',
@@ -223,7 +223,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: '行き方',
         body:
-          'ほとんどのオペレーターはイギリスの地方空港(LGW / MAN / BHX / BRS / EDI / EMA / GLA)からロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へ運航しています。フィンエアーでヘルシンキ経由、1時間の国内線で乗り継ぎ、または夜行VR寝台列車(12時間、フラットベッドのキャビン)もご利用いただけます。',
+          'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由、1時間の国内線で乗り継ぎ、または夜行VR寝台列車(12時間、フラットベッドのキャビン)でも行けます。',
       },
       {
         n: '02',
@@ -282,7 +282,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: '가는 방법',
         body:
-          '대부분의 운영사는 영국 지방 공항(LGW / MAN / BHX / BRS / EDI / EMA / GLA)에서 로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로 운항합니다. Finnair로 헬싱키 경유 후 1시간 국내선을 이용하거나 VR 야간 침대열차(12시간, 평탄형 침대 객실)를 탈 수도 있습니다.',
+          '로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로는 Finnair로 헬싱키 경유 후 1시간 국내선을 이용하거나 VR 야간 침대열차(12시간, 평탄형 침대 객실)를 탈 수 있습니다.',
       },
       {
         n: '02',
@@ -341,7 +341,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Y aller',
         body:
-          'La plupart des voyagistes opèrent au départ des aéroports régionaux britanniques (LGW / MAN / BHX / BRS / EDI / EMA / GLA) vers Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Vous pouvez aussi passer par Helsinki avec Finnair puis enchaîner avec un vol intérieur d\'une heure, ou prendre le train de nuit VR (12 heures, cabines à lits).',
+          'Rejoignez Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL) via Helsinki avec Finnair, puis un vol intérieur d\'une heure, ou prenez le train de nuit VR (12 heures, cabines à lits).',
       },
       {
         n: '02',
@@ -400,7 +400,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Come arrivare',
         body:
-          'La maggior parte degli operatori vola dagli aeroporti regionali del Regno Unito (LGW / MAN / BHX / BRS / EDI / EMA / GLA) verso Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). In alternativa via Helsinki con Finnair e un volo interno di un\'ora o il treno notturno VR (12 ore, cabine con cuccette piatte).',
+          'Raggiunga Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL) via Helsinki con Finnair e un volo interno di un\'ora, oppure con il treno notturno VR (12 ore, cabine con cuccette piatte).',
       },
       {
         n: '02',
@@ -459,7 +459,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Erheen reizen',
         body:
-          'De meeste reisorganisaties vliegen vanaf Britse regionale luchthavens (LGW / MAN / BHX / BRS / EDI / EMA / GLA) naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL). Via Helsinki met Finnair, plus een binnenlandse vlucht van een uur, of de VR-nachttrein (12 uur, vlakke slaapcabines).',
+          'Reis naar Rovaniemi (RVN), Kittilä (KTT) of Ivalo (IVL) via Helsinki met Finnair plus een binnenlandse vlucht van een uur, of met de VR-nachttrein (12 uur, vlakke slaapcabines).',
       },
       {
         n: '02',
@@ -518,7 +518,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Cómo llegar',
         body:
-          'La mayoría de los operadores vuelan desde aeropuertos regionales británicos (LGW / MAN / BHX / BRS / EDI / EMA / GLA) a Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL). También puede volar vía Helsinki con Finnair y enlazar con un vuelo doméstico de una hora o tomar el tren nocturno VR (12 horas, cabinas con cama plana).',
+          'Llegue a Rovaniemi (RVN), Kittilä (KTT) o Ivalo (IVL) vía Helsinki con Finnair y un vuelo doméstico de una hora, o en el tren nocturno VR (12 horas, cabinas con cama plana).',
       },
       {
         n: '02',
@@ -577,7 +577,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Como chegar',
         body:
-          'A maioria das operadoras voa de aeroportos regionais britânicos (LGW / MAN / BHX / BRS / EDI / EMA / GLA) para Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL). Você também pode voar via Helsinque pela Finnair e conectar em um voo doméstico de uma hora ou pegar o trem-leito noturno VR (12 horas, cabines com cama plana).',
+          'Chegue a Rovaniemi (RVN), Kittilä (KTT) ou Ivalo (IVL) via Helsinque pela Finnair e um voo doméstico de uma hora, ou no trem-leito noturno VR (12 horas, cabines com cama plana).',
       },
       {
         n: '02',
@@ -636,7 +636,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: '如何抵达',
         body:
-          '多数运营商从英国地方机场（LGW / MAN / BHX / BRS / EDI / EMA / GLA）直飞罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL）。你也可以搭芬兰航空经赫尔辛基，再转一小时的国内航班，或乘 VR 夜间卧铺列车（12 小时，可平躺的卧铺包厢）。',
+          '前往罗瓦涅米（RVN）、基蒂莱（KTT）或伊瓦洛（IVL），可搭芬兰航空经赫尔辛基，再转一小时的国内航班，或乘 VR 夜间卧铺列车（12 小时，可平躺的卧铺包厢）。',
       },
       {
         n: '02',

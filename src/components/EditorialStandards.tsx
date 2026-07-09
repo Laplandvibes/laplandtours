@@ -42,13 +42,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Näin',
     hLine2: 'tämä on tehty',
     p1:
-      'Pieni toimituksellinen kokoonpano Rovaniemellä. Kuusi matkanjärjestäjää on listattu, koska ne kertovat rehellisesti mitä matkapakettiin kuuluu ja mitä ei. Matkoja ei myydä täällä. Kun varaat matkanjärjestäjän kautta, sopimus syntyy heidän ehdoillaan. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Pieni toimituksellinen kokoonpano Rovaniemellä. Kuusi Lapin toimijaa on listattu, koska ne kertovat rehellisesti mitä tekevät ja mitä eivät. Matkoja ei myydä täällä. Kun varaat toimijan kautta, sopimus syntyy heidän ehdoillaan. Kirjoitettu Suomesta, lähteet näkyvillä.',
     stats:
-      '6 käsin valittua matkanjärjestäjää  ·  5 brittilähtökenttää  ·  0 % palvelumaksu sinulle  ·  päivitetty toukokuu 2026',
+      '6 käsin valittua toimijaa  ·  kaikki Suomen Lapista  ·  0 % palvelumaksu sinulle  ·  tarkistettu heinäkuu 2026',
     bullets: [
       'Yksikään matkanjärjestäjä ei maksa listaukseen pääsystä, eikä matkanjärjestäjien linkeistä makseta provisiota.',
       'Kumppanuusprovisioita saadaan vain ristiinmyyntiriviltä: Hotels.com (CJ), EconomyBookings (CJ) ja GetYourGuide. Nämä linkit ovat merkityt ja avoimet.',
-      'Matkanjärjestäjien profiilit, hinnat ja arviot tarkistetaan puolen vuoden välein. Edellinen tarkistus: toukokuu 2026.',
+      'Matkanjärjestäjien profiilit, hinnat ja arviot tarkistetaan puolen vuoden välein. Edellinen tarkistus: heinäkuu 2026.',
       'Jos tällä sivulla on virhe tai vanhentunutta tietoa, lähetä viesti osoitteeseen info@laplandvibes.com ja korjaus tehdään.',
     ],
     bulletsHtml: [
@@ -66,13 +66,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'So',
     hLine2: 'arbeitet diese Seite',
     p1:
-      'Eine kleine redaktionelle Einheit aus Rovaniemi in Finnland. Sechs Reiseveranstalter sind hier gelistet, weil sie offen darüber informieren, was in ihren Paketen enthalten ist und was nicht. Es werden keine Reisen verkauft. Bei einer Buchung über einen Reiseveranstalter kommt der Vertrag mit dessen Bedingungen zustande.',
+      'Eine kleine redaktionelle Einheit aus Rovaniemi in Finnland. Sechs lappländische Anbieter sind hier gelistet, weil sie offen sagen, was sie anbieten und was nicht. Es werden keine Reisen verkauft. Bei einer Buchung über einen Anbieter kommt der Vertrag mit dessen Bedingungen zustande.',
     stats:
-      '6 Veranstalter im Vergleich  ·  5 britische Abflughäfen  ·  0 % Provision für Sie  ·  Stand Mai 2026',
+      '6 Anbieter im Vergleich  ·  alle in Finnisch-Lappland ansässig  ·  0 % Provision für Sie  ·  geprüft Juli 2026',
     bullets: [
       'Kein Reiseveranstalter zahlt für die Aufnahme, und auf Operator-Klicks fließt keine Affiliate-Provision.',
       'Affiliate-Provisionen fallen ausschließlich auf der Zusatz-Schiene an: Hotels.com (CJ), EconomyBookings (CJ) und GetYourGuide. Diese Links sind gekennzeichnet und offen ausgewiesen.',
-      'Veranstalter-Profile, Preise und Bewertungen werden alle sechs Monate geprüft. Letzte Überprüfung: Mai 2026.',
+      'Veranstalter-Profile, Preise und Bewertungen werden alle sechs Monate geprüft. Letzte Überprüfung: Juli 2026.',
       'Sollte auf dieser Seite etwas falsch oder veraltet sein, melden Sie es bitte an info@laplandvibes.com. Es wird korrigiert.',
     ],
     bulletsHtml: [
@@ -90,13 +90,13 @@ const COPY: Record<CopyLang, {
     hLine1: '이 사이트가',
     hLine2: '취재하는 방식',
     p1:
-      '핀란드 로바니에미에 거점을 둔 작은 편집팀입니다. 여섯 곳의 운영사가 게재된 이유는 패키지에 무엇이 포함되고 무엇이 포함되지 않는지 정직하게 알려주기 때문입니다. 여기서 여행을 판매하지 않습니다. 운영사를 통해 예약하시면 계약은 해당 운영사의 약관에 따라 체결됩니다.',
+      '핀란드 로바니에미에 거점을 둔 작은 편집팀입니다. 여섯 곳의 라플란드 운영사가 게재된 이유는 무엇을 제공하고 무엇을 제공하지 않는지 정직하게 알려주기 때문입니다. 여기서 여행을 판매하지 않습니다. 운영사를 통해 예약하시면 계약은 해당 운영사의 약관에 따라 체결됩니다.',
     stats:
-      '엄선된 운영사 6곳  ·  영국 출발 공항 5곳  ·  고객 부담 수수료 0 %  ·  2026년 5월 업데이트',
+      '엄선된 운영사 6곳  ·  모두 핀란드 라플란드 소재  ·  고객 부담 수수료 0 %  ·  2026년 7월 확인',
     bullets: [
       '어떤 운영사도 게재를 위해 비용을 지불하지 않으며, 운영사 클릭에서 제휴 수수료는 발생하지 않습니다.',
       '제휴 수수료는 크로스셀 영역에서만 발생합니다: Hotels.com(CJ), EconomyBookings(CJ), GetYourGuide. 해당 링크는 명시되고 공개됩니다.',
-      '운영사 프로필, 가격, 평가는 6개월마다 검토됩니다. 마지막 검토: 2026년 5월.',
+      '운영사 프로필, 가격, 평가는 6개월마다 검토됩니다. 마지막 검토: 2026년 7월.',
       '이 페이지의 정보가 잘못되었거나 오래된 경우 info@laplandvibes.com 으로 알려 주세요. 수정하겠습니다.',
     ],
     bulletsHtml: [
@@ -114,13 +114,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Comment',
     hLine2: 'nous travaillons',
     p1:
-      'Une petite équipe éditoriale basée à Rovaniemi, en Finlande. Six voyagistes sont listés ici parce qu\'ils sont honnêtes sur ce que leurs forfaits contiennent et sur ce qu\'ils ne contiennent pas. Aucun voyage n\'est vendu sur ce site. Lorsque vous réservez auprès d\'un voyagiste, le contrat est conclu avec lui, selon ses conditions.',
+      'Une petite équipe éditoriale basée à Rovaniemi, en Finlande. Six opérateurs lapons sont listés ici parce qu\'ils sont honnêtes sur ce qu\'ils proposent et sur ce qu\'ils ne proposent pas. Aucun voyage n\'est vendu sur ce site. Lorsque vous réservez auprès d\'un opérateur, le contrat est conclu avec lui, selon ses conditions.',
     stats:
-      '6 voyagistes comparés  ·  5 aéroports de départ britanniques  ·  0 % de commission à votre charge  ·  mis à jour mai 2026',
+      '6 opérateurs comparés  ·  tous établis en Laponie finlandaise  ·  0 % de commission à votre charge  ·  vérifié juillet 2026',
     bullets: [
       'Aucun voyagiste ne paie pour figurer sur cette page, et aucune commission n\'est perçue sur les clics vers leurs sites.',
       'Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées : Hotels.com (CJ), EconomyBookings (CJ) et GetYourGuide. Ces liens sont identifiés et déclarés.',
-      'Profils des voyagistes, prix et notes sont revus tous les six mois. Dernier contrôle : mai 2026.',
+      'Profils des voyagistes, prix et notes sont revus tous les six mois. Dernier contrôle : juillet 2026.',
       'Si une information de cette page est inexacte ou périmée, écrivez à info@laplandvibes.com. Elle sera corrigée.',
     ],
     bulletsHtml: [
@@ -138,13 +138,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Come',
     hLine2: 'lavoriamo',
     p1:
-      'Una piccola redazione con sede a Rovaniemi, in Finlandia. Sei tour operator sono elencati perché dichiarano in modo onesto cosa è incluso nei pacchetti e cosa no. Su questo sito non vendiamo viaggi. Quando prenota tramite un operatore, il contratto si conclude con lui alle sue condizioni.',
+      'Una piccola redazione con sede a Rovaniemi, in Finlandia. Sei operatori lapponi sono elencati perché dichiarano in modo onesto cosa offrono e cosa no. Su questo sito non vendiamo viaggi. Quando prenota tramite un operatore, il contratto si conclude con lui alle sue condizioni.',
     stats:
-      '6 operatori a confronto  ·  5 aeroporti di partenza nel Regno Unito  ·  0 % di commissione a suo carico  ·  aggiornato a maggio 2026',
+      '6 operatori a confronto  ·  tutti con sede in Lapponia finlandese  ·  0 % di commissione a suo carico  ·  verificato a luglio 2026',
     bullets: [
       'Nessun operatore paga per essere presente in questa pagina, e sui clic verso il loro sito non maturano commissioni di affiliazione.',
       'La commissione di affiliazione si attiva solo sulla fascia di cross-sell: Hotels.com (CJ), EconomyBookings (CJ) e GetYourGuide. Tali link sono etichettati e dichiarati.',
-      'I profili degli operatori, i prezzi e le valutazioni vengono rivisti ogni sei mesi. Ultima revisione: maggio 2026.',
+      'I profili degli operatori, i prezzi e le valutazioni vengono rivisti ogni sei mesi. Ultima revisione: luglio 2026.',
       'Se qualcosa in questa pagina è errato o non aggiornato, scriva a info@laplandvibes.com e sarà corretto.',
     ],
     bulletsHtml: [
@@ -162,13 +162,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Hoe',
     hLine2: 'wij werken',
     p1:
-      'Een kleine redactionele ploeg gevestigd in Rovaniemi, Finland. Zes reisorganisaties staan hier omdat zij eerlijk vertellen wat hun arrangementen bevatten en wat niet. Op deze site worden geen reizen verkocht. Wanneer u via een reisorganisatie boekt, sluit u het contract met hen onder hun voorwaarden.',
+      'Een kleine redactionele ploeg gevestigd in Rovaniemi, Finland. Zes Laplandse aanbieders staan hier omdat zij eerlijk vertellen wat zij wel en niet doen. Op deze site worden geen reizen verkocht. Wanneer u via een aanbieder boekt, sluit u het contract met hen onder hun voorwaarden.',
     stats:
-      '6 reisorganisaties vergeleken  ·  5 Britse vertrekluchthavens  ·  0 % commissie voor u  ·  bijgewerkt mei 2026',
+      '6 aanbieders vergeleken  ·  allemaal gevestigd in Fins Lapland  ·  0 % commissie voor u  ·  gecontroleerd juli 2026',
     bullets: [
       'Geen enkele reisorganisatie betaalt om vermeld te worden, en op kliks naar hun site wordt geen affiliate-commissie ontvangen.',
       'Affiliate-commissie wordt alleen op de cross-sell-balk verdiend: Hotels.com (CJ), EconomyBookings (CJ) en GetYourGuide. Die links zijn gemarkeerd en toegelicht.',
-      'Profielen, prijzen en beoordelingen van reisorganisaties worden elk half jaar herzien. Laatste controle: mei 2026.',
+      'Profielen, prijzen en beoordelingen van reisorganisaties worden elk half jaar herzien. Laatste controle: juli 2026.',
       'Klopt er iets niet op deze pagina, of is het verouderd? Mail naar info@laplandvibes.com en het wordt aangepast.',
     ],
     bulletsHtml: [
@@ -186,13 +186,13 @@ const COPY: Record<CopyLang, {
     hLine1: '当サイトの',
     hLine2: '取材スタイル',
     p1:
-      'ロヴァニエミに拠点を置く、フィンランドの小規模な編集チームです。6社のツアーオペレーターを掲載しているのは、パッケージに何が含まれるか、そして含まれないかについて誠実に説明してくれるからです。当サイトでは旅行を販売していません。ツアー会社経由でご予約いただく場合、契約はそのオペレーターの条件に基づき結ばれます。',
+      'ロヴァニエミに拠点を置く、フィンランドの小規模な編集チームです。6社のラップランドの事業者を掲載しているのは、何を提供し何を提供しないかを誠実に説明してくれるからです。当サイトでは旅行を販売していません。事業者経由でご予約いただく場合、契約はその事業者の条件に基づき結ばれます。',
     stats:
-      '6社のオペレーターを比較  ·  5空港のイギリス出発地  ·  お客様への手数料0%  ·  2026年5月更新',
+      '6社の事業者を比較  ·  すべてフィンランド・ラップランド拠点  ·  お客様への手数料0%  ·  2026年7月確認',
     bullets: [
       'オペレーターが掲載のために費用を支払うことはありません。オペレーターのクリックでアフィリエイト手数料を受け取ることもありません。',
       'アフィリエイト手数料は、Hotels.com(CJ)、EconomyBookings(CJ)、GetYourGuideのクロスセル枠でのみ発生します。これらのリンクは明示・開示されています。',
-      'ツアー会社のプロフィール、価格、評価は6か月ごとに見直しています。前回の見直し:2026年5月。',
+      'ツアー会社のプロフィール、価格、評価は6か月ごとに見直しています。前回の見直し:2026年7月。',
       'このページに誤りや古い情報がありましたら、info@laplandvibes.com までご連絡ください。修正いたします。',
     ],
     bulletsHtml: [
@@ -210,13 +210,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Cómo',
     hLine2: 'lo contamos',
     p1:
-      'Somos un pequeño equipo editorial finlandés con sede en Rovaniemi. Listamos seis operadores porque son honestos sobre lo que incluyen sus paquetes y lo que no. Aquí no se vende ningún viaje. Cuando reserva a través de un operador, el contrato es con ese operador y según sus condiciones.',
+      'Somos un pequeño equipo editorial finlandés con sede en Rovaniemi. Listamos seis operadores lapones porque son honestos sobre lo que ofrecen y lo que no. Aquí no se vende ningún viaje. Cuando reserva a través de un operador, el contrato es con ese operador y según sus condiciones.',
     stats:
-      '6 operadores comparados  ·  5 aeropuertos de salida británicos  ·  0 % de comisión a su cargo  ·  actualizado en mayo de 2026',
+      '6 operadores comparados  ·  todos con sede en la Laponia finlandesa  ·  0 % de comisión a su cargo  ·  revisado en julio de 2026',
     bullets: [
       'Ningún operador paga por aparecer, y los clics hacia los operadores no generan comisión de afiliación.',
       'La comisión de afiliación solo se obtiene en la franja de venta cruzada: Hotels.com (CJ), EconomyBookings (CJ) y GetYourGuide. Esos enlaces están señalados y declarados.',
-      'Los perfiles de operadores, los precios y las valoraciones se revisan cada seis meses. Última revisión: mayo de 2026.',
+      'Los perfiles de operadores, los precios y las valoraciones se revisan cada seis meses. Última revisión: julio de 2026.',
       'Si algo de esta página es incorrecto o está desactualizado, escriba a info@laplandvibes.com y se corregirá.',
     ],
     bulletsHtml: [
@@ -234,13 +234,13 @@ const COPY: Record<CopyLang, {
     hLine1: 'Como',
     hLine2: 'fazemos a cobertura',
     p1:
-      'Somos uma pequena equipe editorial finlandesa sediada em Rovaniemi. Listamos seis operadoras porque elas são honestas sobre o que os pacotes incluem e o que não incluem. Aqui não se vende nenhuma viagem. Quando você reserva por uma operadora, o contrato é com ela, segundo os termos dela.',
+      'Somos uma pequena equipe editorial finlandesa sediada em Rovaniemi. Listamos seis operadoras lapônicas porque elas são honestas sobre o que oferecem e o que não oferecem. Aqui não se vende nenhuma viagem. Quando você reserva por uma operadora, o contrato é com ela, segundo os termos dela.',
     stats:
-      '6 operadoras comparadas  ·  5 aeroportos de partida no Reino Unido  ·  0 % de comissão a seu cargo  ·  atualizado em maio de 2026',
+      '6 operadoras comparadas  ·  todas sediadas na Lapônia finlandesa  ·  0 % de comissão a seu cargo  ·  revisado em julho de 2026',
     bullets: [
       'Nenhuma operadora paga para aparecer, e os cliques nas operadoras não geram comissão de afiliado.',
       'A comissão de afiliado só é obtida na faixa de venda cruzada: Hotels.com (CJ), EconomyBookings (CJ) e GetYourGuide. Esses links são sinalizados e divulgados.',
-      'Os perfis das operadoras, os preços e as avaliações são revisados a cada seis meses. Última revisão: maio de 2026.',
+      'Os perfis das operadoras, os preços e as avaliações são revisados a cada seis meses. Última revisão: julho de 2026.',
       'Se algo nesta página estiver errado ou desatualizado, escreva para info@laplandvibes.com que será corrigido.',
     ],
     bulletsHtml: [
@@ -258,13 +258,13 @@ const COPY: Record<CopyLang, {
     hLine1: '我们',
     hLine2: '如何报道',
     p1:
-      '我们是一支驻罗瓦涅米的芬兰小型编辑团队。之所以列出这六家运营商，是因为它们对套餐包含什么、以及不包含什么，都说得坦诚。本站不销售任何行程。当你通过运营商预订时，合同是与该运营商按其条款签订的。',
+      '我们是一支驻罗瓦涅米的芬兰小型编辑团队。之所以列出这六家运营商，是因为它们对自己提供什么、不提供什么都说得坦诚。本站不销售任何行程。当你通过运营商预订时，合同是与该运营商按其条款签订的。',
     stats:
-      '6 家运营商对比  ·  5 个英国出发机场  ·  对你收取 0% 佣金  ·  2026 年 5 月更新',
+      '6 家运营商对比  ·  均位于芬兰拉普兰  ·  对你收取 0% 佣金  ·  2026 年 7 月核实',
     bullets: [
       '没有运营商付费上榜，点击运营商也不会产生联盟佣金。',
       '联盟佣金只来自交叉销售栏目：Hotels.com（CJ）、EconomyBookings（CJ）和 GetYourGuide。这些链接均已标注并公开说明。',
-      '运营商资料、价格和星级每六个月复核一次。上次复核：2026 年 5 月。',
+      '运营商资料、价格和星级每六个月复核一次。上次复核：2026 年 7 月。',
       '如果本页面有错误或信息过时，请发送邮件至 info@laplandvibes.com，我们会更正。',
     ],
     bulletsHtml: [

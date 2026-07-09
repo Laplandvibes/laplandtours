@@ -79,7 +79,7 @@ const COPY: Record<CopyLang, {
   fi: {
     metaTitle: 'Matkanjärjestäjät: Suomen Lappi | #LaplandTours',
     metaDescription:
-      'Rehellinen opas kuuteen brittiläiseen ja eurooppalaiseen matkanjärjestäjään, jotka myyvät Suomen Lapin matkoja 2026: mitä kukin osaa ja mitä todella saat.',
+      'Rehellinen opas kuuteen suomalaiseen Lapin toimijaan 2026: mitä kukin osaa, missä ne sijaitsevat ja mitä todella saat, kun varaat suoraan.',
     canonical: 'https://laplandtours.online/fi/lapland-holidays',
     breadcrumbHome: 'Etusivu',
     breadcrumbName: 'Matkanjärjestäjät',
@@ -90,10 +90,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'järjestäjät',
     introCap: 'Lähestymistapa',
     intro:
-      'Suomen Lappi on pitkä ja kapea maakunta. Useimmat brittiläiset ja eurooppalaiset matkustavat sinne kuuden vakiintuneen matkanjärjestäjän pakettimatkalla. Tarjonta ei ole sama: TUI myy kolmen yön päiväretkeä brittikentältä, Magnetic North kuuden yön räätälöityä matkaa yksityisen revontulivalokuvaajan kanssa. Kaikki kuusi on listattu rinnakkain, jotta oikea matka löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Suomen Lappi on pitkä ja kapea maakunta. Sen omat toimijat pyörittävät aktiviteetit paikan päällä — lennät perille ja varaat suoraan heiltä, et osta charter-pakettia ulkomailta. Tarjonta vaihtelee: Lapland Safaris kattaa koko aktiviteettikirjon viidellä keskuksella, Arctic GM vie revontulijahtiin noin viiden hengen ryhmän luksuspakulla. Kaikki kuusi on listattu rinnakkain, jotta oikea löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
     noteEyebrow: 'Miksi tämä sivu',
     noteBody:
-      'Näitä paketteja ei myydä täällä. Yhdenkään alla luetellun matkanjärjestäjän kanssa ei ole kaupallista sopimusta, eikä linkin klikkauksesta makseta provisiota. Kumppanuusprovisiota kertyy vain sivun alaosan ristiinmyyntiriviltä (hotelliyö, vuokra-auto, päiväretki).',
+      'Täällä ei myydä mitään. Yhdenkään alla luetellun toimijan kanssa ei ole kaupallista sopimusta, eikä linkin klikkauksesta makseta provisiota. Kumppanuusprovisiota kertyy vain sivun alaosan ristiinmyyntiriviltä (hotelliyö, vuokra-auto, päiväretki).',
     quote:
       'Lasi-iglu ei ole hintaherkkä valinta. Maan halvinkin alkaa 430 €:sta yöltä.',
     quoteAttribution: 'Luksusluokasta',
@@ -101,7 +101,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Luku IV',
     addons: 'Lisät',
     addonsBody:
-      'Useimmat jatkavat pakettia hotelliyöllä alku- tai loppuun, omatoimisella ajopäivällä tai puolen päivän GetYourGuide-retkellä. Nämä kolme raidetta tuottavat provisiota. Varaus suoraan, ei välikäsiä, sopimus syntyy kumppanin kanssa.',
+      'Useimmat täydentävät aktiviteettejaan hotelliyöllä alku- tai loppuun, omatoimisella ajopäivällä tai puolen päivän GetYourGuide-retkellä. Nämä kolme raidetta tuottavat provisiota. Varaus suoraan, ei välikäsiä, sopimus syntyy kumppanin kanssa.',
     addonHotel: 'Hotelliyö Rovaniemi →',
     addonCar: 'Vuokra-auto Rovaniemestä →',
     addonActivity: 'Päiväretki →',
@@ -115,7 +115,7 @@ const COPY: Record<CopyLang, {
   de: {
     metaTitle: 'Die Reiseveranstalter: Finnisch-Lappland | #LaplandTours',
     metaDescription:
-      'Ein ehrlicher Überblick über sechs britische und europäische Reiseveranstalter, die 2026 Reisen nach Finnisch-Lappland verkaufen: Stärken und Abflughäfen.',
+      'Ein ehrlicher Überblick über sechs in Finnland ansässige Lappland-Anbieter 2026: Stärken, Standorte und was Sie bei der Direktbuchung wirklich bekommen.',
     canonical: 'https://laplandtours.online/de/lapland-holidays',
     breadcrumbHome: 'Start',
     breadcrumbName: 'Reiseveranstalter',
@@ -126,10 +126,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'veranstalter',
     introCap: 'Ausgangslage',
     intro:
-      'Finnisch-Lappland ist eine lange, schmale Region. Die meisten britischen und europäischen Gäste reisen mit einem Paket von sechs etablierten Reiseveranstaltern an. Das Angebot ist unterschiedlich: TUI bietet eine 3-Nächte-Tagesreise ab Regionalflughafen, Magnetic North eine sechs Nächte lange individuelle Reise mit privatem Polarlicht-Fotografen. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
+      'Finnisch-Lappland ist eine lange, schmale Region. Die dortigen Anbieter führen die Aktivitäten selbst durch — Sie reisen an und buchen direkt bei ihnen, statt im Ausland ein Charterpaket zu kaufen. Das Angebot ist unterschiedlich: Lapland Safaris deckt das gesamte Aktivitätenprogramm an fünf Standorten ab, Arctic GM nimmt zur Polarlichtjagd nur rund fünf Personen im Luxus-Van mit. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
     noteEyebrow: 'Zum Charakter dieser Seite',
     noteBody:
-      'Die Pakete werden hier nicht verkauft. Mit keinem der sechs unten gelisteten Reiseveranstalter besteht eine Geschäftsbeziehung, und beim Durchklicken fließt keine Provision zurück. Affiliate-Provision fällt nur auf der Zusatz-Schiene am Seitenende (Hotelnacht, Mietwagen, Tagestour) an.',
+      'Hier wird nichts verkauft. Mit keinem der sechs unten gelisteten Anbieter besteht eine Geschäftsbeziehung, und beim Durchklicken fließt keine Provision zurück. Affiliate-Provision fällt nur auf der Zusatz-Schiene am Seitenende (Hotelnacht, Mietwagen, Tagestour) an.',
     quote:
       'Ein Glas-Iglu ist keine preissensible Wahl. Das günstigste im Land startet bei 430 € pro Nacht.',
     quoteAttribution: 'Zur Luxusklasse',
@@ -137,7 +137,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Kapitel IV',
     addons: 'Die Ergänzungen',
     addonsBody:
-      'Die meisten Gäste verlängern das Paket um eine Hotelnacht vorher oder nachher, einen Selbstfahrer-Tag oder eine halbtägige GetYourGuide-Tour. Auf diesen drei Schienen fällt Provision an. Direkt gebucht, ohne Zwischenhändler, der Vertrag entsteht mit dem jeweiligen Partner.',
+      'Die meisten Gäste ergänzen ihre Aktivitäten um eine Hotelnacht vorher oder nachher, einen Selbstfahrer-Tag oder eine halbtägige GetYourGuide-Tour. Auf diesen drei Schienen fällt Provision an. Direkt gebucht, ohne Zwischenhändler, der Vertrag entsteht mit dem jeweiligen Partner.',
     addonHotel: 'Hotelnacht in Rovaniemi →',
     addonCar: 'Selbstfahrer ab Rovaniemi →',
     addonActivity: 'Tagestour →',
@@ -151,7 +151,7 @@ const COPY: Record<CopyLang, {
   ja: {
     metaTitle: 'ツアー会社｜フィンランド・ラップランドの6社のツアー会社 | #LaplandTours',
     metaDescription:
-      '2026年にフィンランド・ラップランドのホリデーを販売するイギリスとヨーロッパの6社のオペレーターを率直にご紹介します。各社の得意分野、出発地、予約時に実際に得られるもの。',
+      '2026年、フィンランドを拠点とするラップランドの6社を率直にご紹介します。各社の得意分野、拠点、そして直接予約したときに実際に得られるもの。',
     canonical: 'https://laplandtours.online/ja/lapland-holidays',
     breadcrumbHome: 'ホーム',
     breadcrumbName: 'ツアー会社ガイド',
@@ -162,10 +162,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'オペレーター',
     introCap: 'ドロップキャップ',
     intro:
-      'フィンランド・ラップランドは細長い国です。イギリスとヨーロッパからのほとんどの訪問者は、長年この事業を続けている6社のオペレーターから提供されるパッケージで旅をします。各社が販売するものは同じではありません:TUIは地方空港からの3泊の日帰り旅行、Magnetic Northはプライベートなオーロラ写真家が同行する6泊のオーダーメイド旅程です。6社すべてを率直に横並びで掲載していますので、ご希望の旅にぴったりのものが簡単に見つかります。',
+      'フィンランド・ラップランドは細長い地域です。現地の事業者がアクティビティを自ら運営しており、海外でチャーターのパッケージを買うのではなく、現地に飛んで直接予約します。内容はさまざまで、Lapland Safarisは5つの拠点で全アクティビティを網羅し、Arctic GMは高級バンで約5名までのオーロラハントに絞ります。6社すべてを率直に横並びで掲載していますので、ご希望の旅にぴったりのものが簡単に見つかります。',
     noteEyebrow: '当ページについての注意',
     noteBody:
-      'これらのパッケージは当サイトでは販売していません。以下の6社のオペレーターとは商業的な提携はなく、リンクをクリックしてもオペレーターから当サイトへの支払いは発生しません。アフィリエイト手数料は、このページ下部のクロスセル枠(宿泊、レンタカー、日帰りアクティビティ)でのみ発生します。',
+      'ここでは何も販売していません。以下の6社とは商業的な提携はなく、リンクをクリックしても当サイトへの支払いは発生しません。アフィリエイト手数料は、このページ下部のクロスセル枠(宿泊、レンタカー、日帰りアクティビティ)でのみ発生します。',
     quote:
       'ガラスイグルーは価格を重視する選択ではありません。国内最安でも1泊430ユーロから始まります。',
     quoteAttribution: 'ラグジュアリークラスについて',
@@ -173,7 +173,7 @@ const COPY: Record<CopyLang, {
     chapter: '第IV章',
     addons: 'アドオン',
     addonsBody:
-      'ほとんどの旅行者はオペレーターのパッケージに、前後の宿泊、自由運転日、GetYourGuideの半日アクティビティを追加します。これらが当サイトの手数料が発生する3つの枠です。直接予約、仲介者なし、契約はパートナーとの間で結ばれます。',
+      'ほとんどの旅行者は、アクティビティに前後の宿泊、自由運転日、GetYourGuideの半日アクティビティを組み合わせます。これらが当サイトの手数料が発生する3つの枠です。直接予約、仲介者なし、契約はパートナーとの間で結ばれます。',
     addonHotel: '宿泊、ロヴァニエミ →',
     addonCar: '自由運転、RVN出発 →',
     addonActivity: '日帰りアクティビティ →',
@@ -187,7 +187,7 @@ const COPY: Record<CopyLang, {
   ko: {
     metaTitle: '운영사: 핀란드 라플란드를 다루는 여섯 운영사 | #LaplandTours',
     metaDescription:
-      '2026년 핀란드 라플란드 휴가를 판매하는 영국 및 유럽의 여섯 운영사를 솔직하게 안내합니다. 각 운영사의 강점, 출발지, 그리고 실제 예약 시 받게 되는 내용.',
+      '2026년 핀란드에 기반을 둔 라플란드 운영사 여섯 곳을 솔직하게 안내합니다. 각 운영사의 강점, 위치, 그리고 직접 예약 시 실제로 받게 되는 내용.',
     canonical: 'https://laplandtours.online/kr/lapland-holidays',
     breadcrumbHome: '홈',
     breadcrumbName: '운영사 가이드',
@@ -198,10 +198,10 @@ const COPY: Record<CopyLang, {
     h1Bot: '운영사',
     introCap: '드롭캡',
     intro:
-      '핀란드 라플란드는 길고 좁은 지역입니다. 영국과 유럽의 대다수 방문객은 오랜 기간 이 일을 해온 여섯 운영사의 패키지로 이곳에 도착합니다. 판매 상품은 동일하지 않습니다. TUI는 지방 공항 출발 3박 당일 여행을 운영하고, Magnetic North는 전담 오로라 사진가가 동행하는 6박 맞춤형 일정을 제공합니다. 여섯 곳 모두 솔직하게 나란히 게재하여 원하시는 여행에 맞는 곳을 쉽게 찾을 수 있도록 했습니다.',
+      '핀란드 라플란드는 길고 좁은 지역입니다. 현지 운영사들이 액티비티를 직접 운영하므로, 해외에서 전세 패키지를 사는 대신 현지로 날아가 직접 예약합니다. 제공 내용은 제각각입니다. Lapland Safaris는 다섯 곳의 거점에서 전 종목을 아우르고, Arctic GM은 럭셔리 밴으로 약 다섯 명까지만 받는 오로라 헌팅에 집중합니다. 여섯 곳 모두 솔직하게 나란히 게재하여 원하시는 여행에 맞는 곳을 쉽게 찾을 수 있도록 했습니다.',
     noteEyebrow: '이 페이지의 성격',
     noteBody:
-      '이 패키지들은 여기서 판매되지 않습니다. 아래 여섯 운영사와 상업적 계약은 없으며, 링크를 클릭하셔도 운영사로부터의 수수료는 발생하지 않습니다. 제휴 수수료는 이 페이지 하단의 크로스셀 영역(호텔 숙박, 렌터카, 당일 액티비티)에서만 발생합니다.',
+      '여기서는 아무것도 판매하지 않습니다. 아래 여섯 운영사와 상업적 계약은 없으며, 링크를 클릭하셔도 수수료는 발생하지 않습니다. 제휴 수수료는 이 페이지 하단의 크로스셀 영역(호텔 숙박, 렌터카, 당일 액티비티)에서만 발생합니다.',
     quote:
       '글래스 이글루는 가격에 민감한 선택이 아닙니다. 국내에서 가장 저렴한 곳도 1박 430유로부터 시작합니다.',
     quoteAttribution: '럭셔리 등급에 대해',
@@ -209,7 +209,7 @@ const COPY: Record<CopyLang, {
     chapter: '챕터 IV',
     addons: '추가 옵션',
     addonsBody:
-      '대부분의 여행자는 운영사 패키지에 앞뒤 호텔 숙박, 자유 운전 하루, 또는 GetYourGuide의 반나절 액티비티를 추가합니다. 이 세 영역이 수수료가 발생하는 곳입니다. 중개 없이 직접 예약하며, 계약은 파트너와 맺습니다.',
+      '대부분의 여행자는 액티비티에 앞뒤 호텔 숙박, 자유 운전 하루, 또는 GetYourGuide의 반나절 액티비티를 곁들입니다. 이 세 영역이 수수료가 발생하는 곳입니다. 중개 없이 직접 예약하며, 계약은 파트너와 맺습니다.',
     addonHotel: '로바니에미 호텔 숙박 →',
     addonCar: 'RVN 출발 자유 운전 →',
     addonActivity: '당일 액티비티 →',
@@ -222,7 +222,7 @@ const COPY: Record<CopyLang, {
   fr: {
     metaTitle: 'Les voyagistes : Laponie finlandaise | #LaplandTours',
     metaDescription:
-      'Un guide honnête des six voyagistes britanniques et européens qui vendent des séjours en Laponie finlandaise en 2026 : points forts et aéroports de départ.',
+      'Un guide honnête de six opérateurs lapons établis en Finlande en 2026 : leurs points forts, où ils sont basés et ce que vous obtenez en réservant en direct.',
     canonical: 'https://laplandtours.online/fr/lapland-holidays',
     breadcrumbHome: 'Accueil',
     breadcrumbName: 'Guide des voyagistes',
@@ -233,10 +233,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'voyagistes',
     introCap: 'Lettrine',
     intro:
-      'La Laponie finlandaise est une région longue et étroite. La plupart des voyageurs britanniques et européens y arrivent via un forfait conçu par l\'un des six voyagistes installés depuis longtemps sur ce marché. Leurs offres ne sont pas équivalentes : TUI propose un voyage de 3 nuits depuis un aéroport régional, Magnetic North compose un itinéraire sur mesure de six nuits avec un photographe-aurore privé. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
+      'La Laponie finlandaise est une région longue et étroite. Ses propres opérateurs exploitent les activités sur place — vous vous y rendez et réservez directement auprès d\'eux, plutôt que d\'acheter un forfait charter à l\'étranger. Les offres diffèrent : Lapland Safaris couvre tout le programme sur cinq stations, Arctic GM limite sa chasse aux aurores à cinq personnes environ, en van de luxe. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
     noteEyebrow: 'Ce que cette page est',
     noteBody:
-      'Ces forfaits ne sont pas vendus ici. Aucun accord commercial avec les six voyagistes ci-dessous ; le clic ne rapporte rien. Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées (nuit d\'hôtel, location de voiture, activité à la journée) en bas de page.',
+      'Rien n\'est vendu ici. Aucun accord commercial avec les six opérateurs ci-dessous ; le clic ne rapporte rien. Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées (nuit d\'hôtel, location de voiture, activité à la journée) en bas de page.',
     quote:
       'Un iglou de verre n\'est pas un choix sensible au prix. Le moins cher du pays démarre à 430 € la nuit.',
     quoteAttribution: 'Sur la gamme luxe',
@@ -244,7 +244,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Chapitre IV',
     addons: 'Les compléments',
     addonsBody:
-      'La plupart des voyageurs prolongent le forfait avec une nuit d\'hôtel avant ou après, une journée en autotour ou une activité d\'une demi-journée via GetYourGuide. Ce sont les trois rails sur lesquels une commission est perçue : réservation directe, sans intermédiaire, le contrat se conclut avec le partenaire.',
+      'La plupart des voyageurs associent leurs activités à une nuit d\'hôtel avant ou après, une journée en autotour ou une activité d\'une demi-journée via GetYourGuide. Ce sont les trois rails sur lesquels une commission est perçue : réservation directe, sans intermédiaire, le contrat se conclut avec le partenaire.',
     addonHotel: 'Nuit d\'hôtel, Rovaniemi →',
     addonCar: 'Autotour, départ RVN →',
     addonActivity: 'Activité à la journée →',
@@ -257,7 +257,7 @@ const COPY: Record<CopyLang, {
   it: {
     metaTitle: 'I tour operator: Lapponia finlandese | #LaplandTours',
     metaDescription:
-      'Una guida onesta ai sei tour operator britannici ed europei che vendono vacanze in Lapponia finlandese nel 2026: punti di forza e aeroporti di partenza.',
+      'Una guida onesta a sei operatori lapponi con sede in Finlandia nel 2026: punti di forza, dove hanno sede e cosa ottiene prenotando direttamente.',
     canonical: 'https://laplandtours.online/it/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Guida agli operatori',
@@ -268,10 +268,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operatori',
     introCap: 'Capolettera',
     intro:
-      'La Lapponia finlandese è una regione lunga e stretta. La maggior parte dei visitatori britannici ed europei vi arriva con un pacchetto di uno dei sei operatori che fanno questo mestiere da anni. L\'offerta non è la stessa: TUI propone una gita di tre notti da un aeroporto regionale; Magnetic North un itinerario su misura di sei notti con fotografo dell\'aurora dedicato. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
+      'La Lapponia finlandese è una regione lunga e stretta. Sono gli operatori del posto a gestire le attività — lei arriva e prenota direttamente da loro, invece di comprare un pacchetto charter all\'estero. L\'offerta varia: Lapland Safaris copre tutte le attività su cinque località, Arctic GM limita la caccia all\'aurora a circa cinque persone in van di lusso. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
     noteEyebrow: 'Una nota su questa pagina',
     noteBody:
-      'Questi pacchetti non si vendono qui. Con i sei operatori elencati di seguito non vi è alcun accordo commerciale; il clic non produce alcuna commissione a loro carico. La commissione di affiliazione si attiva solo sul rail di cross-sell in fondo a questa pagina (notte in hotel, noleggio auto, attività di un giorno).',
+      'Qui non si vende nulla. Con i sei operatori elencati di seguito non vi è alcun accordo commerciale; il clic non produce alcuna commissione a loro carico. La commissione di affiliazione si attiva solo sul rail di cross-sell in fondo a questa pagina (notte in hotel, noleggio auto, attività di un giorno).',
     quote:
       'Un iglù di vetro non è una scelta sensibile al prezzo. Il più economico del paese parte da 430 € a notte.',
     quoteAttribution: 'Sulla fascia lusso',
@@ -279,7 +279,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Capitolo IV',
     addons: 'I complementi',
     addonsBody:
-      'La maggior parte dei viaggiatori estende il pacchetto con una notte in hotel prima o dopo, una giornata in autotour o un\'attività di mezza giornata su GetYourGuide. Questi sono i tre binari su cui maturiamo commissione: prenotazione diretta, senza intermediari, il contratto si conclude con il partner.',
+      'La maggior parte dei viaggiatori affianca alle attività una notte in hotel prima o dopo, una giornata in autotour o un\'attività di mezza giornata su GetYourGuide. Questi sono i tre binari su cui maturiamo commissione: prenotazione diretta, senza intermediari, il contratto si conclude con il partner.',
     addonHotel: 'Notte in hotel, Rovaniemi →',
     addonCar: 'Autotour, da RVN →',
     addonActivity: 'Attività di un giorno →',
@@ -292,7 +292,7 @@ const COPY: Record<CopyLang, {
   nl: {
     metaTitle: 'De reisorganisaties: Fins Lapland | #LaplandTours',
     metaDescription:
-      'Een eerlijke gids over zes Britse en Europese reisorganisaties die in 2026 reizen naar Fins Lapland verkopen: sterktes, vertrekluchthavens en wat u krijgt.',
+      'Een eerlijke gids over zes in Finland gevestigde Lapland-aanbieders in 2026: sterktes, waar ze gevestigd zijn en wat u krijgt als u direct boekt.',
     canonical: 'https://laplandtours.online/nl/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Operator-gids',
@@ -303,10 +303,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operators',
     introCap: 'Drop cap',
     intro:
-      'Fins Lapland is een lang, smal gebied. De meeste Britse en Europese bezoekers komen er via een pakketreis van een van zes reisorganisaties die dit al jaren doen. Wat zij verkopen verschilt: TUI biedt een dagtocht van drie nachten vanaf een regionale luchthaven; Magnetic North een zesnachten-maatwerkroute met een privéfotograaf voor het noorderlicht. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
+      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit — u reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn aurorajacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
     noteEyebrow: 'Wat deze pagina is',
     noteBody:
-      'Deze arrangementen worden hier niet verkocht. Met de zes hieronder genoemde reisorganisaties is geen commerciële afspraak, en bij doorklikken vloeit niets terug. Affiliate-commissie wordt alleen verdiend op de cross-sell-balk onderaan deze pagina (hotelnacht, huurauto, dagactiviteit).',
+      'Hier wordt niets verkocht. Met de zes hieronder genoemde aanbieders is geen commerciële afspraak, en bij doorklikken vloeit niets terug. Affiliate-commissie wordt alleen verdiend op de cross-sell-balk onderaan deze pagina (hotelnacht, huurauto, dagactiviteit).',
     quote:
       'Een glaziglo is geen prijsgevoelige keuze. De goedkoopste in het land begint bij € 430 per nacht.',
     quoteAttribution: 'Over het luxesegment',
@@ -314,7 +314,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Hoofdstuk IV',
     addons: 'De aanvullingen',
     addonsBody:
-      'De meeste reizigers verlengen het arrangement met een hotelnacht aan een van beide kanten, een zelfrij-dag of een halfdagactiviteit via GetYourGuide. Dat zijn de drie sporen waarop commissie wordt verdiend: direct geboekt, zonder tussenpersoon, het contract is met de partner.',
+      'De meeste reizigers combineren hun activiteiten met een hotelnacht aan een van beide kanten, een zelfrij-dag of een halfdagactiviteit via GetYourGuide. Dat zijn de drie sporen waarop commissie wordt verdiend: direct geboekt, zonder tussenpersoon, het contract is met de partner.',
     addonHotel: 'Hotelnacht, Rovaniemi →',
     addonCar: 'Zelfrijden, vanaf RVN →',
     addonActivity: 'Dagactiviteit →',
@@ -327,7 +327,7 @@ const COPY: Record<CopyLang, {
   es: {
     metaTitle: 'Los operadores: Laponia finlandesa | #LaplandTours',
     metaDescription:
-      'Una guía honesta de seis operadores británicos y europeos que venden viajes a la Laponia finlandesa en 2026: qué hace bien cada uno y desde dónde vuelan.',
+      'Una guía honesta de seis operadores lapones con sede en Finlandia en 2026: qué hace bien cada uno, dónde están y qué obtiene al reservar directamente.',
     canonical: 'https://laplandtours.online/es/lapland-holidays',
     breadcrumbHome: 'Inicio',
     breadcrumbName: 'Guía de operadores',
@@ -338,10 +338,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operadores',
     introCap: 'Capitular',
     intro:
-      'La Laponia finlandesa es una región larga y estrecha. La mayoría de los visitantes británicos y europeos llegan con un viaje organizado de uno de seis operadores que llevan años haciéndolo. Lo que venden no es lo mismo: TUI es una escapada de tres noches desde un aeropuerto regional; Magnetic North, un itinerario a medida de seis noches con un fotógrafo de auroras privado. Los seis están listados con honestidad, uno al lado del otro, para que sea fácil dar con el adecuado para el viaje que de verdad quiere.',
+      'La Laponia finlandesa es una región larga y estrecha. Son sus propios operadores quienes gestionan las actividades sobre el terreno: usted llega y reserva directamente con ellos, en lugar de comprar un paquete chárter en el extranjero. La oferta varía: Lapland Safaris cubre todo el programa en cinco estaciones; Arctic GM limita su caza de auroras a unas cinco personas en una furgoneta de lujo. Los seis están listados con honestidad, uno al lado del otro, para que sea fácil dar con el adecuado para el viaje que de verdad quiere.',
     noteEyebrow: 'Qué es esto',
     noteBody:
-      'Estos paquetes no se venden aquí. No hay acuerdo comercial con ninguno de los seis operadores de abajo: al hacer clic, el operador no paga nada de vuelta. La comisión de afiliación solo se obtiene en la franja de venta cruzada (noche de hotel, alquiler de coche, actividad de un día) al final de esta página.',
+      'Aquí no se vende nada. No hay acuerdo comercial con ninguno de los seis operadores de abajo: al hacer clic, el operador no paga nada de vuelta. La comisión de afiliación solo se obtiene en la franja de venta cruzada (noche de hotel, alquiler de coche, actividad de un día) al final de esta página.',
     quote:
       'Un iglú de cristal no es una elección para quien mira el precio. El más barato del país parte de 430 € por noche.',
     quoteAttribution: 'Sobre la gama de lujo',
@@ -349,7 +349,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Capítulo IV',
     addons: 'Los complementos',
     addonsBody:
-      'La mayoría amplía el paquete del operador con una noche de hotel a un lado u otro, un día de autotour o una actividad de media jornada de GetYourGuide. Son las tres vías en las que se obtiene comisión: reservadas directamente, sin intermediarios; el contrato es con el socio.',
+      'La mayoría suma a sus actividades una noche de hotel a un lado u otro, un día de autotour o una actividad de media jornada de GetYourGuide. Son las tres vías en las que se obtiene comisión: reservadas directamente, sin intermediarios; el contrato es con el socio.',
     addonHotel: 'Noche de hotel, Rovaniemi →',
     addonCar: 'Autotour, desde RVN →',
     addonActivity: 'Actividad de un día →',
@@ -374,10 +374,10 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operadoras',
     introCap: 'Capitular',
     intro:
-      'A Lapônia finlandesa é uma região longa e estreita. A maioria dos visitantes britânicos e europeus chega com uma viagem organizada por uma de seis operadoras que fazem isso há anos. O que elas vendem não é a mesma coisa: a TUI é um bate-volta de três noites de um aeroporto regional; a Magnetic North, um roteiro sob medida de seis noites com um fotógrafo de auroras particular. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
+      'A Lapônia finlandesa é uma região longa e estreita. São as próprias operadoras locais que conduzem as atividades no destino — você viaja até lá e reserva direto com elas, em vez de comprar um pacote charter no exterior. A oferta varia: a Lapland Safaris cobre todo o programa em cinco estações; a Arctic GM limita sua caça à aurora a cerca de cinco pessoas em uma van de luxo. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
     noteEyebrow: 'O que é isto',
     noteBody:
-      'Estes pacotes não são vendidos aqui. Não há acordo comercial com nenhuma das seis operadoras abaixo, e ao clicar, a operadora não repassa nada. A comissão de afiliado só é obtida na faixa de venda cruzada (diária de hotel, aluguel de carro, atividade de um dia) no fim desta página.',
+      'Aqui não se vende nada. Não há acordo comercial com nenhuma das seis operadoras abaixo, e ao clicar, a operadora não repassa nada. A comissão de afiliado só é obtida na faixa de venda cruzada (diária de hotel, aluguel de carro, atividade de um dia) no fim desta página.',
     quote:
       'Um iglu de vidro não é uma escolha para quem é sensível a preço. O mais barato do país começa em € 430 por noite.',
     quoteAttribution: 'Sobre a faixa de luxo',
@@ -385,7 +385,7 @@ const COPY: Record<CopyLang, {
     chapter: 'Capítulo IV',
     addons: 'Os complementos',
     addonsBody:
-      'A maioria estende o pacote da operadora com uma diária de hotel em uma das pontas, um dia de autotour ou uma atividade de meio período da GetYourGuide. São os três trilhos em que se ganha comissão: reservados direto, sem intermediário; o contrato é com o parceiro.',
+      'A maioria combina suas atividades com uma diária de hotel em uma das pontas, um dia de autotour ou uma atividade de meio período da GetYourGuide. São os três trilhos em que se ganha comissão: reservados direto, sem intermediário; o contrato é com o parceiro.',
     addonHotel: 'Diária de hotel, Rovaniemi →',
     addonCar: 'Autotour, a partir de RVN →',
     addonActivity: 'Atividade de um dia →',
@@ -399,7 +399,7 @@ const COPY: Record<CopyLang, {
   'zh-CN': {
     metaTitle: '运营商：六家做芬兰拉普兰的旅游公司 | #LaplandTours',
     metaDescription:
-      '一份关于六家在 2026 年销售芬兰拉普兰行程的英国与欧洲运营商的坦诚指南：各家擅长什么、从哪里出发，以及你预订后实际能得到什么。',
+      '一份关于 2026 年六家总部设在芬兰的拉普兰运营商的坦诚指南：各家擅长什么、位于何处，以及直接预订后你实际能得到什么。',
     canonical: 'https://laplandtours.online/cn/lapland-holidays',
     breadcrumbHome: '首页',
     breadcrumbName: '运营商指南',
@@ -410,10 +410,10 @@ const COPY: Record<CopyLang, {
     h1Bot: '运营商',
     introCap: '首字下沉',
     intro:
-      '芬兰拉普兰是一片狭长的土地。多数英国和欧洲游客通过六家经营多年的运营商之一的打包行程前来。它们卖的并不一样：TUI 是从地方机场出发的三晚短途；Magnetic North 则是配私人极光摄影师的六晚定制行程。六家都被坦诚地并排列出，方便你为真正想要的行程找到合适的一家。',
+      '芬兰拉普兰是一片狭长的地区。活动由当地运营商亲自运营——你飞过去，直接向它们预订，而不是在境外购买包机套餐。各家不尽相同：Lapland Safaris 在五个度假地覆盖全部活动，Arctic GM 用豪华厢车把极光追寻的人数控制在约五人。六家都被坦诚地并排列出，方便你为真正想要的行程找到合适的一家。',
     noteEyebrow: '这个页面是什么',
     noteBody:
-      '这些套餐不在本站销售。我们与下面六家运营商都没有商业协议，你点击进入后，运营商不会返给我们任何报酬。联盟佣金只来自本页底部的交叉销售栏目（酒店住宿、租车、一日活动）。',
+      '本站不销售任何东西。我们与下面六家运营商都没有商业协议，你点击进入后，运营商不会返给我们任何报酬。联盟佣金只来自本页底部的交叉销售栏目（酒店住宿、租车、一日活动）。',
     quote:
       '玻璃穹顶屋并非注重价格的选择。全国最便宜的也要每晚 430 欧元起。',
     quoteAttribution: '关于奢华档位',
@@ -421,7 +421,7 @@ const COPY: Record<CopyLang, {
     chapter: '第四章',
     addons: '附加项',
     addonsBody:
-      '多数旅客会在运营商套餐前后加一晚酒店、一个自驾日，或一次 GetYourGuide 的半日活动来延长行程。这就是产生佣金的三条线路：直接预订，无中间商，合同与合作伙伴签订。',
+      '多数旅客会在活动前后加一晚酒店、一个自驾日，或一次 GetYourGuide 的半日活动。这就是产生佣金的三条线路：直接预订，无中间商，合同与合作伙伴签订。',
     addonHotel: '酒店住宿，罗瓦涅米 →',
     addonCar: '自驾，从 RVN 出发 →',
     addonActivity: '一日活动 →',

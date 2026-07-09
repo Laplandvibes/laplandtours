@@ -156,7 +156,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Eskari',
         summary:
-          "Joulu­matkojen ydinikä. Santa's Lapland ja TUI rakentavat ohjelman tämän ikäisille. Pororetket, joulupukin vierailu, kelkan kyydissä lasten reki ja pulkkailu toimivat.",
+          "Joulu­matkojen ydinikä. Ohjelmat rakennetaan usein juuri tämän ikäisille. Pororetket, joulupukin vierailu, kelkan kyydissä lasten reki ja pulkkailu toimivat.",
         cells: [
           { v: 'lyhyt', note: 'iltakatkaisu' },
           { v: 'matkustaja', note: 'lyhyt, valvottu' },
@@ -184,7 +184,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Varhaisteinit',
         summary:
-          'Kaikki perusretket aukeavat. 12-vuotiaasta moni matkanjärjestäjä sallii kelkan tandem-ajon vanhemman kanssa. Seikkailuviikon paketit (Transun, Inghams Adventure) on suunnattu vahvasti tähän ikäluokkaan.',
+          'Kaikki perusretket aukeavat. 12-vuotiaasta moni matkanjärjestäjä sallii kelkan tandem-ajon vanhemman kanssa. Monipäiväiset seikkailuviikot on suunnattu vahvasti tähän ikäluokkaan.',
         cells: [
           '✓',
           '✓',
@@ -246,7 +246,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Vorschule',
         summary:
-          "Kernalter der Weihnachtspakete. Santa's Lapland und TUI bauen das Programm darum auf. Rentier-Schlittenfahrten, Besuch beim Weihnachtsmann, Schneemobil-Mitfahrt im Kinderschlitten und Schlittenfahren funktionieren.",
+          "Kernalter der Weihnachtspakete. Die Programme werden oft um dieses Alter herum gebaut. Rentier-Schlittenfahrten, Besuch beim Weihnachtsmann, Schneemobil-Mitfahrt im Kinderschlitten und Schlittenfahren funktionieren.",
         cells: [
           { v: 'kurz', note: 'frühe Rückkehr' },
           { v: 'Mitfahrer', note: 'kurz, betreut' },
@@ -274,7 +274,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Tweens & Teens',
         summary:
-          'Alle Standardtouren stehen offen. Ab 12 Jahren erlauben viele Reiseveranstalter das Tandem-Fahren des Schneemobils mit einem Elternteil. Abenteuerwochen (Transun, Inghams Adventure) zielen stark auf diese Altersgruppe.',
+          'Alle Standardtouren stehen offen. Ab 12 Jahren erlauben viele Reiseveranstalter das Tandem-Fahren des Schneemobils mit einem Elternteil. Mehrtägige Abenteuerwochen zielen stark auf diese Altersgruppe.',
         cells: [
           '✓',
           '✓',
@@ -336,7 +336,7 @@ const COPY: Record<CopyLang, {
         range: '3〜5歳',
         label: '未就学児',
         summary:
-          'サンタクロースをテーマにしたパッケージの主要対象層です。Santa\'s LaplandやTUIはこの年齢を中心に旅程を組み立てています。トナカイそり、サンタ訪問、スノーモービルの同乗そり、そり遊びすべてが楽しめます。',
+          'サンタクロースをテーマにしたパッケージの主要対象層です。地元の事業者はこの年齢を中心に旅程を組み立てています。トナカイそり、サンタ訪問、スノーモービルの同乗そり、そり遊びすべてが楽しめます。',
         cells: [
           { v: '短時間', note: '夜遅い時間まで' },
           { v: '同乗', note: '短時間、監督下' },
@@ -364,7 +364,7 @@ const COPY: Record<CopyLang, {
         range: '10〜15歳',
         label: 'プレティーン・ティーン',
         summary:
-          'すべての標準アクティビティが利用可能になります。12歳以上では、多くのオペレーターが親とのタンデムスノーモービル運転を許可します。アドベンチャー週間のパッケージ(Transun、Inghams Adventure)はこの年齢層を強くターゲットにしています。',
+          'すべての標準アクティビティが利用可能になります。12歳以上では、多くのオペレーターが親とのタンデムスノーモービル運転を許可します。数日間のアドベンチャー週間はこの年齢層を強くターゲットにしています。',
         cells: [
           '✓',
           '✓',
@@ -426,7 +426,7 @@ const COPY: Record<CopyLang, {
         range: '3~5세',
         label: '미취학',
         summary:
-          "산타 테마 패키지의 핵심 연령대입니다. Santa's Lapland와 TUI는 이 연령대에 맞춰 일정을 구성합니다. 순록 썰매, 산타 방문, 스노모빌 동승 어린이 썰매, 썰매 타기가 모두 가능합니다.",
+          "산타 테마 패키지의 핵심 연령대입니다. 이 연령대에 맞춰 일정을 구성하는 운영사가 많습니다. 순록 썰매, 산타 방문, 스노모빌 동승 어린이 썰매, 썰매 타기가 모두 가능합니다.",
         cells: [
           { v: '단시간', note: '늦은 저녁 제한' },
           { v: '동승자', note: '단시간, 감독 하에' },
@@ -454,7 +454,7 @@ const COPY: Record<CopyLang, {
         range: '10~15세',
         label: '청소년',
         summary:
-          '모든 표준 액티비티가 가능해집니다. 12세 이상부터 많은 운영사가 부모와의 탠덤 스노모빌 운전을 허용합니다. 어드벤처 위크 패키지(Transun, Inghams Adventure)는 이 연령대를 강하게 겨냥합니다.',
+          '모든 표준 액티비티가 가능해집니다. 12세 이상부터 많은 운영사가 부모와의 탠덤 스노모빌 운전을 허용합니다. 여러 날에 걸친 어드벤처 위크는 이 연령대를 강하게 겨냥합니다.',
         cells: [
           '✓',
           '✓',
@@ -516,7 +516,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Maternelle',
         summary:
-          "Tranche idéale pour les forfaits Père Noël. Santa's Lapland et TUI construisent l\'itinéraire autour de cet âge. Traîneau à rennes, visite au Père Noël, motoneige avec traîneau enfant à l\'arrière et descentes en luge fonctionnent.",
+          "Tranche idéale pour les forfaits Père Noël. Les programmes sont souvent construits autour de cet âge. Traîneau à rennes, visite au Père Noël, motoneige avec traîneau enfant à l\'arrière et descentes en luge fonctionnent.",
         cells: [
           { v: 'court', note: 'retour en début de soirée' },
           { v: 'passager', note: 'court, encadré' },
@@ -544,7 +544,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Pré-ados et ados',
         summary:
-          'Toutes les activités standard s\'ouvrent. À partir de 12 ans, beaucoup de voyagistes autorisent la conduite en tandem de la motoneige avec un parent. Les semaines aventure (Transun, Inghams Adventure) ciblent fortement cet âge.',
+          'Toutes les activités standard s\'ouvrent. À partir de 12 ans, beaucoup de voyagistes autorisent la conduite en tandem de la motoneige avec un parent. Les semaines aventure de plusieurs jours ciblent fortement cet âge.',
         cells: [
           '✓',
           '✓',
@@ -606,7 +606,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Prescolari',
         summary:
-          "Età d\'oro per i pacchetti a tema Babbo Natale. Santa's Lapland e TUI costruiscono l\'itinerario intorno a questa fascia. Slitta trainata dalle renne, incontro con Babbo Natale, motoslitta con slitta per bambino al traino e discese in slittino funzionano.",
+          "Età d\'oro per i pacchetti a tema Babbo Natale. I programmi sono spesso costruiti intorno a questa fascia. Slitta trainata dalle renne, incontro con Babbo Natale, motoslitta con slitta per bambino al traino e discese in slittino funzionano.",
         cells: [
           { v: 'breve', note: 'rientro a inizio serata' },
           { v: 'passeggero', note: 'breve, sotto sorveglianza' },
@@ -634,7 +634,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Pre-adolescenti e adolescenti',
         summary:
-          'Si aprono tutte le attività standard. Dai 12 anni in su, molti operatori consentono la guida in tandem della motoslitta con un genitore. Le settimane avventura (Transun, Inghams Adventure) puntano molto su questa fascia.',
+          'Si aprono tutte le attività standard. Dai 12 anni in su, molti operatori consentono la guida in tandem della motoslitta con un genitore. Le settimane avventura di più giorni puntano molto su questa fascia.',
         cells: [
           '✓',
           '✓',
@@ -696,7 +696,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Kleuters',
         summary:
-          "De ideale leeftijd voor kerstreizen. Santa's Lapland en TUI bouwen het programma om deze leeftijd heen. Rendierritten, bezoek aan de Kerstman, sneeuwscooter met kinderslede en sleeën werken allemaal.",
+          "De ideale leeftijd voor kerstreizen. De programma's worden vaak rond deze leeftijd opgebouwd. Rendierritten, bezoek aan de Kerstman, sneeuwscooter met kinderslede en sleeën werken allemaal.",
         cells: [
           { v: 'kort', note: 'einde vroege avond' },
           { v: 'passagier', note: 'kort, onder begeleiding' },
@@ -724,7 +724,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Tweens en tieners',
         summary:
-          'Alle standaardactiviteiten gaan open. Vanaf 12 jaar staan veel reisorganisaties tandem-sneeuwscooterrijden met een ouder toe. Avontuurweken (Transun, Inghams Adventure) richten zich sterk op deze leeftijdsgroep.',
+          'Alle standaardactiviteiten gaan open. Vanaf 12 jaar staan veel reisorganisaties tandem-sneeuwscooterrijden met een ouder toe. Meerdaagse avontuurweken richten zich sterk op deze leeftijdsgroep.',
         cells: [
           '✓',
           '✓',
@@ -786,7 +786,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Preescolar',
         summary:
-          "La edad ideal para los paquetes navideños: Santa's Lapland y TUI construyen el programa en torno a estas edades. Paseos en reno, visita a Papá Noel, trineo de motonieve como pasajero y descensos en trineo funcionan bien.",
+          "La edad ideal para los paquetes navideños: Los programas suelen construirse en torno a estas edades. Paseos en reno, visita a Papá Noel, trineo de motonieve como pasajero y descensos en trineo funcionan bien.",
         cells: [
           { v: 'corta', note: 'tope a primera hora de la noche' },
           { v: 'pasajero', note: 'corto, supervisado' },
@@ -814,7 +814,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Preadolescentes y adolescentes',
         summary:
-          'Se abren todas las actividades estándar. A partir de los 12 años, muchos operadores permiten conducir la motonieve en tándem con un adulto. Las semanas de aventura (Transun, Inghams Adventure) apuntan con fuerza a esta franja.',
+          'Se abren todas las actividades estándar. A partir de los 12 años, muchos operadores permiten conducir la motonieve en tándem con un adulto. Las semanas de aventura de varios días apuntan con fuerza a esta franja.',
         cells: [
           '✓',
           '✓',
@@ -876,7 +876,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Pré-escola',
         summary:
-          "A idade ideal para os pacotes natalinos: Santa's Lapland e TUI montam o roteiro em torno dessas idades. Passeios de trenó de renas, visita ao Papai Noel, snowmobile como passageiro e descidas de trenó funcionam bem.",
+          "A idade ideal para os pacotes natalinos: Os programas costumam ser montados em torno dessas idades. Passeios de trenó de renas, visita ao Papai Noel, snowmobile como passageiro e descidas de trenó funcionam bem.",
         cells: [
           { v: 'curta', note: 'limite no início da noite' },
           { v: 'passageiro', note: 'curto, supervisionado' },
@@ -904,7 +904,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Pré-adolescentes e adolescentes',
         summary:
-          'Todas as atividades padrão se abrem. A partir dos 12 anos, muitas operadoras permitem dirigir o snowmobile em tandem com um adulto. As semanas de aventura (Transun, Inghams Adventure) miram fortemente nesta faixa.',
+          'Todas as atividades padrão se abrem. A partir dos 12 anos, muitas operadoras permitem dirigir o snowmobile em tandem com um adulto. As semanas de aventura de vários dias miram fortemente nesta faixa.',
         cells: [
           '✓',
           '✓',
@@ -966,7 +966,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: '学龄前',
         summary:
-          "圣诞主题套餐的黄金年龄。Santa's Lapland 和 TUI 都围绕这个年龄设计行程。驯鹿雪橇、拜访圣诞老人、坐在雪地摩托后座以及滑雪橇都很合适。",
+          "圣诞主题套餐的黄金年龄。行程往往就围绕这个年龄设计。驯鹿雪橇、拜访圣诞老人、坐在雪地摩托后座以及滑雪橇都很合适。",
         cells: [
           { v: '短时', note: '限傍晚较早时段' },
           { v: '乘客', note: '短时，有人看护' },
@@ -994,7 +994,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: '青春期前与青少年',
         summary:
-          '所有常规活动都开放了。从 12 岁起，许多运营商允许与家长双人驾驶雪地摩托。探险周套餐（Transun、Inghams Adventure）主打这个年龄段。',
+          '所有常规活动都开放了。从 12 岁起，许多运营商允许与家长双人驾驶雪地摩托。多日探险周主打这个年龄段。',
         cells: [
           '✓',
           '✓',
