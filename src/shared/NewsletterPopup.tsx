@@ -535,13 +535,13 @@ export default function NewsletterPopup({
   const isSuccess = status === 'success' || status === 'already';
 
   return (
-    <div className="fixed inset-0 z-[9990] flex items-center justify-center px-4 py-8">
+    <div className="fixed inset-0 z-[9990] flex items-start sm:items-center justify-center px-4 py-8 overflow-y-auto overscroll-contain">
       {/* Backdrop */}
       <button
         type="button"
         aria-label={D.closeAria}
         onClick={dismiss}
-        className="absolute inset-0 bg-deep-night/85 backdrop-blur-sm cursor-default"
+        className="fixed inset-0 bg-deep-night/85 backdrop-blur-sm cursor-default"
       />
 
       {/* Card */}
@@ -549,7 +549,7 @@ export default function NewsletterPopup({
         role="dialog"
         aria-modal="true"
         aria-labelledby="lv-newsletter-popup-title"
-        className="relative max-w-md w-full bg-deep-night rounded-2xl shadow-2xl"
+        className="relative my-auto max-w-md w-full bg-deep-night rounded-2xl shadow-2xl"
         style={{ border: '1px solid rgba(236,72,153,0.40)' }}
       >
         {/* Pink accent strip */}
