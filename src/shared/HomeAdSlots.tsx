@@ -94,46 +94,52 @@ export type HomeAdSlotsProps = SurfaceProps & {
 export default function HomeAdSlots({ config, locale, surface = 'dark', className, sponsorClassName }: HomeAdSlotsProps) {
   const t = adSlotsCopy(locale);
   const light = surface === 'light';
-  const labelCls = [
-    'text-xs uppercase tracking-[0.2em] font-semibold',
-    light ? 'text-gray-500' : 'text-[#F9FAFB]/75',
-  ].join(' ');
-  const countCls = ['text-[11px] font-semibold', light ? 'text-gray-400' : 'text-[#F9FAFB]/40'].join(' ');
 
+  // HUOM (Vesa 2026-07-12): kävijälle näkyy vain neutraali "Kumppanit"-osio —
+  // tier-nimet (pääkumppani/kakkospääkumppani/premium) ovat myyntikieltä ja
+  // elävät vain house-adien pitchissä + LV Media -portaalissa/hinnastossa.
   return (
     <section
       data-lv-ad-slots
       className={['py-12 sm:py-16 px-6 md:px-12 lg:px-20', className].filter(Boolean).join(' ')}
     >
       <div className="max-w-6xl mx-auto">
-        {/* KAKKOSPÄÄKUMPPANI — hieman edullisempi pääkumppanipaikka */}
-        <div className="mb-4">
-          <p className={labelCls}>{t.mainPartnerTwo}</p>
-        </div>
-        <PartnerSlot
-          variant="card"
-          partner={config.sponsors[1] ?? null}
-          locale={locale}
-          surface={surface}
-          className={sponsorClassName}
-          placeholder={{
-            siteSlug: config.siteSlug,
-            slotId: 'main_partner_2',
-            level: 'sponsor',
-          }}
-        />
+        <p
+          className={[
+            'text-xs uppercase tracking-[0.2em] font-semibold mb-5',
+            light ? 'text-gray-500' : 'text-[#F9FAFB]/75',
+          ].join(' ')}
+        >
+          {t.partners}
+        </p>
 
-        {/* PREMIUM-PAIKAT — 6 kohdekohtaista paikkaa */}
-        <div className="flex items-baseline gap-2.5 mt-8 sm:mt-10 mb-4">
-          <p className={labelCls}>{t.premiumSpots}</p>
-          <span className={countCls}>· {t.slotCount(config.spots.length)}</span>
+        {/* Desktop: kumppanikortti (2/5) ja kohdegridi (3/5) vierekkäin —
+            kompakti, ei yksinäistä täysleveää korttia. Mobiili: pinottuna. */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-5 lg:items-stretch">
+          <div className="lg:col-span-2 flex">
+            <PartnerSlot
+              variant="card"
+              partner={config.sponsors[1] ?? null}
+              locale={locale}
+              surface={surface}
+              className={['w-full', sponsorClassName].filter(Boolean).join(' ')}
+              placeholder={{
+                siteSlug: config.siteSlug,
+                slotId: 'main_partner_2',
+                level: 'sponsor',
+              }}
+            />
+          </div>
+          <div className="lg:col-span-3">
+            <PremiumSpotGrid
+              spots={config.spots}
+              siteSlug={config.siteSlug}
+              locale={locale}
+              surface={surface}
+              className="h-full"
+            />
+          </div>
         </div>
-        <PremiumSpotGrid
-          spots={config.spots}
-          siteSlug={config.siteSlug}
-          locale={locale}
-          surface={surface}
-        />
       </div>
     </section>
   );
