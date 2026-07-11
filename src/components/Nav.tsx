@@ -275,18 +275,21 @@ export default function Nav() {
         </nav>
 
         <div className="lg:hidden flex items-center gap-2">
-          <select
-            value={lang}
-            onChange={(e) => switchTo(e.target.value as Lang)}
-            aria-label="Language"
-            className="bg-deep-night/85 backdrop-blur-sm bg-transparent border border-snow/40 rounded px-2 py-1 text-xs font-semibold uppercase text-snow"
-          >
-            {LANG_OPTIONS.map((l) => (
-              <option key={l.code} value={l.code} className="bg-deep-night text-snow">
-                {l.label}
-              </option>
-            ))}
-          </select>
+          <div className="relative inline-flex items-center">
+            <select
+              value={lang}
+              onChange={(e) => switchTo(e.target.value as Lang)}
+              aria-label="Language"
+              className="appearance-none bg-deep-night/85 backdrop-blur-sm bg-transparent border border-snow/40 rounded pl-2 pr-6 py-1 text-xs font-semibold uppercase text-snow"
+            >
+              {LANG_OPTIONS.map((l) => (
+                <option key={l.code} value={l.code} className="bg-deep-night text-snow">
+                  {l.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-snow" />
+          </div>
           <button
             onClick={() => setOpen(!open)}
             className="p-2 text-snow/80 min-w-[44px] min-h-[44px] flex items-center justify-center"

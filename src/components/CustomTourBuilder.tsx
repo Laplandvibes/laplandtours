@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Paintbrush, Send, CheckCircle } from 'lucide-react';
+import { Paintbrush, Send, CheckCircle, ChevronDown } from 'lucide-react';
 import { useLang, useLocalePath, type CopyLang, copyLang } from '../i18n/useLang';
 
 const COPY: Record<CopyLang, {
@@ -522,11 +522,14 @@ export default function CustomTourBuilder() {
                     <label className="block text-sm font-body font-medium text-snow/80 mb-1">
                       {c.groupLabel}
                     </label>
-                    <select name="group" className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
-                      {c.groupOptions.map((opt) => (
-                        <option key={opt} className="bg-deep-night">{opt}</option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select name="group" className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
+                        {c.groupOptions.map((opt) => (
+                          <option key={opt} className="bg-deep-night">{opt}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-snow/60" aria-hidden="true" />
+                    </div>
                   </div>
                 </div>
 
@@ -534,11 +537,14 @@ export default function CustomTourBuilder() {
                   <label className="block text-sm font-body font-medium text-snow/80 mb-1">
                     {c.budgetLabel}
                   </label>
-                  <select name="budget" className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
-                    {c.budgetOptions.map((opt) => (
-                      <option key={opt} className="bg-deep-night">{opt}</option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select name="budget" className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
+                      {c.budgetOptions.map((opt) => (
+                        <option key={opt} className="bg-deep-night">{opt}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-snow/60" aria-hidden="true" />
+                  </div>
                 </div>
 
                 <div>
