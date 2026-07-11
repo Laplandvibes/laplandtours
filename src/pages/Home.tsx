@@ -7,6 +7,8 @@ import SeasonStrip from '../components/SeasonStrip';
 import SectionTeasers from '../components/SectionTeasers';
 import FAQ, { FAQ_BY_LANG } from '../components/FAQ';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
+import HomeAdSlots, { MainPartnerBanner } from '../shared/HomeAdSlots';
+import { AD_SLOTS } from '../data/adSlots';
 import { setPageMeta, breadcrumbList, faqPageSchema, travelAgencySchema } from '../lib/meta';
 import { useLang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
 
@@ -109,7 +111,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <MainPartnerBanner config={AD_SLOTS} locale={lang} />
       <BuildYourOwn />
+      <HomeAdSlots config={AD_SLOTS} locale={lang} />
       <BookableActivities />
       <OperatorGuide />
       <SeasonStrip />
