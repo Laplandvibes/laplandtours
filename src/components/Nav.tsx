@@ -4,7 +4,9 @@ import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 import EcosystemMenu from '../shared/EcosystemMenu';
 
-const COPY: Record<Lang, { operators: string; practical: string; age: string; bespoke: string; cta: string; menu: string; close: string }> = {
+// Exported so other components (e.g. pages/NotFound.tsx) can reuse the same
+// localized section labels instead of inventing new translation keys.
+export const COPY: Record<Lang, { operators: string; practical: string; age: string; bespoke: string; cta: string; menu: string; close: string }> = {
   en: {
     operators: 'Operators',
     practical: 'Practical',

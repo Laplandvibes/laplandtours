@@ -14,6 +14,7 @@ const DesignTour = lazy(() => import('./pages/DesignTour'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Terms = lazy(() => import('./pages/Terms'))
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 import { useLang, useHtmlLang } from './i18n/useLang';
 import LocaleAutoRedirect from './i18n/LocaleAutoRedirect';
 
@@ -181,6 +182,8 @@ function AppShell() {
           {localizedRoutes('/privacy', <PrivacyPolicy />)}
           {localizedRoutes('/terms', <Terms />)}
           {localizedRoutes('/cookie-policy', <CookiePolicy />)}
+          {/* Catch-all — unknown URLs get the shared network 404 instead of a blank page. */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
       </main>
