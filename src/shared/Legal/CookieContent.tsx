@@ -772,7 +772,7 @@ export default function CookieContent({
               {/* Affiliate, CJ */}
               <div className="rounded-xl p-5" style={{ background: 'rgba(0,47,108,0.12)', border: '1px solid rgba(0,47,108,0.30)' }}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">{t.cjBadge}</span>
+                  <span className="shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">{t.cjBadge}</span>
                   <span className="text-snow/80 font-medium text-sm">{t.cjNote}</span>
                 </div>
                 <p className="text-sm">{t.cjBody(siteName)}</p>
@@ -782,7 +782,7 @@ export default function CookieContent({
               {/* Affiliate, GetYourGuide */}
               <div className="rounded-xl p-5" style={{ background: 'rgba(0,47,108,0.12)', border: '1px solid rgba(0,47,108,0.30)' }}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">{t.gygBadge}</span>
+                  <span className="shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">{t.gygBadge}</span>
                   <span className="text-snow/80 font-medium text-sm">{t.gygNote}</span>
                 </div>
                 <p className="text-sm">{t.gygBody(siteName)}</p>
