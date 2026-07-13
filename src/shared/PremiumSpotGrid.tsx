@@ -19,7 +19,7 @@
  */
 
 import type { Partner } from './PartnerSlot';
-import { adSlotsCopy, mediaSiteUrl, fireAdvertiseHereClick } from './adSlotsCopy';
+import { adSlotsCopy, adLocaleEnabled, mediaSiteUrl, fireAdvertiseHereClick } from './adSlotsCopy';
 
 export type PremiumSpot = {
   /** Vakaa avain + GA4-tunniste, esim. 'levi' */
@@ -49,6 +49,9 @@ export type PremiumSpotGridProps = {
 };
 
 export default function PremiumSpotGrid({ spots, siteSlug, locale, surface = 'dark', className }: PremiumSpotGridProps) {
+  // Mainospaikat vain fi/en (Vesa 2026-07-13).
+  if (!adLocaleEnabled(locale)) return null;
+
   const t = adSlotsCopy(locale);
   const light = surface === 'light';
 

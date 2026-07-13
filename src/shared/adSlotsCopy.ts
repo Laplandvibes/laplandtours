@@ -29,6 +29,17 @@ export function normalizeAdLocale(locale?: string): AdLocale {
   return 'en';
 }
 
+/**
+ * Mainospaikat (LV Media -myyntitila) näytetään VAIN suomeksi, englanniksi ja
+ * ruotsiksi (Vesa 2026-07-13). Mainostilaa ostavat yritykset asioivat näillä
+ * kielillä; muut kielet ovat kohdeyleisölle turhia. Koskee MainPartnerBanner /
+ * HomeAdSlots / PremiumSpotGrid. EI koske affiliate-AdUniteja.
+ */
+export function adLocaleEnabled(locale?: string): boolean {
+  const l: string = normalizeAdLocale(locale);
+  return l === 'en' || l === 'fi' || l === 'sv';
+}
+
 export type AdSlotsCopy = {
   /** Kuluttajansuojalain edellyttämä maksetun paikan badge */
   badge: string;

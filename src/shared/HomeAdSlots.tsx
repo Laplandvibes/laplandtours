@@ -38,7 +38,7 @@
 
 import PartnerSlot, { type Partner } from './PartnerSlot';
 import PremiumSpotGrid, { type PremiumSpot } from './PremiumSpotGrid';
-import { adSlotsCopy } from './adSlotsCopy';
+import { adSlotsCopy, adLocaleEnabled } from './adSlotsCopy';
 
 export type HomeAdSlotsConfig = {
   /** LV Median sivuslug (lv_sites.slug) — house-adit linkittävät tänne */
@@ -61,6 +61,8 @@ type SurfaceProps = {
  * Täysi banneri kun myyty, kompakti house-ad-rivi kun vapaa.
  */
 export function MainPartnerBanner({ config, locale, surface = 'dark', className }: SurfaceProps) {
+  // Mainospaikat vain fi/en/sv (Vesa 2026-07-13).
+  if (!adLocaleEnabled(locale)) return null;
   const t = adSlotsCopy(locale);
   return (
     <section data-lv-main-partner className={['px-6 md:px-12 lg:px-20 py-4', className].filter(Boolean).join(' ')}>
@@ -92,6 +94,8 @@ export type HomeAdSlotsProps = SurfaceProps & {
  * Sisältö: kakkospääkumppani (kortti) + 6 premium-paikan kohdegridi.
  */
 export default function HomeAdSlots({ config, locale, surface = 'dark', className, sponsorClassName }: HomeAdSlotsProps) {
+  // Mainospaikat vain fi/en/sv (Vesa 2026-07-13).
+  if (!adLocaleEnabled(locale)) return null;
   const t = adSlotsCopy(locale);
   const light = surface === 'light';
 
