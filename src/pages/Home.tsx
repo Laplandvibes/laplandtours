@@ -69,6 +69,13 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     canonical: 'https://laplandtours.online/nl',
     breadcrumbHome: 'Home',
   },
+  sv: {
+    title: '#LaplandTours: planera din Lapplandsresa — sätt ihop själv eller boka en lokal aktör',
+    description:
+      'En resa till finska Lappland kan planeras på två sätt. Sätt ihop hotell, hyrbil och dagsutflykter själv, eller boka aktiviteterna direkt hos en av sex pålitliga lokala aktörer i finska Lappland.',
+    canonical: 'https://laplandtours.online/sv',
+    breadcrumbHome: 'Hem',
+  },
   es: {
     title: '#LaplandTours: planifique su viaje a Laponia, a la carta o con operador local',
     description:

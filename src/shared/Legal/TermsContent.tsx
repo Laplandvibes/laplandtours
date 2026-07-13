@@ -10,7 +10,7 @@
  * so the prose accurately names the publisher the visitor is reading.
  */
 
-type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
+type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 interface TermsContentProps {
   siteName?: string;
@@ -857,6 +857,80 @@ const COPY: Record<Lang, TermsCopy> = {
     s12Tail: (siteName) => `${siteName} is een redactionele uitgever; wij hosten geen door gebruikers gegenereerde inhoud als primaire dienst. Meldingen van illegale inhoud, auteursrechtinbreuk of andere DSA-relevante zaken kunnen worden verzonden naar het bovenstaande adres en zullen binnen de wettelijke termijnen worden behandeld.`,
     s13Title: '13. Contact',
     s13Body: (email) => <>Voor juridische vragen kunt u contact opnemen via {email}</>,
+  },
+  sv: {
+    kicker: 'Juridik',
+    h1: 'Användarvillkor',
+    lastUpdated: 'Senast uppdaterad: maj 2026 · Drivs av Lapeso Oy',
+    s1Title: '1. Om denna webbplats',
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) är en reseinformationsportal för finska Lappland som drivs av{' '}
+        <strong className="text-snow/90">Lapeso Oy</strong>, registrerat i Finland. Vi tillhandahåller redaktionella reseguider,
+        destinationsinformation och länkar till bokningstjänster hos tredje part.
+      </>
+    ),
+    s1P2: 'Genom att öppna eller använda denna webbplats godkänner du dessa villkor. Om du inte godkänner dem, vänligen sluta använda webbplatsen.',
+    s2Title: '2. Informationens korrekthet',
+    s2Body: 'Reseinformation, inklusive priser, öppettider, väderförhållanden och tillgänglighet, ändras ofta. Vi strävar efter att hålla innehållet korrekt och uppdaterat, men kan inte garantera att all information är aktuell vid tidpunkten för ditt besök. Kontrollera alltid viktiga uppgifter direkt hos tjänsteleverantören innan du bokar.',
+    s3Title: '3. Affiliatelänkar och samarbeten',
+    s3P1: (siteName) => `Vissa länkar på ${siteName} är affiliatelänkar. När du klickar på dessa länkar och gör en bokning eller ett köp kan vi få en liten provision utan extra kostnad för dig. Affiliaterelationer påverkar inte våra redaktionella rekommendationer. Vi länkar endast till tjänster vi tror ger genuint värde.`,
+    s3P2: 'Affiliatepartner omfattar men är inte begränsade till: Hotels.com, EconomyBookings, GetYourGuide och andra resetjänsteleverantörer via CJ (Commission Junction). Varje bokning omfattas av respektive tjänsteleverantörs egna villkor.',
+    s4Title: '4. Sponsrat innehåll',
+    s4Body: (siteName) => (
+      <>
+        Den här webbplatsen visar sponsrade annonser från tredjepartsföretag. Sponsrat innehåll är tydligt märkt
+        med etiketten <strong className="text-snow/90">"Sponsrad"</strong> överallt där det förekommer. {siteName} ansvarar
+        inte för produkter, tjänster eller påståenden från annonsörer. Att klicka på sponsrade länkar tar dig
+        till externa webbplatser som styrs av sina egna villkor och integritetspolicyer.
+      </>
+    ),
+    s5Title: '5. Tjänster från tredje part, vi är ingen återförsäljare',
+    s5P1: (siteName) => (
+      <>
+        Verktygen för hotellsökning, flygsökning, hyrbil och aktivitetsbokning på den här webbplatsen omdirigerar till
+        tredjepartsplattformar (Hotels.com, EconomyBookings, GetYourGuide med flera).{' '}
+        <strong className="text-snow/90">{siteName} är varken resebyrå, återförsäljare eller handlare.</strong>{' '}
+        Vi säljer, återförsäljer eller behandlar inga bokningar; vi publicerar redaktionella guider och hänvisar läsarna
+        till de aktörer som faktiskt levererar tjänsten.
+      </>
+    ),
+    s5P2: (siteName) => (
+      <>
+        Alla avtal om resetjänster, boende, flyg, hyrbil, turer, ingås direkt mellan dig och den relevanta
+        tredjepartsleverantören, enligt dennes villkor och integritetspolicy. Deras regler för avbokning,
+        återbetalning och konsumentskydd gäller, inte våra. Den finska konsumentens ångerrätt enligt{' '}
+        <em>kuluttajansuojalaki 6 luku</em> (konsumentskyddslagen kapitel 6) utövas gentemot handlaren; {siteName} har ingen roll i den processen.
+      </>
+    ),
+    s6Title: '6. Nyhetsbrev',
+    s6Body: (unsub, privacy) => (
+      <>
+        Om du prenumererar på vårt nyhetsbrev godkänner du att få regelbundna e-postmeddelanden om resor i finska
+        Lappland. Du kan avregistrera dig när som helst med länken i valfritt e-postmeddelande eller genom att besöka {unsub}. Vi delar inte din
+        e-postadress med tredje part. Se vår {privacy} för detaljer.
+      </>
+    ),
+    s7Title: '7. Immateriella rättigheter',
+    s7Body: (siteName) => `Allt originalinnehåll på ${siteName}, inklusive text, grafik och design, ägs av Lapeso Oy eller används under licens. Du får inte återge, distribuera eller skapa bearbetningar utan skriftligt tillstånd. Skälig användning för icke-kommersiell personlig referens är tillåten med källhänvisning.`,
+    s8Title: '8. Ansvarsbegränsning',
+    s8Body: (siteName) => `${siteName} och Lapeso Oy ansvarar inte för förlust, skada eller men som uppstår genom att förlita sig på information på den här webbplatsen, från användning av länkade tredjepartstjänster eller från resebeslut som fattas utifrån vårt innehåll. Resor till arktiska regioner innebär inneboende risker; skaffa alltid en lämplig reseförsäkring och följ lokala säkerhetsanvisningar.`,
+    s9Title: '9. Tillämplig lag',
+    s9Body: 'Dessa villkor regleras av finsk lag. Eventuella tvister ska avgöras i finsk domstol.',
+    s10Title: '10. Ändringar av dessa villkor',
+    s10Body: 'Vi kan uppdatera dessa villkor då och då. Ändringar träder i kraft när de publiceras. Fortsatt användning av webbplatsen efter uppdateringar innebär att du godkänner de reviderade villkoren.',
+    s11Title: '11. Ogiltighet av enskilda villkor',
+    s11Body: 'Om någon bestämmelse i dessa villkor av en behörig domstol anses ogiltig, olaglig eller inte verkställbar, förblir de återstående bestämmelserna i full kraft och verkan. Den ogiltiga bestämmelsen ska, i den utsträckning lagen tillåter, ersättas med en giltig bestämmelse som ligger så nära den ursprungliga kommersiella avsikten som möjligt.',
+    s12Title: '12. Kontaktpunkt enligt förordningen om digitala tjänster (DSA)',
+    s12Intro: 'Enligt EU:s förordning om digitala tjänster (förordning (EU) 2022/2065) är vår utsedda kontaktpunkt för myndigheter och mottagare av tjänsten:',
+    s12Items: [
+      'E-post: info@laplandvibes.com',
+      'Operatör: Lapeso Oy, Finland',
+      'Kommunikationsspråk: engelska, finska',
+    ],
+    s12Tail: (siteName) => `${siteName} är en redaktionell utgivare; vi hostar inte användargenererat innehåll som en primär tjänst. Anmälningar om olagligt innehåll, upphovsrättsintrång eller andra frågor som rör DSA kan skickas till adressen ovan och behandlas inom lagstadgade tidsramar.`,
+    s13Title: '13. Kontakt',
+    s13Body: (email) => <>Vid juridiska frågor, kontakta oss på {email}</>,
   },
 };
 

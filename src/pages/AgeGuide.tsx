@@ -749,6 +749,95 @@ const COPY: Record<CopyLang, {
       },
     ],
   },
+  sv: {
+    metaTitle: 'Åldersguide: vilka Lapplandsaktiviteter passar vilken ålder | #LaplandTours',
+    metaDescription:
+      'En praktisk matris över ålder och aktivitet för finska Lappland. Se vilka turer som fungerar för spädbarn, förskolebarn, lågstadiebarn, tweens, tonåringar och vuxna, och vilka arrangörer som är specialiserade på varje grupp.',
+    canonical: 'https://laplandtours.online/sv/age-guide',
+    breadcrumbHome: 'Hem',
+    breadcrumbName: 'Åldersguide',
+    articleHeadline: 'Åldersguide: vilka Lapplandsaktiviteter passar vilken ålder',
+    articleDescription: 'En matris över ålder och aktivitet för turer i finska Lappland, från spädbarn till 16+.',
+    lead:
+      'Vilka Lapplandsaktiviteter fungerar i vilken ålder, och vilka gör det inte. En praktisk matris över fem åldersgrupper och de sex grundpelarna: norrskensjakt, husky, skoter, ren, bastu, glasiglo.',
+    matrixEyebrow: 'Matrisen',
+    ageHeader: 'Ålder',
+    legend: '✓ tillgängligt · — erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
+    activities: ['Norrskensjakt', 'Husky', 'Skoter', 'Ren', 'Bastu', 'Glasiglo'],
+    altHero: 'Snöig fjälltopp i gyllene timme i finska Lappland',
+    rows: [
+      {
+        range: '0–2',
+        label: 'Spädbarn',
+        summary:
+          'En resa där de vuxna ser platsen med en baby i släptåg. Minusgrader utesluter en vanlig barnvagn. Ta med en arktisk bärsele eller åkpåse. De flesta arrangörer erbjuder gratis eller rabatterat pris för spädbarn.',
+        cells: [
+          '✓',
+          { v: '—', note: 'för kallt, släden skakar' },
+          { v: '—', note: 'inga spädbarn' },
+          '—',
+          { v: 'begränsat', note: 'endast kort och sval bastu' },
+          '✓',
+        ],
+      },
+      {
+        range: '3–5',
+        label: 'Förskola',
+        summary:
+          'Kärnåldern för julresor. Programmen byggs ofta kring den här åldern. Renkälkturer, besök hos jultomten, barnsläde efter skotern och pulkaåkning fungerar.',
+        cells: [
+          { v: 'kort', note: 'senast tidig kväll' },
+          { v: 'passagerare', note: 'kort, övervakad' },
+          { v: 'passagerare', note: 'föräldern kör, barnet i släde' },
+          '✓',
+          { v: 'begränsat', note: 'endast familjepass' },
+          '✓',
+        ],
+      },
+      {
+        range: '6–9',
+        label: 'Lågstadiet',
+        summary:
+          'Aktiva nog för husky- och skotersafari på en halvdag (som passagerare). Norrskensjakter fungerar om sena starttider passar. Skidprogram börjar bli meningsfulla i Levi, Ylläs och Saariselkä.',
+        cells: [
+          '✓',
+          { v: 'passagerare', note: 'halvdag' },
+          { v: 'passagerare', note: 'halvdag' },
+          '✓',
+          '✓',
+          '✓',
+        ],
+      },
+      {
+        range: '10–15',
+        label: 'Tweens och tonåringar',
+        summary:
+          'Alla standardturer öppnar upp. Från 12 år tillåter många arrangörer tandemkörning av skotern med en förälder. Flerdagars äventyrsveckor riktar sig starkt till den här åldersgruppen.',
+        cells: [
+          '✓',
+          '✓',
+          { v: 'tandem 12+', note: 'föräldern kör' },
+          '✓',
+          '✓',
+          '✓',
+        ],
+      },
+      {
+        range: '16+',
+        label: 'Självständiga',
+        summary:
+          'Behandlas som vuxna i de flesta aktiviteter. Egen skoterkörning med fullt körkort (16+ i Finland), längre huskyturer, isklättring, flerdagars fjällvandringar. Även workshops i norrskensfotografering kräver den här mognaden.',
+        cells: [
+          '✓',
+          '✓',
+          { v: 'ensam', note: 'körkort krävs' },
+          '✓',
+          '✓',
+          '✓',
+        ],
+      },
+    ],
+  },
   es: {
     metaTitle: 'Guía por edades: actividades en Laponia | #LaplandTours',
     metaDescription:

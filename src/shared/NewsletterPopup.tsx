@@ -57,7 +57,7 @@ export interface NewsletterPopupDict {
   codeCopyAria?: string;
 }
 
-type SupportedLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
+type SupportedLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 interface NewsletterPopupProps {
   /**
@@ -176,6 +176,10 @@ const LOCALE_HEADLINES: Record<SupportedLang, { headline: string; description: s
   nl: {
     headline: 'Lapland in je inbox, rechtstreeks uit Finland.',
     description: 'Noorderlicht-meldingen vóór de helderste nachten, boekingsvensters voor glazen iglo\'s voordat ze uitverkocht zijn en seizoenreisgidsen. Geschreven vanuit Finland, met bronnen.',
+  },
+  sv: {
+    headline: 'Lappland i din inkorg, direkt från Finland.',
+    description: 'Norrskensvarningar före de klaraste nätterna, bokningsfönster för glasigloor innan de säljer slut och säsongsguider. Skrivet från Finland, med källor.',
   },
 };
 
@@ -377,6 +381,24 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     codeFootnote: 'Bewaar deze code. Hij is voor u gereserveerd in het hele #LaplandVibes-netwerk.',
     codeCopied: 'Gekopieerd!',
     codeCopyAria: 'Code naar klembord kopiëren',
+  },
+  sv: {
+    successHeadline: 'Du är med.',
+    successBody: 'Kolla din inkorg efter välkomstmejlet — nästa norrskensvarning kommer när prognosen ljusnar.',
+    alreadyHeadline: 'Du står redan på listan!',
+    alreadyBody: 'Det ser ut som att du redan prenumererar. Lappland-uppdateringarna fortsätter som vanligt.',
+    emailPlaceholder: 'Din e-postadress',
+    submit: 'Få Lappland i inkorgen',
+    loading: 'Prenumererar…',
+    later: 'Kanske senare',
+    closeAria: 'Stäng',
+    closeLabel: 'Stäng',
+    trust: 'Bara när något är värt att berätta. Avsluta när du vill. Vi delar aldrig din e-post.',
+    errorGeneric: 'Prenumerationen misslyckades. Försök igen.',
+    codeLabel: 'Din prenumerantkod',
+    codeFootnote: 'Spara koden. Den är reserverad för dig i hela #LaplandVibes-nätverket.',
+    codeCopied: 'Kopierad!',
+    codeCopyAria: 'Kopiera koden till urklipp',
   },
 };
 

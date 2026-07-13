@@ -93,6 +93,14 @@ const rails: RailCard[] = [
         priceLine: 'Live prijzen op Hotels.com · gratis annulering bij de meeste kamers',
         ctaLabel: 'Lapland-hotels bekijken',
       },
+      sv: {
+        label: '01  ·  Bo',
+        headline: 'En säng i Lappland',
+        body:
+          'Från hotellrum i Rovaniemi till glasiglor i Saariselkä. Jämför på Hotels.com, boka direkt, ingen mellanhand.',
+        priceLine: 'Aktuella priser på Hotels.com · fri avbokning på de flesta rum',
+        ctaLabel: 'Bläddra bland hotell i Lappland',
+      },
       es: {
         label: '01  ·  Dormir',
         headline: 'Una cama en Laponia',
@@ -190,6 +198,14 @@ const rails: RailCard[] = [
           'Zelf rijden vanaf Rovaniemi, Kittilä of Ivalo. Spike-winterbanden standaard. Betaling bij ophalen, gratis wijzigen.',
         priceLine: 'Live prijzen op EconomyBookings · winterbanden inbegrepen',
         ctaLabel: 'Huurauto\'s vergelijken',
+      },
+      sv: {
+        label: '02  ·  Köra',
+        headline: 'En bil på flygplatsen',
+        body:
+          'Kör själv från Rovaniemi, Kittilä eller Ivalo. Dubbade vinterdäck som standard. Betala vid upphämtning, fri ändring.',
+        priceLine: 'Aktuella priser på EconomyBookings · vinterdäck ingår',
+        ctaLabel: 'Jämför hyrbilar',
       },
       es: {
         label: '02  ·  Conducir',
@@ -290,6 +306,14 @@ const rails: RailCard[] = [
         priceLine: 'Live prijzen op GetYourGuide · directe bevestiging',
         ctaLabel: 'Lapland-activiteiten bekijken',
       },
+      sv: {
+        label: '03  ·  Göra',
+        headline: 'En dag i vildmarken',
+        body:
+          'Huskysafarier, skoterturer, norrskensjakter, pimpelfiske. Boka en halvdag eller en hel vecka via GetYourGuide.',
+        priceLine: 'Aktuella priser på GetYourGuide · direkt bekräftelse',
+        ctaLabel: 'Bläddra bland aktiviteter i Lappland',
+      },
       es: {
         label: '03  ·  Hacer',
         headline: 'Un día en plena naturaleza',
@@ -379,6 +403,14 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
       'Kies een plek om te verblijven, een manier om u te verplaatsen en wat u gaat doen. Drie sporen, live prijzen, direct boeken bij elke partner.',
     affiliateNote:
       'Affiliate-links. Bij een boeking kan een kleine commissie worden uitgekeerd, zonder extra kosten voor u.',
+  },
+  sv: {
+    eyebrow: 'Väg 1',
+    h2: 'Bygg din egen',
+    lead:
+      'Välj ett ställe att bo på, ett sätt att ta dig runt och vad du vill göra på plats. Tre spår, verkliga priser, bokat direkt på varje partners sajt.',
+    affiliateNote:
+      'Affiliatelänkar. Bokningar kan ge en provision, utan kostnad för dig.',
   },
   es: {
     eyebrow: 'Camino 1',

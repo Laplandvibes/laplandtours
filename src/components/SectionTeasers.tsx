@@ -134,6 +134,22 @@ const ITEMS: Record<
       readLabel: 'Lezen',
     },
   ],
+  sv: [
+    {
+      to: '/age-guide',
+      eyebrow: 'Reser du med barn?',
+      title: 'Vilka aktiviteter i Lappland passar vilken ålder',
+      body: 'En praktisk matris ålder × aktivitet, från spädbarn till 16+, plus vägledning per arrangör och ålder.',
+      readLabel: 'Läs mer',
+    },
+    {
+      to: '/practical-info',
+      eyebrow: 'Första gången i Lappland?',
+      title: 'Klimat, visum, transport, packning',
+      body: 'Ner till −30 °C på vintern, ETIAS-regler från slutet av 2026, sex saker att veta innan du bokar.',
+      readLabel: 'Läs mer',
+    },
+  ],
   es: [
     {
       to: '/age-guide',

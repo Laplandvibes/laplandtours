@@ -23,7 +23,8 @@ export type LegalLang =
   | 'ko'
   | 'fr'
   | 'it'
-  | 'nl';
+  | 'nl'
+  | 'sv';
 
 // locale -> URL segment, identical to each site's LOCALE_PATH_PREFIX
 // (note pt-BR -> br, zh-CN -> cn, ko -> kr).
@@ -39,6 +40,7 @@ const LOCALE_SEGMENT: Record<LegalLang, string> = {
   fr: 'fr',
   it: 'it',
   nl: 'nl',
+  sv: 'sv',
 };
 
 /**

@@ -2,6 +2,7 @@ import {
   localizedOperators,
   matrixCategoryLabels,
   withUtm,
+  operatorLang,
   type Operator,
 } from '../lib/operators';
 import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
@@ -69,6 +70,13 @@ const COPY: Record<CopyLang, {
     tier: 'Klasse',
     reviewedNote: 'Redactionele beoordeling · laatst herzien juli 2026',
   },
+  sv: {
+    h2Line1: 'Sida vid sida',
+    meta: 'Fyra punkter = tydlig specialitet  ·  en = kompetent  ·  tankstreck = erbjuds inte',
+    operator: 'Arrangör',
+    tier: 'Prisklass',
+    reviewedNote: 'Redaktionell bedömning · senast granskad juli 2026',
+  },
   es: {
     h2Line1: 'Una al lado de otra',
     meta: 'Cuatro puntos = especialidad propia  ·  uno = competente  ·  raya = no lo ofrece',
@@ -116,8 +124,8 @@ function Stars({ n, max = 4 }: { n: number; max?: number }) {
 export default function OperatorMatrix() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
-  const ops: Operator[] = localizedOperators(copyLang(lang));
-  const starLabels = matrixCategoryLabels[copyLang(lang)];
+  const ops: Operator[] = localizedOperators(operatorLang(lang));
+  const starLabels = matrixCategoryLabels[operatorLang(lang)];
   const orderedKeys: Array<keyof Operator['stars']> = [
     'family',
     'aurora',

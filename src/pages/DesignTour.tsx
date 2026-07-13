@@ -102,6 +102,17 @@ const META: Record<CopyLang, {
     articleDescription:
       'Aanvraagformulier voor reizigers die een volledig op maat gemaakte Lapland-reisplanning willen: aanzoeken, gezinsverjaardagen, meerregio-reizen en luxe boekingen.',
   },
+  sv: {
+    title: 'Planera din egen Lapplandsresa | #LaplandTours',
+    description:
+      'Beskriv den Lapplandsresa du faktiskt vill ha (gruppstorlek, datum, budget och särskilda önskemål), så får du ett skräddarsytt reseförslag inom 24 timmar.',
+    canonical: 'https://laplandtours.online/sv/design-tour',
+    breadcrumbHome: 'Hem',
+    breadcrumbName: 'Skräddarsydd resa',
+    articleHeadline: 'Planera din egen Lapplandsresa',
+    articleDescription:
+      'Ett förfrågningsformulär för resenärer som vill ha ett helt skräddarsytt Lapplandsprogram: frierier, familjefödelsedagar, resor över flera regioner och lyxbokningar.',
+  },
   es: {
     title: 'Diseñe su propio viaje a Laponia | #LaplandTours',
     description:

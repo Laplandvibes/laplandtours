@@ -51,6 +51,7 @@ export const COOKIE_BANNER_LOCALES: Record<string, Required<CookieBannerDict>> =
   fr:      { label: 'Cookies',  body: 'Nous utilisons des cookies pour améliorer votre expérience.', policyLink: 'Politique des cookies', decline: 'Refuser',  accept: 'Accepter',  ariaLabel: 'Consentement aux cookies' },
   it:      { label: 'Cookie',   body: 'Utilizziamo i cookie per migliorare la tua esperienza.', policyLink: 'Informativa sui Cookie', decline: 'Rifiuta',  accept: 'Accetta',   ariaLabel: 'Consenso ai cookie' },
   nl:      { label: 'Cookies',  body: 'We gebruiken cookies om uw ervaring te verbeteren.',   policyLink: 'Cookiebeleid', decline: 'Weigeren', accept: 'Accepteren', ariaLabel: 'Cookietoestemming' },
+  sv:      { label: 'Cookies',  body: 'Vi använder cookies för att förbättra din upplevelse.', policyLink: 'Cookiepolicy', decline: 'Avvisa',   accept: 'Acceptera', ariaLabel: 'Samtycke till cookies' },
 };
 
 const DEFAULT_DICT: Required<CookieBannerDict> = COOKIE_BANNER_LOCALES.en;
@@ -84,7 +85,7 @@ export default function CookieBanner({
   // policyHref is passed. A bare /cookie-policy would dump a /fr visitor to EN.
   const { pathname } = useLocation();
   const _seg = pathname.split('/')[1] || '';
-  const _href = policyHref ?? (/^(fi|de|ja|es|br|cn|kr|fr|it|nl)$/.test(_seg) ? `/${_seg}/cookie-policy` : '/cookie-policy');
+  const _href = policyHref ?? (/^(fi|de|ja|es|br|cn|kr|fr|it|nl|sv)$/.test(_seg) ? `/${_seg}/cookie-policy` : '/cookie-policy');
   const D: Required<CookieBannerDict> = {
     ...DEFAULT_DICT,
     ...(lang && COOKIE_BANNER_LOCALES[lang] ? COOKIE_BANNER_LOCALES[lang] : {}),

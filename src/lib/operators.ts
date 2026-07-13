@@ -366,6 +366,16 @@ export function withUtm(url: string, slug: string): string {
 
 export type OperatorLang = 'en' | 'fi' | 'de' | 'ja' | 'ko' | 'fr' | 'it' | 'nl' | 'es' | 'pt-BR' | 'zh-CN';
 
+/**
+ * Narrow the site's UI language to an OperatorLang. Swedish (the network's 12th
+ * language) has no translated operator editorial yet, so /sv shows the English
+ * operator descriptions + category labels while all site chrome stays Swedish
+ * (phased rollout). Every other locale maps 1:1.
+ */
+export function operatorLang(lang: string): OperatorLang {
+  return (lang === 'sv' ? 'en' : lang) as OperatorLang;
+}
+
 interface OperatorL10n {
   tagline: string;
   bestFor: string;

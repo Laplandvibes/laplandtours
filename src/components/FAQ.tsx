@@ -418,6 +418,57 @@ const FAQS_NL: Faq[] = [
   },
 ];
 
+const FAQS_SV: Faq[] = [
+  {
+    q: 'Vad ingår vanligtvis i ett Lapplandspaket?',
+    a: 'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer — priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
+    aHtml:
+      'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer — priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
+  },
+  {
+    q: 'När är den bästa tiden att se norrskenet?',
+    a: 'Norrskenssäsongen sträcker sig från september till mars, med mest aktivitet mellan november och februari. Finska Lappland, särskilt Inari, Saariselkä och Muonio, är en av de bästa platserna i världen för att se det.',
+    aHtml:
+      'Norrskenssäsongen sträcker sig från september till mars, med mest aktivitet mellan november och februari. Finska Lappland, särskilt <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä och Muonio</a>, är en av de bästa platserna i världen för att se det.',
+  },
+  {
+    q: 'Hur kallt är det i Lappland?',
+    a: 'Vintertemperaturen ligger mellan −5 °C och −30 °C. Alla arrangörer tillhandahåller termooveraller, kängor och handskar. Se den praktiska guiden för packtips och råd om lager-på-lager-klädsel.',
+    aHtml:
+      'Vintertemperaturen ligger mellan −5 °C och −30 °C. Alla arrangörer tillhandahåller termooveraller, kängor och handskar. Se den <a href="/sv/practical-info" class="text-vibe-pink hover:underline">praktiska guiden</a> för packtips och råd om lager-på-lager-klädsel.',
+  },
+  {
+    q: 'Passar paketen för barn?',
+    a: 'Ja — lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs åldersguiden för detaljerade rekommendationer.',
+    aHtml:
+      'Ja — lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs <a href="/sv/age-guide" class="text-vibe-pink hover:underline">åldersguiden</a> för detaljerade rekommendationer.',
+  },
+  {
+    q: 'Hur tar jag mig till Lappland?',
+    a: 'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ.',
+    aHtml:
+      'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ. Se alla resealternativ, inklusive tåg och hyrbil, på <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+  },
+  {
+    q: 'Var ska jag bo?',
+    a: 'Lappland har glasiglor, timmerstugor, hotell och särpräglade snöhotell. Populära baser är Rovaniemi, Levi, Saariselkä och Luosto.',
+    aHtml:
+      'Lappland har glasiglor, timmerstugor, hotell och särpräglade snöhotell. Populära baser är Rovaniemi, Levi, Saariselkä och Luosto. Bläddra bland boenden på <a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a> eller <a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>.',
+  },
+  {
+    q: 'Vilka aktiviteter finns det?',
+    a: 'Populära aktiviteter är huskysafari, skoterturer, renslädeturer, norrskensjakt, skidåkning, pimpelfiske och besök i Tomtens by.',
+    aHtml:
+      'Populära aktiviteter är <a href="https://laplandhuskysafaris.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">huskysafari</a>, <a href="https://laplandsnowmobile.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">skoterturer</a>, renslädeturer, norrskensjakt, <a href="https://laplandskiresorts.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">skidåkning</a>, pimpelfiske och besök i Tomtens by.',
+  },
+  {
+    q: 'Behöver jag visum för att resa till Finland?',
+    a: 'EU/EES-medborgare behöver bara ett giltigt pass eller nationellt id-kort. Medborgare i Storbritannien, USA, Kanada och Australien kan besöka Schengenområdet utan visum i upp till 90 dagar.',
+    aHtml:
+      'EU/EES-medborgare behöver bara ett giltigt pass eller nationellt id-kort. Medborgare i Storbritannien, USA, Kanada och Australien kan besöka Schengenområdet utan visum i upp till 90 dagar. Andra nationaliteter: se <a href="https://migri.fi/en/home" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">migri.fi</a>.',
+  },
+];
+
 const FAQS_ES: Faq[] = [
   {
     q: '¿Qué suele incluir un paquete a Laponia?',
@@ -580,6 +631,7 @@ export const FAQ_BY_LANG: Record<CopyLang, Faq[]> = {
   fr: FAQS_FR,
   it: FAQS_IT,
   nl: FAQS_NL,
+  sv: FAQS_SV,
   es: FAQS_ES,
   'pt-BR': FAQS_PTBR,
   'zh-CN': FAQS_ZH,
@@ -678,6 +730,18 @@ const HEADINGS: Record<CopyLang, { h2: string; lead: (email: string) => React.Re
     lead: (email) => (
       <>
         Vragen die per e-mail binnenkomen. Stuur uw vraag naar{' '}
+        <a href={`mailto:${email}`} className="text-vibe-pink hover:underline">
+          {email}
+        </a>
+        .
+      </>
+    ),
+  },
+  sv: {
+    h2: 'Läsarfrågor',
+    lead: (email) => (
+      <>
+        Frågor vi ofta får via e-post. Skicka en ny till{' '}
         <a href={`mailto:${email}`} className="text-vibe-pink hover:underline">
           {email}
         </a>

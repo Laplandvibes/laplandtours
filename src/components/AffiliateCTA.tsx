@@ -17,7 +17,7 @@ export type AffiliatePartner =
   | 'cars'
   | 'activities';
 
-type _Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
+type _Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 export interface AffiliateCTAProps {
   partner: AffiliatePartner;
@@ -46,12 +46,12 @@ const SITE_ID = 'laplandtours';
 const HOTELS_LOCALE: Record<_Lang, string> = {
   en: 'en_US', fi: 'fi_FI', de: 'de_DE', ja: 'ja_JP',
   es: 'es_ES', 'pt-BR': 'pt_BR', 'zh-CN': 'zh_CN',
-  ko: 'ko_KR', fr: 'fr_FR', it: 'it_IT', nl: 'nl_NL',
+  ko: 'ko_KR', fr: 'fr_FR', it: 'it_IT', nl: 'nl_NL', sv: 'sv_SE',
 };
 const CARS_LANG: Record<_Lang, string> = {
   en: 'en', fi: 'fi', de: 'de', ja: 'ja',
   es: 'es', 'pt-BR': 'pt', 'zh-CN': 'zh',
-  ko: 'ko', fr: 'fr', it: 'it', nl: 'nl',
+  ko: 'ko', fr: 'fr', it: 'it', nl: 'nl', sv: 'sv',
 };
 const GYG_DOMAIN: Record<_Lang, string> = {
   en: 'https://www.getyourguide.com',
@@ -65,10 +65,11 @@ const GYG_DOMAIN: Record<_Lang, string> = {
   fr: 'https://www.getyourguide.fr',
   it: 'https://www.getyourguide.it',
   nl: 'https://www.getyourguide.nl',
+  sv: 'https://www.getyourguide.se',
 };
 const GYG_LANGUAGE: Partial<Record<_Lang, string>> = {
   fi: 'fi', ja: 'ja', es: 'es', 'pt-BR': 'pt-br', 'zh-CN': 'zh',
-  ko: 'ko', fr: 'fr', it: 'it', nl: 'nl',
+  ko: 'ko', fr: 'fr', it: 'it', nl: 'nl', sv: 'sv',
 };
 
 function buildHref(props: AffiliateCTAProps, lang: _Lang = 'en'): string {

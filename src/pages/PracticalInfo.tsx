@@ -497,6 +497,65 @@ const COPY: Record<CopyLang, {
     addonCar: 'Zelfrijden →',
     addonActivity: 'Dagactiviteit →',
   },
+  sv: {
+    metaTitle: 'Praktisk info: klimat, visum, transport för finska Lappland | #LaplandTours',
+    metaDescription:
+      'En genomgång inför resan till finska Lappland: att ta sig dit, klimat per säsong, visumregler, packlista, att ta sig runt samt hälsa och säkerhet.',
+    canonical: 'https://laplandtours.online/sv/practical-info',
+    breadcrumbHome: 'Hem',
+    breadcrumbName: 'Praktisk info',
+    articleHeadline: 'Praktisk info: klimat, visum, transport för finska Lappland',
+    articleDescription:
+      'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',
+    h1: '−30 °C',
+    ariaH1: 'Minus 30 grader Celsius',
+    lead:
+      'Det är bottennoteringen en typisk vinternatt i Lappland, och skälet till att aktörerna delar ut termoveraller. Resten av planeringen är kalender, papper och några telefonnummer. Nedan sex saker att veta innan du bokar.',
+    altHero: 'En lång enfilig snöväg genom den ändlösa boreala vildmarken i Lappland',
+    sections: [
+      {
+        n: '01',
+        title: 'Att ta sig dit',
+        body:
+          'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — från Helsingfors tar Finnair dig dit på ungefär en timme, och på natten går VR:s nattåg (12 timmar, sovvagnar).',
+      },
+      {
+        n: '02',
+        title: 'Klimat och packlista',
+        body:
+          'Vinter (nov–mar): −5 °C till −30 °C. Aktörerna tillhandahåller termoveraller, kängor och handskar. Packa termounderställ, ett mellanlager i ull, varm mössa, halskrage, tumvantar och rejäla vandringskängor. Sommar (jun–aug): 10–25 °C, mycket mygg, så ta med myggmedel.',
+      },
+      {
+        n: '03',
+        title: 'När du ska åka',
+        body:
+          'Norrskenssäsongen pågår september–mars (topp nov–feb). Julresor med jultomtetema: 1–24 december. Snösäsong: slutet av november–april. Midnattssol: slutet av maj–slutet av juli. Höstens ruska (lövfärger): mitten av september.',
+      },
+      {
+        n: '04',
+        title: 'Visum och dokument',
+        body:
+          'EU/EES-medborgare reser med pass eller nationellt id-kort. Medborgare i Storbritannien, USA, Kanada och Australien får vistas visumfritt upp till 90 dagar enligt Schengenreglerna. ETIAS-tillståndet börjar gälla för visumfria resenärer från slutet av 2026. Kontrollera migri.fi eller eu-etias.eu innan du bokar.',
+      },
+      {
+        n: '05',
+        title: 'Att ta sig runt',
+        body:
+          'De flesta paketresor inkluderar alla transfers. För att förlänga på egen hand: inrikesflyg mellan Helsingfors ↔ Rovaniemi/Kittilä/Ivalo, VR:s nattåg Helsingfors–Rovaniemi eller hyrbil från någon av de tre flygplatserna i Lappland.',
+      },
+      {
+        n: '06',
+        title: 'Hälsa och säkerhet',
+        body:
+          'Den finländska offentliga sjukvården är utmärkt. EU-medborgare använder EHIC/GHIC; resenärer från länder utanför EU behöver reseförsäkring. Kranvattnet går bra att dricka. Risken för köldskador är verklig vid −25 °C och kallare, så håll kinder, näsa och fingrar täckta. Ring 112 vid nödsituationer.',
+      },
+    ],
+    addonsEyebrow: 'Planera tilläggen',
+    addonsH2: 'Tre spår för att förlänga resan',
+    addonHotel: 'Hotellnatt →',
+    addonCar: 'Hyrbil →',
+    addonActivity: 'Dagsutflykt →',
+  },
   es: {
     metaTitle: 'Información práctica: Laponia finlandesa | #LaplandTours',
     metaDescription:

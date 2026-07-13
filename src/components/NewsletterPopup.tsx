@@ -211,6 +211,28 @@ const DICTS: Record<Lang, { dict: NewsletterPopupDict; headline?: string; descri
     headline: '#LaplandVibes-nieuwsbrief',
     description: 'Eerlijke reistips voor Fins Lapland, geschreven vanuit Finland, alleen als er echt iets te vertellen is.',
   },
+  sv: {
+    dict: {
+      successHeadline: 'Välkommen ombord.',
+      successBody:
+        'Välkomstmejlet är på väg — kolla din inkorg. Kommande brev landar på samma adress.',
+      alreadyHeadline: 'Du står redan på listan',
+      alreadyBody:
+        'Din e-post finns redan med. Tack för att du håller ihop med oss. Nyheterna från Lappland fortsätter att komma.',
+      emailPlaceholder: 'E-postadress',
+      submit: 'Prenumerera på Lappland-nyhetsbrevet',
+      loading: 'Prenumererar…',
+      later: 'Kanske senare',
+      closeAria: 'Stäng',
+      closeLabel: 'Stäng',
+      trust:
+        'Vi skriver bara när det finns något att berätta. Avsluta med ett klick. Din e-post delas aldrig.',
+      errorGeneric: 'Prenumerationen gick inte igenom. Försök igen.',
+    },
+    headline: '#LaplandVibes-nyhetsbrevet',
+    description:
+      'Ärliga resetips för finska Lappland, skrivna från Finland, bara när det verkligen finns något att berätta.',
+  },
 };
 
 export default function NewsletterPopup() {
@@ -219,7 +241,7 @@ export default function NewsletterPopup() {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
   const { dict, headline, description } = DICTS[lang];
   return (
-    <SharedNewsletterPopuplang={langRaw as 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl'}
+    <SharedNewsletterPopuplang={langRaw as 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv'}
       
       siteId="laplandtours"
       brandWord="TOURS"

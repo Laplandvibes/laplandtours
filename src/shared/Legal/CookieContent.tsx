@@ -13,7 +13,7 @@ import { localePath } from './localePath';
  * `/fi/cookie-policy` and `/de/cookie-policy` see localised copy.
  */
 
-type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
+type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 interface CookieContentProps {
   /** Site identifier for cookie-name placeholders. Default 'laplandvibes'. */
@@ -602,6 +602,54 @@ const COPY: Record<Lang, CookieCopy> = {
     typeAffiliateCj: 'Affiliate (CJ)',
     typeAffiliateGyg: 'Affiliate (GetYourGuide)',
   },
+  sv: {
+    kicker: 'Juridik',
+    h1: 'Cookiepolicy',
+    lastUpdated: 'Senast uppdaterad: maj 2026',
+    whatAreTitle: 'Vad är cookies?',
+    whatAreBody: 'Cookies är små textfiler som lagras på din enhet när du besöker en webbplats. De hjälper webbplatser att komma ihåg dina inställningar och förstå hur du använder sidan. Du kan hantera cookies via dina webbläsarinställningar eller via vår samtyckesbanner.',
+    cookiesWeUseTitle: 'Cookies vi använder',
+    essentialBadge: 'Nödvändig',
+    essentialNote: 'Alltid aktiv, kan inte inaktiveras',
+    essentialBody: 'Dessa cookies krävs för att webbplatsen ska fungera. De lagrar ditt samtyckesval så att vi inte behöver fråga dig vid varje besök.',
+    essentialDur: 'Varaktighet: 1 år',
+    analyticsBadge: 'Statistik',
+    analyticsNote: 'Kräver samtycke',
+    analyticsBody: 'Cookies från Google Analytics 4 hjälper oss att förstå hur besökare använder webbplatsen, vilka sidor som är populära, hur länge besökare stannar och varifrån de kommer (endast på landsnivå). Inga personuppgifter samlas in.',
+    analyticsDur: 'Varaktighet: 14 månader',
+    cjBadge: 'Affiliate (CJ)',
+    cjNote: 'Placeras av tredje part när du klickar på affiliatelänkar',
+    cjBody: (siteName) => <>När du klickar på en boknings- eller affiliatelänk på {siteName} kan CJ (Commission Junction) placera en spårningscookie via underdomänerna <span className="font-mono text-xs text-snow/80">dpbolvw.net</span>, <span className="font-mono text-xs text-snow/80">anrdoezrs.net</span> eller <span className="font-mono text-xs text-snow/80">jdoqocy.com</span> för att koppla hänvisningen till {siteName}. Så här tjänar vi en liten provision när du bokar, utan extra kostnad för dig.</>,
+    cjDur: 'Varaktighet: session – 30 dagar (varierar)',
+    gygBadge: 'Affiliate (GYG)',
+    gygNote: 'Placeras av GetYourGuides widgetar och klick',
+    gygBody: (siteName) => `När du interagerar med en GetYourGuide-widget på den här sidan eller klickar på en aktivitetslänk, kan GetYourGuide (Berlin, EU) sätta cookies för att spåra widget-interaktioner och koppla eventuella efterföljande bokningar till ${siteName} (partner-ID VRMKD7N). Bokningarna görs på getyourguide.com enligt deras integritetspolicy.`,
+    gygDur: 'Varaktighet: session – 30 dagar',
+    lsBadge: 'localStorage',
+    lsNote: 'Lagras i din webbläsare, skickas aldrig till en server',
+    lsIntro: 'Två små poster lagras i din webbläsares localStorage för att göra webbplatsen mindre irriterande:',
+    lsConsentDesc: ', ditt val att acceptera/avböja (spegling av samtyckescookien ovan)',
+    lsPopupDesc: ', en tidsstämpel för när du senast stängde eller framgångsrikt prenumererade via nyhetsbrevets popup, så att vi inte visar den igen på 7 dagar (eller aldrig, om du prenumererade)',
+    lsTail: 'localStorage är tekniskt sett ingen cookie. Vi listar den här av transparensskäl. Du kan rensa den via webbläsarens inställningar för webbplatsdata.',
+    tableTitle: 'Cookiereferenstabell',
+    tableCookie: 'Cookie',
+    tableType: 'Typ',
+    tablePurpose: 'Syfte',
+    tableDuration: 'Varaktighet',
+    tableRows: [],
+    managingTitle: 'Hantera dina cookieinställningar',
+    managing1: 'Du kan ändra ditt samtycke när som helst genom att rensa webbläsarens cookies för den här webbplatsen, vilket gör att samtyckesbannern visas igen vid nästa besök. Du kan också inaktivera cookies helt i dina webbläsarinställningar, även om det kan påverka webbplatsens funktionalitet.',
+    managing2: 'De flesta webbläsare låter dig visa, hantera och radera cookies. Se din webbläsares hjälpavsnitt för instruktioner.',
+    contactTitle: 'Kontakt',
+    contactBody: (email) => <>Har du frågor om cookies eller denna policy, kontakta oss på {email}.</>,
+    backToHome: '← Tillbaka till startsidan',
+    privacyLink: 'Integritetspolicy →',
+    typeEssential: 'Nödvändig',
+    typeEssentialLs: 'Nödvändig (localStorage)',
+    typeAnalytics: 'Statistik',
+    typeAffiliateCj: 'Affiliate (CJ)',
+    typeAffiliateGyg: 'Affiliate (GetYourGuide)',
+  },
 };
 
 export default function CookieContent({
@@ -702,6 +750,14 @@ export default function CookieContent({
       cj: 'Commission Junction, wijst affiliate-commissies toe wanneer u op boekingslinks klikt. Geplaatst op de subdomeinen dpbolvw.net / anrdoezrs.net / jdoqocy.com',
       gyg: 'GetYourGuide-widgets, volgen interacties met activiteit-widgets en wijzen boekingen toe aan de site',
     },
+    sv: {
+      consent: 'Lagrar ditt val av cookiesamtycke (accepterat/avböjt)',
+      popup: 'Kommer ihåg om du stängde eller prenumererade via nyhetsbrevets popup, så att vi inte visar den igen',
+      gaUser: 'Google Analytics, särskiljer unika användare',
+      gaSession: 'Google Analytics, upprätthåller sessionstillstånd',
+      cj: 'Commission Junction, attribuerar hänvisningsprovisioner när du klickar på affiliatebokningslänkar. Placeras på underdomänerna dpbolvw.net / anrdoezrs.net / jdoqocy.com',
+      gyg: 'GetYourGuide-widgetar, spårar interaktioner med aktivitetswidgetar och kopplar bokningar till webbplatsen',
+    },
   };
   const p = purposeStrings[lang] ?? purposeStrings.en;
 
@@ -717,6 +773,7 @@ export default function CookieContent({
     fr: { oneYear: '1 an', cjDur: 'Variable (session–30 jours)', gygDur: 'Session–30 jours', popupDur: '7 jours (fermé) / persistant (abonné)', gaDur: '14 mois' },
     it: { oneYear: '1 anno', cjDur: 'Variabile (sessione–30 giorni)', gygDur: 'Sessione–30 giorni', popupDur: '7 giorni (chiuso) / persistente (iscritto)', gaDur: '14 mesi' },
     nl: { oneYear: '1 jaar', cjDur: 'Variabel (sessie–30 dagen)', gygDur: 'Sessie–30 dagen', popupDur: '7 dagen (gesloten) / blijvend (geabonneerd)', gaDur: '14 maanden' },
+    sv: { oneYear: '1 år', cjDur: 'Varierar (session–30 dagar)', gygDur: 'Session–30 dagar', popupDur: '7 dagar (stängd) / bestående (prenumererad)', gaDur: '14 månader' },
   };
   const d = durStrings[lang] ?? durStrings.en;
 

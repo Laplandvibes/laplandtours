@@ -1,5 +1,5 @@
 import { ExternalLink } from 'lucide-react';
-import { localizedOperators, withUtm, matrixCategoryLabels, type Operator } from '../lib/operators';
+import { localizedOperators, withUtm, matrixCategoryLabels, operatorLang, type Operator } from '../lib/operators';
 import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
 
 const HEADINGS: Record<CopyLang, {
@@ -118,6 +118,19 @@ const HEADINGS: Record<CopyLang, {
     bestFor: 'Geschikt voor',
     strongIn: 'Sterk in',
   },
+  sv: {
+    eyebrow: 'Väg 2',
+    h2: 'Eller boka en lokal arrangör',
+    lead:
+      'Sex företag baserade i Finland som driver Lapplands aktiviteter själva — husky, norrsken, skoter, ren. Du bokar direkt på deras villkor; vi har ingen affärsrelation med någon av dem. Det här är en redaktionell vägvisare, inte en butik. Kontrollerad juli 2026.',
+    visit: 'Besök',
+    tier: 'Prisklass',
+    length: 'Längd',
+    departures: 'Närmaste flygplats',
+    bases: 'Baser',
+    bestFor: 'Passar bäst',
+    strongIn: 'Stark inom',
+  },
   es: {
     eyebrow: 'Camino 2',
     h2: 'O reserve un operador local',
@@ -185,7 +198,7 @@ function StarRow({ value, max = 4 }: { value: number; max?: number }) {
 
 function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; eager?: boolean; lang: Lang }) {
   const labels = HEADINGS[copyLang(lang)];
-  const starLabels = matrixCategoryLabels[copyLang(lang)];
+  const starLabels = matrixCategoryLabels[operatorLang(lang)];
   const imageLeft = index % 2 === 0;
   const aspect = index % 3 === 0 ? 'aspect-[4/3]' : 'aspect-[5/4]';
 
@@ -276,7 +289,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
 export default function OperatorGuide() {
   const lang = useLang();
   const c = HEADINGS[copyLang(lang)];
-  const ops = localizedOperators(copyLang(lang));
+  const ops = localizedOperators(operatorLang(lang));
   return (
     <section id="operators" className="bg-deep-night pt-20 sm:pt-28 pb-12 sm:pb-16">
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10">

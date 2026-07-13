@@ -124,6 +124,13 @@ const PILLARS_NL = [
   { name: 'Maatwerk-rondreis', href: '/nl/design-tour' },
 ];
 
+const PILLARS_SV = [
+  { name: 'Researrangörer', href: '/sv/lapland-holidays' },
+  { name: 'Praktisk info', href: '/sv/practical-info' },
+  { name: 'Åldersguide', href: '/sv/age-guide' },
+  { name: 'Skräddarsydd resa', href: '/sv/design-tour' },
+];
+
 function FooterByLang() {
   const lang = useLang();
   const pillarLinks =
@@ -137,11 +144,12 @@ function FooterByLang() {
     lang === 'fr' ? PILLARS_FR :
     lang === 'it' ? PILLARS_IT :
     lang === 'nl' ? PILLARS_NL :
+    lang === 'sv' ? PILLARS_SV :
     PILLARS_EN;
   return <Footer pillarLinks={pillarLinks} />;
 }
 
-const LOCALE_PREFIXES = ['', '/fi', '/de', '/ja', '/es', '/br', '/cn', '/kr', '/fr', '/it', '/nl'] as const;
+const LOCALE_PREFIXES = ['', '/fi', '/de', '/ja', '/es', '/br', '/cn', '/kr', '/fr', '/it', '/nl', '/sv'] as const;
 
 function localizedRoutes(path: string, element: JSX.Element) {
   return LOCALE_PREFIXES.map((prefix) => {

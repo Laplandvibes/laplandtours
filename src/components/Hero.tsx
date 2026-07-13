@@ -110,6 +110,15 @@ const COPY: Record<Lang, {
     secondary: 'Bekijk de aanbieders',
     alt: 'Fjell-landschap in Lapland bij gouden uur, meer op de voorgrond',
   },
+  sv: {
+    h1: 'Planera en resa till Lappland',
+    pinkLine: 'Bygg din egen, eller köp ett paket.',
+    lead:
+      'Två sätt att ta sig till finska Lappland. Kombinera själv hotell, hyrbil och en dagsaktivitet, eller låt en av sex researrangörer ordna allt.',
+    primary: 'Bygg min resa',
+    secondary: 'Se paketen',
+    alt: 'Fjällandskap i Lappland i gyllene timmen, avlägsna fjäll över öppet vatten',
+  },
 };
 
 // May–Sep (months 5–9) shows the summer hero; Oct–Apr shows the winter hero.

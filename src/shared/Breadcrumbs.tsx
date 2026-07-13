@@ -15,23 +15,23 @@ import { Link, useLocation } from 'react-router-dom'
  * and a11y stay identical across the network.
  */
 
-export type BcLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl'
+export type BcLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv'
 
 // Localized "Home", so individual sites don't each redefine it.
 const HOME_LABEL: Record<BcLang, string> = {
   en: 'Home', fi: 'Etusivu', de: 'Startseite', ja: 'ホーム', es: 'Inicio',
-  'pt-BR': 'Início', 'zh-CN': '首页', ko: '홈', fr: 'Accueil', it: 'Home', nl: 'Home',
+  'pt-BR': 'Início', 'zh-CN': '首页', ko: '홈', fr: 'Accueil', it: 'Home', nl: 'Home', sv: 'Hem',
 }
 
 // Localized aria-label for the <nav> landmark.
 const NAV_ARIA: Record<BcLang, string> = {
   en: 'Breadcrumb', fi: 'Murupolku', de: 'Brotkrümelnavigation', ja: 'パンくずリスト',
   es: 'Ruta de navegación', 'pt-BR': 'Trilha de navegação', 'zh-CN': '面包屑导航',
-  ko: '탐색 경로', fr: "Fil d'Ariane", it: 'Percorso di navigazione', nl: 'Kruimelpad',
+  ko: '탐색 경로', fr: "Fil d'Ariane", it: 'Percorso di navigazione', nl: 'Kruimelpad', sv: 'Brödsmulor',
 }
 
 // Same locale segments every LV site routes on (en is unprefixed).
-const PREFIX_RE = /^\/(fi|de|ja|es|br|cn|kr|fr|it|nl)(?=\/|$)/
+const PREFIX_RE = /^\/(fi|de|ja|es|br|cn|kr|fr|it|nl|sv)(?=\/|$)/
 
 export interface BreadcrumbsProps {
   /** Active UI language. */

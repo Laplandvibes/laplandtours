@@ -181,6 +181,30 @@ const COPY: Record<CopyLang, {
     terms: 'Voorwaarden',
     cookie: 'Cookiebeleid',
   },
+  sv: {
+    eyebrow: 'Redaktionella principer',
+    hLine1: 'Så',
+    hLine2: 'arbetar vi',
+    p1:
+      'Det här är en liten finländsk redaktion i Rovaniemi. Sex arrangörer finns med för att de är ärliga om vad de gör och vad de inte gör. Inga resor säljs här. När du bokar via en arrangör är avtalet med den arrangören, enligt deras villkor.',
+    stats:
+      '6 arrangörer jämförda  ·  alla baserade i finska Lappland  ·  0 % provision för dig  ·  kontrollerad juli 2026',
+    bullets: [
+      'Ingen arrangör betalar för att finnas med, och vi tjänar ingen affiliateprovision på klick till arrangörerna.',
+      'Affiliateprovision tjänas bara in på korsförsäljningsraden: Hotels.com (CJ), EconomyBookings (CJ) och GetYourGuide. De länkarna är märkta och redovisade.',
+      'Arrangörernas profiler, priser och stjärnbetyg ses över var sjätte månad. Senaste översyn: juli 2026.',
+      'Om något på den här sidan är fel eller inaktuellt, skriv till info@laplandvibes.com så rättas det.',
+    ],
+    bulletsHtml: [
+      undefined as any,
+      undefined as any,
+      undefined as any,
+      'Om något på den här sidan är fel eller inaktuellt, skriv till <a href="mailto:info@laplandvibes.com" class="text-vibe-pink hover:underline">info@laplandvibes.com</a> så rättas det.',
+    ],
+    privacy: 'Integritetspolicy',
+    terms: 'Villkor',
+    cookie: 'Cookiepolicy',
+  },
   ja: {
     eyebrow: '編集方針',
     hLine1: '当サイトの',

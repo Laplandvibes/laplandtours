@@ -15,6 +15,7 @@ const BC_LABELS: Record<Lang, Record<string, string>> = {
   fr: { '/lapland-holidays': 'Opérateurs', '/practical-info': 'Infos pratiques', '/age-guide': 'Guide par âge', '/design-tour': 'Forfait sur mesure' },
   it: { '/lapland-holidays': 'Operatori', '/practical-info': 'Info pratiche', '/age-guide': 'Guida per età', '/design-tour': 'Pacchetto su misura' },
   nl: { '/lapland-holidays': 'Touroperators', '/practical-info': 'Praktische info', '/age-guide': 'Leeftijdsgids', '/design-tour': 'Maatwerk-rondreis' },
+  sv: { '/lapland-holidays': 'Researrangörer', '/practical-info': 'Praktisk info', '/age-guide': 'Åldersguide', '/design-tour': 'Skräddarsydd resa' },
 };
 
 /**

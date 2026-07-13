@@ -12,7 +12,7 @@
  */
 
 export type AdLocale =
-  | 'en' | 'fi' | 'de' | 'fr' | 'it' | 'es' | 'pt' | 'nl' | 'ja' | 'ko' | 'zh';
+  | 'en' | 'fi' | 'de' | 'fr' | 'it' | 'es' | 'pt' | 'nl' | 'sv' | 'ja' | 'ko' | 'zh';
 
 export function normalizeAdLocale(locale?: string): AdLocale {
   const l = (locale || 'en').toLowerCase();
@@ -23,6 +23,7 @@ export function normalizeAdLocale(locale?: string): AdLocale {
   if (l.startsWith('es')) return 'es';
   if (l.startsWith('pt') || l === 'br') return 'pt';
   if (l.startsWith('nl')) return 'nl';
+  if (l.startsWith('sv')) return 'sv';
   if (l.startsWith('ja')) return 'ja';
   if (l.startsWith('ko') || l === 'kr') return 'ko';
   if (l.startsWith('zh') || l === 'cn') return 'zh';
@@ -189,6 +190,21 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumOpen: 'Advertentieplek beschikbaar',
     bookCta: 'Reserveer deze plek →',
     bookShort: 'Reserveer →',
+  },
+  sv: {
+    badge: 'Partner',
+    partners: 'Partner',
+    mainPartners: 'Huvudpartner',
+    mainPartnerOne: 'Huvudpartner',
+    mainPartnerTwo: 'Andra huvudpartner',
+    premiumSpots: 'Premiumplatser',
+    slotCount: (n) => n === 1 ? '1 plats' : `${n} platser`,
+    slotOpen: 'Annonsplats ledig',
+    wantYourAd: 'Vill du synas här?',
+    sponsorSub: 'Bli huvudpartner — den mest synliga platsen på den här sidan.',
+    premiumOpen: 'Annonsplats ledig',
+    bookCta: 'Boka denna plats →',
+    bookShort: 'Boka →',
   },
   ja: {
     badge: '広告',

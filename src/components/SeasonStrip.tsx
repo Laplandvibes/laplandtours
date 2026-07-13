@@ -20,6 +20,7 @@ const MONTHS_BY_LANG: Record<CopyLang, string[]> = {
   fr: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
   it: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
   nl: ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
+  sv: ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
   es: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
   'pt-BR': ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
   'zh-CN': ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
@@ -192,6 +193,25 @@ const COPY: Record<CopyLang, {
     cheapestOverallMonth: 'Juni – augustus',
     cheapestOverallBody:
       'Middernachtszon. 30–40 % goedkoper dan de winter. Geen sneeuw, geen aurora. Wandelen, wildwaterraften, bessen plukken. Een heel andere reis.',
+  },
+  sv: {
+    h2Line1: 'När du ska åka',
+    meta: 'Norrsken · Snö · Prisnivå  ·  januari till december',
+    aurora: 'Norrsken',
+    snow: 'Snö',
+    price: 'Prisnivå',
+    bestAurora: 'Bäst norrsken för priset',
+    bestAuroraMonth: 'februari',
+    bestAuroraBody:
+      'Chansen för norrsken är som störst innan skolloven har börjat; arrangörerna sänker priserna för veckorna i andra halvan av februari med 15–25 % jämfört med jul.',
+    cheapestWinter: 'Billigaste vintern',
+    cheapestWinterMonth: 'slutet av mars',
+    cheapestWinterBody:
+      'Snötäcket ligger kvar, dagsljuset återvänder, priserna faller. Husky- och skotersafari pågår fortfarande. Sämsta norrskenschansen under vintersäsongen.',
+    cheapestOverall: 'Billigast totalt',
+    cheapestOverallMonth: 'juni – augusti',
+    cheapestOverallBody:
+      'Midnattssol. 30–40 % billigare än vintern. Ingen snö, inget norrsken. Vandring, forsränning, bärplockning. En helt annan sorts resa.',
   },
   es: {
     h2Line1: 'Cuándo ir',

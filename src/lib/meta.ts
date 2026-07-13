@@ -20,36 +20,36 @@ export interface PageMetaInput {
 
 const SITE_URL = 'https://laplandtours.online';
 
-type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
-const SUPPORTED: Lang[] = ['en', 'fi', 'de', 'ja', 'es', 'pt-BR', 'zh-CN', 'ko', 'fr', 'it', 'nl'];
+type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
+const SUPPORTED: Lang[] = ['en', 'fi', 'de', 'ja', 'es', 'pt-BR', 'zh-CN', 'ko', 'fr', 'it', 'nl', 'sv'];
 const URL_PREFIX_OF: Record<Lang, string> = {
   en: '', fi: '/fi', de: '/de', ja: '/ja', es: '/es',
-  'pt-BR': '/br', 'zh-CN': '/cn', ko: '/kr', fr: '/fr', it: '/it', nl: '/nl',
+  'pt-BR': '/br', 'zh-CN': '/cn', ko: '/kr', fr: '/fr', it: '/it', nl: '/nl', sv: '/sv',
 };
 const BCP47: Record<Lang, string> = {
   en: 'en-US', fi: 'fi-FI', de: 'de-DE', ja: 'ja-JP', es: 'es-ES',
-  'pt-BR': 'pt-BR', 'zh-CN': 'zh-CN', ko: 'ko-KR', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL',
+  'pt-BR': 'pt-BR', 'zh-CN': 'zh-CN', ko: 'ko-KR', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL', sv: 'sv-SE',
 };
 const OG_LOCALE: Record<Lang, string> = {
   en: 'en_US', fi: 'fi_FI', de: 'de_DE', ja: 'ja_JP', es: 'es_ES',
-  'pt-BR': 'pt_BR', 'zh-CN': 'zh_CN', ko: 'ko_KR', fr: 'fr_FR', it: 'it_IT', nl: 'nl_NL',
+  'pt-BR': 'pt_BR', 'zh-CN': 'zh_CN', ko: 'ko_KR', fr: 'fr_FR', it: 'it_IT', nl: 'nl_NL', sv: 'sv_SE',
 };
 
 function langFromUrl(url: string): Lang {
   const path = url.replace(SITE_URL, '');
-  const m = path.match(/^\/(fi|de|ja|es|br|cn|kr|fr|it|nl)(?=\/|$|\?|#)/);
+  const m = path.match(/^\/(fi|de|ja|es|br|cn|kr|fr|it|nl|sv)(?=\/|$|\?|#)/);
   if (!m) return 'en';
   const seg = m[1];
   const map: Record<string, Lang> = {
     fi: 'fi', de: 'de', ja: 'ja', es: 'es', br: 'pt-BR',
-    cn: 'zh-CN', kr: 'ko', fr: 'fr', it: 'it', nl: 'nl',
+    cn: 'zh-CN', kr: 'ko', fr: 'fr', it: 'it', nl: 'nl', sv: 'sv',
   };
   return map[seg] ?? 'en';
 }
 
 function stripLocalePath(url: string): string {
   const path = url.replace(SITE_URL, '') || '/';
-  return path.replace(/^\/(fi|de|ja|es|br|cn|kr|fr|it|nl)(?=\/|$|\?|#)/, '') || '/';
+  return path.replace(/^\/(fi|de|ja|es|br|cn|kr|fr|it|nl|sv)(?=\/|$|\?|#)/, '') || '/';
 }
 
 function injectInLanguage(node: unknown, bcp47: string): unknown {

@@ -19,7 +19,7 @@ import { localePath } from './localePath';
  * / 13 / 22 / 77 expansion + EU-US DPF / SCC + Tietosuojavaltuutettu route.
  */
 
-type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl';
+type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 interface PrivacyContentProps {
   siteName?: string;
@@ -882,6 +882,80 @@ const COPY: Record<Lang, {
     s12Body: 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. De datum "Laatst bijgewerkt" bovenaan weerspiegelt de meest recente herziening. Belangrijke wijzigingen worden ten minste 14 dagen op de homepage gemarkeerd.',
     backToHome: '← Terug naar home',
     cookiePolicy: 'Cookiebeleid →',
+  },
+  sv: {
+    h1: 'Integritetspolicy',
+    lastUpdated: 'Senast uppdaterad: maj 2026',
+    s1Title: '1. Personuppgiftsansvarig',
+    s1Body: () => <>Lapeso Oy, Finland. E-post: <a href="mailto:info@laplandvibes.com" className="text-vibe-pink">info@laplandvibes.com</a></>,
+    s2Title: '2. Uppgifter vi samlar in',
+    s2Body: 'Vi samlar in anonym analysdata via Google Analytics 4. Om du prenumererar på vårt nyhetsbrev lagrar vi din e-postadress säkert. Vi samlar inte in några andra personuppgifter som kan identifiera dig, om du inte kontaktar oss direkt.',
+    s2aTitle: '2a. Rättslig grund för behandling (GDPR artikel 6)',
+    s2aIntro: 'Vi grundar varje behandlingsaktivitet på följande rättsliga grunder:',
+    s2aItems: [
+      { strong: 'Samtycke (artikel 6.1 a)', body: ', för analyscookies (Google Analytics 4) och andra icke nödvändiga cookies. Du lämnar samtycke via cookiebannern och kan när som helst återkalla det.' },
+      { strong: 'Samtycke (artikel 6.1 a)', body: ', för prenumeration på nyhetsbrevet. Du lämnar samtycke genom att skicka in anmälningsformuläret och kan när som helst återkalla det via avregistreringslänken.' },
+      { strong: 'Berättigat intresse (artikel 6.1 f)', body: ', för nödvändiga cookies (lagring av ditt samtyckesval) samt bedrägeriförebyggande och säkerhetsloggar. Vårt intresse är att driva en fungerande webbplats, avvägt mot dina rimliga förväntningar.' },
+      { strong: 'Berättigat intresse (artikel 6.1 f)', body: ', för attribution av klick på affiliatelänkar. Vårt intresse är att få den provision vi redaktionellt har tjänat in; uppgifterna som samlas in är minimala (hänvisningskälla) och du kan avstå genom att låta bli att klicka på affiliatelänkar.' },
+    ],
+    s3Title: '3. Cookies',
+    s3Intro: 'Vår webbplats använder cookies för att förbättra din surfupplevelse och samla in anonym analysdata. Dessa omfattar:',
+    s3Items: [
+      { strong: 'Nödvändiga cookies', body: ', krävs för att webbplatsen ska fungera korrekt (samtyckesinställningar, sessionsdata).' },
+      { strong: 'Statistik-/analyscookies', body: ', används av Google Analytics 4 för att förstå hur besökare interagerar med vår webbplats. Samlas in anonymt.' },
+      { strong: 'Affiliatecookies', body: ', placeras när du klickar på affiliatelänkar (t.ex. CJ / Commission Junction-spårning). De hjälper oss att attribuera hänvisningsprovisioner.' },
+    ],
+    s3Tail: (cookieLink) => <>Analyscookies placeras endast efter att du gett samtycke via cookiebannern. Se vår {cookieLink} för fullständig information.</>,
+    s4Title: '4. Google Analytics',
+    s4Body: 'Vi använder Google Analytics 4 med Consent Mode v2. Om du avböjer cookies samlas ingen analysdata in. Om du accepterar skickas anonym användningsdata (visade sidor, tid på webbplatsen, allmän plats per land) till Google. Inga personuppgifter ingår.',
+    s5Title: '5. Nyhetsbrev',
+    s5Body: (unsub) => <>Om du prenumererar på vårt nyhetsbrev lagras din e-postadress säkert via Resend och Supabase. Du kan avregistrera dig när som helst med länken i varje e-postmeddelande eller via vår {unsub}.</>,
+    s6Title: '6. Lagringstid',
+    s6Body: 'Analysdata sparas i 14 månader i Google Analytics. E-postadresser till nyhetsbrevet sparas tills du avregistrerar dig.',
+    s7Title: '7. Tredje part',
+    s7Intro: 'Vi säljer eller delar inte dina personuppgifter med tredje part. Följande tredjepartstjänster behandlar dock uppgifter som en del av vår verksamhet:',
+    s7Items: [
+      'Google Analytics, anonym användningsanalys',
+      'CJ (Commission Junction), spårning av affiliatelänkar när du klickar på boknings- eller partnerlänkar',
+      'Resend, utskick av nyhetsbrev',
+      'Supabase, databastjänster i backend',
+      'Cloudflare, hosting och CDN',
+    ],
+    s8Title: '8. Annonsering',
+    s8Body1: (siteName) => `Den här webbplatsen visar sponsrat innehåll från tredjepartsannonsörer. Sponsrat innehåll märks tydligt med etiketten "Sponsrad". Att klicka på sponsrade länkar kan omdirigera dig till externa webbplatser med egna integritetspolicyer. ${siteName} ansvarar inte för externa annonsörers hantering av uppgifter.`,
+    s8Body2: 'Vi deltar i affiliateprogram, bland annat CJ (Commission Junction). När du klickar på en affiliatelänk och gör ett köp eller en bokning kan vi få en provision utan extra kostnad för dig.',
+    s8aTitle: '8a. Internationella dataöverföringar',
+    s8aIntro: 'Flera av de tredjepartstjänster vi använder har sitt säte i, eller överför uppgifter till, länder utanför Europeiska ekonomiska samarbetsområdet (EES), oftast USA:',
+    s8aItems: [
+      { strong: 'Google Analytics', body: '(Google LLC, USA), omfattas av EU–US Data Privacy Framework (DPF).' },
+      { strong: 'Cloudflare', body: '(Cloudflare Inc., USA), omfattas av EU–US Data Privacy Framework och standardavtalsklausuler (SCC).' },
+      { strong: 'Resend', body: '(Resend Inc., USA), omfattas av standardavtalsklausuler.' },
+      { strong: 'Supabase', body: '(Supabase Inc., USA, med EU-regionshosting tillgänglig), omfattas av standardavtalsklausuler.' },
+      { strong: 'CJ / Commission Junction', body: '(Conversant LLC, USA), omfattas av standardavtalsklausuler.' },
+      { strong: 'GetYourGuide', body: '(GetYourGuide GmbH, Tyskland), inom EES.' },
+    ],
+    s8aTail: 'I varje enskilt fall skyddas överföringen av ett beslut om adekvat skyddsnivå, EU–US Data Privacy Framework eller standardavtalsklausuler godkända av Europeiska kommissionen. Du kan begära en kopia av de relevanta skyddsåtgärderna genom att kontakta oss.',
+    s9Title: '9. Dina rättigheter enligt GDPR',
+    s9Intro: 'Eftersom vi verkar från Finland och betjänar besökare från Europeiska unionen gäller dataskyddsförordningen (GDPR) fullt ut. Du har följande rättigheter:',
+    s9Items: [
+      { strong: 'Rätt till tillgång (artikel 15)', body: ', begära en kopia av de personuppgifter vi har om dig.' },
+      { strong: 'Rätt till rättelse (artikel 16)', body: ', be oss rätta felaktiga eller ofullständiga uppgifter.' },
+      { strong: 'Rätt till radering / "rätten att bli bortglömd" (artikel 17)', body: ', be oss radera dina uppgifter när det inte finns något överordnat skäl att behålla dem.' },
+      { strong: 'Rätt till begränsning av behandling (artikel 18)', body: ', be oss pausa behandlingen medan en fråga utreds.' },
+      { strong: 'Rätt till dataportabilitet (artikel 20)', body: ', få dina uppgifter i ett strukturerat, maskinläsbart format.' },
+      { strong: 'Rätt att invända (artikel 21)', body: ', invända mot behandling som grundas på berättigat intresse, inklusive direktmarknadsföring.' },
+      { strong: 'Rätt att återkalla samtycke', body: ', när som helst, med verkan från och med återkallandet.' },
+      { strong: 'Rätt att lämna in klagomål (artikel 77)', body: ', till den finska dataskyddsombudsmannen (Tietosuojavaltuutettu) på tietosuoja.fi, eller till tillsynsmyndigheten där du stadigvarande bor inom EU.' },
+    ],
+    s9Tail: (email) => <>För att utöva någon av dessa rättigheter, kontakta oss på {email}. Vi svarar inom en månad.</>,
+    s10Title: '10. Automatiserat beslutsfattande',
+    s10Body: 'Vi utför inte automatiserat beslutsfattande, profilering eller någon annan behandling som ger rättsliga eller liknande betydande effekter för dig i den mening som avses i artikel 22 i GDPR.',
+    s11Title: '11. Barn',
+    s11Body: 'Den här webbplatsen och vårt nyhetsbrev riktar sig till vuxna. Vi samlar inte medvetet in uppgifter från barn under 13 år (åldersgränsen för digitala tjänster enligt finsk lag och GDPR). Om du tror att ett barn har lämnat personuppgifter till oss, kontakta oss så raderar vi dem.',
+    s12Title: '12. Ändringar av denna policy',
+    s12Body: 'Vi kan uppdatera denna integritetspolicy då och då. Datumet "Senast uppdaterad" högst upp återspeglar den senaste revideringen. Väsentliga ändringar flaggas på startsidan i minst 14 dagar.',
+    backToHome: '← Tillbaka till startsidan',
+    cookiePolicy: 'Cookiepolicy →',
   },
 };
 

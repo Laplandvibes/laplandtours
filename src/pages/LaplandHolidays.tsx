@@ -323,6 +323,42 @@ const COPY: Record<CopyLang, {
     altHero: 'Husky-team rent door een besneeuwde sparrenlaan',
     altQuote: 'Wildernissuite met glazen dak tijdens het blauwe uur, met vaag noorderlicht door het dak',
   },
+  sv: {
+    metaTitle: 'Aktörerna: finska Lappland | #LaplandTours',
+    metaDescription:
+      'En ärlig guide till sex aktörer baserade i finska Lappland 2026: vad var och en är bra på, var de finns och vad du faktiskt får när du bokar direkt.',
+    canonical: 'https://laplandtours.online/sv/lapland-holidays',
+    breadcrumbHome: 'Hem',
+    breadcrumbName: 'Aktörsguide',
+    articleHeadline: 'Aktörerna: sex researrangörer för finska Lappland',
+    articleDescription:
+      'En redaktionell guide till de sex aktörer som tar resenärer till finska Lappland.',
+    h1Top: 'De',
+    h1Bot: 'aktörer',
+    introCap: 'Utgångsläge',
+    intro:
+      'Finska Lappland är en lång, smal region. Aktörerna på plats driver aktiviteterna själva — du reser dit och bokar direkt hos dem, i stället för att köpa ett charterpaket utomlands. Utbudet varierar: Lapland Safaris täcker hela aktivitetsprogrammet på fem orter, Arctic GM tar med sig runt fem personer på norrskensjakt i en lyxig van. Alla sex listas öppet sida vid sida, så att du lätt hittar rätt för resan du faktiskt vill ha.',
+    noteEyebrow: 'Vad den här sidan är',
+    noteBody:
+      'Här säljs ingenting. Det finns inget kommersiellt avtal med någon av de sex aktörerna nedan, och att klicka på en länk ger ingen provision. Affiliateprovision tjänas bara in på korsförsäljningsraden längst ned på sidan (hotellnatt, hyrbil, dagsutflykt).',
+    quote:
+      'En glasiglo är inget priskänsligt val. Den billigaste i landet börjar på 430 € per natt.',
+    quoteAttribution: 'Om lyxsegmentet',
+    caption: '04 / Svit med glastak · Kakslauttanen',
+    chapter: 'Kapitel IV',
+    addons: 'Tilläggen',
+    addonsBody:
+      'De flesta kompletterar sina aktiviteter med en hotellnatt före eller efter, en dag med hyrbil på egen hand eller en GetYourGuide-utflykt på en halvdag. Det är på de här tre spåren provision tjänas in. Bokat direkt, utan mellanhänder, avtalet ingås med partnern.',
+    addonHotel: 'Hotellnatt, Rovaniemi →',
+    addonCar: 'Hyrbil från Rovaniemi →',
+    addonActivity: 'Dagsutflykt →',
+    noneEyebrow: 'Passar ingen av dem?',
+    noneLine:
+      'Berätta om din resa, så föreslår vi en aktör som passar.',
+    noneCta: 'Planera din resa →',
+    altHero: 'Huskyspann springer genom en snötäckt grankorridor',
+    altQuote: 'Svit i vildmarken med glastak i blå timmen, svagt norrsken syns genom taket',
+  },
   es: {
     metaTitle: 'Los operadores: Laponia finlandesa | #LaplandTours',
     metaDescription:
