@@ -133,7 +133,7 @@ export default function Hero() {
   const c = COPY[lang];
   const heroBase = isSummerSeason() ? 'hero-home-summer' : 'hero-home';
   return (
-    <section className="relative flex items-center min-h-[60svh] sm:min-h-[72svh] lg:min-h-[600px] lg:max-h-[720px] overflow-hidden">
+    <section className="relative flex items-center min-h-[62svh] sm:min-h-[76svh] lg:min-h-[620px] lg:max-h-[760px] overflow-hidden">
       <ImagePlaceholder
         variant="aurora"
         src={`/images/${heroBase}.webp`}

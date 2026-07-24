@@ -18,8 +18,12 @@ const COPY: Record<CopyLang, {
   breadcrumbName: string;
   articleHeadline: string;
   articleDescription: string;
-  h1Top: string;
-  h1Bot: string;
+  /**
+   * One string, ONE line on desktop (Vesa 2026-07-24: no visible hyphen-wrap
+   * at lg+). Long fi/de compounds carry a soft hyphen (­) that only
+   * activates when the line truly cannot fit (mobile widths).
+   */
+  h1: string;
   introCap: string;
   intro: string;
   noteEyebrow: string;
@@ -49,8 +53,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'The Operators: Six tour companies for Finnish Lapland',
     articleDescription:
       'An editorial guide to the six tour operators that send people to Finnish Lapland.',
-    h1Top: 'The',
-    h1Bot: 'operators',
+    h1: 'The operators',
     introCap: 'Drop cap',
     intro:
       'Finnish Lapland is a long, thin country. Most British and European visitors get there on a packaged trip from one of six operators that have been doing this for years. What they sell is not the same: TUI is a 3-night day trip from a regional airport; Magnetic North is a six-night bespoke itinerary with a private aurora photographer. All six are listed honestly, side by side, so the right one for the trip you actually want is easy to find.',
@@ -85,8 +88,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Matkanjärjestäjät: kuusi Suomen Lapin matkanjärjestäjää',
     articleDescription:
       'Toimituksellinen opas kuuteen matkanjärjestäjään, joiden kautta ihmiset matkustavat Suomen Lappiin.',
-    h1Top: 'Matkan-',
-    h1Bot: 'järjestäjät',
+    h1: 'Matkan­järjestäjät',
     introCap: 'Lähestymistapa',
     intro:
       'Suomen Lappi on pitkä ja kapea maakunta. Sen omat toimijat pyörittävät aktiviteetit paikan päällä. Lennät perille ja varaat suoraan heiltä, et osta charter-pakettia ulkomailta. Tarjonta vaihtelee: Lapland Safaris kattaa koko aktiviteettikirjon viidellä keskuksella, Arctic GM vie revontulijahtiin noin viiden hengen ryhmän luksuspakulla. Kaikki kuusi on listattu rinnakkain, jotta oikea löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
@@ -121,8 +123,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Die Reiseveranstalter: Sechs Anbieter für Finnisch-Lappland',
     articleDescription:
       'Ein redaktioneller Überblick über die sechs Reiseveranstalter, die Gäste nach Finnisch-Lappland bringen.',
-    h1Top: 'Die Reise-',
-    h1Bot: 'veranstalter',
+    h1: 'Die Reise­veranstalter',
     introCap: 'Ausgangslage',
     intro:
       'Finnisch-Lappland ist eine lange, schmale Region. Die dortigen Anbieter führen die Aktivitäten selbst durch. Sie reisen an und buchen direkt bei ihnen, statt im Ausland ein Charterpaket zu kaufen. Das Angebot ist unterschiedlich: Lapland Safaris deckt das gesamte Aktivitätenprogramm an fünf Standorten ab, Arctic GM nimmt zur Polarlichtjagd nur rund fünf Personen im Luxus-Van mit. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
@@ -157,8 +158,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'ツアー会社｜フィンランド・ラップランドの6社のツアー会社',
     articleDescription:
       'フィンランド・ラップランドへ旅行者を送る6社のツアーオペレーターについての編集ガイドです。',
-    h1Top: '主要',
-    h1Bot: 'オペレーター',
+    h1: '主要オペレーター',
     introCap: 'ドロップキャップ',
     intro:
       'フィンランド・ラップランドは細長い地域です。現地の事業者がアクティビティを自ら運営しており、海外でチャーターのパッケージを買うのではなく、現地に飛んで直接予約します。内容はさまざまで、Lapland Safarisは5つの拠点で全アクティビティを網羅し、Arctic GMは高級バンで約5名までのオーロラハントに絞ります。6社すべてを率直に横並びで掲載していますので、ご希望の旅にぴったりのものが簡単に見つかります。',
@@ -193,8 +193,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: '운영사: 핀란드 라플란드를 다루는 여섯 운영사',
     articleDescription:
       '핀란드 라플란드로 사람들을 보내는 여섯 운영사에 대한 편집 가이드입니다.',
-    h1Top: '대표',
-    h1Bot: '운영사',
+    h1: '대표 운영사',
     introCap: '드롭캡',
     intro:
       '핀란드 라플란드는 길고 좁은 지역입니다. 현지 운영사들이 액티비티를 직접 운영하므로, 해외에서 전세 패키지를 사는 대신 현지로 날아가 직접 예약합니다. 제공 내용은 제각각입니다. Lapland Safaris는 다섯 곳의 거점에서 전 종목을 아우르고, Arctic GM은 럭셔리 밴으로 약 다섯 명까지만 받는 오로라 헌팅에 집중합니다. 여섯 곳 모두 솔직하게 나란히 게재하여 원하시는 여행에 맞는 곳을 쉽게 찾을 수 있도록 했습니다.',
@@ -228,8 +227,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Les voyagistes : Six tour-opérateurs pour la Laponie finlandaise',
     articleDescription:
       'Un guide éditorial des six tour-opérateurs qui emmènent les voyageurs en Laponie finlandaise.',
-    h1Top: 'Les',
-    h1Bot: 'voyagistes',
+    h1: 'Les voyagistes',
     introCap: 'Lettrine',
     intro:
       'La Laponie finlandaise est une région longue et étroite. Ses propres opérateurs exploitent les activités sur place. Vous vous y rendez et réservez directement auprès d\'eux, plutôt que d\'acheter un forfait charter à l\'étranger. Les offres diffèrent : Lapland Safaris couvre tout le programme sur cinq stations, Arctic GM limite sa chasse aux aurores à cinq personnes environ, en van de luxe. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
@@ -263,8 +261,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'I tour operator: Sei operatori per la Lapponia finlandese',
     articleDescription:
       'Una guida editoriale ai sei tour operator che portano persone in Lapponia finlandese.',
-    h1Top: 'Gli',
-    h1Bot: 'operatori',
+    h1: 'Gli operatori',
     introCap: 'Capolettera',
     intro:
       'La Lapponia finlandese è una regione lunga e stretta. Sono gli operatori del posto a gestire le attività. Lei arriva e prenota direttamente da loro, invece di comprare un pacchetto charter all\'estero. L\'offerta varia: Lapland Safaris copre tutte le attività su cinque località, Arctic GM limita la caccia all\'aurora a circa cinque persone in van di lusso. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
@@ -298,8 +295,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'De reisorganisaties: Zes tour operators voor Fins Lapland',
     articleDescription:
       'Een redactionele gids over de zes reisorganisaties die reizigers naar Fins Lapland brengen.',
-    h1Top: 'De',
-    h1Bot: 'operators',
+    h1: 'De operators',
     introCap: 'Drop cap',
     intro:
       'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit. U reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn aurorajacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
@@ -333,8 +329,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Aktörerna: sex researrangörer för finska Lappland',
     articleDescription:
       'En redaktionell guide till de sex aktörer som tar resenärer till finska Lappland.',
-    h1Top: 'De',
-    h1Bot: 'aktörer',
+    h1: 'Aktörerna',
     introCap: 'Utgångsläge',
     intro:
       'Finska Lappland är en lång, smal region. Aktörerna på plats driver aktiviteterna själva. Du reser dit och bokar direkt hos dem, i stället för att köpa ett charterpaket utomlands. Utbudet varierar: Lapland Safaris täcker hela aktivitetsprogrammet på fem orter, Arctic GM tar med sig runt fem personer på norrskensjakt i en lyxig van. Alla sex listas öppet sida vid sida, så att du lätt hittar rätt för resan du faktiskt vill ha.',
@@ -369,8 +364,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Los operadores: Seis empresas para la Laponia finlandesa',
     articleDescription:
       'Una guía editorial de los seis operadores que llevan gente a la Laponia finlandesa.',
-    h1Top: 'Los',
-    h1Bot: 'operadores',
+    h1: 'Los operadores',
     introCap: 'Capitular',
     intro:
       'La Laponia finlandesa es una región larga y estrecha. Son sus propios operadores quienes gestionan las actividades sobre el terreno: usted llega y reserva directamente con ellos, en lugar de comprar un paquete chárter en el extranjero. La oferta varía: Lapland Safaris cubre todo el programa en cinco estaciones; Arctic GM limita su caza de auroras a unas cinco personas en una furgoneta de lujo. Los seis están listados con honestidad, uno al lado del otro, para que sea fácil dar con el adecuado para el viaje que de verdad quiere.',
@@ -405,8 +399,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'As operadoras: Seis empresas para a Lapônia finlandesa',
     articleDescription:
       'Um guia editorial das seis operadoras que levam pessoas à Lapônia finlandesa.',
-    h1Top: 'As',
-    h1Bot: 'operadoras',
+    h1: 'As operadoras',
     introCap: 'Capitular',
     intro:
       'A Lapônia finlandesa é uma região longa e estreita. São as próprias operadoras locais que conduzem as atividades no destino. Você viaja até lá e reserva direto com elas, em vez de comprar um pacote charter no exterior. A oferta varia: a Lapland Safaris cobre todo o programa em cinco estações; a Arctic GM limita sua caça à aurora a cerca de cinco pessoas em uma van de luxo. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
@@ -441,8 +434,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: '运营商：六家做芬兰拉普兰的旅游公司',
     articleDescription:
       '一份关于六家把旅客送往芬兰拉普兰的运营商的编辑指南。',
-    h1Top: '这些',
-    h1Bot: '运营商',
+    h1: '这些运营商',
     introCap: '首字下沉',
     intro:
       '芬兰拉普兰是一片狭长的地区。活动由当地运营商亲自运营——你飞过去，直接向它们预订，而不是在境外购买包机套餐。各家不尽相同：Lapland Safaris 在五个度假地覆盖全部活动，Arctic GM 用豪华厢车把极光追寻的人数控制在约五人。六家都被坦诚地并排列出，方便你为真正想要的行程找到合适的一家。',
@@ -575,7 +567,7 @@ export default function LaplandHolidays() {
 
   return (
     <>
-      <section className="relative min-h-[46svh] md:min-h-[52svh] flex items-center overflow-hidden bg-deep-night">
+      <section className="relative min-h-[56svh] md:min-h-[64svh] flex items-center overflow-hidden bg-deep-night">
         <ImagePlaceholder
           variant="twilight"
           src="/images/hero-holidays.webp"
@@ -590,14 +582,15 @@ export default function LaplandHolidays() {
               'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <h1 className="font-heading tracking-tight leading-[0.9] text-snow text-[clamp(2.75rem,8vw,6.5rem)] break-words hyphens-auto drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
-            {c.h1Top}<br />{c.h1Bot}
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
+          {/* One line at lg+ (soft hyphens in fi/de copy only break below md widths). */}
+          <h1 className="font-heading tracking-tight leading-[0.92] text-snow text-[clamp(2.75rem,7.5vw,7rem)] [hyphens:manual] break-words [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
+            {c.h1}
           </h1>
         </div>
       </section>
 
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16">
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-12 md:-mt-14 mb-2">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {STATS[copyLang(lang)].map((s) => (
             <div

@@ -1235,7 +1235,7 @@ export default function AgeGuide() {
 
   return (
     <>
-      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[46svh] md:min-h-[52svh]">
+      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[56svh] md:min-h-[64svh]">
         <ImagePlaceholder
           variant="fell"
           src="/images/hero-age-guide.webp"
@@ -1250,7 +1250,7 @@ export default function AgeGuide() {
               'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
           <h1
             className="font-heading text-snow leading-[0.82] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
             style={{ fontSize: 'clamp(3rem,10vw,8rem)' }}
@@ -1263,7 +1263,7 @@ export default function AgeGuide() {
         </div>
       </section>
 
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16 mb-4">
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-12 md:-mt-14 mb-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {STATS[copyLang(lang)].map((s) => (
             <div

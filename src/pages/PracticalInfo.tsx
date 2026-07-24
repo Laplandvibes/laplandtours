@@ -843,7 +843,7 @@ export default function PracticalInfo() {
 
   return (
     <>
-      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[46svh] md:min-h-[52svh]">
+      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[56svh] md:min-h-[64svh]">
         <ImagePlaceholder
           variant="ice"
           src="/images/hero-practical.webp"
@@ -858,7 +858,7 @@ export default function PracticalInfo() {
               'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
           <h1
             className="font-heading text-vibe-pink leading-[0.78] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
             style={{ fontSize: 'clamp(3.5rem,12vw,9rem)' }}
@@ -872,7 +872,7 @@ export default function PracticalInfo() {
         </div>
       </section>
 
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16">
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-12 md:-mt-14 mb-2">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {STATS[copyLang(lang)].map((s) => (
             <div

@@ -32,13 +32,20 @@ export function normalizeAdLocale(locale?: string): AdLocale {
 
 /**
  * Mainospaikat (LV Media -myyntitila) näytetään VAIN suomeksi, englanniksi ja
- * ruotsiksi (Vesa 2026-07-13). Mainostilaa ostavat yritykset asioivat näillä
- * kielillä; muut kielet ovat kohdeyleisölle turhia. Koskee MainPartnerBanner /
- * HomeAdSlots / PremiumSpotGrid. EI koske affiliate-AdUniteja.
+ * ruotsiksi.
+ *
+ * Vesa 2026-07-13: mainostilaa ostavat paikalliset ja kansainväliset yritykset
+ * asioivat suomeksi/englanniksi/ruotsiksi (ruotsi = ekosysteemin 12. kieli) —
+ * pääkumppaninauha, kortit, premium-paikat ja "Haluatko mainoksesi tähän?"
+ * -house-adit muilla kielillä ovat kohdeyleisölle turhia ja roskaavat
+ * kansainvälistä sisältöä. Yksi totuuslähde: koskee SponsorStrip / HomeAdSlots /
+ * MainPartnerBanner / PremiumSpotGrid / SubpageAd (LV Median oma inventaari).
+ * EI koske affiliate-AdUniteja (aidot käännetyt matkailutarjoukset kaikille kielille).
  */
+const AD_ENABLED_LOCALES: ReadonlySet<AdLocale> = new Set(['en', 'fi', 'sv']);
+
 export function adLocaleEnabled(locale?: string): boolean {
-  const l: string = normalizeAdLocale(locale);
-  return l === 'en' || l === 'fi' || l === 'sv';
+  return AD_ENABLED_LOCALES.has(normalizeAdLocale(locale));
 }
 
 export type AdSlotsCopy = {
@@ -58,10 +65,22 @@ export type AdSlotsCopy = {
   slotCount: (n: number) => string;
   /** House-ad: pieni yläkulmalabel */
   slotOpen: string;
+  /** /kumppanit-koontisivun otsikko */
+  partnersDirTitle: string;
+  /** /kumppanit-koontisivun johdanto */
+  partnersDirLead: string;
+  /** /kumppanit tyhjänä: otsikko (positiivinen, ei paljasta tyhjyyttä) */
+  partnersDirEmptyTitle: string;
+  /** /kumppanit tyhjänä: leipäteksti (kutsu, ei "ei vielä") */
+  partnersDirEmpty: string;
+  /** Alasivun oma mainospaikka -house-adin alaotsikko */
+  subpageOpen: string;
   /** House-ad: pääotsikko */
   wantYourAd: string;
   /** House-ad (pääsponsori): alaotsikko */
   sponsorSub: string;
+  /** House-ad (etusivun kortti A/B): alaotsikko */
+  cardSub: string;
   /** House-ad (premium-gridi): alaotsikko / tyhjän paikan teksti */
   premiumOpen: string;
   /** House-ad: CTA */
@@ -80,8 +99,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Premium spots',
     slotCount: (n) => n === 1 ? '1 slot' : `${n} slots`,
     slotOpen: 'Ad spot available',
+    partnersDirTitle: 'Our partners',
+    partnersDirLead: 'The companies we work with across the LaplandVibes network: sponsored features and advertisers, all marked as partners.',
+    partnersDirEmptyTitle: 'Partner with us',
+    partnersDirEmpty: 'Get your business in front of travellers planning their Lapland trip: sponsored features and a featured spot across the network.',
+    subpageOpen: 'Your ad on this page, all season',
     wantYourAd: 'Want your ad here?',
     sponsorSub: 'Become a main partner: the most visible placement on this site.',
+    cardSub: 'A front-page ad spot: put your business in front of Lapland travellers.',
     premiumOpen: 'Ad spot available',
     bookCta: 'Book this spot →',
     bookShort: 'Book →',
@@ -95,8 +120,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Premium-paikat',
     slotCount: (n) => n === 1 ? '1 paikka' : `${n} paikkaa`,
     slotOpen: 'Mainospaikka vapaana',
+    partnersDirTitle: 'Kumppanimme',
+    partnersDirLead: 'Yritykset joiden kanssa teemme yhteistyötä LaplandVibes-verkostossa: sponsoroidut jutut ja mainostajat, kaikki merkitty kumppaneiksi.',
+    partnersDirEmptyTitle: 'Ryhdy kumppaniksi',
+    partnersDirEmpty: 'Näy matkailijoille, jotka suunnittelevat Lapin-reissuaan: sponsoroidut jutut ja nostettu paikka verkostossa.',
+    subpageOpen: 'Mainoksesi tällä sivulla koko sesongin',
     wantYourAd: 'Haluatko mainoksesi tähän?',
     sponsorSub: 'Ryhdy sivuston pääkumppaniksi: näkyvin paikka etusivulla.',
+    cardSub: 'Etusivun mainospaikka: nosta yrityksesi Lapin-matkailijoiden eteen.',
     premiumOpen: 'Mainospaikka vapaana',
     bookCta: 'Varaa mainospaikka →',
     bookShort: 'Varaa →',
@@ -110,8 +141,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Premium-Plätze',
     slotCount: (n) => n === 1 ? '1 Platz' : `${n} Plätze`,
     slotOpen: 'Werbeplatz frei',
+    partnersDirTitle: 'Unsere Partner',
+    partnersDirLead: 'Die Unternehmen, mit denen wir im LaplandVibes-Netzwerk zusammenarbeiten: gesponserte Beiträge und Werbepartner, alle als Partner gekennzeichnet.',
+    partnersDirEmptyTitle: 'Partner werden',
+    partnersDirEmpty: 'Zeigen Sie Ihr Unternehmen Reisenden, die ihre Lappland-Reise planen: gesponserte Beiträge und ein hervorgehobener Platz im Netzwerk.',
+    subpageOpen: 'Ihre Anzeige auf dieser Seite, die ganze Saison',
     wantYourAd: 'Möchten Sie hier werben?',
     sponsorSub: 'Werden Sie Hauptpartner: der sichtbarste Platz dieser Website.',
+    cardSub: 'Ein Werbeplatz auf der Startseite: zeigen Sie Ihr Unternehmen den Lappland-Reisenden.',
     premiumOpen: 'Werbeplatz frei',
     bookCta: 'Platz buchen →',
     bookShort: 'Buchen →',
@@ -125,8 +162,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Emplacements premium',
     slotCount: (n) => n === 1 ? '1 emplacement' : `${n} emplacements`,
     slotOpen: 'Emplacement disponible',
+    partnersDirTitle: 'Nos partenaires',
+    partnersDirLead: 'Les entreprises avec lesquelles nous collaborons sur le réseau LaplandVibes: articles sponsorisés et annonceurs, tous signalés comme partenaires.',
+    partnersDirEmptyTitle: 'Devenez partenaire',
+    partnersDirEmpty: 'Montrez votre entreprise aux voyageurs qui préparent leur séjour en Laponie: articles sponsorisés et emplacement mis en avant sur le réseau.',
+    subpageOpen: 'Votre publicité sur cette page, toute la saison',
     wantYourAd: 'Votre publicité ici ?',
     sponsorSub: 'Devenez partenaire principal: l’emplacement le plus visible du site.',
+    cardSub: 'Un emplacement en page d’accueil: placez votre entreprise devant les voyageurs en Laponie.',
     premiumOpen: 'Emplacement disponible',
     bookCta: 'Réserver cet emplacement →',
     bookShort: 'Réserver →',
@@ -140,8 +183,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Spazi premium',
     slotCount: (n) => n === 1 ? '1 spazio' : `${n} spazi`,
     slotOpen: 'Spazio pubblicitario libero',
+    partnersDirTitle: 'I nostri partner',
+    partnersDirLead: 'Le aziende con cui collaboriamo nella rete LaplandVibes: contenuti sponsorizzati e inserzionisti, tutti indicati come partner.',
+    partnersDirEmptyTitle: 'Diventa partner',
+    partnersDirEmpty: 'Mostra la tua azienda ai viaggiatori che pianificano il loro viaggio in Lapponia: contenuti sponsorizzati e uno spazio in evidenza nella rete.',
+    subpageOpen: 'Il tuo annuncio su questa pagina, tutta la stagione',
     wantYourAd: 'Vuoi il tuo annuncio qui?',
     sponsorSub: 'Diventa partner principale: lo spazio più visibile del sito.',
+    cardSub: 'Uno spazio in home page: metti la tua azienda davanti ai viaggiatori in Lapponia.',
     premiumOpen: 'Spazio pubblicitario libero',
     bookCta: 'Prenota questo spazio →',
     bookShort: 'Prenota →',
@@ -155,8 +204,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Espacios premium',
     slotCount: (n) => n === 1 ? '1 espacio' : `${n} espacios`,
     slotOpen: 'Espacio publicitario libre',
+    partnersDirTitle: 'Nuestros colaboradores',
+    partnersDirLead: 'Las empresas con las que trabajamos en la red LaplandVibes: contenidos patrocinados y anunciantes, todos marcados como colaboradores.',
+    partnersDirEmptyTitle: 'Colabora con nosotros',
+    partnersDirEmpty: 'Muestra tu empresa a los viajeros que planean su viaje a Laponia: contenidos patrocinados y un espacio destacado en la red.',
+    subpageOpen: 'Tu anuncio en esta página, toda la temporada',
     wantYourAd: '¿Quieres tu anuncio aquí?',
     sponsorSub: 'Conviértete en colaborador principal: el espacio más visible del sitio.',
+    cardSub: 'Un espacio en la portada: pon tu empresa ante los viajeros de Laponia.',
     premiumOpen: 'Espacio publicitario libre',
     bookCta: 'Reservar este espacio →',
     bookShort: 'Reservar →',
@@ -170,8 +225,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Espaços premium',
     slotCount: (n) => n === 1 ? '1 espaço' : `${n} espaços`,
     slotOpen: 'Espaço publicitário livre',
+    partnersDirTitle: 'Nossos parceiros',
+    partnersDirLead: 'As empresas com quem trabalhamos na rede LaplandVibes: conteúdos patrocinados e anunciantes, todos marcados como parceiros.',
+    partnersDirEmptyTitle: 'Seja nosso parceiro',
+    partnersDirEmpty: 'Mostre a sua empresa aos viajantes que planejam a viagem à Lapônia: conteúdos patrocinados e um espaço em destaque na rede.',
+    subpageOpen: 'Seu anúncio nesta página, a temporada toda',
     wantYourAd: 'Quer o seu anúncio aqui?',
     sponsorSub: 'Torne-se parceiro principal: o espaço mais visível do site.',
+    cardSub: 'Um espaço na página inicial: coloque a sua empresa diante dos viajantes da Lapônia.',
     premiumOpen: 'Espaço publicitário livre',
     bookCta: 'Reservar este espaço →',
     bookShort: 'Reservar →',
@@ -185,8 +246,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Premium-plekken',
     slotCount: (n) => n === 1 ? '1 plek' : `${n} plekken`,
     slotOpen: 'Advertentieplek beschikbaar',
+    partnersDirTitle: 'Onze partners',
+    partnersDirLead: 'De bedrijven waarmee we samenwerken in het LaplandVibes-netwerk: gesponsorde artikelen en adverteerders, allemaal als partner gemarkeerd.',
+    partnersDirEmptyTitle: 'Word partner',
+    partnersDirEmpty: 'Laat uw bedrijf zien aan reizigers die hun Lapland-reis plannen: gesponsorde artikelen en een uitgelichte plek in het netwerk.',
+    subpageOpen: 'Uw advertentie op deze pagina, het hele seizoen',
     wantYourAd: 'Uw advertentie hier?',
     sponsorSub: 'Word hoofdpartner: de meest zichtbare plek op deze site.',
+    cardSub: 'Een advertentieplek op de homepage: zet uw bedrijf voor Lapland-reizigers.',
     premiumOpen: 'Advertentieplek beschikbaar',
     bookCta: 'Reserveer deze plek →',
     bookShort: 'Reserveer →',
@@ -200,8 +267,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'Premiumplatser',
     slotCount: (n) => n === 1 ? '1 plats' : `${n} platser`,
     slotOpen: 'Annonsplats ledig',
+    partnersDirTitle: 'Våra partner',
+    partnersDirLead: 'Företagen vi samarbetar med i LaplandVibes-nätverket: sponsrat innehåll och annonsörer, alla märkta som partner.',
+    partnersDirEmptyTitle: 'Bli partner',
+    partnersDirEmpty: 'Visa ditt företag för resenärer som planerar sin Lapplandsresa: sponsrat innehåll och en framlyft plats i nätverket.',
+    subpageOpen: 'Din annons på denna sida, hela säsongen',
     wantYourAd: 'Vill du synas här?',
     sponsorSub: 'Bli huvudpartner: den mest synliga platsen på den här sidan.',
+    cardSub: 'En annonsplats på förstasidan: visa ditt företag för Lapplands resenärer.',
     premiumOpen: 'Annonsplats ledig',
     bookCta: 'Boka denna plats →',
     bookShort: 'Boka →',
@@ -215,8 +288,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: 'プレミアム枠',
     slotCount: (n) => `${n}枠`,
     slotOpen: '広告枠 募集中',
+    partnersDirTitle: 'パートナー企業',
+    partnersDirLead: 'LaplandVibes ネットワークで協業する企業：スポンサード記事と広告主、すべてパートナーとして表示されます。',
+    partnersDirEmptyTitle: 'パートナーになる',
+    partnersDirEmpty: 'ラップランド旅行を計画する旅行者にあなたのビジネスを：スポンサード記事とネットワーク内の注目枠。',
+    subpageOpen: 'このページにあなたの広告を、シーズンを通して',
     wantYourAd: 'ここに広告を掲載しませんか？',
     sponsorSub: 'メインパートナーに：サイトで最も目立つ広告枠です。',
+    cardSub: 'トップページの広告枠：ラップランドの旅行者にあなたのビジネスを。',
     premiumOpen: '広告枠 募集中',
     bookCta: 'この枠を予約 →',
     bookShort: '予約 →',
@@ -230,8 +309,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: '프리미엄 자리',
     slotCount: (n) => `${n}자리`,
     slotOpen: '광고 자리 모집 중',
+    partnersDirTitle: '파트너 기업',
+    partnersDirLead: 'LaplandVibes 네트워크에서 협업하는 기업: 스폰서 콘텐츠와 광고주, 모두 파트너로 표시됩니다.',
+    partnersDirEmptyTitle: '파트너 되기',
+    partnersDirEmpty: '라플란드 여행을 계획하는 여행자에게 귀사를 노출하세요. 스폰서 콘텐츠와 네트워크 내 추천 자리.',
+    subpageOpen: '이 페이지에 광고를, 시즌 내내',
     wantYourAd: '이곳에 광고를 게재해 보세요',
     sponsorSub: '메인 파트너가 되어 사이트에서 가장 눈에 띄는 자리를 차지하세요.',
+    cardSub: '첫 페이지 광고 자리: 라플란드 여행자에게 귀사를 노출하세요.',
     premiumOpen: '광고 자리 모집 중',
     bookCta: '이 자리 예약하기 →',
     bookShort: '예약 →',
@@ -245,8 +330,14 @@ export const AD_SLOTS_COPY: Record<AdLocale, AdSlotsCopy> = {
     premiumSpots: '高级广告位',
     slotCount: (n) => `${n} 个广告位`,
     slotOpen: '广告位招商中',
+    partnersDirTitle: '我们的合作伙伴',
+    partnersDirLead: '在 LaplandVibes 网络中与我们合作的企业——赞助内容和广告主，均标注为合作伙伴。',
+    partnersDirEmptyTitle: '成为合作伙伴',
+    partnersDirEmpty: '让您的企业出现在规划拉普兰之旅的旅行者面前——赞助内容和网络中的推荐位。',
+    subpageOpen: '您的广告将全季展示在本页',
     wantYourAd: '想在这里展示您的广告吗？',
     sponsorSub: '成为主要合作伙伴——本站最显眼的广告位。',
+    cardSub: '首页广告位——让您的企业出现在拉普兰旅行者面前。',
     premiumOpen: '广告位招商中',
     bookCta: '预订此广告位 →',
     bookShort: '预订 →',
