@@ -469,6 +469,87 @@ const COPY: Record<CopyLang, {
   },
 };
 
+/**
+ * Hero stat tiles — REAL numbers only, sourced from this page's own content:
+ * 6 operators listed, 7 comparison categories in the matrix, 0 € commission
+ * from the operator list (stated in the "note" copy), last editorial review
+ * July 2026 (OperatorGuide/OperatorMatrix leads).
+ */
+const STATS: Record<CopyLang, { value: string; label: string }[]> = {
+  en: [
+    { value: '6', label: 'Operators compared' },
+    { value: '7', label: 'Categories rated' },
+    { value: '0 €', label: 'Commission from list' },
+    { value: '07/26', label: 'Last reviewed' },
+  ],
+  fi: [
+    { value: '6', label: 'Toimijaa vertailussa' },
+    { value: '7', label: 'Vertailualuetta' },
+    { value: '0 €', label: 'Provisiota listalta' },
+    { value: '07/26', label: 'Viimeksi tarkistettu' },
+  ],
+  de: [
+    { value: '6', label: 'Anbieter im Vergleich' },
+    { value: '7', label: 'Bewertete Kategorien' },
+    { value: '0 €', label: 'Provision aus der Liste' },
+    { value: '07/26', label: 'Zuletzt geprüft' },
+  ],
+  ja: [
+    { value: '6', label: '比較する会社' },
+    { value: '7', label: '評価カテゴリー' },
+    { value: '0 €', label: 'リストからの手数料' },
+    { value: '07/26', label: '最終確認' },
+  ],
+  ko: [
+    { value: '6', label: '비교 운영사' },
+    { value: '7', label: '평가 카테고리' },
+    { value: '0 €', label: '목록 수수료' },
+    { value: '07/26', label: '최근 검토' },
+  ],
+  fr: [
+    { value: '6', label: 'Opérateurs comparés' },
+    { value: '7', label: 'Catégories notées' },
+    { value: '0 €', label: 'Commission sur la liste' },
+    { value: '07/26', label: 'Dernier examen' },
+  ],
+  it: [
+    { value: '6', label: 'Operatori a confronto' },
+    { value: '7', label: 'Categorie valutate' },
+    { value: '0 €', label: 'Commissioni dalla lista' },
+    { value: '07/26', label: 'Ultima revisione' },
+  ],
+  nl: [
+    { value: '6', label: 'Aanbieders vergeleken' },
+    { value: '7', label: 'Beoordeelde categorieën' },
+    { value: '0 €', label: 'Commissie uit de lijst' },
+    { value: '07/26', label: 'Laatst herzien' },
+  ],
+  sv: [
+    { value: '6', label: 'Aktörer jämförda' },
+    { value: '7', label: 'Bedömda kategorier' },
+    { value: '0 €', label: 'Provision från listan' },
+    { value: '07/26', label: 'Senast granskad' },
+  ],
+  es: [
+    { value: '6', label: 'Operadores comparados' },
+    { value: '7', label: 'Categorías valoradas' },
+    { value: '0 €', label: 'Comisión de la lista' },
+    { value: '07/26', label: 'Última revisión' },
+  ],
+  'pt-BR': [
+    { value: '6', label: 'Operadoras comparadas' },
+    { value: '7', label: 'Categorias avaliadas' },
+    { value: '0 €', label: 'Comissão da lista' },
+    { value: '07/26', label: 'Última revisão' },
+  ],
+  'zh-CN': [
+    { value: '6', label: '对比运营商' },
+    { value: '7', label: '评估类别' },
+    { value: '0 €', label: '列表佣金' },
+    { value: '07/26', label: '最近复核' },
+  ],
+};
+
 export default function LaplandHolidays() {
   const lang = useLang();
   const to = useLocalePath();
@@ -494,26 +575,41 @@ export default function LaplandHolidays() {
 
   return (
     <>
-      <section className="relative min-h-[56vh] md:min-h-[62vh] flex items-center overflow-hidden bg-deep-night">
+      <section className="relative min-h-[46svh] md:min-h-[52svh] flex items-center overflow-hidden bg-deep-night">
         <ImagePlaceholder
           variant="twilight"
           src="/images/hero-holidays.webp"
           alt={c.altHero}
           priority
+          imgClassName="brightness-[1.35] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,0.80) 0%, rgba(15,23,42,0.42) 50%, rgba(15,23,42,0.30) 100%)',
+              'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 py-16 sm:py-20">
-          <h1 className="font-heading tracking-tight leading-[0.88] text-snow text-[clamp(3rem,10vw,9rem)] break-words hyphens-auto drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <h1 className="font-heading tracking-tight leading-[0.9] text-snow text-[clamp(2.75rem,8vw,6.5rem)] break-words hyphens-auto drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
             {c.h1Top}<br />{c.h1Bot}
           </h1>
         </div>
       </section>
+
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {STATS[copyLang(lang)].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-white/10 bg-deep-night/85 backdrop-blur-md p-4 md:p-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            >
+              <p className="font-heading text-4xl md:text-5xl text-vibe-pink leading-none">{s.value}</p>
+              <p className="cap-meta mt-2 !tracking-[0.14em]">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <PageBreadcrumb />
 
@@ -543,14 +639,14 @@ export default function LaplandHolidays() {
       <OperatorMatrix />
 
       <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-12 gap-8">
-          <div className="col-span-12 sm:col-span-4">
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-12 gap-8">
+          <div className="sm:col-span-4">
             <p className="cap-meta">{c.chapter}</p>
             <h2 className="mt-2 font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-6xl">
               {c.addons}
             </h2>
           </div>
-          <div className="col-span-12 sm:col-span-7 sm:col-start-6">
+          <div className="sm:col-span-7 sm:col-start-6">
             <p className="text-snow/70 font-body text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
               {c.addonsBody}
             </p>

@@ -8,9 +8,9 @@
  * operator's own marketing claim. We do not have affiliate contracts with any
  * of these operators (no commission flows back to us from these clicks).
  *
- * The site DOES earn affiliate commission on the cross-sell rail (Hotels.com
- * via CJ, EconomyBookings via CJ, GetYourGuide direct partner_id) — those
- * sit in `<AffiliateCTA>`, completely separate from this operator list.
+ * The site DOES earn affiliate commission on the cross-sell rail (hotels and
+ * cars via the go.laplandvibes.com Worker, GetYourGuide direct partner_id).
+ * Those sit in `<AffiliateCTA>`, completely separate from this operator list.
  *
  * Star scale (subjective editorial, reviewed every 6 months):
  *   ★★★★  signature specialty — what the operator is famous for

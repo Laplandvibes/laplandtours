@@ -1131,6 +1131,86 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
   );
 }
 
+/**
+ * Hero stat tiles — REAL numbers from this page's own matrix: 5 age bands
+ * (0–2 / 3–5 / 6–9 / 10–15 / 16+), 6 staple activities, snowmobile tandem
+ * from 12 with a parent, solo from 16 with a driving licence.
+ */
+const STATS: Record<CopyLang, { value: string; label: string }[]> = {
+  en: [
+    { value: '5', label: 'Age bands' },
+    { value: '6', label: 'Activities rated' },
+    { value: '12+', label: 'Snowmobile tandem' },
+    { value: '16+', label: 'Solo with licence' },
+  ],
+  fi: [
+    { value: '5', label: 'Ikäryhmää' },
+    { value: '6', label: 'Aktiviteettia' },
+    { value: '12+', label: 'Kelkka tandemina' },
+    { value: '16+', label: 'Yksin ajokortilla' },
+  ],
+  de: [
+    { value: '5', label: 'Altersgruppen' },
+    { value: '6', label: 'Aktivitäten bewertet' },
+    { value: '12+', label: 'Schneemobil-Tandem' },
+    { value: '16+', label: 'Solo mit Führerschein' },
+  ],
+  ja: [
+    { value: '5', label: '年齢グループ' },
+    { value: '6', label: 'アクティビティ' },
+    { value: '12+', label: 'スノーモービル同乗' },
+    { value: '16+', label: '免許で単独運転' },
+  ],
+  ko: [
+    { value: '5', label: '연령 그룹' },
+    { value: '6', label: '액티비티' },
+    { value: '12+', label: '스노모빌 탠덤' },
+    { value: '16+', label: '면허 소지 단독' },
+  ],
+  fr: [
+    { value: '5', label: 'Tranches d\'âge' },
+    { value: '6', label: 'Activités évaluées' },
+    { value: '12+', label: 'Motoneige en tandem' },
+    { value: '16+', label: 'Seul avec permis' },
+  ],
+  it: [
+    { value: '5', label: 'Fasce d\'età' },
+    { value: '6', label: 'Attività valutate' },
+    { value: '12+', label: 'Motoslitta in tandem' },
+    { value: '16+', label: 'Da solo con patente' },
+  ],
+  nl: [
+    { value: '5', label: 'Leeftijdsgroepen' },
+    { value: '6', label: 'Activiteiten beoordeeld' },
+    { value: '12+', label: 'Sneeuwscooter-tandem' },
+    { value: '16+', label: 'Solo met rijbewijs' },
+  ],
+  sv: [
+    { value: '5', label: 'Åldersgrupper' },
+    { value: '6', label: 'Aktiviteter bedömda' },
+    { value: '12+', label: 'Skoter i tandem' },
+    { value: '16+', label: 'Ensam med körkort' },
+  ],
+  es: [
+    { value: '5', label: 'Franjas de edad' },
+    { value: '6', label: 'Actividades valoradas' },
+    { value: '12+', label: 'Motonieve en tándem' },
+    { value: '16+', label: 'Solo con carné' },
+  ],
+  'pt-BR': [
+    { value: '5', label: 'Faixas etárias' },
+    { value: '6', label: 'Atividades avaliadas' },
+    { value: '12+', label: 'Snowmobile em tandem' },
+    { value: '16+', label: 'Sozinho com carteira' },
+  ],
+  'zh-CN': [
+    { value: '5', label: '年龄段' },
+    { value: '6', label: '评估活动' },
+    { value: '12+', label: '雪地摩托双人' },
+    { value: '16+', label: '持照单独驾驶' },
+  ],
+};
+
 export default function AgeGuide() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
@@ -1155,24 +1235,25 @@ export default function AgeGuide() {
 
   return (
     <>
-      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[56vh] md:min-h-[62vh]">
+      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[46svh] md:min-h-[52svh]">
         <ImagePlaceholder
           variant="fell"
           src="/images/hero-age-guide.webp"
           alt={c.altHero}
           priority
+          imgClassName="brightness-[1.3] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,0.80) 0%, rgba(15,23,42,0.42) 50%, rgba(15,23,42,0.30) 100%)',
+              'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 py-24 sm:py-28">
+        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
           <h1
             className="font-heading text-snow leading-[0.82] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
-            style={{ fontSize: 'clamp(4rem,14vw,11rem)' }}
+            style={{ fontSize: 'clamp(3rem,10vw,8rem)' }}
           >
             0&nbsp;–&nbsp;<span className="text-vibe-pink">16+</span>
           </h1>
@@ -1181,6 +1262,20 @@ export default function AgeGuide() {
           </p>
         </div>
       </section>
+
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16 mb-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {STATS[copyLang(lang)].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-white/10 bg-deep-night/85 backdrop-blur-md p-4 md:p-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            >
+              <p className="font-heading text-4xl md:text-5xl text-vibe-pink leading-none">{s.value}</p>
+              <p className="cap-meta mt-2 !tracking-[0.14em]">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <PageBreadcrumb />
 

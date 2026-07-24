@@ -190,7 +190,8 @@ export function articleSchema(opts: {
     url: `${SITE_URL}${opts.path}`,
     image: `${SITE_URL}/og-default.jpg`,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${opts.path}` },
-    inLanguage: 'en',
+    // inLanguage intentionally omitted — setPageMeta's injectInLanguage stamps
+    // the page's real BCP47 locale (hardcoding 'en' here mislabeled 11 locales).
     datePublished: opts.datePublished ?? '2026-05-09',
     dateModified: opts.dateModified ?? '2026-05-09',
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

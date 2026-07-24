@@ -133,23 +133,24 @@ export default function Hero() {
   const c = COPY[lang];
   const heroBase = isSummerSeason() ? 'hero-home-summer' : 'hero-home';
   return (
-    <section className="relative flex items-center min-h-[65svh] sm:min-h-[80svh] lg:min-h-[640px] lg:max-h-[780px] overflow-hidden">
+    <section className="relative flex items-center min-h-[60svh] sm:min-h-[72svh] lg:min-h-[600px] lg:max-h-[720px] overflow-hidden">
       <ImagePlaceholder
         variant="aurora"
         src={`/images/${heroBase}.webp`}
         alt={c.alt}
         objectPosition="center 35%"
         priority
+        imgClassName={heroBase === 'hero-home' ? 'brightness-[1.3] saturate-[1.08]' : ''}
       />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to top, rgba(15,23,42,0.80) 0%, rgba(15,23,42,0.42) 50%, rgba(15,23,42,0.30) 100%)',
+            'linear-gradient(to top, rgba(15,23,42,0.68) 0%, rgba(15,23,42,0.26) 50%, rgba(15,23,42,0.08) 100%)',
         }}
       />
 
-      <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 py-24 sm:py-28 lg:py-20">
+      <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 py-20 sm:py-24 lg:py-20 flex flex-col items-center text-center lg:items-start lg:text-left">
         <h1 className="font-heading tracking-tight leading-[0.95] text-snow text-[clamp(2.5rem,6vw,5rem)] break-words hyphens-auto [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
           {c.h1}
         </h1>
@@ -161,7 +162,7 @@ export default function Hero() {
           {c.lead}
         </p>
 
-        <div className="mt-7 sm:mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="mt-7 sm:mt-9 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3">
           <a
             href="#build"
             className="group inline-flex items-center gap-2 px-5 py-3 bg-vibe-pink hover:bg-vibe-pink/90 text-white font-body font-semibold text-base transition-colors shadow-lg shadow-vibe-pink/25"

@@ -468,12 +468,15 @@ export default function CustomTourBuilder() {
   return (
     <section id="custom-tour" className="py-20 md:py-28 bg-deep-night">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-12 gap-x-10 gap-y-12">
-          <div className="col-span-12 lg:col-span-5">
+        {/* grid-cols-1 base: a col-span-12 child inside grid-cols-12 + gap-x-10 forces
+            11 fixed gaps (440px) = horizontal overflow at 375px. */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-12">
+          <div className="md:col-span-5">
             <p className="cap-meta">{c.eyebrow}</p>
-            <h2 className="mt-2 font-heading text-snow tracking-tight leading-[0.92] text-5xl sm:text-6xl lg:text-7xl break-words hyphens-auto">
+            {/* h1: this component renders only on /design-tour, which previously had no H1 at all. */}
+            <h1 className="mt-2 font-heading text-snow tracking-tight leading-[0.92] text-5xl sm:text-6xl lg:text-7xl break-words hyphens-auto">
               {c.h2Line1}<br />{c.h2Line2}
-            </h2>
+            </h1>
             <p className="mt-6 text-snow/75 font-body text-base sm:text-lg leading-relaxed max-w-prose">
               {c.lead}
             </p>
@@ -491,7 +494,7 @@ export default function CustomTourBuilder() {
             </p>
           </div>
 
-          <div className="col-span-12 lg:col-span-6 lg:col-start-7 bg-deeper-night p-8 sm:p-10 border border-white/10">
+          <div className="md:col-span-6 md:col-start-7 bg-deeper-night p-8 sm:p-10 border border-white/10 rounded-2xl">
             {submitted ? (
               <div className="py-12">
                 <p className="cap-meta">{c.sentEyebrow}</p>

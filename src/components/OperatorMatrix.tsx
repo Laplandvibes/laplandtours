@@ -19,7 +19,7 @@ const COPY: Record<CopyLang, {
     meta: 'Four dots = signature specialty  ·  one = competent  ·  em-dash = does not offer',
     operator: 'Operator',
     tier: 'Tier',
-    reviewedNote: 'Editorial assessment · last reviewed May 2026',
+    reviewedNote: 'Editorial assessment · last reviewed July 2026',
   },
   fi: {
     h2Line1: 'Rinnan vertailu',

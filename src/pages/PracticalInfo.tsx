@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse } from 'lucide-react';
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
@@ -735,6 +736,89 @@ const COPY: Record<CopyLang, {
   },
 };
 
+/** Icon per numbered section (01–06), arctic-cyan chip per the LV card pattern. */
+const SECTION_ICONS = [Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse];
+
+/**
+ * Hero stat tiles — REAL numbers from this page's own sections: 3 Lapland
+ * airports (RVN/KTT/IVL, §01), 12 h VR night train (§01/§05), 90 visa-free
+ * days under Schengen (§04), 112 emergency number (§06).
+ */
+const STATS: Record<CopyLang, { value: string; label: string }[]> = {
+  en: [
+    { value: '3', label: 'Lapland airports' },
+    { value: '12 h', label: 'Night train from HEL' },
+    { value: '90', label: 'Visa-free days' },
+    { value: '112', label: 'Emergency number' },
+  ],
+  fi: [
+    { value: '3', label: 'Lapin lentokenttää' },
+    { value: '12 h', label: 'Yöjuna Helsingistä' },
+    { value: '90', label: 'Viisumivapaata päivää' },
+    { value: '112', label: 'Hätänumero' },
+  ],
+  de: [
+    { value: '3', label: 'Lappland-Flughäfen' },
+    { value: '12 h', label: 'Nachtzug ab Helsinki' },
+    { value: '90', label: 'Visafreie Tage' },
+    { value: '112', label: 'Notruf' },
+  ],
+  ja: [
+    { value: '3', label: 'ラップランドの空港' },
+    { value: '12 h', label: 'ヘルシンキ発夜行列車' },
+    { value: '90', label: 'ビザなし滞在日数' },
+    { value: '112', label: '緊急番号' },
+  ],
+  ko: [
+    { value: '3', label: '라플란드 공항' },
+    { value: '12 h', label: '헬싱키발 야간열차' },
+    { value: '90', label: '무비자 체류일' },
+    { value: '112', label: '응급 전화' },
+  ],
+  fr: [
+    { value: '3', label: 'Aéroports lapons' },
+    { value: '12 h', label: 'Train de nuit depuis HEL' },
+    { value: '90', label: 'Jours sans visa' },
+    { value: '112', label: 'Numéro d\'urgence' },
+  ],
+  it: [
+    { value: '3', label: 'Aeroporti lapponi' },
+    { value: '12 h', label: 'Treno notturno da HEL' },
+    { value: '90', label: 'Giorni senza visto' },
+    { value: '112', label: 'Numero di emergenza' },
+  ],
+  nl: [
+    { value: '3', label: 'Lapland-luchthavens' },
+    { value: '12 u', label: 'Nachttrein vanaf HEL' },
+    { value: '90', label: 'Visumvrije dagen' },
+    { value: '112', label: 'Noodnummer' },
+  ],
+  sv: [
+    { value: '3', label: 'Flygplatser i Lappland' },
+    { value: '12 h', label: 'Nattåg från Helsingfors' },
+    { value: '90', label: 'Visumfria dagar' },
+    { value: '112', label: 'Nödnummer' },
+  ],
+  es: [
+    { value: '3', label: 'Aeropuertos lapones' },
+    { value: '12 h', label: 'Tren nocturno desde HEL' },
+    { value: '90', label: 'Días sin visado' },
+    { value: '112', label: 'Número de emergencias' },
+  ],
+  'pt-BR': [
+    { value: '3', label: 'Aeroportos da Lapônia' },
+    { value: '12 h', label: 'Trem noturno de HEL' },
+    { value: '90', label: 'Dias sem visto' },
+    { value: '112', label: 'Número de emergência' },
+  ],
+  'zh-CN': [
+    { value: '3', label: '拉普兰机场' },
+    { value: '12 h', label: '赫尔辛基夜间列车' },
+    { value: '90', label: '免签天数' },
+    { value: '112', label: '紧急电话' },
+  ],
+};
+
 export default function PracticalInfo() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
@@ -759,24 +843,25 @@ export default function PracticalInfo() {
 
   return (
     <>
-      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[56vh] md:min-h-[62vh]">
+      <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[46svh] md:min-h-[52svh]">
         <ImagePlaceholder
           variant="ice"
           src="/images/hero-practical.webp"
           alt={c.altHero}
           priority
+          imgClassName="brightness-[1.35] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,0.80) 0%, rgba(15,23,42,0.42) 50%, rgba(15,23,42,0.30) 100%)',
+              'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 py-24 sm:py-28">
+        <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-14 sm:pt-16 pb-24 md:pb-28 flex flex-col items-center text-center lg:items-start lg:text-left">
           <h1
             className="font-heading text-vibe-pink leading-[0.78] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
-            style={{ fontSize: 'clamp(5rem,18vw,14rem)' }}
+            style={{ fontSize: 'clamp(3.5rem,12vw,9rem)' }}
             aria-label={c.ariaH1}
           >
             {c.h1}
@@ -787,36 +872,63 @@ export default function PracticalInfo() {
         </div>
       </section>
 
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-14 md:-mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {STATS[copyLang(lang)].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-white/10 bg-deep-night/85 backdrop-blur-md p-4 md:p-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            >
+              <p className="font-heading text-4xl md:text-5xl text-vibe-pink leading-none">{s.value}</p>
+              <p className="cap-meta mt-2 !tracking-[0.14em]">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <PageBreadcrumb />
 
-      <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-14">
-          {c.sections.map((s) => (
-            <article
-              key={s.n}
-              className="grid grid-cols-12 gap-x-6 gap-y-2 pb-12 rule-hairline"
-            >
-              <span className="col-span-12 sm:col-span-2 cap-meta self-start pt-1">{s.n}</span>
-              <h2 className="col-span-12 sm:col-span-3 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
-                {s.title}
-              </h2>
-              <p className="col-span-12 sm:col-span-7 text-snow/70 font-body text-[15px] sm:text-base leading-[1.7]">
-                {s.body}
-              </p>
-            </article>
-          ))}
+      <section className="bg-deep-night py-16 sm:py-24">
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid md:grid-cols-2 gap-5 md:gap-6">
+          {c.sections.map((s, i) => {
+            const Icon = SECTION_ICONS[i] ?? Plane;
+            return (
+              <article
+                key={s.n}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <span
+                    className="flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
+                    style={{ background: 'rgba(6,182,212,0.10)', border: '1px solid rgba(6,182,212,0.30)' }}
+                  >
+                    <Icon className="w-5 h-5 text-arctic-cyan" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <span className="cap-meta block">{s.n}</span>
+                    <h2 className="font-heading tracking-wide text-snow text-2xl sm:text-3xl leading-tight">
+                      {s.title}
+                    </h2>
+                  </div>
+                </div>
+                <p className="text-snow/70 font-body text-[15px] sm:text-base leading-[1.7]">
+                  {s.body}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       <section className="bg-deeper-night py-16 sm:py-20">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-12 gap-6">
-          <div className="col-span-12 sm:col-span-5">
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-12 gap-6">
+          <div className="sm:col-span-5">
             <p className="cap-meta">{c.addonsEyebrow}</p>
             <h2 className="mt-2 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
               {c.addonsH2}
             </h2>
           </div>
-          <div className="col-span-12 sm:col-span-6 sm:col-start-7 grid sm:grid-cols-3 gap-3 self-end">
+          <div className="sm:col-span-6 sm:col-start-7 grid sm:grid-cols-3 gap-3 self-end">
             <AffiliateCTA
               partner="hotels"
               sid="practical_hotels_cta"

@@ -200,6 +200,12 @@ const ITEMS: Record<
   ],
 };
 
+/** Image top per teaser target — reuses hero art already in the repo (no new assets). */
+const TEASER_IMAGE: Record<string, string> = {
+  '/age-guide': '/images/hero-age-guide',
+  '/practical-info': '/images/hero-practical',
+};
+
 export default function SectionTeasers() {
   const lang = useLang();
   const to = useLocalePath();
@@ -207,25 +213,53 @@ export default function SectionTeasers() {
 
   return (
     <section className="bg-deeper-night py-16 sm:py-20">
-      <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid sm:grid-cols-2 gap-x-12 gap-y-12">
-        {items.map((it) => (
-          <Link
-            key={it.to}
-            to={to(it.to)}
-            className="group block border-t border-white/15 pt-6 hover:border-vibe-pink transition-colors"
-          >
-            <p className="cap-meta">{it.eyebrow}</p>
-            <h3 className="mt-3 font-heading tracking-wide text-snow group-hover:text-vibe-pink text-3xl sm:text-4xl leading-[1.05] transition-colors [text-wrap:balance]">
-              {it.title}
-            </h3>
-            <p className="mt-3 text-snow/80 font-body text-[15px] leading-relaxed max-w-md">
-              {it.body}
-            </p>
-            <span className="mt-4 inline-flex items-center gap-2 text-snow/85 group-hover:text-vibe-pink font-body text-sm transition-colors">
-              {it.readLabel} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Link>
-        ))}
+      <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid md:grid-cols-2 gap-6 md:gap-8">
+        {items.map((it) => {
+          const img = TEASER_IMAGE[it.to];
+          return (
+            <Link
+              key={it.to}
+              to={to(it.to)}
+              className="group block rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-vibe-pink/50 transition-colors"
+            >
+              {img ? (
+                <div className="relative h-36 sm:h-40 overflow-hidden">
+                  <picture>
+                    <source srcSet={`${img}.avif`} type="image/avif" />
+                    <img
+                      src={`${img}.webp`}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover brightness-[1.3] saturate-[1.1] transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </picture>
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        'linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.12) 60%)',
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="relative h-36 sm:h-40 bg-gradient-to-br from-[#0d2818] via-[#0F172A] to-[#1e1b4b]" />
+              )}
+              <div className="p-6 sm:p-7">
+                <p className="cap-meta">{it.eyebrow}</p>
+                <h3 className="mt-3 font-heading tracking-wide text-snow group-hover:text-vibe-pink text-3xl sm:text-4xl leading-[1.05] transition-colors [text-wrap:balance]">
+                  {it.title}
+                </h3>
+                <p className="mt-3 text-snow/80 font-body text-[15px] leading-relaxed max-w-md">
+                  {it.body}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-snow/85 group-hover:text-vibe-pink font-body text-sm transition-colors">
+                  {it.readLabel} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
