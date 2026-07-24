@@ -227,7 +227,7 @@ export default function CookieBanner({
 
       <style>{`
         /* ── Mobile ── (fixed pixel bottoms so mobile browser chrome resize does not displace the flag)
-           Sized down 2026-07-06 — Vesa: the flag was disproportionately huge on many sites. */
+           Sized down 2026-07-06. Vesa: the flag was disproportionately huge on many sites. */
         .lv-pole   { width: 3px; left: 12px; height: 250px; }
         .lv-finial { top: -4px; width: 8px; height: 8px; }
         .lv-banner { left: 20px; bottom: 110px; }

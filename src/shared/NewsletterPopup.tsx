@@ -384,7 +384,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   },
   sv: {
     successHeadline: 'Du är med.',
-    successBody: 'Kolla din inkorg efter välkomstmejlet — nästa norrskensvarning kommer när prognosen ljusnar.',
+    successBody: 'Kolla din inkorg efter välkomstmejlet. Nästa norrskensvarning kommer när prognosen ljusnar.',
     alreadyHeadline: 'Du står redan på listan!',
     alreadyBody: 'Det ser ut som att du redan prenumererar. Lappland-uppdateringarna fortsätter som vanligt.',
     emailPlaceholder: 'Din e-postadress',

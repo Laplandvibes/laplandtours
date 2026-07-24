@@ -89,7 +89,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'järjestäjät',
     introCap: 'Lähestymistapa',
     intro:
-      'Suomen Lappi on pitkä ja kapea maakunta. Sen omat toimijat pyörittävät aktiviteetit paikan päällä — lennät perille ja varaat suoraan heiltä, et osta charter-pakettia ulkomailta. Tarjonta vaihtelee: Lapland Safaris kattaa koko aktiviteettikirjon viidellä keskuksella, Arctic GM vie revontulijahtiin noin viiden hengen ryhmän luksuspakulla. Kaikki kuusi on listattu rinnakkain, jotta oikea löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Suomen Lappi on pitkä ja kapea maakunta. Sen omat toimijat pyörittävät aktiviteetit paikan päällä. Lennät perille ja varaat suoraan heiltä, et osta charter-pakettia ulkomailta. Tarjonta vaihtelee: Lapland Safaris kattaa koko aktiviteettikirjon viidellä keskuksella, Arctic GM vie revontulijahtiin noin viiden hengen ryhmän luksuspakulla. Kaikki kuusi on listattu rinnakkain, jotta oikea löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
     noteEyebrow: 'Miksi tämä sivu',
     noteBody:
       'Täällä ei myydä mitään. Yhdenkään alla luetellun toimijan kanssa ei ole kaupallista sopimusta, eikä linkin klikkauksesta makseta provisiota. Kumppanuusprovisiota kertyy vain sivun alaosan ristiinmyyntiriviltä (hotelliyö, vuokra-auto, päiväretki).',
@@ -125,7 +125,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'veranstalter',
     introCap: 'Ausgangslage',
     intro:
-      'Finnisch-Lappland ist eine lange, schmale Region. Die dortigen Anbieter führen die Aktivitäten selbst durch — Sie reisen an und buchen direkt bei ihnen, statt im Ausland ein Charterpaket zu kaufen. Das Angebot ist unterschiedlich: Lapland Safaris deckt das gesamte Aktivitätenprogramm an fünf Standorten ab, Arctic GM nimmt zur Polarlichtjagd nur rund fünf Personen im Luxus-Van mit. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
+      'Finnisch-Lappland ist eine lange, schmale Region. Die dortigen Anbieter führen die Aktivitäten selbst durch. Sie reisen an und buchen direkt bei ihnen, statt im Ausland ein Charterpaket zu kaufen. Das Angebot ist unterschiedlich: Lapland Safaris deckt das gesamte Aktivitätenprogramm an fünf Standorten ab, Arctic GM nimmt zur Polarlichtjagd nur rund fünf Personen im Luxus-Van mit. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
     noteEyebrow: 'Zum Charakter dieser Seite',
     noteBody:
       'Hier wird nichts verkauft. Mit keinem der sechs unten gelisteten Anbieter besteht eine Geschäftsbeziehung, und beim Durchklicken fließt keine Provision zurück. Affiliate-Provision fällt nur auf der Zusatz-Schiene am Seitenende (Hotelnacht, Mietwagen, Tagestour) an.',
@@ -232,7 +232,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'voyagistes',
     introCap: 'Lettrine',
     intro:
-      'La Laponie finlandaise est une région longue et étroite. Ses propres opérateurs exploitent les activités sur place — vous vous y rendez et réservez directement auprès d\'eux, plutôt que d\'acheter un forfait charter à l\'étranger. Les offres diffèrent : Lapland Safaris couvre tout le programme sur cinq stations, Arctic GM limite sa chasse aux aurores à cinq personnes environ, en van de luxe. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
+      'La Laponie finlandaise est une région longue et étroite. Ses propres opérateurs exploitent les activités sur place. Vous vous y rendez et réservez directement auprès d\'eux, plutôt que d\'acheter un forfait charter à l\'étranger. Les offres diffèrent : Lapland Safaris couvre tout le programme sur cinq stations, Arctic GM limite sa chasse aux aurores à cinq personnes environ, en van de luxe. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
     noteEyebrow: 'Ce que cette page est',
     noteBody:
       'Rien n\'est vendu ici. Aucun accord commercial avec les six opérateurs ci-dessous ; le clic ne rapporte rien. Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées (nuit d\'hôtel, location de voiture, activité à la journée) en bas de page.',
@@ -267,7 +267,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operatori',
     introCap: 'Capolettera',
     intro:
-      'La Lapponia finlandese è una regione lunga e stretta. Sono gli operatori del posto a gestire le attività — lei arriva e prenota direttamente da loro, invece di comprare un pacchetto charter all\'estero. L\'offerta varia: Lapland Safaris copre tutte le attività su cinque località, Arctic GM limita la caccia all\'aurora a circa cinque persone in van di lusso. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
+      'La Lapponia finlandese è una regione lunga e stretta. Sono gli operatori del posto a gestire le attività. Lei arriva e prenota direttamente da loro, invece di comprare un pacchetto charter all\'estero. L\'offerta varia: Lapland Safaris copre tutte le attività su cinque località, Arctic GM limita la caccia all\'aurora a circa cinque persone in van di lusso. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
     noteEyebrow: 'Una nota su questa pagina',
     noteBody:
       'Qui non si vende nulla. Con i sei operatori elencati di seguito non vi è alcun accordo commerciale; il clic non produce alcuna commissione a loro carico. La commissione di affiliazione si attiva solo sul rail di cross-sell in fondo a questa pagina (notte in hotel, noleggio auto, attività di un giorno).',
@@ -302,7 +302,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operators',
     introCap: 'Drop cap',
     intro:
-      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit — u reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn aurorajacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
+      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit. U reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn aurorajacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
     noteEyebrow: 'Wat deze pagina is',
     noteBody:
       'Hier wordt niets verkocht. Met de zes hieronder genoemde aanbieders is geen commerciële afspraak, en bij doorklikken vloeit niets terug. Affiliate-commissie wordt alleen verdiend op de cross-sell-balk onderaan deze pagina (hotelnacht, huurauto, dagactiviteit).',
@@ -337,7 +337,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'aktörer',
     introCap: 'Utgångsläge',
     intro:
-      'Finska Lappland är en lång, smal region. Aktörerna på plats driver aktiviteterna själva — du reser dit och bokar direkt hos dem, i stället för att köpa ett charterpaket utomlands. Utbudet varierar: Lapland Safaris täcker hela aktivitetsprogrammet på fem orter, Arctic GM tar med sig runt fem personer på norrskensjakt i en lyxig van. Alla sex listas öppet sida vid sida, så att du lätt hittar rätt för resan du faktiskt vill ha.',
+      'Finska Lappland är en lång, smal region. Aktörerna på plats driver aktiviteterna själva. Du reser dit och bokar direkt hos dem, i stället för att köpa ett charterpaket utomlands. Utbudet varierar: Lapland Safaris täcker hela aktivitetsprogrammet på fem orter, Arctic GM tar med sig runt fem personer på norrskensjakt i en lyxig van. Alla sex listas öppet sida vid sida, så att du lätt hittar rätt för resan du faktiskt vill ha.',
     noteEyebrow: 'Vad den här sidan är',
     noteBody:
       'Här säljs ingenting. Det finns inget kommersiellt avtal med någon av de sex aktörerna nedan, och att klicka på en länk ger ingen provision. Affiliateprovision tjänas bara in på korsförsäljningsraden längst ned på sidan (hotellnatt, hyrbil, dagsutflykt).',
@@ -409,7 +409,7 @@ const COPY: Record<CopyLang, {
     h1Bot: 'operadoras',
     introCap: 'Capitular',
     intro:
-      'A Lapônia finlandesa é uma região longa e estreita. São as próprias operadoras locais que conduzem as atividades no destino — você viaja até lá e reserva direto com elas, em vez de comprar um pacote charter no exterior. A oferta varia: a Lapland Safaris cobre todo o programa em cinco estações; a Arctic GM limita sua caça à aurora a cerca de cinco pessoas em uma van de luxo. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
+      'A Lapônia finlandesa é uma região longa e estreita. São as próprias operadoras locais que conduzem as atividades no destino. Você viaja até lá e reserva direto com elas, em vez de comprar um pacote charter no exterior. A oferta varia: a Lapland Safaris cobre todo o programa em cinco estações; a Arctic GM limita sua caça à aurora a cerca de cinco pessoas em uma van de luxo. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
     noteEyebrow: 'O que é isto',
     noteBody:
       'Aqui não se vende nada. Não há acordo comercial com nenhuma das seis operadoras abaixo, e ao clicar, a operadora não repassa nada. A comissão de afiliado só é obtida na faixa de venda cruzada (diária de hotel, aluguel de carro, atividade de um dia) no fim desta página.',

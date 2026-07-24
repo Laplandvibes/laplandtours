@@ -104,7 +104,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Perille pääsy',
         body:
-          'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingistä Finnair vie noin tunnissa, ja yöllä kulkee VR:n yöjuna (12 tuntia, makuuvaunut).',
+          'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL): Helsingistä Finnair vie noin tunnissa, ja yöllä kulkee VR:n yöjuna (12 tuntia, makuuvaunut).',
       },
       {
         n: '02',
@@ -163,7 +163,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Anreise',
         body:
-          'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — über Helsinki mit Finnair und einen einstündigen Inlandsflug, oder mit dem VR-Nachtzug (12 Stunden, Liegewagen).',
+          'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL): über Helsinki mit Finnair und einen einstündigen Inlandsflug, oder mit dem VR-Nachtzug (12 Stunden, Liegewagen).',
       },
       {
         n: '02',
@@ -517,7 +517,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Att ta sig dit',
         body:
-          'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — från Helsingfors tar Finnair dig dit på ungefär en timme, och på natten går VR:s nattåg (12 timmar, sovvagnar).',
+          'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL): från Helsingfors tar Finnair dig dit på ungefär en timme, och på natten går VR:s nattåg (12 timmar, sovvagnar).',
       },
       {
         n: '02',

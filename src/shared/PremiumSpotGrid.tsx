@@ -92,7 +92,7 @@ export default function PremiumSpotGrid({ spots, siteSlug, locale, surface = 'da
                   ? 'border-black/10 bg-black/[0.03] hover:border-[#EC4899]/40'
                   : 'border-white/12 bg-white/5 hover:border-[#EC4899]/40',
               ].join(' ')}
-              aria-label={`${t.badge}: ${p.name} — ${spot.label}`}
+              aria-label={`${t.badge}: ${p.name}: ${spot.label}`}
             >
               <div className="flex items-center justify-between gap-2">
                 {chip}

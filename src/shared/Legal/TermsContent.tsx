@@ -73,7 +73,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Travel information, including prices, opening hours, weather conditions, and availability, changes frequently. We aim to keep content accurate and up to date, but we cannot guarantee that all information is current at the time of your visit. Always verify critical details directly with service providers before making bookings.',
     s3Title: '3. Affiliate Links & Partnerships',
     s3P1: (siteName) => `Some links on ${siteName} are affiliate links. When you click these links and make a booking or purchase, we may receive a small commission at no additional cost to you. Affiliate relationships do not influence our editorial recommendations. We only link to services we believe provide genuine value.`,
-    s3P2: 'Affiliate partners include but are not limited to: Hotels.com, EconomyBookings, GetYourGuide, and other travel service providers via CJ (Commission Junction). Each booking is subject to the terms and conditions of the respective service provider.',
+    s3P2: 'Affiliate partners include but are not limited to: Sembo, Trip.com, EconomyBookings, GetYourGuide, and other travel service providers via affiliate networks such as Adtraction and Travelpayouts. Each booking is subject to the terms and conditions of the respective service provider.',
     s4Title: '4. Sponsored Content',
     s4Body: (siteName) => (
       <>
@@ -87,7 +87,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         The hotel search, flight search, car rental, and activity booking tools on this site redirect to
-        third-party platforms (Hotels.com, EconomyBookings, GetYourGuide and others).{' '}
+        third-party platforms (Sembo, Trip.com, EconomyBookings, GetYourGuide and others).{' '}
         <strong className="text-snow/90">{siteName} is not a travel agency, retailer, or merchant.</strong>{' '}
         We do not sell, resell, or process bookings; we publish editorial guides and direct readers to the
         operators that actually deliver the service.
@@ -148,7 +148,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Matkailutiedot, kuten hinnat, aukioloajat, sääolosuhteet ja saatavuus, muuttuvat usein. Pyrimme pitämään sisällön ajantasaisena ja tarkkana, mutta emme voi taata, että kaikki tiedot ovat ajantasaisia vierailuhetkelläsi. Tarkista kriittiset yksityiskohdat aina suoraan palveluntarjoajalta ennen varauksen tekemistä.',
     s3Title: '3. Kumppanilinkit ja yhteistyökumppanit',
     s3P1: (siteName) => `Osa ${siteName}-sivuston linkeistä on kumppanilinkkejä. Kun klikkaat näitä linkkejä ja teet varauksen tai ostoksen, saatamme saada pienen komission ilman lisäkustannuksia sinulle. Kumppanuussuhteet eivät vaikuta toimituksellisiin suosituksiimme. Linkitämme vain palveluihin, joiden uskomme tuottavan aitoa arvoa.`,
-    s3P2: 'Kumppaneitamme ovat esimerkiksi Hotels.com, EconomyBookings, GetYourGuide ja muut matkailupalvelujen tarjoajat CJ:n (Commission Junction) kautta. Jokainen varaus on kunkin palveluntarjoajan omien ehtojen alainen.',
+    s3P2: 'Kumppaneitamme ovat esimerkiksi Sembo, Trip.com, EconomyBookings, GetYourGuide ja muut matkailupalvelujen tarjoajat kumppaniverkostojen (mm. Adtraction ja Travelpayouts) kautta. Jokainen varaus on kunkin palveluntarjoajan omien ehtojen alainen.',
     s4Title: '4. Sponsoroitu sisältö',
     s4Body: (siteName) => (
       <>
@@ -162,7 +162,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Sivuston hotellihaut, lentohaut, autovuokraus- ja aktiviteettivarausvälineet ohjaavat kolmannen osapuolen alustoille
-        (Hotels.com, EconomyBookings, GetYourGuide ja muut).{' '}
+        (Sembo, Trip.com, EconomyBookings, GetYourGuide ja muut).{' '}
         <strong className="text-snow/90">{siteName} ei ole matkatoimisto, jälleenmyyjä eikä elinkeinonharjoittaja varauspalveluna.</strong>{' '}
         Emme myy, jälleenmyy emmekä käsittele varauksia; julkaisemme toimituksellisia oppaita ja ohjaamme lukijat varsinaisen palvelun tuottavalle toimijalle.
       </>
@@ -221,7 +221,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Reiseinformationen, einschließlich Preise, Öffnungszeiten, Wetterbedingungen und Verfügbarkeit, ändern sich häufig. Wir bemühen uns um aktuelle und genaue Inhalte, können jedoch nicht garantieren, dass alle Angaben zum Zeitpunkt Ihres Besuchs aktuell sind. Bitte prüfen Sie wesentliche Details vor jeder Buchung direkt beim Anbieter.',
     s3Title: '3. Partnerlinks und Kooperationen',
     s3P1: (siteName) => `Einige Links auf ${siteName} sind Partnerlinks. Wenn Sie über diese Links eine Buchung oder einen Kauf tätigen, erhalten wir ggf. eine kleine Provision, für Sie ohne zusätzliche Kosten. Partnerschaften beeinflussen unsere redaktionellen Empfehlungen nicht. Wir verlinken ausschließlich Dienste, die wir für sinnvoll halten.`,
-    s3P2: 'Zu unseren Partnern gehören u. a. Hotels.com, EconomyBookings, GetYourGuide sowie weitere Reisedienstleister über CJ (Commission Junction). Jede Buchung unterliegt den Bedingungen des jeweiligen Anbieters.',
+    s3P2: 'Zu unseren Partnern gehören u. a. Sembo, Trip.com, EconomyBookings, GetYourGuide sowie weitere Reisedienstleister über Partnernetzwerke wie Adtraction und Travelpayouts. Jede Buchung unterliegt den Bedingungen des jeweiligen Anbieters.',
     s4Title: '4. Gesponserte Inhalte',
     s4Body: (siteName) => (
       <>
@@ -235,7 +235,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Hotelsuche, Flugsuche, Mietwagen- und Aktivitätsbuchungstools auf dieser Website leiten an externe Plattformen weiter
-        (Hotels.com, EconomyBookings, GetYourGuide u. a.).{' '}
+        (Sembo, Trip.com, EconomyBookings, GetYourGuide u. a.).{' '}
         <strong className="text-snow/90">{siteName} ist weder Reisebüro noch Wiederverkäufer oder Händler.</strong>{' '}
         Wir verkaufen, vermitteln und verarbeiten keine Buchungen; wir veröffentlichen redaktionelle Inhalte und verweisen Leser an die tatsächlich leistenden Anbieter.
       </>
@@ -292,7 +292,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: '旅行情報(料金、営業時間、天候、空き状況など)は頻繁に変動します。私たちは最新かつ正確な情報を心がけていますが、ご訪問時にすべての情報が最新であることを保証することはできません。ご予約前には、重要な情報は必ずサービス提供者に直接ご確認ください。',
     s3Title: '3. アフィリエイトリンクとパートナーシップ',
     s3P1: (siteName) => `${siteName} のリンクの一部はアフィリエイトリンクです。これらのリンクからご予約・ご購入された場合、お客様には追加費用なく、当サイトが少額の紹介料を受け取ることがあります。アフィリエイト関係は編集上の推奨に影響しません。本当に価値があると判断したサービスのみご紹介しています。`,
-    s3P2: 'パートナーには Hotels.com、EconomyBookings、GetYourGuide、および CJ(Commission Junction)経由のその他の旅行サービス提供者が含まれます(これらに限りません)。各ご予約はそれぞれのサービス提供者の規約・条件に従います。',
+    s3P2: 'パートナーには Sembo、Trip.com、EconomyBookings、GetYourGuide、および アフィリエイトネットワーク(Adtraction、Travelpayouts など)経由のその他の旅行サービス提供者が含まれます(これらに限りません)。各ご予約はそれぞれのサービス提供者の規約・条件に従います。',
     s4Title: '4. スポンサーコンテンツ',
     s4Body: (siteName) => (
       <>
@@ -303,7 +303,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5Title: '5. 第三者サービス, 当サイトは販売業者ではありません',
     s5P1: (siteName) => (
       <>
-        本サイトのホテル検索、航空券検索、レンタカー、アクティビティ予約の各ツールは、第三者のプラットフォーム(Hotels.com、EconomyBookings、GetYourGuide ほか)へリダイレクトされます。{' '}
+        本サイトのホテル検索、航空券検索、レンタカー、アクティビティ予約の各ツールは、第三者のプラットフォーム(Sembo、Trip.com、EconomyBookings、GetYourGuide ほか)へリダイレクトされます。{' '}
         <strong className="text-snow/90">{siteName} は旅行代理店、小売業者、販売業者ではありません。</strong>{' '}
         当サイトは予約の販売、再販、処理を行っておりません。編集ガイドを公開し、実際にサービスを提供する事業者へ読者を案内しているだけです。
       </>
@@ -357,7 +357,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'La información turística, incluidos precios, horarios, condiciones meteorológicas y disponibilidad, cambia con frecuencia. Procuramos mantener el contenido preciso y actualizado, pero no podemos garantizar que toda la información esté vigente en el momento de su visita. Verifique siempre los detalles críticos directamente con el proveedor antes de reservar.',
     s3Title: '3. Enlaces de afiliados y colaboraciones',
     s3P1: (siteName) => `Algunos enlaces de ${siteName} son enlaces de afiliados. Cuando hace clic en estos enlaces y realiza una reserva o compra, podemos recibir una pequeña comisión sin coste adicional para usted. Las relaciones de afiliación no influyen en nuestras recomendaciones editoriales. Solo enlazamos a servicios que consideramos que aportan valor real.`,
-    s3P2: 'Entre nuestros socios afiliados se incluyen, sin limitarse a: Hotels.com, EconomyBookings, GetYourGuide y otros proveedores de servicios turísticos a través de CJ (Commission Junction). Cada reserva está sujeta a los términos y condiciones del proveedor correspondiente.',
+    s3P2: 'Entre nuestros socios afiliados se incluyen, sin limitarse a: Sembo, Trip.com, EconomyBookings, GetYourGuide y otros proveedores de servicios turísticos a través de redes de afiliación como Adtraction y Travelpayouts. Cada reserva está sujeta a los términos y condiciones del proveedor correspondiente.',
     s4Title: '4. Contenido patrocinado',
     s4Body: (siteName) => (
       <>
@@ -371,7 +371,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Las herramientas de búsqueda de hoteles, vuelos, alquiler de coches y reserva de actividades de este sitio redirigen
-        a plataformas de terceros (Hotels.com, EconomyBookings, GetYourGuide y otras).{' '}
+        a plataformas de terceros (Sembo, Trip.com, EconomyBookings, GetYourGuide y otras).{' '}
         <strong className="text-snow/90">{siteName} no es una agencia de viajes, minorista ni comerciante.</strong>{' '}
         No vendemos, revendemos ni procesamos reservas; publicamos guías editoriales y dirigimos a los lectores a los
         operadores que efectivamente prestan el servicio.
@@ -432,7 +432,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'As informações de viagem, incluindo preços, horários, condições climáticas e disponibilidade, mudam com frequência. Buscamos manter o conteúdo atualizado e preciso, mas não podemos garantir que todas as informações estejam vigentes no momento da sua visita. Sempre confirme os detalhes críticos diretamente com os fornecedores antes de reservar.',
     s3Title: '3. Links de afiliados e parcerias',
     s3P1: (siteName) => `Alguns links em ${siteName} são links de afiliados. Quando você clica nesses links e faz uma reserva ou compra, podemos receber uma pequena comissão, sem custo adicional para você. As relações de afiliação não influenciam nossas recomendações editoriais. Só indicamos serviços que acreditamos oferecer valor genuíno.`,
-    s3P2: 'Entre os parceiros afiliados estão, sem se limitar a: Hotels.com, EconomyBookings, GetYourGuide e outros fornecedores de serviços de viagem via CJ (Commission Junction). Cada reserva está sujeita aos termos e condições do respectivo fornecedor.',
+    s3P2: 'Entre os parceiros afiliados estão, sem se limitar a: Sembo, Trip.com, EconomyBookings, GetYourGuide e outros fornecedores de serviços de viagem por meio de redes de afiliados como Adtraction e Travelpayouts. Cada reserva está sujeita aos termos e condições do respectivo fornecedor.',
     s4Title: '4. Conteúdo patrocinado',
     s4Body: (siteName) => (
       <>
@@ -446,7 +446,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         As ferramentas de busca de hotéis, voos, aluguel de carros e reserva de atividades neste site redirecionam para
-        plataformas de terceiros (Hotels.com, EconomyBookings, GetYourGuide e outras).{' '}
+        plataformas de terceiros (Sembo, Trip.com, EconomyBookings, GetYourGuide e outras).{' '}
         <strong className="text-snow/90">O {siteName} não é uma agência de viagens, varejista nem comerciante.</strong>{' '}
         Não vendemos, revendemos nem processamos reservas; publicamos guias editoriais e direcionamos os leitores
         aos operadores que efetivamente prestam o serviço.
@@ -506,7 +506,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: '旅行信息(包括价格、营业时间、天气状况和可订情况)经常发生变化。我们努力保持内容准确并保持更新,但无法保证您访问时所有信息都是最新的。在预订前,请始终直接向相关服务提供方核实关键信息。',
     s3Title: '3. 联盟链接与合作',
     s3P1: (siteName) => `${siteName} 上的某些链接是联盟链接。当您点击这些链接并完成预订或购买时,我们可能会获得一笔少量佣金,而您无需承担额外费用。联盟合作不会影响我们的编辑推荐。我们只链接我们认为真正具有价值的服务。`,
-    s3P2: '联盟合作伙伴包括但不限于:Hotels.com、EconomyBookings、GetYourGuide,以及通过 CJ(Commission Junction)接入的其他旅游服务提供方。每一笔预订均受相应服务提供方的条款与条件约束。',
+    s3P2: '联盟合作伙伴包括但不限于:Sembo、Trip.com、EconomyBookings、GetYourGuide,以及通过 Adtraction、Travelpayouts 等联盟网络接入的其他旅游服务提供方。每一笔预订均受相应服务提供方的条款与条件约束。',
     s4Title: '4. 赞助内容',
     s4Body: (siteName) => (
       <>
@@ -517,7 +517,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5Title: '5. 第三方服务, 我们不是销售方',
     s5P1: (siteName) => (
       <>
-        本网站上的酒店搜索、机票搜索、租车与活动预订工具会将您重定向至第三方平台(Hotels.com、EconomyBookings、GetYourGuide 等)。{' '}
+        本网站上的酒店搜索、机票搜索、租车与活动预订工具会将您重定向至第三方平台(Sembo、Trip.com、EconomyBookings、GetYourGuide 等)。{' '}
         <strong className="text-snow/90">{siteName} 既不是旅行社,也不是零售商或销售商。</strong>{' '}
         我们不销售、不转售也不处理预订;我们发布编辑指南,并将读者引导至真正提供服务的运营商。
       </>
@@ -575,7 +575,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: '여행 정보(가격, 영업시간, 기상 조건, 이용 가능 여부 등)는 자주 변경됩니다. 콘텐츠를 정확하고 최신으로 유지하고자 노력하지만, 귀하의 방문 시점에 모든 정보가 최신임을 보장할 수는 없습니다. 예약 전에는 반드시 해당 서비스 제공자에게 중요한 세부 사항을 직접 확인하시기 바랍니다.',
     s3Title: '3. 제휴 링크 및 파트너십',
     s3P1: (siteName) => `${siteName}의 일부 링크는 제휴 링크입니다. 이러한 링크를 클릭하시고 예약 또는 구매를 하시면 귀하께 추가 비용 없이 당사가 소액의 수수료를 받을 수 있습니다. 제휴 관계는 당사의 편집 추천에 영향을 미치지 않습니다. 당사는 진정한 가치를 제공한다고 믿는 서비스에만 링크합니다.`,
-    s3P2: '제휴 파트너에는 Hotels.com, EconomyBookings, GetYourGuide 및 CJ(Commission Junction)를 통한 기타 여행 서비스 제공자가 포함됩니다. 각 예약은 해당 서비스 제공자의 약관 및 조건에 따릅니다.',
+    s3P2: '제휴 파트너에는 Sembo, Trip.com, EconomyBookings, GetYourGuide 및 Adtraction, Travelpayouts 등 제휴 네트워크를 통한 기타 여행 서비스 제공자가 포함됩니다. 각 예약은 해당 서비스 제공자의 약관 및 조건에 따릅니다.',
     s4Title: '4. 후원 콘텐츠',
     s4Body: (siteName) => (
       <>
@@ -588,7 +588,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5Title: '5. 제3자 서비스, 당사는 판매자가 아닙니다',
     s5P1: (siteName) => (
       <>
-        본 사이트의 호텔 검색, 항공편 검색, 렌터카, 액티비티 예약 도구는 제3자 플랫폼(Hotels.com,
+        본 사이트의 호텔 검색, 항공편 검색, 렌터카, 액티비티 예약 도구는 제3자 플랫폼(Sembo, Trip.com,
         EconomyBookings, GetYourGuide 등)으로 리디렉션됩니다.{' '}
         <strong className="text-snow/90">{siteName}은 여행사, 소매업자 또는 판매자가 아닙니다.</strong>{' '}
         예약을 판매, 재판매 또는 처리하지 않습니다. 당사는 편집 가이드를 발행하고 실제 서비스를 제공하는
@@ -650,7 +650,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Les informations de voyage, prix, horaires d\'ouverture, conditions météorologiques, disponibilité, changent fréquemment. Nous nous efforçons de tenir le contenu à jour, mais nous ne pouvons garantir que toutes les informations sont actuelles au moment de votre visite. Vérifiez toujours les détails critiques directement auprès des prestataires avant de réserver.',
     s3Title: '3. Liens d\'affiliation et partenariats',
     s3P1: (siteName) => `Certains liens sur ${siteName} sont des liens d'affiliation. Lorsque vous cliquez sur ces liens et effectuez une réservation ou un achat, nous pouvons percevoir une petite commission sans coût supplémentaire pour vous. Les relations d'affiliation n'influencent pas nos recommandations éditoriales. Nous ne créons des liens que vers des services dont nous estimons qu'ils apportent une réelle valeur.`,
-    s3P2: 'Les partenaires d\'affiliation incluent notamment : Hotels.com, EconomyBookings, GetYourGuide et d\'autres prestataires de services de voyage via CJ (Commission Junction). Chaque réservation est soumise aux conditions générales du prestataire concerné.',
+    s3P2: 'Les partenaires d\'affiliation incluent notamment : Sembo, Trip.com, EconomyBookings, GetYourGuide et d\'autres prestataires de services de voyage via des réseaux d\'affiliation tels qu\'Adtraction et Travelpayouts. Chaque réservation est soumise aux conditions générales du prestataire concerné.',
     s4Title: '4. Contenu sponsorisé',
     s4Body: (siteName) => (
       <>
@@ -664,7 +664,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Les outils de recherche d\'hôtels, de vols, de location de voitures et de réservation d\'activités sur ce
-        site redirigent vers des plateformes tierces (Hotels.com, EconomyBookings, GetYourGuide et autres).{' '}
+        site redirigent vers des plateformes tierces (Sembo, Trip.com, EconomyBookings, GetYourGuide et autres).{' '}
         <strong className="text-snow/90">{siteName} n\'est ni une agence de voyages, ni un détaillant, ni un commerçant.</strong>{' '}
         Nous ne vendons, ne revendons ni ne traitons de réservations ; nous publions des guides éditoriaux et
         orientons les lecteurs vers les opérateurs qui assurent effectivement le service.
@@ -725,7 +725,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Le informazioni di viaggio, inclusi prezzi, orari di apertura, condizioni meteo e disponibilità, cambiano di frequente. Ci impegniamo a mantenere il contenuto accurato e aggiornato, ma non possiamo garantire che tutte le informazioni siano attuali al momento della Sua visita. Verifichi sempre i dettagli critici direttamente con i fornitori di servizi prima di prenotare.',
     s3Title: '3. Link di affiliazione e partnership',
     s3P1: (siteName) => `Alcuni link su ${siteName} sono link di affiliazione. Quando Lei clicca su questi link ed effettua una prenotazione o un acquisto, potremmo ricevere una piccola commissione senza costi aggiuntivi. I rapporti di affiliazione non influenzano le nostre raccomandazioni editoriali. Inseriamo link solo verso servizi che riteniamo offrano un valore reale.`,
-    s3P2: 'I partner di affiliazione includono, a titolo esemplificativo: Hotels.com, EconomyBookings, GetYourGuide e altri fornitori di servizi di viaggio tramite CJ (Commission Junction). Ogni prenotazione è soggetta ai termini e alle condizioni del rispettivo fornitore.',
+    s3P2: 'I partner di affiliazione includono, a titolo esemplificativo: Sembo, Trip.com, EconomyBookings, GetYourGuide e altri fornitori di servizi di viaggio tramite network di affiliazione come Adtraction e Travelpayouts. Ogni prenotazione è soggetta ai termini e alle condizioni del rispettivo fornitore.',
     s4Title: '4. Contenuti sponsorizzati',
     s4Body: (siteName) => (
       <>
@@ -739,7 +739,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Gli strumenti di ricerca hotel, voli, autonoleggio e prenotazione attività su questo sito reindirizzano
-        a piattaforme di terzi (Hotels.com, EconomyBookings, GetYourGuide e altre).{' '}
+        a piattaforme di terzi (Sembo, Trip.com, EconomyBookings, GetYourGuide e altre).{' '}
         <strong className="text-snow/90">{siteName} non è un\'agenzia di viaggi, un rivenditore né un commerciante.</strong>{' '}
         Non vendiamo, rivendiamo né processiamo prenotazioni; pubblichiamo guide editoriali e indirizziamo i
         lettori agli operatori che effettivamente erogano il servizio.
@@ -800,7 +800,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Reisinformatie, waaronder prijzen, openingstijden, weersomstandigheden en beschikbaarheid, verandert regelmatig. Wij streven ernaar de inhoud accuraat en actueel te houden, maar kunnen niet garanderen dat alle informatie actueel is op het moment van uw bezoek. Verifieer kritieke details altijd rechtstreeks bij dienstverleners voordat u boekt.',
     s3Title: '3. Affiliate links en partnerschappen',
     s3P1: (siteName) => `Sommige links op ${siteName} zijn affiliate links. Wanneer u op deze links klikt en een boeking of aankoop doet, kunnen wij een kleine commissie ontvangen zonder extra kosten voor u. Affiliate-relaties beïnvloeden onze redactionele aanbevelingen niet. Wij linken alleen naar diensten waarvan wij denken dat zij echte waarde bieden.`,
-    s3P2: 'Affiliate-partners omvatten onder meer: Hotels.com, EconomyBookings, GetYourGuide en andere aanbieders van reisdiensten via CJ (Commission Junction). Elke boeking is onderworpen aan de algemene voorwaarden van de betreffende dienstverlener.',
+    s3P2: 'Affiliate-partners omvatten onder meer: Sembo, Trip.com, EconomyBookings, GetYourGuide en andere aanbieders van reisdiensten via affiliatenetwerken zoals Adtraction en Travelpayouts. Elke boeking is onderworpen aan de algemene voorwaarden van de betreffende dienstverlener.',
     s4Title: '4. Gesponsorde inhoud',
     s4Body: (siteName) => (
       <>
@@ -814,7 +814,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         De hotelzoekmachine, vluchtzoekmachine, autoverhuur- en activiteitenboekingstools op deze site verwijzen
-        door naar externe platforms (Hotels.com, EconomyBookings, GetYourGuide en andere).{' '}
+        door naar externe platforms (Sembo, Trip.com, EconomyBookings, GetYourGuide en andere).{' '}
         <strong className="text-snow/90">{siteName} is geen reisbureau, detailhandelaar of handelaar.</strong>{' '}
         Wij verkopen, herverkopen of verwerken geen boekingen; wij publiceren redactionele gidsen en verwijzen
         lezers naar de operators die de dienst daadwerkelijk leveren.
@@ -875,7 +875,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Body: 'Reseinformation, inklusive priser, öppettider, väderförhållanden och tillgänglighet, ändras ofta. Vi strävar efter att hålla innehållet korrekt och uppdaterat, men kan inte garantera att all information är aktuell vid tidpunkten för ditt besök. Kontrollera alltid viktiga uppgifter direkt hos tjänsteleverantören innan du bokar.',
     s3Title: '3. Affiliatelänkar och samarbeten',
     s3P1: (siteName) => `Vissa länkar på ${siteName} är affiliatelänkar. När du klickar på dessa länkar och gör en bokning eller ett köp kan vi få en liten provision utan extra kostnad för dig. Affiliaterelationer påverkar inte våra redaktionella rekommendationer. Vi länkar endast till tjänster vi tror ger genuint värde.`,
-    s3P2: 'Affiliatepartner omfattar men är inte begränsade till: Hotels.com, EconomyBookings, GetYourGuide och andra resetjänsteleverantörer via CJ (Commission Junction). Varje bokning omfattas av respektive tjänsteleverantörs egna villkor.',
+    s3P2: 'Affiliatepartner omfattar men är inte begränsade till: Sembo, Trip.com, EconomyBookings, GetYourGuide och andra resetjänsteleverantörer via affiliatenätverk som Adtraction och Travelpayouts. Varje bokning omfattas av respektive tjänsteleverantörs egna villkor.',
     s4Title: '4. Sponsrat innehåll',
     s4Body: (siteName) => (
       <>
@@ -889,7 +889,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s5P1: (siteName) => (
       <>
         Verktygen för hotellsökning, flygsökning, hyrbil och aktivitetsbokning på den här webbplatsen omdirigerar till
-        tredjepartsplattformar (Hotels.com, EconomyBookings, GetYourGuide med flera).{' '}
+        tredjepartsplattformar (Sembo, Trip.com, EconomyBookings, GetYourGuide med flera).{' '}
         <strong className="text-snow/90">{siteName} är varken resebyrå, återförsäljare eller handlare.</strong>{' '}
         Vi säljer, återförsäljer eller behandlar inga bokningar; vi publicerar redaktionella guider och hänvisar läsarna
         till de aktörer som faktiskt levererar tjänsten.
@@ -954,6 +954,7 @@ export default function TermsContent({
       : lang === 'fr' ? 'Politique de Confidentialité'
       : lang === 'it' ? 'Informativa sulla Privacy'
       : lang === 'nl' ? 'Privacybeleid'
+      : lang === 'sv' ? 'integritetspolicy'
       : 'Privacy Policy'}
     </a>
   );

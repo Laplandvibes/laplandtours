@@ -31,7 +31,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Polku 2',
     h2: 'Tai varaa paikallinen toimija',
     lead:
-      'Kuusi Suomessa toimivaa yritystä, jotka pyörittävät Lapin aktiviteetit itse — husky, revontulet, kelkka, poro. Varaat suoraan heidän ehdoillaan; yhdenkään kanssa ei ole kaupallista sopimusta. Kyseessä on toimituksellinen opas, ei kauppapaikka. Tarkistettu heinäkuu 2026. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Kuusi Suomessa toimivaa yritystä, jotka pyörittävät Lapin aktiviteetit itse: husky, revontulet, kelkka, poro. Varaat suoraan heidän ehdoillaan; yhdenkään kanssa ei ole kaupallista sopimusta. Kyseessä on toimituksellinen opas, ei kauppapaikka. Tarkistettu heinäkuu 2026. Kirjoitettu Suomesta, lähteet näkyvillä.',
     visit: 'Vieraile',
     tier: 'Hintaluokka',
     length: 'Kesto',
@@ -44,7 +44,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Weg zwei',
     h2: 'Oder einen lokalen Anbieter buchen',
     lead:
-      'Sechs in Finnland ansässige Anbieter, die Lapplands Aktivitäten selbst durchführen — Husky, Polarlicht, Schneemobil, Rentier. Sie buchen direkt zu deren Bedingungen; mit keinem besteht eine Geschäftsbeziehung. Dies ist ein redaktioneller Wegweiser, kein Shop. Überprüft im Juli 2026.',
+      'Sechs in Finnland ansässige Anbieter, die Lapplands Aktivitäten selbst durchführen: Husky, Polarlicht, Schneemobil, Rentier. Sie buchen direkt zu deren Bedingungen; mit keinem besteht eine Geschäftsbeziehung. Dies ist ein redaktioneller Wegweiser, kein Shop. Überprüft im Juli 2026.',
     visit: 'Besuchen',
     tier: 'Klasse',
     length: 'Dauer',
@@ -83,7 +83,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Voie 2',
     h2: 'Ou réservez un opérateur local',
     lead:
-      'Six opérateurs établis en Finlande qui exploitent eux-mêmes les activités de Laponie — husky, aurore, motoneige, renne. Vous réservez directement, à leurs conditions ; aucun accord commercial avec aucun d\'eux. Il s\'agit d\'un repérage éditorial, pas d\'une boutique. Vérifié en juillet 2026.',
+      'Six opérateurs établis en Finlande qui exploitent eux-mêmes les activités de Laponie: husky, aurore, motoneige, renne. Vous réservez directement, à leurs conditions ; aucun accord commercial avec aucun d\'eux. Il s\'agit d\'un repérage éditorial, pas d\'une boutique. Vérifié en juillet 2026.',
     visit: 'Visiter',
     tier: 'Gamme',
     length: 'Durée',
@@ -96,7 +96,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Strada 2',
     h2: 'O prenota un operatore locale',
     lead:
-      'Sei operatori con sede in Finlandia che gestiscono in prima persona le attività della Lapponia — husky, aurora, motoslitta, renna. Prenoti direttamente, alle loro condizioni; con nessuno vi è un accordo commerciale. È una guida editoriale, non una vetrina. Verificato a luglio 2026.',
+      'Sei operatori con sede in Finlandia che gestiscono in prima persona le attività della Lapponia: husky, aurora, motoslitta, renna. Prenoti direttamente, alle loro condizioni; con nessuno vi è un accordo commerciale. È una guida editoriale, non una vetrina. Verificato a luglio 2026.',
     visit: 'Visita',
     tier: 'Fascia',
     length: 'Durata',
@@ -109,7 +109,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Route 2',
     h2: 'Of boek een lokale aanbieder',
     lead:
-      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren — husky, aurora, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
+      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, aurora, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
     visit: 'Bezoeken',
     tier: 'Klasse',
     length: 'Duur',
@@ -122,7 +122,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Väg 2',
     h2: 'Eller boka en lokal arrangör',
     lead:
-      'Sex företag baserade i Finland som driver Lapplands aktiviteter själva — husky, norrsken, skoter, ren. Du bokar direkt på deras villkor; vi har ingen affärsrelation med någon av dem. Det här är en redaktionell vägvisare, inte en butik. Kontrollerad juli 2026.',
+      'Sex företag baserade i Finland som driver Lapplands aktiviteter själva: husky, norrsken, skoter, ren. Du bokar direkt på deras villkor; vi har ingen affärsrelation med någon av dem. Det här är en redaktionell vägvisare, inte en butik. Kontrollerad juli 2026.',
     visit: 'Besök',
     tier: 'Prisklass',
     length: 'Längd',
@@ -135,7 +135,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Camino 2',
     h2: 'O reserve un operador local',
     lead:
-      'Seis operadores con sede en Finlandia que gestionan ellos mismos las actividades de Laponia — husky, aurora, motonieve, reno. Reserva directamente, según sus condiciones; no hay acuerdo comercial con ninguno. Es una guía editorial, no una tienda. Revisado en julio de 2026.',
+      'Seis operadores con sede en Finlandia que gestionan ellos mismos las actividades de Laponia: husky, aurora, motonieve, reno. Reserva directamente, según sus condiciones; no hay acuerdo comercial con ninguno. Es una guía editorial, no una tienda. Revisado en julio de 2026.',
     visit: 'Visitar',
     tier: 'Gama',
     length: 'Duración',
@@ -148,7 +148,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Caminho 2',
     h2: 'Ou reserve uma operadora local',
     lead:
-      'Seis operadoras sediadas na Finlândia que conduzem elas mesmas as atividades da Lapônia — husky, aurora, snowmobile, rena. Você reserva direto, segundo os termos delas; não há acordo comercial com nenhuma. É uma orientação editorial, não uma loja. Revisado em julho de 2026.',
+      'Seis operadoras sediadas na Finlândia que conduzem elas mesmas as atividades da Lapônia: husky, aurora, snowmobile, rena. Você reserva direto, segundo os termos delas; não há acordo comercial com nenhuma. É uma orientação editorial, não uma loja. Revisado em julho de 2026.',
     visit: 'Visitar',
     tier: 'Categoria',
     length: 'Duração',

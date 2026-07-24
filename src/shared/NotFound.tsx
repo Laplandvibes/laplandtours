@@ -40,17 +40,17 @@ interface NfCopy {
 const COPY: Record<NfLang, NfCopy> = {
   en: {
     h1: 'Lost in Lapland',
-    body: "This page doesn't exist — but the North is full of pages that do. Every route below leads somewhere worth going.",
+    body: "This page doesn't exist, but the North is full of pages that do. Every route below leads somewhere worth going.",
     home: 'Back to the front page',
   },
   fi: {
     h1: 'Eksyksissä Lapissa',
-    body: 'Tätä sivua ei ole — mutta pohjoinen on täynnä sivuja, jotka ovat. Jokainen reitti alta vie johonkin, minne kannattaa mennä.',
+    body: 'Tätä sivua ei ole, mutta pohjoinen on täynnä sivuja, jotka ovat. Jokainen reitti alta vie johonkin, minne kannattaa mennä.',
     home: 'Takaisin etusivulle',
   },
   de: {
     h1: 'Verirrt in Lappland',
-    body: 'Diese Seite gibt es nicht — aber der Norden ist voller Seiten, die es gibt. Jeder Weg unten führt an einen lohnenden Ort.',
+    body: 'Diese Seite gibt es nicht, aber der Norden ist voller Seiten, die es gibt. Jeder Weg unten führt an einen lohnenden Ort.',
     home: 'Zurück zur Startseite',
   },
   ja: {
@@ -65,7 +65,7 @@ const COPY: Record<NfLang, NfCopy> = {
   },
   'pt-BR': {
     h1: 'Perdido na Lapônia',
-    body: 'Esta página não existe — mas o norte está cheio de páginas que existem. Cada caminho abaixo leva a um lugar que vale a visita.',
+    body: 'Esta página não existe, mas o norte está cheio de páginas que existem. Cada caminho abaixo leva a um lugar que vale a visita.',
     home: 'Voltar à página inicial',
   },
   'zh-CN': {
@@ -80,22 +80,22 @@ const COPY: Record<NfLang, NfCopy> = {
   },
   fr: {
     h1: 'Perdu·e en Laponie',
-    body: "Cette page n'existe pas — mais le Nord regorge de pages qui existent. Chaque chemin ci-dessous mène quelque part qui en vaut la peine.",
+    body: "Cette page n'existe pas, mais le Nord regorge de pages qui existent. Chaque chemin ci-dessous mène quelque part qui en vaut la peine.",
     home: "Retour à l'accueil",
   },
   it: {
     h1: 'Persi in Lapponia',
-    body: 'Questa pagina non esiste — ma il Nord è pieno di pagine che esistono. Ogni percorso qui sotto porta in un posto che vale la pena.',
+    body: 'Questa pagina non esiste, ma il Nord è pieno di pagine che esistono. Ogni percorso qui sotto porta in un posto che vale la pena.',
     home: 'Torna alla home',
   },
   nl: {
     h1: 'Verdwaald in Lapland',
-    body: "Deze pagina bestaat niet — maar het noorden zit vol pagina's die wél bestaan. Elke route hieronder leidt ergens heen dat de moeite waard is.",
+    body: "Deze pagina bestaat niet, maar het noorden zit vol pagina's die wél bestaan. Elke route hieronder leidt ergens heen dat de moeite waard is.",
     home: 'Terug naar de startpagina',
   },
   sv: {
     h1: 'Vilse i Lappland',
-    body: 'Den här sidan finns inte — men Lappland är fullt av sidor som gör det. Varje väg nedan leder någonstans som är värd besöket.',
+    body: 'Den här sidan finns inte, men Lappland är fullt av sidor som gör det. Varje väg nedan leder någonstans som är värd besöket.',
     home: 'Tillbaka till startsidan',
   },
 }
@@ -145,7 +145,7 @@ export default function NotFound({
   // Tab title + robots noindex, without depending on the site's head library.
   useEffect(() => {
     const prevTitle = document.title
-    document.title = `404 — ${siteName}`
+    document.title = `404: ${siteName}`
     const meta = document.createElement('meta')
     meta.setAttribute('name', 'robots')
     meta.setAttribute('content', 'noindex')

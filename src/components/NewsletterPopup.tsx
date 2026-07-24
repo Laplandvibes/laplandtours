@@ -215,7 +215,7 @@ const DICTS: Record<Lang, { dict: NewsletterPopupDict; headline?: string; descri
     dict: {
       successHeadline: 'Välkommen ombord.',
       successBody:
-        'Välkomstmejlet är på väg — kolla din inkorg. Kommande brev landar på samma adress.',
+        'Välkomstmejlet är på väg. Kolla din inkorg. Kommande brev landar på samma adress.',
       alreadyHeadline: 'Du står redan på listan',
       alreadyBody:
         'Din e-post finns redan med. Tack för att du håller ihop med oss. Nyheterna från Lappland fortsätter att komma.',

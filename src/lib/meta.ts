@@ -218,7 +218,7 @@ export function travelAgencySchema() {
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     description:
-      'A non-selling editorial guide comparing hand-picked Lapland tour operators — UK & European package operators and Finland-based local specialists — with real prices via direct referrals.',
+      'A non-selling editorial guide comparing hand-picked Lapland tour operators, UK & European package operators and Finland-based local specialists, with real prices via direct referrals.',
     areaServed: { '@type': 'Place', name: 'Finnish Lapland' },
     parentOrganization: { '@type': 'Organization', name: 'Lapeso Oy', url: 'https://laplandvibes.com/' },
   };

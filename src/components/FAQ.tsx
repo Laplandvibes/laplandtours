@@ -64,9 +64,9 @@ const FAQS_EN: Faq[] = [
 const FAQS_FI: Faq[] = [
   {
     q: 'Mitä Lapin matkapakettiin yleensä kuuluu?',
-    a: 'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä — hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
+    a: 'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä. Hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
     aHtml:
-      'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä — hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
+      'Riippuu toimijasta. Paikalliset toimijat myyvät pääosin yksittäisiä opastettuja retkiä. Hintaan kuuluu yleensä opas, kaikki varusteet, lämpimät haalarit ja kuljetus keskustasta, usein myös kuumat juomat nuotiolla. Osa, kuten Harriniva tai Nordic Unique Travels, järjestää myös majoitus-plus-aktiviteetti- tai räätälöityjä matkoja. Lennot ja hotellit varaat itse.',
   },
   {
     q: 'Milloin revontulet näkyvät parhaiten?',
@@ -82,15 +82,15 @@ const FAQS_FI: Faq[] = [
   },
   {
     q: 'Sopivatko paketit lapsille?',
-    a: 'Kyllä — paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue ikäkohtainen opas yksityiskohtia varten.',
+    a: 'Kyllä. Paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue ikäkohtainen opas yksityiskohtia varten.',
     aHtml:
-      'Kyllä — paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue <a href="/fi/age-guide" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
+      'Kyllä. Paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue <a href="/fi/age-guide" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
   },
   {
     q: 'Miten Lappiin pääsee?',
-    a: 'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla.',
+    a: 'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL): Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla.',
     aHtml:
-      'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL) — Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla. Katso kaikki matkavaihtoehdot, junat ja vuokra-autot mukaan lukien, sivustolta <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Lennä Rovaniemelle (RVN), Kittilään (KTT) tai Ivaloon (IVL): Helsingin kautta Finnairilla noin tunnissa, tai VR:n yöjunalla. Katso kaikki matkavaihtoehdot, junat ja vuokra-autot mukaan lukien, sivustolta <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Mihin majoittua?',
@@ -115,9 +115,9 @@ const FAQS_FI: Faq[] = [
 const FAQS_DE: Faq[] = [
   {
     q: 'Was ist in einem Lappland-Reisepaket üblicherweise enthalten?',
-    a: 'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren — im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
+    a: 'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren. Im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
     aHtml:
-      'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren — im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
+      'Das hängt vom Anbieter ab. Lokale Anbieter verkaufen vor allem einzelne geführte Touren. Im Preis sind meist Guide, Ausrüstung, warme Thermokleidung und Transfer vom Ortszentrum enthalten, oft mit Heißgetränken am Lagerfeuer. Manche, wie Harriniva oder Nordic Unique Travels, arrangieren auch Unterkunft-plus-Aktivität oder maßgeschneiderte Reisen. Flüge und Hotels buchen Sie selbst.',
   },
   {
     q: 'Wann sieht man Polarlichter am besten?',
@@ -133,15 +133,15 @@ const FAQS_DE: Faq[] = [
   },
   {
     q: 'Sind die Pakete für Kinder geeignet?',
-    a: 'Ja — lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im Alters-Guide.',
+    a: 'Ja, lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im Alters-Guide.',
     aHtml:
-      'Ja — lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im <a href="/de/age-guide" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
+      'Ja, lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im <a href="/de/age-guide" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
   },
   {
     q: 'Wie reise ich nach Lappland?',
-    a: 'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug.',
+    a: 'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL): meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug.',
     aHtml:
-      'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL) — meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug. Alle Optionen (Zug, Mietwagen, Inlandsflug) finden Sie auf <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Fliegen Sie nach Rovaniemi (RVN), Kittilä (KTT) oder Ivalo (IVL): meist über Helsinki mit Finnair (rund 1 Stunde Inlandsflug). Alternativ fährt der VR-Nachtzug. Alle Optionen (Zug, Mietwagen, Inlandsflug) finden Sie auf <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Wo sollte ich übernachten?',
@@ -235,9 +235,9 @@ const FAQS_KO: Faq[] = [
   },
   {
     q: '패키지가 아이들에게도 적합한가요?',
-    a: '네 — 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 연령별 가이드를 참고하세요.',
+    a: '네, 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 연령별 가이드를 참고하세요.',
     aHtml:
-      '네 — 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 <a href="/kr/age-guide" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
+      '네, 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 <a href="/kr/age-guide" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
   },
   {
     q: '라플란드에는 어떻게 가나요?',
@@ -286,9 +286,9 @@ const FAQS_FR: Faq[] = [
   },
   {
     q: 'Les forfaits conviennent-ils aux enfants ?',
-    a: 'Oui — les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le guide par âge pour les recommandations détaillées.',
+    a: 'Oui, les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le guide par âge pour les recommandations détaillées.',
     aHtml:
-      'Oui — les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le <a href="/fr/age-guide" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
+      'Oui, les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le <a href="/fr/age-guide" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
   },
   {
     q: 'Comment se rendre en Laponie ?',
@@ -337,9 +337,9 @@ const FAQS_IT: Faq[] = [
   },
   {
     q: 'I pacchetti sono adatti ai bambini ?',
-    a: 'Sì — gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la guida per età per consigli dettagliati.',
+    a: 'Sì, gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la guida per età per consigli dettagliati.',
     aHtml:
-      'Sì — gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la <a href="/it/age-guide" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
+      'Sì, gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la <a href="/it/age-guide" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
   },
   {
     q: 'Come si arriva in Lapponia ?',
@@ -370,9 +370,9 @@ const FAQS_IT: Faq[] = [
 const FAQS_NL: Faq[] = [
   {
     q: 'Wat zit er meestal in een Lapland-arrangement ?',
-    a: 'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten — de prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
+    a: 'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten. De prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
     aHtml:
-      'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten — de prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
+      'Dat hangt van de aanbieder af. Lokale aanbieders verkopen vooral losse begeleide activiteiten. De prijs omvat meestal de gids, alle uitrusting, warme thermokleding en vervoer vanuit het centrum, vaak met warme dranken bij een kampvuur. Sommige, zoals Harriniva of Nordic Unique Travels, regelen ook verblijf-plus-activiteit of maatwerkreizen. Vluchten en hotels boekt u zelf.',
   },
   {
     q: 'Wanneer is de beste tijd om het noorderlicht te zien ?',
@@ -388,9 +388,9 @@ const FAQS_NL: Faq[] = [
   },
   {
     q: 'Zijn de arrangementen geschikt voor kinderen ?',
-    a: 'Ja — lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de leeftijdsgids voor gedetailleerde aanbevelingen.',
+    a: 'Ja, lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de leeftijdsgids voor gedetailleerde aanbevelingen.',
     aHtml:
-      'Ja — lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de <a href="/nl/age-guide" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
+      'Ja, lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de <a href="/nl/age-guide" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
   },
   {
     q: 'Hoe kom ik in Lapland ?',
@@ -421,9 +421,9 @@ const FAQS_NL: Faq[] = [
 const FAQS_SV: Faq[] = [
   {
     q: 'Vad ingår vanligtvis i ett Lapplandspaket?',
-    a: 'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer — priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
+    a: 'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer. Priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
     aHtml:
-      'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer — priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
+      'Det beror på arrangören. Lokala arrangörer säljer främst enskilda guidade turer. Priset omfattar oftast guide, all utrustning, varma termooveraller och transport från centrum, ofta även varm dryck vid elden. Vissa, som Harriniva eller Nordic Unique Travels, ordnar också boende plus aktivitet eller skräddarsydda resor. Flyg och hotell bokar du själv.',
   },
   {
     q: 'När är den bästa tiden att se norrskenet?',
@@ -439,15 +439,15 @@ const FAQS_SV: Faq[] = [
   },
   {
     q: 'Passar paketen för barn?',
-    a: 'Ja — lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs åldersguiden för detaljerade rekommendationer.',
+    a: 'Ja, lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs åldersguiden för detaljerade rekommendationer.',
     aHtml:
-      'Ja — lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs <a href="/sv/age-guide" class="text-vibe-pink hover:underline">åldersguiden</a> för detaljerade rekommendationer.',
+      'Ja, lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs <a href="/sv/age-guide" class="text-vibe-pink hover:underline">åldersguiden</a> för detaljerade rekommendationer.',
   },
   {
     q: 'Hur tar jag mig till Lappland?',
-    a: 'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ.',
+    a: 'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL): oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ.',
     aHtml:
-      'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL) — oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ. Se alla resealternativ, inklusive tåg och hyrbil, på <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
+      'Flyg till Rovaniemi (RVN), Kittilä (KTT) eller Ivalo (IVL): oftast via Helsingfors med Finnair (cirka 1 timmes inrikesflyg). Nattåget med VR är ett alternativ. Se alla resealternativ, inklusive tåg och hyrbil, på <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>.',
   },
   {
     q: 'Var ska jag bo?',
@@ -490,9 +490,9 @@ const FAQS_ES: Faq[] = [
   },
   {
     q: '¿Los paquetes son adecuados para niños?',
-    a: 'Sí — los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la guía por edades para recomendaciones detalladas.',
+    a: 'Sí, los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la guía por edades para recomendaciones detalladas.',
     aHtml:
-      'Sí — los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la <a href="/es/age-guide" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
+      'Sí, los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la <a href="/es/age-guide" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
   },
   {
     q: '¿Cómo se llega a Laponia?',
@@ -541,9 +541,9 @@ const FAQS_PTBR: Faq[] = [
   },
   {
     q: 'Os pacotes são adequados para crianças?',
-    a: 'Sim — as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o guia por idade para recomendações detalhadas.',
+    a: 'Sim, as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o guia por idade para recomendações detalhadas.',
     aHtml:
-      'Sim — as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o <a href="/br/age-guide" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
+      'Sim, as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o <a href="/br/age-guide" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
   },
   {
     q: 'Como chego à Lapônia?',

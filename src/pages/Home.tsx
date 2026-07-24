@@ -21,14 +21,14 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Home',
   },
   fi: {
-    title: '#LaplandTours: suunnittele Lapin matka — kokoa itse tai varaa paikallinen toimija',
+    title: '#LaplandTours: suunnittele Lapin matka, kokoa itse tai varaa paikallinen toimija',
     description:
       'Suomen Lapin matkan voi koota kahdella tavalla. Yhdistä itse hotelli, vuokra-auto ja päiväretket, tai varaa aktiviteetit suoraan yhdeltä kuudesta luotettavasta lappilaisesta paikallistoimijasta.',
     canonical: 'https://laplandtours.online/fi',
     breadcrumbHome: 'Etusivu',
   },
   de: {
-    title: '#LaplandTours: Lappland-Reise planen — selbst zusammenstellen oder lokalen Anbieter buchen',
+    title: '#LaplandTours: Lappland-Reise planen, selbst zusammenstellen oder lokalen Anbieter buchen',
     description:
       'Eine Reise nach Finnisch-Lappland lässt sich auf zwei Wegen planen. Selbst zusammenstellen mit Hotel, Mietwagen und Tagestouren, oder Aktivitäten direkt bei einem von sechs verlässlichen lokalen Lappland-Anbietern buchen.',
     canonical: 'https://laplandtours.online/de',
@@ -70,7 +70,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Home',
   },
   sv: {
-    title: '#LaplandTours: planera din Lapplandsresa — sätt ihop själv eller boka en lokal aktör',
+    title: '#LaplandTours: planera din Lapplandsresa, sätt ihop själv eller boka en lokal aktör',
     description:
       'En resa till finska Lappland kan planeras på två sätt. Sätt ihop hotell, hyrbil och dagsutflykter själv, eller boka aktiviteterna direkt hos en av sex pålitliga lokala aktörer i finska Lappland.',
     canonical: 'https://laplandtours.online/sv',
