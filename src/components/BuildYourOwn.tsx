@@ -33,96 +33,96 @@ const rails: RailCard[] = [
         label: '01  ·  Stay',
         headline: 'A bed in Lapland',
         body:
-          'From hotel rooms in Rovaniemi to glass igloos in Saariselkä. Compare on Hotels.com, book direct, no middleman.',
-        priceLine: 'Live prices on Hotels.com · free cancellation on most rooms',
+          'From hotel rooms in Rovaniemi to glass igloos in Saariselkä. Compare on Trip.com, book direct, no middleman.',
+        priceLine: 'Live prices on Trip.com · book direct on the partner site',
         ctaLabel: 'Browse Lapland hotels',
       },
       fi: {
         label: '01  ·  Yöpyminen',
         headline: 'Yöpyminen Lapissa',
         body:
-          'Rovaniemen hotellihuoneista Saariselän lasi-igluihin. Vertaile Hotels.comissa, varaa suoraan, ei välikäsiä.',
-        priceLine: 'Reaaliaikaiset hinnat Hotels.comissa · useimmissa huoneissa ilmainen peruutus',
+          'Rovaniemen hotellihuoneista Saariselän lasi-igluihin. Vertaile Sembossa, varaa suoraan, ei välikäsiä.',
+        priceLine: 'Reaaliaikaiset hinnat Sembossa · varaus suoraan kumppanin sivulla',
         ctaLabel: 'Selaa Lapin hotelleja',
       },
       de: {
         label: '01  ·  Übernachten',
         headline: 'Ein Bett in Lappland',
         body:
-          'Vom Hotelzimmer in Rovaniemi bis zum Glas-Iglu in Saariselkä. Vergleichen Sie auf Hotels.com und buchen Sie direkt, ohne Zwischenhändler.',
-        priceLine: 'Live-Preise auf Hotels.com · kostenlose Stornierung bei den meisten Zimmern',
+          'Vom Hotelzimmer in Rovaniemi bis zum Glas-Iglu in Saariselkä. Vergleichen Sie auf Trip.com und buchen Sie direkt, ohne Zwischenhändler.',
+        priceLine: 'Live-Preise auf Trip.com · Buchung direkt auf der Partnerseite',
         ctaLabel: 'Hotels in Lappland ansehen',
       },
       ja: {
         label: '01  ·  宿泊',
         headline: 'ラップランドでの宿泊',
         body:
-          'ロヴァニエミのホテルから、サーリセルカのガラスイグルーまで。Hotels.comで比較し、仲介者なしで直接ご予約いただけます。',
-        priceLine: 'Hotels.comのリアルタイム価格 · ほとんどのお部屋は無料キャンセル可能',
+          'ロヴァニエミのホテルから、サーリセルカのガラスイグルーまで。Trip.comで比較し、仲介者なしで直接ご予約いただけます。',
+        priceLine: 'Trip.comのリアルタイム価格 · パートナーサイトで直接予約',
         ctaLabel: 'ラップランドのホテルを見る',
       },
       ko: {
         label: '01  ·  숙박',
         headline: '라플란드에서의 숙박',
         body:
-          '로바니에미의 호텔부터 사리셀카의 글래스 이글루까지. Hotels.com에서 비교하고 중개 없이 직접 예약하세요.',
-        priceLine: 'Hotels.com의 실시간 가격 · 대부분의 객실은 무료 취소 가능',
+          '로바니에미의 호텔부터 사리셀카의 글래스 이글루까지. Trip.com에서 비교하고 중개 없이 직접 예약하세요.',
+        priceLine: 'Trip.com의 실시간 가격 · 파트너 사이트에서 직접 예약합니다',
         ctaLabel: '라플란드 호텔 둘러보기',
       },
       fr: {
         label: '01  ·  Hébergement',
         headline: 'Un lit en Laponie',
         body:
-          'Des chambres d\'hôtel à Rovaniemi aux iglous de verre de Saariselkä. Comparez sur Hotels.com et réservez en direct, sans intermédiaire.',
-        priceLine: 'Tarifs en direct sur Hotels.com · annulation gratuite sur la plupart des chambres',
+          'Des chambres d\'hôtel à Rovaniemi aux iglous de verre de Saariselkä. Comparez sur Trip.com et réservez en direct, sans intermédiaire.',
+        priceLine: 'Tarifs en direct sur Trip.com · réservation directe sur le site partenaire',
         ctaLabel: 'Voir les hôtels en Laponie',
       },
       it: {
         label: '01  ·  Dormire',
         headline: 'Un letto in Lapponia',
         body:
-          'Dalle camere d\'albergo a Rovaniemi agli iglù di vetro di Saariselkä. Confronti su Hotels.com e prenoti direttamente, senza intermediari.',
-        priceLine: 'Prezzi live su Hotels.com · cancellazione gratuita sulla maggior parte delle camere',
+          'Dalle camere d\'albergo a Rovaniemi agli iglù di vetro di Saariselkä. Confronti su Trip.com e prenoti direttamente, senza intermediari.',
+        priceLine: 'Prezzi live su Trip.com · prenotazione diretta sul sito del partner',
         ctaLabel: 'Sfogliare gli hotel in Lapponia',
       },
       nl: {
         label: '01  ·  Verblijf',
         headline: 'Een bed in Lapland',
         body:
-          'Van hotelkamers in Rovaniemi tot glaziglo\'s in Saariselkä. Vergelijken op Hotels.com en direct boeken, geen tussenpersoon.',
-        priceLine: 'Live prijzen op Hotels.com · gratis annulering bij de meeste kamers',
+          'Van hotelkamers in Rovaniemi tot glaziglo\'s in Saariselkä. Vergelijken op Trip.com en direct boeken, geen tussenpersoon.',
+        priceLine: 'Live prijzen op Trip.com · direct boeken op de partnersite',
         ctaLabel: 'Lapland-hotels bekijken',
       },
       sv: {
         label: '01  ·  Bo',
         headline: 'En säng i Lappland',
         body:
-          'Från hotellrum i Rovaniemi till glasiglor i Saariselkä. Jämför på Hotels.com, boka direkt, ingen mellanhand.',
-        priceLine: 'Aktuella priser på Hotels.com · fri avbokning på de flesta rum',
+          'Från hotellrum i Rovaniemi till glasiglor i Saariselkä. Jämför på Trip.com, boka direkt, ingen mellanhand.',
+        priceLine: 'Aktuella priser på Trip.com · boka direkt på partnersajten',
         ctaLabel: 'Bläddra bland hotell i Lappland',
       },
       es: {
         label: '01  ·  Dormir',
         headline: 'Una cama en Laponia',
         body:
-          'Desde habitaciones de hotel en Rovaniemi hasta iglús de cristal en Saariselkä. Compare en Hotels.com y reserve directamente, sin intermediarios.',
-        priceLine: 'Precios en directo en Hotels.com · cancelación gratuita en la mayoría de las habitaciones',
+          'Desde habitaciones de hotel en Rovaniemi hasta iglús de cristal en Saariselkä. Compare en Trip.com y reserve directamente, sin intermediarios.',
+        priceLine: 'Precios en directo en Trip.com · reserva directa en el sitio del socio',
         ctaLabel: 'Ver hoteles en Laponia',
       },
       'pt-BR': {
         label: '01  ·  Hospedagem',
         headline: 'Uma cama na Lapônia',
         body:
-          'De quartos de hotel em Rovaniemi a iglus de vidro em Saariselkä. Compare no Hotels.com e reserve direto, sem intermediários.',
-        priceLine: 'Preços em tempo real no Hotels.com · cancelamento grátis na maioria dos quartos',
+          'De quartos de hotel em Rovaniemi a iglus de vidro em Saariselkä. Compare no Trip.com e reserve direto, sem intermediários.',
+        priceLine: 'Preços em tempo real no Trip.com · reserva direta no site do parceiro',
         ctaLabel: 'Ver hotéis na Lapônia',
       },
       'zh-CN': {
         label: '01  ·  住宿',
         headline: '在拉普兰的一张床',
         body:
-          '从罗瓦涅米的酒店客房到萨里色尔卡的玻璃穹顶屋。在 Hotels.com 上比价，直接预订，无中间商。',
-        priceLine: 'Hotels.com 实时价格 · 大部分房间可免费取消',
+          '从罗瓦涅米的酒店客房到萨里色尔卡的玻璃穹顶屋。在 Trip.com 上比价，直接预订，无中间商。',
+        priceLine: 'Trip.com 实时价格 · 在合作伙伴网站直接预订',
         ctaLabel: '浏览拉普兰酒店',
       },
 },

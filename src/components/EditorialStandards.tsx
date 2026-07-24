@@ -23,7 +23,7 @@ const COPY: Record<CopyLang, {
       '6 operators compared  ·  5 UK departure airports  ·  0 % commission charged to you  ·  updated May 2026',
     bullets: [
       'No operator pays to be featured, and no affiliate commission is earned on operator clicks.',
-      'Affiliate commission is earned only on the cross-sell rail: Hotels.com (CJ), EconomyBookings (CJ) and GetYourGuide. Those links are labelled and disclosed.',
+      'Affiliate commission is earned only on the cross-sell rail: Trip.com, EconomyBookings (Travelpayouts) and GetYourGuide. Those links are labelled and disclosed.',
       'Operator profiles, prices and star ratings are reviewed every six months. Last review: May 2026.',
       'If something on this page is wrong or out of date, write to info@laplandvibes.com and it will be fixed.',
     ],
@@ -47,7 +47,7 @@ const COPY: Record<CopyLang, {
       '6 käsin valittua toimijaa  ·  kaikki Suomen Lapista  ·  0 % palvelumaksu sinulle  ·  tarkistettu heinäkuu 2026',
     bullets: [
       'Yksikään matkanjärjestäjä ei maksa listaukseen pääsystä, eikä matkanjärjestäjien linkeistä makseta provisiota.',
-      'Kumppanuusprovisioita saadaan vain ristiinmyyntiriviltä: Hotels.com (CJ), EconomyBookings (CJ) ja GetYourGuide. Nämä linkit ovat merkityt ja avoimet.',
+      'Kumppanuusprovisioita saadaan vain ristiinmyyntiriviltä: Sembo (Adtraction), EconomyBookings (Travelpayouts) ja GetYourGuide. Nämä linkit ovat merkityt ja avoimet.',
       'Matkanjärjestäjien profiilit, hinnat ja arviot tarkistetaan puolen vuoden välein. Edellinen tarkistus: heinäkuu 2026.',
       'Jos tällä sivulla on virhe tai vanhentunutta tietoa, lähetä viesti osoitteeseen info@laplandvibes.com ja korjaus tehdään.',
     ],
@@ -71,7 +71,7 @@ const COPY: Record<CopyLang, {
       '6 Anbieter im Vergleich  ·  alle in Finnisch-Lappland ansässig  ·  0 % Provision für Sie  ·  geprüft Juli 2026',
     bullets: [
       'Kein Reiseveranstalter zahlt für die Aufnahme, und auf Operator-Klicks fließt keine Affiliate-Provision.',
-      'Affiliate-Provisionen fallen ausschließlich auf der Zusatz-Schiene an: Hotels.com (CJ), EconomyBookings (CJ) und GetYourGuide. Diese Links sind gekennzeichnet und offen ausgewiesen.',
+      'Affiliate-Provisionen fallen ausschließlich auf der Zusatz-Schiene an: Trip.com, EconomyBookings (Travelpayouts) und GetYourGuide. Diese Links sind gekennzeichnet und offen ausgewiesen.',
       'Veranstalter-Profile, Preise und Bewertungen werden alle sechs Monate geprüft. Letzte Überprüfung: Juli 2026.',
       'Sollte auf dieser Seite etwas falsch oder veraltet sein, melden Sie es bitte an info@laplandvibes.com. Es wird korrigiert.',
     ],
@@ -95,7 +95,7 @@ const COPY: Record<CopyLang, {
       '엄선된 운영사 6곳  ·  모두 핀란드 라플란드 소재  ·  고객 부담 수수료 0 %  ·  2026년 7월 확인',
     bullets: [
       '어떤 운영사도 게재를 위해 비용을 지불하지 않으며, 운영사 클릭에서 제휴 수수료는 발생하지 않습니다.',
-      '제휴 수수료는 크로스셀 영역에서만 발생합니다: Hotels.com(CJ), EconomyBookings(CJ), GetYourGuide. 해당 링크는 명시되고 공개됩니다.',
+      '제휴 수수료는 크로스셀 영역에서만 발생합니다: Trip.com, EconomyBookings(Travelpayouts), GetYourGuide. 해당 링크는 명시되고 공개됩니다.',
       '운영사 프로필, 가격, 평가는 6개월마다 검토됩니다. 마지막 검토: 2026년 7월.',
       '이 페이지의 정보가 잘못되었거나 오래된 경우 info@laplandvibes.com 으로 알려 주세요. 수정하겠습니다.',
     ],
@@ -119,7 +119,7 @@ const COPY: Record<CopyLang, {
       '6 opérateurs comparés  ·  tous établis en Laponie finlandaise  ·  0 % de commission à votre charge  ·  vérifié juillet 2026',
     bullets: [
       'Aucun voyagiste ne paie pour figurer sur cette page, et aucune commission n\'est perçue sur les clics vers leurs sites.',
-      'Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées : Hotels.com (CJ), EconomyBookings (CJ) et GetYourGuide. Ces liens sont identifiés et déclarés.',
+      'Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées : Trip.com, EconomyBookings (Travelpayouts) et GetYourGuide. Ces liens sont identifiés et déclarés.',
       'Profils des voyagistes, prix et notes sont revus tous les six mois. Dernier contrôle : juillet 2026.',
       'Si une information de cette page est inexacte ou périmée, écrivez à info@laplandvibes.com. Elle sera corrigée.',
     ],
@@ -143,7 +143,7 @@ const COPY: Record<CopyLang, {
       '6 operatori a confronto  ·  tutti con sede in Lapponia finlandese  ·  0 % di commissione a suo carico  ·  verificato a luglio 2026',
     bullets: [
       'Nessun operatore paga per essere presente in questa pagina, e sui clic verso il loro sito non maturano commissioni di affiliazione.',
-      'La commissione di affiliazione si attiva solo sulla fascia di cross-sell: Hotels.com (CJ), EconomyBookings (CJ) e GetYourGuide. Tali link sono etichettati e dichiarati.',
+      'La commissione di affiliazione si attiva solo sulla fascia di cross-sell: Trip.com, EconomyBookings (Travelpayouts) e GetYourGuide. Tali link sono etichettati e dichiarati.',
       'I profili degli operatori, i prezzi e le valutazioni vengono rivisti ogni sei mesi. Ultima revisione: luglio 2026.',
       'Se qualcosa in questa pagina è errato o non aggiornato, scriva a info@laplandvibes.com e sarà corretto.',
     ],
@@ -167,7 +167,7 @@ const COPY: Record<CopyLang, {
       '6 aanbieders vergeleken  ·  allemaal gevestigd in Fins Lapland  ·  0 % commissie voor u  ·  gecontroleerd juli 2026',
     bullets: [
       'Geen enkele reisorganisatie betaalt om vermeld te worden, en op kliks naar hun site wordt geen affiliate-commissie ontvangen.',
-      'Affiliate-commissie wordt alleen op de cross-sell-balk verdiend: Hotels.com (CJ), EconomyBookings (CJ) en GetYourGuide. Die links zijn gemarkeerd en toegelicht.',
+      'Affiliate-commissie wordt alleen op de cross-sell-balk verdiend: Trip.com, EconomyBookings (Travelpayouts) en GetYourGuide. Die links zijn gemarkeerd en toegelicht.',
       'Profielen, prijzen en beoordelingen van reisorganisaties worden elk half jaar herzien. Laatste controle: juli 2026.',
       'Klopt er iets niet op deze pagina, of is het verouderd? Mail naar info@laplandvibes.com en het wordt aangepast.',
     ],
@@ -191,7 +191,7 @@ const COPY: Record<CopyLang, {
       '6 arrangörer jämförda  ·  alla baserade i finska Lappland  ·  0 % provision för dig  ·  kontrollerad juli 2026',
     bullets: [
       'Ingen arrangör betalar för att finnas med, och vi tjänar ingen affiliateprovision på klick till arrangörerna.',
-      'Affiliateprovision tjänas bara in på korsförsäljningsraden: Hotels.com (CJ), EconomyBookings (CJ) och GetYourGuide. De länkarna är märkta och redovisade.',
+      'Affiliateprovision tjänas bara in på korsförsäljningsraden: Trip.com, EconomyBookings (Travelpayouts) och GetYourGuide. De länkarna är märkta och redovisade.',
       'Arrangörernas profiler, priser och stjärnbetyg ses över var sjätte månad. Senaste översyn: juli 2026.',
       'Om något på den här sidan är fel eller inaktuellt, skriv till info@laplandvibes.com så rättas det.',
     ],
@@ -215,7 +215,7 @@ const COPY: Record<CopyLang, {
       '6社の事業者を比較  ·  すべてフィンランド・ラップランド拠点  ·  お客様への手数料0%  ·  2026年7月確認',
     bullets: [
       'オペレーターが掲載のために費用を支払うことはありません。オペレーターのクリックでアフィリエイト手数料を受け取ることもありません。',
-      'アフィリエイト手数料は、Hotels.com(CJ)、EconomyBookings(CJ)、GetYourGuideのクロスセル枠でのみ発生します。これらのリンクは明示・開示されています。',
+      'アフィリエイト手数料は、Trip.com、EconomyBookings(Travelpayouts)、GetYourGuideのクロスセル枠でのみ発生します。これらのリンクは明示・開示されています。',
       'ツアー会社のプロフィール、価格、評価は6か月ごとに見直しています。前回の見直し:2026年7月。',
       'このページに誤りや古い情報がありましたら、info@laplandvibes.com までご連絡ください。修正いたします。',
     ],
@@ -239,7 +239,7 @@ const COPY: Record<CopyLang, {
       '6 operadores comparados  ·  todos con sede en la Laponia finlandesa  ·  0 % de comisión a su cargo  ·  revisado en julio de 2026',
     bullets: [
       'Ningún operador paga por aparecer, y los clics hacia los operadores no generan comisión de afiliación.',
-      'La comisión de afiliación solo se obtiene en la franja de venta cruzada: Hotels.com (CJ), EconomyBookings (CJ) y GetYourGuide. Esos enlaces están señalados y declarados.',
+      'La comisión de afiliación solo se obtiene en la franja de venta cruzada: Trip.com, EconomyBookings (Travelpayouts) y GetYourGuide. Esos enlaces están señalados y declarados.',
       'Los perfiles de operadores, los precios y las valoraciones se revisan cada seis meses. Última revisión: julio de 2026.',
       'Si algo de esta página es incorrecto o está desactualizado, escriba a info@laplandvibes.com y se corregirá.',
     ],
@@ -263,7 +263,7 @@ const COPY: Record<CopyLang, {
       '6 operadoras comparadas  ·  todas sediadas na Lapônia finlandesa  ·  0 % de comissão a seu cargo  ·  revisado em julho de 2026',
     bullets: [
       'Nenhuma operadora paga para aparecer, e os cliques nas operadoras não geram comissão de afiliado.',
-      'A comissão de afiliado só é obtida na faixa de venda cruzada: Hotels.com (CJ), EconomyBookings (CJ) e GetYourGuide. Esses links são sinalizados e divulgados.',
+      'A comissão de afiliado só é obtida na faixa de venda cruzada: Trip.com, EconomyBookings (Travelpayouts) e GetYourGuide. Esses links são sinalizados e divulgados.',
       'Os perfis das operadoras, os preços e as avaliações são revisados a cada seis meses. Última revisão: julho de 2026.',
       'Se algo nesta página estiver errado ou desatualizado, escreva para info@laplandvibes.com que será corrigido.',
     ],
@@ -287,7 +287,7 @@ const COPY: Record<CopyLang, {
       '6 家运营商对比  ·  均位于芬兰拉普兰  ·  对你收取 0% 佣金  ·  2026 年 7 月核实',
     bullets: [
       '没有运营商付费上榜，点击运营商也不会产生联盟佣金。',
-      '联盟佣金只来自交叉销售栏目：Hotels.com（CJ）、EconomyBookings（CJ）和 GetYourGuide。这些链接均已标注并公开说明。',
+      '联盟佣金只来自交叉销售栏目：Trip.com、EconomyBookings（Travelpayouts）和 GetYourGuide。这些链接均已标注并公开说明。',
       '运营商资料、价格和星级每六个月复核一次。上次复核：2026 年 7 月。',
       '如果本页面有错误或信息过时，请发送邮件至 info@laplandvibes.com，我们会更正。',
     ],
