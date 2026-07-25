@@ -70,7 +70,7 @@ const COPY: Record<NfLang, NfCopy> = {
   },
   'zh-CN': {
     h1: '在拉普兰迷路了',
-    body: '这个页面不存在——但北方有很多真实存在的页面。下面每条路线都通向值得一去的地方。',
+    body: '这个页面不存在，但北方有很多真实存在的页面。下面每条路线都通向值得一去的地方。',
     home: '返回首页',
   },
   ko: {
@@ -117,7 +117,7 @@ export interface NotFoundLink {
 export interface NotFoundProps {
   /** Active UI language — canonical code or URL segment. Defaults to 'en'. */
   lang?: string
-  /** Brand word for the tab title, e.g. 'LaplandBars' → "404 — LaplandBars". */
+  /** Brand word for the tab title, e.g. 'LaplandBars' → "404: LaplandBars". */
   siteName: string
   /** Locale-prefixed front-page path, e.g. to('/'). Defaults to '/'. */
   homeHref?: string

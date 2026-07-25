@@ -147,7 +147,7 @@ const LOCALE_HEADLINES: Record<SupportedLang, { headline: string; description: s
   },
   ja: {
     headline: 'ラップランドを、フィンランドから直接お届け。',
-    description: '晴天の夜が来る前のオーロラ予報、売り切れる前のガラスイグルー予約タイミング、季節ごとの旅行ガイド, フィンランド現地から、出典付きで。',
+    description: '晴天の夜が来る前のオーロラ予報、売り切れる前のガラスイグルー予約タイミング、季節ごとの旅行ガイド。フィンランド現地から、出典付きで。',
   },
   es: {
     headline: 'Laponia en tu bandeja, directo desde Finlandia.',
@@ -158,7 +158,7 @@ const LOCALE_HEADLINES: Record<SupportedLang, { headline: string; description: s
     description: 'Alertas de aurora antes das noites mais claras, janelas de reserva dos iglus de vidro antes de esgotarem e guias sazonais. Escrito da Finlândia, com fontes.',
   },
   'zh-CN': {
-    headline: '拉普兰直达邮箱——来自芬兰第一手。',
+    headline: '拉普兰直达邮箱，来自芬兰第一手。',
     description: '晴朗夜晚来临前的极光预警、玻璃冰屋售罄前的预订窗口、按季节的旅行指南。来自芬兰本地编辑，出处清晰。',
   },
   ko: {
@@ -240,7 +240,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   },
   ja: {
     successHeadline: '登録完了。',
-    successBody: 'ようこそメールを受信トレイでご確認ください, Kp指数が上昇したら次のオーロラアラートをお届けします。',
+    successBody: 'ようこそメールを受信トレイでご確認ください。Kp指数が上昇したら次のオーロラアラートをお届けします。',
     alreadyHeadline: 'すでに登録済みです!',
     alreadyBody: 'すでにご登録いただいているようです。ラップランドの最新情報を引き続きお届けします。',
     emailPlaceholder: 'メールアドレス',
@@ -294,7 +294,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   },
   'zh-CN': {
     successHeadline: '订阅成功。',
-    successBody: '请查收欢迎邮件——以及下一次预报转好时的极光提醒。',
+    successBody: '请查收欢迎邮件，以及下一次预报转好时的极光提醒。',
     alreadyHeadline: '您已在订阅列表中!',
     alreadyBody: '看来您已经订阅了。我们将继续为您发送拉普兰的最新动态。',
     emailPlaceholder: '您的邮箱地址',
