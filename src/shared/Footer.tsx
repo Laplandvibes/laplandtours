@@ -1099,7 +1099,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-0.5 sm:gap-3">
                 <p style={{ color: BLUE }}>
-                  &copy; {d.copyright.replace('{{year}}', String(new Date().getFullYear()))}
+                  {/* Some dicts ship the symbol in the string (spoke copy.ts, footerDict.ts),
+                      others don't (hub i18n JSON, hoteldeals, visit). Strip it, then emit one. */}
+                  &copy; {d.copyright.replace('{{year}}', String(new Date().getFullYear())).replace(/^\s*©\s*/, '')}
                 </p>
                 <span aria-hidden="true" className="hidden sm:inline" style={{ color: 'rgba(0,47,108,0.35)' }}>·</span>
                 <a
