@@ -94,11 +94,16 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             // tummilta että vaaleilta sivustoilta, dashed-pinkki = "vapaa paikka".
             'rounded-2xl border-2 border-dashed px-5 py-4 sm:px-7 sm:py-5 transition-all duration-300',
             'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]',
-            light ? 'shadow-[0_8px_24px_rgba(236,72,153,0.14)]' : 'shadow-[0_12px_40px_rgba(236,72,153,0.22)]',
             className,
           ]
             .filter(Boolean)
             .join(' ')}
+          // Pinkki hehku inline-tyylinä, EI arbitrary `shadow-[...]`-luokkana:
+          // Tailwind v4:n source-skannaus ei emitoi shared/-kansiossa esiintyviä
+          // arbitrary-luokkia kaikissa repoissa (todettu 2026-07-26: nightlife
+          // 0 kpl `shadow-[`-selektoria, wellness 7), joten hehku katosi
+          // hiljaa osalta sivustoja. Arvot ovat samat kuin luokkaversiossa.
+          style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
           aria-label={`${topLabel}: ${t.wantYourAd}`}
         >
           <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 min-w-0">
@@ -126,14 +131,15 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         onClick={() => fireAdvertiseHereClick(placeholder.siteSlug, placeholder.slotId)}
         className={[
           'group relative flex h-full flex-col items-center justify-center text-center gap-2.5',
-          // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24) — ks. banner-variantti.
+          // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): ks. banner-variantti.
           'rounded-2xl border-2 border-dashed px-6 py-8 sm:py-10 transition-all duration-300',
           'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]',
-          light ? 'shadow-[0_8px_24px_rgba(236,72,153,0.14)]' : 'shadow-[0_12px_40px_rgba(236,72,153,0.22)]',
           className,
         ]
           .filter(Boolean)
           .join(' ')}
+        // Ks. banner-variantti: inline-hehku, koska arbitrary shadow ei emitoidu.
+        style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
         aria-label={t.wantYourAd}
       >
         <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-[#0F172A]/55">

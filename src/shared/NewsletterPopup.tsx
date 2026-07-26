@@ -22,6 +22,16 @@ import { Send, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
 const REMIND_AFTER_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const SUPPRESSED_PATHS = ['/privacy', '/terms', '/cookie-policy', '/unsubscribe'];
 
+/**
+ * Network wordmark font. The `#LAPLAND<brand>` lockup is ALWAYS Bebas Neue, on
+ * every site, including the variant-font sites where `font-heading` resolves to
+ * a serif (Cormorant Garamond on weddings/luxuryvillas, Playfair on
+ * carrental/gifts/store/stayinlapland). Kept in sync with the same constant in
+ * `EcosystemMenu.tsx`. Degrades to the host site's own heading font if Bebas
+ * Neue is not loaded there.
+ */
+const WORDMARK_FONT = "'Bebas Neue', var(--font-heading, 'Arial Narrow'), sans-serif";
+
 type Status = 'hidden' | 'visible' | 'loading' | 'success' | 'already' | 'error';
 
 interface StoredState {
@@ -557,6 +567,11 @@ export default function NewsletterPopup({
   const isSuccess = status === 'success' || status === 'already';
 
   return (
+    // overflow-y-auto + items-start on mobile: a card taller than the phone
+    // viewport (long FI/DE copy + short mobile viewport) must stay scrollable so
+    // the close button is always reachable. Without this the centred card pushed
+    // the ✕ off-screen and — body scroll being locked — trapped mobile users
+    // under a dark overlay (Vesa 2026-07-10). Desktop stays centred.
     <div className="fixed inset-0 z-[9990] flex items-start sm:items-center justify-center px-4 py-8 overflow-y-auto overscroll-contain">
       {/* Backdrop */}
       <button
@@ -591,8 +606,9 @@ export default function NewsletterPopup({
         </button>
 
         <div className="p-6 sm:p-8">
-          {/* Brand mark, adapts to current site */}
-          <p className="font-heading tracking-wide text-2xl sm:text-3xl mb-4 leading-none">
+          {/* Brand mark, adapts to current site. The wordmark is ALWAYS Bebas
+              Neue, never the host site's heading font: see WORDMARK_FONT. */}
+          <p className="font-heading tracking-wide text-2xl sm:text-3xl mb-4 leading-none" style={{ fontFamily: WORDMARK_FONT }}>
             <span className="text-vibe-pink">#</span>
             <span className="text-snow">LAPLAND</span>
             <span className="text-vibe-pink">{brandWord}</span>
