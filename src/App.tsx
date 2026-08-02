@@ -17,6 +17,7 @@ const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 import { useLang, useHtmlLang } from './i18n/useLang';
 import LocaleAutoRedirect from './i18n/LocaleAutoRedirect';
+import { AppPromoNudge } from './components/AppPromo';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -207,6 +208,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppShell />
-    </BrowserRouter>
+    {/* App promo: engagement-triggered, never on arrival. */}
+      <AppPromoNudge />
+      </BrowserRouter>
   );
 }

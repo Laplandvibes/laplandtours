@@ -11,6 +11,8 @@ import HomeAdSlots, { MainPartnerBanner } from '../shared/HomeAdSlots';
 import { AD_SLOTS } from '../data/adSlots';
 import { setPageMeta, breadcrumbList, faqPageSchema, travelAgencySchema } from '../lib/meta';
 import { useLang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+import GygPicks from '../components/GygPicks';
+import { AppPromoHero } from '../components/AppPromo';
 
 const META: Record<CopyLang, { title: string; description: string; canonical: string; breadcrumbHome: string }> = {
   en: {
@@ -118,9 +120,16 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+
+
       <MainPartnerBanner config={AD_SLOTS} locale={lang} />
       <BuildYourOwn />
       <HomeAdSlots config={AD_SLOTS} locale={lang} />
+
+      {/* Varattavat GYG-tuotteet — korkealla sivulla mutta myytyjen mainospaikkojen ALAPUOLELLA */}
+      <GygPicks />
+
       <BookableActivities />
       <OperatorGuide />
       <SeasonStrip />
@@ -128,6 +137,8 @@ export default function Home() {
       <FAQ />      <div className="bg-deep-night py-6 px-4">
         <AffiliateDisclosure variant="full" />
       </div>
-    </>
-  );
+    {/* App launch block. Bottom of the page on purpose: the site's own
+        hero is what the search result promised. */}
+    <AppPromoHero />
+    </>  );
 }
