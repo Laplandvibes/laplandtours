@@ -238,9 +238,21 @@ export default function CookieBanner({
            330px is the smallest width where the LONGEST locale (fr) still lands
            in 3 lines at 12px. Do not shrink this without re-measuring all 12
            locales at 375 AND 360 (see _cookiefit.mjs). */
-        .lv-pole   { width: 3px; left: 12px; height: 318px; }
+        /* 🔴 The flag used to fly 110px above the bottom edge. That offset is a
+           constant, so on a phone it did not read as "docked to the bottom" — it
+           read as "parked in the middle of the screen", which on a front page is
+           exactly where the booking buttons are. Measured on a first visit at
+           375x667: the card covered 8 controls including both hero CTAs, and on
+           laplandstays it covered "Hotellit ja mökit" by 97% at 390x844. The
+           110px below it was dead space. Pole and flag now come down together so
+           the flag still flies at the masthead, just lower on the pole.
+           🔴 Do not re-raise this without re-running _consentclash.mjs: the card
+           is ~200px tall at 375px (18:11 is fixed and the 330px width is a
+           legibility floor, see below), so every pixel of offset comes straight
+           out of the visible hero. */
+        .lv-pole   { width: 3px; left: 12px; height: 240px; }
         .lv-finial { top: -4px; width: 8px; height: 8px; }
-        .lv-banner { left: 20px; bottom: 110px; }
+        .lv-banner { left: 20px; bottom: 14px; }
         .lv-card   { width: min(330px, calc(100vw - 42px)); aspect-ratio: 18/11; }
         .lv-rope   { width: 7px; height: 1.5px; background: #334155; border-radius: 1px; }
         .lv-label  { font-size: 12px; letter-spacing: 0.1em; }
