@@ -732,7 +732,9 @@ function ContactModal({ kind, title, c, onClose }: { kind: ContactKind; title: s
         <div style={{ height: 4, width: '100%', background: 'linear-gradient(90deg, #EC4899, #f472b6)' }} />
         <button
           onClick={onClose} aria-label={c.close}
-          style={{ position: 'absolute', top: 12, right: 12, background: 'transparent', border: 'none', cursor: 'pointer', color: BLUE, padding: 6, lineHeight: 0 }}
+          /* 44x44 hit area (WCAG 2.5.5). top/right pulled 12→6 so the 20px glyph
+             stays at the exact same optical spot as the old 32px button. */
+          style={{ position: 'absolute', top: 6, right: 6, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', cursor: 'pointer', color: BLUE, padding: 0, lineHeight: 0 }}
         >
           <X className="w-5 h-5" />
         </button>
@@ -812,7 +814,11 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
           <div className="flex items-center gap-3 mb-7 sm:mb-9">
             <div className="flex-1 h-px" style={{ background: 'rgba(248,250,252,0.25)' }} />
             <div
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-normal tracking-wide"
+              /* text-[12px] not text-xs: text-xs also sets line-height, which
+                 measurably changed this badge on DESKTOP (28px -> 26.3px tall).
+                 An arbitrary size sets font-size only, so sm:text-xs still owns
+                 desktop exactly as before. Same reason for every sm: pair below. */
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-[12px] sm:text-xs font-normal tracking-wide"
               style={{ background: 'rgba(248,250,252,0.08)', border: '1px solid rgba(248,250,252,0.3)', color: WHITE }}
             >
               <div
@@ -849,7 +855,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                 href="https://app.laplandvibes.com"
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-1.5 mt-3 px-3.5 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200"
+                className="inline-flex items-center gap-1.5 mt-3 px-3.5 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200 min-h-[44px] sm:min-h-0"
                 style={{ background: '#EC4899', color: '#F9FAFB' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#DB2777'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#EC4899'; }}
@@ -867,7 +873,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200"
+                  className="w-11 h-11 sm:w-10 sm:h-10 flex items-center justify-center rounded-full transition-all duration-200"
                   style={{ background: 'rgba(248,250,252,0.12)', border: '1px solid rgba(248,250,252,0.3)', color: WHITE }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLElement).style.background = '#EC4899';
@@ -889,19 +895,23 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
             {siteGroups.map((group) => (
               <div key={group.title}>
                 <h3
-                  className="text-[10px] font-semibold mb-4 sm:mb-5 pb-2.5 sm:pb-3 uppercase tracking-[0.2em] border-b"
+                  className="text-[12px] sm:text-[10px] font-semibold mb-4 sm:mb-5 pb-2.5 sm:pb-3 uppercase tracking-[0.12em] sm:tracking-[0.2em] border-b"
                   style={{ color: WHITE, borderColor: 'rgba(248,250,252,0.25)' }}
                 >
                   {group.title}
                 </h3>
-                <ul className="space-y-2.5 sm:space-y-3.5">
+                <ul className="space-y-0 sm:space-y-3.5">
                   {group.links.map((link) => (
                     <li key={link.name}>
                       <a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[13px] sm:text-sm font-normal leading-snug transition-colors duration-200"
+                        /* min-w matters as much as min-h here: the link is
+                           inline-flex, so its hit box is exactly as wide as the
+                           label — and short locale labels ("Offres", "Erbjudanden")
+                           came out 37px wide. sm: restores the plain inline box. */
+                        className="text-[13px] sm:text-sm font-normal leading-snug transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:inline sm:min-h-0 sm:min-w-0"
                         style={{ color: 'rgba(248,250,252,0.85)' }}
                         onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
                         onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(248,250,252,0.85)')}
@@ -924,7 +934,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
           {/* Travel Guide pillar pills */}
           <div className="mb-12 sm:mb-14">
             <p
-              className="text-[10px] font-normal uppercase tracking-[0.25em] mb-4 sm:mb-5"
+              className="text-[12px] sm:text-[10px] font-normal uppercase tracking-[0.15em] sm:tracking-[0.25em] mb-4 sm:mb-5"
               style={{ color: BLUE }}
             >
               {d.travelGuideKicker}
@@ -981,7 +991,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
 
             <div className="lg:col-span-2">
               <p
-                className="text-[10px] font-normal uppercase tracking-[0.25em] mb-5 pb-3 border-b"
+                className="text-[12px] sm:text-[10px] font-normal uppercase tracking-[0.15em] sm:tracking-[0.25em] mb-5 pb-3 border-b"
                 style={{ color: BLUE, borderColor: 'rgba(0,47,108,0.2)' }}
               >
                 {d.about.eyebrow}
@@ -1091,13 +1101,13 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
           >
             {editorialNote && (
               <p
-                className="text-[11px] leading-relaxed text-center md:text-left font-medium"
+                className="text-[12px] sm:text-[11px] leading-relaxed text-center md:text-left font-medium"
                 style={{ color: BLUE }}
               >
                 {editorialNote}
               </p>
             )}
-            <p className="text-[11px] leading-relaxed text-center md:text-left" style={{ color: 'rgba(0,47,108,0.65)' }}>
+            <p className="text-[12px] sm:text-[11px] leading-relaxed text-center md:text-left" style={{ color: 'rgba(0,47,108,0.65)' }}>
               <span aria-hidden="true">ⓘ </span>
               {d.affiliate}
             </p>

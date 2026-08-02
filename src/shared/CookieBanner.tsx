@@ -31,12 +31,12 @@ export interface CookieBannerDict {
 }
 
 /**
- * Built-in 11-language translations matching the LaplandVibes ecosystem
- * (en, fi, de, ja, es, pt-BR, zh-CN, ko, fr, it, nl). Use these as either
+ * Built-in 12-language translations matching the LaplandVibes ecosystem
+ * (en, fi, de, ja, es, pt-BR, zh-CN, ko, fr, it, nl, sv). Use these as either
  * `dict` directly, or as the source for per-site overrides.
  *
  * Legally important: this banner is the FIRST consent prompt a non-English
- * visitor sees. Showing English copy on /kr /fr /it /nl is a GDPR + ePrivacy
+ * visitor sees. Showing English copy on /kr /fr /it /nl /sv is a GDPR + ePrivacy
  * problem (consent must be given in a language the user understands).
  */
 export const COOKIE_BANNER_LOCALES: Record<string, Required<CookieBannerDict>> = {
@@ -59,7 +59,7 @@ const DEFAULT_DICT: Required<CookieBannerDict> = COOKIE_BANNER_LOCALES.en;
 interface CookieBannerProps {
   consentKey?: string;
   /**
-   * Optional locale code (en | fi | de | ja | es | pt-BR | zh-CN | ko | fr | it | nl).
+   * Optional locale code (en | fi | de | ja | es | pt-BR | zh-CN | ko | fr | it | nl | sv).
    * When provided, the banner auto-picks copy from the built-in
    * `COOKIE_BANNER_LOCALES` table. Overridden by an explicit `dict`.
    */
@@ -81,7 +81,7 @@ export default function CookieBanner({
   policyHref,
 }: CookieBannerProps) {
   // Keep the policy link in the visitor's locale: derive the URL prefix from the
-  // first path segment (fi/de/ja/es/br/cn/kr/fr/it/nl) unless an explicit
+  // first path segment (fi/de/ja/es/br/cn/kr/fr/it/nl/sv) unless an explicit
   // policyHref is passed. A bare /cookie-policy would dump a /fr visitor to EN.
   const { pathname } = useLocation();
   const _seg = pathname.split('/')[1] || '';
@@ -187,17 +187,17 @@ export default function CookieBanner({
               {/* Row 1 */}
               <div className="bg-white" />               {/* hoist, empty */}
               <div className="bg-[#002F6C]" />
-              <div className="bg-white flex items-center px-3">
+              <div className="bg-white flex items-center px-2 md:px-3">
                 <p className="lv-label text-[#002F6C] font-extrabold tracking-[0.22em] uppercase">{D.label}</p>
               </div>
 
               {/* Row 2, horizontal stripe */}
               <div className="bg-[#002F6C]" />
               <div className="bg-[#002F6C]" />
-              <div className="bg-[#002F6C] flex items-center px-3">
+              <div className="bg-[#002F6C] flex items-center px-2 md:px-3">
                 <p className="lv-body text-white leading-[1.35]">
                   {D.body}{' '}
-                  <Link to={_href} className="underline opacity-80 hover:opacity-100 transition-opacity">
+                  <Link to={_href} className="lv-policy underline opacity-80 hover:opacity-100 transition-opacity">
                     {D.policyLink}
                   </Link>
                 </p>
@@ -206,7 +206,7 @@ export default function CookieBanner({
               {/* Row 3 */}
               <div className="bg-white" />               {/* hoist, empty */}
               <div className="bg-[#002F6C]" />
-              <div className="bg-white flex items-center justify-start gap-2 px-3">
+              <div className="bg-white flex items-center justify-start gap-2 px-2 md:px-3">
                 <button
                   onClick={decline}
                   className="lv-btn text-[#002F6C] font-semibold border border-[#002F6C]/35 rounded-sm hover:bg-[#002F6C]/10 transition-colors cursor-pointer"
@@ -227,15 +227,30 @@ export default function CookieBanner({
 
       <style>{`
         /* ── Mobile ── (fixed pixel bottoms so mobile browser chrome resize does not displace the flag)
-           Sized down 2026-07-06. Vesa: the flag was disproportionately huge on many sites. */
-        .lv-pole   { width: 3px; left: 12px; height: 250px; }
+           Sized down 2026-07-06 (Vesa: the flag was disproportionately huge), then
+           sized back UP 2026-08-02 — but only as far as legibility forces.
+
+           🔴 Why the card cannot stay at 215px: the flag is locked to the Finnish
+           18:11 ratio and the consent copy lives in the middle stripe, which is
+           only 3/11 of the height. So "body text >= 12px" is not a font-size edit,
+           it is a geometry constraint: card width drives stripe height drives how
+           many 12px lines fit. At 215px the copy needed 8px type to fit at all.
+           330px is the smallest width where the LONGEST locale (fr) still lands
+           in 3 lines at 12px. Do not shrink this without re-measuring all 12
+           locales at 375 AND 360 (see _cookiefit.mjs). */
+        .lv-pole   { width: 3px; left: 12px; height: 318px; }
         .lv-finial { top: -4px; width: 8px; height: 8px; }
         .lv-banner { left: 20px; bottom: 110px; }
-        .lv-card   { width: min(215px, 60vw); aspect-ratio: 18/11; }
+        .lv-card   { width: min(330px, calc(100vw - 42px)); aspect-ratio: 18/11; }
         .lv-rope   { width: 7px; height: 1.5px; background: #334155; border-radius: 1px; }
-        .lv-label  { font-size: 7.5px; letter-spacing: 0.13em; }
-        .lv-body   { font-size: 8px; }
-        .lv-btn    { font-size: 8.5px; padding: 3.5px 8px; }
+        .lv-label  { font-size: 12px; letter-spacing: 0.1em; }
+        .lv-body   { font-size: 12px; }
+        /* 44x44 minimum touch target (WCAG 2.5.5) instead of the old 46x22 / 51x20. */
+        .lv-btn    { font-size: 12px; padding: 0 10px; min-height: 44px; min-width: 44px;
+                     display: inline-flex; align-items: center; justify-content: center; }
+        /* Inline consent-policy link: vertical padding grows the hit rect to 44px
+           without touching the line box, so the stripe copy keeps its layout. */
+        .lv-policy { padding-top: 14px; padding-bottom: 14px; }
 
         /* ── Desktop ── */
         @media (min-width: 768px) {
@@ -246,7 +261,10 @@ export default function CookieBanner({
           .lv-rope   { width: 9px; height: 2px; }
           .lv-label  { font-size: 10.5px; letter-spacing: 0.16em; }
           .lv-body   { font-size: 11.5px; }
-          .lv-btn    { font-size: 11.5px; padding: 6px 13px; }
+          /* min-*: 0 resets the mobile 44px touch floor so the desktop pill keeps
+             its original ~28px height. Do not drop these two resets. */
+          .lv-btn    { font-size: 11.5px; padding: 6px 13px; min-height: 0; min-width: 0; }
+          .lv-policy { padding-top: 0; padding-bottom: 0; }
         }
 
         @keyframes cookieFlagRise {
