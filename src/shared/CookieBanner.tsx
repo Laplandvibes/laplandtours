@@ -261,8 +261,12 @@ export default function CookieBanner({
         .lv-btn    { font-size: 12px; padding: 0 10px; min-height: 44px; min-width: 44px;
                      display: inline-flex; align-items: center; justify-content: center; }
         /* Inline consent-policy link: vertical padding grows the hit rect to 44px
-           without touching the line box, so the stripe copy keeps its layout. */
-        .lv-policy { padding-top: 14px; padding-bottom: 14px; }
+           without touching the line box, so the stripe copy keeps its layout.
+           🔴 15px, not 14px. An INLINE box's rect is the font's own height
+           (~14.4px at 12px), NOT the 1.35 line box (16.2px) — 14px padding
+           measured 43px live and failed the 44px gate by one pixel. Do not
+           "tidy" this back to a round 14. */
+        .lv-policy { padding-top: 15px; padding-bottom: 15px; }
 
         /* ── Desktop ── */
         @media (min-width: 768px) {

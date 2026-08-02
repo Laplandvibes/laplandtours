@@ -942,7 +942,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap gap-2 sm:gap-2.5">
               {pillarLinks.map((link) => {
                 const isExternal = /^https?:\/\//.test(link.href);
-                const pillClassName = "text-[13px] sm:text-sm font-semibold px-3 sm:px-4 py-2.5 sm:py-2 rounded-full transition-all duration-200 hover:scale-105 whitespace-nowrap inline-flex items-center justify-center min-h-[44px] sm:min-h-0 shadow-sm";
+                const pillClassName = "text-[13px] sm:text-sm font-semibold px-3 sm:px-4 py-2.5 sm:py-2 rounded-full transition-all duration-200 hover:scale-105 whitespace-nowrap inline-flex items-center justify-center min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 shadow-sm";
                 const pillStyle = { background: PINK, border: `1.5px solid ${PINK}`, color: '#FFFFFF' };
                 const onEnter = (e: React.MouseEvent<HTMLElement>) => {
                   (e.currentTarget as HTMLElement).style.background = '#DB2777';
@@ -1129,7 +1129,11 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                   <Link
                     key={to}
                     to={to}
-                    className="transition-colors duration-200 inline-flex items-center min-h-[44px] px-1"
+                    /* min-w as well as min-h: these are inline-flex, so a short
+                       locale label ("Tietoa") gave a 42px-wide hit box even
+                       though the height was already 44. Same trap as the
+                       ecosystem links above. */
+                    className="transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:min-w-0 justify-center px-1"
                     style={{ color: BLUE }}
                     onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
                     onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = BLUE)}
@@ -1140,7 +1144,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                 <button
                   type="button"
                   onClick={() => setContactKind('general')}
-                  className="transition-colors duration-200 inline-flex items-center min-h-[44px] px-1 bg-transparent border-0 cursor-pointer text-xs font-normal"
+                  className="transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:min-w-0 justify-center px-1 bg-transparent border-0 cursor-pointer text-xs font-normal"
                   style={{ color: BLUE }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
                   onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = BLUE)}
@@ -1159,7 +1163,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                   href={websiteByHref}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  className="transition-colors duration-200 inline-flex items-center min-h-[44px]"
+                  className="transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:min-w-0 justify-center"
                   style={{ color: BLUE }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
                   onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = BLUE)}
