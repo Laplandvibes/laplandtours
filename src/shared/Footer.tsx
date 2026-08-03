@@ -5,7 +5,6 @@ import { AlertCircle, Briefcase, Newspaper, X } from 'lucide-react';
 // Finnish flag colors, match CookieBanner
 const BLUE = '#002F6C';
 const WHITE = '#F8FAFC';
-const PINK = '#EC4899';
 /**
  * 🔴 FILLED pink surfaces use PINK_FILL, not PINK.
  *
@@ -18,8 +17,10 @@ const PINK = '#EC4899';
  *   white on #EC4899 (brand pink) = 3.53:1  ✗
  *   white on #DB2777 (pink-600)   = 4.63:1  ✓
  *
- * PINK is unchanged and still correct for hairlines, gradients, icons and
- * borders — non-text UI, where the floor is 3:1 and #EC4899 clears it. Only
+ * Brand pink #EC4899 is still correct for hairlines, gradients, icons and
+ * borders — non-text UI, where the floor is 3:1 and it clears it — but this
+ * file has no such uses left, so the PINK constant itself was removed
+ * (gifts compiles this file with noUnusedLocals and the build broke). Only
  * text-bearing FILLS move one step down the ramp, and their hover moves DOWN
  * again so contrast improves under the pointer instead of collapsing.
  */
