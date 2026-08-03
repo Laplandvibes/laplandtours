@@ -16,12 +16,15 @@
  *   placeholder-propsilla tyhjä paikka renderöi house-adin
  *   (data-partner-slot="house-ad") joka linkittää LV Media -portaaliin.
  *
- * Affiliate-huomio: kumppanilinkki EI kulje go.laplandvibes.com-Workerin
- *   kautta (ei CJ-attribuutiota → ei noreferrer-kieltoa). Käytetään vain
- *   rel="sponsored noopener".
+ * Affiliate-huomio: maksetun mainospaikan linkki käyttää AINA
+ *   rel="sponsored nofollow noopener" — samaa LV-speciä kuin shared/ads/AdUnit.
+ *   Dofollow-arvo jonka kumppani osti asuu esittelyartikkelin linkeissä, EI
+ *   mainos-CTA:ssa (ks. shared/ads/advertisers/bearkuusamo.ts). noreferrer ei
+ *   kuulu mihinkään: Worker-reititetty kumppanilinkki lukee Refererin
+ *   klikkilokiin, ja suoralle linkille se on tarpeeton.
  */
 
-import { adSlotsCopy, mediaSiteUrl, fireAdvertiseHereClick } from './adSlotsCopy';
+import { adSlotsCopy, mediaSiteUrl, fireAdvertiseHereClick, normalizeAdLocale } from './adSlotsCopy';
 
 export type Partner = {
   name: string;
@@ -30,10 +33,83 @@ export type Partner = {
   /** Swedish tagline for /sv rails (falls back to taglineEn → tagline). */
   taglineSv?: string;
   url: string;
+  /**
+   * Suomenkielisen sivun linkkikohde, jos kumppanin oma sivusto on kieliversioitu
+   * (Niina/Bear 2026-07-30: linkin pitää viedä oikeaan kieliversioon, ei
+   * EN-etusivulle). Fallback: `url`. Kortit näkyvät vain fi/en/sv-lokaaleilla,
+   * joten fi riittää — sv-versiota kumppaneilla ei toistaiseksi ole.
+   */
+  urlFi?: string;
   imageSrc?: string;
   /** Lifestyle/mood photo for ad units that show both a photo and the logo. */
   photoSrc?: string;
+  /**
+   * Kumppanin oma logo, näytetään kortin kuvan oikeassa yläkulmassa valkoisella
+   * chipillä (Vesa 2026-07-29).
+   *
+   * 🔴 MIKSI TÄMÄ ON OLEMASSA: kortti näytti kuvan, nimen ja CTA:n mutta EI
+   * kumppanin logoa, vaikka logot olivat jo sivustojen `public/images/partners/`
+   * -kansiossa ja `shared/ads/AdUnit.tsx` renderöi ne alasivujen mainoksissa.
+   * Maksava kumppani näkyi siis brändinään alasivulla mutta ei etusivulla.
+   *
+   * Polku on kuluttajasivuston `public/`-juuresta, esim.
+   * `/images/partners/bearkuusamo.png`. Käytä TUMMAA/värillistä logoversiota:
+   * chip on aina valkoinen, koska logo istuu valokuvan päällä eikä kortin
+   * pinnalla — valkoinen tausta takaa kontrastin sekä vaaleilla että tummilla
+   * sivustoilla ja millä tahansa kuvalla. Älä siis anna tähän `-white.png`-
+   * versiota (se katoaisi chippiin).
+   */
+  logoSrc?: string;
+  /** Logon alt-teksti. Oletus: "{name} logo". Anna jos brändinimi eroaa. */
+  logoAlt?: string;
   badgeLabel?: string;
+  /**
+   * CTA-napin teksti (perusmuoto = fi). 🔴 ANNA TÄMÄ AINA myydylle paikalle.
+   * Ilman sitä kortti jää pelkäksi kuvaksi ja nimeksi, jolloin viereinen tyhjä
+   * "Varaa mainospaikka" -house-ad näyttää houkuttelevammalta kuin maksava
+   * asiakas (Vesa 2026-07-27). Käytä kumppanin hyväksymää CTA-tekstiä.
+   */
+  ctaLabel?: string;
+  ctaLabelEn?: string;
+  ctaLabelSv?: string;
+  /** Kumppanin brändiväri CTA-napissa. Oletus: LV vibe-pink. */
+  accent?: string;
+  /**
+   * Pidempi kuvaus. Näytetään VAIN sm-koosta ylöspäin: desktopissa korttiin
+   * mahtuu enemmän tekstiä, mobiilissa se veisi kortin liian pitkäksi
+   * (Vesa 2026-07-27). Käytä kumppanin hyväksymää copya.
+   */
+  description?: string;
+  descriptionEn?: string;
+  descriptionSv?: string;
+  /**
+   * Linkki kumppanin esittelyartikkeliin (LaplandVibes-blogin `Kumppanit`-tagi).
+   * 🔴 Kuuluu myytyyn tuotteeseen: mainoksesta pitää päästä myös artikkeliin,
+   * ei pelkästään kumppanin omalle sivulle (Vesa 2026-07-27). Tämä on
+   * TOIMITUKSELLINEN linkki → ei `sponsored`, ei Worker-reititystä.
+   */
+  articleUrl?: string;
+  articleUrlEn?: string;
+  articleUrlSv?: string;
+  articleLabel?: string;
+  articleLabelEn?: string;
+  articleLabelSv?: string;
+  /**
+   * Käännökset lopuille kielille, avaimena normalizeAdLocale-koodi
+   * (de/fr/it/es/pt/nl/ja/ko/zh). 🔴 MYYTY kortti näkyy KAIKILLA 12 kielellä
+   * (Vesa 2026-07-30, Bear-palaute) — kumppani maksoi näkyvyydestä, joten
+   * pelkät en/fi/sv-kentät eivät riitä. `url` tässä ohittaa myös linkin
+   * (esim. Worker-dest kumppanin omaan kieliversioon). Puuttuva kieli
+   * putoaa en-fallbackiin.
+   */
+  i18n?: Partial<Record<string, {
+    tagline?: string;
+    description?: string;
+    cta?: string;
+    articleLabel?: string;
+    articleUrl?: string;
+    url?: string;
+  }>>;
 };
 
 /**
@@ -69,6 +145,25 @@ function getBadgeLabel(partner: Partner, locale?: string): string {
   return adSlotsCopy(locale).badge;
 }
 
+/**
+ * Locale-valinta kumppanikentille. `base` on perusmuoto (fi), `en`/`sv` ovat
+ * ohitukset. Ennen 2026-07-27 kortti ja banneri lukivat `partner.tagline`n
+ * raakana, joten suomenkielinen tagline näkyi sellaisenaan /en- ja /sv-sivuilla
+ * vaikka tyyppi määritteli ohituskentät. Mainospaikat on portitettu fi/en/sv:hen,
+ * joten vain nämä kolme merkitsevät.
+ */
+function pickLocalized(
+  locale: string | undefined,
+  base?: string,
+  en?: string,
+  sv?: string,
+): string | undefined {
+  const lang = (locale || '').slice(0, 2).toLowerCase();
+  if (lang === 'sv') return sv ?? en ?? base;
+  if (lang === 'fi') return base ?? en;
+  return en ?? base;
+}
+
 export default function PartnerSlot({ partner, variant, locale, className, placeholder, surface = 'dark' }: PartnerSlotProps) {
   // Tyhjä paikka: house-ad jos placeholder annettu, muuten ei DOM:ia lainkaan
   if (partner === null) {
@@ -80,6 +175,28 @@ export default function PartnerSlot({ partner, variant, locale, className, place
       : placeholder.level === 'card' ? t.cardSub
       : t.sponsorSub;
     const topLabel = placeholder.label || t.slotOpen;
+
+    // 🔴 HOUSE-AD KÄÄNTYY PINNAN MUKAAN (Vesa 2026-08-02: "haluatko mainoksesi
+    // tähän -osio on vaalea vaaleaa vasten").
+    //
+    // Paikka oli aiemmin AINA vaalea (`bg-[#F9FAFB]`) riippumatta pinnasta.
+    // Tummilla sivustoilla se toimii, mutta vaaleilla (gifts, nature, stays,
+    // christmas, hoteldeals) kortti oli lähes sama väri kuin sivu:
+    // mitattuna #F9FAFB vs laplandgiftsin #FBF9F5 = 1.01:1, eli ero on
+    // olematon. Ainoa erottava tekijä oli katkoviivareunus.
+    //
+    // Vaaleilla pinnoilla kortti on nyt tumma: #0F172A vs #FBF9F5 = 16.98:1.
+    // Väri on verkoston oma deep-night, joten myyntipaikka näyttää
+    // tarkoitukselliselta eikä tyhjältä alueelta. Kokeilin myös pinkkejä
+    // täyttöjä, mutta ne jäivät 1.31–1.72:1 eli eivät ratkaisseet ongelmaa.
+    //
+    // Tummilla pinnoilla mikään ei muutu.
+    const houseFill = light
+      ? 'bg-[#0F172A] border-[#EC4899]/55 hover:border-[#EC4899]'
+      : 'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]';
+    const houseTitle = light ? 'text-[#F9FAFB]' : 'text-[#0F172A]';
+    const houseLabel = light ? 'text-[#F9FAFB]/70' : 'text-[#0F172A]/55';
+    const houseSub = light ? 'text-[#F9FAFB]/75' : 'text-[#0F172A]/65';
 
     // BANNER-variantin house-ad: kompakti vaakarivi (heron alle, ei työnnä sisältöä)
     if (variant === 'banner') {
@@ -93,7 +210,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): erottuu sekä
             // tummilta että vaaleilta sivustoilta, dashed-pinkki = "vapaa paikka".
             'rounded-2xl border-2 border-dashed px-5 py-4 sm:px-7 sm:py-5 transition-all duration-300',
-            'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]',
+            houseFill,
             className,
           ]
             .filter(Boolean)
@@ -109,11 +226,11 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 min-w-0">
             <span className="flex items-center gap-2 min-w-0">
               <span aria-hidden="true" className="shrink-0 inline-block w-2 h-2 rounded-full bg-[#EC4899]" />
-              <span className="text-[10px] font-semibold uppercase tracking-widest truncate text-[#0F172A]/55">
+              <span className={`text-[10px] font-semibold uppercase tracking-widest truncate ${houseLabel}`}>
                 {topLabel}
               </span>
             </span>
-            <span className="font-heading text-xl sm:text-2xl tracking-wide leading-tight text-[#0F172A]">
+            <span className={`font-heading text-xl sm:text-2xl tracking-wide leading-tight ${houseTitle}`}>
               {t.wantYourAd}
             </span>
           </span>
@@ -133,7 +250,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           'group relative flex h-full flex-col items-center justify-center text-center gap-2.5',
           // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): ks. banner-variantti.
           'rounded-2xl border-2 border-dashed px-6 py-8 sm:py-10 transition-all duration-300',
-          'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]',
+          houseFill,
           className,
         ]
           .filter(Boolean)
@@ -142,14 +259,14 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
         aria-label={t.wantYourAd}
       >
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-[#0F172A]/55">
+        <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest ${houseLabel}`}>
           <span aria-hidden="true" className="inline-block w-2 h-2 rounded-full bg-[#EC4899]" />
           {topLabel}
         </span>
-        <p className="font-heading text-2xl sm:text-3xl tracking-wide leading-tight text-[#0F172A]">
+        <p className={`font-heading text-2xl sm:text-3xl tracking-wide leading-tight ${houseTitle}`}>
           {t.wantYourAd}
         </p>
-        <p className="text-sm leading-snug max-w-xs text-[#0F172A]/65">
+        <p className={`text-sm leading-snug max-w-xs ${houseSub}`}>
           {sub}
         </p>
         <span className="mt-1.5 inline-flex items-center rounded-full bg-[#EC4899] px-4 py-2 text-sm font-semibold text-white shadow-sm group-hover:bg-[#DB2777] group-hover:translate-x-0.5 transition-all duration-200">
@@ -160,6 +277,16 @@ export default function PartnerSlot({ partner, variant, locale, className, place
   }
 
   const badge = getBadgeLabel(partner, locale);
+
+  // Käännökset i18n-mapista (avain = normalisoitu kieli); en/fi/sv-kentät
+  // toimivat fallbackina pickLocalized-polun kautta.
+  const i18nLoc = partner.i18n?.[normalizeAdLocale(locale)];
+
+  // Linkki kumppanin oman sivuston kieliversioon: i18n-mapin url ensin,
+  // sitten fi-erikoiskenttä, sitten oletus-`url`. (Niina/Bear 2026-07-30.)
+  const partnerHref =
+    i18nLoc?.url ??
+    ((locale || '').slice(0, 2).toLowerCase() === 'fi' && partner.urlFi ? partner.urlFi : partner.url);
 
   // Gradient-placeholder kuvattomille kumppaneille (LV brand-palette)
   const gradientBg = 'bg-gradient-to-br from-[#0d2818] via-[#0F172A] to-[#1e1b4b]';
@@ -176,24 +303,53 @@ export default function PartnerSlot({ partner, variant, locale, className, place
   // ────────────────────────────────────────────────────────────────────────────
   // CARD variant, kuva (tai gradient) + nimi + tagline
   // ────────────────────────────────────────────────────────────────────────────
+  const tagline = i18nLoc?.tagline ?? pickLocalized(locale, partner.tagline, partner.taglineEn, partner.taglineSv);
+  // A sold card must be legible on the surface it sits on. The card variant used
+  // to hardcode dark styling (bg-white/5 + text-snow), so on the cream sites
+  // (nature, stays, christmas, hoteldeals) a real partner card rendered as
+  // near-white text on near-white — invisible. `surface` now drives it, exactly
+  // like the house-ad placeholder above (Vesa 2026-07-27).
+  const lightCard = surface === 'light';
+  const cta = i18nLoc?.cta ?? pickLocalized(locale, partner.ctaLabel, partner.ctaLabelEn, partner.ctaLabelSv);
+  const description = i18nLoc?.description ?? pickLocalized(locale, partner.description, partner.descriptionEn, partner.descriptionSv);
+  const articleLabel = i18nLoc?.articleLabel ?? pickLocalized(locale, partner.articleLabel, partner.articleLabelEn, partner.articleLabelSv);
+  // Artikkelilinkki per kieli: hubin blogi on EN juuressa ja muut kielet
+  // etuliitteen takana, joten yhtä URLia ei voi käyttää kaikille.
+  const articleUrl = i18nLoc?.articleUrl ?? pickLocalized(locale, partner.articleUrl, partner.articleUrlEn, partner.articleUrlSv);
+
   if (variant === 'card') {
     return (
-      <a
+      // 🔴 JUURI ON <div>, EI <a> (Vesa 2026-07-27). Kortissa on nyt KAKSI eri
+      // kohdetta: varaus kumppanin sivulle ja linkki esittelyartikkeliin. Linkkiä
+      // ei voi upottaa toisen linkin sisään (epävalidi HTML + rikkoo näppäimistö-
+      // navigoinnin), joten kortti on säiliö ja linkit ovat sen sisällä.
+      <div
         data-partner-slot="card"
-        href={partner.url}
-        target="_blank"
-        rel="sponsored noopener"
         className={[
-          'group relative flex flex-col overflow-hidden rounded-2xl border',
-          'border-white/15 bg-white/5 backdrop-blur-sm',
-          'hover:border-vibe-pink/40 transition-all duration-300',
+          'group relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-300',
+          lightCard
+            ? 'border-[#0F172A]/12 bg-white shadow-sm hover:border-vibe-pink/50 hover:shadow-md'
+            : 'border-white/15 bg-white/5 backdrop-blur-sm hover:border-vibe-pink/40',
           className,
         ]
           .filter(Boolean)
           .join(' ')}
-        aria-label={`${badge}: ${partner.name}`}
       >
-        {/* Kuva tai gradient-placeholder */}
+        <a
+          href={partnerHref}
+          target="_blank"
+          rel="sponsored nofollow noopener"
+          aria-label={`${badge}: ${partner.name}`}
+          className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vibe-pink"
+        >
+        {/* KUVA + TEKSTI KUVAN PÄÄLLÄ.
+            Vesa 2026-07-27: aiemmin kortti oli kuva + nimi + tagline erillisessä
+            valkoisessa alaosassa eikä siinä ollut CTA:ta lainkaan. Vieressä oleva
+            TYHJÄ paikka taas huusi "HALUATKO MAINOKSESI TÄHÄN?" + iso pinkki
+            "Varaa mainospaikka" -nappi, joten vapaa paikka näytti houkuttele-
+            vammalta kuin maksava asiakas. Maksetun paikan pitää viestiä että
+            tuon voi varata: teksti kuvan päälle scrimin kanssa + oma CTA-nappi,
+            samalla logiikalla kuin alasivujen AdUnit. */}
         <div className="relative aspect-[16/10] overflow-hidden">
           {partner.imageSrc ? (
             <img
@@ -205,18 +361,124 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             <div className={`w-full h-full ${gradientBg}`} />
           )}
           <Badge />
-        </div>
-
-        {/* Teksti */}
-        <div className="flex flex-col gap-1 p-4 sm:p-5">
-          <p className="font-heading text-xl text-snow tracking-wide leading-tight group-hover:text-vibe-pink transition-colors">
-            {partner.name}
-          </p>
-          {partner.tagline && (
-            <p className="text-snow/65 text-sm leading-snug">{partner.tagline}</p>
+          {/* KUMPPANIN LOGO, kuvan oikea yläkulma (Vesa 2026-07-29).
+              Valkoinen chip: logo istuu VALOKUVAN päällä, ei kortin pinnalla,
+              joten sen kontrastia ei voi jättää kortin surface-arvon varaan.
+              Valkoinen tausta toimii millä tahansa kuvalla ja sekä vaaleilla
+              että tummilla sivustoilla — siksi tässä käytetään aina tummaa
+              logoversiota, ei `-white.png`:tä.
+              "Kumppani"-badge on vasemmassa yläkulmassa → ei törmäystä.
+              🔴 Mitat ja pinta INLINE-TYYLINÄ, ei arbitrary-luokkina
+              (`h-[40px]`, `max-w-[160px]`, `shadow-[…]`): Tailwind v4:n
+              source-skannaus ei emitoi shared/-kansiossa esiintyviä arbitrary-
+              luokkia kaikissa repoissa (sama ansa kuin house-adin hehkussa
+              yllä — todettu 2026-07-26). */}
+          {partner.logoSrc && (
+            <div
+              className="absolute z-10"
+              style={{
+                top: '0.5rem',
+                right: '0.5rem',
+                background: 'rgba(255,255,255,0.96)',
+                borderRadius: '0.75rem',
+                padding: '0.375rem 0.625rem',
+                boxShadow: '0 4px 14px rgba(15,23,42,0.28)',
+              }}
+            >
+              <img
+                src={partner.logoSrc}
+                alt={partner.logoAlt ?? `${partner.name} logo`}
+                // 🔴 EI `loading="lazy"`: kortin oma valokuva latautuu eagerinä,
+                // joten lazy logo saapuisi sen jälkeen ja maksaneen kumppanin
+                // brändimerkki "poksahtaisi" paikalleen viiveellä. Logo on
+                // ~30 kt, eli säästö ei ole sen arvoinen.
+                decoding="async"
+                className="block w-auto object-contain"
+                style={{ height: 'clamp(26px, 5.5vw, 40px)', maxWidth: '160px' }}
+              />
+            </div>
           )}
+          {/* Scrim: tumma vain alaosassa, jotta kuva itsessään säilyy kirkkaana. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.55) 38%, rgba(15,23,42,0.05) 72%)',
+            }}
+          />
+          {/* Desktopissa korttiin mahtuu enemmän ja isompaa tekstiä (Vesa
+              2026-07-27), mobiilissa pidetään tiiviinä ettei kortti veny. */}
+          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+            <p
+              className="font-heading text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight text-white"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.55)' }}
+            >
+              {partner.name}
+            </p>
+            {tagline && (
+              <p
+                className="text-white/90 text-sm sm:text-base md:text-lg leading-snug mt-1 sm:mt-1.5"
+                style={{ textShadow: '0 1px 8px rgba(0,0,0,0.55)' }}
+              >
+                {tagline}
+              </p>
+            )}
+          </div>
         </div>
-      </a>
+        </a>
+
+        {(cta || description || (articleUrl && articleLabel)) && (
+          <div className="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4">
+            {/* Pidempi kuvaus vain sm+: desktopissa on tilaa, mobiilissa ei. */}
+            {description && (
+              <p
+                className={[
+                  'hidden sm:block text-sm md:text-base leading-relaxed',
+                  lightCard ? 'text-[#0F172A]/70' : 'text-snow/70',
+                ].join(' ')}
+              >
+                {description}
+              </p>
+            )}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+              {/* CTA. Renderöityy vain kun kumppanille on annettu ctaLabel —
+                  vanhat kumppanit ilman sitä säilyttävät entisen ulkoasunsa. */}
+              {cta && (
+                <a
+                  href={partnerHref}
+                  target="_blank"
+                  rel="sponsored nofollow noopener"
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white shadow-sm transition-all duration-200 hover:translate-x-0.5"
+                  style={{ backgroundColor: partner.accent || '#EC4899' }}
+                >
+                  {cta}
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              )}
+              {/* Linkki esittelyartikkeliin. TOIMITUKSELLINEN linkki: ei
+                  `sponsored`, ei Worker-reititystä — artikkeli on osa myytyä
+                  tuotetta ja siitä pitää päästä perille myös mainoksesta. */}
+              {articleUrl && articleLabel && (
+                <a
+                  href={articleUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className={[
+                    'inline-flex items-center gap-1.5 text-sm sm:text-base font-semibold underline underline-offset-4 transition-colors',
+                    lightCard
+                      ? 'text-[#0F172A]/75 decoration-[#0F172A]/25 hover:text-vibe-pink hover:decoration-vibe-pink'
+                      : 'text-snow/80 decoration-snow/30 hover:text-vibe-pink hover:decoration-vibe-pink',
+                  ].join(' ')}
+                >
+                  {articleLabel}
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     );
   }
 
@@ -227,9 +489,9 @@ export default function PartnerSlot({ partner, variant, locale, className, place
     return (
       <a
         data-partner-slot="banner"
-        href={partner.url}
+        href={partnerHref}
         target="_blank"
-        rel="sponsored noopener"
+        rel="sponsored nofollow noopener"
         className={[
           'group relative flex items-center gap-4 overflow-hidden rounded-2xl border',
           'border-white/15 bg-white/5 backdrop-blur-sm px-5 py-4 sm:px-8 sm:py-5',
@@ -263,8 +525,8 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           <p className="font-heading text-lg sm:text-xl text-snow tracking-wide leading-tight group-hover:text-vibe-pink transition-colors truncate">
             {partner.name}
           </p>
-          {partner.tagline && (
-            <p className="text-snow/65 text-xs sm:text-sm leading-snug truncate">{partner.tagline}</p>
+          {tagline && (
+            <p className="text-snow/65 text-xs sm:text-sm leading-snug truncate">{tagline}</p>
           )}
         </div>
 
@@ -286,9 +548,9 @@ export default function PartnerSlot({ partner, variant, locale, className, place
   return (
     <a
       data-partner-slot="listing"
-      href={partner.url}
+      href={partnerHref}
       target="_blank"
-      rel="sponsored noopener"
+      rel="sponsored nofollow noopener"
       className={[
         'group relative flex items-center gap-3 overflow-hidden rounded-xl border',
         'border-vibe-pink/30 bg-vibe-pink/5 px-4 py-3',
@@ -322,8 +584,8 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             {partner.name}
           </p>
         </div>
-        {partner.tagline && (
-          <p className="text-snow/55 text-xs leading-snug truncate">{partner.tagline}</p>
+        {tagline && (
+          <p className="text-snow/55 text-xs leading-snug truncate">{tagline}</p>
         )}
       </div>
 

@@ -1,14 +1,26 @@
 /**
- * adSlotsCopy — 11 kielen tekstit mainospaikkojen house-adeille ja osioille.
+ * adSlotsCopy — 12 kielen tekstit mainospaikkojen house-adeille ja osioille.
  *
  * Käytetään shared/PartnerSlot.tsx (house-ad) + shared/PremiumSpotGrid.tsx +
  * shared/HomeAdSlots.tsx -komponenteissa. Tekstit ovat komponentin sisällä
  * (ei per-sivu i18n-tiedostoissa), jotta rollout ~27 sivustolle ei vaadi
- * 11 × 27 lokaalitiedoston muokkausta ja kaikki kielet pysyvät synkassa
+ * 12 × 27 lokaalitiedoston muokkausta ja kaikki kielet pysyvät synkassa
  * (feedback_translate_all_languages).
  *
- * Lokaalinormalisointi: hub käyttää koodeja en/fi/de/ja/es/pt-BR/zh-CN/ko/fr/it/nl,
+ * Lokaalinormalisointi: hub käyttää koodeja en/fi/de/ja/es/pt-BR/zh-CN/ko/fr/it/nl/sv,
  * osa sivustoista lyhyitä URL-prefiksejä (br/cn/kr) — normalizeAdLocale kattaa molemmat.
+ *
+ * 🔴 PYSYVÄ PÄÄTÖS (Vesa 2026-07-26) — ÄLÄ "korjaa" badge-eroa:
+ * `badge` sanoo ja/ko/zh -kielillä 広告 / 광고 / 广告 ("mainos") mutta yhdeksällä
+ * muulla kielellä Partner / Kumppani / Partenaire… ("kumppani"). Tämä EI ole
+ * käännösvirhe vaan tietoinen linja: kumppani siellä missä kyse on
+ * kumppanuudesta, mainos siellä missä CJK-markkinoiden käytäntö niin vaatii.
+ * Taustalla 2026-07-12 Kumppani-badge-päätös (KSL, ks. shared/PartnersDirectory.tsx)
+ * ja 12 `partnersDirLead`-virkettä jotka päättyvät "kaikki merkitty kumppaneiksi".
+ * Nostettu esiin mainoscopyn oikoluvussa 26.7. ja päätetty jättää ennalleen.
+ * Jos tätä joskus muutetaan, se on kaikki-tai-ei-mitään: joko ja/ko/zh →
+ * パートナー/파트너/合作伙伴, TAI badge → "mainos" kaikilla 12 JA 12 lead-virkettä
+ * uusiksi. Yksittäisen kielen vaihtaminen rikkoo linjan kummallakin tavalla.
  */
 
 export type AdLocale =

@@ -447,6 +447,13 @@ export default function NewsletterPopup({
   // session ends. Layered on top of the localStorage dismiss (7 d) / subscribe.
   const sessionShownKey = `${siteId}_newsletter_shown`;
   const sourceTag = `${siteId}-popup`;
+  // Kieli talteen liidiin. `safeLang` ei kelpaa tähän: se putoaa 'en':ään aina
+  // kun `lang`-proppia ei anneta, jolloin kirjaisimme englannin sivustoille
+  // jotka eivät vain välitä lang-proppia. Käytä annettua proppia, muuten
+  // <html lang> -attribuuttia, muuten jätä tyhjäksi.
+  const resolvedLang: string | undefined =
+    lang ??
+    (typeof document !== 'undefined' ? document.documentElement.lang || undefined : undefined);
 
   const [status, setStatus] = useState<Status>(defaultOpen ? 'visible' : 'hidden');
   const [email, setEmail] = useState('');
@@ -539,7 +546,20 @@ export default function NewsletterPopup({
       const res = await fetch(url, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ email, source: sourceTag, website }),
+        // `website` on hunajapurkki (send-welcome-emailin HONEYPOT_FIELDS) —
+        // ihminen jättää sen tyhjäksi, botti täyttää. ÄLÄ laita siihen
+        // sivuston nimeä tms.: epätyhjä arvo pudottaa tilauksen hiljaa.
+        // Sivusto + kieli kulkevat omissa kentissään segmentointia varten.
+        // `language` lähetetään vain kun se oikeasti tiedetään — ei arvata
+        // 'en':ää, koska väärä kielileima on huonompi kuin tyhjä.
+        body: JSON.stringify({
+          email,
+          source: sourceTag,
+          website,
+          site: siteId,
+          language: resolvedLang,
+          channel: 'popup',
+        }),
       });
 
       const data = await res.json();

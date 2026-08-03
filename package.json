@@ -8,7 +8,10 @@
     "build:nossg": "tsc -b && vite build",
     "build": "tsc -b && vite build && node scripts/_prerender_routes.mjs --site=https://laplandtours.online --siteName=LaplandTours --twitter=@laplandvibes --defaultOg=/og-default.jpg --routes=scripts/routes.json",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:shared": "node scripts/sync-shared.mjs",
+    "prebuild": "node scripts/sync-shared.mjs",
+    "predev": "node scripts/sync-shared.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.7.0",

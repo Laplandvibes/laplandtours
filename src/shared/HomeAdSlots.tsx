@@ -1,52 +1,54 @@
 /**
- * HomeAdSlots — etusivun standardi mainospaikat (LV Media -inventaari).
+ * HomeAdSlots — etusivun myytävät mainospaikat (LV Media -inventaari).
  *
- * JAETTU MALLI (Vesa 2026-07-11): pääkumppanit eivät näy vierekkäin, jotta
- * kilpailijat eivät tule katsotuksi samaan aikaan, ja paras paikka on sivun
- * ylälaidassa:
- *
- *   1. <MainPartnerBanner>  — PÄÄKUMPPANI (sponsors[0]): kompakti banneri
- *      HETI HERON ALLE. Sivuston näkyvin paikka, hinnaston kallein.
- *   2. <HomeAdSlots>        — osio heti ensimmäisen sisältöosion jälkeen:
- *        · KAKKOSPÄÄKUMPPANI (sponsors[1]): kortti — hieman edullisempi paikka
- *        · PREMIUM-PAIKAT: 6 kohdekohtaista paikkaa (PremiumSpotGrid)
+ * MAINOSMALLI v3 (Vesa 2026-07-12):
+ *   1. <SponsorStrip>   — PÄÄKUMPPANI: ohut nauha navin alla JOKA SIVULLA
+ *      (oma tiedosto shared/SponsorStrip.tsx; mount App-tasolla). Sivuston
+ *      näkyvin tuote, mobiilissa samanarvoinen kuin desktopissa. Kaupanpäällisenä
+ *      hubin vasen sivurraili; oikea raili = LV:n omat affiliate-nostot.
+ *   2. <HomeAdSlots>    — ETUSIVUN KORTIT A + B: kaksi tasavertaista korttia,
+ *      myydään ERIKSEEN kahdelle yrittäjälle. Desktop: A vasen, B oikea
+ *      (ostettu puoli pysyy). Mobiili (~80 % kävijöistä): molemmat aina
+ *      näkyvissä pinottuna JA ykköspaikka vuorottelee päivittäin tasan 50/50.
+ *   3. <PremiumSpotGrid> (erillinen) — PREMIUM-LISTANOSTO listaussivujen
+ *      kärkeen (esim. ravintolalistan top-6), ei enää etusivulla.
  *
  * Tyhjät paikat renderöivät house-adin → LV Media -portaali + GA4-event.
  *
  * Integraatio per sivusto:
- *   import HomeAdSlots, { MainPartnerBanner } from '../../../shared/HomeAdSlots';
+ *   import SponsorStrip from '../../../shared/SponsorStrip';   // App.tsx, navin alle
+ *   import HomeAdSlots from '../../../shared/HomeAdSlots';     // Home.tsx
  *   import { AD_SLOTS } from '../data/adSlots';
- *   // heti heron alle:
- *   <MainPartnerBanner config={AD_SLOTS} locale={locale} />
- *   // heti 1. sisältöosion jälkeen:
+ *   <SponsorStrip partner={AD_SLOTS.mainPartner} siteSlug={AD_SLOTS.siteSlug} showHouseAd locale={locale} />
  *   <HomeAdSlots config={AD_SLOTS} locale={locale} />
  *
- * Per-sivu config src/data/adSlots.ts:
+ * Config src/data/adSlots.ts:
  *   export const AD_SLOTS: HomeAdSlotsConfig = {
- *     siteSlug: 'laplandstays',            // lv_sites.slug (LV Media -portaali)
- *     sponsors: [null, null],              // [0]=pääkumppani, [1]=kakkospääkumppani
- *     spots: DEFAULT_PREMIUM_SPOTS,        // tai oma 6 paikan jako (flights: kentät)
+ *     siteSlug: 'laplanddining',
+ *     mainPartner: null,          // pääkumppani (nauha + vasen raili)
+ *     cards: [null, null],        // [0]=A(vasen), [1]=B(oikea) — myydään erikseen
+ *     spots: DEFAULT_PREMIUM_SPOTS,  // premium-listanosto (listaussivut)
  *   };
- *
- * ALASIVUT (tier 2, kun alasivupaikat rollataan): käytä pickMainPartner(pathname,
- * config) — deterministinen vuorottelu reitin mukaan, näyttää vain TOISEN
- * pääkumppanin per alasivu (ei kilpailijoita rinnakkain; prerender-turvallinen).
  *
  * Vaaleat sivustot: surface="light". Myyntiprosessi: kauppa → täytä config →
  * build → deploy --branch=main.
  */
 
 import PartnerSlot, { type Partner } from './PartnerSlot';
-import PremiumSpotGrid, { type PremiumSpot } from './PremiumSpotGrid';
+import { type PremiumSpot } from './PremiumSpotGrid';
 import { adSlotsCopy, adLocaleEnabled } from './adSlotsCopy';
 
 export type HomeAdSlotsConfig = {
   /** LV Median sivuslug (lv_sites.slug) — house-adit linkittävät tänne */
   siteSlug: string;
-  /** [0] = pääkumppani (yläbanneri), [1] = kakkospääkumppani (osion kortti) */
-  sponsors: (Partner | null)[];
-  /** TASO 2: 6 kohdekohtaista premium-paikkaa */
+  /** Pääkumppani: nauha (SponsorStrip) + hubin vasen raili */
+  mainPartner?: Partner | null;
+  /** Etusivun kortit: [0]=A (vasen), [1]=B (oikea) — myydään erikseen */
+  cards?: (Partner | null)[];
+  /** Premium-listanosto (listaussivut) — 6 kohde-/lista-paikkaa */
   spots: PremiumSpot[];
+  /** LEGACY (v2, muut sivustot ennen v3-rollausta): [0]=banneri, [1]=kortti */
+  sponsors?: (Partner | null)[];
 };
 
 type SurfaceProps = {
@@ -56,20 +58,38 @@ type SurfaceProps = {
   className?: string;
 };
 
+/** Etusivun kortit A/B configista (uusi `cards` tai legacy `sponsors`). */
+function homeCards(config: HomeAdSlotsConfig): (Partner | null)[] {
+  const src = config.cards ?? config.sponsors ?? [];
+  return [src[0] ?? null, src[1] ?? null];
+}
+
 /**
- * PÄÄKUMPPANI-banneri — sijoita HETI heron alle (sivun paras paikka).
- * Täysi banneri kun myyty, kompakti house-ad-rivi kun vapaa.
+ * LEGACY: v2-pääkumppanibanneri heron alle. Korvattu v3:ssa SponsorStripilla.
+ * Jätetty exportiksi ettei v2-sivustojen buildit rikkoudu ennen rollausta.
  */
 export function MainPartnerBanner({ config, locale, surface = 'dark', className }: SurfaceProps) {
-  // Mainospaikat vain fi/en/sv (Vesa 2026-07-13).
+  // Mainospaikat vain fi/en (Vesa 2026-07-13).
   if (!adLocaleEnabled(locale)) return null;
   const t = adSlotsCopy(locale);
+  const partner = config.mainPartner ?? config.sponsors?.[0] ?? null;
   return (
     <section data-lv-main-partner className={['px-6 md:px-12 lg:px-20 py-4', className].filter(Boolean).join(' ')}>
-      <div className="max-w-6xl mx-auto">
+      {/* 🔴 This band was handed `bg-deep-night` — the exact page colour — so
+          the best-paid placement on the site had no edge and read as page furniture
+          (Vesa 2026-08-01: "miksi kaytatte edelleen mainoksissa samaa pohjavaria kun
+          sivun tausta on? ei mitaan kontrastia"). A slot we sell has to LOOK like a
+          slot, or the buyer is paying for camouflage. Keyed to `surface` so the
+          light-themed sites in the network get the same separation inverted. */}
+      <div
+        className={[
+          'max-w-6xl mx-auto rounded-2xl border p-3 sm:p-4',
+          surface === 'light' ? 'bg-vibe-pink/[0.05] border-vibe-pink/20' : 'bg-vibe-pink/[0.07] border-vibe-pink/25',
+        ].join(' ')}
+      >
         <PartnerSlot
           variant="banner"
-          partner={config.sponsors[0] ?? null}
+          partner={partner}
           locale={locale}
           surface={surface}
           placeholder={{
@@ -85,29 +105,50 @@ export function MainPartnerBanner({ config, locale, surface = 'dark', className 
 }
 
 export type HomeAdSlotsProps = SurfaceProps & {
-  /** Kakkospääkumppanikortin lisäluokat (vaaleiden sivujen pinnat, kun myyty) */
-  sponsorClassName?: string;
+  /** Korttien lisäluokat (vaaleiden sivujen pinnat, kun myyty) */
+  cardClassName?: string;
 };
 
 /**
- * Kumppaniosio — sijoita heti ensimmäisen sisältöosion jälkeen (ylös).
- * Sisältö: kakkospääkumppani (kortti) + 6 premium-paikan kohdegridi.
+ * Etusivun kortit A + B. Desktop: A vasen, B oikea (ostettu puoli pysyy).
+ * Mobiili: pinottuna, ykköspaikka vuorottelee päivittäin (deterministinen,
+ * ei arvontaa — parillinen päivä A ylin, pariton B ylin → tasan 50/50).
  */
-export default function HomeAdSlots({ config, locale, surface = 'dark', className, sponsorClassName }: HomeAdSlotsProps) {
-  // Mainospaikat vain fi/en/sv (Vesa 2026-07-13).
-  if (!adLocaleEnabled(locale)) return null;
+export default function HomeAdSlots({ config, locale, surface = 'dark', className, cardClassName }: HomeAdSlotsProps) {
+  // Kaksijakoinen kielisääntö (Vesa 2026-07-30, Bear-palaute):
+  //   MYYTY kortti näkyy KAIKILLA 12 kielellä — kumppani maksoi näkyvyydestä,
+  //   ja Partner.i18n kantaa käännetyt tekstit (PartnerSlot).
+  //   HOUSE-AD ("Haluatko mainoksesi tähän?") pysyy fi/en/sv-rajattuna
+  //   (Vesa 2026-07-13: mainostilan OSTAJAT asioivat näillä kielillä).
+  // Ei myytyä eikä myyntikieltä → koko osio pois.
+  const salesLocale = adLocaleEnabled(locale);
+  const [a, b] = homeCards(config);
+  if (!salesLocale && !a && !b) return null;
+
   const t = adSlotsCopy(locale);
   const light = surface === 'light';
 
-  // HUOM (Vesa 2026-07-12): kävijälle näkyy vain neutraali "Kumppanit"-osio —
-  // tier-nimet (pääkumppani/kakkospääkumppani/premium) ovat myyntikieltä ja
-  // elävät vain house-adien pitchissä + LV Media -portaalissa/hinnastossa.
+  // Mobiilivuorottelu: pariton päivä → B ylimmäksi vain kapealla (max-sm).
+  // Desktopissa (sm+) DOM-järjestys voittaa → A aina vasen, B oikea.
+  // Selaimessa `new Date()` on turvallinen (body renderöityy client-sidessä);
+  // SSR/prerenderissä oletus = A ylin (ei hydraatiomismatchia meta-only-shellissä).
+  //
+  // 🔴 VAIN kun MOLEMMAT paikat on myyty (Vesa 2026-07-27). Vuorottelu on
+  // reiluussääntö kahden maksavan kumppanin välillä. Jos vain toinen on myyty,
+  // vuorottelu nosti joka toinen päivä TYHJÄN "haluatko mainoksesi tähän"
+  // -paikan maksavan asiakkaan yläpuolelle mobiilissa — eli asiakas maksoi
+  // ykköspaikasta ja sai kakkospaikan puolet ajasta.
+  const flipMobile =
+    a !== null && b !== null && typeof window !== 'undefined' && new Date().getDate() % 2 === 1;
+
   return (
     <section
       data-lv-ad-slots
       className={['py-12 sm:py-16 px-6 md:px-12 lg:px-20', className].filter(Boolean).join(' ')}
     >
       <div className="max-w-6xl mx-auto">
+        {/* Kävijälle vain neutraali "Kumppanit" — tier-nimet ovat myyntikieltä
+            (elävät vain house-adien pitchissä + LV Media -portaalissa). */}
         <p
           className={[
             'text-xs uppercase tracking-[0.2em] font-semibold mb-5',
@@ -117,30 +158,28 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
           {t.partners}
         </p>
 
-        {/* Desktop: kumppanikortti (2/5) ja kohdegridi (3/5) vierekkäin —
-            kompakti, ei yksinäistä täysleveää korttia. Mobiili: pinottuna. */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-5 lg:items-stretch">
-          <div className="lg:col-span-2 flex">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-stretch">
+          {/* Kortti A (vasen desktopissa). House-ad-placeholder vain
+              myyntikielillä — muilla lokaaleilla tyhjä paikka ei renderöidy. */}
+          <div className="flex">
             <PartnerSlot
               variant="card"
-              partner={config.sponsors[1] ?? null}
+              partner={a}
               locale={locale}
               surface={surface}
-              className={['w-full', sponsorClassName].filter(Boolean).join(' ')}
-              placeholder={{
-                siteSlug: config.siteSlug,
-                slotId: 'main_partner_2',
-                level: 'sponsor',
-              }}
+              className={['w-full', cardClassName].filter(Boolean).join(' ')}
+              placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_a', level: 'card' } : undefined}
             />
           </div>
-          <div className="lg:col-span-3">
-            <PremiumSpotGrid
-              spots={config.spots}
-              siteSlug={config.siteSlug}
+          {/* Kortti B (oikea desktopissa; parittomana päivänä ylin mobiilissa) */}
+          <div className={['flex', flipMobile ? 'max-sm:order-first' : ''].filter(Boolean).join(' ')}>
+            <PartnerSlot
+              variant="card"
+              partner={b}
               locale={locale}
               surface={surface}
-              className="h-full"
+              className={['w-full', cardClassName].filter(Boolean).join(' ')}
+              placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_b', level: 'card' } : undefined}
             />
           </div>
         </div>
@@ -149,21 +188,5 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
   );
 }
 
-/**
- * Deterministinen pääkumppanivuorottelu alasivuille (tier 2): palauttaa
- * VAIN toisen pääkumppaneista reitin mukaan — kilpailijat eivät koskaan näy
- * samalla alasivulla, ja sama reitti näyttää aina saman kumppanin
- * (prerender-turvallinen, GA4-mitattava).
- */
-export function pickMainPartner(
-  pathname: string,
-  config: HomeAdSlotsConfig
-): { partner: Partner | null; slotId: 'main_partner_1' | 'main_partner_2' } {
-  let h = 0;
-  for (let i = 0; i < pathname.length; i++) h = (h * 31 + pathname.charCodeAt(i)) | 0;
-  const idx = Math.abs(h) % 2;
-  return {
-    partner: config.sponsors[idx] ?? null,
-    slotId: idx === 0 ? 'main_partner_1' : 'main_partner_2',
-  };
-}
+// Premium-listanosto (PremiumSpotGrid) importoidaan suoraan
+// '../../../shared/PremiumSpotGrid':stä listaussivuille — ks. Restaurants-pilotti.

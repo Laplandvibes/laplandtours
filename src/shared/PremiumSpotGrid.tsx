@@ -84,7 +84,7 @@ export default function PremiumSpotGrid({ spots, siteSlug, locale, surface = 'da
               data-partner-slot="premium-spot"
               href={p.url}
               target="_blank"
-              rel="sponsored noopener"
+              rel="sponsored nofollow noopener"
               className={[
                 'group relative flex flex-col gap-1 rounded-xl border p-3.5 sm:p-4 min-h-[6.25rem]',
                 'transition-colors duration-300',
