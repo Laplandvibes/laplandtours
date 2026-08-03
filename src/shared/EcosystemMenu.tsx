@@ -14,6 +14,24 @@ import { LayoutGrid, ChevronDown, ArrowUpRight, MapPin } from 'lucide-react';
  */
 
 const PINK = '#EC4899';
+/**
+ * 🔴 FILLED pink surfaces use PINK_FILL, not PINK.
+ *
+ * Measured 2026-08-02 (canvas-composited, not eyeballed): white on the brand
+ * pink #EC4899 is 3.53:1. Every filled pill in this file carries text at
+ * 9–14 px, i.e. NORMAL text by WCAG — the 3:1 large-text floor does not apply,
+ * 4.5:1 does. So all of them failed, on all 27 sites, in the two components
+ * CLAUDE.md requires to be byte-identical everywhere.
+ *
+ *   white on #EC4899 (brand pink) = 3.53:1  ✗
+ *   white on #DB2777 (pink-600)   = 4.63:1  ✓
+ *
+ * PINK is unchanged and still correct for hairlines, gradients, icons and
+ * borders — non-text UI, where the floor is 3:1 and #EC4899 clears it. Only
+ * text-bearing FILLS move one step down the ramp, and their hover moves DOWN
+ * again so contrast improves under the pointer instead of collapsing.
+ */
+const PINK_FILL = '#DB2777';
 const SNOW = '#F9FAFB';
 const NIGHT = '15, 23, 42';       // deep-night rgb
 const PINK_RGB = '236, 72, 153';
@@ -193,7 +211,7 @@ export default function EcosystemMenu({ currentDomain = 'laplandvibes.com', lang
           />
           <span
             className="relative flex items-center gap-2 rounded-full pl-3.5 pr-1.5 py-1.5 text-[12px] font-semibold"
-            style={{ background: PINK, color: '#fff', boxShadow: '0 14px 34px -12px rgba(236,72,153,0.7)' }}
+            style={{ background: PINK_FILL, color: '#fff', boxShadow: '0 14px 34px -12px rgba(236,72,153,0.7)' }}
           >
             {chrome('hint', 'Kaikki verkoston sivut täältä!', 'Every site in the network: in here!')}
             <button
@@ -230,7 +248,7 @@ export default function EcosystemMenu({ currentDomain = 'laplandvibes.com', lang
                 <span className="block text-sm font-semibold leading-tight truncate" style={{ color: SNOW }}>{siteName(current)}</span>
                 <span className="block font-mono text-[10.5px] leading-tight truncate" style={{ color: 'rgba(249,250,251,0.45)' }}>{current.domain}</span>
               </span>
-              <span className="shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider" style={{ background: PINK, color: '#fff' }}>
+              <span className="shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider" style={{ background: PINK_FILL, color: '#fff' }}>
                 <MapPin className="w-2.5 h-2.5" strokeWidth={2.4} aria-hidden="true" />{hereLabel}
               </span>
             </div>

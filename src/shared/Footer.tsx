@@ -6,6 +6,25 @@ import { AlertCircle, Briefcase, Newspaper, X } from 'lucide-react';
 const BLUE = '#002F6C';
 const WHITE = '#F8FAFC';
 const PINK = '#EC4899';
+/**
+ * 🔴 FILLED pink surfaces use PINK_FILL, not PINK.
+ *
+ * Measured 2026-08-02 (canvas-composited, not eyeballed): white on the brand
+ * pink #EC4899 is 3.53:1. Every filled pill in this file carries text at
+ * 9–14 px, i.e. NORMAL text by WCAG — the 3:1 large-text floor does not apply,
+ * 4.5:1 does. So all of them failed, on all 27 sites, in the two components
+ * CLAUDE.md requires to be byte-identical everywhere.
+ *
+ *   white on #EC4899 (brand pink) = 3.53:1  ✗
+ *   white on #DB2777 (pink-600)   = 4.63:1  ✓
+ *
+ * PINK is unchanged and still correct for hairlines, gradients, icons and
+ * borders — non-text UI, where the floor is 3:1 and #EC4899 clears it. Only
+ * text-bearing FILLS move one step down the ramp, and their hover moves DOWN
+ * again so contrast improves under the pointer instead of collapsing.
+ */
+const PINK_FILL = '#DB2777';
+const PINK_FILL_HOVER = '#BE185D';
 
 // ─── Contact form backend ─────────────────────────────────────────────────
 // All network sites post the footer contact form to the hub project's
@@ -743,7 +762,7 @@ function ContactModal({ kind, title, c, onClose }: { kind: ContactKind; title: s
             <div style={{ textAlign: 'center', padding: '16px 0' }}>
               <p className="font-heading" style={{ fontSize: 24, color: BLUE, marginBottom: 10, letterSpacing: '0.02em' }}>{c.successTitle}</p>
               <p style={{ fontSize: 15, color: '#374151', lineHeight: 1.6, marginBottom: 22 }}>{c.successBody}</p>
-              <button onClick={onClose} style={{ background: PINK, color: '#fff', border: 'none', borderRadius: 999, padding: '11px 26px', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{c.close}</button>
+              <button onClick={onClose} style={{ background: PINK_FILL, color: '#fff', border: 'none', borderRadius: 999, padding: '11px 26px', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{c.close}</button>
             </div>
           ) : (
             <form onSubmit={submit} noValidate>
@@ -773,7 +792,7 @@ function ContactModal({ kind, title, c, onClose }: { kind: ContactKind; title: s
               {status === 'error' && <p style={{ color: '#dc2626', fontSize: 13, marginBottom: 12 }}>{err}</p>}
               <button
                 type="submit" disabled={status === 'sending'}
-                style={{ width: '100%', background: status === 'sending' ? '#DB2777' : PINK, color: '#fff', border: 'none', borderRadius: 999, padding: '13px', fontSize: 14, fontWeight: 700, cursor: status === 'sending' ? 'wait' : 'pointer', minHeight: 48 }}
+                style={{ width: '100%', background: status === 'sending' ? PINK_FILL_HOVER : PINK_FILL, color: '#fff', border: 'none', borderRadius: 999, padding: '13px', fontSize: 14, fontWeight: 700, cursor: status === 'sending' ? 'wait' : 'pointer', minHeight: 48 }}
               >
                 {status === 'sending' ? c.sending : c.send}
               </button>
@@ -856,9 +875,10 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                 target="_blank"
                 rel="noopener"
                 className="inline-flex items-center gap-1.5 mt-3 px-3.5 py-2 rounded-full text-[13px] font-semibold transition-colors duration-200 min-h-[44px] sm:min-h-0"
-                style={{ background: '#EC4899', color: '#F9FAFB' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#DB2777'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#EC4899'; }}
+                // #FFFFFF, ei #F9FAFB: lumenvalkoinen jaa 4,40:1 -- juuri alle rajan.
+                style={{ background: PINK_FILL, color: '#FFFFFF' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL_HOVER; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL; }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
                 {d.getApp}
@@ -1001,7 +1021,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
               </p>
               <div
                 className="inline-flex items-center gap-2 text-xs font-normal px-3 py-1.5 rounded-full"
-                style={{ background: 'rgba(16,185,129,0.10)', border: '1px solid rgba(16,185,129,0.25)', color: '#059669' }}
+                style={{ background: 'rgba(16,185,129,0.10)', border: '1px solid rgba(16,185,129,0.25)', color: '#047857' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#10b981' }} />
                 {d.about.badge}
@@ -1028,9 +1048,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                     type="button"
                     onClick={() => setContactKind('error')}
                     className="inline-flex items-center justify-center w-full px-3 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 min-h-[44px] shadow-sm cursor-pointer whitespace-nowrap"
-                    style={{ background: '#EC4899', border: '2px solid #EC4899', color: '#FFFFFF' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#DB2777'; (e.currentTarget as HTMLElement).style.borderColor = '#DB2777'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#EC4899'; (e.currentTarget as HTMLElement).style.borderColor = '#EC4899'; }}
+                    style={{ background: PINK_FILL, border: `2px solid ${PINK_FILL}`, color: '#FFFFFF' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL_HOVER; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL_HOVER; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL; }}
                   >
                     {d.spottedError.cta.replace(/\s*[→›»➔]\s*$/, '')}
                   </button>
@@ -1055,9 +1075,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                     type="button"
                     onClick={() => setContactKind('partner')}
                     className="inline-flex items-center justify-center w-full px-3 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 min-h-[44px] shadow-sm cursor-pointer whitespace-nowrap"
-                    style={{ background: '#EC4899', border: '2px solid #EC4899', color: '#FFFFFF' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#DB2777'; (e.currentTarget as HTMLElement).style.borderColor = '#DB2777'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#EC4899'; (e.currentTarget as HTMLElement).style.borderColor = '#EC4899'; }}
+                    style={{ background: PINK_FILL, border: `2px solid ${PINK_FILL}`, color: '#FFFFFF' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL_HOVER; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL_HOVER; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL; }}
                   >
                     {d.partner.cta.replace(/\s*[→›»➔]\s*$/, '')}
                   </button>
@@ -1082,9 +1102,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                     type="button"
                     onClick={() => setContactKind('press')}
                     className="inline-flex items-center justify-center w-full px-3 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 min-h-[44px] shadow-sm cursor-pointer whitespace-nowrap"
-                    style={{ background: '#EC4899', border: '2px solid #EC4899', color: '#FFFFFF' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#DB2777'; (e.currentTarget as HTMLElement).style.borderColor = '#DB2777'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#EC4899'; (e.currentTarget as HTMLElement).style.borderColor = '#EC4899'; }}
+                    style={{ background: PINK_FILL, border: `2px solid ${PINK_FILL}`, color: '#FFFFFF' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL_HOVER; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL_HOVER; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = PINK_FILL; (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL; }}
                   >
                     {d.press.cta.replace(/\s*[→›»➔]\s*$/, '')}
                   </button>
@@ -1121,9 +1141,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
             <div className="flex flex-col items-center gap-3 text-xs font-normal">
               <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-1">
                 {[
-                  { to: `${localePrefix}/privacy`, label: d.legal.privacy },
-                  { to: `${localePrefix}/cookie-policy`, label: d.legal.cookie },
-                  { to: `${localePrefix}/terms`, label: d.legal.terms },
+                  { to: `${localePrefix}/privacy/`, label: d.legal.privacy },
+                  { to: `${localePrefix}/cookie-policy/`, label: d.legal.cookie },
+                  { to: `${localePrefix}/terms/`, label: d.legal.terms },
                   ...extraLegalLinks,
                 ].map(({ to, label }) => (
                   <Link

@@ -120,6 +120,81 @@ export default function CookieBanner({
 
   return (
     <>
+      {/* ══ PHONE LAYOUT ══
+          🔴 Why phones get their own arrangement instead of a smaller flag.
+          The flag is locked to 18:11 and the consent copy lives in the middle
+          stripe, which is 3/11 of the height — so the card's height is decided by
+          how many lines the LONGEST locale needs, and 330px is the narrowest width
+          where French still lands in 3 lines at the 12px legibility floor. That
+          makes the card ~202px tall on a 375px screen. Measured on a first visit,
+          a 202px card docked at the bottom of a 667px phone still lands squarely on
+          the hero booking buttons: laplandstays "Hotellit ja mökit" 97% covered,
+          activities "Varaa aktiviteetti" invisible. There is no offset that fixes
+          that — the card is simply taller than the gap beneath the CTAs.
+          So on phones the copy moves OUT of the stripe and gets the full bar width,
+          which drops the whole thing to ~110px and clears the CTA band outright.
+          The flag, the pole, the finial, the rise animation and every string stay.
+          Desktop (>= 1024px) is untouched: there the masthead card has room and
+          reads the way it was designed to. A portrait tablet (768x1024) counts as a
+          phone here, because 1024px of height is not enough for the masthead. */}
+      <div
+        className="lv-sheet fixed inset-x-0 bottom-0 z-[9999] border-t border-[#002F6C]/50 bg-white shadow-[0_-8px_40px_rgba(0,0,0,0.45)]"
+        style={{
+          animation: dismissing
+            ? 'cookieSheetLower 0.6s ease-in forwards'
+            : 'cookieSheetRise 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+          paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
+        role="dialog"
+        aria-label={D.ariaLabel}
+        aria-modal="true"
+      >
+        <div className="flex items-stretch gap-3 px-3 py-3">
+          {/* The flag, still on its pole — same 18:11 Nordic cross, just small
+              enough to be an emblem rather than the container. */}
+          <div className="shrink-0 flex items-stretch gap-1.5" aria-hidden="true">
+            <div className="relative w-[3px] rounded-full" style={{ background: 'linear-gradient(to bottom, #94a3b8 0%, #64748b 50%, #475569 100%)' }}>
+              <div
+                className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-[7px] h-[7px] rounded-full"
+                style={{ background: 'radial-gradient(circle at 35% 35%, #e2e8f0, #64748b)', boxShadow: '0 1px 3px rgba(0,0,0,0.45)' }}
+              />
+            </div>
+            <div
+              className="w-[54px] h-[33px] grid overflow-hidden rounded-sm border border-[#002F6C]/40 self-start"
+              style={{ gridTemplateColumns: '5fr 3fr 10fr', gridTemplateRows: '4fr 3fr 4fr', animation: 'cookieFlagFlutter 3.5s ease-in-out 1s infinite', transformOrigin: 'left center' }}
+            >
+              <div className="bg-white" /><div className="bg-[#002F6C]" /><div className="bg-white" />
+              <div className="bg-[#002F6C]" /><div className="bg-[#002F6C]" /><div className="bg-[#002F6C]" />
+              <div className="bg-white" /><div className="bg-[#002F6C]" /><div className="bg-white" />
+            </div>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <p className="lv-body text-[#0b1220] leading-[1.35]">
+              {D.body}{' '}
+              <Link to={_href} className="lv-policy text-[#002F6C] underline font-semibold">
+                {D.policyLink}
+              </Link>
+            </p>
+            <div className="mt-2 flex items-center gap-2">
+              <button
+                onClick={decline}
+                className="lv-btn flex-1 text-[#002F6C] font-semibold border border-[#002F6C]/35 rounded-sm hover:bg-[#002F6C]/10 transition-colors cursor-pointer"
+              >
+                {D.decline}
+              </button>
+              <button
+                onClick={accept}
+                className="lv-btn flex-1 bg-[#002F6C] text-white font-bold rounded-sm hover:bg-[#001a4a] transition-colors cursor-pointer"
+              >
+                {D.accept}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ══ DESKTOP LAYOUT — the masthead flag, unchanged ══ */}
       {/* ── Flagpole, LEFT side ── */}
       <div className="lv-pole fixed bottom-0 z-[9997] pointer-events-none">
         {/* Ball finial */}
@@ -250,7 +325,18 @@ export default function CookieBanner({
            is ~200px tall at 375px (18:11 is fixed and the 330px width is a
            legibility floor, see below), so every pixel of offset comes straight
            out of the visible hero. */
-        .lv-pole   { width: 3px; left: 12px; height: 240px; }
+        /* 🔴 The masthead flag is gated on HEIGHT as well as width, and height is
+           the variable that actually matters. The card is ~202px tall, and on a short
+           window the hero fills the viewport so its booking buttons sit near the
+           bottom — which is where any docked 202px card lands. Measured on activities:
+           at bottom:220px a 1280x800 laptop had "Majoitus lähistöllä" 36% covered, and
+           lowering the flag instead only moved the collision onto 1024x640 (100%) and
+           1280x720 (67%). There is no offset that works at every height, so anything
+           under 900px tall gets the compact bar and the masthead flies only where
+           there is room for it. Verified 1440x900 / 1920x995 / 2560x1440 clean. */
+        .lv-pole   { width: 3px; left: 12px; height: 240px; display: none; }
+        .lv-banner { display: none; }
+        .lv-sheet  { display: block; }
         .lv-finial { top: -4px; width: 8px; height: 8px; }
         .lv-banner { left: 20px; bottom: 14px; }
         .lv-card   { width: min(330px, calc(100vw - 42px)); aspect-ratio: 18/11; }
@@ -269,10 +355,16 @@ export default function CookieBanner({
         .lv-policy { padding-top: 15px; padding-bottom: 15px; }
 
         /* ── Desktop ── */
-        @media (min-width: 768px) {
-          .lv-pole   { width: 4px; left: 40px; height: 430px; }
+        /* 🔴 1024px, not 768px. A portrait tablet is 768x1024: wide enough to
+           trip a 768px breakpoint, but only 1024px tall, so the masthead flag at
+           bottom:220px landed back on the hero CTA strip (measured: "Vuokraa auto"
+           100% covered, "Majoitus lähistöllä" 85%). Touch-sized viewports get the
+           docked bar; the masthead flag starts where there is height for it. */
+        @media (min-width: 1024px) and (min-height: 900px) {
+          .lv-pole   { width: 4px; left: 40px; height: 430px; display: block; }
           .lv-finial { top: -5px; width: 10px; height: 10px; }
-          .lv-banner { left: 49px; bottom: 220px; }
+          .lv-banner { left: 49px; bottom: 220px; display: block; }
+          .lv-sheet  { display: none; }
           .lv-card   { width: 330px; }
           .lv-rope   { width: 9px; height: 2px; }
           .lv-label  { font-size: 10.5px; letter-spacing: 0.16em; }
@@ -283,6 +375,17 @@ export default function CookieBanner({
           .lv-policy { padding-top: 0; padding-bottom: 0; }
         }
 
+        /* The phone bar slides its own height, not a viewport height: it is docked
+           to the bottom edge, so a 100vh travel would start it a full screen below
+           and waste most of the animation off-camera. */
+        @keyframes cookieSheetRise {
+          from { transform: translateY(110%); }
+          to   { transform: translateY(0); }
+        }
+        @keyframes cookieSheetLower {
+          from { transform: translateY(0); }
+          to   { transform: translateY(110%); }
+        }
         @keyframes cookieFlagRise {
           from { transform: translateY(100vh); }
           to   { transform: translateY(0); }
