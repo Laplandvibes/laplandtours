@@ -963,14 +963,18 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
               {pillarLinks.map((link) => {
                 const isExternal = /^https?:\/\//.test(link.href);
                 const pillClassName = "text-[13px] sm:text-sm font-semibold px-3 sm:px-4 py-2.5 sm:py-2 rounded-full transition-all duration-200 hover:scale-105 whitespace-nowrap inline-flex items-center justify-center min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 shadow-sm";
-                const pillStyle = { background: PINK, border: `1.5px solid ${PINK}`, color: '#FFFFFF' };
+                // 13px white text = normal text, so the 4.5:1 bar applies and
+                // brand pink #EC4899 (3.53:1) fails — same measurement as the
+                // 2026-08-02 batch, which missed this one row. Rest on
+                // PINK_FILL, hover darkens one more step.
+                const pillStyle = { background: PINK_FILL, border: `1.5px solid ${PINK_FILL}`, color: '#FFFFFF' };
                 const onEnter = (e: React.MouseEvent<HTMLElement>) => {
-                  (e.currentTarget as HTMLElement).style.background = '#DB2777';
-                  (e.currentTarget as HTMLElement).style.borderColor = '#DB2777';
+                  (e.currentTarget as HTMLElement).style.background = PINK_FILL_HOVER;
+                  (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL_HOVER;
                 };
                 const onLeave = (e: React.MouseEvent<HTMLElement>) => {
-                  (e.currentTarget as HTMLElement).style.background = PINK;
-                  (e.currentTarget as HTMLElement).style.borderColor = PINK;
+                  (e.currentTarget as HTMLElement).style.background = PINK_FILL;
+                  (e.currentTarget as HTMLElement).style.borderColor = PINK_FILL;
                 };
                 if (isExternal) {
                   return (
