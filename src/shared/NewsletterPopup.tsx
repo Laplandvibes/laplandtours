@@ -57,14 +57,6 @@ export interface NewsletterPopupDict {
   closeLabel?: string;
   trust?: string;
   errorGeneric?: string;
-  /** Eyebrow above the discount-code chip (e.g. "Sinun koodisi" / "Your subscriber code"). */
-  codeLabel?: string;
-  /** Helper text under the code (e.g. how/when to use it). */
-  codeFootnote?: string;
-  /** Tooltip text shown briefly after the user clicks Copy. */
-  codeCopied?: string;
-  /** Aria-label on the copy button. */
-  codeCopyAria?: string;
 }
 
 type SupportedLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
@@ -207,10 +199,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Close',
     trust: 'Only when something is worth flagging. Unsubscribe any time. We never share your email.',
     errorGeneric: 'Subscription failed. Please try again.',
-    codeLabel: 'Your subscriber code',
-    codeFootnote: "Save this code. It's reserved for you across the #LaplandVibes network.",
-    codeCopied: 'Copied!',
-    codeCopyAria: 'Copy code to clipboard',
   },
   fi: {
     successHeadline: 'Olet listalla.',
@@ -225,10 +213,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Sulje',
     trust: 'Lähetämme vain silloin kun on jotain oikeasti kerrottavaa. Tilauksen voi perua koska tahansa. Sähköpostia ei jaeta kolmansille.',
     errorGeneric: 'Tilauksessa virhe. Yritä uudelleen.',
-    codeLabel: 'Tilaajakoodisi',
-    codeFootnote: 'Säilytä tämä koodi. Se on varattu sinulle koko #LaplandVibes-verkostossa.',
-    codeCopied: 'Kopioitu!',
-    codeCopyAria: 'Kopioi koodi leikepöydälle',
   },
   de: {
     successHeadline: 'Sie sind dabei.',
@@ -243,10 +227,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Schließen',
     trust: 'Nur wenn etwas wirklich der Rede wert ist. Jederzeit kündbar. Wir teilen Ihre E-Mail nie.',
     errorGeneric: 'Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.',
-    codeLabel: 'Ihr Abonnentencode',
-    codeFootnote: 'Bewahren Sie diesen Code auf, er ist für Sie im #LaplandVibes-Netzwerk reserviert.',
-    codeCopied: 'Kopiert!',
-    codeCopyAria: 'Code in die Zwischenablage kopieren',
   },
   ja: {
     successHeadline: '登録完了。',
@@ -261,10 +241,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: '閉じる',
     trust: '本当に価値のある時だけお届けします。いつでも解除可能。メールアドレスを第三者と共有しません。',
     errorGeneric: '登録に失敗しました。もう一度お試しください。',
-    codeLabel: '購読者コード',
-    codeFootnote: 'このコードを保存してください。#LaplandVibesネットワーク全体であなた専用に予約されています。',
-    codeCopied: 'コピーしました!',
-    codeCopyAria: 'コードをクリップボードにコピー',
   },
   es: {
     successHeadline: 'Estás dentro.',
@@ -279,10 +255,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Cerrar',
     trust: 'Solo cuando hay algo que merezca la pena. Cancela cuando quieras. Nunca compartimos tu correo.',
     errorGeneric: 'Suscripción fallida. Inténtalo de nuevo.',
-    codeLabel: 'Tu código de suscriptor',
-    codeFootnote: 'Guarda este código. Está reservado para ti en toda la red #LaplandVibes.',
-    codeCopied: '¡Copiado!',
-    codeCopyAria: 'Copiar el código al portapapeles',
   },
   'pt-BR': {
     successHeadline: 'Você está dentro.',
@@ -297,10 +269,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Fechar',
     trust: 'Apenas quando vale a pena destacar. Cancele a qualquer momento. Nunca compartilhamos seu e-mail.',
     errorGeneric: 'Falha na inscrição. Tente novamente.',
-    codeLabel: 'Seu código de assinante',
-    codeFootnote: 'Guarde este código. Ele está reservado para você em toda a rede #LaplandVibes.',
-    codeCopied: 'Copiado!',
-    codeCopyAria: 'Copiar código para a área de transferência',
   },
   'zh-CN': {
     successHeadline: '订阅成功。',
@@ -315,10 +283,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: '关闭',
     trust: '只在真正值得通知时发送。随时可取消。我们绝不分享您的邮箱。',
     errorGeneric: '订阅失败。请重试。',
-    codeLabel: '您的订阅码',
-    codeFootnote: '请保存此代码。它在整个 #LaplandVibes 网络中为您专属保留。',
-    codeCopied: '已复制!',
-    codeCopyAria: '复制代码到剪贴板',
   },
   ko: {
     successHeadline: '구독 완료.',
@@ -333,10 +297,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: '닫기',
     trust: '정말 가치 있는 소식만 보내드립니다. 언제든 해지 가능. 이메일을 공유하지 않습니다.',
     errorGeneric: '구독 실패. 다시 시도해 주세요.',
-    codeLabel: '구독자 코드',
-    codeFootnote: '이 코드를 저장하세요. #LaplandVibes 네트워크 전체에서 당신만을 위해 예약되어 있습니다.',
-    codeCopied: '복사됨!',
-    codeCopyAria: '코드를 클립보드에 복사',
   },
   fr: {
     successHeadline: 'C\'est fait.',
@@ -351,10 +311,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Fermer',
     trust: 'Uniquement quand cela vaut le coup. Désabonnement à tout moment. Nous ne partageons jamais votre e-mail.',
     errorGeneric: 'Inscription échouée. Veuillez réessayer.',
-    codeLabel: 'Votre code d\'abonné',
-    codeFootnote: 'Conservez ce code. Il vous est réservé sur tout le réseau #LaplandVibes.',
-    codeCopied: 'Copié !',
-    codeCopyAria: 'Copier le code dans le presse-papiers',
   },
   it: {
     successHeadline: 'Sei dentro.',
@@ -369,10 +325,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Chiudi',
     trust: 'Solo quando c\'è qualcosa che vale davvero. Disiscrizione in qualsiasi momento. Non condividiamo mai la Sua e-mail.',
     errorGeneric: 'Iscrizione fallita. Riprovi.',
-    codeLabel: 'Il Suo codice abbonato',
-    codeFootnote: 'Salvi questo codice. È riservato a Lei in tutta la rete #LaplandVibes.',
-    codeCopied: 'Copiato!',
-    codeCopyAria: 'Copia il codice negli appunti',
   },
   nl: {
     successHeadline: 'U bent erbij.',
@@ -387,10 +339,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Sluiten',
     trust: 'Alleen als het echt de moeite waard is. Op elk moment opzegbaar. We delen uw e-mail nooit.',
     errorGeneric: 'Abonneren mislukt. Probeer opnieuw.',
-    codeLabel: 'Uw abonneecode',
-    codeFootnote: 'Bewaar deze code. Hij is voor u gereserveerd in het hele #LaplandVibes-netwerk.',
-    codeCopied: 'Gekopieerd!',
-    codeCopyAria: 'Code naar klembord kopiëren',
   },
   sv: {
     successHeadline: 'Du är med.',
@@ -405,10 +353,6 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: 'Stäng',
     trust: 'Bara när något är värt att berätta. Avsluta när du vill. Vi delar aldrig din e-post.',
     errorGeneric: 'Prenumerationen misslyckades. Försök igen.',
-    codeLabel: 'Din prenumerantkod',
-    codeFootnote: 'Spara koden. Den är reserverad för dig i hela #LaplandVibes-nätverket.',
-    codeCopied: 'Kopierad!',
-    codeCopyAria: 'Kopiera koden till urklipp',
   },
 };
 
@@ -459,8 +403,6 @@ export default function NewsletterPopup({
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState(''); // honeypot, humans leave blank
   const [errorMsg, setErrorMsg] = useState('');
-  const [discountCode, setDiscountCode] = useState<string | null>(null);
-  const [codeCopied, setCodeCopied] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -569,9 +511,6 @@ export default function NewsletterPopup({
         setStatus('already');
       } else {
         setStatus('success');
-        if (typeof data.discountCode === 'string' && data.discountCode.length > 0) {
-          setDiscountCode(data.discountCode);
-        }
         onSubscribed?.(sourceTag);
       }
       writeStored(storageKey, { subscribed: Date.now() });
@@ -646,42 +585,6 @@ export default function NewsletterPopup({
               <p className="text-snow/75 text-sm sm:text-base leading-relaxed mb-5">
                 {status === 'success' ? D.successBody : D.alreadyBody}
               </p>
-
-              {status === 'success' && discountCode && (
-                <div
-                  className="mb-6 rounded-xl px-5 py-4 text-center"
-                  style={{
-                    background: 'rgba(245,158,11,0.10)',
-                    border: '1px solid rgba(245,158,11,0.40)',
-                  }}
-                >
-                  <p
-                    className="text-[10px] font-bold uppercase tracking-[0.22em] mb-2"
-                    style={{ color: '#F59E0B' }}
-                  >
-                    {D.codeLabel}
-                  </p>
-                  <button
-                    type="button"
-                    aria-label={D.codeCopyAria}
-                    onClick={async () => {
-                      try {
-                        await navigator.clipboard.writeText(discountCode);
-                        setCodeCopied(true);
-                        window.setTimeout(() => setCodeCopied(false), 1800);
-                      } catch {
-                        // ignore, user can still read & copy the code
-                      }
-                    }}
-                    className="font-heading text-2xl sm:text-[28px] tracking-[0.10em] text-snow leading-none cursor-pointer hover:opacity-80 transition-opacity"
-                  >
-                    {discountCode}
-                  </button>
-                  <p className="text-[11px] text-snow/55 mt-3 leading-relaxed">
-                    {codeCopied ? D.codeCopied : D.codeFootnote}
-                  </p>
-                </div>
-              )}
 
               <button
                 type="button"
