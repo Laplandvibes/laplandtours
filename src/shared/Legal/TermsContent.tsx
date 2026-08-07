@@ -9,6 +9,7 @@
  * pass their own (e.g. `siteName="LaplandStays"` / `siteUrl="laplandstays.com"`)
  * so the prose accurately names the publisher the visitor is reading.
  */
+import { hubUnsubscribeUrl } from './localePath';
 
 type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
@@ -941,7 +942,26 @@ export default function TermsContent({
 }: TermsContentProps = {}) {
   const t = COPY[lang] ?? COPY.en;
   const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink hover:text-vibe-pink/80 underline">info@laplandvibes.com</a>;
-  const unsub = <a href="/unsubscribe" className="text-vibe-pink hover:text-vibe-pink/80 underline">/unsubscribe</a>;
+  // Paljas polku "/unsubscribe" oli sekä linkkiteksti että kohde: teksti luki
+  // lauseessa katkelmana ("osoitteessa /unsubscribe") ja kohde osui spokeilla
+  // SPA-fallbackiin eli sivuston omaan 404:ään. Nyt lokalisoitu label ja hubin
+  // kanoninen peruutussivu (auditti 4.8., mitattu renderöidystä DOMista 7.8.).
+  const unsub = (
+    <a href={hubUnsubscribeUrl(lang)} target="_blank" rel="noopener" className="text-vibe-pink hover:text-vibe-pink/80 underline">{
+      lang === 'fi' ? 'peruutussivullamme'
+      : lang === 'de' ? 'unserer Abmeldeseite'
+      : lang === 'ja' ? '配信停止ページ'
+      : lang === 'es' ? 'nuestra página para darse de baja'
+      : lang === 'pt-BR' ? 'nossa página de cancelamento'
+      : lang === 'zh-CN' ? '取消订阅页面'
+      : lang === 'ko' ? '구독 해지 페이지'
+      : lang === 'fr' ? 'notre page de désinscription'
+      : lang === 'it' ? 'la nostra pagina di disiscrizione'
+      : lang === 'nl' ? 'onze afmeldpagina'
+      : lang === 'sv' ? 'vår avregistreringssida'
+      : 'our unsubscribe page'
+    }</a>
+  );
   const privacy = (
     <a href="/privacy" className="text-vibe-pink hover:text-vibe-pink/80 underline">
       {lang === 'fi' ? 'tietosuojaselosteemme'

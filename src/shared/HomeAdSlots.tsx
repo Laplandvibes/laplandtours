@@ -141,6 +141,14 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
   const flipMobile =
     a !== null && b !== null && typeof window !== 'undefined' && new Date().getDate() % 2 === 1;
 
+  // Kumpaakaan paikkaa ei ole myyty → YKSI house-ad, ei kahta identtistä.
+  // Auditti 4.8.: tyhjällä sivustolla "Haluatko mainoksesi tähän?" renderöityi
+  // kahtena tavulleen samana korttina peräkkäin (mobiilissa päällekkäin) ja
+  // kolmantena vielä heron alla MainPartnerBannerissa. Toisto ei myy toista
+  // paikkaa — se lukee rikkinäisenä käyttöliittymänä. Kun toinen paikka ON
+  // myyty, tyhjä pari säilyy: silloin se on aito kutsu jäljellä olevaan paikkaan.
+  const bothEmpty = !a && !b;
+
   return (
     <section
       data-lv-ad-slots
@@ -158,7 +166,10 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
           {t.partners}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-stretch">
+        <div className={[
+          'grid grid-cols-1 gap-4 sm:gap-5 items-stretch',
+          bothEmpty ? '' : 'sm:grid-cols-2',
+        ].filter(Boolean).join(' ')}>
           {/* Kortti A (vasen desktopissa). House-ad-placeholder vain
               myyntikielillä — muilla lokaaleilla tyhjä paikka ei renderöidy. */}
           <div className="flex">
@@ -171,17 +182,20 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
               placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_a', level: 'card' } : undefined}
             />
           </div>
-          {/* Kortti B (oikea desktopissa; parittomana päivänä ylin mobiilissa) */}
-          <div className={['flex', flipMobile ? 'max-sm:order-first' : ''].filter(Boolean).join(' ')}>
-            <PartnerSlot
-              variant="card"
-              partner={b}
-              locale={locale}
-              surface={surface}
-              className={['w-full', cardClassName].filter(Boolean).join(' ')}
-              placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_b', level: 'card' } : undefined}
-            />
-          </div>
+          {/* Kortti B (oikea desktopissa; parittomana päivänä ylin mobiilissa).
+              Jätetään pois kun kumpaakaan ei ole myyty — ks. bothEmpty. */}
+          {!bothEmpty && (
+            <div className={['flex', flipMobile ? 'max-sm:order-first' : ''].filter(Boolean).join(' ')}>
+              <PartnerSlot
+                variant="card"
+                partner={b}
+                locale={locale}
+                surface={surface}
+                className={['w-full', cardClassName].filter(Boolean).join(' ')}
+                placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_b', level: 'card' } : undefined}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

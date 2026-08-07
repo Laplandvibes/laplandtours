@@ -44,9 +44,18 @@ const LOCALE_SEGMENT: Record<LegalLang, string> = {
 };
 
 /**
- * Prefix an internal absolute path (e.g. "/", "/privacy") with the active
- * locale segment. EN (and any unknown lang) returns the path unchanged.
+ * Uutiskirjeen peruutussivun ABSOLUUTTINEN osoite.
+ *
+ * 🔴 Peruutussivu on olemassa VAIN hubilla (laplandvibes.com/<locale>/unsubscribe/),
+ * koska uutiskirjelista on yksi koko verkostolle. Spoke-sivustoilla suhteellinen
+ * `/unsubscribe` osuu SPA-fallbackiin: HTTP 200 mutta renderöity sivu on sivuston
+ * oma 404 ("Eksyksissä Lapissa"), joten naiivi statustarkistus ei paljasta sitä.
+ * Mitattu renderöidystä DOMista 2026-08-07 (auditti 4.8., löydös oli laplandbarsilla).
  */
+export function hubUnsubscribeUrl(lang: LegalLang = 'en'): string {
+  return `https://laplandvibes.com${localePath('/unsubscribe', lang)}`;
+}
+
 export function localePath(path: string, lang: LegalLang = 'en'): string {
   const seg = LOCALE_SEGMENT[lang] ?? '';
   const base = seg ? (path === '/' ? `/${seg}` : `/${seg}${path}`) : path;

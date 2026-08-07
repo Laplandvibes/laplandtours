@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { localePath } from './localePath';
+import { localePath, hubUnsubscribeUrl } from './localePath';
 
 /**
  * Shared LaplandVibes ecosystem Privacy Policy body.
@@ -983,7 +983,7 @@ export default function PrivacyContent({
     : lang === 'sv' ? 'cookiepolicy'
     : 'Cookie Policy'
   }</Link>;
-  const unsubLink = <Link to={localePath('/unsubscribe', lang)} className="text-vibe-pink">{
+  const unsubLink = <a href={hubUnsubscribeUrl(lang)} target="_blank" rel="noopener" className="text-vibe-pink">{
     lang === 'fi' ? 'peruutussivulta'
     : lang === 'de' ? 'unserer Abmeldeseite'
     : lang === 'ja' ? '配信停止ページ'
@@ -996,7 +996,7 @@ export default function PrivacyContent({
     : lang === 'nl' ? 'afmeldpagina'
     : lang === 'sv' ? 'avregistreringssida'
     : 'unsubscribe page'
-  }</Link>;
+  }</a>;
 
   return (
     <div className="min-h-screen bg-deep-night pt-24 pb-20">
