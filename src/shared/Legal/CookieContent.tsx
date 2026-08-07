@@ -868,7 +868,23 @@ export default function CookieContent({
 
           <section>
             <h2 className="font-heading font-semibold text-xl text-snow tracking-wide mb-3">{t.tableTitle}</h2>
-            <div className="overflow-x-auto">
+            {/* Alle sm: pinotut lohkot. Nelisarakkeinen taulukko oli 769 px
+                343 px:n kääreessä (auditti 4.8., 147 osumaa 13 sivustolla):
+                Tarkoitus+Kesto jäivät ruudun ulkopuolelle ja näkymättömiin
+                rivittynyt sarake määräsi ~300 px:n rivikorkeudet. */}
+            <div className="sm:hidden space-y-3">
+              {cookieTable.map((row) => (
+                <div key={row.name} className="rounded-lg border border-white/10 p-3">
+                  <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                    <span className="font-mono text-xs text-snow/80 break-all">{row.name}</span>
+                    <span className="text-xs text-snow/60 shrink-0">{row.type}</span>
+                  </div>
+                  <p className="text-sm text-snow/60 mt-1">{row.purpose}</p>
+                  <p className="text-xs text-snow/70 mt-1">{t.tableDuration}: {row.duration}</p>
+                </div>
+              ))}
+            </div>
+            <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-sm border-collapse">
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
@@ -884,7 +900,7 @@ export default function CookieContent({
                       <td className="py-2 pr-4 font-mono text-xs text-snow/70 align-top">{row.name}</td>
                       <td className="py-2 pr-4 text-snow/60 align-top whitespace-nowrap">{row.type}</td>
                       <td className="py-2 pr-4 text-snow/60 align-top">{row.purpose}</td>
-                      <td className="py-2 text-snow/60 align-top whitespace-nowrap">{row.duration}</td>
+                      <td className="py-2 text-snow/60 align-top">{row.duration}</td>
                     </tr>
                   ))}
                 </tbody>

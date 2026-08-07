@@ -77,6 +77,10 @@ export interface FooterDict {
     essentials?: string;
   };
   travelGuideKicker?: string;
+  pillars?: {
+    northernLights?: string; huskySafaris?: string; skiResorts?: string;
+    whereToStay?: string; thingsToDo?: string; natureParks?: string;
+  };
   about?: {
     eyebrow?: string;
     body?: string;
@@ -147,6 +151,7 @@ const DEFAULT_DICT: Required<FooterDict> & {
     essentials: 'Essentials',
   },
   travelGuideKicker: 'Lapland Travel Guide',
+  pillars: { northernLights: 'Northern Lights', huskySafaris: 'Husky Safaris', skiResorts: 'Ski Resorts', whereToStay: 'Where to Stay', thingsToDo: 'Things to Do', natureParks: 'Nature & Parks' },
   about: {
     eyebrow: 'About LaplandVibes',
     body: 'The definitive guide to Finnish Lapland, from the revontulet to the midnight sun. Curated experiences, insider tips, and cited sources for planning your Arctic trip.',
@@ -294,6 +299,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'Lataa sovellus',
     groups: { stay: 'Majoitu', eatDrink: 'Syö & juo', do: 'Tee', explore: 'Tutustu', essentials: 'Käytännön asiat' },
     travelGuideKicker: 'Lapin matkaopas',
+    pillars: { northernLights: 'Revontulet', huskySafaris: 'Huskysafarit', skiResorts: 'Hiihtokeskukset', whereToStay: 'Majoitus', thingsToDo: 'Tekemistä', natureParks: 'Luonto & puistot' },
     about: { eyebrow: 'Tietoa LaplandVibes-verkostosta', body: 'Suomen Lapin matkaopas, revontulista keskiyön aurinkoon. Käsin valittuja kohteita, paikallista tietoa ja avoimet lähteet kaiken Arktis-matkasi suunnitteluun.', badge: 'Itsenäisesti ylläpidetty · lähteet näkyvillä' },
     spottedError: { title: 'Huomasitko virheen?', body: 'Näetkö jotain joka pitäisi korjata? Kerro meille, korjaamme heti.', cta: 'Ilmoita virheestä →' },
     partner: { title: 'Tee yhteistyötä kanssamme', body: 'Mainosta tai tee yhteistyötä yli 25 Lappi-sivuston verkostossa.', cta: 'Ota yhteyttä →' },
@@ -307,6 +313,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'App holen',
     groups: { stay: 'Übernachten', eatDrink: 'Essen & Trinken', do: 'Erleben', explore: 'Entdecken', essentials: 'Praktisches' },
     travelGuideKicker: 'Lappland-Reiseführer',
+    pillars: { northernLights: 'Nordlichter', huskySafaris: 'Husky-Safaris', skiResorts: 'Skigebiete', whereToStay: 'Unterkünfte', thingsToDo: 'Aktivitäten', natureParks: 'Natur & Parks' },
     about: { eyebrow: 'Über LaplandVibes', body: 'Der Reiseführer für Finnisch-Lappland, von den Polarlichtern bis zur Mitternachtssonne. Handverlesene Erlebnisse, lokales Wissen und Quellen für Ihre Arktis-Reise.', badge: 'Unabhängig betrieben · Quellen sichtbar' },
     spottedError: { title: 'Einen Fehler entdeckt?', body: 'Etwas, das korrigiert werden muss? Schreiben Sie uns, wir korrigieren es sofort.', cta: 'Fehler melden →' },
     partner: { title: 'Mit uns kooperieren', body: 'Werben oder kooperieren über 25+ Lappland-Sites.', cta: 'Kontakt aufnehmen →' },
@@ -320,6 +327,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'アプリを入手',
     groups: { stay: '泊まる', eatDrink: '食べる・飲む', do: '体験する', explore: '見る', essentials: '知っておくこと' },
     travelGuideKicker: 'ラップランド旅行ガイド',
+    pillars: { northernLights: 'オーロラ', huskySafaris: 'ハスキーサファリ', skiResorts: 'スキー場', whereToStay: '宿泊', thingsToDo: 'アクティビティ', natureParks: '自然と公園' },
     about: { eyebrow: 'LaplandVibesについて', body: 'オーロラから白夜まで、フィンランド・ラップランドの決定版ガイド。厳選した体験と現地の知恵、出典を明記した情報で、北極圏の旅の計画を支えます。', badge: '独立運営 · 出典明記' },
     spottedError: { title: '間違いを見つけましたか?', body: '修正が必要な箇所がありましたら教えてください。すぐに修正します。', cta: '報告する →' },
     partner: { title: '提携のご相談', body: '25以上のラップランドサイトで広告・コラボレーション。', cta: 'お問い合わせ →' },
@@ -333,6 +341,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'Descargar la app',
     groups: { stay: 'Dónde dormir', eatDrink: 'Comer y beber', do: 'Hacer', explore: 'Explorar', essentials: 'Esenciales' },
     travelGuideKicker: 'Guía de viaje de Laponia',
+    pillars: { northernLights: 'Auroras boreales', huskySafaris: 'Safaris con huskies', skiResorts: 'Estaciones de esquí', whereToStay: 'Alojamiento', thingsToDo: 'Qué hacer', natureParks: 'Naturaleza y parques' },
     about: { eyebrow: 'Sobre LaplandVibes', body: 'La guía definitiva de la Laponia finlandesa, desde las auroras hasta el sol de medianoche. Experiencias seleccionadas, consejos locales y fuentes citadas para planear tu aventura ártica.', badge: 'Mantenido de forma independiente · fuentes citadas' },
     spottedError: { title: '¿Has visto un error?', body: '¿Algo que arreglar? Dínoslo, lo corregiremos enseguida.', cta: 'Reportar un error →' },
     partner: { title: 'Colabora con nosotros', body: 'Publicidad o colaboración en más de 25 sitios sobre Laponia.', cta: 'Contactar →' },
@@ -346,6 +355,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'Baixar o app',
     groups: { stay: 'Onde dormir', eatDrink: 'Comer e beber', do: 'Fazer', explore: 'Explorar', essentials: 'Essenciais' },
     travelGuideKicker: 'Guia de viagem da Lapônia',
+    pillars: { northernLights: 'Auroras boreais', huskySafaris: 'Safáris de husky', skiResorts: 'Estações de esqui', whereToStay: 'Onde ficar', thingsToDo: 'O que fazer', natureParks: 'Natureza e parques' },
     about: { eyebrow: 'Sobre o LaplandVibes', body: 'O guia definitivo da Lapônia finlandesa, das auroras boreais ao sol da meia-noite. Experiências selecionadas, dicas locais e fontes citadas para planejar sua viagem ao Ártico.', badge: 'Mantido de forma independente · fontes à vista' },
     spottedError: { title: 'Encontrou um erro?', body: 'Viu algo que precisa de correção? Avise, corrigimos imediatamente.', cta: 'Relatar um erro →' },
     partner: { title: 'Faça parceria conosco', body: 'Anuncie ou colabore em mais de 25 sites da Lapônia.', cta: 'Entre em contato →' },
@@ -359,6 +369,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: '获取应用',
     groups: { stay: '住', eatDrink: '吃喝', do: '玩', explore: '探索', essentials: '实用信息' },
     travelGuideKicker: '拉普兰旅游指南',
+    pillars: { northernLights: '北极光', huskySafaris: '哈士奇雪橇', skiResorts: '滑雪场', whereToStay: '住宿', thingsToDo: '玩乐', natureParks: '自然与公园' },
     about: { eyebrow: '关于 LaplandVibes', body: '从北极光到午夜阳光，芬兰拉普兰的权威指南。精选体验、本地建议与注明来源的信息，助您规划北极之旅。', badge: '独立运营 · 来源公开' },
     spottedError: { title: '发现错误了吗?', body: '有需要修正的地方吗?告诉我们，我们会立即更正。', cta: '报告错误 →' },
     partner: { title: '与我们合作', body: '在 25+ 个拉普兰网站上投放广告或开展合作。', cta: '联系我们 →' },
@@ -372,6 +383,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: '앱 받기',
     groups: { stay: '숙박', eatDrink: '음식과 음료', do: '체험', explore: '둘러보기', essentials: '필수 정보' },
     travelGuideKicker: '라플란드 여행 가이드',
+    pillars: { northernLights: '오로라', huskySafaris: '허스키 사파리', skiResorts: '스키장', whereToStay: '숙소', thingsToDo: '즐길 거리', natureParks: '자연과 공원' },
     about: { eyebrow: 'LaplandVibes 소개', body: '오로라부터 백야까지, 핀란드 라플란드의 결정판 가이드. 엄선한 경험과 현지의 조언, 출처를 밝힌 정보로 북극 여행 계획을 돕습니다.', badge: '독립 운영 · 출처 명시' },
     spottedError: { title: '오류를 발견하셨나요?', body: '수정이 필요한 부분이 있나요? 알려주세요, 즉시 수정합니다.', cta: '오류 신고 →' },
     partner: { title: '저희와 협력하세요', body: '25개 이상의 라플란드 사이트에서 광고 또는 협업.', cta: '문의하기 →' },
@@ -385,6 +397,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: "Obtenir l'app",
     groups: { stay: 'Où dormir', eatDrink: 'Manger & boire', do: 'À faire', explore: 'Explorer', essentials: 'L\'essentiel' },
     travelGuideKicker: 'Guide de voyage Laponie',
+    pillars: { northernLights: 'Aurores boréales', huskySafaris: 'Safaris en husky', skiResorts: 'Stations de ski', whereToStay: 'Hébergement', thingsToDo: 'Activités', natureParks: 'Nature et parcs' },
     about: { eyebrow: 'À propos de LaplandVibes', body: 'Le guide de référence pour la Laponie finlandaise, des aurores boréales au soleil de minuit. Expériences sélectionnées, conseils locaux et tout pour préparer votre voyage en Arctique.', badge: 'Géré indépendamment · sources citées' },
     spottedError: { title: 'Repéré une erreur ?', body: 'Quelque chose à corriger ? Dites-le-nous, nous corrigeons immédiatement.', cta: 'Signaler une erreur →' },
     partner: { title: 'Devenir partenaire', body: 'Publicité ou collaboration sur 25+ sites Laponie.', cta: 'Nous contacter →' },
@@ -398,6 +411,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: "Scarica l'app",
     groups: { stay: 'Dove dormire', eatDrink: 'Mangiare e bere', do: 'Da fare', explore: 'Esplorare', essentials: 'Informazioni utili' },
     travelGuideKicker: 'Guida di viaggio Lapponia',
+    pillars: { northernLights: 'Aurora boreale', huskySafaris: 'Safari con husky', skiResorts: 'Stazioni sciistiche', whereToStay: 'Alloggi', thingsToDo: 'Cose da fare', natureParks: 'Natura e parchi' },
     about: { eyebrow: 'Su LaplandVibes', body: 'La guida definitiva alla Lapponia finlandese, dalle aurore boreali al sole di mezzanotte. Esperienze selezionate, consigli locali e fonti citate per pianificare il Suo viaggio nell\'Artico.', badge: 'Gestita in modo indipendente · fonti citate' },
     spottedError: { title: 'Notato un errore?', body: 'C\'è qualcosa da correggere? Ce lo dica, correggeremo subito.', cta: 'Segnala un errore →' },
     partner: { title: 'Collabora con noi', body: 'Pubblicità o collaborazione su oltre 25 siti dedicati alla Lapponia.', cta: 'Mettersi in contatto →' },
@@ -411,6 +425,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'Download de app',
     groups: { stay: 'Verblijf', eatDrink: 'Eten & drinken', do: 'Beleven', explore: 'Ontdekken', essentials: 'Praktisch' },
     travelGuideKicker: 'Lapland-reisgids',
+    pillars: { northernLights: 'Noorderlicht', huskySafaris: "Huskysafari's", skiResorts: 'Skigebieden', whereToStay: 'Overnachten', thingsToDo: 'Activiteiten', natureParks: 'Natuur en parken' },
     about: { eyebrow: 'Over LaplandVibes', body: 'De definitieve gids voor Fins Lapland, van het noorderlicht tot de middernachtszon. Geselecteerde ervaringen, lokale tips en duidelijke bronnen om uw arctische reis te plannen.', badge: 'Onafhankelijk beheerd · bronnen zichtbaar' },
     spottedError: { title: 'Een fout gezien?', body: 'Iets dat aangepast moet worden? Laat het ons weten, we corrigeren het meteen.', cta: 'Fout melden →' },
     partner: { title: 'Word partner', body: 'Adverteer of werk samen op meer dan 25 Lapland-sites.', cta: 'Neem contact op →' },
@@ -424,6 +439,7 @@ const BUILT_IN_FULL_DICT: Record<string, Partial<typeof DEFAULT_DICT>> = {
     getApp: 'Hämta appen',
     groups: { stay: 'Bo', eatDrink: 'Ät & drick', do: 'Gör', explore: 'Upptäck', essentials: 'Praktiskt' },
     travelGuideKicker: 'Lapplands reseguide',
+    pillars: { northernLights: 'Norrsken', huskySafaris: 'Huskysafarier', skiResorts: 'Skidorter', whereToStay: 'Boende', thingsToDo: 'Att göra', natureParks: 'Natur och parker' },
     about: { eyebrow: 'Om LaplandVibes', body: 'Reseguiden till finska Lappland, från norrsken till midnattssol. Handplockade upplevelser, lokal kunskap och tydliga källor för att planera din arktiska resa.', badge: 'Oberoende drivet · källor redovisade' },
     spottedError: { title: 'Hittade du ett fel?', body: 'Ser du något som behöver rättas till? Berätta för oss, så korrigerar vi det direkt.', cta: 'Rapportera ett fel →' },
     partner: { title: 'Bli partner med oss', body: 'Annonsera eller samarbeta över 25+ Lappland-sajter.', cta: 'Kontakta oss →' },
@@ -452,6 +468,7 @@ function mergeDict(d?: FooterDict): typeof DEFAULT_DICT {
       partner: { ...DEFAULT_DICT.partner, ...langDefaults.partner },
       press: { ...DEFAULT_DICT.press, ...langDefaults.press },
       legal: { ...DEFAULT_DICT.legal, ...langDefaults.legal },
+      pillars: { ...DEFAULT_DICT.pillars, ...langDefaults.pillars },
       siteLabels: { ...DEFAULT_DICT.siteLabels, ...autoLabels },
     } as typeof DEFAULT_DICT;
   }
@@ -467,6 +484,7 @@ function mergeDict(d?: FooterDict): typeof DEFAULT_DICT {
       essentials: d.groups?.essentials ?? langDefaults.groups?.essentials ?? DEFAULT_DICT.groups.essentials,
     },
     travelGuideKicker: d.travelGuideKicker ?? langDefaults.travelGuideKicker ?? DEFAULT_DICT.travelGuideKicker,
+    pillars: { ...DEFAULT_DICT.pillars, ...langDefaults.pillars, ...d.pillars },
     about: {
       eyebrow: d.about?.eyebrow ?? langDefaults.about?.eyebrow ?? DEFAULT_DICT.about.eyebrow,
       body: d.about?.body ?? langDefaults.about?.body ?? DEFAULT_DICT.about.body,
@@ -537,13 +555,13 @@ function mergeDict(d?: FooterDict): typeof DEFAULT_DICT {
 // 2026-06-01: /northern-lights /husky-safaris /ski-resorts /accommodation
 // /things-to-do /nature). The hub itself overrides this via the `pillarLinks`
 // prop with locale-aware hub-local routes.
-const defaultPillarLinks = [
-  { name: 'Northern Lights', href: 'https://laplandvibes.com/northern-lights' },
-  { name: 'Husky Safaris', href: 'https://laplandvibes.com/husky-safaris' },
-  { name: 'Ski Resorts', href: 'https://laplandvibes.com/ski-resorts' },
-  { name: 'Where to Stay', href: 'https://laplandvibes.com/accommodation' },
-  { name: 'Things to Do', href: 'https://laplandvibes.com/things-to-do' },
-  { name: 'Nature & Parks', href: 'https://laplandvibes.com/nature' },
+const defaultPillarLinks: { name: string; href: string; key?: keyof typeof DEFAULT_DICT.pillars }[] = [
+  { key: 'northernLights', name: 'Northern Lights', href: 'https://laplandvibes.com/northern-lights' },
+  { key: 'huskySafaris', name: 'Husky Safaris', href: 'https://laplandvibes.com/husky-safaris' },
+  { key: 'skiResorts', name: 'Ski Resorts', href: 'https://laplandvibes.com/ski-resorts' },
+  { key: 'whereToStay', name: 'Where to Stay', href: 'https://laplandvibes.com/accommodation' },
+  { key: 'thingsToDo', name: 'Things to Do', href: 'https://laplandvibes.com/things-to-do' },
+  { key: 'natureParks', name: 'Nature & Parks', href: 'https://laplandvibes.com/nature' },
 ];
 
 function buildSiteGroups(d: typeof DEFAULT_DICT) {
@@ -665,7 +683,7 @@ const socials = [
 ];
 
 interface SharedFooterProps {
-  pillarLinks?: { name: string; href: string }[];
+  pillarLinks?: { name: string; href: string; key?: keyof typeof DEFAULT_DICT.pillars }[];
   onPillarClick?: (name: string) => void;
   /**
    * Per-site editorial note. Renders above the affiliate-disclosure line in the
@@ -963,6 +981,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap gap-2 sm:gap-2.5">
               {pillarLinks.map((link) => {
                 const isExternal = /^https?:\/\//.test(link.href);
+                // Lokalisoitu label dictista; hubin propilla tulevat linkit (ei keytä)
+                // kantavat oman valmiiksi lokalisoidun nimensä.
+                const label = link.key ? (d.pillars[link.key] ?? link.name) : link.name;
                 const pillClassName = "text-[13px] sm:text-sm font-semibold px-3 sm:px-4 py-2.5 sm:py-2 rounded-full transition-all duration-200 hover:scale-105 whitespace-nowrap inline-flex items-center justify-center min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 shadow-sm";
                 // 13px white text = normal text, so the 4.5:1 bar applies and
                 // brand pink #EC4899 (3.53:1) fails — same measurement as the
@@ -990,7 +1011,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                       onMouseEnter={onEnter}
                       onMouseLeave={onLeave}
                     >
-                      {link.name}
+                      {label}
                     </a>
                   );
                 }
@@ -1004,7 +1025,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                     onMouseEnter={onEnter}
                     onMouseLeave={onLeave}
                   >
-                    {link.name}
+                    {label}
                   </Link>
                 );
               })}
