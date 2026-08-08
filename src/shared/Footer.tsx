@@ -1192,16 +1192,25 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                     {label}
                   </Link>
                 ))}
-                <button
-                  type="button"
-                  onClick={() => setContactKind('general')}
-                  className="transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:min-w-0 justify-center px-1 bg-transparent border-0 cursor-pointer text-xs font-normal"
-                  style={{ color: BLUE }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = BLUE)}
-                >
-                  {d.legal.contact}
-                </button>
+                {/* Yhteydenottonappi jätetään pois, jos sivusto tarjoaa jo saman
+                    nimisen linkin `extraLegalLinks`issä. Luxuryvillas lisää oman
+                    /contact-sivunsa ("Yhteystiedot") ja rivillä luki sen jälkeen
+                    sama sana kahdesti (auditti 4.8.) — eri kohteet, sama nimi.
+                    Sivu on lomakemodaalin superjoukko, joten se voittaa. */}
+                {!extraLegalLinks.some(
+                  (l) => l.label.trim().toLowerCase() === d.legal.contact.trim().toLowerCase(),
+                ) && (
+                  <button
+                    type="button"
+                    onClick={() => setContactKind('general')}
+                    className="transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] sm:min-w-0 justify-center px-1 bg-transparent border-0 cursor-pointer text-xs font-normal"
+                    style={{ color: BLUE }}
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = BLUE)}
+                  >
+                    {d.legal.contact}
+                  </button>
+                )}
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-0.5 sm:gap-3">
                 <p style={{ color: BLUE }}>
