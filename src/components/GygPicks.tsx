@@ -1,5 +1,5 @@
 import { MapPin, Clock, Ticket, ArrowUpRight } from 'lucide-react';
-import { TOURS_PICKS, gygHref, GYG_PRICE_AS_OF } from '../../../shared/gyg/picks';
+import { TOURS_PICKS, gygHref, GYG_PRICE_AS_OF } from '../shared/gyg/picks';
 import { GYG_IMAGES } from '../data/gygImages';
 import { useLang } from '../i18n/useLang';
 

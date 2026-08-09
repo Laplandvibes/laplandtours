@@ -206,7 +206,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           href={mediaSiteUrl(placeholder.siteSlug, locale)}
           onClick={() => fireAdvertiseHereClick(placeholder.siteSlug, placeholder.slotId)}
           className={[
-            'group relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 w-full',
+            'group relative flex flex-wrap items-center justify-between gap-x-6 gap-y-3 w-full',
             // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): erottuu sekä
             // tummilta että vaaleilta sivustoilta, dashed-pinkki = "vapaa paikka".
             'rounded-2xl border-2 border-dashed px-5 py-4 sm:px-7 sm:py-5 transition-all duration-300',
@@ -223,14 +223,22 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
           aria-label={`${topLabel}: ${t.wantYourAd}`}
         >
-          <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 min-w-0">
-            <span className="flex items-center gap-2 min-w-0">
+          {/* Leima AINA otsikon YLLÄ, ei koskaan vieressä eikä katkaistuna.
+              Vanha sm:flex-row pani katkaistun leiman ("MISSÄ YÖPYÄ S…")
+              rivittyvän otsikon RINNALLE, jolloin kapeassa kontekstissa
+              (esim. staysin kohdepaneelin puolikas palsta) leima, otsikko ja
+              pilleri asettuivat kolmeen eri linjaan — "ei yhtään visuaalisesti
+              nätti" (Vesa 2026-08-09). Pino on robusti joka leveydellä; leveällä
+              bannerilla teksti vasemmalla + pilleri oikealla kuten ennenkin,
+              ~20 px korkeampana. */}
+          <span className="min-w-0 flex-1 basis-60">
+            <span className="flex items-center gap-2 mb-1">
               <span aria-hidden="true" className="shrink-0 inline-block w-2 h-2 rounded-full bg-[#EC4899]" />
-              <span className={`text-[10px] font-semibold uppercase tracking-widest truncate ${houseLabel}`}>
+              <span className={`text-[10px] font-semibold uppercase tracking-widest ${houseLabel}`}>
                 {topLabel}
               </span>
             </span>
-            <span className={`font-heading text-xl sm:text-2xl tracking-wide leading-tight ${houseTitle}`}>
+            <span className={`block font-heading text-xl sm:text-2xl tracking-wide leading-tight ${houseTitle}`}>
               {t.wantYourAd}
             </span>
           </span>
