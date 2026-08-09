@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Send, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
+import { Send, AlertCircle, Loader2, X, Instagram, Facebook } from 'lucide-react';
 
 /**
- * Shared LaplandVibes ecosystem newsletter popup.
+ * Shared LaplandVibes ecosystem newsletter popup — founder edition (2026-08-09).
  *
  * Mounted once at the root of every site (laplandvibes.com, laplandstays.com,
  * laplandhuskysafaris.com, etc.). Triggers after 25 s OR 55 % scroll, whichever
@@ -14,9 +14,17 @@ import { Send, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
  * in the same Supabase + Resend pipeline. The `source` tag differentiates the
  * referring site in GA4 / mailing-list analytics.
  *
- * Default copy positions the newsletter as the *#LaplandVibes newsletter* even
- * on sister sites, there is one master newsletter, and the visitor's current
- * site is just where they encountered it.
+ * Founder edition: Vesa's photo spirals in above the wordmark (one-time CSS
+ * animation, fade-only under prefers-reduced-motion) and the default copy is a
+ * personal founder note instead of an anonymous brand pitch. The success view
+ * shows the Suomi-helmet trip photo + TikTok/Instagram/Facebook links. The
+ * old default copy promised "aurora alerts" — no alert system exists, so that
+ * promise is gone on every locale (same debt as the 2026-08-02 welcome-email
+ * truth audit).
+ *
+ * Both images must exist in each consuming site's public/ dir
+ * (`/vesa-founder.webp`, `/vesa-lapland.webp`). If the avatar 404s the popup
+ * degrades gracefully to the pre-founder layout (no broken-image icon).
  */
 
 const REMIND_AFTER_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -31,6 +39,13 @@ const SUPPRESSED_PATHS = ['/privacy', '/terms', '/cookie-policy', '/unsubscribe'
  * Neue is not loaded there.
  */
 const WORDMARK_FONT = "'Bebas Neue', var(--font-heading, 'Arial Narrow'), sans-serif";
+
+/** Official network profiles — single source of truth for the success view. */
+const SOCIAL_LINKS = {
+  tiktok: 'https://www.tiktok.com/@laplandvibes',
+  instagram: 'https://www.instagram.com/laplandvibesofficial',
+  facebook: 'https://www.facebook.com/laplandvibes',
+};
 
 type Status = 'hidden' | 'visible' | 'loading' | 'success' | 'already' | 'error';
 
@@ -57,6 +72,10 @@ export interface NewsletterPopupDict {
   closeLabel?: string;
   trust?: string;
   errorGeneric?: string;
+  /** Lead-in line above the social icons on the success view. */
+  socialLead?: string;
+  /** Alt text for the founder avatar photo. */
+  founderAlt?: string;
 }
 
 type SupportedLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
@@ -112,6 +131,10 @@ interface NewsletterPopupProps {
   supabaseUrl?: string;
   /** Supabase publishable anon key. Required if `endpoint` not set. */
   supabaseAnonKey?: string;
+  /** Founder avatar photo (circle, spirals in). Must exist in the site's public/. */
+  founderImage?: string;
+  /** Trip photo shown on the success view. Must exist in the site's public/. */
+  thanksImage?: string;
 }
 
 function readStored(key: string): StoredState | null {
@@ -131,228 +154,252 @@ function writeStored(key: string, s: StoredState) {
   }
 }
 
-// Built-in locale defaults (2026-05-23). Activated when `lang` prop is passed
-// but `headline`/`description` overrides are not. Fixes Vesa's flag that
-// EN newsletter copy appeared on /fi /cn /de etc. across the ecosystem.
+// Built-in locale defaults. Founder note (2026-08-09) — Vesa speaking in first
+// person on every locale. Frequency promises are banned (VOICE-RULES.md): the
+// cadence truth lives in the `trust` line, not here.
 const LOCALE_HEADLINES: Record<SupportedLang, { headline: string; description: string }> = {
   en: {
-    headline: 'Lapland in your inbox, straight from Finland.',
-    description: "Aurora alerts before the clearest nights, glass-igloo booking windows before they sell out, and seasonal travel guides. Written from Finland, sources cited.",
+    headline: 'Hi — Vesa here 👋',
+    description: 'Founder of LaplandVibes. Auroras, autumn colours, the Christmas season and the midnight sun — I travel Lapland and tell you where to start, what to book and when, and which places genuinely surprise you.',
   },
   fi: {
-    headline: 'Lappi suoraan sähköpostiisi.',
-    description: 'Revontulivaroituksia ennen kirkkaimpia öitä, lasi-iglujen varausikkunat ennen kuin paikat loppuvat ja kausivinkit. Kirjoitettu Suomesta, lähteet näkyvillä.',
+    headline: 'Moro! Vesa tässä 👋',
+    description: 'LaplandVibesin perustaja. Revontulet, ruska, joulun sesonki ja yötön yö — reissaan Lapissa ja kerron sinulle, mistä kannattaa aloittaa, mitä varata milloinkin ja mitkä paikat oikeasti yllättävät.',
   },
   de: {
-    headline: 'Lappland direkt in Ihr Postfach, aus Finnland.',
-    description: 'Polarlicht-Warnungen vor den klarsten Nächten, Glasiglu-Buchungsfenster, bevor alles ausverkauft ist, und saisonale Reiseguides. Aus Finnland, mit Quellen.',
+    headline: 'Hallo — hier ist Vesa 👋',
+    description: 'Gründer von LaplandVibes. Polarlichter, Herbstfarben, die Weihnachtssaison und die Mitternachtssonne — ich reise durch Lappland und erzähle Ihnen, womit Sie anfangen sollten, was Sie wann buchen und welche Orte wirklich überraschen.',
   },
   ja: {
-    headline: 'ラップランドを、フィンランドから直接お届け。',
-    description: '晴天の夜が来る前のオーロラ予報、売り切れる前のガラスイグルー予約タイミング、季節ごとの旅行ガイド。フィンランド現地から、出典付きで。',
+    headline: 'こんにちは、ヴェサです 👋',
+    description: 'LaplandVibes創業者。オーロラ、紅葉、クリスマスシーズン、白夜 — ラップランドを旅しながら、どこから始めるか、何をいつ予約するか、本当に驚かされる場所はどこかをお伝えします。',
   },
   es: {
-    headline: 'Laponia en tu bandeja, directo desde Finlandia.',
-    description: 'Avisos de auroras antes de las noches más claras, ventanas de reserva de iglús de cristal antes de que se agoten y guías de temporada. Escrito desde Finlandia, con fuentes.',
+    headline: '¡Hola! Soy Vesa 👋',
+    description: 'Fundador de LaplandVibes. Auroras, colores de otoño, la temporada navideña y el sol de medianoche: viajo por Laponia y te cuento por dónde empezar, qué reservar y cuándo, y qué lugares de verdad sorprenden.',
   },
   'pt-BR': {
-    headline: 'Lapônia direto na sua caixa, escrito da Finlândia.',
-    description: 'Alertas de aurora antes das noites mais claras, janelas de reserva dos iglus de vidro antes de esgotarem e guias sazonais. Escrito da Finlândia, com fontes.',
+    headline: 'Oi — aqui é o Vesa 👋',
+    description: 'Fundador do LaplandVibes. Auroras, cores de outono, a temporada de Natal e o sol da meia-noite — viajo pela Lapônia e conto para você por onde começar, o que reservar e quando, e quais lugares realmente surpreendem.',
   },
   'zh-CN': {
-    headline: '拉普兰直达邮箱，来自芬兰第一手。',
-    description: '晴朗夜晚来临前的极光预警、玻璃冰屋售罄前的预订窗口、按季节的旅行指南。来自芬兰本地编辑，出处清晰。',
+    headline: '你好，我是Vesa 👋',
+    description: 'LaplandVibes创始人。极光、秋色、圣诞季、极昼——我行遍拉普兰，告诉你从哪里开始、何时预订什么、哪些地方真正令人惊喜。',
   },
   ko: {
-    headline: '라플란드 소식, 핀란드 현지에서 직접.',
-    description: '맑은 밤이 오기 전 오로라 알림, 매진되기 전 글래스 이글루 예약 창, 계절별 여행 가이드. 핀란드 현지에서 작성, 출처 명시.',
+    headline: '안녕하세요, 베사입니다 👋',
+    description: 'LaplandVibes 창립자. 오로라, 가을 단풍, 크리스마스 시즌, 백야 — 라플란드를 여행하며 어디서 시작할지, 무엇을 언제 예약할지, 어떤 곳이 정말 놀라운지 알려드립니다.',
   },
   fr: {
-    headline: 'La Laponie dans votre boîte, direct de Finlande.',
-    description: 'Alertes aurores avant les nuits les plus claires, fenêtres de réservation des igloos en verre avant qu\'ils ne se vendent et guides saisonniers. Écrit depuis la Finlande, sources citées.',
+    headline: 'Bonjour, c\'est Vesa 👋',
+    description: 'Fondateur de LaplandVibes. Aurores, couleurs d\'automne, saison de Noël et soleil de minuit — je sillonne la Laponie et je vous dis par où commencer, quoi réserver et quand, et quels endroits surprennent vraiment.',
   },
   it: {
-    headline: 'La Lapponia nella tua casella, dalla Finlandia.',
-    description: 'Avvisi aurore prima delle notti più limpide, finestre di prenotazione degli igloo di vetro prima del tutto esaurito e guide stagionali. Scritto dalla Finlandia, con fonti.',
+    headline: 'Ciao, sono Vesa 👋',
+    description: 'Fondatore di LaplandVibes. Aurore, colori d\'autunno, la stagione di Natale e il sole di mezzanotte — giro la Lapponia e ti racconto da dove iniziare, cosa prenotare e quando, e quali posti sorprendono davvero.',
   },
   nl: {
-    headline: 'Lapland in je inbox, rechtstreeks uit Finland.',
-    description: 'Noorderlicht-meldingen vóór de helderste nachten, boekingsvensters voor glazen iglo\'s voordat ze uitverkocht zijn en seizoenreisgidsen. Geschreven vanuit Finland, met bronnen.',
+    headline: 'Hoi — Vesa hier 👋',
+    description: 'Oprichter van LaplandVibes. Noorderlicht, herfstkleuren, het kerstseizoen en de middernachtzon — ik reis door Lapland en vertel je waar je begint, wat je wanneer boekt en welke plekken echt verrassen.',
   },
   sv: {
-    headline: 'Lappland i din inkorg, direkt från Finland.',
-    description: 'Norrskensvarningar före de klaraste nätterna, bokningsfönster för glasigloor innan de säljer slut och säsongsguider. Skrivet från Finland, med källor.',
+    headline: 'Hej! Vesa här 👋',
+    description: 'Grundare av LaplandVibes. Norrsken, höstfärger, julsäsongen och midnattssolen — jag reser runt i Lappland och berättar var du ska börja, vad du ska boka och när, och vilka platser som verkligen överraskar.',
   },
 };
 
 const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   en: {
-    successHeadline: "You're in.",
-    successBody: 'Check your inbox for a welcome email, and the next aurora alert when the forecast lights up.',
+    successHeadline: 'Welcome aboard!',
+    successBody: 'The welcome email is on its way to your inbox.',
     alreadyHeadline: 'Already on the list!',
-    alreadyBody: "Looks like you're already subscribed. We'll keep the Lapland updates coming.",
+    alreadyBody: "You were already subscribed. You'll hear from me when there's something worth telling.",
     emailPlaceholder: 'Your email address',
-    submit: 'Get Lapland In My Inbox',
+    submit: 'Count me in!',
     loading: 'Subscribing…',
     later: 'Maybe later',
     closeAria: 'Close',
     closeLabel: 'Close',
-    trust: 'Only when something is worth flagging. Unsubscribe any time. We never share your email.',
+    trust: "Only when there's something worth telling you about. Unsubscribe any time. We never share your email.",
     errorGeneric: 'Subscription failed. Please try again.',
+    socialLead: 'Meanwhile — my posts from around Lapland:',
+    founderAlt: 'Vesa, founder of LaplandVibes',
   },
   fi: {
-    successHeadline: 'Olet listalla.',
-    successBody: 'Tarkista sähköpostisi, tervetuloviesti on tulossa. Seuraavan revontulivaroituksen saat kun ennuste lupaa kirkasta yötä.',
+    successHeadline: 'Tervetuloa mukaan!',
+    successBody: 'Tervetuloviesti on jo matkalla postilaatikkoosi.',
     alreadyHeadline: 'Olit jo listalla.',
-    alreadyBody: 'Tilauksesi oli jo voimassa. Lappi-päivitykset jatkuvat normaalisti.',
+    alreadyBody: 'Tilauksesi oli jo voimassa. Kuulet minusta, kun on kerrottavaa.',
     emailPlaceholder: 'Sähköpostiosoitteesi',
-    submit: 'Tilaa',
+    submit: 'Lähden mukaan!',
     loading: 'Tilataan…',
     later: 'Ehkä myöhemmin',
     closeAria: 'Sulje',
     closeLabel: 'Sulje',
-    trust: 'Lähetämme vain silloin kun on jotain oikeasti kerrottavaa. Tilauksen voi perua koska tahansa. Sähköpostia ei jaeta kolmansille.',
+    trust: 'Lähetämme vain silloin, kun on jotain oikeasti kerrottavaa. Tilauksen voi perua koska tahansa. Sähköpostia ei jaeta kolmansille.',
     errorGeneric: 'Tilauksessa virhe. Yritä uudelleen.',
+    socialLead: 'Sillä välin — postauksiani Lapin reissuilta:',
+    founderAlt: 'Vesa, LaplandVibesin perustaja',
   },
   de: {
-    successHeadline: 'Sie sind dabei.',
-    successBody: 'Schauen Sie in Ihren Posteingang für eine Willkommens-E-Mail, und die nächste Polarlicht-Warnung, wenn die Prognose günstig steht.',
+    successHeadline: 'Willkommen an Bord!',
+    successBody: 'Die Willkommens-E-Mail ist auf dem Weg in Ihren Posteingang.',
     alreadyHeadline: 'Schon auf der Liste!',
-    alreadyBody: 'Sieht so aus, als wären Sie bereits abonniert. Die Lappland-Updates kommen weiter.',
+    alreadyBody: 'Sie waren bereits angemeldet. Sie hören von mir, wenn es etwas zu erzählen gibt.',
     emailPlaceholder: 'Ihre E-Mail-Adresse',
-    submit: 'Lappland abonnieren',
+    submit: 'Ich bin dabei!',
     loading: 'Anmeldung läuft…',
     later: 'Vielleicht später',
     closeAria: 'Schließen',
     closeLabel: 'Schließen',
     trust: 'Nur wenn etwas wirklich der Rede wert ist. Jederzeit kündbar. Wir teilen Ihre E-Mail nie.',
     errorGeneric: 'Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.',
+    socialLead: 'In der Zwischenzeit — meine Posts aus Lappland:',
+    founderAlt: 'Vesa, Gründer von LaplandVibes',
   },
   ja: {
-    successHeadline: '登録完了。',
-    successBody: 'ようこそメールを受信トレイでご確認ください。Kp指数が上昇したら次のオーロラアラートをお届けします。',
+    successHeadline: 'ようこそ！',
+    successBody: 'ようこそメールを受信トレイにお送りしました。',
     alreadyHeadline: 'すでに登録済みです!',
-    alreadyBody: 'すでにご登録いただいているようです。ラップランドの最新情報を引き続きお届けします。',
+    alreadyBody: 'すでにご登録いただいています。お伝えしたいことがあるときにご連絡します。',
     emailPlaceholder: 'メールアドレス',
-    submit: '購読する',
+    submit: '参加します！',
     loading: '登録中…',
     later: 'あとで',
     closeAria: '閉じる',
     closeLabel: '閉じる',
     trust: '本当に価値のある時だけお届けします。いつでも解除可能。メールアドレスを第三者と共有しません。',
     errorGeneric: '登録に失敗しました。もう一度お試しください。',
+    socialLead: 'それまでの間、ラップランドの旅の投稿はこちら:',
+    founderAlt: 'LaplandVibes創業者のヴェサ',
   },
   es: {
-    successHeadline: 'Estás dentro.',
-    successBody: 'Revisa tu bandeja de entrada para el correo de bienvenida, y la próxima alerta de aurora cuando el Kp suba.',
-    alreadyHeadline: '¡Ya estás en la lista!',
-    alreadyBody: 'Parece que ya estás suscrito. Seguiremos enviándote las novedades de Laponia.',
+    successHeadline: '¡Ya estás dentro!',
+    successBody: 'El correo de bienvenida va de camino a tu bandeja de entrada.',
+    alreadyHeadline: '¡Ya estabas en la lista!',
+    alreadyBody: 'Tu suscripción ya estaba activa. Sabrás de mí cuando haya algo que contar.',
     emailPlaceholder: 'Tu correo electrónico',
-    submit: 'Suscribirme',
+    submit: '¡Me apunto!',
     loading: 'Suscribiendo…',
     later: 'Quizá más tarde',
     closeAria: 'Cerrar',
     closeLabel: 'Cerrar',
     trust: 'Solo cuando hay algo que merezca la pena. Cancela cuando quieras. Nunca compartimos tu correo.',
     errorGeneric: 'Suscripción fallida. Inténtalo de nuevo.',
+    socialLead: 'Mientras tanto — mis publicaciones desde Laponia:',
+    founderAlt: 'Vesa, fundador de LaplandVibes',
   },
   'pt-BR': {
-    successHeadline: 'Você está dentro.',
-    successBody: 'Confira sua caixa de entrada para o e-mail de boas-vindas, e o próximo alerta de aurora quando o Kp subir.',
+    successHeadline: 'Você está dentro!',
+    successBody: 'O e-mail de boas-vindas está a caminho da sua caixa de entrada.',
     alreadyHeadline: 'Já está na lista!',
-    alreadyBody: 'Parece que você já está inscrito. Continuaremos enviando as atualizações da Lapônia.',
+    alreadyBody: 'Sua inscrição já estava ativa. Você vai saber de mim quando houver algo para contar.',
     emailPlaceholder: 'Seu e-mail',
-    submit: 'Inscrever-se',
+    submit: 'Quero participar!',
     loading: 'Inscrevendo…',
     later: 'Talvez depois',
     closeAria: 'Fechar',
     closeLabel: 'Fechar',
     trust: 'Apenas quando vale a pena destacar. Cancele a qualquer momento. Nunca compartilhamos seu e-mail.',
     errorGeneric: 'Falha na inscrição. Tente novamente.',
+    socialLead: 'Enquanto isso — meus posts da Lapônia:',
+    founderAlt: 'Vesa, fundador do LaplandVibes',
   },
   'zh-CN': {
-    successHeadline: '订阅成功。',
-    successBody: '请查收欢迎邮件，以及下一次预报转好时的极光提醒。',
+    successHeadline: '欢迎加入！',
+    successBody: '欢迎邮件正在发往您的邮箱。',
     alreadyHeadline: '您已在订阅列表中!',
-    alreadyBody: '看来您已经订阅了。我们将继续为您发送拉普兰的最新动态。',
+    alreadyBody: '您的订阅已经生效。有值得分享的内容时，我会告诉您。',
     emailPlaceholder: '您的邮箱地址',
-    submit: '订阅',
+    submit: '算我一个！',
     loading: '订阅中…',
     later: '稍后再说',
     closeAria: '关闭',
     closeLabel: '关闭',
     trust: '只在真正值得通知时发送。随时可取消。我们绝不分享您的邮箱。',
     errorGeneric: '订阅失败。请重试。',
+    socialLead: '在此期间，看看我在拉普兰的动态：',
+    founderAlt: 'LaplandVibes创始人Vesa',
   },
   ko: {
-    successHeadline: '구독 완료.',
-    successBody: '환영 이메일을 확인해 주세요, 다음 오로라 예보가 좋을 때 알림을 보내드립니다.',
+    successHeadline: '환영합니다!',
+    successBody: '환영 이메일이 받은편지함으로 가고 있습니다.',
     alreadyHeadline: '이미 구독 중입니다!',
-    alreadyBody: '이미 구독하고 계신 것 같습니다. 라플란드 업데이트를 계속 보내드릴게요.',
+    alreadyBody: '이미 구독하고 계십니다. 전할 소식이 있을 때 연락드릴게요.',
     emailPlaceholder: '이메일 주소',
-    submit: '구독하기',
+    submit: '함께할게요!',
     loading: '구독 중…',
     later: '나중에',
     closeAria: '닫기',
     closeLabel: '닫기',
     trust: '정말 가치 있는 소식만 보내드립니다. 언제든 해지 가능. 이메일을 공유하지 않습니다.',
     errorGeneric: '구독 실패. 다시 시도해 주세요.',
+    socialLead: '그동안 라플란드 여행 게시물을 만나보세요:',
+    founderAlt: 'LaplandVibes 창립자 베사',
   },
   fr: {
-    successHeadline: 'C\'est fait.',
-    successBody: 'Vérifiez votre boîte pour l\'e-mail de bienvenue, et la prochaine alerte aurore au pic du Kp.',
+    successHeadline: 'Bienvenue à bord !',
+    successBody: 'L\'e-mail de bienvenue est en route vers votre boîte.',
     alreadyHeadline: 'Déjà inscrit·e !',
-    alreadyBody: 'Il semble que vous êtes déjà abonné·e. Nous continuons à envoyer les nouvelles de la Laponie.',
+    alreadyBody: 'Votre inscription était déjà active. Vous aurez de mes nouvelles quand il y aura quelque chose à raconter.',
     emailPlaceholder: 'Votre adresse e-mail',
-    submit: 'S\'abonner',
+    submit: 'Je m\'inscris !',
     loading: 'Inscription…',
     later: 'Peut-être plus tard',
     closeAria: 'Fermer',
     closeLabel: 'Fermer',
     trust: 'Uniquement quand cela vaut le coup. Désabonnement à tout moment. Nous ne partageons jamais votre e-mail.',
     errorGeneric: 'Inscription échouée. Veuillez réessayer.',
+    socialLead: 'En attendant — mes publications de Laponie :',
+    founderAlt: 'Vesa, fondateur de LaplandVibes',
   },
   it: {
-    successHeadline: 'Sei dentro.',
-    successBody: 'Controlla la posta per l\'e-mail di benvenuto, e il prossimo avviso aurora quando le previsioni si fanno favorevoli.',
+    successHeadline: 'Ci sei!',
+    successBody: 'L\'e-mail di benvenuto è in arrivo nella tua casella.',
     alreadyHeadline: 'Sei già nella lista!',
-    alreadyBody: 'Sembra che Lei sia già iscritto. Continueremo a inviarLe gli aggiornamenti dalla Lapponia.',
-    emailPlaceholder: 'Il Suo indirizzo e-mail',
-    submit: 'Iscriviti',
+    alreadyBody: 'La tua iscrizione era già attiva. Ti scrivo quando c\'è qualcosa da raccontare.',
+    emailPlaceholder: 'Il tuo indirizzo e-mail',
+    submit: 'Ci sto!',
     loading: 'Iscrizione…',
     later: 'Forse più tardi',
     closeAria: 'Chiudi',
     closeLabel: 'Chiudi',
-    trust: 'Solo quando c\'è qualcosa che vale davvero. Disiscrizione in qualsiasi momento. Non condividiamo mai la Sua e-mail.',
-    errorGeneric: 'Iscrizione fallita. Riprovi.',
+    trust: 'Solo quando c\'è qualcosa che vale davvero. Disiscrizione in qualsiasi momento. Non condividiamo mai la tua e-mail.',
+    errorGeneric: 'Iscrizione fallita. Riprova.',
+    socialLead: 'Nel frattempo — i miei post dalla Lapponia:',
+    founderAlt: 'Vesa, fondatore di LaplandVibes',
   },
   nl: {
-    successHeadline: 'U bent erbij.',
-    successBody: 'Controleer uw inbox voor de welkomstmail, en de volgende noorderlicht-melding bij stijgende Kp.',
+    successHeadline: 'Welkom aan boord!',
+    successBody: 'De welkomstmail is onderweg naar je inbox.',
     alreadyHeadline: 'Al op de lijst!',
-    alreadyBody: 'Het lijkt erop dat u al geabonneerd bent. We blijven u de Lapland-updates sturen.',
-    emailPlaceholder: 'Uw e-mailadres',
-    submit: 'Abonneren',
+    alreadyBody: 'Je was al aangemeld. Je hoort van mij als er iets te vertellen valt.',
+    emailPlaceholder: 'Je e-mailadres',
+    submit: 'Ik doe mee!',
     loading: 'Bezig…',
     later: 'Misschien later',
     closeAria: 'Sluiten',
     closeLabel: 'Sluiten',
-    trust: 'Alleen als het echt de moeite waard is. Op elk moment opzegbaar. We delen uw e-mail nooit.',
+    trust: 'Alleen als het echt de moeite waard is. Op elk moment opzegbaar. We delen je e-mail nooit.',
     errorGeneric: 'Abonneren mislukt. Probeer opnieuw.',
+    socialLead: 'Ondertussen — mijn posts uit Lapland:',
+    founderAlt: 'Vesa, oprichter van LaplandVibes',
   },
   sv: {
-    successHeadline: 'Du är med.',
-    successBody: 'Kolla din inkorg efter välkomstmejlet. Nästa norrskensvarning kommer när prognosen ljusnar.',
+    successHeadline: 'Välkommen ombord!',
+    successBody: 'Välkomstmejlet är på väg till din inkorg.',
     alreadyHeadline: 'Du står redan på listan!',
-    alreadyBody: 'Det ser ut som att du redan prenumererar. Lappland-uppdateringarna fortsätter som vanligt.',
+    alreadyBody: 'Din prenumeration var redan aktiv. Du hör av mig när det finns något att berätta.',
     emailPlaceholder: 'Din e-postadress',
-    submit: 'Få Lappland i inkorgen',
+    submit: 'Jag är med!',
     loading: 'Prenumererar…',
     later: 'Kanske senare',
     closeAria: 'Stäng',
     closeLabel: 'Stäng',
     trust: 'Bara när något är värt att berätta. Avsluta när du vill. Vi delar aldrig din e-post.',
     errorGeneric: 'Prenumerationen misslyckades. Försök igen.',
+    socialLead: 'Under tiden — mina inlägg från Lappland:',
+    founderAlt: 'Vesa, grundare av LaplandVibes',
   },
 };
 
@@ -360,6 +407,41 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DEFAULT_DICT: Required<NewsletterPopupDict> = LOCALE_DICTS.en;
 void DEFAULT_DICT;
+
+/** TikTok glyph — lucide has no TikTok icon, inline SVG matches lucide sizing. */
+function TikTokIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  );
+}
+
+/**
+ * One-time spiral entrance for the founder avatar. The translate offset shrinks
+ * to zero while the rotation unwinds, so the photo swirls inward and settles —
+ * runs once per popup open, never loops (a permanently spinning face is a
+ * credibility killer). Under prefers-reduced-motion it becomes a plain fade.
+ */
+const FOUNDER_STYLES = `
+@keyframes lv-founder-spiral {
+  0%   { transform: rotate(-660deg) scale(0.05) translate(0, -150px); opacity: 0; }
+  55%  { opacity: 1; }
+  86%  { transform: rotate(6deg) scale(1.06) translate(0, 0); }
+  100% { transform: rotate(0deg) scale(1) translate(0, 0); opacity: 1; }
+}
+@keyframes lv-founder-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.lv-founder-avatar {
+  animation: lv-founder-spiral 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lv-founder-avatar { animation: lv-founder-fade 0.4s ease-out both; }
+}
+`;
 
 export default function NewsletterPopup({
   siteId,
@@ -375,6 +457,8 @@ export default function NewsletterPopup({
   endpoint,
   supabaseUrl,
   supabaseAnonKey,
+  founderImage = '/vesa-founder.webp',
+  thanksImage = '/vesa-lapland.webp',
 }: NewsletterPopupProps) {
   // 2026-05-23: pick localized defaults when `lang` is supplied + caller
   // didn't override headline/description. Prevents EN copy on /fi /cn etc.
@@ -403,6 +487,8 @@ export default function NewsletterPopup({
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState(''); // honeypot, humans leave blank
   const [errorMsg, setErrorMsg] = useState('');
+  const [avatarBroken, setAvatarBroken] = useState(false);
+  const [thanksBroken, setThanksBroken] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -525,6 +611,18 @@ export default function NewsletterPopup({
 
   const isSuccess = status === 'success' || status === 'already';
 
+  const socialButtonStyle: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '44px',
+    height: '44px',
+    borderRadius: '9999px',
+    background: 'rgba(255,255,255,0.10)',
+    color: '#F9FAFB',
+    transition: 'background-color 0.2s ease, color 0.2s ease',
+  };
+
   return (
     // overflow-y-auto + items-start on mobile: a card taller than the phone
     // viewport (long FI/DE copy + short mobile viewport) must stay scrollable so
@@ -532,6 +630,7 @@ export default function NewsletterPopup({
     // the ✕ off-screen and — body scroll being locked — trapped mobile users
     // under a dark overlay (Vesa 2026-07-10). Desktop stays centred.
     <div className="fixed inset-0 z-[9990] flex items-start sm:items-center justify-center px-4 py-8 overflow-y-auto overscroll-contain">
+      <style>{FOUNDER_STYLES}</style>
       {/* Backdrop */}
       <button
         type="button"
@@ -564,27 +663,67 @@ export default function NewsletterPopup({
           <X className="w-4 h-4" />
         </button>
 
-        <div className="p-6 sm:p-8">
-          {/* Brand mark, adapts to current site. The wordmark is ALWAYS Bebas
-              Neue, never the host site's heading font: see WORDMARK_FONT. */}
-          <p className="font-heading tracking-wide text-2xl sm:text-3xl mb-4 leading-none" style={{ fontFamily: WORDMARK_FONT }}>
-            <span className="text-vibe-pink">#</span>
-            <span className="text-snow">LAPLAND</span>
-            <span className="text-vibe-pink">{brandWord}</span>
-          </p>
-
+        <div className="p-6 sm:p-8 text-center">
           {isSuccess ? (
             <>
-              <CheckCircle className="w-10 h-10 text-aurora-green mb-3" />
+              {/* Trip photo — the Suomi-helmet shot. Playful counterpart to the
+                  trust-face avatar: email captured first, personality after. */}
+              {!thanksBroken && (
+                <img
+                  src={thanksImage}
+                  alt={D.founderAlt}
+                  loading="lazy"
+                  onError={() => setThanksBroken(true)}
+                  className="w-full rounded-xl mb-4 object-cover"
+                  style={{ height: '132px', objectPosition: 'center 32%' }}
+                />
+              )}
               <h2
                 id="lv-newsletter-popup-title"
-                className="font-heading text-2xl sm:text-3xl text-snow tracking-wide leading-tight mb-3"
+                className="font-heading text-2xl sm:text-3xl text-snow tracking-wide leading-tight mb-2"
               >
                 {status === 'success' ? D.successHeadline : D.alreadyHeadline}
               </h2>
               <p className="text-snow/75 text-sm sm:text-base leading-relaxed mb-5">
                 {status === 'success' ? D.successBody : D.alreadyBody}
               </p>
+
+              <p className="text-snow/85 text-sm font-medium mb-3">{D.socialLead}</p>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginBottom: '20px' }}>
+                <a
+                  href={SOCIAL_LINKS.tiktok}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="TikTok: @laplandvibes"
+                  style={socialButtonStyle}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#EC4899'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.10)'; }}
+                >
+                  <TikTokIcon />
+                </a>
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Instagram: @laplandvibesofficial"
+                  style={socialButtonStyle}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#EC4899'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.10)'; }}
+                >
+                  <Instagram className="w-[18px] h-[18px]" />
+                </a>
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Facebook: LaplandVibes"
+                  style={socialButtonStyle}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#EC4899'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.10)'; }}
+                >
+                  <Facebook className="w-[18px] h-[18px]" />
+                </a>
+              </div>
 
               <button
                 type="button"
@@ -596,13 +735,42 @@ export default function NewsletterPopup({
             </>
           ) : (
             <>
+              {/* Founder avatar — spirals in once, then holds still. */}
+              {!avatarBroken && (
+                <div
+                  className="lv-founder-avatar mx-auto mb-4"
+                  style={{
+                    width: '88px',
+                    height: '88px',
+                    borderRadius: '9999px',
+                    overflow: 'hidden',
+                    boxShadow: '0 0 0 2px #EC4899, 0 0 32px rgba(236,72,153,0.45)',
+                  }}
+                >
+                  <img
+                    src={founderImage}
+                    alt={D.founderAlt}
+                    onError={() => setAvatarBroken(true)}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              )}
+
+              {/* Brand mark, adapts to current site. The wordmark is ALWAYS Bebas
+                  Neue, never the host site's heading font: see WORDMARK_FONT. */}
+              <p className="font-heading tracking-wide text-xl sm:text-2xl mb-3 leading-none" style={{ fontFamily: WORDMARK_FONT }}>
+                <span className="text-vibe-pink">#</span>
+                <span className="text-snow">LAPLAND</span>
+                <span className="text-vibe-pink">{brandWord}</span>
+              </p>
+
               <h2
                 id="lv-newsletter-popup-title"
                 className="font-heading text-2xl sm:text-3xl text-snow tracking-wide leading-tight mb-3"
               >
                 {resolvedHeadline}
               </h2>
-              <p className="text-snow/75 text-sm sm:text-base leading-relaxed mb-5">
+              <p className="text-snow/75 text-sm sm:text-base leading-relaxed mb-5 text-left sm:text-center">
                 {resolvedDescription}
               </p>
 

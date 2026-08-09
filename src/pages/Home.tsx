@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
+import NewsletterInline from '../shared/NewsletterInline';
 import BuildYourOwn from '../components/BuildYourOwn';
 import BookableActivities from '../components/BookableActivities';
 import OperatorGuide from '../components/OperatorGuide';
@@ -140,7 +141,13 @@ export default function Home() {
       <OperatorGuide />
       <SeasonStrip />
       <SectionTeasers />
-      <FAQ />      <div className="bg-deep-night py-6 px-4">
+      <FAQ />
+      <NewsletterInline
+        siteId="laplandtours"
+        supabaseUrl={import.meta.env.VITE_SUPABASE_URL}
+        supabaseAnonKey={import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}
+      />
+      <div className="bg-deep-night py-6 px-4">
         <AffiliateDisclosure variant="full" />
       </div>
     </>  );
