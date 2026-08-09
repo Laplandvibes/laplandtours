@@ -694,7 +694,6 @@ export default function NewsletterPopup({
                 <img
                   src={thanksImage}
                   alt={D.founderAlt}
-                  loading="lazy"
                   onError={() => setThanksBroken(true)}
                   className="w-full rounded-xl mb-4 object-cover"
                   style={{ height: '132px', objectPosition: 'center 32%' }}
