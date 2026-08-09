@@ -761,11 +761,11 @@ export default function NewsletterPopup({
                 <div
                   className="lv-founder-avatar mx-auto mb-4"
                   style={{
-                    width: '112px',
-                    height: '112px',
+                    width: '128px',
+                    height: '128px',
                     borderRadius: '9999px',
                     overflow: 'hidden',
-                    boxShadow: '0 0 0 2px #EC4899, 0 0 32px rgba(236,72,153,0.45)',
+                    boxShadow: '0 0 0 3px #EC4899, 0 0 40px rgba(236,72,153,0.55)',
                   }}
                 >
                   <img

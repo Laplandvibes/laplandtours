@@ -45,13 +45,13 @@ function normalizeLang(raw: string | undefined): string {
 
 export type FounderBylineTone = 'pink' | 'dark' | 'light';
 
-const TONES: Record<FounderBylineTone, { role: string; note: string; ring: string }> = {
+const TONES: Record<FounderBylineTone, { role: string; note: string; ring: string; glow: string; plate: string; plateBorder: string }> = {
   // On the pink Newsletter band (the network default section background).
-  pink: { role: '#FFFFFF', note: 'rgba(255,255,255,0.82)', ring: 'rgba(255,255,255,0.85)' },
+  pink: { role: '#FFFFFF', note: 'rgba(255,255,255,0.85)', ring: '#FFFFFF', glow: 'rgba(255,255,255,0.35)', plate: 'rgba(0,0,0,0.18)', plateBorder: 'rgba(255,255,255,0.30)' },
   // On deep-night / dark editorial surfaces.
-  dark: { role: '#F9FAFB', note: 'rgba(249,250,251,0.72)', ring: '#EC4899' },
-  // On cream / white surfaces (laplandstays, laplandchristmas).
-  light: { role: '#0F172A', note: 'rgba(15,23,42,0.72)', ring: '#EC4899' },
+  dark: { role: '#F9FAFB', note: 'rgba(249,250,251,0.78)', ring: '#EC4899', glow: 'rgba(236,72,153,0.40)', plate: 'rgba(255,255,255,0.07)', plateBorder: 'rgba(236,72,153,0.35)' },
+  // On cream / white surfaces (laplandstays).
+  light: { role: '#0F172A', note: 'rgba(15,23,42,0.75)', ring: '#EC4899', glow: 'rgba(236,72,153,0.30)', plate: 'rgba(15,23,42,0.05)', plateBorder: 'rgba(15,23,42,0.14)' },
 };
 
 interface FounderBylineProps {
@@ -72,41 +72,49 @@ export default function FounderByline({ tone = 'pink', lang, image = '/vesa-foun
   const s = STRINGS[resolved] ?? STRINGS.en;
   const t = TONES[tone];
 
+  // A proper founder card, not a floating row: big portrait in a thick ring
+  // with glow, on a pill-shaped plate that separates it from the band
+  // (Vesa 9.8.: "ympyrä liian pieni ja taustaakaan ei ollenkaan").
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '12px',
-        marginBottom: '24px',
-      }}
-    >
-      <img
-        src={image}
-        alt={s.alt}
-        loading="lazy"
-        width={72}
-        height={72}
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
+      <div
         style={{
-          width: '72px',
-          height: '72px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '18px',
+          padding: '14px 26px 14px 16px',
           borderRadius: '9999px',
-          objectFit: 'cover',
-          flexShrink: 0,
-          boxShadow: `0 0 0 2px ${t.ring}`,
+          background: t.plate,
+          border: `1px solid ${t.plateBorder}`,
+          maxWidth: '100%',
         }}
-        onError={(e) => {
-          e.currentTarget.style.display = 'none';
-        }}
-      />
-      <div style={{ textAlign: 'left' }}>
-        <p style={{ margin: 0, fontSize: '0.9375rem', fontWeight: 600, color: t.role, lineHeight: 1.35 }}>
-          {s.role}
-        </p>
-        <p style={{ margin: 0, fontSize: '0.8125rem', color: t.note, lineHeight: 1.35 }}>
-          {s.note}
-        </p>
+      >
+        <img
+          src={image}
+          alt={s.alt}
+          loading="lazy"
+          width={96}
+          height={96}
+          style={{
+            width: '96px',
+            height: '96px',
+            borderRadius: '9999px',
+            objectFit: 'cover',
+            flexShrink: 0,
+            boxShadow: `0 0 0 3px ${t.ring}, 0 0 28px ${t.glow}`,
+          }}
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+        <div style={{ textAlign: 'left', minWidth: 0 }}>
+          <p style={{ margin: 0, fontSize: '1.0625rem', fontWeight: 700, color: t.role, lineHeight: 1.3 }}>
+            {s.role}
+          </p>
+          <p style={{ margin: '2px 0 0', fontSize: '0.875rem', color: t.note, lineHeight: 1.35 }}>
+            {s.note}
+          </p>
+        </div>
       </div>
     </div>
   );
