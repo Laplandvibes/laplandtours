@@ -86,11 +86,11 @@ export default function FounderByline({ tone = 'pink', lang, image = '/vesa-foun
         src={image}
         alt={s.alt}
         loading="lazy"
-        width={44}
-        height={44}
+        width={72}
+        height={72}
         style={{
-          width: '44px',
-          height: '44px',
+          width: '72px',
+          height: '72px',
           borderRadius: '9999px',
           objectFit: 'cover',
           flexShrink: 0,
@@ -101,10 +101,10 @@ export default function FounderByline({ tone = 'pink', lang, image = '/vesa-foun
         }}
       />
       <div style={{ textAlign: 'left' }}>
-        <p style={{ margin: 0, fontSize: '0.875rem', fontWeight: 600, color: t.role, lineHeight: 1.35 }}>
+        <p style={{ margin: 0, fontSize: '0.9375rem', fontWeight: 600, color: t.role, lineHeight: 1.35 }}>
           {s.role}
         </p>
-        <p style={{ margin: 0, fontSize: '0.8rem', color: t.note, lineHeight: 1.35 }}>
+        <p style={{ margin: 0, fontSize: '0.8125rem', color: t.note, lineHeight: 1.35 }}>
           {s.note}
         </p>
       </div>
