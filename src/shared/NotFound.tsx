@@ -128,6 +128,15 @@ export interface NotFoundProps {
   /** CTA/accent colour override for design-variant sites (default vibe-pink). */
   accentHex?: string
   className?: string
+  /**
+   * Does this component own the page's <main> landmark?
+   *
+   * Default true: ~10 network sites have no layout-level <main> and this is
+   * their only landmark on the 404 route. Sites whose app layout already
+   * renders a <main> pass false, otherwise the 404 ships two nested landmarks
+   * (measured from the rendered DOM 2026-08-13; invisible to grep).
+   */
+  landmark?: boolean
 }
 
 export default function NotFound({
@@ -138,6 +147,7 @@ export default function NotFound({
   variant = 'dark',
   accentHex = '#EC4899',
   className = '',
+  landmark = true,
 }: NotFoundProps) {
   const c = COPY[normalize(lang)]
   const dark = variant === 'dark'
@@ -156,8 +166,10 @@ export default function NotFound({
     }
   }, [siteName])
 
+  const Root = landmark ? 'main' : 'div'
+
   return (
-    <main
+    <Root
       className={`min-h-screen flex items-center justify-center px-4 sm:px-6 ${
         dark ? 'text-snow' : 'text-slate-900'
       } ${className}`}
@@ -195,6 +207,6 @@ export default function NotFound({
           ))}
         </div>
       </div>
-    </main>
+    </Root>
   )
 }
