@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, type ReactNode } from 'react';
 import type { JSX } from 'react';
 import { onRouteChange, initOutboundTracking, initScrollDepth } from './lib/analytics';
 import Nav from './components/Nav';
@@ -18,6 +18,23 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 import { useLang, useHtmlLang } from './i18n/useLang';
 import LocaleAutoRedirect from './i18n/LocaleAutoRedirect';
 import { AppPromoNudge } from './components/AppPromo';
+
+/**
+ * 🔴 The app layout's landmark, EXCEPT on /terms.
+ *
+ * shared/Legal/TermsContent opens its own <main>; nesting it inside this one is
+ * invalid HTML and gives a screen reader two "main" regions. Its siblings
+ * PrivacyContent/CookieContent open a <div>, so only /terms is affected.
+ * Measured from the rendered DOM 2026-08-13 (12 network sites) -- the raw HTML
+ * has zero <main> elements, so this is invisible to grep.
+ *
+ * Do NOT "simplify" this back to a plain <main>.
+ */
+function MainOrDiv({ children }: { children?: ReactNode }) {
+  const { pathname } = useLocation();
+  const Tag = /(^|\/)terms\/?$/.test(pathname) ? 'div' : 'main';
+  return <Tag className="pt-16 bg-deep-night">{children}</Tag>;
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -180,7 +197,7 @@ function AppShell() {
       />
 
       <Nav />
-      <main className="pt-16 bg-deep-night">
+      <MainOrDiv>
         <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
           {localizedRoutes('/', <Home />)}
@@ -195,7 +212,7 @@ function AppShell() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
-      </main>
+      </MainOrDiv>
       <FooterByLang />
 
       <CookieBanner consentKey="laplandtours_cookie_consent" lang={lang} />
