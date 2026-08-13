@@ -838,6 +838,60 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
   // /es /br /cn /kr /fr /it /nl instead of dropping the visitor back to EN.
   const localePrefix = LOCALE_PATH_PREFIX[lang] ?? '';
   const contactTitle: Record<ContactKind, string> = { error: d.spottedError.title, partner: d.partner.title, press: d.press.title, general: d.legal.contact };
+
+  // ─── [LV-W-PARAM 2026-08-13] Sivustotagi affiliate-klikkeihin ──────────────
+  //
+  // Mitattu 13.8.2026: klikkilokissa 857 / 2 353 oikeaa klikkiä (36 %, bot=0,
+  // 90 vrk) on sivustolla `unknown`, koska Worker päättelee lähtösivuston
+  // Referer-otsakkeesta eikä sitä aina ole. Kato ei jää omaan lokiin: sama
+  // `originatingDomain` (worker.js:268) syöttää myös ulos lähtevän
+  // kumppanitagin, joten ne klikit raportoituvat Adtractionille muodossa
+  // `epi=unknown_<sid>` — eikä niiden kauppoja voi kohdistaa millekään
+  // sivustolle jälkikäteen. Pahimmat: activities 54 %, cars 55 %.
+  //
+  // Worker on tukenut `&w=<domain>`-parametria alusta asti (worker.js:268 ja
+  // :734) ja se OHITTAA Refererin, mutta sitä ei ollut otettu käyttöön
+  // yhdessäkään klikkilähteessä — 0/28 mitattuna koko monorepossa.
+  //
+  // Miksi tämä on täällä eikä URL-rakentajissa: rakentajia on 19 (9×
+  // buildAffiliateUrl, 7× withReferral, weddingsin omat, shared/gyg/picks.ts)
+  // ja lisäksi 164 inline-literaalia 99 tiedostossa. Yksi capture-vaiheen
+  // kuuntelija kattaa ne kaikki JA tulevat CTA:t, joita kukaan ei muista
+  // merkitä. Footer renderöityy joka sivulla 28 sivustolla.
+  //
+  // 🔴 Miksi tämä on Footerin SISÄLLÄ eikä omassa moduulissaan: seitsemän
+  //    sivustoa vendoroi `src/shared/Footer.tsx`:n, ja
+  //    scripts/propagate-shared-chrome.mjs kopioi vain tiedostot itsensä, ei
+  //    niiden importteja. Uusi `import` tässä tiedostossa rikkoisi ne seitsemän
+  //    buildia ERR_MODULE_NOT_FOUNDiin — sama miina joka purettiin 13.8.
+  //    commitissa ec270be. Älä siis nosta tätä omaksi tiedostokseen ilman että
+  //    lisäät sen samalla propagate-skriptin COMPONENTS-listaan.
+  //
+  // Mutaatio tehdään capture-vaiheessa ennen navigointia; selain lukee hrefin
+  // vasta default-actionissa, joten muutos ehtii mukaan. `mousedown` kattaa
+  // myös keskiklikin ja oikean napin "avaa uuteen välilehteen" (se edeltää
+  // contextmenua), `click` kattaa näppäimistöaktivoinnin joka ei laukaise
+  // mousedownia. Idempotentti: jos `w` on jo, ei kosketa.
+  useEffect(() => {
+    const WORKER_HOST = 'go.laplandvibes.com';
+    const tag = (ev: Event) => {
+      const el = ev.target as Element | null;
+      const a = el && typeof el.closest === 'function' ? el.closest('a[href]') : null;
+      if (!(a instanceof HTMLAnchorElement)) return;
+      let u: URL;
+      try { u = new URL(a.href, window.location.href); } catch { return; }
+      if (u.hostname !== WORKER_HOST || u.searchParams.has('w')) return;
+      u.searchParams.set('w', window.location.hostname.replace(/^www\./, ''));
+      a.href = u.toString();
+    };
+    document.addEventListener('mousedown', tag, true);
+    document.addEventListener('click', tag, true);
+    return () => {
+      document.removeEventListener('mousedown', tag, true);
+      document.removeEventListener('click', tag, true);
+    };
+  }, []);
+
   // data-fv: footer build version. Bump when a footer fix must bypass a stale
   // Cloudflare edge-cached chunk that rebuilt to the same hashed name.
   return (
