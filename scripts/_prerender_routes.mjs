@@ -68,6 +68,12 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
+import {
+  readFooterNetwork,
+  buildCrawlableBody,
+  stripCrawlableBody,
+  injectCrawlableBody,
+} from './_prerender_crawlable_body.mjs';
 
 const CWD = process.cwd();
 const args = Object.fromEntries(
@@ -116,7 +122,13 @@ if (!existsSync(ROUTES_FILE)) {
   process.exit(1);
 }
 
-const SHELL = readFileSync(resolve(DIST, 'index.html'), 'utf-8');
+// The shell is read from dist/index.html — which this script also OVERWRITES for
+// the EN home route. Without the strip below, a second run (or a second
+// prerenderer chained after this one, as on laplandskiresorts) reads a shell that
+// already contains the previous run's home-page block, the "#root is empty" regex
+// stops matching, and every route silently inherits the HOME page's h1/description/nav.
+// Stripping makes the script genuinely idempotent, as its docs claim.
+const SHELL = stripCrawlableBody(readFileSync(resolve(DIST, 'index.html'), 'utf-8'));
 
 // Extract the runtime LV-LOCALE-TITLE map (`var T = {…}`) baked into the shell by
 // scripts/inject_locale_titles.mjs — it holds the localized HOME/site title per
@@ -456,6 +468,17 @@ function resolveRouteMeta(loc, route) {
   return null;
 }
 
+// ---------- crawlable pre-hydration block (--crawlableBody) ----------
+// Implementation lives in the shared module so the two forked prerenderers
+// (laplandchristmas/, laplandgifts/scripts/) use the SAME code instead of a
+// third un-synced copy — the forks diverging silently is exactly what made
+// this a network-wide problem in the first place. See that file for the full
+// rationale, the measurements behind it, and the safety argument.
+const NETWORK = args.crawlableBody ? readFooterNetwork(CWD) : null;
+if (args.crawlableBody && !NETWORK) {
+  console.warn("[prerender] WARN: --crawlableBody set but shared/Footer.tsx links/labels could not be read — skipping body injection");
+}
+
 // ---------- HTML shell injection (same as before) ----------
 /** Replace a tag pattern but skip occurrences inside HTML comments. */
 function replaceOutsideComments(html, pattern, replacement) {
@@ -490,7 +513,7 @@ function hasTagOutsideComments(html, pattern) {
   return pattern.test(stripped);
 }
 
-function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq }) {
+function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang }) {
   let html = shell;
 
   html = html.replace(/<html\s+lang="[^"]*"/i, `<html lang="${bcp47}"`);
@@ -611,6 +634,14 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
   setMeta('name', 'twitter:site', TWITTER);
   setMeta('name', 'twitter:image', /^https?:/.test(ogImage) ? ogImage : `${SITE}${ogImage}`);
 
+  // Pre-hydration crawlable body. Only touches an EMPTY #root, so a site that
+  // already ships server-rendered markup is left alone; combined with the strip
+  // applied when SHELL is read, re-running the script is genuinely idempotent.
+  html = injectCrawlableBody(
+    html,
+    buildCrawlableBody(NETWORK, { title, description, lang, siteOrigin: SITE, siteName: SITE_NAME })
+  );
+
   return html;
 }
 
@@ -728,6 +759,7 @@ for (const route of routes) {
     const html = injectShell({
       shell: SHELL,
       bcp47: loc.bcp47,
+      lang: loc.lang,
       og: loc.og,
       canonical,
       title: meta.title,

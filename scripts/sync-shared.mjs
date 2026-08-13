@@ -27,6 +27,11 @@
  *   cp ../shared/<file> src/shared/<file> && git add src/shared/<file>
  * From then on this script keeps it in sync automatically.
  *
+ * 🔴 HARDENED 2026-08-13 (three fixes, all against measured cases — see the inline
+ * comments at each site): two guards so a refresh can never destroy work it cannot
+ * give back, and the prerenderer is vendored WITH its sibling imports so the split
+ * into `_prerender_crawlable_body.mjs` cannot break the build.
+ *
  * 🔴 READS THE MONOREPO'S COMMITTED STATE (`git show HEAD:shared/<file>`), NOT
  * its working tree. Several agent sessions edit the monorepo shared/ at the
  * same time, so the working tree routinely holds someone else's half-finished
@@ -42,7 +47,7 @@
  */
 import { copyFileSync, existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { dirname, join, relative, resolve } from 'node:path';
+import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -83,18 +88,20 @@ function committed(monorepoRelPath) {
   return r.status === 0 ? r.stdout : null;
 }
 
-/** True when the monorepo working tree differs from HEAD for this path. */
-function hasUncommittedUpstream(monorepoRelPath) {
-  const r = spawnSync('git', ['-C', monorepoRoot, 'status', '--porcelain', '--', monorepoRelPath], {
-    encoding: 'utf8',
-  });
+/** Non-empty `git status --porcelain` for a path, in the given repo. */
+function dirtyIn(cwd, relPath) {
+  const r = spawnSync('git', ['-C', cwd, 'status', '--porcelain', '--', relPath], { encoding: 'utf8' });
   return r.status === 0 && r.stdout.trim() !== '';
 }
+
+/** True when the monorepo working tree differs from HEAD for this path. */
+const hasUncommittedUpstream = (monorepoRelPath) => dirtyIn(monorepoRoot, monorepoRelPath);
 
 /** Line-ending-insensitive compare: this repo checks out CRLF, the monorepo is LF. */
 const sameText = (a, b) => a.replace(/\r\n/g, '\n') === b.replace(/\r\n/g, '\n');
 
 const updated = [];
+const heldLocal = [];
 const stale = [];
 const wip = [];
 const noGit = [];
@@ -110,19 +117,61 @@ for (const rel of vendoredFiles()) {
     else stale.push(rel);
     continue;
   }
-  if (hasUncommittedUpstream(monorepoRel)) wip.push(rel);
-  if (!sameText(head, readFileSync(dest, 'utf8'))) {
-    writeFileSync(dest, head);
-    updated.push(rel);
+  if (sameText(head, readFileSync(dest, 'utf8'))) continue;
+
+  // 🔴 GUARD (a): uncommitted HERE. A refresh is delete-and-replace, so this is the
+  // one edit the other session cannot get back (lv_permanent_rules §4). Measured
+  // 2026-08-13: src/shared/NotFound.tsx and PartnerSlot.tsx were dirty in four repos
+  // at once while this guard was being added.
+  if (dirtyIn(repoRoot, `src/shared/${rel.replace(/\\/g, '/')}`)) {
+    heldLocal.push(rel);
+    continue;
   }
+  // 🔴 GUARD (b): uncommitted UPSTREAM. HEAD can be OLDER than what is already live
+  // here, so syncing would silently revert a shipped fix. Measured 2026-08-13: the
+  // monorepo's shared/NotFound.tsx held an uncommitted robots-meta fix that all four
+  // vendored copies already carried — a blind sync would have reverted it everywhere.
+  if (hasUncommittedUpstream(monorepoRel)) {
+    wip.push(rel);
+    continue;
+  }
+
+  writeFileSync(dest, head);
+  updated.push(rel);
 }
 
-const headPrerender = committed('_prerender_routes.mjs');
-if (headPrerender !== null) {
-  if (hasUncommittedUpstream('_prerender_routes.mjs')) wip.push('../_prerender_routes.mjs');
-  if (!existsSync(vendoredPrerender) || !sameText(headPrerender, readFileSync(vendoredPrerender, 'utf8'))) {
-    writeFileSync(vendoredPrerender, headPrerender);
-    updated.push('../scripts/_prerender_routes.mjs');
+// 🔴🔴 FOLLOW THE PRERENDERER'S IMPORTS — do not copy the one file and stop.
+// _prerender_routes.mjs was split into helpers in 2026-08 and now does
+//   import { ... } from './_prerender_crawlable_body.mjs'
+// Copying only the entry point leaves that import dangling, and the build dies with
+// ERR_MODULE_NOT_FOUND *before any of this script's output is visible*. Measured
+// 2026-08-13: this repo (and luxuryvillas, nightlife, tours) were all one `npm run
+// build` away from exactly that, because the vendored copy was still the pre-split
+// version and the first sync would have written the new one. The hub's sync-shared
+// already walks the imports; this variant did not. Walk them, so the next split
+// cannot break the build either.
+if (committed('_prerender_routes.mjs') !== null) {
+  if (hasUncommittedUpstream('_prerender_routes.mjs')) {
+    wip.push('../_prerender_routes.mjs');
+  } else {
+    const queue = ['_prerender_routes.mjs'];
+    const done = new Set();
+    while (queue.length) {
+      const relMono = queue.shift();
+      if (done.has(relMono)) continue;
+      done.add(relMono);
+      const body = committed(relMono);
+      if (body === null) { noGit.push(`../${relMono}`); continue; }
+
+      const dest = join(repoRoot, 'scripts', basename(relMono));
+      if (!existsSync(dest) || !sameText(body, readFileSync(dest, 'utf8'))) {
+        writeFileSync(dest, body);
+        updated.push(`../scripts/${basename(relMono)}`);
+      }
+      for (const m of body.matchAll(/from\s+'(\.\/[^']+\.mjs)'/g)) {
+        queue.push(m[1].replace(/^\.\//, ''));
+      }
+    }
   }
 } else if (existsSync(monorepoPrerender)) {
   noGit.push('../_prerender_routes.mjs');
@@ -160,8 +209,13 @@ if (updated.length) {
 } else {
   console.log(`[sync-shared] ${total} vendored file(s) already up to date with ../shared.`);
 }
+if (heldLocal.length) {
+  console.warn(`[sync-shared] HELD: ${heldLocal.length} file(s) differ from the monorepo but are UNCOMMITTED here — left alone so the change is not destroyed:`);
+  heldLocal.forEach((f) => console.warn(`  • src/shared/${f.replace(/\\/g, '/')}`));
+  console.warn('[sync-shared] Commit or discard them in this repo, then re-run to sync.');
+}
 if (wip.length) {
-  console.warn(`[sync-shared] NOTE: ${wip.length} file(s) have UNCOMMITTED changes in the monorepo — synced from HEAD, that work is NOT included:`);
+  console.warn(`[sync-shared] HELD: ${wip.length} file(s) have UNCOMMITTED changes in the monorepo — NOT synced, because HEAD may be older than what is live here:`);
   wip.forEach((f) => console.warn(`  • ${f.replace(/\\/g, '/')}`));
   console.warn('[sync-shared] Commit them in the monorepo and re-run to pick them up.');
 }

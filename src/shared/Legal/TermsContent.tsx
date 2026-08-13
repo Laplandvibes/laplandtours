@@ -17,6 +17,13 @@ interface TermsContentProps {
   siteName?: string;
   siteUrl?: string;
   lang?: Lang;
+  /**
+   * `travel` (default) is the network wording: search tools, bookings,
+   * operators. `shop` swaps the six sections that are factually wrong for a
+   * site that sells nothing and books nothing (see SHOP_OVERRIDES below).
+   * Omitting the prop leaves every existing site byte for byte unchanged.
+   */
+  variant?: 'travel' | 'shop';
 }
 
 interface TermsCopy {
@@ -935,12 +942,392 @@ const COPY: Record<Lang, TermsCopy> = {
   },
 };
 
+/**
+ * Shop-variant overrides (`variant="shop"`).
+ *
+ * 🔴 Why this exists instead of an edit to COPY: this file is shared by the
+ * whole network and travel sites are the majority, so the travel wording must
+ * stay exactly as it is. Sites opt in; passing nothing keeps the previous
+ * behaviour byte for byte.
+ *
+ * The 2026-08-13 compliance audit found the travel text materially false on
+ * laplandgifts.com and laplandstore.fi: §5 described hotel, flight and car
+ * rental search tools that neither shop has, §3 named Sembo, Trip.com and
+ * EconomyBookings none of which is a shop partner, §1 called the site a
+ * travel information hub, §2 warned about weather conditions, and §8 told
+ * gift buyers to take out travel insurance. §5 also framed "we are not a
+ * merchant" purely around travel services, so it never covered the things a
+ * shop visitor actually needs: delivery, returns, warranty, VAT and customs.
+ *
+ * Only the six wrong keys are overridden. Everything else (newsletter, IP,
+ * governing law, DSA contact point) is correct for a shop as written.
+ */
+const SHOP_OVERRIDES: Record<Lang, Partial<TermsCopy>> = {
+  en: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) is a curated Finnish Lapland gift
+        guide operated by <strong className="text-snow/90">Lapeso Oy</strong>, registered in Finland. We
+        publish editorial product guides and link to the shops that actually sell and ship the items.
+      </>
+    ),
+    s2Body: 'Product details, including prices, sizes, materials, ingredients and availability, change frequently and are read from the seller\'s own pages on the date shown. We aim to keep them accurate, but we cannot guarantee they are current when you visit. Always check the price, the delivery terms and any ingredient or allergen information on the seller\'s own page before you order.',
+    s3P2: 'Affiliate partners include but are not limited to Finnish shops and brands such as Suomikauppa, Nordicbuddies, Finlayson and Scandinavian Outdoor, reached through affiliate networks such as Adtraction and Daisycon. We also link to shops that pay us nothing. Every order is subject to the terms and conditions of the shop that sells it.',
+    s5P1: (siteName) => (
+      <>
+        Every product on this site is sold and shipped by a third-party shop, and the buttons take you to
+        that shop’s own website. <strong className="text-snow/90">{siteName} is not a retailer, merchant
+        or reseller.</strong> We hold no stock, we run no checkout, and we never take your payment or your
+        delivery address.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        The purchase contract is concluded directly between you and that shop, on their terms and under
+        their privacy policy. Delivery times, shipping costs, any VAT or customs charges on orders leaving
+        the EU, returns, refunds and warranty are theirs, not ours. A statutory right of withdrawal in
+        distance selling, in Finland under <em>kuluttajansuojalaki 6 luku</em>, is exercised against the
+        shop that sold the item.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} and Lapeso Oy are not liable for any loss or damage arising from reliance on the product information on this site, from use of the shops we link to, or from a purchase made through them. Any claim about a product, its delivery or its condition is made against the shop that sold it. For foodstuffs and food supplements, always read the ingredient, allergen and dosage information on the packaging and on the seller's own page.`,
+  },
+  fi: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) on kuratoitu lahjaopas Suomen
+        Lappiin, ja sitä ylläpitää suomalainen <strong className="text-snow/90">Lapeso Oy</strong>.
+        Julkaisemme toimituksellisia tuoteoppaita ja linkitämme kauppoihin, jotka myyvät ja toimittavat
+        tuotteet.
+      </>
+    ),
+    s2Body: 'Tuotetiedot, kuten hinnat, koot, materiaalit, ainesosat ja saatavuus, muuttuvat usein. Ne on luettu myyjän omilta sivuilta merkittynä päivänä. Pyrimme pitämään ne oikeina, emmekä voi taata, että ne ovat ajan tasalla juuri sinun käynnilläsi. Tarkista hinta, toimitusehdot sekä ainesosa- ja allergeenitiedot myyjän omalta sivulta ennen tilaamista.',
+    s3P2: 'Kumppaneihin kuuluvat muun muassa suomalaiset kaupat ja brändit, kuten Suomikauppa, Nordicbuddies, Finlayson ja Scandinavian Outdoor, joihin linkitämme kumppaniverkostojen kuten Adtractionin ja Daisyconin kautta. Linkitämme myös kauppoihin, joista emme saa mitään. Jokaiseen tilaukseen sovelletaan sen kaupan ehtoja, joka tuotteen myy.',
+    s5P1: (siteName) => (
+      <>
+        Jokaisen tämän sivuston tuotteen myy ja toimittaa ulkopuolinen kauppa, ja painikkeet vievät sinut
+        kyseisen kaupan omille sivuille. <strong className="text-snow/90">{siteName} ei ole vähittäiskauppa,
+        myyjä eikä jälleenmyyjä.</strong> Meillä ei ole varastoa eikä kassaa, emmekä ota vastaan maksuasi
+        tai toimitusosoitettasi.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        Kauppasopimus syntyy suoraan sinun ja kyseisen kaupan välille, sen ehdoilla ja sen
+        tietosuojakäytännön mukaisesti. Toimitusajat, toimituskulut, EU:n ulkopuolelle menevien tilausten
+        arvonlisävero ja tullimaksut, palautukset, hyvitykset ja takuu ovat kaupan vastuulla, eivät
+        meidän. Etämyynnin peruuttamisoikeutta, Suomessa <em>kuluttajansuojalain 6 luvun</em> mukaan,
+        käytetään sitä kauppaa kohtaan, joka tuotteen myi.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} ja Lapeso Oy eivät vastaa vahingosta, joka aiheutuu tämän sivuston tuotetietoihin luottamisesta, linkitettyjen kauppojen käytöstä tai niiden kautta tehdystä ostoksesta. Tuotetta, sen toimitusta tai kuntoa koskeva vaatimus esitetään sille kaupalle, joka tuotteen myi. Elintarvikkeissa ja ravintolisissä lue aina ainesosa-, allergeeni- ja annostustiedot pakkauksesta ja myyjän omalta sivulta.`,
+  },
+  de: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) ist ein kuratierter Geschenkeführer
+        für Finnisch-Lappland, betrieben von der in Finnland eingetragenen{' '}
+        <strong className="text-snow/90">Lapeso Oy</strong>. Wir veröffentlichen redaktionelle
+        Produktratgeber und verlinken auf die Shops, die die Artikel tatsächlich verkaufen und versenden.
+      </>
+    ),
+    s2Body: 'Produktangaben wie Preise, Größen, Materialien, Zutaten und Verfügbarkeit ändern sich häufig. Sie werden am angegebenen Tag von den Seiten des jeweiligen Verkäufers übernommen. Wir bemühen uns, sie korrekt zu halten, können aber nicht garantieren, dass sie zum Zeitpunkt Ihres Besuchs aktuell sind. Prüfen Sie Preis, Lieferbedingungen sowie Zutaten- und Allergenangaben stets auf der Seite des Verkäufers, bevor Sie bestellen.',
+    s3P2: 'Zu den Partnern zählen unter anderem finnische Shops und Marken wie Suomikauppa, Nordicbuddies, Finlayson und Scandinavian Outdoor, die wir über Partnernetzwerke wie Adtraction und Daisycon verlinken. Wir verlinken auch Shops, die uns nichts zahlen. Für jede Bestellung gelten die Bedingungen des Shops, der den Artikel verkauft.',
+    s5P1: (siteName) => (
+      <>
+        Jedes Produkt auf dieser Website wird von einem fremden Shop verkauft und versendet; die Buttons
+        führen Sie auf dessen eigene Website. <strong className="text-snow/90">{siteName} ist kein
+        Einzelhändler, Verkäufer oder Wiederverkäufer.</strong> Wir führen kein Lager, betreiben keine
+        Kasse und nehmen weder Ihre Zahlung noch Ihre Lieferadresse entgegen.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        Der Kaufvertrag kommt unmittelbar zwischen Ihnen und diesem Shop zustande, zu dessen Bedingungen
+        und Datenschutzerklärung. Lieferzeiten, Versandkosten, Umsatzsteuer und Zollgebühren bei
+        Bestellungen außerhalb der EU, Rückgaben, Erstattungen und Gewährleistung liegen bei dem Shop,
+        nicht bei uns. Ein gesetzliches Widerrufsrecht im Fernabsatz, in Finnland nach{' '}
+        <em>kuluttajansuojalaki 6 luku</em>, wird gegenüber dem verkaufenden Shop ausgeübt.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} und Lapeso Oy haften nicht für Verluste oder Schäden, die aus dem Vertrauen auf die Produktangaben dieser Website, aus der Nutzung der verlinkten Shops oder aus einem darüber getätigten Kauf entstehen. Ansprüche wegen eines Produkts, seiner Lieferung oder seines Zustands richten sich gegen den Shop, der es verkauft hat. Lesen Sie bei Lebensmitteln und Nahrungsergänzungsmitteln stets die Zutaten-, Allergen- und Dosierungsangaben auf der Verpackung und auf der Seite des Verkäufers.`,
+  },
+  ja: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName}（<strong className="text-snow/90">{siteUrl}</strong>）は、フィンランド法人{' '}
+        <strong className="text-snow/90">Lapeso Oy</strong> が運営する、フィンランド・ラップランドのギフト
+        ガイドです。編集記事として商品ガイドを掲載し、実際に販売・発送を行う店舗へリンクしています。
+      </>
+    ),
+    s2Body: '価格、サイズ、素材、原材料、在庫状況などの商品情報は頻繁に変わります。これらは表示された日付時点で販売店のページから取得したものです。正確さの維持に努めていますが、お客様のご覧の時点で最新である保証はいたしかねます。ご注文の前に、価格、配送条件、原材料やアレルゲンの表示を必ず販売店のページでご確認ください。',
+    s3P2: '提携先には、Suomikauppa、Nordicbuddies、Finlayson、Scandinavian Outdoor などのフィンランドの店舗やブランドが含まれ、Adtraction や Daisycon といったアフィリエイトネットワークを通じてリンクしています。報酬の発生しない店舗にもリンクしています。ご注文には、その商品を販売する店舗の規約が適用されます。',
+    s5P1: (siteName) => (
+      <>
+        当サイトのすべての商品は第三者の店舗が販売・発送しており、ボタンを押すとその店舗のサイトへ移動します。
+        <strong className="text-snow/90">{siteName} は小売業者でも販売者でも再販業者でもありません。</strong>
+        在庫も決済機能も持たず、お客様のお支払いやお届け先を受け取ることもありません。
+      </>
+    ),
+    s5P2: () => (
+      <>
+        売買契約は、お客様とその店舗との間で直接成立し、店舗の規約およびプライバシーポリシーが適用されます。
+        配送日数、送料、EU域外への注文にかかる付加価値税や関税、返品、返金、保証はいずれも当該店舗の責任であり、
+        当サイトの責任ではありません。通信販売における法定の解除権（フィンランドでは{' '}
+        <em>kuluttajansuojalaki 6 luku</em>）は、その商品を販売した店舗に対して行使します。
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} および Lapeso Oy は、当サイトの商品情報に依拠したこと、リンク先店舗を利用したこと、またはそこで購入したことにより生じた損失または損害について責任を負いません。商品、その配送または状態に関する請求は、販売した店舗に対して行ってください。食品および健康補助食品については、原材料、アレルゲン、摂取量の表示を必ずパッケージと販売店のページでご確認ください。`,
+  },
+  es: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) es una guía de regalos de la
+        Laponia finlandesa gestionada por <strong className="text-snow/90">Lapeso Oy</strong>, sociedad
+        registrada en Finlandia. Publicamos guías de producto editoriales y enlazamos a las tiendas que
+        realmente venden y envían los artículos.
+      </>
+    ),
+    s2Body: 'Los datos de producto, como precios, tallas, materiales, ingredientes y disponibilidad, cambian con frecuencia y se toman de las páginas del propio vendedor en la fecha indicada. Procuramos mantenerlos exactos, pero no podemos garantizar que estén actualizados en el momento de tu visita. Comprueba siempre el precio, las condiciones de envío y la información de ingredientes y alérgenos en la página del vendedor antes de pedir.',
+    s3P2: 'Entre los socios se incluyen, sin limitarse a ellos, tiendas y marcas finlandesas como Suomikauppa, Nordicbuddies, Finlayson y Scandinavian Outdoor, a las que enlazamos mediante redes de afiliación como Adtraction y Daisycon. También enlazamos a tiendas que no nos pagan nada. Cada pedido se rige por las condiciones de la tienda que vende el artículo.',
+    s5P1: (siteName) => (
+      <>
+        Todos los productos de este sitio los vende y envía una tienda externa, y los botones te llevan a
+        su propia web. <strong className="text-snow/90">{siteName} no es un comercio minorista, un
+        vendedor ni un revendedor.</strong> No tenemos stock ni pasarela de pago, y nunca recibimos tu
+        pago ni tu dirección de entrega.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        El contrato de compra se celebra directamente entre tú y esa tienda, conforme a sus condiciones y
+        a su política de privacidad. Los plazos de entrega, los gastos de envío, el IVA y los aranceles
+        de los pedidos fuera de la UE, las devoluciones, los reembolsos y la garantía son responsabilidad
+        suya, no nuestra. El derecho legal de desistimiento en la venta a distancia, en Finlandia según{' '}
+        <em>kuluttajansuojalaki 6 luku</em>, se ejerce frente a la tienda que vendió el artículo.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} y Lapeso Oy no se responsabilizan de pérdidas o daños derivados de confiar en la información de producto de este sitio, del uso de las tiendas enlazadas o de una compra realizada a través de ellas. Cualquier reclamación sobre un producto, su entrega o su estado se dirige a la tienda que lo vendió. En alimentos y complementos alimenticios, lee siempre la información de ingredientes, alérgenos y dosis en el envase y en la página del vendedor.`,
+  },
+  'pt-BR': {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) é um guia de presentes da Lapônia
+        finlandesa operado pela <strong className="text-snow/90">Lapeso Oy</strong>, registrada na
+        Finlândia. Publicamos guias editoriais de produtos e direcionamos às lojas que de fato vendem e
+        enviam os itens.
+      </>
+    ),
+    s2Body: 'As informações de produto, como preços, tamanhos, materiais, ingredientes e disponibilidade, mudam com frequência e são obtidas nas páginas do próprio vendedor na data indicada. Procuramos mantê-las corretas, mas não podemos garantir que estejam atualizadas no momento da sua visita. Confira sempre o preço, as condições de entrega e as informações de ingredientes e alérgenos na página do vendedor antes de comprar.',
+    s3P2: 'Entre os parceiros estão, entre outros, lojas e marcas finlandesas como Suomikauppa, Nordicbuddies, Finlayson e Scandinavian Outdoor, às quais direcionamos por meio de redes de afiliados como Adtraction e Daisycon. Também direcionamos a lojas que não nos pagam nada. Cada pedido está sujeito às condições da loja que vende o item.',
+    s5P1: (siteName) => (
+      <>
+        Todo produto deste site é vendido e enviado por uma loja de terceiros, e os botões levam você ao
+        site dessa loja. <strong className="text-snow/90">{siteName} não é varejista, vendedora nem
+        revendedora.</strong> Não temos estoque nem checkout, e nunca recebemos seu pagamento ou seu
+        endereço de entrega.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        O contrato de compra é celebrado diretamente entre você e essa loja, sob as condições e a política
+        de privacidade dela. Prazos de entrega, frete, impostos e taxas alfandegárias em pedidos para fora
+        da UE, devoluções, reembolsos e garantia são responsabilidade da loja, não nossa. O direito legal
+        de arrependimento na venda a distância, na Finlândia conforme{' '}
+        <em>kuluttajansuojalaki 6 luku</em>, é exercido contra a loja que vendeu o item.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} e a Lapeso Oy não se responsabilizam por perdas ou danos decorrentes da confiança nas informações de produto deste site, do uso das lojas indicadas ou de uma compra feita por meio delas. Qualquer reclamação sobre um produto, sua entrega ou seu estado deve ser dirigida à loja que o vendeu. Em alimentos e suplementos alimentares, leia sempre as informações de ingredientes, alérgenos e dosagem na embalagem e na página do vendedor.`,
+  },
+  'zh-CN': {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName}（<strong className="text-snow/90">{siteUrl}</strong>）是由在芬兰注册的{' '}
+        <strong className="text-snow/90">Lapeso Oy</strong> 运营的芬兰拉普兰礼品指南。我们发布编辑撰写的
+        商品指南，并链接到真正销售和发货的商店。
+      </>
+    ),
+    s2Body: '价格、尺寸、材质、成分和库存等商品信息经常变动，这些信息是在标注日期从卖家自己的页面读取的。我们力求准确，但无法保证您访问时信息仍然是最新的。下单前请务必在卖家自己的页面上核对价格、配送条款以及成分和过敏原信息。',
+    s3P2: '合作伙伴包括但不限于 Suomikauppa、Nordicbuddies、Finlayson、Scandinavian Outdoor 等芬兰商店和品牌，我们通过 Adtraction、Daisycon 等联盟网络链接到它们。我们也会链接到不向我们付费的商店。每笔订单均适用销售该商品的商店的条款。',
+    s5P1: (siteName) => (
+      <>
+        本站所有商品均由第三方商店销售和发货，点击按钮将前往该商店自己的网站。
+        <strong className="text-snow/90">{siteName} 不是零售商、卖家或经销商。</strong>
+        我们没有库存，也没有结账系统，从不接收您的付款或收货地址。
+      </>
+    ),
+    s5P2: () => (
+      <>
+        买卖合同直接在您与该商店之间成立，适用该商店的条款和隐私政策。配送时间、运费、寄往欧盟以外订单的
+        增值税和关税、退货、退款以及保修均由该商店负责，而非本站。远程销售中的法定撤销权（在芬兰依据{' '}
+        <em>kuluttajansuojalaki 6 luku</em>）应向销售该商品的商店行使。
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} 与 Lapeso Oy 对因信赖本站商品信息、使用所链接的商店或通过其完成购买而产生的任何损失或损害不承担责任。有关商品、其配送或状况的任何主张，应向销售该商品的商店提出。对于食品和膳食补充剂，请务必阅读包装及卖家页面上的成分、过敏原和用量信息。`,
+  },
+  ko: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName}(<strong className="text-snow/90">{siteUrl}</strong>)은 핀란드에 등록된{' '}
+        <strong className="text-snow/90">Lapeso Oy</strong>가 운영하는 핀란드 라플란드 선물 가이드입니다.
+        저희는 편집 기준으로 만든 상품 가이드를 게시하고, 실제로 판매하고 배송하는 상점으로 연결합니다.
+      </>
+    ),
+    s2Body: '가격, 크기, 소재, 성분, 재고 등 상품 정보는 자주 바뀌며, 표시된 날짜에 판매자의 페이지에서 읽어온 것입니다. 정확하게 유지하려고 노력하지만 방문 시점에 최신이라고 보장할 수는 없습니다. 주문하기 전에 가격, 배송 조건, 성분과 알레르기 유발 물질 정보를 판매자의 페이지에서 반드시 확인하십시오.',
+    s3P2: '제휴 파트너에는 Suomikauppa, Nordicbuddies, Finlayson, Scandinavian Outdoor 등 핀란드 상점과 브랜드가 포함되며, Adtraction과 Daisycon 같은 제휴 네트워크를 통해 연결합니다. 저희에게 아무런 대가를 지급하지 않는 상점으로도 연결합니다. 모든 주문에는 해당 상품을 판매하는 상점의 약관이 적용됩니다.',
+    s5P1: (siteName) => (
+      <>
+        이 사이트의 모든 상품은 제3자 상점이 판매하고 배송하며, 버튼을 누르면 그 상점의 웹사이트로
+        이동합니다. <strong className="text-snow/90">{siteName}은 소매업자나 판매자, 재판매자가
+        아닙니다.</strong> 재고도 결제 시스템도 없으며, 고객의 결제 정보나 배송지를 받지 않습니다.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        매매 계약은 고객과 해당 상점 사이에 직접 성립하며, 그 상점의 약관과 개인정보 처리방침이
+        적용됩니다. 배송 기간, 배송비, EU 밖으로 나가는 주문의 부가가치세와 관세, 반품, 환불, 보증은
+        모두 그 상점의 책임이며 저희 책임이 아닙니다. 통신판매에서의 법정 청약철회권은, 핀란드에서는{' '}
+        <em>kuluttajansuojalaki 6 luku</em>에 따라, 상품을 판매한 상점을 상대로 행사합니다.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName}과 Lapeso Oy는 이 사이트의 상품 정보를 신뢰한 결과, 연결된 상점을 이용한 결과, 또는 이를 통한 구매로 인해 발생한 손실이나 손해에 대해 책임지지 않습니다. 상품이나 배송, 상태에 관한 청구는 해당 상품을 판매한 상점에 제기합니다. 식품과 건강기능식품은 포장과 판매자 페이지에서 성분, 알레르기 유발 물질, 섭취량 정보를 반드시 확인하십시오.`,
+  },
+  fr: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) est un guide de cadeaux de la
+        Laponie finlandaise exploité par <strong className="text-snow/90">Lapeso Oy</strong>, société
+        immatriculée en Finlande. Nous publions des guides de produits éditoriaux et renvoyons vers les
+        boutiques qui vendent et expédient réellement les articles.
+      </>
+    ),
+    s2Body: 'Les informations produit, notamment les prix, les tailles, les matières, les ingrédients et la disponibilité, changent fréquemment et sont relevées sur les pages du vendeur à la date indiquée. Nous nous efforçons de les tenir exactes, mais nous ne pouvons garantir qu\'elles sont à jour au moment de votre visite. Vérifiez toujours le prix, les conditions de livraison ainsi que les informations sur les ingrédients et les allergènes sur la page du vendeur avant de commander.',
+    s3P2: 'Les partenaires incluent notamment des boutiques et marques finlandaises telles que Suomikauppa, Nordicbuddies, Finlayson et Scandinavian Outdoor, vers lesquelles nous renvoyons via des réseaux d\'affiliation tels qu\'Adtraction et Daisycon. Nous renvoyons également vers des boutiques qui ne nous versent rien. Chaque commande est soumise aux conditions de la boutique qui vend l\'article.',
+    s5P1: (siteName) => (
+      <>
+        Chaque produit de ce site est vendu et expédié par une boutique tierce, et les boutons vous
+        conduisent vers son propre site. <strong className="text-snow/90">{siteName} n’est ni un
+        détaillant, ni un vendeur, ni un revendeur.</strong> Nous ne détenons aucun stock, n’exploitons
+        aucune caisse et ne recevons jamais votre paiement ni votre adresse de livraison.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        Le contrat de vente est conclu directement entre vous et cette boutique, selon ses conditions et
+        sa politique de confidentialité. Les délais de livraison, les frais de port, la TVA et les droits
+        de douane sur les commandes hors UE, les retours, les remboursements et la garantie relèvent de
+        la boutique, et non de nous. Le droit légal de rétractation en vente à distance, en Finlande au
+        titre de <em>kuluttajansuojalaki 6 luku</em>, s’exerce auprès de la boutique qui a vendu
+        l’article.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} et Lapeso Oy ne sont pas responsables des pertes ou dommages résultant de la confiance accordée aux informations produit de ce site, de l'utilisation des boutiques vers lesquelles nous renvoyons ou d'un achat effectué par leur intermédiaire. Toute réclamation portant sur un produit, sa livraison ou son état s'adresse à la boutique qui l'a vendu. Pour les denrées alimentaires et les compléments alimentaires, lisez toujours les informations sur les ingrédients, les allergènes et le dosage figurant sur l'emballage et sur la page du vendeur.`,
+  },
+  it: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) è una guida ai regali della
+        Lapponia finlandese gestita da <strong className="text-snow/90">Lapeso Oy</strong>, società
+        registrata in Finlandia. Pubblichiamo guide ai prodotti redazionali e rimandiamo ai negozi che
+        vendono e spediscono effettivamente gli articoli.
+      </>
+    ),
+    s2Body: 'Le informazioni sui prodotti, come prezzi, taglie, materiali, ingredienti e disponibilità, cambiano di frequente e sono rilevate dalle pagine del venditore alla data indicata. Ci impegniamo a mantenerle corrette, ma non possiamo garantire che siano aggiornate al momento della Sua visita. Verifichi sempre il prezzo, le condizioni di consegna e le informazioni su ingredienti e allergeni sulla pagina del venditore prima di ordinare.',
+    s3P2: 'Tra i partner rientrano, a titolo esemplificativo, negozi e marchi finlandesi come Suomikauppa, Nordicbuddies, Finlayson e Scandinavian Outdoor, ai quali rimandiamo tramite network di affiliazione come Adtraction e Daisycon. Rimandiamo anche a negozi che non ci corrispondono nulla. Ogni ordine è soggetto alle condizioni del negozio che vende l\'articolo.',
+    s5P1: (siteName) => (
+      <>
+        Ogni prodotto di questo sito è venduto e spedito da un negozio terzo, e i pulsanti La portano al
+        sito di quel negozio. <strong className="text-snow/90">{siteName} non è un rivenditore, un
+        venditore né un intermediario commerciale.</strong> Non deteniamo magazzino, non gestiamo alcuna
+        cassa e non riceviamo mai il Suo pagamento né il Suo indirizzo di consegna.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        Il contratto di acquisto si conclude direttamente tra Lei e quel negozio, alle sue condizioni e
+        secondo la sua informativa sulla privacy. Tempi di consegna, spese di spedizione, IVA e dazi
+        doganali sugli ordini diretti fuori dall’UE, resi, rimborsi e garanzia competono al negozio,
+        non a noi. Il diritto legale di recesso nelle vendite a distanza, in Finlandia ai sensi della{' '}
+        <em>kuluttajansuojalaki 6 luku</em>, si esercita nei confronti del negozio che ha venduto
+        l’articolo.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} e Lapeso Oy non sono responsabili di perdite o danni derivanti dall'affidamento alle informazioni sui prodotti di questo sito, dall'uso dei negozi collegati o da un acquisto effettuato tramite essi. Ogni reclamo relativo a un prodotto, alla sua consegna o alle sue condizioni va rivolto al negozio che lo ha venduto. Per alimenti e integratori alimentari, legga sempre le informazioni su ingredienti, allergeni e dosaggio riportate sulla confezione e sulla pagina del venditore.`,
+  },
+  nl: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) is een samengestelde cadeaugids
+        voor Fins Lapland, beheerd door <strong className="text-snow/90">Lapeso Oy</strong>, gevestigd in
+        Finland. Wij publiceren redactionele productgidsen en verwijzen naar de winkels die de artikelen
+        daadwerkelijk verkopen en verzenden.
+      </>
+    ),
+    s2Body: 'Productgegevens zoals prijzen, maten, materialen, ingrediënten en beschikbaarheid veranderen regelmatig en zijn op de vermelde datum overgenomen van de pagina\'s van de verkoper zelf. Wij streven ernaar ze correct te houden, maar kunnen niet garanderen dat ze actueel zijn op het moment van uw bezoek. Controleer vóór het bestellen altijd de prijs, de leveringsvoorwaarden en de informatie over ingrediënten en allergenen op de pagina van de verkoper.',
+    s3P2: 'Tot de partners behoren onder meer Finse winkels en merken zoals Suomikauppa, Nordicbuddies, Finlayson en Scandinavian Outdoor, waarnaar wij verwijzen via affiliatenetwerken zoals Adtraction en Daisycon. Wij verwijzen ook naar winkels die ons niets betalen. Op elke bestelling zijn de voorwaarden van toepassing van de winkel die het artikel verkoopt.',
+    s5P1: (siteName) => (
+      <>
+        Elk product op deze site wordt verkocht en verzonden door een externe winkel, en de knoppen
+        brengen u naar de website van die winkel. <strong className="text-snow/90">{siteName} is geen
+        detailhandelaar, verkoper of wederverkoper.</strong> Wij houden geen voorraad aan, hebben geen
+        kassa en ontvangen nooit uw betaling of uw afleveradres.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        De koopovereenkomst komt rechtstreeks tot stand tussen u en die winkel, onder hun voorwaarden en
+        hun privacybeleid. Levertijden, verzendkosten, btw en douanerechten bij bestellingen buiten de EU,
+        retouren, terugbetalingen en garantie liggen bij die winkel, niet bij ons. Een wettelijk
+        herroepingsrecht bij verkoop op afstand, in Finland op grond van{' '}
+        <em>kuluttajansuojalaki 6 luku</em>, wordt uitgeoefend jegens de winkel die het artikel heeft
+        verkocht.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} en Lapeso Oy zijn niet aansprakelijk voor verlies of schade voortvloeiend uit het vertrouwen op de productinformatie op deze site, uit het gebruik van de winkels waarnaar wij verwijzen of uit een aankoop die daar is gedaan. Een claim over een product, de levering of de staat ervan wordt ingediend bij de winkel die het heeft verkocht. Lees bij levensmiddelen en voedingssupplementen altijd de informatie over ingrediënten, allergenen en dosering op de verpakking en op de pagina van de verkoper.`,
+  },
+  sv: {
+    s1P1: (siteName, siteUrl) => (
+      <>
+        {siteName} (<strong className="text-snow/90">{siteUrl}</strong>) är en kurerad presentguide för
+        finska Lappland som drivs av <strong className="text-snow/90">Lapeso Oy</strong>, registrerat i
+        Finland. Vi publicerar redaktionella produktguider och länkar till de butiker som faktiskt säljer
+        och skickar varorna.
+      </>
+    ),
+    s2Body: 'Produktuppgifter som priser, storlekar, material, ingredienser och lagerstatus ändras ofta och är hämtade från säljarens egna sidor det datum som anges. Vi strävar efter att hålla dem korrekta, men kan inte garantera att de är aktuella när du besöker sidan. Kontrollera alltid pris, leveransvillkor samt ingrediens- och allergeninformation på säljarens egen sida innan du beställer.',
+    s3P2: 'Bland partnerna finns bland annat finländska butiker och varumärken som Suomikauppa, Nordicbuddies, Finlayson och Scandinavian Outdoor, dit vi länkar via affiliatenätverk som Adtraction och Daisycon. Vi länkar även till butiker som inte betalar oss något. Varje beställning omfattas av villkoren hos den butik som säljer varan.',
+    s5P1: (siteName) => (
+      <>
+        Varje produkt på den här webbplatsen säljs och skickas av en fristående butik, och knapparna tar
+        dig till butikens egen webbplats. <strong className="text-snow/90">{siteName} är inte
+        detaljhandlare, säljare eller återförsäljare.</strong> Vi har inget lager och ingen kassa, och vi
+        tar aldrig emot din betalning eller din leveransadress.
+      </>
+    ),
+    s5P2: () => (
+      <>
+        Köpeavtalet ingås direkt mellan dig och den butiken, på deras villkor och enligt deras
+        integritetspolicy. Leveranstider, fraktkostnader, moms och tullavgifter för beställningar utanför
+        EU, returer, återbetalningar och garanti ligger hos butiken, inte hos oss. En lagstadgad ångerrätt
+        vid distansförsäljning, i Finland enligt <em>kuluttajansuojalaki 6 luku</em>, utövas mot den butik
+        som sålde varan.
+      </>
+    ),
+    s8Body: (siteName) => `${siteName} och Lapeso Oy ansvarar inte för förlust eller skada som uppstår genom att förlita sig på produktinformationen på den här webbplatsen, genom användning av de butiker vi länkar till eller genom ett köp som gjorts via dem. Anspråk som gäller en vara, dess leverans eller dess skick riktas mot den butik som sålde den. För livsmedel och kosttillskott, läs alltid informationen om ingredienser, allergener och dosering på förpackningen och på säljarens egen sida.`,
+  },
+};
+
 export default function TermsContent({
   siteName = 'LaplandVibes',
   siteUrl = 'laplandvibes.com',
   lang = 'en',
+  variant = 'travel',
 }: TermsContentProps = {}) {
-  const t = COPY[lang] ?? COPY.en;
+  const base = COPY[lang] ?? COPY.en;
+  const t =
+    variant === 'shop'
+      ? { ...base, ...(SHOP_OVERRIDES[lang] ?? SHOP_OVERRIDES.en) }
+      : base;
   const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink hover:text-vibe-pink/80 underline">info@laplandvibes.com</a>;
   // Paljas polku "/unsubscribe" oli sekä linkkiteksti että kohde: teksti luki
   // lauseessa katkelmana ("osoitteessa /unsubscribe") ja kohde osui spokeilla
