@@ -468,6 +468,66 @@ function resolveRouteMeta(loc, route) {
   return null;
 }
 
+/**
+ * Resolve {title, description} for ONE route × locale, plus whether the title
+ * came from a locale-specific source.
+ *
+ * Extracted from the render loop so the --crawlableBody pre-pass can build its
+ * internal anchor texts from the SAME cascade the page itself uses. A second
+ * copy of this logic would drift, and drifting copies of prerender logic are
+ * exactly what this codebase has already paid for (the two forked prerenderers).
+ *
+ * Safe to call twice for the same route/locale: every reader returns a FRESH
+ * object literal, so nothing here mutates shared state between passes.
+ */
+function resolveLocaleMeta(route, loc, enMeta) {
+  let meta = resolveRouteMeta(loc, route);
+  let localizedTitle = !!(meta && meta.title);
+  // Per-locale fallbacks BEFORE English: (1) explicit routes.json
+  // fallbackTitleByLang/fallbackDescriptionByLang; (2) for the HOME route, the
+  // localized title from the shell's LV-LOCALE-TITLE map. Keeps a native
+  // <title>/og:title at first byte for every locale instead of English.
+  if (!meta || !meta.title) {
+    const tByLang = route.fallbackTitleByLang && route.fallbackTitleByLang[loc.lang];
+    const dByLang = route.fallbackDescriptionByLang && route.fallbackDescriptionByLang[loc.lang];
+    if (tByLang) {
+      meta = { title: tByLang, description: dByLang || (meta && meta.description) || null };
+      localizedTitle = true;
+    } else if (route.path === '/' && SHELL_TITLE_MAP) {
+      const st = SHELL_TITLE_MAP[SHELL_TITLE_KEY[loc.lang]];
+      if (st) { meta = { title: st, description: (meta && meta.description) || null }; localizedTitle = true; }
+    }
+  }
+  if (!meta || !meta.title) {
+    meta = { title: enMeta.title, description: meta?.description || enMeta.description };
+  }
+  if (!meta.description) {
+    const dByLang = route.fallbackDescriptionByLang && route.fallbackDescriptionByLang[loc.lang];
+    meta.description = dByLang || enMeta.description;
+  }
+  // If the title doesn't already include site name, append it. Detect
+  // pre-existing site name via case-insensitive substring of SITE_NAME or
+  // a clear " | " / " — " separator with a brand-shaped word on the right.
+  if (
+    route.appendSiteName &&
+    meta.title &&
+    !meta.title.toLowerCase().includes(SITE_NAME.toLowerCase()) &&
+    !/\s[|—]\s/.test(meta.title)
+  ) {
+    meta.title = `${meta.title} | ${SITE_NAME}`;
+  }
+  return { meta, localizedTitle };
+}
+
+/** URL a route×locale actually resolves to — same construction the page's own canonical uses. */
+function routeUrl(route, loc) {
+  const cleanPath = route.path === '/' ? '' : route.path;
+  const cLoc = route.canonicalLocale
+    ? (LOCALE_LIST.find((l) => l.lang === route.canonicalLocale) || loc)
+    : loc;
+  return `${SITE}${cLoc.prefix}${cleanPath}`.replace(/\/?$/, '/');
+}
+
 // ---------- crawlable pre-hydration block (--crawlableBody) ----------
 // Implementation lives in the shared module so the two forked prerenderers
 // (laplandchristmas/, laplandgifts/scripts/) use the SAME code instead of a
@@ -513,7 +573,7 @@ function hasTagOutsideComments(html, pattern) {
   return pattern.test(stripped);
 }
 
-function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang }) {
+function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang, internalLinks }) {
   let html = shell;
 
   html = html.replace(/<html\s+lang="[^"]*"/i, `<html lang="${bcp47}"`);
@@ -639,7 +699,15 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
   // applied when SHELL is read, re-running the script is genuinely idempotent.
   html = injectCrawlableBody(
     html,
-    buildCrawlableBody(NETWORK, { title, description, lang, siteOrigin: SITE, siteName: SITE_NAME })
+    buildCrawlableBody(NETWORK, {
+      title,
+      description,
+      lang,
+      siteOrigin: SITE,
+      siteName: SITE_NAME,
+      internalLinks,
+      selfUrl: canonical,
+    })
   );
 
   return html;
@@ -659,8 +727,37 @@ function fallbackMeta(routePath, route) {
 
 // ---------- write loop ----------
 let written = 0;
+let lastOut = null;
 const summary = [];
 const debugNoMeta = [];
+
+// Pre-pass: the site's own pages per locale, for the crawlable block's internal
+// nav. Built BEFORE rendering because every page links to every sibling, so the
+// full list has to exist before the first file is written. Uses the same meta
+// cascade and the same URL construction as the render pass below.
+const INTERNAL_BY_LANG = {};
+if (args.crawlableBody) {
+  const enLocPre = LOCALE_LIST.find((l) => l.lang === 'en') || LOCALE_LIST[0];
+  for (const route of routes) {
+    const enMetaPre = resolveRouteMeta(enLocPre, route) || fallbackMeta(route.path, route);
+    const localesPre = Array.isArray(route.locales)
+      ? LOCALE_LIST.filter((l) => route.locales.includes(l.lang))
+      : LOCALE_LIST;
+    for (const loc of localesPre) {
+      const { meta } = resolveLocaleMeta(route, loc, enMetaPre);
+      // Anchor text is the page's own localized title minus the " | SiteName"
+      // tail — the brand repeated 20× in one list is noise, not information.
+      const text = String(meta.title || '').split(/\s[|—]\s/)[0].trim();
+      if (!text) continue;
+      (INTERNAL_BY_LANG[loc.lang] = INTERNAL_BY_LANG[loc.lang] || []).push({
+        url: routeUrl(route, loc),
+        text,
+      });
+    }
+  }
+  const counts = Object.entries(INTERNAL_BY_LANG).map(([l, a]) => `${l}:${a.length}`);
+  console.log(`[prerender] crawlable internal links per locale — ${counts.join(' ')}`);
+}
 
 for (const route of routes) {
   const routePath = route.path;
@@ -678,44 +775,12 @@ for (const route of routes) {
     : LOCALE_LIST;
 
   for (const loc of routeLocales) {
-    let meta = resolveRouteMeta(loc, route);
+    const resolved = resolveLocaleMeta(route, loc, enMeta);
+    const meta = resolved.meta;
     // Tracks whether THIS locale got a locale-specific title from any source
     // (copy readers, fallbackTitleByLang, shell title map) — routes that end up
     // on the EN fallback are the only ones worth reporting in the debug log.
-    let localizedTitle = !!(meta && meta.title);
-    // Per-locale fallbacks BEFORE English: (1) explicit routes.json
-    // fallbackTitleByLang/fallbackDescriptionByLang; (2) for the HOME route, the
-    // localized title from the shell's LV-LOCALE-TITLE map. Keeps a native
-    // <title>/og:title at first byte for every locale instead of English.
-    if (!meta || !meta.title) {
-      const tByLang = route.fallbackTitleByLang && route.fallbackTitleByLang[loc.lang];
-      const dByLang = route.fallbackDescriptionByLang && route.fallbackDescriptionByLang[loc.lang];
-      if (tByLang) {
-        meta = { title: tByLang, description: dByLang || (meta && meta.description) || null };
-        localizedTitle = true;
-      } else if (route.path === '/' && SHELL_TITLE_MAP) {
-        const st = SHELL_TITLE_MAP[SHELL_TITLE_KEY[loc.lang]];
-        if (st) { meta = { title: st, description: (meta && meta.description) || null }; localizedTitle = true; }
-      }
-    }
-    if (!meta || !meta.title) {
-      meta = { title: enMeta.title, description: meta?.description || enMeta.description };
-    }
-    if (!meta.description) {
-      const dByLang = route.fallbackDescriptionByLang && route.fallbackDescriptionByLang[loc.lang];
-      meta.description = dByLang || enMeta.description;
-    }
-    // If the title doesn't already include site name, append it. Detect
-    // pre-existing site name via case-insensitive substring of SITE_NAME or
-    // a clear " | " / " — " separator with a brand-shaped word on the right.
-    if (
-      route.appendSiteName &&
-      meta.title &&
-      !meta.title.toLowerCase().includes(SITE_NAME.toLowerCase()) &&
-      !/\s[|—]\s/.test(meta.title)
-    ) {
-      meta.title = `${meta.title} | ${SITE_NAME}`;
-    }
+    const localizedTitle = resolved.localizedTitle;
 
     const cleanPath = routePath === '/' ? '' : routePath;
     // Canonical/hreflang MUST use the trailing-slash form, because the prerendered
@@ -767,10 +832,12 @@ for (const route of routes) {
       hreflangs,
       ogImage,
       faq,
+      internalLinks: INTERNAL_BY_LANG[loc.lang],
     });
 
     mkdirSync(dirname(outPath), { recursive: true });
     writeFileSync(outPath, html, 'utf-8');
+    lastOut = outPath;
     written++;
     if (summary.length < 6) {
       summary.push(`  ${loc.lang.padEnd(5)} ${routePath.padEnd(34)} → ${outPath.replace(DIST + '\\', '').replace(DIST + '/', '')}`);
@@ -791,4 +858,32 @@ summary.forEach((l) => console.log(l));
 if (debugNoMeta.length) {
   console.log(`[prerender] some routes fell back to EN (first ${debugNoMeta.length}):`);
   debugNoMeta.forEach((l) => console.log(l));
+}
+
+// ---------- smoke gate (--crawlableBody) ----------
+// The crawlable block is deliberately fail-open: a missing module or an
+// unparseable shared Footer only warns, so a standalone checkout can still
+// build. That also means the feature can switch itself off in production
+// without anything going red — build-all.sh reads exit 0 as success and the
+// warning scrolls past. The network has been bitten by exactly this shape
+// before (wrangler pin, 2026-08-11: every build green, the failure visible
+// only in the deploy log).
+//
+// So assert the finished artefact, not the intent: read back a file we just
+// wrote and fail the build if the block is gone. Uses the LAST path written,
+// so it cannot pass against a stale dist.
+if (args.crawlableBody && NETWORK && lastOut) {
+  const probe = readFileSync(lastOut, 'utf-8');
+  const problems = [];
+  if (!probe.includes('id="lv-prerender"')) problems.push('crawlable body block missing');
+  if (!/<div id="root"><(?:div|style)/.test(probe)) problems.push('block is not inside #root');
+
+  if (problems.length) {
+    console.error(`
+[prerender] SMOKE GATE FAILED on ${lastOut}:`);
+    for (const p of problems) console.error(`  - ${p}`);
+    console.error('Refusing to exit 0 — a green build here would ship pages with no crawlable content.\n');
+    process.exit(1);
+  }
+  console.log('[prerender] smoke gate OK — crawlable block present inside #root');
 }

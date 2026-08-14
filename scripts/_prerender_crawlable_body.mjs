@@ -182,7 +182,10 @@ export function readFooterNetwork(cwd) {
  * `siteOrigin` is compared EXACTLY — a startsWith test would wrongly drop a
  * domain that happens to be a prefix of this site's own.
  */
-export function buildCrawlableBody(network, { title, description, lang, siteOrigin, siteName }) {
+export function buildCrawlableBody(
+  network,
+  { title, description, lang, siteOrigin, siteName, internalLinks, selfUrl }
+) {
   if (!network) return null;
   const dict = { ...(network.labelsByLang.en || {}), ...(network.labelsByLang[lang] || {}) };
   const origin = String(siteOrigin || '').replace(/\/+$/, '');
@@ -190,10 +193,26 @@ export function buildCrawlableBody(network, { title, description, lang, siteOrig
     .filter((l) => l.url !== origin)
     .map((l) => {
       const text = dict[l.key] || l.url.replace(/^https:\/\//, '');
-      return `<li><a href="${l.url}/" style="color:inherit;text-decoration:none">${esc(text)}</a></li>`;
+      return `<li><a href="${l.url}/">${esc(text)}</a></li>`;
     })
     .join('');
   if (!items) return null;
+
+  // The site's OWN pages, same locale. Without these the raw HTML has zero
+  // INTERNAL links, so every page is an orphan to a non-JS crawler even though
+  // it now has 27 outgoing ones — measured on all 8 sites 2026-08-13:
+  // no-outgoing-links went 100 → 0 while orphan-page stayed at 99/100, because
+  // every link in the block pointed at a different domain.
+  // Optional: callers that pass nothing (the two forked prerenderers until they
+  // are updated) get exactly the previous output.
+  const seenInternal = new Set([String(selfUrl || '')]);
+  const internalItems = (internalLinks || [])
+    .filter((l) => l && l.url && l.text && !seenInternal.has(l.url) && seenInternal.add(l.url))
+    .map(
+      (l) =>
+        `<li><a href="${l.url}">${esc(l.text)}</a></li>`
+    )
+    .join('');
 
   // Inline styles: Tailwind classes are purged from the shell, so classes would be
   // inert. var(--font-heading, inherit) picks up the site's own heading token where
@@ -208,8 +227,18 @@ export function buildCrawlableBody(network, { title, description, lang, siteOrig
 
   return (
     `<div id="lv-prerender" style="${wrap}">` +
+    // One rule instead of the same 44-byte inline style on every anchor. The block
+    // carries 27 network links + up to ~200 internal ones, so inline styling cost
+    // ~3,2 kB per page on weddings (72 anchors) and would scale with route count —
+    // gifts has 201 routes. Scoped to #lv-prerender so it cannot leak into the app,
+    // and it is removed with the block when React mounts.
+    `<style>#lv-prerender a{color:inherit;text-decoration:none}</style>` +
     `<h1 style="${h1}">${esc(title)}</h1>` +
     (description ? `<p style="${p}">${esc(description)}</p>` : '') +
+    (internalItems
+      ? `<nav aria-label="${esc(siteName || 'LaplandVibes')} pages" style="${nav}">` +
+        `<ul style="${ul}">${internalItems}</ul></nav>`
+      : '') +
     `<nav aria-label="${esc(siteName || 'LaplandVibes')} network" style="${nav}">` +
     `<ul style="${ul}">${items}</ul></nav>` +
     `</div>`
@@ -233,8 +262,30 @@ export function stripCrawlableBody(html) {
   );
 }
 
-/** Inject into an EMPTY #root only. Returns html unchanged when there is nothing to do. */
+/**
+ * Inject into an EMPTY #root only. Returns html unchanged when there is nothing to do.
+ *
+ * If the shell ALREADY ships a REAL <h1> outside #root, the block's own <h1> is
+ * demoted to <h2> so the page does not end up with two.
+ *
+ * 🔴 `<noscript>` is stripped before that test, and that exclusion is the whole
+ * point. laplandvisit's shell carries `<noscript>…<h1>LaplandVisit</h1>…`, which
+ * a raw `grep -o '<h1'` counts but no crawler does. Demoting on account of it
+ * left the page with NO heading a crawler can see: OpenSEO went from
+ * missing-h1 0/100 to 100/100. Measured, not reasoned — the first version of
+ * this guard shipped on the grep count and made the page worse than before the
+ * feature existed.
+ */
 export function injectCrawlableBody(html, block) {
   if (!block) return html;
-  return html.replace(/<div id="root">\s*<\/div>/i, `<div id="root">${block}</div>`);
+  const shellHasH1 = /<h1[\s>]/i.test(
+    html
+      .replace(/<div id="root">[\s\S]*?<\/div>/i, '')
+      .replace(/<noscript[\s\S]*?<\/noscript>/gi, '')
+      .replace(/<!--[\s\S]*?-->/g, '')
+  );
+  const b = shellHasH1
+    ? block.replace(/<h1( style="[^"]*")?>/i, '<h2$1>').replace('</h1>', '</h2>')
+    : block;
+  return html.replace(/<div id="root">\s*<\/div>/i, `<div id="root">${b}</div>`);
 }
