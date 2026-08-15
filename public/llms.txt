@@ -1,0 +1,21 @@
+# LaplandTours
+
+> Book a 2026 Lapland tour: six hand-picked UK & European operators, packages or build-your-own. Hotels, husky, aurora, Santa visits compared.
+
+## Main pages
+
+- [Home](https://laplandtours.online/): Plan a Lapland trip your way: package tours and build-your-own compared
+- [The operators](https://laplandtours.online/lapland-holidays): Six tour companies for Finnish Lapland compared
+- [Practical info](https://laplandtours.online/practical-info): Climate, visas and transport for Finnish Lapland
+- [Age guide](https://laplandtours.online/age-guide): Which Lapland activities suit which age
+- [Design your own trip](https://laplandtours.online/design-tour): Build your own Lapland trip step by step
+
+## Languages
+
+English (default, no prefix), Finnish (/fi), German (/de), Japanese (/ja), Spanish (/es), Brazilian Portuguese (/br), Simplified Chinese (/cn), Korean (/kr), French (/fr), Italian (/it), Dutch (/nl), Swedish (/sv)
+
+## Network
+
+- Hub: https://laplandvibes.com/
+- Sitemap: https://laplandtours.online/sitemap.xml
+- Contact: info@laplandtours.online
