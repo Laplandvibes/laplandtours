@@ -11,7 +11,7 @@ import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import HomeAdSlots, { MainPartnerBanner } from '../shared/HomeAdSlots';
 import { AD_SLOTS } from '../data/adSlots';
 import { setPageMeta, breadcrumbList, faqPageSchema, travelAgencySchema } from '../lib/meta';
-import { useLang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
 import GygPicks from '../components/GygPicks';
 import { AppPromoHero } from '../components/AppPromo';
 
@@ -104,6 +104,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
 
 export default function Home() {
   const lang = useLang();
+  const lp = useLocalePath();
   const meta = META[copyLang(lang)];
   useEffect(() => {
     setPageMeta({
@@ -142,8 +143,14 @@ export default function Home() {
       <SeasonStrip />
       <SectionTeasers />
       <FAQ />
+      {/* [LV-CONSENT-KIELI 2026-08-16] lang eksplisiittisesti URL:sta: ilman
+          proppia komponentti luki document.documentElement.lang render-hetkellä
+          → suostumus jäi väärälle kielelle kielenvaihdon jälkeen.
+          privacyHref lokaaliprefiksillä (hubin 0bf517d-malli). */}
       <NewsletterInline
         siteId="laplandtours"
+        lang={lang}
+        privacyHref={lp('/privacy')}
         supabaseUrl={import.meta.env.VITE_SUPABASE_URL}
         supabaseAnonKey={import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}
       />
