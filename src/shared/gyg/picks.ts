@@ -96,8 +96,14 @@ const GO = "https://go.laplandvibes.com/go/activities";
  * were invisible: the site looked like it was asking for a language, and the
  * parameter it asked with would not have worked anyway.
  */
-export function gygHref(pick: GygPick, lang?: string): string {
-  const p = new URLSearchParams({ sid: pick.sid });
+export function gygHref(pick: GygPick, lang?: string, sidOverride?: string): string {
+  // sidOverride: a pick's baked-in sid is named after the site the row was
+  // originally curated for (hub_home_pick_*, kids_home_pick_*). A site reusing
+  // the row keeps the Worker's domain prefix but reports revenue under another
+  // site's placement name — measured on laplandgifts 2026-08-14, where GYG
+  // income could not be attributed to any gifts page. Callers that reuse
+  // another site's picks MUST pass their own sid; single-site callers omit it.
+  const p = new URLSearchParams({ sid: sidOverride || pick.sid });
   // GYG's own language codes; en is their default and needs no parameter.
   const L: Record<string, string> = {
     fi: "fi", de: "de", ja: "ja", es: "es", "pt-BR": "pt-br",

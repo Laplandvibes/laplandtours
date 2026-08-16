@@ -761,7 +761,10 @@ if (args.crawlableBody) {
 
 for (const route of routes) {
   const routePath = route.path;
-  const ogImage = route.ogImage || DEFAULT_OG;
+  // Route-level OG image; a locale-specific `ogImageByLang` entry (routes.json)
+  // wins inside the locale loop — needed by shared routes whose locales carry
+  // different page-unique heroes (e.g. /northern-lights/where-to-see: nl + pt-BR).
+  const routeOgImage = route.ogImage || DEFAULT_OG;
 
   // EN fallback (always populated): try EN meta first, else derive from path.
   const enLoc = LOCALE_LIST.find((l) => l.lang === 'en') || LOCALE_LIST[0];
@@ -781,6 +784,9 @@ for (const route of routes) {
     // (copy readers, fallbackTitleByLang, shell title map) — routes that end up
     // on the EN fallback are the only ones worth reporting in the debug log.
     const localizedTitle = resolved.localizedTitle;
+
+    // Per-locale hero/OG override (see routeOgImage note above).
+    const ogImage = (route.ogImageByLang && route.ogImageByLang[loc.lang]) || routeOgImage;
 
     const cleanPath = routePath === '/' ? '' : routePath;
     // Canonical/hreflang MUST use the trailing-slash form, because the prerendered
@@ -858,6 +864,75 @@ summary.forEach((l) => console.log(l));
 if (debugNoMeta.length) {
   console.log(`[prerender] some routes fell back to EN (first ${debugNoMeta.length}):`);
   debugNoMeta.forEach((l) => console.log(l));
+}
+
+// ---------- 404 page (--emit404) ----------
+// 🔴 MITATTU 2026-08-16: every LV site ships `/*  /index.html  200` in
+// public/_redirects, so Cloudflare Pages answers **200 OK** for paths that do not
+// exist (verified on vibes, tours, nature, blog, kids — all five returned 200 for
+// /tata-sivua-ei-ole-olemassa-12345/). shared/NotFound.tsx then sets robots=noindex
+// client-side. The noindex is correct — it IS a 404 page — but it arrives after the
+// status line already told Google "this URL exists". Googlebot renders the JS, sees
+// the noindex, and files the URL under "Excluded by noindex tag"… then re-crawls it
+// forever, because a 200 means the page is real.
+//
+// That is the mechanism behind the ~19 sites that each got a "Noindex-tagin
+// poissulkema" notification inside two hours on 2026-07-27/28, and behind the ~49
+// "Osa korjauksista epäonnistui" mails: clicking "Validate fix" cannot succeed while
+// the server keeps insisting the dead page is fine.
+//
+// 🔴🔴 THE FIX HAS TWO HALVES AND BOTH MUST SHIP TOGETHER:
+//   1. this file — dist/404.html, which Cloudflare Pages serves with a real 404
+//      status for any request matching no static asset, AND
+//   2. removing `/*  /index.html  200` from public/_redirects, because a catch-all
+//      outranks the 404 handler and would keep the 200 alive.
+// Shipping only (1) changes nothing. Shipping only (2) turns dead paths into
+// Cloudflare's generic error page instead of a branded one.
+//
+// 🔴 SAFE ONLY WHEN EVERY ROUTE IS PRERENDERED. This works because the prerender
+// writes a real index.html per route × locale, so the catch-all was never serving a
+// real page — only dead paths. VERIFY PER SITE before removing the catch-all:
+//     find dist -name index.html | wc -l   ==   grep -c '<loc>' dist/sitemap.xml
+// A site with dynamic or client-side-only routes (a :slug page, a search view) will
+// have fewer files than routes, and removing the catch-all would 404 real pages.
+// Opt-in by design: sites that do not pass --emit404 are untouched.
+if (args.emit404) {
+  let html = SHELL;
+
+  // Overwrite the existing robots tag instead of appending a second one. Two
+  // contradictory robots metas is the exact bug shared/NotFound.tsx carried until
+  // 2026-08-13 — Google resolves them to the strictest so it happened to work, but
+  // by luck, and only after JS ran. Don't rebuild that.
+  const ROBOTS_RE = /<meta[^>]+name=["']robots["'][^>]*>/i;
+  html = ROBOTS_RE.test(html)
+    ? html.replace(ROBOTS_RE, '<meta name="robots" content="noindex, follow">')
+    : html.replace(/<\/head>/i, '  <meta name="robots" content="noindex, follow">\n  </head>');
+
+  // A 404 must not claim a canonical or advertise hreflang alternates: the shell's
+  // self-canonical points at the home page, which would tell Google this dead URL
+  // is the preferred version of the site root.
+  html = html.replace(/\s*<link[^>]+rel=["']canonical["'][^>]*>/gi, '');
+  html = html.replace(/\s*<link[^>]+rel=["']alternate["'][^>]+hreflang=[^>]*>/gi, '');
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>404 — ${SITE_NAME}</title>`);
+
+  const out404 = resolve(DIST, '404.html');
+  writeFileSync(out404, html, 'utf-8');
+
+  // Assert the artefact, not the intent — same reasoning as the crawlable-body gate
+  // below. A 404 page that still carries a canonical is worse than no 404 page.
+  const probe404 = readFileSync(out404, 'utf-8');
+  const bad404 = [];
+  if (/rel=["']canonical["']/i.test(probe404)) bad404.push('canonical still present');
+  if (!/name=["']robots["'][^>]*noindex/i.test(probe404)) bad404.push('robots noindex missing');
+  if ((probe404.match(/name=["']robots["']/gi) || []).length !== 1) bad404.push('robots meta count != 1');
+  if (!/<script[^>]+src=/i.test(probe404)) bad404.push('no script tag — shell lost its hashed assets');
+  if (bad404.length) {
+    console.error(`\n[prerender] 404 GATE FAILED on ${out404}:`);
+    for (const p of bad404) console.error(`  - ${p}`);
+    console.error('Refusing to exit 0 — a 404 page with an index directive or a canonical is worse than none.\n');
+    process.exit(1);
+  }
+  console.log('[prerender] wrote dist/404.html — 404 gate OK (noindex, no canonical)');
 }
 
 // ---------- smoke gate (--crawlableBody) ----------

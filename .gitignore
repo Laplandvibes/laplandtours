@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Local `wrangler pages dev` emulator state (2026-08-16)
+.wrangler/

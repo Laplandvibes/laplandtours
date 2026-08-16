@@ -1,1 +1,47 @@
-/*    /index.html   200
+# 🔴🔴 MITATTU 2026-08-13: TÄMÄ SÄÄNTÖMUOTO EI TOIMI CLOUDFLARE PAGESISSA.
+#
+# Cloudflare Pagesin _redirects täsmää VAIN POLKUUN. Host-osaa ei katsota, joten
+# rivi "https://www.esimerkki.fi/* ..." ei osu koskaan mihinkään — se ei ohjaa
+# eikä anna virhettä. Se vain ei tee mitään.
+#
+# Todiste, samasta tiedostosta samalla deployllä (laplandvibes.com):
+#   /bear-kuusamo -> /blog/bear-kuusamo/   POLKU  => 301 ✅
+#   https://www.laplandvibes.com/* -> apex HOST   => 200 ❌
+# Hubilla tämä sääntö on ollut paikallaan 2026-05-22 alkaen eikä ole koskaan
+# ohjannut mitään. Älä kopioi tätä kuviota — se näyttää oikealta.
+#
+# OIKEA KORJAUS on Cloudflare-tason **Redirect Rule** (Rules -> Redirect Rules)
+# per zone, ei _redirects-tiedosto. Ks. muisti seo_gsc_prerender_ctr_fix_20260711.
+# www → apex 301. MITATTU 2026-08-13 (GSC URL Inspection): www.laplandtours.online
+# ei ohjaudu apexiin. Se ei palauta canonicalia lainkaan, viimeisin crawl 2026-04-09,
+# tila "Crawled - currently not indexed". Ilman ohjausta se jää roikkumaan omana
+# hostinaan. Sääntö on ENNEN catch-allia — CF Pages käsittelee _redirects-rivit
+# järjestyksessä, ja /* nielaisisi tämän jos se olisi ensin.
+#
+
+# 🔴🔴 CATCH-ALL POISTETTU 2026-08-16 — ÄLÄ PALAUTA ILMAN LUKEMISTA.
+#
+# Rivi oli:   /*    /index.html   200
+#
+# Se vastasi 200 OK:lla JOKAISEEN polkuun, myös olemattomaan. Mitattu 16.8.:
+# /tata-sivua-ei-ole-olemassa-12345/ palautti 200 tällä ja neljällä muulla
+# sivustolla. shared/NotFound.tsx asettaa noindexin vasta JS:n ajon jälkeen,
+# joten Googlebot näkee ensin statuksen "tämä sivu on olemassa" ja vasta sitten
+# noindexin — kirjaa URLin "Noindex-tagin poissulkema" ja palaa crawlaamaan sitä
+# uudestaan, koska 200 tarkoittaa että sivu on aito. Sama ilmoitus osui ~19
+# sivustolle kahden tunnin sisällä 27.–28.7., ja "Vahvista korjaus" epäonnistuu
+# ikuisesti niin kauan kuin palvelin väittää kuolleen sivun olevan kunnossa.
+#
+# Nyt: dist/404.html (prerenderin --emit404) + ei catch-allia
+#   => aito reitti  -> oma prerenderöity index.html, 200
+#   => kuollut polku -> 404.html, aito HTTP 404
+#
+# 🔴 TÄMÄ ON TURVALLISTA VAIN KOSKA JOKAINEN REITTI ON PRERENDERÖITY.
+# Todennettu 16.8.: 96 prerenderöityä index.html-tiedostoa = 96 sitemap-URLia =
+# 8 reittiä × 12 kieltä, eikä App.tsx:ssä ole yhtään dynaamista tai pelkästään
+# client-side-reittiä (vain <Route path="*"> = NotFound). Catch-all ei siis
+# koskaan tarjoillut yhtään aitoa sivua — vain kuolleita polkuja.
+#
+# Jos lisäät dynaamisen reitin (:slug, haku, suodatin) jota prerender ei kata,
+# se alkaa 404:ätä. Tarkista ennen jokaista deployta:
+#   [ "$(find dist -name index.html | wc -l)" = "$(grep -c '<loc>' dist/sitemap.xml)" ]

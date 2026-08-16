@@ -136,6 +136,14 @@ export type PartnerSlotProps = {
   className?: string;
   /** Tyhjän paikan house-ad — ks. SlotPlaceholder */
   placeholder?: SlotPlaceholder;
+  /**
+   * House-adin äänenvoimakkuus per sivusto (Vesa 2026-08-16, huskysafaris:
+   * "mainospaikat vie liikaa huomiota tällä sivulla"). 'loud' = nykyinen
+   * lumipinta + hehku (oletus, verkoston standardi); 'subtle' = tumma lasi,
+   * ei hehkua, outline-CTA — paikka näkyy muttei kilpaile sisällön kanssa.
+   * Koskee VAIN house-adia; myyty kumppanikortti renderöityy aina samoin.
+   */
+  houseAdTone?: 'loud' | 'subtle';
   /** Vaaleat sivustot (christmas/stays/hoteldeals/nature): 'light' säätää house-adin värit */
   surface?: 'dark' | 'light';
 };
@@ -164,7 +172,7 @@ function pickLocalized(
   return en ?? base;
 }
 
-export default function PartnerSlot({ partner, variant, locale, className, placeholder, surface = 'dark' }: PartnerSlotProps) {
+export default function PartnerSlot({ partner, variant, locale, className, placeholder, surface = 'dark', houseAdTone = 'loud' }: PartnerSlotProps) {
   // Tyhjä paikka: house-ad jos placeholder annettu, muuten ei DOM:ia lainkaan
   if (partner === null) {
     if (!placeholder) return null;
@@ -191,12 +199,22 @@ export default function PartnerSlot({ partner, variant, locale, className, place
     // täyttöjä, mutta ne jäivät 1.31–1.72:1 eli eivät ratkaisseet ongelmaa.
     //
     // Tummilla pinnoilla mikään ei muutu.
-    const houseFill = light
+    const subtle = houseAdTone === 'subtle';
+    const houseFill = subtle
+      ? 'bg-white/[0.04] border-white/20 hover:border-[#EC4899]/60'
+      : light
       ? 'bg-[#0F172A] border-[#EC4899]/55 hover:border-[#EC4899]'
       : 'bg-[#F9FAFB] border-[#EC4899]/45 hover:border-[#EC4899]';
-    const houseTitle = light ? 'text-[#F9FAFB]' : 'text-[#0F172A]';
-    const houseLabel = light ? 'text-[#F9FAFB]/70' : 'text-[#0F172A]/55';
-    const houseSub = light ? 'text-[#F9FAFB]/75' : 'text-[#0F172A]/65';
+    const houseTitle = subtle ? 'text-[#F9FAFB]/90' : light ? 'text-[#F9FAFB]' : 'text-[#0F172A]';
+    const houseLabel = subtle ? 'text-[#F9FAFB]/60' : light ? 'text-[#F9FAFB]/70' : 'text-[#0F172A]/55';
+    const houseSub = subtle ? 'text-[#F9FAFB]/65' : light ? 'text-[#F9FAFB]/75' : 'text-[#0F172A]/65';
+    const houseBorderW = subtle ? 'border border-dashed' : 'border-2 border-dashed';
+    const houseGlow = subtle
+      ? undefined
+      : { boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' };
+    const houseCta = subtle
+      ? 'border border-[#EC4899]/50 text-[#EC4899] bg-transparent group-hover:bg-[#EC4899] group-hover:text-white'
+      : 'bg-[#EC4899] text-white shadow-sm group-hover:bg-[#DB2777]';
 
     // BANNER-variantin house-ad: kompakti vaakarivi (heron alle, ei työnnä sisältöä)
     if (variant === 'banner') {
@@ -209,7 +227,8 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             'group relative flex flex-wrap items-center justify-between gap-x-6 gap-y-3 w-full',
             // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): erottuu sekä
             // tummilta että vaaleilta sivustoilta, dashed-pinkki = "vapaa paikka".
-            'rounded-2xl border-2 border-dashed px-5 py-4 sm:px-7 sm:py-5 transition-all duration-300',
+            'rounded-2xl px-5 py-4 sm:px-7 sm:py-5 transition-all duration-300',
+            houseBorderW,
             houseFill,
             className,
           ]
@@ -220,7 +239,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
           // arbitrary-luokkia kaikissa repoissa (todettu 2026-07-26: nightlife
           // 0 kpl `shadow-[`-selektoria, wellness 7), joten hehku katosi
           // hiljaa osalta sivustoja. Arvot ovat samat kuin luokkaversiossa.
-          style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
+          style={houseGlow}
           aria-label={`${topLabel}: ${t.wantYourAd}`}
         >
           {/* Leima AINA otsikon YLLÄ, ei koskaan vieressä eikä katkaistuna.
@@ -242,7 +261,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
               {t.wantYourAd}
             </span>
           </span>
-          <span className="shrink-0 inline-flex items-center rounded-full bg-[#EC4899] px-4 py-2 text-sm font-semibold text-white shadow-sm group-hover:bg-[#DB2777] group-hover:translate-x-0.5 transition-all duration-200">
+          <span className={`shrink-0 inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold group-hover:translate-x-0.5 transition-all duration-200 ${houseCta}`}>
             {t.bookCta}
           </span>
         </a>
@@ -257,14 +276,15 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         className={[
           'group relative flex h-full flex-col items-center justify-center text-center gap-2.5',
           // Vaalea lumipinta myyntipaikalle (Vesa 2026-07-24): ks. banner-variantti.
-          'rounded-2xl border-2 border-dashed px-6 py-8 sm:py-10 transition-all duration-300',
+          'rounded-2xl px-6 py-8 sm:py-10 transition-all duration-300',
+          houseBorderW,
           houseFill,
           className,
         ]
           .filter(Boolean)
           .join(' ')}
         // Ks. banner-variantti: inline-hehku, koska arbitrary shadow ei emitoidu.
-        style={{ boxShadow: light ? '0 8px 24px rgba(236,72,153,0.14)' : '0 12px 40px rgba(236,72,153,0.22)' }}
+        style={houseGlow}
         aria-label={t.wantYourAd}
       >
         <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest ${houseLabel}`}>
@@ -277,7 +297,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         <p className={`text-sm leading-snug max-w-xs ${houseSub}`}>
           {sub}
         </p>
-        <span className="mt-1.5 inline-flex items-center rounded-full bg-[#EC4899] px-4 py-2 text-sm font-semibold text-white shadow-sm group-hover:bg-[#DB2777] group-hover:translate-x-0.5 transition-all duration-200">
+        <span className={`mt-1.5 inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold group-hover:translate-x-0.5 transition-all duration-200 ${houseCta}`}>
           {t.bookCta}
         </span>
       </a>

@@ -55,6 +55,8 @@ type SurfaceProps = {
   config: HomeAdSlotsConfig;
   locale?: string;
   surface?: 'dark' | 'light';
+  /** House-adin äänenvoimakkuus per sivusto — ks. PartnerSlot.houseAdTone. */
+  houseAdTone?: 'loud' | 'subtle';
   className?: string;
 };
 
@@ -68,7 +70,7 @@ function homeCards(config: HomeAdSlotsConfig): (Partner | null)[] {
  * LEGACY: v2-pääkumppanibanneri heron alle. Korvattu v3:ssa SponsorStripilla.
  * Jätetty exportiksi ettei v2-sivustojen buildit rikkoudu ennen rollausta.
  */
-export function MainPartnerBanner({ config, locale, surface = 'dark', className }: SurfaceProps) {
+export function MainPartnerBanner({ config, locale, surface = 'dark', houseAdTone = 'loud', className }: SurfaceProps) {
   // Mainospaikat vain fi/en (Vesa 2026-07-13).
   if (!adLocaleEnabled(locale)) return null;
   const t = adSlotsCopy(locale);
@@ -84,7 +86,9 @@ export function MainPartnerBanner({ config, locale, surface = 'dark', className 
       <div
         className={[
           'max-w-6xl mx-auto rounded-2xl border p-3 sm:p-4',
-          surface === 'light' ? 'bg-vibe-pink/[0.05] border-vibe-pink/20' : 'bg-vibe-pink/[0.07] border-vibe-pink/25',
+          houseAdTone === 'subtle' && !partner
+            ? 'bg-white/[0.02] border-white/10'
+            : surface === 'light' ? 'bg-vibe-pink/[0.05] border-vibe-pink/20' : 'bg-vibe-pink/[0.07] border-vibe-pink/25',
         ].join(' ')}
       >
         <PartnerSlot
@@ -92,6 +96,7 @@ export function MainPartnerBanner({ config, locale, surface = 'dark', className 
           partner={partner}
           locale={locale}
           surface={surface}
+          houseAdTone={houseAdTone}
           placeholder={{
             siteSlug: config.siteSlug,
             slotId: 'main_partner_1',
@@ -114,7 +119,7 @@ export type HomeAdSlotsProps = SurfaceProps & {
  * Mobiili: pinottuna, ykköspaikka vuorottelee päivittäin (deterministinen,
  * ei arvontaa — parillinen päivä A ylin, pariton B ylin → tasan 50/50).
  */
-export default function HomeAdSlots({ config, locale, surface = 'dark', className, cardClassName }: HomeAdSlotsProps) {
+export default function HomeAdSlots({ config, locale, surface = 'dark', houseAdTone = 'loud', className, cardClassName }: HomeAdSlotsProps) {
   // Kaksijakoinen kielisääntö (Vesa 2026-07-30, Bear-palaute):
   //   MYYTY kortti näkyy KAIKILLA 12 kielellä — kumppani maksoi näkyvyydestä,
   //   ja Partner.i18n kantaa käännetyt tekstit (PartnerSlot).
@@ -178,6 +183,7 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
               partner={a}
               locale={locale}
               surface={surface}
+              houseAdTone={houseAdTone}
               className={['w-full', cardClassName].filter(Boolean).join(' ')}
               placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_a', level: 'card' } : undefined}
             />
@@ -191,6 +197,7 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', classNam
                 partner={b}
                 locale={locale}
                 surface={surface}
+                houseAdTone={houseAdTone}
                 className={['w-full', cardClassName].filter(Boolean).join(' ')}
                 placeholder={salesLocale ? { siteSlug: config.siteSlug, slotId: 'card_b', level: 'card' } : undefined}
               />

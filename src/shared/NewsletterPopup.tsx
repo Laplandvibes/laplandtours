@@ -76,6 +76,14 @@ export interface NewsletterPopupDict {
   socialLead?: string;
   /** Alt text for the founder avatar photo. */
   founderAlt?: string;
+  /**
+   * [LV-CONSENT-V2 2026-08-14] Pakollisen suostumusvalinnan teksti ja
+   * tietosuojalinkin teksti. `consent` on se teksti jonka tilaaja
+   * tosiasiassa hyväksyy — se lähetetään myös palvelimelle ja tallennetaan
+   * riville, koska GDPR edellyttää suostumuksen osoittamista jälkikäteen.
+   */
+  consent?: string;
+  privacy?: string;
 }
 
 type SupportedLang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
@@ -86,6 +94,8 @@ interface NewsletterPopupProps {
    * `source` tag. Examples: 'laplandvibes', 'laplandstays', 'laplandhuskysafaris'.
    */
   siteId: string;
+  /** [LV-CONSENT-V2] Tietosuojaselosteen polku; vaihtelee sivustoittain. */
+  privacyHref?: string;
   /**
    * Brand suffix in the `#LAPLAND<word>` logo at the top of the popup.
    * Defaults to 'VIBES'. Examples: 'STAYS', 'HUSKYSAFARIS', 'SKIRESORTS'.
@@ -224,6 +234,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Subscription failed. Please try again.',
     socialLead: 'Meanwhile — my posts from around Lapland:',
     founderAlt: 'Vesa, founder of LaplandVibes',
+    consent: `Yes, send the LaplandVibes newsletter (travel tips, seasonal updates and offers) to this email address. I confirm I am 18 or over.`,
+    privacy: `Privacy Policy`,
   },
   fi: {
     successHeadline: 'Tervetuloa mukaan!',
@@ -240,6 +252,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Tilauksessa virhe. Yritä uudelleen.',
     socialLead: 'Sillä välin — postauksiani Lapin reissuilta:',
     founderAlt: 'Vesa, LaplandVibesin perustaja',
+    consent: `LaplandVibes saa lähettää minulle uutiskirjettä (matkailuvinkkejä, sesonkitietoa ja tarjouksia) antamaani sähköpostiosoitteeseen. Olen täyttänyt 18 vuotta.`,
+    privacy: `Tietosuojaseloste`,
   },
   de: {
     successHeadline: 'Willkommen an Bord!',
@@ -256,6 +270,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.',
     socialLead: 'In der Zwischenzeit — meine Posts aus Lappland:',
     founderAlt: 'Vesa, Gründer von LaplandVibes',
+    consent: `Ja, LaplandVibes darf mir den Newsletter mit Reisetipps, Saisoninfos und Angeboten an diese E-Mail-Adresse senden. Ich bin mindestens 18 Jahre alt.`,
+    privacy: `Datenschutzerklärung`,
   },
   ja: {
     successHeadline: 'ようこそ！',
@@ -272,6 +288,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: '登録に失敗しました。もう一度お試しください。',
     socialLead: 'それまでの間、ラップランドの旅の投稿はこちら:',
     founderAlt: 'LaplandVibes創業者のヴェサ',
+    consent: `入力したメールアドレス宛に、LaplandVibesがニュースレター（旅のヒント、シーズン情報、キャンペーン情報）を送ることに同意します。私は18歳以上です。`,
+    privacy: `プライバシーポリシー`,
   },
   es: {
     successHeadline: '¡Ya estás dentro!',
@@ -288,6 +306,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Suscripción fallida. Inténtalo de nuevo.',
     socialLead: 'Mientras tanto — mis publicaciones desde Laponia:',
     founderAlt: 'Vesa, fundador de LaplandVibes',
+    consent: `Acepto recibir en mi correo el boletín de LaplandVibes (consejos de viaje, información de temporada y ofertas) y confirmo que tengo al menos 18 años.`,
+    privacy: `Política de privacidad`,
   },
   'pt-BR': {
     successHeadline: 'Você está dentro!',
@@ -304,6 +324,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Falha na inscrição. Tente novamente.',
     socialLead: 'Enquanto isso — meus posts da Lapônia:',
     founderAlt: 'Vesa, fundador do LaplandVibes',
+    consent: `Aceito receber a newsletter da LaplandVibes no e-mail informado, com dicas de viagem, informações de temporada e ofertas. Tenho 18 anos ou mais.`,
+    privacy: `Política de Privacidade`,
   },
   'zh-CN': {
     successHeadline: '欢迎加入！',
@@ -320,6 +342,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: '订阅失败。请重试。',
     socialLead: '在此期间，看看我在拉普兰的动态：',
     founderAlt: 'LaplandVibes创始人Vesa',
+    consent: `我同意 LaplandVibes 向我填写的邮箱发送订阅邮件，内容包括拉普兰旅行建议、季节资讯和优惠信息，并确认本人已年满18周岁。`,
+    privacy: `隐私政策`,
   },
   ko: {
     successHeadline: '환영합니다!',
@@ -336,6 +360,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: '구독 실패. 다시 시도해 주세요.',
     socialLead: '그동안 라플란드 여행 게시물을 만나보세요:',
     founderAlt: 'LaplandVibes 창립자 베사',
+    consent: `입력한 이메일 주소로 LaplandVibes가 보내는 여행 팁·시즌 정보·프로모션 소식 뉴스레터 수신에 동의하며, 만 18세 이상임을 확인합니다.`,
+    privacy: `개인정보처리방침`,
   },
   fr: {
     successHeadline: 'Bienvenue à bord !',
@@ -352,6 +378,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Inscription échouée. Veuillez réessayer.',
     socialLead: 'En attendant — mes publications de Laponie :',
     founderAlt: 'Vesa, fondateur de LaplandVibes',
+    consent: `J'accepte de recevoir la newsletter LaplandVibes (conseils voyage, infos saisonnières, offres) à cette adresse e-mail et je confirme avoir 18 ans ou plus.`,
+    privacy: `Politique de confidentialité`,
   },
   it: {
     successHeadline: 'Ci sei!',
@@ -368,6 +396,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Iscrizione fallita. Riprova.',
     socialLead: 'Nel frattempo — i miei post dalla Lapponia:',
     founderAlt: 'Vesa, fondatore di LaplandVibes',
+    consent: `Sì, desidero ricevere la newsletter di LaplandVibes (consigli di viaggio, novità stagionali e offerte) all'indirizzo indicato. Ho almeno 18 anni.`,
+    privacy: `Informativa sulla privacy`,
   },
   nl: {
     successHeadline: 'Welkom aan boord!',
@@ -384,6 +414,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Abonneren mislukt. Probeer opnieuw.',
     socialLead: 'Ondertussen — mijn posts uit Lapland:',
     founderAlt: 'Vesa, oprichter van LaplandVibes',
+    consent: `Ja, LaplandVibes mag de nieuwsbrief met reistips, seizoensinfo en aanbiedingen naar dit e-mailadres sturen. Ik ben 18 jaar of ouder.`,
+    privacy: `Privacyverklaring`,
   },
   sv: {
     successHeadline: 'Välkommen ombord!',
@@ -400,6 +432,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     errorGeneric: 'Prenumerationen misslyckades. Försök igen.',
     socialLead: 'Under tiden — mina inlägg från Lappland:',
     founderAlt: 'Vesa, grundare av LaplandVibes',
+    consent: `Ja, jag vill ha nyhetsbrevet från LaplandVibes med restips, säsongsinfo och erbjudanden till min e-postadress. Jag är minst 18 år.`,
+    privacy: `Integritetspolicy`,
   },
 };
 
@@ -467,6 +501,11 @@ const FOUNDER_STYLES = `
 
 export default function NewsletterPopup({
   siteId,
+  // [LV-CONSENT-V2 2026-08-14] Tietosuojaselosteen polku vaihtelee
+  // sivustoittain (`/privacy` 9:llä, `/privacy-policy` 3:lla — mitattu
+  // App.tsx:n reiteistä 14.8.). 🔴 Älä todenna curlilla: SPA-kuori antaa
+  // 200 mille tahansa polulle, joten se ei todista reitin olemassaoloa.
+  privacyHref = '/privacy',
   brandWord = 'VIBES',
   headline,
   description,
@@ -508,6 +547,7 @@ export default function NewsletterPopup({
   const [status, setStatus] = useState<Status>(defaultOpen ? 'visible' : 'hidden');
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState(''); // honeypot, humans leave blank
+  const [consented, setConsented] = useState(false); // [LV-CONSENT-V2] pakollinen
   const [errorMsg, setErrorMsg] = useState('');
   const [avatarBroken, setAvatarBroken] = useState(false);
   const [thanksBroken, setThanksBroken] = useState(false);
@@ -580,7 +620,7 @@ export default function NewsletterPopup({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !consented) return;
     setStatus('loading');
     setErrorMsg('');
 
@@ -609,6 +649,11 @@ export default function NewsletterPopup({
           site: siteId,
           language: resolvedLang,
           channel: 'popup',
+          // [LV-CONSENT-V2 2026-08-14] Palvelin vaatii nämä (z.literal(true)).
+          // `consentText` on se teksti jonka käyttäjä näki omalla kielellään.
+          consent: true,
+          ageConfirmed: true,
+          consentText: D.consent,
         }),
       });
 
@@ -826,9 +871,33 @@ export default function NewsletterPopup({
                   }}
                   className="w-full px-5 py-3 rounded-full border border-white/15 focus:border-vibe-pink/60 focus:outline-none focus:ring-2 focus:ring-vibe-pink/25 disabled:opacity-50 placeholder:text-white/40"
                 />
+                {/* [LV-CONSENT-V2 2026-08-14] Pakollinen suostumus + ikävahvistus.
+                    Esivalitsematon: GDPR:n mukaan esivalittu ruutu ei ole suostumus. */}
+                <label className="flex items-start gap-2.5 text-left cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={consented}
+                    onChange={(e) => setConsented(e.target.checked)}
+                    required
+                    disabled={status === 'loading'}
+                    className="mt-0.5 w-4 h-4 shrink-0 accent-vibe-pink cursor-pointer"
+                  />
+                  <span className="text-white/70 text-[11px] leading-relaxed">
+                    {D.consent}{' '}
+                    <a
+                      href={privacyHref}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={(e) => e.stopPropagation()}
+                      className="underline hover:text-white"
+                    >
+                      {D.privacy}
+                    </a>
+                  </span>
+                </label>
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
+                  disabled={status === 'loading' || !consented}
                   className="w-full px-6 py-3 rounded-full bg-vibe-pink hover:bg-vibe-pink/90 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
                 >
                   {status === 'loading' ? (
