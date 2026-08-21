@@ -322,7 +322,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
   /** Pieni badge-pilleri, aina näkyvissä kuluttajansuojalain edellyttämänä */
   function Badge() {
     return (
-      <span className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 rounded-full bg-vibe-pink/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white shadow-sm">
+      <span className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 rounded-full bg-pink-600/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white shadow-sm">
         {badge}
       </span>
     );
@@ -495,8 +495,8 @@ export default function PartnerSlot({ partner, variant, locale, className, place
                   className={[
                     'inline-flex items-center gap-1.5 text-sm sm:text-base font-semibold underline underline-offset-4 transition-colors',
                     lightCard
-                      ? 'text-[#0F172A]/75 decoration-[#0F172A]/25 hover:text-vibe-pink hover:decoration-vibe-pink'
-                      : 'text-snow/80 decoration-snow/30 hover:text-vibe-pink hover:decoration-vibe-pink',
+                      ? 'text-[#0F172A]/75 decoration-[#0F172A]/25 hover:text-pink-700 hover:decoration-pink-700'
+                      : 'text-snow/80 decoration-snow/30 hover:text-pink-400 hover:decoration-pink-400',
                   ].join(' ')}
                 >
                   {articleLabel}
@@ -546,11 +546,11 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         {/* Teksti */}
         <div className="flex flex-col gap-0.5 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-vibe-pink/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white shadow-sm">
+            <span className="inline-flex items-center rounded-full bg-pink-600/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white shadow-sm">
               {badge}
             </span>
           </div>
-          <p className="font-heading text-lg sm:text-xl text-snow tracking-wide leading-tight group-hover:text-vibe-pink transition-colors truncate">
+          <p className="font-heading text-lg sm:text-xl text-snow tracking-wide leading-tight group-hover:text-pink-400 transition-colors truncate">
             {partner.name}
           </p>
           {tagline && (
@@ -605,10 +605,10 @@ export default function PartnerSlot({ partner, variant, locale, className, place
       {/* Teksti */}
       <div className="flex flex-col gap-0.5 min-w-0">
         <div className="flex items-center gap-1.5">
-          <span className="inline-flex items-center rounded-full bg-vibe-pink/90 px-1.5 py-px text-[9px] font-semibold uppercase tracking-widest text-white shadow-sm">
+          <span className="inline-flex items-center rounded-full bg-pink-600/90 px-1.5 py-px text-[9px] font-semibold uppercase tracking-widest text-white shadow-sm">
             {badge}
           </span>
-          <p className="font-body font-semibold text-sm text-snow group-hover:text-vibe-pink transition-colors truncate">
+          <p className="font-body font-semibold text-sm text-snow group-hover:text-pink-400 transition-colors truncate">
             {partner.name}
           </p>
         </div>
@@ -619,7 +619,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
 
       <span
         aria-hidden="true"
-        className="ml-auto shrink-0 text-vibe-pink/60 group-hover:text-vibe-pink group-hover:translate-x-0.5 transition-all duration-200 text-sm"
+        className="ml-auto shrink-0 text-vibe-pink/60 group-hover:text-pink-400 group-hover:translate-x-0.5 transition-all duration-200 text-sm"
       >
         →
       </span>

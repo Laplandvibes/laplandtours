@@ -1328,13 +1328,13 @@ export default function TermsContent({
     variant === 'shop'
       ? { ...base, ...(SHOP_OVERRIDES[lang] ?? SHOP_OVERRIDES.en) }
       : base;
-  const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink hover:text-vibe-pink/80 underline">info@laplandvibes.com</a>;
+  const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink hover:text-pink-300 underline">info@laplandvibes.com</a>;
   // Paljas polku "/unsubscribe" oli sekä linkkiteksti että kohde: teksti luki
   // lauseessa katkelmana ("osoitteessa /unsubscribe") ja kohde osui spokeilla
   // SPA-fallbackiin eli sivuston omaan 404:ään. Nyt lokalisoitu label ja hubin
   // kanoninen peruutussivu (auditti 4.8., mitattu renderöidystä DOMista 7.8.).
   const unsub = (
-    <a href={hubUnsubscribeUrl(lang)} target="_blank" rel="noopener" className="text-vibe-pink hover:text-vibe-pink/80 underline">{
+    <a href={hubUnsubscribeUrl(lang)} target="_blank" rel="noopener" className="text-vibe-pink hover:text-pink-300 underline">{
       lang === 'fi' ? 'peruutussivullamme'
       : lang === 'de' ? 'unserer Abmeldeseite'
       : lang === 'ja' ? '配信停止ページ'
@@ -1350,7 +1350,7 @@ export default function TermsContent({
     }</a>
   );
   const privacy = (
-    <a href="/privacy" className="text-vibe-pink hover:text-vibe-pink/80 underline">
+    <a href="/privacy" className="text-vibe-pink hover:text-pink-300 underline">
       {lang === 'fi' ? 'tietosuojaselosteemme'
       : lang === 'de' ? 'Datenschutzerklärung'
       : lang === 'ja' ? 'プライバシーポリシー'

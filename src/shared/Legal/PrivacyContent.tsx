@@ -1104,7 +1104,7 @@ export default function PrivacyContent({
 
         </div>
         <div className="mt-10 flex flex-wrap gap-4">
-          <Link to={localePath('/', lang)} className="text-vibe-pink hover:text-vibe-pink/80 no-underline font-medium">{t.backToHome}</Link>
+          <Link to={localePath('/', lang)} className="text-vibe-pink hover:text-pink-300 no-underline font-medium">{t.backToHome}</Link>
           <Link to={localePath('/cookie-policy', lang)} className="text-snow/75 hover:text-snow no-underline font-medium">{t.cookiePolicy}</Link>
         </div>
       </div>

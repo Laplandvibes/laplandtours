@@ -1233,7 +1233,7 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                 {editorialNote}
               </p>
             )}
-            <p className="text-[12px] sm:text-[11px] leading-relaxed text-center md:text-left" style={{ color: 'rgba(0,47,108,0.65)' }}>
+            <p className="text-[12px] sm:text-[11px] leading-relaxed text-center md:text-left" style={{ color: 'rgba(0,47,108,0.75)' }}>
               <span aria-hidden="true">ⓘ </span>
               {d.affiliate}
             </p>

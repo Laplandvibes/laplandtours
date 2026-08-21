@@ -1,6 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import FounderByline from './FounderByline';
+
+/**
+ * [LV-FUNNEL 2026-08-21] Lomakesuppilon eventit Umamiin — paikallinen apuri,
+ * ei jaettua importtia (vendoroitu sync on refresh-only). Ei saa koskaan
+ * rikkoa lomaketta. Standardi: memory _procedural/lv_form_funnel_events.md.
+ */
+function track(event: string, data?: Record<string, unknown>) {
+  try {
+    (window as unknown as { umami?: { track: (e: string, d?: unknown) => void } }).umami?.track(event, data);
+  } catch { /* ignore */ }
+}
 
 /**
  * Standard bottom-of-page newsletter section (founder edition 2026-08-09) for
@@ -80,12 +91,40 @@ export default function NewsletterInline({ siteId, lang, supabaseUrl, supabaseAn
   const [consented, setConsented] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'already' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  // [LV-FUNNEL] view = osio vieritetty näkyviin (kerran), start = 1. fokus,
+  // blocked kerran per submit-yritys (natiivi invalid laukeaa per kenttä).
+  const funnelData = { surface: 'inline', lang: resolved };
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const startTracked = useRef(false);
+  const blockedTracked = useRef(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) {
+        track('nl_view', funnelData);
+        io.disconnect();
+      }
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const trackStart = () => {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    track('nl_start', funnelData);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !consented || status === 'loading') return;
+    if (!email || !consented || status === 'loading') {
+      if (status !== 'loading') track('nl_blocked', { ...funnelData, reason: !email ? 'email' : 'consent' });
+      return;
+    }
     setStatus('loading');
     setErrorMsg('');
+    track('nl_submit', funnelData);
     try {
       const res = await fetch(`${supabaseUrl}/functions/v1/send-welcome-email`, {
         method: 'POST',
@@ -112,20 +151,24 @@ export default function NewsletterInline({ siteId, lang, supabaseUrl, supabaseAn
       if (!res.ok) throw new Error(data.error || s.error);
       if (data.alreadySubscribed) {
         setStatus('already');
+        track('nl_success', { ...funnelData, already: true });
       } else {
         setStatus('success');
+        track('nl_success', funnelData);
         onSubscribed?.(sourceTag);
       }
       setEmail('');
     } catch (err: any) {
       setErrorMsg(err?.message || s.error);
       setStatus('error');
+      track('nl_error', funnelData);
     }
   };
 
   return (
     <section
       id="newsletter"
+      ref={sectionRef}
       className="relative overflow-hidden px-4 py-16 sm:py-20"
       style={{ background: 'linear-gradient(160deg, #DB2777 0%, #BE185D 58%, #9D174D 100%)' }}
     >
@@ -156,7 +199,17 @@ export default function NewsletterInline({ siteId, lang, supabaseUrl, supabaseAn
           </div>
         ) : (
           <>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg mx-auto">
+            <form
+              onSubmit={handleSubmit}
+              onInvalidCapture={(e) => {
+                if (blockedTracked.current) return;
+                blockedTracked.current = true;
+                window.setTimeout(() => { blockedTracked.current = false; }, 400);
+                const t = e.target as HTMLInputElement;
+                track('nl_blocked', { ...funnelData, reason: t.type === 'checkbox' ? 'consent' : 'email' });
+              }}
+              className="flex flex-col gap-4 max-w-lg mx-auto"
+            >
               <div className="flex flex-col sm:flex-row gap-3">
               {/* Honeypot: off-screen, hidden from a11y tree. Bots fill it. */}
               <input
@@ -172,6 +225,7 @@ export default function NewsletterInline({ siteId, lang, supabaseUrl, supabaseAn
               <input
                 type="email"
                 value={email}
+                onFocus={trackStart}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={s.placeholder}
                 aria-label={s.placeholder}

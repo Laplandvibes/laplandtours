@@ -897,8 +897,9 @@ export default function NewsletterPopup({
                 </label>
                 <button
                   type="submit"
-                  disabled={status === 'loading' || !consented}
-                  className="w-full px-6 py-3 rounded-full bg-vibe-pink hover:bg-vibe-pink/90 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
+                  disabled={status === 'loading'}
+                  className="w-full px-6 py-3 rounded-full hover:bg-vibe-pink text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
+                  style={{ backgroundColor: '#DB2777' }}
                 >
                   {status === 'loading' ? (
                     <>
