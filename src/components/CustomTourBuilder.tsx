@@ -1,6 +1,17 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Paintbrush, Send, CheckCircle, ChevronDown } from 'lucide-react';
 import { useLang, useLocalePath, type CopyLang, copyLang } from '../i18n/useLang';
+
+/**
+ * [LV-FUNNEL 2026-08-21] Lomakesuppilon eventit Umamiin — paikallinen apuri,
+ * ei jaettua importtia (vendoroitu sync on refresh-only). Ei saa koskaan
+ * rikkoa lomaketta. Standardi: memory _procedural/lv_form_funnel_events.md.
+ */
+function track(event: string, data?: Record<string, unknown>) {
+  try {
+    (window as unknown as { umami?: { track: (e: string, d?: unknown) => void } }).umami?.track(event, data);
+  } catch { /* ignore */ }
+}
 
 const COPY: Record<CopyLang, {
   eyebrow: string;
@@ -445,6 +456,33 @@ export default function CustomTourBuilder() {
   const to = useLocalePath();
   const c = COPY[copyLang(lang)];
   const [submitted, setSubmitted] = useState(false);
+  // [LV-FUNNEL] view = osio vieritetty näkyviin (kerran), start = 1. fokus,
+  // blocked kerran per submit-yritys (natiivi invalid laukeaa per kenttä).
+  // 🔴 Lähetys on mailto:-uloslähtö ILMAN fetchiä: palvelinvahvistusta ei ole,
+  // joten success/error-eventtejä ei voi rehellisesti lähettää — suppilo
+  // päättyy submitiin (= uloslähtö juuri ennen window.open).
+  const funnelData = { lang };
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const startTracked = useRef(false);
+  const blockedTracked = useRef(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) {
+        track('tour_builder_view', funnelData);
+        io.disconnect();
+      }
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const trackStart = () => {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    track('tour_builder_start', funnelData);
+  };
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -461,12 +499,15 @@ export default function CustomTourBuilder() {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nDates: ${dates}\nGroup: ${group}\nBudget: ${budget}\n\n${message}`
     );
+    // [LV-FUNNEL] submit = uloslähtö mailto:iin. Ei success/erroria: sivu ei
+    // näe lähtikö viesti asiakkaan mailiohjelmasta.
+    track('tour_builder_submit', funnelData);
     window.open(`mailto:info@laplandvibes.com?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
   }
 
   return (
-    <section id="custom-tour" className="py-20 md:py-28 bg-deep-night">
+    <section id="custom-tour" ref={sectionRef} className="py-20 md:py-28 bg-deep-night">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
         {/* grid-cols-1 base: a col-span-12 child inside grid-cols-12 + gap-x-10 forces
             11 fixed gaps (440px) = horizontal overflow at 375px. */}
@@ -510,7 +551,19 @@ export default function CustomTourBuilder() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                // [LV-FUNNEL] required-kentät estävät submitin natiivisti ennen
+                // handleSubmitia — invalid-capture kertoo MIKÄ kenttä pysäytti.
+                onInvalidCapture={(e) => {
+                  if (blockedTracked.current) return;
+                  blockedTracked.current = true;
+                  window.setTimeout(() => { blockedTracked.current = false; }, 400);
+                  const t = e.target as HTMLInputElement;
+                  track('tour_builder_blocked', { ...funnelData, reason: t.name || 'field' });
+                }}
+                className="space-y-5"
+              >
                 <p className="cap-meta">{c.briefEyebrow}</p>
                 <h3 className="font-heading text-3xl sm:text-4xl text-snow tracking-wide leading-tight">
                   {c.briefH}
@@ -525,6 +578,7 @@ export default function CustomTourBuilder() {
                       type="text"
                       name="name"
                       required
+                      onFocus={trackStart}
                       placeholder={c.namePh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
                     />
@@ -537,6 +591,7 @@ export default function CustomTourBuilder() {
                       type="email"
                       name="email"
                       required
+                      onFocus={trackStart}
                       placeholder={c.emailPh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
                     />
@@ -551,6 +606,7 @@ export default function CustomTourBuilder() {
                     <input
                       type="text"
                       name="dates"
+                      onFocus={trackStart}
                       placeholder={c.datesPh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
                     />
@@ -560,7 +616,7 @@ export default function CustomTourBuilder() {
                       {c.groupLabel}
                     </label>
                     <div className="relative">
-                      <select name="group" className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
+                      <select name="group" onFocus={trackStart} className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
                         {c.groupOptions.map((opt) => (
                           <option key={opt} className="bg-deep-night">{opt}</option>
                         ))}
@@ -575,7 +631,7 @@ export default function CustomTourBuilder() {
                     {c.budgetLabel}
                   </label>
                   <div className="relative">
-                    <select name="budget" className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
+                    <select name="budget" onFocus={trackStart} className="w-full px-4 py-3 pr-10 appearance-none rounded-lg border border-white/15 bg-deep-night/50 text-snow font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition">
                       {c.budgetOptions.map((opt) => (
                         <option key={opt} className="bg-deep-night">{opt}</option>
                       ))}
@@ -591,6 +647,7 @@ export default function CustomTourBuilder() {
                   <textarea
                     name="message"
                     rows={4}
+                    onFocus={trackStart}
                     placeholder={c.messagePh}
                     className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition resize-none"
                   />

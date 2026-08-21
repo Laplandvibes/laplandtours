@@ -202,8 +202,15 @@
     <meta name="apple-mobile-web-app-title" content="LaplandTours" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-      <script defer src="https://cloud.umami.is/script.js" data-website-id="f602b771-ded0-4943-a94d-00ea52f9d3e3"></script>
-</head>
+      <script defer src="https://cloud.umami.is/script.js" data-website-id="f602b771-ded0-4943-a94d-00ea52f9d3e3" data-domains="laplandtours.online,www.laplandtours.online"></script>
+    <!-- Self-hosted fonts (2026-08-16). Preload is required: without it the
+         browser cannot discover the faces until the bundled CSS has parsed,
+         which guarantees a visible pass in the fallback sans on every cold
+         load. crossorigin is required even same-origin — fonts are fetched in
+         CORS mode and a preload without it downloads the file twice. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/v16-JTUSjIg69CK48gW7PXoo9Wlhyw.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/v24-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2" />
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
