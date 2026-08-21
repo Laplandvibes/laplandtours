@@ -196,7 +196,10 @@
       "it": "Come #LaplandTours raccoglie, usa e protegge i dati dei visitatori. Gestito da Lapeso Oy ai sensi del GDPR dell'UE.",
       "nl": "Hoe #LaplandTours bezoekersgegevens verzamelt, gebruikt en beschermt. Beheerd door Lapeso Oy onder de EU-AVG.",
       "sv": "Hur #LaplandTours samlar in, använder och skyddar besökardata. Drivs av Lapeso Oy enligt EU:s GDPR."
-    }
+    },
+    "harvestFiles": [
+      "../shared/Legal/PrivacyContent.tsx"
+    ]
   },
   {
     "path": "/terms",
@@ -229,7 +232,10 @@
       "it": "Termini che regolano l'uso di laplandtours.online. Le prenotazioni con gli operatori avvengono sul loro sito e secondo i loro termini.",
       "nl": "Voorwaarden voor uw gebruik van laplandtours.online. Boekingen bij reisorganisaties verlopen via hun eigen site onder hun voorwaarden.",
       "sv": "Villkor för din användning av laplandtours.online. Bokningar hos researrangörer görs på arrangörens egen webbplats enligt arrangörens villkor."
-    }
+    },
+    "harvestFiles": [
+      "../shared/Legal/TermsContent.tsx"
+    ]
   },
   {
     "path": "/cookie-policy",
@@ -262,6 +268,9 @@
       "it": "Come #LaplandTours usa i cookie per analisi e consenso: GA4 con Consent Mode v2, nessuna pubblicità o tracciamento finché non accetti.",
       "nl": "Hoe #LaplandTours cookies gebruikt voor analyse en toestemming: GA4 met Consent Mode v2, geen advertenties of tracking tot u accepteert.",
       "sv": "Hur #LaplandTours använder cookies för analys och samtycke: GA4 med Consent Mode v2, ingen annonsering eller spårning förrän du accepterar."
-    }
+    },
+    "harvestFiles": [
+      "../shared/Legal/CookieContent.tsx"
+    ]
   }
 ]

@@ -528,6 +528,181 @@ function routeUrl(route, loc) {
   return `${SITE}${cLoc.prefix}${cleanPath}`.replace(/\/?$/, '/');
 }
 
+// ---------- crawlable-body text harvest (--crawlableBody) ----------
+// Collect the route's OWN localized copy strings — the same text React renders
+// after hydration — so the pre-hydration block carries real page content, not
+// only title+description+anchors. Measured 2026-08-21 over all 9,491 network
+// pages: the block alone lands at 80–245 words ⇒ ~3,100 pages under the
+// ~250-word thin-content line, while the four sites whose prerender already
+// carries body text (hub/gifts/transport/weddings) sit at 0 thin pages.
+//
+// SAME-LOCALE ONLY: a non-EN route whose copy source lacks that language gets
+// NOTHING here rather than English text — EN paragraphs on a /fi/ URL is
+// wrong-language content the network has already paid for (blog root 18.8.).
+// Fail-open everywhere: any parse problem yields fewer paragraphs, never a
+// broken build. Routes may opt into extra source blocks via routes.json
+// "harvestKeys": ["hero", "intro"] when their own copy block is meta-only.
+const HARVEST_SKIP_KEY_RE = /(aria|alt$|alt[A-Z]|cta|button|label|placeholder|img|image|icon|logo|photo|src|href|url|link|badge|eyebrow|kicker|watching|scroll|consent|cookie[A-Z]|menu|^nav$|nav[A-Z]|search|lang|switch|toggle|price|amount|date|meta[A-Z]|seo)/i;
+
+function harvestKeep(value, meta, seen) {
+  if (typeof value !== 'string') return null;
+  const v = value.replace(/\s+/g, ' ').trim();
+  if (!v || seen.has(v)) return null;
+  if (v.includes('{') || v.includes('}')) return null; // runtime placeholders would render raw
+  if (/^(https?:)?\//.test(v) || /^[\w.+-]+@[\w.-]+$/.test(v)) return null; // paths, URLs, emails
+  if (/^[\d\s€$£%+.,;:–—-]+$/.test(v)) return null; // bare numbers/prices
+  const cjk = (v.match(/[぀-ヿ㐀-䶿一-鿿가-힯]/g) || []).length;
+  const minLen = cjk > v.length * 0.3 ? 18 : 40;
+  if (v.length < minLen) return null;
+  if (meta && (v === meta.title || v === meta.description)) return null; // already in the block
+  seen.add(v);
+  return v;
+}
+
+function harvestFromObject(node, out, meta, seen, budget) {
+  if (!node || budget.words <= 0) return;
+  if (Array.isArray(node)) {
+    for (const it of node) {
+      if (budget.words <= 0) return;
+      if (typeof it === 'string') {
+        const kept = harvestKeep(it, meta, seen);
+        if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+      } else harvestFromObject(it, out, meta, seen, budget);
+    }
+    return;
+  }
+  if (typeof node === 'object') {
+    for (const [k, v] of Object.entries(node)) {
+      if (budget.words <= 0) return;
+      if (HARVEST_SKIP_KEY_RE.test(k)) continue;
+      if (typeof v === 'string') {
+        const kept = harvestKeep(v, meta, seen);
+        if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+      } else harvestFromObject(v, out, meta, seen, budget);
+    }
+  }
+}
+
+function harvestFromTsBlock(block, out, meta, seen, budget) {
+  if (!block || budget.words <= 0) return;
+  const kvRe = /(\w+)\s*:\s*(['"`])((?:\\.|(?!\2).)*)\2/g;
+  let m;
+  while ((m = kvRe.exec(block)) !== null && budget.words > 0) {
+    if (HARVEST_SKIP_KEY_RE.test(m[1])) continue;
+    const kept = harvestKeep(unescapeJsString(m[3]), meta, seen);
+    if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+  }
+}
+
+/** JSON-locale subtree for a jsonKey — same file/keyPath logic as readJsonLocale. */
+const harvestJsonCache = new Map();
+function readJsonSubtree(loc, jsonKey) {
+  const dir = resolve(LOCALES, loc.jsonDir);
+  if (!existsSync(dir)) return null;
+  const parts = jsonKey.split('.');
+  const tryPaths = parts.length === 1
+    ? [['pages', parts]]
+    : [[parts[0], parts.slice(1)], ['pages', parts]];
+  for (const [file, keyPath] of tryPaths) {
+    const fp = resolve(dir, `${file}.json`);
+    if (!existsSync(fp)) continue;
+    try {
+      let data = harvestJsonCache.get(fp);
+      if (!data) { data = JSON.parse(readFileSync(fp, 'utf-8')); harvestJsonCache.set(fp, data); }
+      let cursor = data;
+      for (const p of keyPath) cursor = cursor?.[p];
+      if (cursor) return cursor;
+    } catch { /* fail open */ }
+  }
+  return null;
+}
+
+function harvestRouteText(loc, route, meta) {
+  const out = [];
+  const seen = new Set();
+  const budget = { words: 700 };
+  try {
+    // Curated FAQ first (same locale ONLY — the JSON-LD EN fallback is fine for
+    // structured data, but visible EN text on a non-EN URL is not).
+    const faq = readFaqFromMeta(loc, route);
+    if (faq) {
+      for (const it of faq) {
+        if (budget.words <= 0) break;
+        const kept = harvestKeep(`${it.q} ${it.a}`, meta, seen);
+        if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+      }
+    }
+
+    // Extra whole-file sources (routes.json "harvestFiles") — e.g. the shared
+    // Legal components, whose 12-language COPY map carries the full page text
+    // that React renders on /privacy, /terms and /cookie-policy. Two shapes are
+    // recognized: `const <ident> = {…}` per-lang blocks (stays pages) and a
+    // nested `<lang>: {…}` key inside one big map (shared Legal COPY).
+    if (Array.isArray(route.harvestFiles)) {
+      for (const rel of route.harvestFiles) {
+        if (budget.words <= 0) break;
+        const fp = resolve(CWD, rel);
+        if (!existsSync(fp)) continue;
+        let src = inlinePageCache.get(fp);
+        if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
+        const reConst = new RegExp(`\\bconst\\s+${loc.ident}\\b\\s*(?::[^=]+)?=\\s*\\{`, 'g');
+        const m = reConst.exec(src);
+        if (m) { harvestFromTsBlock(sliceBlock(src, m.index + m[0].length - 1), out, meta, seen, budget); continue; }
+        for (const k of [loc.lang, loc.ident]) {
+          const b = findKeyBlock(src, k);
+          if (b) { harvestFromTsBlock(b, out, meta, seen, budget); break; }
+        }
+      }
+    }
+
+    const keys = [
+      ...(route.copyKey ? [route.copyKey] : []),
+      ...(route.jsonKey ? [route.jsonKey] : []),
+      ...(Array.isArray(route.harvestKeys) ? route.harvestKeys : []),
+      // The home route also harvests the conventional home-hero blocks — on
+      // every LV site `hero`/`intro` hold the text the home page itself paints.
+      // Absent keys are simply skipped, so sites without them are unaffected.
+      ...(route.path === '/' ? ['hero', 'intro'] : []),
+    ];
+
+    if (route.copyFile) {
+      const fp = resolve(CWD, route.copyFile.replace('{lang}', loc.ident));
+      if (existsSync(fp)) harvestFromTsBlock(readFileSync(fp, 'utf-8'), out, meta, seen, budget);
+    }
+    if (route.pageFile && budget.words > 0) {
+      const fp = resolve(CWD, route.pageFile);
+      if (existsSync(fp)) {
+        const src = inlinePageCache.get(fp) || readFileSync(fp, 'utf-8');
+        inlinePageCache.set(fp, src);
+        const reConst = new RegExp(`\\bconst\\s+${loc.ident}\\b\\s*(?::[^=]+)?=\\s*\\{`, 'g');
+        const m = reConst.exec(src);
+        if (m) harvestFromTsBlock(sliceBlock(src, m.index + m[0].length - 1), out, meta, seen, budget);
+      }
+    }
+    for (const key of keys) {
+      if (budget.words <= 0) break;
+      // per-lang copy.{lang}.ts
+      const src = perLangSources[loc.lang];
+      if (src) for (const b of findKeyBlocks(src, key)) {
+        harvestFromTsBlock(b, out, meta, seen, budget);
+        if (budget.words <= 0) break;
+      }
+      // monolithic copy.ts
+      if (budget.words > 0 && monolithicSrc) {
+        const langBlock = getLangBlockInMonolithic(loc);
+        if (langBlock) {
+          let cursor = langBlock;
+          for (const part of key.split('.')) cursor = cursor ? findKeyBlock(cursor, part) : null;
+          harvestFromTsBlock(cursor || findKeyBlock(langBlock, key.split('.').pop()), out, meta, seen, budget);
+        }
+      }
+      // JSON locales
+      if (budget.words > 0) harvestFromObject(readJsonSubtree(loc, key), out, meta, seen, budget);
+    }
+  } catch { /* fail open — fewer paragraphs, never a broken build */ }
+  return out.slice(0, 40);
+}
+
 // ---------- crawlable pre-hydration block (--crawlableBody) ----------
 // Implementation lives in the shared module so the two forked prerenderers
 // (laplandchristmas/, laplandgifts/scripts/) use the SAME code instead of a
@@ -573,8 +748,27 @@ function hasTagOutsideComments(html, pattern) {
   return pattern.test(stripped);
 }
 
-function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang, internalLinks }) {
+/**
+ * Titles over 60 chars get truncated in SERPs, and network-wide 2026-08-21 the
+ * biggest single generator of >60 titles is a "| SiteName" suffix on an already
+ * full title (weddings 169 pages, skiresorts 139, carrental 91). Google shows
+ * the site name separately (og:site_name / schema), so dropping the suffix
+ * loses nothing. Only the site's OWN brand suffix is dropped — an informative
+ * tail is content and stays, even over 60.
+ */
+const SITE_NAME_SUFFIX_RE = new RegExp(
+  `\\s*[|\\u2014\\u2013\\u00B7•-]\\s*${SITE_NAME.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}(?:\\.(?:com|fi|online|blog))?\\s*$`,
+  'i'
+);
+function shortenTitle(t) {
+  if (!t || t.length <= 60) return t;
+  const short = String(t).replace(SITE_NAME_SUFFIX_RE, '').trim();
+  return short.length >= 25 && short.length < t.length ? short : t;
+}
+
+function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang, internalLinks, paragraphs }) {
   let html = shell;
+  title = shortenTitle(title);
 
   html = html.replace(/<html\s+lang="[^"]*"/i, `<html lang="${bcp47}"`);
 
@@ -707,6 +901,7 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
       siteName: SITE_NAME,
       internalLinks,
       selfUrl: canonical,
+      paragraphs,
     })
   );
 
@@ -730,6 +925,7 @@ let written = 0;
 let lastOut = null;
 const summary = [];
 const debugNoMeta = [];
+const harvestStats = { with: 0, without: 0, words: 0 };
 
 // Pre-pass: the site's own pages per locale, for the crawlable block's internal
 // nav. Built BEFORE rendering because every page links to every sibling, so the
@@ -827,6 +1023,11 @@ for (const route of routes) {
     // every locale ships a FAQPage even before per-locale translations land.
     const faq = readFaqFromMeta(loc, route) || readFaqFromMeta(enLoc, route);
 
+    // Localized page copy for the crawlable block (same-locale only, fail-open).
+    const paragraphs = args.crawlableBody ? harvestRouteText(loc, route, meta) : null;
+    if (paragraphs && paragraphs.length) harvestStats.with++; else harvestStats.without++;
+    harvestStats.words += (paragraphs || []).reduce((a, t) => a + t.split(/\s+/).length, 0);
+
     const html = injectShell({
       shell: SHELL,
       bcp47: loc.bcp47,
@@ -839,6 +1040,7 @@ for (const route of routes) {
       ogImage,
       faq,
       internalLinks: INTERNAL_BY_LANG[loc.lang],
+      paragraphs,
     });
 
     mkdirSync(dirname(outPath), { recursive: true });
@@ -859,6 +1061,10 @@ for (const route of routes) {
 }
 
 console.log(`[prerender] wrote ${written} files for ${routes.length} routes × ${LOCALE_LIST.length} locales`);
+if (args.crawlableBody) {
+  const avg = harvestStats.with ? Math.round(harvestStats.words / harvestStats.with) : 0;
+  console.log(`[prerender] harvest: ${harvestStats.with} pages with body copy (avg ${avg} words), ${harvestStats.without} without`);
+}
 console.log(`[prerender] sample:`);
 summary.forEach((l) => console.log(l));
 if (debugNoMeta.length) {

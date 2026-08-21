@@ -184,7 +184,7 @@ export function readFooterNetwork(cwd) {
  */
 export function buildCrawlableBody(
   network,
-  { title, description, lang, siteOrigin, siteName, internalLinks, selfUrl }
+  { title, description, lang, siteOrigin, siteName, internalLinks, selfUrl, paragraphs }
 ) {
   if (!network) return null;
   const dict = { ...(network.labelsByLang.en || {}), ...(network.labelsByLang[lang] || {}) };
@@ -219,9 +219,24 @@ export function buildCrawlableBody(
   // it exists (network standard Bebas Neue) and quietly falls back otherwise.
   // Colours inherit, so this reads correctly on deep-night, cream (stays) and the
   // christmas palette without hardcoding any of them.
+  // Route-localized page copy harvested by the caller from the SAME source the
+  // page itself renders (locale JSON / copy.ts / meta-map FAQ). Same-locale only —
+  // an EN paragraph on a /fi/ page would be wrong-language content, which the
+  // network has already been bitten by (blog root 2026-08-18). Optional: callers
+  // that pass nothing get the previous title+description+links output unchanged.
+  const paras = Array.isArray(paragraphs)
+    ? paragraphs.filter((t) => typeof t === 'string' && t.trim())
+    : [];
+
   const wrap = 'max-width:52rem;margin:0 auto;padding:12vh 1.5rem 4rem;color:inherit';
-  const h1 = 'font-family:var(--font-heading,inherit);font-size:clamp(1.75rem,5vw,2.75rem);line-height:1.15;margin:0 0 1rem;font-weight:700;letter-spacing:.01em';
+  // 🔴 font-weight MUST stay 400. Bebas Neue ships a single 400 face on every site
+  // in the network, so asking for 700 does not load a bolder file — the browser
+  // synthesises the bold by smearing the condensed glyphs sideways. That is what
+  // Vesa saw as "h1-kirjaimet venyy" before React mounts (2026-08-16). Any weight
+  // above 400 here reintroduces it.
+  const h1 = 'font-family:var(--font-heading,inherit);font-size:clamp(1.75rem,5vw,2.75rem);line-height:1.15;margin:0 0 1rem;font-weight:400;letter-spacing:.01em';
   const p = 'font-size:1.05rem;line-height:1.6;margin:0 0 3rem;opacity:.85';
+  const pBody = 'font-size:.95rem;line-height:1.55;margin:0 0 .9rem;opacity:.8';
   const nav = 'font-size:.8rem;opacity:.55;line-height:1.9';
   const ul = 'list-style:none;padding:0;margin:.5rem 0 0;display:flex;flex-wrap:wrap;gap:.25rem 1.25rem';
 
@@ -235,6 +250,9 @@ export function buildCrawlableBody(
     `<style>#lv-prerender a{color:inherit;text-decoration:none}</style>` +
     `<h1 style="${h1}">${esc(title)}</h1>` +
     (description ? `<p style="${p}">${esc(description)}</p>` : '') +
+    (paras.length
+      ? `<div style="margin:0 0 3rem">${paras.map((t) => `<p style="${pBody}">${esc(t)}</p>`).join('')}</div>`
+      : '') +
     (internalItems
       ? `<nav aria-label="${esc(siteName || 'LaplandVibes')} pages" style="${nav}">` +
         `<ul style="${ul}">${internalItems}</ul></nav>`
