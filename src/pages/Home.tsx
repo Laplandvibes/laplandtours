@@ -15,6 +15,18 @@ import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from 
 import GygPicks from '../components/GygPicks';
 import { AppPromoHero } from '../components/AppPromo';
 
+// Shared network creds hardcoded (public anon key) — SAME reason as this
+// site's NewsletterPopup.tsx: the repo has no .env and .gitignore forbids one
+// (`.env` + `.env.*`), and CI (.github/workflows/deploy.yml, on: push) builds
+// from a clean clone. `import.meta.env.VITE_SUPABASE_URL` therefore compiled
+// to undefined and this form POSTed to
+// https://laplandtours.online/undefined/functions/v1/send-welcome-email → 405.
+// Measured live 2026-08-21; the popup was fixed this way earlier, the inline
+// form was missed. Do not reintroduce an env read here.
+const SUPABASE_URL = 'https://oogioaxmfnqcbvjbcodh.supabase.co';
+const SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZ2lvYXhtZm5xY2J2amJjb2RoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NjMyNDIsImV4cCI6MjA5MDQzOTI0Mn0.eTfgsux0zV3_gPyFRUcE8M_-DuDpU2xE9gehQM9pz54';
+
 const META: Record<CopyLang, { title: string; description: string; canonical: string; breadcrumbHome: string }> = {
   en: {
     title: 'Lapland Tours 2026: Six Operators Compared',
@@ -151,8 +163,8 @@ export default function Home() {
         siteId="laplandtours"
         lang={lang}
         privacyHref={lp('/privacy')}
-        supabaseUrl={import.meta.env.VITE_SUPABASE_URL}
-        supabaseAnonKey={import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}
+        supabaseUrl={SUPABASE_URL}
+        supabaseAnonKey={SUPABASE_ANON_KEY}
       />
       <div className="bg-deep-night py-6 px-4">
         <AffiliateDisclosure variant="full" />
