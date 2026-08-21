@@ -756,8 +756,18 @@ function hasTagOutsideComments(html, pattern) {
  * loses nothing. Only the site's OWN brand suffix is dropped — an informative
  * tail is content and stays, even over 60.
  */
+// The brand string in a title does not always equal --siteName. lapland.blog
+// passes `--siteName=LaplandBlog` while every title ends `· Lapland.blog`, so a
+// regex built from the flag alone matched nothing and left 74 titles over the
+// limit (measured 21.8.). Try the flag AND the site's own hostname.
+const SITE_HOST = (() => { try { return new URL(SITE).hostname.replace(/^www\./, ''); } catch { return ''; } })();
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const BRAND_ALTS = [SITE_NAME, SITE_HOST, SITE_HOST.replace(/\.[a-z]+$/, '')]
+  .filter((b) => b && b.length >= 4)
+  .map(reEsc)
+  .join('|');
 const SITE_NAME_SUFFIX_RE = new RegExp(
-  `\\s*[|\\u2014\\u2013\\u00B7•-]\\s*${SITE_NAME.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}(?:\\.(?:com|fi|online|blog))?\\s*$`,
+  `\\s*[|\\u2014\\u2013\\u00B7•-]\\s*(?:${BRAND_ALTS})(?:\\.(?:com|fi|online|blog))?\\s*$`,
   'i'
 );
 function shortenTitle(t) {
