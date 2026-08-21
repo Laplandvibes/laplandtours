@@ -31,7 +31,10 @@
       "it": "Prenota un tour Lapponia 2026: sei tour operator UK ed europei scelti con cura, prezzi reali, pacchetti o componi tu. Hotel, husky, aurora, Babbo Natale, transfer a confronto.",
       "nl": "Boek je Lapland-reis 2026: zes zorgvuldig gekozen Britse & Europese aanbieders, echte prijzen, pakketten of zelf samenstellen. Hotels, husky, aurora, Kerstman, transfers vergeleken.",
       "sv": "Du kan planera en resa till finska Lappland på två sätt. Sätt ihop hotell, hyrbil och dagsturer själv, eller köp ett färdigt resepaket från en av sex brittiska eller europeiska researrangörer. Hotell, husky, norrsken och tomtebesök jämförda."
-    }
+    },
+    "harvestFiles": [
+      "src/pages/Home.tsx"
+    ]
   },
   {
     "path": "/lapland-holidays",
@@ -64,7 +67,10 @@
       "it": "Una guida onesta ai sei tour operator britannici ed europei che vendono vacanze in Lapponia finlandese nel 2026: punti di forza e aeroporti di partenza.",
       "nl": "Een eerlijke gids over zes Britse en Europese reisorganisaties die in 2026 reizen naar Fins Lapland verkopen: sterktes, vertrekluchthavens en wat u krijgt.",
       "sv": "En ärlig guide till sex brittiska och europeiska researrangörer som säljer resor till finska Lappland 2026: vad var och en är bra på och varifrån de flyger."
-    }
+    },
+    "harvestFiles": [
+      "src/pages/LaplandHolidays.tsx"
+    ]
   },
   {
     "path": "/practical-info",
@@ -97,7 +103,10 @@
       "it": "Un briefing pre-partenza per la Lapponia finlandese: come arrivare, clima per stagione, visti, valigia, spostamenti, salute e sicurezza.",
       "nl": "Een briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken, vervoer en basis gezondheid en veiligheid.",
       "sv": "En genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista, hur du tar dig runt samt hälsa och säkerhet."
-    }
+    },
+    "harvestFiles": [
+      "src/pages/PracticalInfo.tsx"
+    ]
   },
   {
     "path": "/age-guide",
@@ -130,7 +139,10 @@
       "it": "Una matrice pratica età × attività per la Lapponia finlandese: quali escursioni per bambini, adolescenti e adulti, e quali operatori si specializzano.",
       "nl": "Een praktische leeftijd × activiteit-matrix voor Fins Lapland: wat past bij kinderen, tieners en volwassenen, en welke reisorganisaties zich richten.",
       "sv": "En praktisk matris ålder × aktivitet för finska Lappland: vad som passar spädbarn, barn, tonåringar och vuxna, och vilka researrangörer som är specialiserade på varje grupp."
-    }
+    },
+    "harvestFiles": [
+      "src/pages/AgeGuide.tsx"
+    ]
   },
   {
     "path": "/design-tour",
@@ -163,7 +175,10 @@
       "it": "Descriva la vacanza in Lapponia che desidera davvero: numero di partecipanti, date, budget e richieste speciali. Entro 24 ore le inviamo un itinerario su misura.",
       "nl": "Beschrijf de Lapland-vakantie die u écht wilt: groepsgrootte, data, budget en speciale wensen. Binnen 24 uur ligt er een reis op maat klaar.",
       "sv": "Beskriv den Lapplandsresa du faktiskt vill ha: gruppstorlek, datum, budget och särskilda önskemål, så får du ett skräddarsytt reseförslag inom 24 timmar."
-    }
+    },
+    "harvestFiles": [
+      "src/pages/DesignTour.tsx"
+    ]
   },
   {
     "path": "/privacy",

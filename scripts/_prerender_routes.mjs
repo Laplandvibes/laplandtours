@@ -681,11 +681,29 @@ function harvestRouteText(loc, route, meta) {
     }
     for (const key of keys) {
       if (budget.words <= 0) break;
-      // per-lang copy.{lang}.ts
+      // per-lang copy.{lang}.ts. A DOTTED key ("pages.home") has to be walked
+      // segment by segment: findKeyBlocks builds a regex from the key, and in
+      // that regex `.` matches any character, so "pages.home" silently matched
+      // nothing at all. Measured on carrental 21.8. — 7 wired routes harvested
+      // 0 words while the copy sat right there under `pages:`.
       const src = perLangSources[loc.lang];
-      if (src) for (const b of findKeyBlocks(src, key)) {
-        harvestFromTsBlock(b, out, meta, seen, budget);
-        if (budget.words <= 0) break;
+      if (src) {
+        let blocks;
+        if (key.includes('.')) {
+          let cursor = src;
+          for (const part of key.split('.')) {
+            const found = findKeyBlocks(cursor, part);
+            cursor = found.length ? found[0] : null;
+            if (!cursor) break;
+          }
+          blocks = cursor ? [cursor] : [];
+        } else {
+          blocks = findKeyBlocks(src, key);
+        }
+        for (const b of blocks) {
+          harvestFromTsBlock(b, out, meta, seen, budget);
+          if (budget.words <= 0) break;
+        }
       }
       // monolithic copy.ts
       if (budget.words > 0 && monolithicSrc) {
