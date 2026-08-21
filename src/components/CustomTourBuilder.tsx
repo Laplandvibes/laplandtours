@@ -13,6 +13,22 @@ function track(event: string, data?: Record<string, unknown>) {
   } catch { /* ignore */ }
 }
 
+/**
+ * [LV-LOMAKE 2026-08-21] Brief lahetetaan hubin `send-contact-email`-funktioon
+ * — sama paatepiste jota jaetun Footerin yhteydenottomodaali kayttaa. Ennen
+ * tata submit avasi `mailto:`-linkin ja naytti kiitosruudun HETI: palvelimelle
+ * ei lahtenyt mitaan, ja mobiilissa/webmailissa mailto ei useinkaan avaa
+ * mitaan, joten lupaus "vastaus 24 h sisalla" oli katteeton. Kiitosruutu vasta
+ * 2xx:n jalkeen, virheesta virhetila. laplandtours.online +
+ * laplandtours.pages.dev ovat funktion CORS-listalla; anon-avain on julkinen by
+ * design (sama arvo kuin shared/Footer.tsx:ssa).
+ */
+const CONTACT_ENDPOINT = 'https://oogioaxmfnqcbvjbcodh.supabase.co/functions/v1/send-contact-email';
+const CONTACT_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZ2lvYXhtZm5xY2J2amJjb2RoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NjMyNDIsImV4cCI6MjA5MDQzOTI0Mn0.eTfgsux0zV3_gPyFRUcE8M_-DuDpU2xE9gehQM9pz54';
+
+type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
 const COPY: Record<CopyLang, {
   eyebrow: string;
   h2Line1: string;
@@ -39,6 +55,8 @@ const COPY: Record<CopyLang, {
   messageLabel: string;
   messagePh: string;
   submit: string;
+  sending: string;
+  errorMsg: string;
   subjectPrefix: string;
 }> = {
   en: {
@@ -73,6 +91,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Tell us more',
     messagePh: 'Activities you would love, special occasions, dietary needs, anything…',
     submit: 'Send inquiry',
+    sending: 'Sending…',
+    errorMsg: 'Something went wrong. Please try again.',
     subjectPrefix: 'LaplandTours inquiry from',
   },
   fi: {
@@ -107,6 +127,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Kerro lisää',
     messagePh: 'Toiveet päiväretkistä, erityistilaisuudet, ruokavaliot, kaikki tärkeä…',
     submit: 'Lähetä tiedustelu',
+    sending: 'Lähetetään…',
+    errorMsg: 'Jokin meni pieleen. Yritä uudelleen.',
     subjectPrefix: 'LaplandTours-tiedustelu:',
   },
   de: {
@@ -141,6 +163,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Weitere Hinweise',
     messagePh: 'Wunsch-Tagestouren, besondere Anlässe, Ernährung, alles Relevante …',
     submit: 'Anfrage senden',
+    sending: 'Senden…',
+    errorMsg: 'Etwas ist schiefgelaufen. Bitte erneut versuchen.',
     subjectPrefix: 'LaplandTours-Anfrage von',
   },
   ko: {
@@ -175,6 +199,8 @@ const COPY: Record<CopyLang, {
     messageLabel: '추가로 알려주세요',
     messagePh: '원하시는 액티비티, 특별한 기념일, 식이 요건 등 모두 적어주세요…',
     submit: '문의 보내기',
+    sending: '전송 중…',
+    errorMsg: '문제가 발생했습니다. 다시 시도해 주세요.',
     subjectPrefix: 'LaplandTours 문의',
   },
   fr: {
@@ -209,6 +235,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Détaillez votre projet',
     messagePh: 'Activités souhaitées, occasions particulières, régimes alimentaires, tout détail utile…',
     submit: 'Envoyer la demande',
+    sending: 'Envoi…',
+    errorMsg: 'Une erreur est survenue. Réessayez.',
     subjectPrefix: 'Demande LaplandTours de',
   },
   it: {
@@ -243,6 +271,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Ci dica di più',
     messagePh: 'Attività che le piacerebbero, occasioni speciali, esigenze alimentari, qualsiasi cosa utile…',
     submit: 'Invia la richiesta',
+    sending: 'Invio…',
+    errorMsg: 'Qualcosa è andato storto. Riprova.',
     subjectPrefix: 'Richiesta LaplandTours di',
   },
   nl: {
@@ -277,6 +307,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Vertel ons meer',
     messagePh: 'Activiteiten waar u zin in heeft, bijzondere gelegenheden, dieetwensen, alles…',
     submit: 'Aanvraag versturen',
+    sending: 'Versturen…',
+    errorMsg: 'Er ging iets mis. Probeer opnieuw.',
     subjectPrefix: 'LaplandTours-aanvraag van',
   },
   sv: {
@@ -311,6 +343,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Berätta mer',
     messagePh: 'Aktiviteter du skulle älska, särskilda tillfällen, kostbehov, vad som helst…',
     submit: 'Skicka förfrågan',
+    sending: 'Skickar…',
+    errorMsg: 'Något gick fel. Försök igen.',
     subjectPrefix: 'LaplandTours-förfrågan från',
   },
   ja: {
@@ -345,6 +379,8 @@ const COPY: Record<CopyLang, {
     messageLabel: '詳細をお聞かせください',
     messagePh: 'お好みのアクティビティ、特別な機会、食事制限、何でも…',
     submit: 'お問い合わせを送信',
+    sending: '送信中…',
+    errorMsg: '問題が発生しました。もう一度お試しください。',
     subjectPrefix: 'LaplandToursへのお問い合わせ:',
   },
   es: {
@@ -379,6 +415,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Cuéntenos más',
     messagePh: 'Actividades que le encantarían, ocasiones especiales, necesidades alimentarias, lo que sea…',
     submit: 'Enviar consulta',
+    sending: 'Enviando…',
+    errorMsg: 'Algo salió mal. Inténtalo de nuevo.',
     subjectPrefix: 'Consulta de LaplandTours de',
   },
   'pt-BR': {
@@ -413,6 +451,8 @@ const COPY: Record<CopyLang, {
     messageLabel: 'Conte-nos mais',
     messagePh: 'Atividades que você adoraria, ocasiões especiais, restrições alimentares, qualquer coisa…',
     submit: 'Enviar consulta',
+    sending: 'Enviando…',
+    errorMsg: 'Algo deu errado. Tente novamente.',
     subjectPrefix: 'Consulta da LaplandTours de',
   },
   'zh-CN': {
@@ -447,6 +487,8 @@ const COPY: Record<CopyLang, {
     messageLabel: '告诉我们更多',
     messagePh: '想体验的活动、特别场合、饮食需求，任何信息都行……',
     submit: '发送咨询',
+    sending: '发送中…',
+    errorMsg: '出错了，请重试。',
     subjectPrefix: 'LaplandTours 咨询，来自',
   },
 };
@@ -455,12 +497,11 @@ export default function CustomTourBuilder() {
   const lang = useLang();
   const to = useLocalePath();
   const c = COPY[copyLang(lang)];
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
   // [LV-FUNNEL] view = osio vieritetty näkyviin (kerran), start = 1. fokus,
-  // blocked kerran per submit-yritys (natiivi invalid laukeaa per kenttä).
-  // 🔴 Lähetys on mailto:-uloslähtö ILMAN fetchiä: palvelinvahvistusta ei ole,
-  // joten success/error-eventtejä ei voi rehellisesti lähettää — suppilo
-  // päättyy submitiin (= uloslähtö juuri ennen window.open).
+  // blocked kerran per submit-yritys (natiivi invalid laukeaa per kenttä),
+  // submit juuri ennen fetchiä, ja success/error vasta kun palvelin on
+  // vastannut — lomake ei enää väitä lähettäneensä mitään ennen kuin se on totta.
   const funnelData = { lang };
   const sectionRef = useRef<HTMLElement | null>(null);
   const startTracked = useRef(false);
@@ -484,26 +525,47 @@ export default function CustomTourBuilder() {
     track('tour_builder_start', funnelData);
   };
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const data = new FormData(form);
-    const name = data.get('name') || '';
-    const email = data.get('email') || '';
-    const dates = data.get('dates') || '';
-    const group = data.get('group') || '';
-    const budget = data.get('budget') || '';
-    const message = data.get('message') || '';
+    const data = new FormData(e.target as HTMLFormElement);
+    const val = (k: string) => String(data.get(k) ?? '').trim();
+    const name = val('name');
 
-    const subject = encodeURIComponent(`${c.subjectPrefix} ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nDates: ${dates}\nGroup: ${group}\nBudget: ${budget}\n\n${message}`
-    );
-    // [LV-FUNNEL] submit = uloslähtö mailto:iin. Ei success/erroria: sivu ei
-    // näe lähtikö viesti asiakkaan mailiohjelmasta.
+    // Viesti luetaan sales@:sta, joten kenttänimet ovat englanniksi vaikka
+    // kävijä täytti lomakkeen omalla kielellään. Kenttien maxLength pitää
+    // tämän funktion 5000 merkin katon alla.
+    const body = [
+      `Dates: ${val('dates') || '—'}`,
+      `Group: ${val('group') || '—'}`,
+      `Budget: ${val('budget') || '—'}`,
+      '',
+      val('message') || '—',
+      '',
+      `— laplandtours.online /design-tour (${lang})`,
+    ].join('\n');
+
+    // [LV-FUNNEL] submit = pyyntö lähtee: validointiportit ohitettu, fetch alkaa.
     track('tour_builder_submit', funnelData);
-    window.open(`mailto:info@laplandvibes.com?subject=${subject}&body=${body}`, '_self');
-    setSubmitted(true);
+    setStatus('sending');
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${CONTACT_ANON_KEY}` },
+        body: JSON.stringify({
+          name,
+          email: val('email'),
+          subject: `${c.subjectPrefix} ${name}`.trim(),
+          message: body,
+          website: val('website'), // hunajapurkki: botti täyttää, ihminen ei
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      track('tour_builder_success', funnelData);
+      setStatus('success');
+    } catch (err) {
+      track('tour_builder_error', { ...funnelData, reason: err instanceof Error ? err.message : 'network' });
+      setStatus('error');
+    }
   }
 
   return (
@@ -536,7 +598,7 @@ export default function CustomTourBuilder() {
           </div>
 
           <div className="md:col-span-6 md:col-start-7 bg-deeper-night p-8 sm:p-10 border border-white/10 rounded-2xl">
-            {submitted ? (
+            {status === 'success' ? (
               <div className="py-12">
                 <p className="cap-meta">{c.sentEyebrow}</p>
                 <h3 className="mt-2 font-heading text-3xl sm:text-4xl text-snow tracking-wide leading-tight">
@@ -578,6 +640,7 @@ export default function CustomTourBuilder() {
                       type="text"
                       name="name"
                       required
+                      maxLength={100}
                       onFocus={trackStart}
                       placeholder={c.namePh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
@@ -591,6 +654,7 @@ export default function CustomTourBuilder() {
                       type="email"
                       name="email"
                       required
+                      maxLength={255}
                       onFocus={trackStart}
                       placeholder={c.emailPh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
@@ -606,6 +670,7 @@ export default function CustomTourBuilder() {
                     <input
                       type="text"
                       name="dates"
+                      maxLength={80}
                       onFocus={trackStart}
                       placeholder={c.datesPh}
                       className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition"
@@ -647,18 +712,42 @@ export default function CustomTourBuilder() {
                   <textarea
                     name="message"
                     rows={4}
+                    maxLength={2000}
                     onFocus={trackStart}
                     placeholder={c.messagePh}
                     className="w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/50 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition resize-none"
                   />
                 </div>
 
+                {/* Hunajapurkki: piilokentta jota ihminen ei nae eika tayta.
+                    Yksi neljasta nimesta jonka edge-funktio tarkistaa — jos se
+                    on tayttynyt, funktio palauttaa 200:n eika laheta postia. */}
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] w-px h-px opacity-0"
+                />
+
+                {status === 'error' && (
+                  <p role="alert" className="font-body text-sm text-red-300">
+                    {c.errorMsg}{' '}
+                    <a href="mailto:info@laplandvibes.com" className="underline hover:text-vibe-pink">
+                      info@laplandvibes.com
+                    </a>
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-vibe-pink hover:bg-vibe-pink/90 text-white font-body font-semibold px-6 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] text-lg shadow-lg shadow-vibe-pink/25"
+                  disabled={status === 'sending'}
+                  aria-busy={status === 'sending'}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-70 disabled:cursor-wait disabled:hover:scale-100 text-white font-body font-semibold px-6 py-4 rounded-lg transition-all duration-300 hover:scale-[1.02] text-lg shadow-lg shadow-vibe-pink/25"
                 >
                   <Send className="w-5 h-5" />
-                  {c.submit}
+                  {status === 'sending' ? c.sending : c.submit}
                 </button>
               </form>
             )}
