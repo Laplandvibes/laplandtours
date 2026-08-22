@@ -33,7 +33,15 @@
       "sv": "Du kan planera en resa till finska Lappland på två sätt. Sätt ihop hotell, hyrbil och dagsturer själv, eller köp ett färdigt resepaket från en av sex brittiska eller europeiska researrangörer. Hotell, husky, norrsken och tomtebesök jämförda."
     },
     "harvestFiles": [
-      "src/pages/Home.tsx"
+      "src/pages/Home.tsx",
+      "src/components/Hero.tsx",
+      "src/components/SeasonStrip.tsx",
+      "src/components/SectionTeasers.tsx",
+      "src/components/BookableActivities.tsx",
+      "src/components/BuildYourOwn.tsx",
+      "src/components/OperatorGuide.tsx",
+      "src/components/GygPicks.tsx",
+      "src/components/FAQ.tsx"
     ]
   },
   {
@@ -177,7 +185,9 @@
       "sv": "Beskriv den Lapplandsresa du faktiskt vill ha: gruppstorlek, datum, budget och särskilda önskemål, så får du ett skräddarsytt reseförslag inom 24 timmar."
     },
     "harvestFiles": [
-      "src/pages/DesignTour.tsx"
+      "src/pages/DesignTour.tsx",
+      "src/components/CustomTourBuilder.tsx",
+      "src/components/AffiliateDisclosure.tsx"
     ]
   },
   {
