@@ -220,8 +220,8 @@ const LOCALE_HEADLINES: Record<SupportedLang, { headline: string; description: s
 
 const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   en: {
-    successHeadline: 'Welcome aboard!',
-    successBody: 'The welcome email is on its way to your inbox.',
+    successHeadline: 'Almost there.',
+    successBody: 'Confirm your subscription from the email we just sent you.',
     alreadyHeadline: 'Already on the list!',
     alreadyBody: "You were already subscribed. You'll hear from me when there's something worth telling.",
     emailPlaceholder: 'Your email address',
@@ -238,8 +238,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Privacy Policy`,
   },
   fi: {
-    successHeadline: 'Tervetuloa mukaan!',
-    successBody: 'Tervetuloviesti on jo matkalla postilaatikkoosi.',
+    successHeadline: 'Melkein valmista.',
+    successBody: 'Käy vahvistamassa tilaus sähköpostiisi tulleesta viestistä.',
     alreadyHeadline: 'Olit jo listalla.',
     alreadyBody: 'Tilauksesi oli jo voimassa. Kuulet minusta, kun on kerrottavaa.',
     emailPlaceholder: 'Sähköpostiosoitteesi',
@@ -256,8 +256,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Tietosuojaseloste`,
   },
   de: {
-    successHeadline: 'Willkommen an Bord!',
-    successBody: 'Die Willkommens-E-Mail ist auf dem Weg in Ihren Posteingang.',
+    successHeadline: 'Fast geschafft.',
+    successBody: 'Bestätigen Sie Ihr Abo über die E-Mail, die wir Ihnen gerade geschickt haben.',
     alreadyHeadline: 'Schon auf der Liste!',
     alreadyBody: 'Sie waren bereits angemeldet. Sie hören von mir, wenn es etwas zu erzählen gibt.',
     emailPlaceholder: 'Ihre E-Mail-Adresse',
@@ -274,8 +274,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Datenschutzerklärung`,
   },
   ja: {
-    successHeadline: 'ようこそ！',
-    successBody: 'ようこそメールを受信トレイにお送りしました。',
+    successHeadline: 'あと少しです。',
+    successBody: 'いまお送りしたメールから登録を確認してください。',
     alreadyHeadline: 'すでに登録済みです!',
     alreadyBody: 'すでにご登録いただいています。お伝えしたいことがあるときにご連絡します。',
     emailPlaceholder: 'メールアドレス',
@@ -292,8 +292,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `プライバシーポリシー`,
   },
   es: {
-    successHeadline: '¡Ya estás dentro!',
-    successBody: 'El correo de bienvenida va de camino a tu bandeja de entrada.',
+    successHeadline: 'Ya casi.',
+    successBody: 'Confirma tu suscripción desde el correo que acabamos de enviarte.',
     alreadyHeadline: '¡Ya estabas en la lista!',
     alreadyBody: 'Tu suscripción ya estaba activa. Sabrás de mí cuando haya algo que contar.',
     emailPlaceholder: 'Tu correo electrónico',
@@ -310,8 +310,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Política de privacidad`,
   },
   'pt-BR': {
-    successHeadline: 'Você está dentro!',
-    successBody: 'O e-mail de boas-vindas está a caminho da sua caixa de entrada.',
+    successHeadline: 'Quase lá.',
+    successBody: 'Confirme sua inscrição no e-mail que acabamos de enviar.',
     alreadyHeadline: 'Já está na lista!',
     alreadyBody: 'Sua inscrição já estava ativa. Você vai saber de mim quando houver algo para contar.',
     emailPlaceholder: 'Seu e-mail',
@@ -328,8 +328,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Política de Privacidade`,
   },
   'zh-CN': {
-    successHeadline: '欢迎加入！',
-    successBody: '欢迎邮件正在发往您的邮箱。',
+    successHeadline: '就快好了。',
+    successBody: '请在我们刚发送的邮件中确认订阅。',
     alreadyHeadline: '您已在订阅列表中!',
     alreadyBody: '您的订阅已经生效。有值得分享的内容时，我会告诉您。',
     emailPlaceholder: '您的邮箱地址',
@@ -346,8 +346,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `隐私政策`,
   },
   ko: {
-    successHeadline: '환영합니다!',
-    successBody: '환영 이메일이 받은편지함으로 가고 있습니다.',
+    successHeadline: '거의 다 됐습니다.',
+    successBody: '방금 보내드린 이메일에서 구독을 확인해 주세요.',
     alreadyHeadline: '이미 구독 중입니다!',
     alreadyBody: '이미 구독하고 계십니다. 전할 소식이 있을 때 연락드릴게요.',
     emailPlaceholder: '이메일 주소',
@@ -364,8 +364,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `개인정보처리방침`,
   },
   fr: {
-    successHeadline: 'Bienvenue à bord !',
-    successBody: 'L\'e-mail de bienvenue est en route vers votre boîte.',
+    successHeadline: 'Presque fini.',
+    successBody: 'Confirmez votre inscription depuis l\'e-mail que nous venons de vous envoyer.',
     alreadyHeadline: 'Déjà inscrit·e !',
     alreadyBody: 'Votre inscription était déjà active. Vous aurez de mes nouvelles quand il y aura quelque chose à raconter.',
     emailPlaceholder: 'Votre adresse e-mail',
@@ -382,8 +382,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Politique de confidentialité`,
   },
   it: {
-    successHeadline: 'Ci sei!',
-    successBody: 'L\'e-mail di benvenuto è in arrivo nella tua casella.',
+    successHeadline: 'Ci siamo quasi.',
+    successBody: 'Conferma l\'iscrizione dall\'e-mail che ti abbiamo appena inviato.',
     alreadyHeadline: 'Sei già nella lista!',
     alreadyBody: 'La tua iscrizione era già attiva. Ti scrivo quando c\'è qualcosa da raccontare.',
     emailPlaceholder: 'Il tuo indirizzo e-mail',
@@ -400,8 +400,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Informativa sulla privacy`,
   },
   nl: {
-    successHeadline: 'Welkom aan boord!',
-    successBody: 'De welkomstmail is onderweg naar je inbox.',
+    successHeadline: 'Bijna klaar.',
+    successBody: 'Bevestig je aanmelding via de e-mail die we net hebben gestuurd.',
     alreadyHeadline: 'Al op de lijst!',
     alreadyBody: 'Je was al aangemeld. Je hoort van mij als er iets te vertellen valt.',
     emailPlaceholder: 'Je e-mailadres',
@@ -418,8 +418,8 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     privacy: `Privacyverklaring`,
   },
   sv: {
-    successHeadline: 'Välkommen ombord!',
-    successBody: 'Välkomstmejlet är på väg till din inkorg.',
+    successHeadline: 'Nästan klart.',
+    successBody: 'Bekräfta din prenumeration i mejlet vi just skickade.',
     alreadyHeadline: 'Du står redan på listan!',
     alreadyBody: 'Din prenumeration var redan aktiv. Du hör av mig när det finns något att berätta.',
     emailPlaceholder: 'Din e-postadress',
