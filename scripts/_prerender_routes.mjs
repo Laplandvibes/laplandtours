@@ -638,6 +638,58 @@ function harvestRouteText(loc, route, meta) {
     // that React renders on /privacy, /terms and /cookie-policy. Two shapes are
     // recognized: `const <ident> = {…}` per-lang blocks (stays pages) and a
     // nested `<lang>: {…}` key inside one big map (shared Legal COPY).
+    // [LV-HARVEST-RECORD 2026-08-22] Detail pages whose copy lives in a
+    // per-language DATA file keyed by slug — laplandnightlife's
+    // `src/data/cities.{lang}.ts` is `Record<slug, {blurb, intro, …}>` in 11
+    // languages, one record per /city/<slug> page. harvestFiles cannot be used
+    // for these: it would harvest the WHOLE file, so all 14 city pages would
+    // print all 14 cities' text — duplicate content, worse than a thin page.
+    //
+    //   { "path": "/city/oulu",
+    //     "harvestRecord": { "file": "src/data/cities.{lang}.ts", "key": "oulu" } }
+    //
+    // {lang} is substituted with the locale's copy-file ident (ptBR, zhCN) and,
+    // if that file does not exist, with the plain lang tag (pt-BR, zh-CN) —
+    // both spellings occur in the network. Missing file or missing record ⇒
+    // nothing harvested for that locale, never English in its place.
+    const rec = route.harvestRecord;
+    if (rec && rec.file && rec.key && budget.words > 0) {
+      const candidates = [
+        rec.file.replace('{lang}', loc.ident),
+        rec.file.replace('{lang}', loc.lang),
+      ];
+      const fp = candidates.map((c) => resolve(CWD, c)).find((p) => existsSync(p));
+      if (fp) {
+        let src = inlinePageCache.get(fp);
+        if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
+        // The record may be a keyed entry (`oulu: { … }`) or a top-level const
+        // (`const levi: DestinationFacts = { … }`) — both shapes exist.
+        let b = findKeyBlock(src, rec.key);
+        if (!b) {
+          const cm = new RegExp(`\\bconst\\s+${rec.key.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}\\b[^=]*=\\s*\\{`).exec(src);
+          if (cm) b = sliceBlock(src, cm.index + cm[0].length - 1);
+        }
+        if (b) {
+          if (rec.mode === 'localeMap') {
+            // The record is ONE object whose fields are per-language maps
+            // (`title: { en: '…', fi: '…', ja: '…' }`), not a per-language file.
+            // Harvesting the block wholesale would print all twelve languages on
+            // every page, so take only this locale's values. Both `fi:` and
+            // `'pt-BR':` spellings occur.
+            const tag = loc.lang.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp(`['"]?${tag}['"]?\\s*:\\s*(['"])((?:\\\\.|(?!\\1).)*)\\1`, 'g');
+            let mm;
+            while ((mm = re.exec(b)) !== null && budget.words > 0) {
+              const kept = harvestKeep(unescapeJsString(mm[2]), meta, seen);
+              if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+            }
+          } else {
+            harvestFromTsBlock(b, out, meta, seen, budget);
+          }
+        }
+      }
+    }
+
     if (Array.isArray(route.harvestFiles)) {
       for (const rel of route.harvestFiles) {
         if (budget.words <= 0) break;
