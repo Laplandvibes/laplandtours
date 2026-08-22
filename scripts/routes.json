@@ -213,7 +213,7 @@
       "sv": "Hur #LaplandTours samlar in, använder och skyddar besökardata. Drivs av Lapeso Oy enligt EU:s GDPR."
     },
     "harvestFiles": [
-      "../shared/Legal/PrivacyContent.tsx"
+      "src/shared/Legal/PrivacyContent.tsx"
     ]
   },
   {
@@ -249,7 +249,7 @@
       "sv": "Villkor för din användning av laplandtours.online. Bokningar hos researrangörer görs på arrangörens egen webbplats enligt arrangörens villkor."
     },
     "harvestFiles": [
-      "../shared/Legal/TermsContent.tsx"
+      "src/shared/Legal/TermsContent.tsx"
     ]
   },
   {
@@ -285,7 +285,7 @@
       "sv": "Hur #LaplandTours använder cookies för analys och samtycke: GA4 med Consent Mode v2, ingen annonsering eller spårning förrän du accepterar."
     },
     "harvestFiles": [
-      "../shared/Legal/CookieContent.tsx"
+      "src/shared/Legal/CookieContent.tsx"
     ]
   }
 ]
