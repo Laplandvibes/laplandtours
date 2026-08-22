@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Send, AlertCircle, Loader2, X } from 'lucide-react';
 
@@ -499,6 +499,20 @@ const FOUNDER_STYLES = `
 }
 `;
 
+/**
+ * [LV-FUNNEL 2026-08-21] Lomakesuppilon eventit Umamiin (nl_view/nl_start/
+ * nl_blocked/nl_submit/nl_success/nl_error/nl_dismiss + data.surface).
+ * Paikallinen apuri per komponentti — EI jaettua importtia, koska vendoroitu
+ * sync-shared on refresh-only eikä poimi uusia tiedostoja. Analytiikka ei saa
+ * koskaan rikkoa lomaketta: umami voi puuttua (CSP/adblock) ja kutsu on
+ * try/catchissa. Standardi: memory _procedural/lv_form_funnel_events.md.
+ */
+function track(event: string, data?: Record<string, unknown>) {
+  try {
+    (window as unknown as { umami?: { track: (e: string, d?: unknown) => void } }).umami?.track(event, data);
+  } catch { /* ignore */ }
+}
+
 export default function NewsletterPopup({
   siteId,
   // [LV-CONSENT-V2 2026-08-14] Tietosuojaselosteen polku vaihtelee
@@ -552,6 +566,26 @@ export default function NewsletterPopup({
   const [avatarBroken, setAvatarBroken] = useState(false);
   const [thanksBroken, setThanksBroken] = useState(false);
   const location = useLocation();
+  // [LV-FUNNEL] view/start kerran per mount; blocked kerran per submit-yritys
+  // (natiivi invalid laukeaa per kenttä — ensimmäinen kertoo pysäyttäjän).
+  const funnelData = { surface: 'popup', lang: resolvedLang };
+  const viewTracked = useRef(false);
+  const startTracked = useRef(false);
+  const blockedTracked = useRef(false);
+  const trackView = () => {
+    if (viewTracked.current) return;
+    viewTracked.current = true;
+    track('nl_view', funnelData);
+  };
+  const trackStart = () => {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    track('nl_start', funnelData);
+  };
+  useEffect(() => {
+    if (defaultOpen) trackView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (defaultOpen) return;
@@ -570,6 +604,7 @@ export default function NewsletterPopup({
       fired = true;
       try { sessionStorage.setItem(sessionShownKey, '1'); } catch { /* private mode */ }
       setStatus('visible');
+      trackView();
     };
 
     const timer =
@@ -616,13 +651,18 @@ export default function NewsletterPopup({
   const dismiss = () => {
     writeStored(storageKey, { ...(readStored(storageKey) || {}), dismissed: Date.now() });
     setStatus('hidden');
+    track('nl_dismiss', funnelData);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !consented) return;
+    if (!email || !consented) {
+      track('nl_blocked', { ...funnelData, reason: !email ? 'email' : 'consent' });
+      return;
+    }
     setStatus('loading');
     setErrorMsg('');
+    track('nl_submit', funnelData);
 
     try {
       // Resolve URL + headers based on whether a proxy endpoint or direct
@@ -662,8 +702,10 @@ export default function NewsletterPopup({
 
       if (data.alreadySubscribed) {
         setStatus('already');
+        track('nl_success', { ...funnelData, already: true });
       } else {
         setStatus('success');
+        track('nl_success', funnelData);
         onSubscribed?.(sourceTag);
       }
       writeStored(storageKey, { subscribed: Date.now() });
@@ -671,6 +713,7 @@ export default function NewsletterPopup({
     } catch (err: any) {
       setErrorMsg(err?.message || D.errorGeneric);
       setStatus('error');
+      track('nl_error', funnelData);
     }
   };
 
@@ -840,7 +883,19 @@ export default function NewsletterPopup({
                 {resolvedDescription}
               </p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form
+                onSubmit={handleSubmit}
+                // [LV-FUNNEL] required-kentät estävät submitin natiivisti ennen
+                // handleSubmitia — invalid-capture kertoo MIKÄ kenttä pysäytti.
+                onInvalidCapture={(e) => {
+                  if (blockedTracked.current) return;
+                  blockedTracked.current = true;
+                  window.setTimeout(() => { blockedTracked.current = false; }, 400);
+                  const t = e.target as HTMLInputElement;
+                  track('nl_blocked', { ...funnelData, reason: t.type === 'checkbox' ? 'consent' : 'email' });
+                }}
+                className="flex flex-col gap-3"
+              >
                 {/* Honeypot: off-screen, not focusable, hidden from a11y tree. Bots fill it; humans never see it. */}
                 <input
                   type="text"
@@ -855,6 +910,7 @@ export default function NewsletterPopup({
                 <input
                   type="email"
                   value={email}
+                  onFocus={trackStart}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={D.emailPlaceholder}
                   required
@@ -898,7 +954,7 @@ export default function NewsletterPopup({
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full px-6 py-3 rounded-full hover:bg-vibe-pink text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
+                  className="w-full px-6 py-3 rounded-full hover:bg-pink-600 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
                   style={{ backgroundColor: '#DB2777' }}
                 >
                   {status === 'loading' ? (

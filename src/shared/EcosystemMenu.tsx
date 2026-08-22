@@ -259,7 +259,9 @@ export default function EcosystemMenu({ currentDomain = 'laplandvibes.com', lang
       </button>
 
       {hint && !open && (
-        <div className="lv-eco-hint absolute left-0 top-[calc(100%+12px)] z-40 w-max max-w-[78vw]" role="status">
+        // hidden md:block: alle 768 px kupla peittää sivun sisältöä (Vesa 21.8.2026,
+        // /media-hero) — kapealla riittää napin pulssirengas, joka jää näkyviin.
+        <div className="lv-eco-hint absolute left-0 top-[calc(100%+12px)] z-40 hidden w-max max-w-[78vw] md:block" role="status">
           {/* arrow pointing UP at the button */}
           <span
             aria-hidden="true"
