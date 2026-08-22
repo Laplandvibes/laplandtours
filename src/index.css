@@ -212,6 +212,12 @@
   color: rgba(249,250,251,0.8);
 }
 
+/* Success-tila. Oma modifier eika text-aurora-green -utility, koska .cap-meta
+   on kerroksettomana saantona Tailwindin utility-kerrosta vahvempi. */
+.cap-meta.is-success {
+  color: var(--color-aurora-green);
+}
+
 /* Magazine drop cap — first letter floats large in vibe-pink. Apply to
    the wrapping paragraph, NOT to a span. Used at the start of editorial
    intros (PracticalInfo, LaplandHolidays). */
