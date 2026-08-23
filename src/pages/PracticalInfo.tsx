@@ -27,7 +27,7 @@ const COPY: Record<CopyLang, {
   addonActivity: string;
 }> = {
   en: {
-    metaTitle: 'Practical info: climate, visas, transport for Finnish Lapland | #LaplandTours',
+    metaTitle: 'Finnish Lapland practical info: climate, visas, transport',
     metaDescription:
       'A pre-trip briefing for Finnish Lapland: getting there, climate by season, visa rules, what to pack, getting around, and health & safety basics.',
     canonical: 'https://laplandtours.online/practical-info',
