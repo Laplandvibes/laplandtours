@@ -165,13 +165,17 @@ const COPY = {
 };
 
 /**
- * The as-of date next to each price, in the visitor's own locale. Not "today" —
+ * The as-of date next to each price, in the page's locale. Not "today" —
  * the day the price was actually read off GetYourGuide, which is the only date
  * we can stand behind.
  */
-const fiDate = (iso: string): string => {
+const fiDate = (iso: string, locale: string): string => {
   const d = new Date(iso + 'T00:00:00Z');
-  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString(undefined, { day: 'numeric', month: 'numeric', year: 'numeric' });
+  // timeZone UTC because the stamp is a plain date: without it a reader west of
+  // UTC is shown the previous day. Locale is the page's, never the browser's.
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString(locale, { day: 'numeric', month: 'numeric', year: 'numeric', timeZone: 'UTC' });
 };
 
 export default function GygPicks() {
@@ -252,7 +256,7 @@ export default function GygPicks() {
               </span>
 
               <span className="mt-2 text-center text-[11px] text-white/60">
-                {p.price ? `${t(L.priceSource)} ${fiDate(GYG_PRICE_AS_OF)}` : t(L.via)}
+                {p.price ? `${t(L.priceSource)} ${fiDate(GYG_PRICE_AS_OF, lang)}` : t(L.via)}
               </span>
             </div>
           </a>
