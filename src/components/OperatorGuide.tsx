@@ -48,7 +48,7 @@ const HEADINGS: Record<CopyLang, {
     visit: 'Besuchen',
     tier: 'Klasse',
     length: 'Dauer',
-    departures: 'Nächster Flughafen',
+    departures: 'Nächste Flughäfen',
     bases: 'Standorte',
     bestFor: 'Geeignet für',
     strongIn: 'Stark in',

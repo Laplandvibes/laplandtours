@@ -144,7 +144,7 @@ const COPY: Record<CopyLang, {
       'Ihre Daten und Reisedauer',
       'Wichtige Tagestouren, und solche, die Sie auslassen möchten',
       'Unterkunftsstil und Budget',
-      'Besondere Anlässe: Geburtstage, Anträge, Jubiläen',
+      'Besondere Anlässe: Geburtstage, Heiratsanträge, Jubiläen',
     ],
     noCommitment: 'Unverbindlich. Keine Provision für Sie.',
     sentEyebrow: 'Gesendet',

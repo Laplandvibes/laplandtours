@@ -72,7 +72,7 @@ const cards: ActivityCard[] = [
     labels: {
       en: { title: 'Northern lights hunt', body: 'A guide tracks the clear skies and drives you to them. Far-north Saariselkä sits under the aurora oval.', meta: 'Saariselkä · Sep–Mar · 3–4 h' },
       fi: { title: 'Revontuliretki', body: 'Opas seuraa selkeitä taivaita ja vie sinut niiden alle. Pohjoinen Saariselkä on revontulivyöhykkeellä.', meta: 'Saariselkä · syys–maalis · 3–4 h' },
-      de: { title: 'Polarlichtjagd', body: 'Ein Guide verfolgt den klaren Himmel und fährt Sie hin. Das hohe Saariselkä liegt unter dem Polarlicht-Oval.', meta: 'Saariselkä · Sep–Mär · 3–4 Std.' },
+      de: { title: 'Polarlichtjagd', body: 'Ein Guide verfolgt den klaren Himmel und fährt Sie hin. Das hoch gelegene Saariselkä liegt unter dem Polarlicht-Oval.', meta: 'Saariselkä · Sep–Mär · 3–4 Std.' },
       ja: { title: 'オーロラ観察ツアー', body: 'ガイドが晴れた空を追い、その下へご案内。北部のサーリセルカはオーロラ帯の真下にあります。', meta: 'サーリセルカ · 9〜3月 · 3〜4時間' },
       ko: { title: '오로라 헌트', body: '가이드가 맑은 하늘을 쫓아 그곳으로 데려갑니다. 북부 사리셀카는 오로라 타원 아래에 있습니다.', meta: '사리셀카 · 9~3월 · 3~4시간' },
       fr: { title: 'Chasse aux aurores', body: 'Un guide suit le ciel dégagé et vous y conduit. Saariselkä, au grand nord, se trouve sous l’ovale auroral.', meta: 'Saariselkä · sept.–mars · 3–4 h' },

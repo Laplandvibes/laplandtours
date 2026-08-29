@@ -44,7 +44,7 @@ const COPY: Record<CopyLang, {
       'Which Lapland activities work at which age, and which do not. A practical matrix covering five age bands and the six staples: aurora hunt, husky, snowmobile, reindeer, sauna, glass igloo.',
     matrixEyebrow: 'The matrix',
     ageHeader: 'Age',
-    legend: '✓ available ·, not offered · "passenger" / "tandem" / "solo" specifies the role',
+    legend: '✓ available · dash: not offered · "passenger" / "tandem" / "solo" specifies the role',
     activities: ['Aurora hunt', 'Husky', 'Snowmobile', 'Reindeer', 'Sauna', 'Glass igloo'],
     altHero: 'Snowy fell summit at golden hour in Finnish Lapland',
     rows: [
@@ -133,7 +133,7 @@ const COPY: Record<CopyLang, {
       'Mitkä Lapin päiväretket sopivat mihinkin ikään ja mitkä eivät. Käytännön taulukko viidessä ikäryhmässä ja kuudessa peruspaketissa: revontulet, husky, kelkka, poro, sauna, lasi-iglu.',
     matrixEyebrow: 'Taulukko',
     ageHeader: 'Ikä',
-    legend: '✓ tarjolla ·, ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
+    legend: '✓ tarjolla · viiva: ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
     activities: ['Revontuliretki', 'Husky', 'Kelkkasafari', 'Pororetki', 'Sauna', 'Lasi-iglu'],
     altHero: 'Luminen tunturin huippu kultaisen tunnin valossa Suomen Lapissa',
     rows: [
@@ -212,7 +212,7 @@ const COPY: Record<CopyLang, {
   de: {
     metaTitle: 'Alters-Guide: Lappland-Tour je Alter | #LaplandTours',
     metaDescription:
-      'Eine praktische Matrix Alter × Tour für Finnisch-Lappland. Was für Kinder, Teenager und Erwachsene funktioniert und welche Veranstalter sich spezialisieren.',
+      'Eine praktische Matrix Alter × Tour für Finnisch-Lappland: was für Kinder, Teenager und Erwachsene funktioniert und worauf Anbieter spezialisiert sind.',
     canonical: 'https://laplandtours.online/de/age-guide',
     breadcrumbHome: 'Start',
     breadcrumbName: 'Alters-Guide',
@@ -223,7 +223,7 @@ const COPY: Record<CopyLang, {
       'Welche Lappland-Tagestouren zu welchem Alter passen, und welche nicht. Eine praktische Matrix für fünf Altersgruppen und die sechs Klassiker: Polarlichtjagd, Husky, Schneemobil, Rentier, Sauna, Glas-Iglu.',
     matrixEyebrow: 'Die Matrix',
     ageHeader: 'Alter',
-    legend: '✓ verfügbar ·, nicht im Angebot · "Mitfahrer" / "Tandem" / "selbst" beschreibt die Rolle',
+    legend: '✓ verfügbar · Strich: nicht im Angebot · „Mitfahrer“ / „Tandem“ / „selbst“ beschreibt die Rolle',
     activities: ['Polarlichtjagd', 'Husky', 'Schneemobil', 'Rentier', 'Sauna', 'Glas-Iglu'],
     altHero: 'Verschneiter Fjäll-Gipfel im goldenen Licht in Finnisch-Lappland',
     rows: [
@@ -287,7 +287,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Eigenständig',
         summary:
-          'Werden bei den meisten Touren wie Erwachsene behandelt. Eigenes Schneemobil mit Führerschein (in Finnland ab 16), längere Husky-Touren, Eisklettern, mehrtägige Fjäll-Wanderungen. Polarlicht-Fotoworkshops setzen ebenfalls dieses Alter voraus.',
+          'Werden bei den meisten Touren wie Erwachsene behandelt. Eigenes Schneemobil mit Führerschein (Vermieter verlangen meist 18 Jahre), längere Husky-Touren, Eisklettern, mehrtägige Fjäll-Wanderungen. Polarlicht-Fotoworkshops setzen ebenfalls dieses Alter voraus.',
         cells: [
           '✓',
           '✓',
@@ -377,7 +377,7 @@ const COPY: Record<CopyLang, {
         range: '16歳以上',
         label: '独立した行動が可能',
         summary:
-          'ほとんどのアクティビティで大人として扱われます。運転免許保有(フィンランドでは16歳以上)があれば単独でスノーモービル運転、より長距離のハスキー、アイスクライミング、複数日の登山が可能。オーロラ写真ワークショップにもこの成熟度が必要です。',
+          'ほとんどのアクティビティで大人として扱われます。運転免許があれば単独でスノーモービル運転(レンタル会社は通常18歳以上)、より長距離のハスキー、アイスクライミング、複数日の登山が可能。オーロラ写真ワークショップにもこの成熟度が必要です。',
         cells: [
           '✓',
           '✓',
@@ -403,7 +403,7 @@ const COPY: Record<CopyLang, {
       '라플란드의 어떤 액티비티가 어느 연령에 맞고, 어떤 것은 맞지 않는지. 다섯 개 연령대와 여섯 가지 대표 액티비티(오로라 헌트, 허스키, 스노모빌, 순록, 사우나, 글래스 이글루)를 다루는 실용 매트릭스입니다.',
     matrixEyebrow: '매트릭스',
     ageHeader: '연령',
-    legend: '✓ 가능 ·, 미제공 · "동승자" / "탠덤" / "단독" 은 역할을 의미합니다',
+    legend: '✓ 가능 · 줄: 미제공 · "동승자" / "탠덤" / "단독" 은 역할을 의미합니다',
     activities: ['오로라 헌트', '허스키', '스노모빌', '순록', '사우나', '글래스 이글루'],
     altHero: '핀란드 라플란드의 황금빛 시간 속 눈 덮인 펠 정상',
     rows: [
@@ -467,7 +467,7 @@ const COPY: Record<CopyLang, {
         range: '16세 이상',
         label: '독립적 행동 가능',
         summary:
-          '대부분의 액티비티에서 성인으로 대우받습니다. 핀란드 운전면허(16세 이상) 보유 시 단독 스노모빌 운전, 더 긴 허스키 주행, 빙벽 등반, 여러 날에 걸친 펠 트레킹 가능. 오로라 사진 워크숍 역시 이 정도의 성숙도가 필요합니다.',
+          '대부분의 액티비티에서 성인으로 대우받습니다. 운전면허 보유 시 단독 스노모빌 운전(렌털 업체는 보통 18세 이상), 더 긴 허스키 주행, 빙벽 등반, 여러 날에 걸친 펠 트레킹 가능. 오로라 사진 워크숍 역시 이 정도의 성숙도가 필요합니다.',
         cells: [
           '✓',
           '✓',
@@ -493,7 +493,7 @@ const COPY: Record<CopyLang, {
       'Quelles activités en Laponie fonctionnent à quel âge, et lesquelles ne fonctionnent pas. Une matrice pratique couvrant cinq tranches d\'âge et les six classiques : chasse aux aurores, husky, motoneige, renne, sauna, iglou de verre.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Âge',
-    legend: '✓ disponible ·, non proposé · « passager » / « tandem » / « seul » indique le rôle',
+    legend: '✓ disponible · tiret : non proposé · « passager » / « tandem » / « seul » indique le rôle',
     activities: ['Chasse aux aurores', 'Husky', 'Motoneige', 'Renne', 'Sauna', 'Iglou de verre'],
     altHero: 'Sommet de fjäll enneigé à l\'heure dorée en Laponie finlandaise',
     rows: [
@@ -557,7 +557,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Autonomes',
         summary:
-          'Traités comme des adultes pour la plupart des activités. Conduite de motoneige en solo avec permis (16+ en Finlande), sorties husky plus longues, escalade sur glace, randonnées de plusieurs jours en fjäll. Les ateliers de photographie d\'aurore demandent aussi cette maturité.',
+          'Traités comme des adultes pour la plupart des activités. Conduite de motoneige en solo avec permis (les loueurs exigent en général 18 ans), sorties husky plus longues, escalade sur glace, randonnées de plusieurs jours en fjäll. Les ateliers de photographie d\'aurore demandent aussi cette maturité.',
         cells: [
           '✓',
           '✓',
@@ -583,7 +583,7 @@ const COPY: Record<CopyLang, {
       'Quali attività in Lapponia funzionano a quale età e quali no. Una matrice pratica che copre cinque fasce di età e i sei classici: caccia all\'aurora, husky, motoslitta, renna, sauna, iglù di vetro.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Età',
-    legend: '✓ disponibile ·, non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
+    legend: '✓ disponibile · trattino: non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
     activities: ['Caccia all\'aurora', 'Husky', 'Motoslitta', 'Renna', 'Sauna', 'Iglù di vetro'],
     altHero: 'Vetta di un fjäll innevato all\'ora d\'oro in Lapponia finlandese',
     rows: [
@@ -647,7 +647,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Autonomi',
         summary:
-          'Trattati come adulti per la maggior parte delle attività. Guida in solitaria della motoslitta con patente (in Finlandia da 16 anni), uscite husky più lunghe, arrampicata su ghiaccio, trekking in fjäll di più giorni. Anche i workshop di fotografia dell\'aurora richiedono questa maturità.',
+          'Trattati come adulti per la maggior parte delle attività. Guida in solitaria della motoslitta con patente (i noleggi richiedono di solito 18 anni), uscite husky più lunghe, arrampicata su ghiaccio, trekking in fjäll di più giorni. Anche i workshop di fotografia dell\'aurora richiedono questa maturità.',
         cells: [
           '✓',
           '✓',
@@ -673,7 +673,7 @@ const COPY: Record<CopyLang, {
       'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers: aurora-jacht, husky, sneeuwscooter, rendier, sauna, glaziglo.',
     matrixEyebrow: 'De matrix',
     ageHeader: 'Leeftijd',
-    legend: '✓ mogelijk ·, niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
+    legend: '✓ mogelijk · streepje: niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
     activities: ['Aurora-jacht', 'Husky', 'Sneeuwscooter', 'Rendier', 'Sauna', 'Glaziglo'],
     altHero: 'Besneeuwde fjäll-top in het gouden uur in Fins Lapland',
     rows: [
@@ -737,7 +737,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Zelfstandig',
         summary:
-          'Worden bij de meeste activiteiten als volwassenen behandeld. Solo sneeuwscooter met rijbewijs (in Finland vanaf 16), langere husky-tochten, ijsklimmen, meerdaagse fjäll-tochten. Aurora-fotografieworkshops vragen ook deze leeftijd.',
+          'Worden bij de meeste activiteiten als volwassenen behandeld. Solo sneeuwscooter met rijbewijs (verhuurders eisen meestal 18 jaar), langere husky-tochten, ijsklimmen, meerdaagse fjäll-tochten. Aurora-fotografieworkshops vragen ook deze leeftijd.',
         cells: [
           '✓',
           '✓',
@@ -762,7 +762,7 @@ const COPY: Record<CopyLang, {
       'Vilka Lapplandsaktiviteter fungerar i vilken ålder, och vilka gör det inte. En praktisk matris över fem åldersgrupper och de sex grundpelarna: norrskensjakt, husky, skoter, ren, bastu, glasiglo.',
     matrixEyebrow: 'Matrisen',
     ageHeader: 'Ålder',
-    legend: '✓ tillgängligt ·, erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
+    legend: '✓ tillgängligt · streck: erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
     activities: ['Norrskensjakt', 'Husky', 'Skoter', 'Ren', 'Bastu', 'Glasiglo'],
     altHero: 'Snöig fjälltopp i gyllene timme i finska Lappland',
     rows: [
@@ -826,7 +826,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Självständiga',
         summary:
-          'Behandlas som vuxna i de flesta aktiviteter. Egen skoterkörning med fullt körkort (16+ i Finland), längre huskyturer, isklättring, flerdagars fjällvandringar. Även workshops i norrskensfotografering kräver den här mognaden.',
+          'Behandlas som vuxna i de flesta aktiviteter. Egen skoterkörning med fullt körkort (uthyrare kräver oftast 18 år), längre huskyturer, isklättring, flerdagars fjällvandringar. Även workshops i norrskensfotografering kräver den här mognaden.',
         cells: [
           '✓',
           '✓',
@@ -852,7 +852,7 @@ const COPY: Record<CopyLang, {
       'Qué actividades de Laponia funcionan a cada edad y cuáles no. Una matriz práctica con cinco franjas de edad y los seis básicos: caza de auroras, huskies, motonieve, renos, sauna e iglú de cristal.',
     matrixEyebrow: 'La matriz',
     ageHeader: 'Edad',
-    legend: '✓ disponible ·, no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
+    legend: '✓ disponible · guion: no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
     activities: ['Caza de auroras', 'Husky', 'Motonieve', 'Renos', 'Sauna', 'Iglú de cristal'],
     altHero: 'Cumbre nevada de un fell a la hora dorada en la Laponia finlandesa',
     rows: [
@@ -916,7 +916,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Autónomos',
         summary:
-          'Se tratan como adultos en casi todas las actividades. Motonieve en solitario con permiso de conducir (16+ en Finlandia), recorridos de huskies más largos, escalada en hielo, travesías de varios días por los fells. Los talleres de fotografía de auroras también piden esta madurez.',
+          'Se tratan como adultos en casi todas las actividades. Motonieve en solitario con permiso de conducir (las empresas de alquiler suelen exigir 18 años), recorridos de huskies más largos, escalada en hielo, travesías de varios días por los fells. Los talleres de fotografía de auroras también piden esta madurez.',
         cells: [
           '✓',
           '✓',
@@ -942,7 +942,7 @@ const COPY: Record<CopyLang, {
       'Quais atividades da Lapônia funcionam em cada idade e quais não. Uma matriz prática com cinco faixas etárias e os seis clássicos: caça à aurora, huskies, snowmobile, renas, sauna e iglu de vidro.',
     matrixEyebrow: 'A matriz',
     ageHeader: 'Idade',
-    legend: '✓ disponível ·, não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
+    legend: '✓ disponível · traço: não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
     activities: ['Caça à aurora', 'Husky', 'Snowmobile', 'Renas', 'Sauna', 'Iglu de vidro'],
     altHero: 'Cume nevado de um fell na hora dourada na Lapônia finlandesa',
     rows: [
@@ -1006,7 +1006,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Independentes',
         summary:
-          'Tratados como adultos na maioria das atividades. Snowmobile sozinho com habilitação (16+ na Finlândia), passeios de huskies mais longos, escalada no gelo, trilhas de vários dias pelos fells. As oficinas de fotografia de aurora também exigem essa maturidade.',
+          'Tratados como adultos na maioria das atividades. Snowmobile sozinho com habilitação (as locadoras costumam exigir 18 anos), passeios de huskies mais longos, escalada no gelo, trilhas de vários dias pelos fells. As oficinas de fotografia de aurora também exigem essa maturidade.',
         cells: [
           '✓',
           '✓',
@@ -1096,7 +1096,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: '可独立',
         summary:
-          '在多数活动中按成人对待。持驾照可单独驾驶雪地摩托（芬兰为 16 岁以上）、更长的哈士奇驾乘、攀冰、多日山地徒步。极光摄影工作坊也需要这种成熟度。',
+          '在多数活动中按成人对待。持驾照可单独驾驶雪地摩托（租赁公司通常要求 18 岁以上）、更长的哈士奇驾乘、攀冰、多日山地徒步。极光摄影工作坊也需要这种成熟度。',
         cells: [
           '✓',
           '✓',
@@ -1134,80 +1134,80 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
 /**
  * Hero stat tiles — REAL numbers from this page's own matrix: 5 age bands
  * (0–2 / 3–5 / 6–9 / 10–15 / 16+), 6 staple activities, snowmobile tandem
- * from 12 with a parent, solo from 16 with a driving licence.
+ * from 12 with a parent, solo with a driving licence (rentals usually 18+).
  */
 const STATS: Record<CopyLang, { value: string; label: string }[]> = {
   en: [
     { value: '5', label: 'Age bands' },
     { value: '6', label: 'Activities rated' },
     { value: '12+', label: 'Snowmobile tandem' },
-    { value: '16+', label: 'Solo with licence' },
+    { value: '18+', label: 'Solo with licence' },
   ],
   fi: [
     { value: '5', label: 'Ikäryhmää' },
     { value: '6', label: 'Aktiviteettia' },
     { value: '12+', label: 'Kelkka tandemina' },
-    { value: '16+', label: 'Yksin ajokortilla' },
+    { value: '18+', label: 'Yksin ajokortilla' },
   ],
   de: [
     { value: '5', label: 'Altersgruppen' },
     { value: '6', label: 'Aktivitäten bewertet' },
     { value: '12+', label: 'Schneemobil-Tandem' },
-    { value: '16+', label: 'Solo mit Führerschein' },
+    { value: '18+', label: 'Solo mit Führerschein' },
   ],
   ja: [
     { value: '5', label: '年齢グループ' },
     { value: '6', label: 'アクティビティ' },
     { value: '12+', label: 'スノーモービル同乗' },
-    { value: '16+', label: '免許で単独運転' },
+    { value: '18+', label: '免許で単独運転' },
   ],
   ko: [
     { value: '5', label: '연령 그룹' },
     { value: '6', label: '액티비티' },
     { value: '12+', label: '스노모빌 탠덤' },
-    { value: '16+', label: '면허 소지 단독' },
+    { value: '18+', label: '면허 소지 단독' },
   ],
   fr: [
     { value: '5', label: 'Tranches d\'âge' },
     { value: '6', label: 'Activités évaluées' },
     { value: '12+', label: 'Motoneige en tandem' },
-    { value: '16+', label: 'Seul avec permis' },
+    { value: '18+', label: 'Seul avec permis' },
   ],
   it: [
     { value: '5', label: 'Fasce d\'età' },
     { value: '6', label: 'Attività valutate' },
     { value: '12+', label: 'Motoslitta in tandem' },
-    { value: '16+', label: 'Da solo con patente' },
+    { value: '18+', label: 'Da solo con patente' },
   ],
   nl: [
     { value: '5', label: 'Leeftijdsgroepen' },
     { value: '6', label: 'Activiteiten beoordeeld' },
     { value: '12+', label: 'Sneeuwscooter-tandem' },
-    { value: '16+', label: 'Solo met rijbewijs' },
+    { value: '18+', label: 'Solo met rijbewijs' },
   ],
   sv: [
     { value: '5', label: 'Åldersgrupper' },
     { value: '6', label: 'Aktiviteter bedömda' },
     { value: '12+', label: 'Skoter i tandem' },
-    { value: '16+', label: 'Ensam med körkort' },
+    { value: '18+', label: 'Ensam med körkort' },
   ],
   es: [
     { value: '5', label: 'Franjas de edad' },
     { value: '6', label: 'Actividades valoradas' },
     { value: '12+', label: 'Motonieve en tándem' },
-    { value: '16+', label: 'Solo con carné' },
+    { value: '18+', label: 'Solo con carné' },
   ],
   'pt-BR': [
     { value: '5', label: 'Faixas etárias' },
     { value: '6', label: 'Atividades avaliadas' },
     { value: '12+', label: 'Snowmobile em tandem' },
-    { value: '16+', label: 'Sozinho com carteira' },
+    { value: '18+', label: 'Sozinho com carteira' },
   ],
   'zh-CN': [
     { value: '5', label: '年龄段' },
     { value: '6', label: '评估活动' },
     { value: '12+', label: '雪地摩托双人' },
-    { value: '16+', label: '持照单独驾驶' },
+    { value: '18+', label: '持照单独驾驶' },
   ],
 };
 

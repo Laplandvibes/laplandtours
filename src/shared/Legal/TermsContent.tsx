@@ -234,7 +234,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s4Body: (siteName) => (
       <>
         Diese Website zeigt gesponserte Anzeigen Dritter. Gesponserte Inhalte sind durch das Label{' '}
-        <strong className="text-snow/90">„Gesponsert"</strong> eindeutig gekennzeichnet. {siteName} ist nicht verantwortlich für die
+        <strong className="text-snow/90">„Gesponsert“</strong> eindeutig gekennzeichnet. {siteName} ist nicht verantwortlich für die
         Produkte, Dienste oder Aussagen der Werbetreibenden. Beim Klicken auf gesponserte Links gelangen Sie auf externe Websites mit
         eigenen Bedingungen und Datenschutzrichtlinien.
       </>

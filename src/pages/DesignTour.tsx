@@ -39,13 +39,13 @@ const META: Record<CopyLang, {
   de: {
     title: 'Individuelle Lappland-Reise planen | #LaplandTours',
     description:
-      'Beschreiben Sie die Lappland-Reise, die Sie sich wirklich wünschen (Gruppengröße, Daten, Budget und besondere Anlässe), innerhalb von 24 Stunden folgt ein maßgeschneidertes Programm.',
+      'Beschreiben Sie Ihre Wunschreise nach Lappland: Gruppengröße, Termine, Budget und besondere Anlässe. Innerhalb von 24 Stunden folgt ein Vorschlag.',
     canonical: 'https://laplandtours.online/de/design-tour',
     breadcrumbHome: 'Start',
     breadcrumbName: 'Individuelle Reise',
     articleHeadline: 'Individuelle Lappland-Reise planen',
     articleDescription:
-      'Anfrageformular für Reisende, die einen vollständig maßgeschneiderten Lappland-Reiseplan wünschen: Anträge, Familien-Geburtstage, Mehrregionen-Reisen oder Luxus-Buchungen.',
+      'Anfrageformular für Reisende, die einen vollständig maßgeschneiderten Lappland-Reiseplan wünschen: Heiratsanträge, Familiengeburtstage, Reisen durch mehrere Regionen oder Luxusbuchungen.',
   },
   ja: {
     title: 'ラップランドの旅をデザインする | #LaplandTours',

@@ -58,7 +58,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'When to go',
         body:
-          'Aurora season runs September–March (peak Nov–Feb). Christmas Santa-themed trips: 1–24 December. Snow season: late Nov–April. Midnight Sun: late May–late July. Autumn ruska (foliage): mid-September.',
+          'Aurora season runs late August–early April (peak Nov–Feb). Christmas Santa-themed trips: 1–24 December. Snow season: late Nov–April. Midnight Sun: late May–late July. Autumn ruska (foliage): mid-September.',
       },
       {
         n: '04',
@@ -117,7 +117,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Milloin mennä',
         body:
-          'Revontulikausi syys–maaliskuu (huippu marras–helmikuu). Joulupukki­matkat 1.–24. joulukuuta. Lumikausi marraskuun lopusta huhtikuuhun. Yötön yö touko–heinäkuussa. Syksyn ruska syyskuun puolivälissä.',
+          'Revontulikausi elokuun lopusta huhtikuun alkuun (huippu marras–helmikuu). Joulupukki­matkat 1.–24. joulukuuta. Lumikausi marraskuun lopusta huhtikuuhun. Yötön yö touko–heinäkuussa. Syksyn ruska syyskuun puolivälissä.',
       },
       {
         n: '04',
@@ -176,7 +176,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Reisezeit',
         body:
-          'Polarlicht-Saison von September bis März (Höhepunkt November–Februar). Weihnachts-Trips 1. bis 24. Dezember. Schneesaison Ende November bis April. Mitternachtssonne Ende Mai bis Ende Juli. Herbstfärbung „Ruska" Mitte September.',
+          'Polarlicht-Saison von Ende August bis Anfang April (Höhepunkt November–Februar). Weihnachts-Trips 1. bis 24. Dezember. Schneesaison Ende November bis April. Mitternachtssonne Ende Mai bis Ende Juli. Herbstfärbung „Ruska“ Mitte September.',
       },
       {
         n: '04',
@@ -235,7 +235,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'いつ訪れるか',
         body:
-          'オーロラのシーズンは9月から3月(11月〜2月がピーク)。クリスマスのサンタテーマの旅:12月1日〜24日。雪のシーズン:11月下旬〜4月。白夜:5月下旬〜7月下旬。秋のルスカ(紅葉):9月中旬。',
+          'オーロラのシーズンは8月末から4月初め(11月〜2月がピーク)。クリスマスのサンタテーマの旅:12月1日〜24日。雪のシーズン:11月下旬〜4月。白夜:5月下旬〜7月下旬。秋のルスカ(紅葉):9月中旬。',
       },
       {
         n: '04',
@@ -294,7 +294,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: '언제 가야 할까',
         body:
-          '오로라 시즌은 9월~3월(11월~2월 정점). 크리스마스 산타 테마 여행: 12월 1~24일. 적설 시즌: 11월 말~4월. 백야: 5월 말~7월 말. 가을 루스카(단풍): 9월 중순.',
+          '오로라 시즌은 8월 말~4월 초(11월~2월 정점). 크리스마스 산타 테마 여행: 12월 1~24일. 적설 시즌: 11월 말~4월. 백야: 5월 말~7월 말. 가을 루스카(단풍): 9월 중순.',
       },
       {
         n: '04',
@@ -353,7 +353,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Quand y aller',
         body:
-          'Saison des aurores de septembre à mars (pic novembre–février). Séjours Père Noël : du 1er au 24 décembre. Saison de neige : fin novembre à avril. Soleil de minuit : fin mai à fin juillet. « Ruska » (feuillage d\'automne) : mi-septembre.',
+          'Saison des aurores de fin août à début avril (pic novembre–février). Séjours Père Noël : du 1er au 24 décembre. Saison de neige : fin novembre à avril. Soleil de minuit : fin mai à fin juillet. « Ruska » (feuillage d\'automne) : mi-septembre.',
       },
       {
         n: '04',
@@ -412,7 +412,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Quando andare',
         body:
-          'Stagione dell\'aurora da settembre a marzo (picco novembre–febbraio). Viaggi a tema Babbo Natale: 1–24 dicembre. Stagione della neve: fine novembre–aprile. Sole di mezzanotte: fine maggio–fine luglio. Ruska (foliage autunnale): metà settembre.',
+          'Stagione dell\'aurora da fine agosto a inizio aprile (picco novembre–febbraio). Viaggi a tema Babbo Natale: 1–24 dicembre. Stagione della neve: fine novembre–aprile. Sole di mezzanotte: fine maggio–fine luglio. Ruska (foliage autunnale): metà settembre.',
       },
       {
         n: '04',
@@ -471,7 +471,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Wanneer gaan',
         body:
-          'Aurora-seizoen van september tot maart (piek nov–feb). Kerstman-reizen: 1–24 december. Sneeuwseizoen: eind november–april. Middernachtszon: eind mei–eind juli. Herfstkleuren (ruska): half september.',
+          'Aurora-seizoen van eind augustus tot begin april (piek nov–feb). Kerstman-reizen: 1–24 december. Sneeuwseizoen: eind november–april. Middernachtszon: eind mei–eind juli. Herfstkleuren (ruska): half september.',
       },
       {
         n: '04',
@@ -530,7 +530,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'När du ska åka',
         body:
-          'Norrskenssäsongen pågår september–mars (topp nov–feb). Julresor med jultomtetema: 1–24 december. Snösäsong: slutet av november–april. Midnattssol: slutet av maj–slutet av juli. Höstens ruska (lövfärger): mitten av september.',
+          'Norrskenssäsongen pågår slutet av augusti–början av april (topp nov–feb). Julresor med jultomtetema: 1–24 december. Snösäsong: slutet av november–april. Midnattssol: slutet av maj–slutet av juli. Höstens ruska (lövfärger): mitten av september.',
       },
       {
         n: '04',
@@ -589,7 +589,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Cuándo ir',
         body:
-          'La temporada de auroras va de septiembre a marzo (máximo nov–feb). Viajes navideños con Papá Noel: del 1 al 24 de diciembre. Temporada de nieve: de finales de noviembre a abril. Sol de medianoche: de finales de mayo a finales de julio. Ruska (follaje de otoño): mediados de septiembre.',
+          'La temporada de auroras va de finales de agosto a principios de abril (máximo nov–feb). Viajes navideños con Papá Noel: del 1 al 24 de diciembre. Temporada de nieve: de finales de noviembre a abril. Sol de medianoche: de finales de mayo a finales de julio. Ruska (follaje de otoño): mediados de septiembre.',
       },
       {
         n: '04',
@@ -648,7 +648,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Quando ir',
         body:
-          'A temporada de auroras vai de setembro a março (pico nov–fev). Viagens natalinas com Papai Noel: de 1 a 24 de dezembro. Temporada de neve: do fim de novembro a abril. Sol da meia-noite: do fim de maio ao fim de julho. Ruska (folhagem de outono): meados de setembro.',
+          'A temporada de auroras vai do fim de agosto ao início de abril (pico nov–fev). Viagens natalinas com Papai Noel: de 1 a 24 de dezembro. Temporada de neve: do fim de novembro a abril. Sol da meia-noite: do fim de maio ao fim de julho. Ruska (folhagem de outono): meados de setembro.',
       },
       {
         n: '04',
@@ -707,7 +707,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: '何时出发',
         body:
-          '极光季从九月到三月（11 月至 2 月为高峰）。圣诞老人主题行程：12 月 1 日至 24 日。雪季：11 月底至 4 月。午夜阳光：5 月底至 7 月底。秋季 ruska（红叶）：9 月中旬。',
+          '极光季从八月底到四月初（11 月至 2 月为高峰）。圣诞老人主题行程：12 月 1 日至 24 日。雪季：11 月底至 4 月。午夜阳光：5 月底至 7 月底。秋季 ruska（红叶）：9 月中旬。',
       },
       {
         n: '04',

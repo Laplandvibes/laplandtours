@@ -43,9 +43,9 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Etusivu',
   },
   de: {
-    title: '#LaplandTours: Lappland-Reise planen, selbst zusammenstellen oder lokalen Anbieter buchen',
+    title: 'Lappland-Reise planen: selbst oder mit lokalem Anbieter',
     description:
-      'Eine Reise nach Finnisch-Lappland lässt sich auf zwei Wegen planen. Selbst zusammenstellen mit Hotel, Mietwagen und Tagestouren, oder Aktivitäten direkt bei einem von sechs verlässlichen lokalen Lappland-Anbietern buchen.',
+      'Finnisch-Lappland auf zwei Wegen planen: Hotel, Mietwagen und Tagestouren selbst kombinieren oder direkt bei einem von sechs lokalen Anbietern buchen.',
     canonical: 'https://laplandtours.online/de',
     breadcrumbHome: 'Start',
   },

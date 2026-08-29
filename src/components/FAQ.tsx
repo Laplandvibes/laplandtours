@@ -19,9 +19,9 @@ const FAQS_EN: Faq[] = [
   },
   {
     q: 'When is the best time to see the Northern Lights?',
-    a: 'The aurora borealis season runs from September to March, with peak activity between November and February. Finnish Lapland, particularly Inari, Saariselkä and Muonio, is one of the best places on Earth to see them.',
+    a: 'The aurora borealis season runs from late August to early April, with peak activity between November and February. Finnish Lapland, particularly Inari, Saariselkä and Muonio, is one of the best places on Earth to see them.',
     aHtml:
-      'The aurora borealis season runs from September to March, with peak activity between November and February. Finnish Lapland, particularly <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä and Muonio</a>, is one of the best places on Earth to see them.',
+      'The aurora borealis season runs from late August to early April, with peak activity between November and February. Finnish Lapland, particularly <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä and Muonio</a>, is one of the best places on Earth to see them.',
   },
   {
     q: 'How cold is it in Lapland?',
@@ -70,15 +70,15 @@ const FAQS_FI: Faq[] = [
   },
   {
     q: 'Milloin revontulet näkyvät parhaiten?',
-    a: 'Revontulikausi kestää syyskuusta maaliskuuhun, huippu marraskuun ja helmikuun välillä. Suomen Lappi, erityisesti Inari, Saariselkä ja Muonio, on yksi maailman parhaista paikoista nähdä ne.',
+    a: 'Revontulikausi kestää elokuun lopusta huhtikuun alkuun, huippu marraskuun ja helmikuun välillä. Suomen Lappi, erityisesti Inari, Saariselkä ja Muonio, on yksi maailman parhaista paikoista nähdä ne.',
     aHtml:
-      'Revontulikausi kestää syyskuusta maaliskuuhun, huippu marraskuun ja helmikuun välillä. Suomen Lappi, erityisesti <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä ja Muonio</a>, on yksi maailman parhaista paikoista nähdä revontulia.',
+      'Revontulikausi kestää elokuun lopusta huhtikuun alkuun, huippu marraskuun ja helmikuun välillä. Suomen Lappi, erityisesti <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä ja Muonio</a>, on yksi maailman parhaista paikoista nähdä revontulia.',
   },
   {
     q: 'Kuinka kylmää Lapissa on?',
-    a: 'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Kaikki matkanjärjestäjät tarjoavat lämpöhaalarit, saappaat ja hanskat. Lisätietoa pakkauslistasta käytännön oppaassa.',
+    a: 'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Matkanjärjestäjät tarjoavat yleensä lämpöhaalarit, saappaat ja hanskat. Lisätietoa pakkauslistasta käytännön oppaassa.',
     aHtml:
-      'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Kaikki matkanjärjestäjät tarjoavat lämpöhaalarit, saappaat ja hanskat. Tutustu <a href="/fi/practical-info" class="text-vibe-pink hover:underline">käytännön oppaaseen</a> pakkauslistaa ja kerrostuspukeutumista varten.',
+      'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Matkanjärjestäjät tarjoavat yleensä lämpöhaalarit, saappaat ja hanskat. Tutustu <a href="/fi/practical-info" class="text-vibe-pink hover:underline">käytännön oppaaseen</a> pakkauslistaa ja kerrostuspukeutumista varten.',
   },
   {
     q: 'Sopivatko paketit lapsille?',
@@ -121,15 +121,15 @@ const FAQS_DE: Faq[] = [
   },
   {
     q: 'Wann sieht man Polarlichter am besten?',
-    a: 'Die Polarlicht-Saison reicht von September bis März, Höhepunkt zwischen November und Februar. Finnisch-Lappland, insbesondere Inari, Saariselkä und Muonio, gehört zu den weltweit besten Beobachtungsorten.',
+    a: 'Die Polarlicht-Saison reicht von Ende August bis Anfang April, Höhepunkt zwischen November und Februar. Finnisch-Lappland, insbesondere Inari, Saariselkä und Muonio, gehört zu den weltweit besten Beobachtungsorten.',
     aHtml:
-      'Die Polarlicht-Saison reicht von September bis März, Höhepunkt zwischen November und Februar. Finnisch-Lappland, insbesondere <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä und Muonio</a>, gehört zu den weltweit besten Beobachtungsorten.',
+      'Die Polarlicht-Saison reicht von Ende August bis Anfang April, Höhepunkt zwischen November und Februar. Finnisch-Lappland, insbesondere <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä und Muonio</a>, gehört zu den weltweit besten Beobachtungsorten.',
   },
   {
     q: 'Wie kalt ist es in Lappland?',
-    a: 'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Alle Reiseveranstalter stellen Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen finden Sie im Praxis-Guide.',
+    a: 'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Die Anbieter stellen in der Regel Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen finden Sie im Praxis-Guide.',
     aHtml:
-      'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Alle Reiseveranstalter stellen Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen und zum Zwiebelprinzip finden Sie im <a href="/de/practical-info" class="text-vibe-pink hover:underline">Praxis-Guide</a>.',
+      'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Die Anbieter stellen in der Regel Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen und zum Zwiebelprinzip finden Sie im <a href="/de/practical-info" class="text-vibe-pink hover:underline">Praxis-Guide</a>.',
   },
   {
     q: 'Sind die Pakete für Kinder geeignet?',
@@ -172,9 +172,9 @@ const FAQS_JA: Faq[] = [
   },
   {
     q: 'オーロラを観察するのに最適な時期はいつですか?',
-    a: 'オーロラのシーズンは9月から3月までで、11月から2月にピークを迎えます。フィンランド・ラップランド（特にイナリ、サーリセルカ、ムオニオ）は世界でも有数のオーロラ観察スポットです。',
+    a: 'オーロラのシーズンは8月末から4月初めまでで、11月から2月にピークを迎えます。フィンランド・ラップランド（特にイナリ、サーリセルカ、ムオニオ）は世界でも有数のオーロラ観察スポットです。',
     aHtml:
-      'オーロラのシーズンは9月から3月までで、11月から2月にピークを迎えます。フィンランド・ラップランド（特に<a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">イナリ、サーリセルカ、ムオニオ</a>）は世界でも有数のオーロラ観察スポットです。',
+      'オーロラのシーズンは8月末から4月初めまでで、11月から2月にピークを迎えます。フィンランド・ラップランド（特に<a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">イナリ、サーリセルカ、ムオニオ</a>）は世界でも有数のオーロラ観察スポットです。',
   },
   {
     q: 'ラップランドの気温はどのくらいですか?',
@@ -223,9 +223,9 @@ const FAQS_KO: Faq[] = [
   },
   {
     q: '오로라를 보기에 가장 좋은 시기는 언제인가요?',
-    a: '오로라 시즌은 9월부터 3월까지이며, 11월에서 2월 사이가 정점입니다. 핀란드 라플란드, 특히 이나리, 사리셀카, 무오니오는 세계에서 가장 좋은 관측지 중 하나입니다.',
+    a: '오로라 시즌은 8월 말부터 4월 초까지이며, 11월에서 2월 사이가 정점입니다. 핀란드 라플란드, 특히 이나리, 사리셀카, 무오니오는 세계에서 가장 좋은 관측지 중 하나입니다.',
     aHtml:
-      '오로라 시즌은 9월부터 3월까지이며, 11월에서 2월 사이가 정점입니다. 핀란드 라플란드, 특히 <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">이나리, 사리셀카, 무오니오</a>는 세계에서 가장 좋은 관측지 중 하나입니다.',
+      '오로라 시즌은 8월 말부터 4월 초까지이며, 11월에서 2월 사이가 정점입니다. 핀란드 라플란드, 특히 <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">이나리, 사리셀카, 무오니오</a>는 세계에서 가장 좋은 관측지 중 하나입니다.',
   },
   {
     q: '라플란드는 얼마나 추운가요?',
@@ -274,15 +274,15 @@ const FAQS_FR: Faq[] = [
   },
   {
     q: 'Quelle est la meilleure période pour voir les aurores boréales ?',
-    a: 'La saison des aurores s\'étend de septembre à mars, avec un pic d\'activité entre novembre et février. La Laponie finlandaise, et en particulier Inari, Saariselkä et Muonio, fait partie des meilleurs endroits au monde pour les observer.',
+    a: 'La saison des aurores s\'étend de fin août à début avril, avec un pic d\'activité entre novembre et février. La Laponie finlandaise, et en particulier Inari, Saariselkä et Muonio, fait partie des meilleurs endroits au monde pour les observer.',
     aHtml:
-      'La saison des aurores s\'étend de septembre à mars, avec un pic d\'activité entre novembre et février. La Laponie finlandaise, et en particulier <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä et Muonio</a>, fait partie des meilleurs endroits au monde pour les observer.',
+      'La saison des aurores s\'étend de fin août à début avril, avec un pic d\'activité entre novembre et février. La Laponie finlandaise, et en particulier <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä et Muonio</a>, fait partie des meilleurs endroits au monde pour les observer.',
   },
   {
     q: 'Quel froid fait-il en Laponie ?',
-    a: 'Les températures hivernales vont de −5 °C à −30 °C. Tous les voyagistes fournissent combinaisons thermiques, bottes et gants. Consultez le guide pratique pour les conseils de bagages et la technique des couches.',
+    a: 'Les températures hivernales vont de −5 °C à −30 °C. Les voyagistes fournissent en général combinaisons thermiques, bottes et gants. Consultez le guide pratique pour les conseils de bagages et la technique des couches.',
     aHtml:
-      'Les températures hivernales vont de −5 °C à −30 °C. Tous les voyagistes fournissent combinaisons thermiques, bottes et gants. Consultez le <a href="/fr/practical-info" class="text-vibe-pink hover:underline">guide pratique</a> pour les conseils de bagages et la technique des couches.',
+      'Les températures hivernales vont de −5 °C à −30 °C. Les voyagistes fournissent en général combinaisons thermiques, bottes et gants. Consultez le <a href="/fr/practical-info" class="text-vibe-pink hover:underline">guide pratique</a> pour les conseils de bagages et la technique des couches.',
   },
   {
     q: 'Les forfaits conviennent-ils aux enfants ?',
@@ -325,15 +325,15 @@ const FAQS_IT: Faq[] = [
   },
   {
     q: 'Qual è il momento migliore per vedere l\'aurora boreale ?',
-    a: 'La stagione dell\'aurora va da settembre a marzo, con il picco di attività tra novembre e febbraio. La Lapponia finlandese, e in particolare Inari, Saariselkä e Muonio, è uno dei posti migliori al mondo per osservarla.',
+    a: 'La stagione dell\'aurora va da fine agosto a inizio aprile, con il picco di attività tra novembre e febbraio. La Lapponia finlandese, e in particolare Inari, Saariselkä e Muonio, è uno dei posti migliori al mondo per osservarla.',
     aHtml:
-      'La stagione dell\'aurora va da settembre a marzo, con il picco di attività tra novembre e febbraio. La Lapponia finlandese, e in particolare <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä e Muonio</a>, è uno dei posti migliori al mondo per osservarla.',
+      'La stagione dell\'aurora va da fine agosto a inizio aprile, con il picco di attività tra novembre e febbraio. La Lapponia finlandese, e in particolare <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä e Muonio</a>, è uno dei posti migliori al mondo per osservarla.',
   },
   {
     q: 'Che freddo fa in Lapponia ?',
-    a: 'In inverno le temperature vanno da −5 °C a −30 °C. Tutti gli operatori forniscono tute termiche, stivali e guanti. Veda la guida pratica per consigli su bagaglio e abbigliamento a strati.',
+    a: 'In inverno le temperature vanno da −5 °C a −30 °C. Gli operatori forniscono di norma tute termiche, stivali e guanti. Veda la guida pratica per consigli su bagaglio e abbigliamento a strati.',
     aHtml:
-      'In inverno le temperature vanno da −5 °C a −30 °C. Tutti gli operatori forniscono tute termiche, stivali e guanti. Veda la <a href="/it/practical-info" class="text-vibe-pink hover:underline">guida pratica</a> per consigli su bagaglio e abbigliamento a strati.',
+      'In inverno le temperature vanno da −5 °C a −30 °C. Gli operatori forniscono di norma tute termiche, stivali e guanti. Veda la <a href="/it/practical-info" class="text-vibe-pink hover:underline">guida pratica</a> per consigli su bagaglio e abbigliamento a strati.',
   },
   {
     q: 'I pacchetti sono adatti ai bambini ?',
@@ -376,9 +376,9 @@ const FAQS_NL: Faq[] = [
   },
   {
     q: 'Wanneer is de beste tijd om het noorderlicht te zien ?',
-    a: 'Het aurora-seizoen loopt van september tot maart, met piekactiviteit tussen november en februari. Fins Lapland, vooral Inari, Saariselkä en Muonio, is een van de beste plekken ter wereld om het noorderlicht te zien.',
+    a: 'Het aurora-seizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral Inari, Saariselkä en Muonio, is een van de beste plekken ter wereld om het noorderlicht te zien.',
     aHtml:
-      'Het aurora-seizoen loopt van september tot maart, met piekactiviteit tussen november en februari. Fins Lapland, vooral <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä en Muonio</a>, is een van de beste plekken ter wereld om het noorderlicht te zien.',
+      'Het aurora-seizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä en Muonio</a>, is een van de beste plekken ter wereld om het noorderlicht te zien.',
   },
   {
     q: 'Hoe koud is het in Lapland ?',
@@ -427,15 +427,15 @@ const FAQS_SV: Faq[] = [
   },
   {
     q: 'När är den bästa tiden att se norrskenet?',
-    a: 'Norrskenssäsongen sträcker sig från september till mars, med mest aktivitet mellan november och februari. Finska Lappland, särskilt Inari, Saariselkä och Muonio, är en av de bästa platserna i världen för att se det.',
+    a: 'Norrskenssäsongen sträcker sig från slutet av augusti till början av april, med mest aktivitet mellan november och februari. Finska Lappland, särskilt Inari, Saariselkä och Muonio, är en av de bästa platserna i världen för att se det.',
     aHtml:
-      'Norrskenssäsongen sträcker sig från september till mars, med mest aktivitet mellan november och februari. Finska Lappland, särskilt <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä och Muonio</a>, är en av de bästa platserna i världen för att se det.',
+      'Norrskenssäsongen sträcker sig från slutet av augusti till början av april, med mest aktivitet mellan november och februari. Finska Lappland, särskilt <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä och Muonio</a>, är en av de bästa platserna i världen för att se det.',
   },
   {
     q: 'Hur kallt är det i Lappland?',
-    a: 'Vintertemperaturen ligger mellan −5 °C och −30 °C. Alla arrangörer tillhandahåller termooveraller, kängor och handskar. Se den praktiska guiden för packtips och råd om lager-på-lager-klädsel.',
+    a: 'Vintertemperaturen ligger mellan −5 °C och −30 °C. Arrangörerna tillhandahåller i regel termooveraller, kängor och handskar. Se den praktiska guiden för packtips och råd om lager-på-lager-klädsel.',
     aHtml:
-      'Vintertemperaturen ligger mellan −5 °C och −30 °C. Alla arrangörer tillhandahåller termooveraller, kängor och handskar. Se den <a href="/sv/practical-info" class="text-vibe-pink hover:underline">praktiska guiden</a> för packtips och råd om lager-på-lager-klädsel.',
+      'Vintertemperaturen ligger mellan −5 °C och −30 °C. Arrangörerna tillhandahåller i regel termooveraller, kängor och handskar. Se den <a href="/sv/practical-info" class="text-vibe-pink hover:underline">praktiska guiden</a> för packtips och råd om lager-på-lager-klädsel.',
   },
   {
     q: 'Passar paketen för barn?',
@@ -478,15 +478,15 @@ const FAQS_ES: Faq[] = [
   },
   {
     q: '¿Cuál es la mejor época para ver auroras boreales?',
-    a: 'La temporada de auroras va de septiembre a marzo, con la máxima actividad entre noviembre y febrero. La Laponia finlandesa, en particular Inari, Saariselkä y Muonio, es uno de los mejores lugares del planeta para verlas.',
+    a: 'La temporada de auroras va de finales de agosto a principios de abril, con la máxima actividad entre noviembre y febrero. La Laponia finlandesa, en particular Inari, Saariselkä y Muonio, es uno de los mejores lugares del planeta para verlas.',
     aHtml:
-      'La temporada de auroras va de septiembre a marzo, con la máxima actividad entre noviembre y febrero. La Laponia finlandesa, en particular <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä y Muonio</a>, es uno de los mejores lugares del planeta para verlas.',
+      'La temporada de auroras va de finales de agosto a principios de abril, con la máxima actividad entre noviembre y febrero. La Laponia finlandesa, en particular <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä y Muonio</a>, es uno de los mejores lugares del planeta para verlas.',
   },
   {
     q: '¿Qué frío hace en Laponia?',
-    a: 'En invierno la temperatura oscila entre −5 °C y −30 °C. Todos los operadores de paquetes facilitan monos térmicos, botas y guantes. Consulte la guía de información práctica para consejos de equipaje y de capas de ropa.',
+    a: 'En invierno la temperatura oscila entre −5 °C y −30 °C. Los operadores de paquetes suelen facilitar monos térmicos, botas y guantes. Consulte la guía de información práctica para consejos de equipaje y de capas de ropa.',
     aHtml:
-      'En invierno la temperatura oscila entre −5 °C y −30 °C. Todos los operadores de paquetes facilitan monos térmicos, botas y guantes. Consulte la <a href="/es/practical-info" class="text-vibe-pink hover:underline">guía de información práctica</a> para consejos de equipaje y de capas de ropa.',
+      'En invierno la temperatura oscila entre −5 °C y −30 °C. Los operadores de paquetes suelen facilitar monos térmicos, botas y guantes. Consulte la <a href="/es/practical-info" class="text-vibe-pink hover:underline">guía de información práctica</a> para consejos de equipaje y de capas de ropa.',
   },
   {
     q: '¿Los paquetes son adecuados para niños?',
@@ -529,15 +529,15 @@ const FAQS_PTBR: Faq[] = [
   },
   {
     q: 'Qual é a melhor época para ver a aurora boreal?',
-    a: 'A temporada de auroras vai de setembro a março, com pico de atividade entre novembro e fevereiro. A Lapônia finlandesa, em especial Inari, Saariselkä e Muonio, é um dos melhores lugares do planeta para vê-las.',
+    a: 'A temporada de auroras vai do fim de agosto ao início de abril, com pico de atividade entre novembro e fevereiro. A Lapônia finlandesa, em especial Inari, Saariselkä e Muonio, é um dos melhores lugares do planeta para vê-las.',
     aHtml:
-      'A temporada de auroras vai de setembro a março, com pico de atividade entre novembro e fevereiro. A Lapônia finlandesa, em especial <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä e Muonio</a>, é um dos melhores lugares do planeta para vê-las.',
+      'A temporada de auroras vai do fim de agosto ao início de abril, com pico de atividade entre novembro e fevereiro. A Lapônia finlandesa, em especial <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä e Muonio</a>, é um dos melhores lugares do planeta para vê-las.',
   },
   {
     q: 'Quanto frio faz na Lapônia?',
-    a: 'No inverno, a temperatura varia de −5 °C a −30 °C. Todas as operadoras de pacote fornecem macacões térmicos, botas e luvas. Veja o guia de informações práticas para dicas de mala e de sobreposição de roupas.',
+    a: 'No inverno, a temperatura varia de −5 °C a −30 °C. As operadoras de pacote costumam fornecer macacões térmicos, botas e luvas. Veja o guia de informações práticas para dicas de mala e de sobreposição de roupas.',
     aHtml:
-      'No inverno, a temperatura varia de −5 °C a −30 °C. Todas as operadoras de pacote fornecem macacões térmicos, botas e luvas. Veja o <a href="/br/practical-info" class="text-vibe-pink hover:underline">guia de informações práticas</a> para dicas de mala e de sobreposição de roupas.',
+      'No inverno, a temperatura varia de −5 °C a −30 °C. As operadoras de pacote costumam fornecer macacões térmicos, botas e luvas. Veja o <a href="/br/practical-info" class="text-vibe-pink hover:underline">guia de informações práticas</a> para dicas de mala e de sobreposição de roupas.',
   },
   {
     q: 'Os pacotes são adequados para crianças?',
@@ -580,9 +580,9 @@ const FAQS_ZH: Faq[] = [
   },
   {
     q: '什么时候最适合看极光？',
-    a: '极光季从九月持续到三月，十一月至二月活动最强。芬兰拉普兰，尤其是 Inari、Saariselkä 和 Muonio，是地球上观赏极光的最佳地点之一。',
+    a: '极光季从八月底持续到四月初，十一月至二月活动最强。芬兰拉普兰，尤其是 Inari、Saariselkä 和 Muonio，是地球上观赏极光的最佳地点之一。',
     aHtml:
-      '极光季从九月持续到三月，十一月至二月活动最强。芬兰拉普兰，尤其是 <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari、Saariselkä 和 Muonio</a>，是地球上观赏极光的最佳地点之一。',
+      '极光季从八月底持续到四月初，十一月至二月活动最强。芬兰拉普兰，尤其是 <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari、Saariselkä 和 Muonio</a>，是地球上观赏极光的最佳地点之一。',
   },
   {
     q: '拉普兰有多冷？',

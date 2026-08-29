@@ -231,6 +231,23 @@ function findKeyBlocks(src, key) {
   return out;
 }
 
+/** Find the record in an array whose `<field>` equals `value`, e.g.
+ *  `{ slug: 'levi', … }`. Walks back from the field to that record's own
+ *  opening brace so only it is sliced, not the whole array. */
+function findRecordByField(src, field, value) {
+  const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, (c) => '\\' + c);
+  const re = new RegExp('["\']?' + esc(field) + '["\']?\\s*:\\s*([\'"])' + esc(value) + '\\1');
+  const m = re.exec(src);
+  if (!m) return null;
+  let depth = 0, open = -1;
+  for (let i = m.index; i >= 0; i--) {
+    const c = src[i];
+    if (c === '}') depth++;
+    else if (c === '{') { if (depth === 0) { open = i; break; } depth--; }
+  }
+  return open >= 0 ? sliceBlock(src, open) : null;
+}
+
 /** Match `<key>: { … }` blocks recursively respecting strings + braces. Returns FIRST. */
 function findKeyBlock(src, key) {
   const blocks = findKeyBlocks(src, key);
@@ -305,7 +322,17 @@ function readPerLangCopy(loc, copyKey) {
   if (!copyKey) return null;
   const src = perLangSources[loc.lang];
   if (!src) return null;
-  let block = findKeyBlockWithMeta(src, copyKey);
+  // Dotted copyKey ("category.themes.cabins") walks nested blocks so a route can
+  // address one theme's meta. Before this, every blog /category/* page rendered
+  // the FIRST metaTitle inside the shared parent block (aurora's) in all 12
+  // languages — measured 29.8. A single-part key behaves exactly as before.
+  const parts = copyKey.split('.');
+  let scope = src;
+  for (let i = 0; i < parts.length - 1; i++) {
+    scope = findKeyBlock(scope, parts[i]);
+    if (!scope) return null;
+  }
+  let block = findKeyBlockWithMeta(scope, parts[parts.length - 1]);
   return pickTD(block);
 }
 
@@ -660,6 +687,57 @@ function sliceParens(src, openIdx) {
  *  then keep what is left line by line. */
 const INLINE_TAG = /^<\/?(?:em|strong|b|i|u|a|span|code|small|sup|sub|abbr|mark|time|BlogLink|Link)\b/i;
 
+/** Text of every JSX region a `return ( … )` opens, for a page file that IS one
+ *  language (a route declared with a single entry in `locales`). Comments are
+ *  stripped first: these files open with a long sourcing comment in the page's
+ *  own language, which reads exactly like body copy to the keep filter. */
+function harvestJsxPage(src, out, meta, seen, budget) {
+  const clean = src.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/^[ \t]*\/\/.*$/gm, ' ');
+  const re = /\breturn\s*\(/g;
+  let m;
+  while ((m = re.exec(clean)) !== null && budget.words > 0) {
+    const jsx = sliceParens(clean, m.index + m[0].length - 1);
+    if (!jsx) continue;
+    re.lastIndex = m.index + m[0].length + jsx.length;
+    harvestJsxText(jsx, out, meta, seen, budget);
+  }
+}
+
+/** Strip JSX tags with a scanner instead of /<[^>]*>/: a `>` inside a quoted
+ *  attribute (`className="[&>svg]:…"`) or a brace expression (`onClick={() =>`)
+ *  ended the regex match early and dumped the rest of the tag — className text
+ *  included — into the harvested body (measured on stays /fi/iglumajoitus 29.8.). */
+function stripJsxTags(jsx) {
+  let out = '';
+  for (let i = 0; i < jsx.length; i++) {
+    if (jsx[i] !== '<') { out += jsx[i]; continue; }
+    let j = i + 1, inStr = false, q = '', depth = 0;
+    for (; j < jsx.length; j++) {
+      const d = jsx[j];
+      if (inStr) { if (d === q) inStr = false; continue; }
+      if (d === '"' || d === "'" || d === '`') { inStr = true; q = d; continue; }
+      if (d === '{') { depth++; continue; }
+      if (d === '}') { if (depth > 0) depth--; continue; }
+      if (d === '>' && depth === 0) break;
+    }
+    out += INLINE_TAG.test(jsx.slice(i, j + 1)) ? ' ' : '\n';
+    i = j;
+  }
+  return out;
+}
+
+/** Shared tag/expression stripping for a JSX fragment. */
+function harvestJsxText(jsx, out, meta, seen, budget) {
+  const text = stripJsxTags(jsx)
+    .replace(/\{[^{}]*\}/g, ' ')
+    .replace(/&nbsp;/g, ' ');
+  for (const line of text.split('\n')) {
+    if (budget.words <= 0) break;
+    const kept = harvestKeep(line.replace(/\s+/g, ' ').trim(), meta, seen);
+    if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
+  }
+}
+
 function harvestJsxBodies(block, out, meta, seen, budget) {
   const re = /\bbody\s*:\s*\(/g;
   let m;
@@ -672,15 +750,7 @@ function harvestJsxBodies(block, out, meta, seen, budget) {
     // September to mid-October is <em>ruska</em> — the Finnish autumn…" came
     // apart into three fragments, two of them under the keep threshold, and the
     // survivor began mid-clause.
-    const text = jsx
-      .replace(/<[^>]*>/g, (tag) => (INLINE_TAG.test(tag) ? ' ' : '\n'))
-      .replace(/\{[^{}]*\}/g, ' ')    // {' '} and other simple expressions
-      .replace(/&nbsp;/g, ' ');
-    for (const line of text.split('\n')) {
-      if (budget.words <= 0) break;
-      const kept = harvestKeep(line.replace(/\s+/g, ' ').trim(), meta, seen);
-      if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; }
-    }
+    harvestJsxText(jsx, out, meta, seen, budget);
   }
 }
 
@@ -833,33 +903,31 @@ function harvestRouteText(loc, route, meta) {
       if (fp) {
         let src = inlinePageCache.get(fp);
         if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
-        // The record may be a keyed entry (`oulu: { … }`) or a top-level const
+        // An ARRAY of records identified by a field (`{ slug: 'levi', … }`)
+        // rather than an object map — this is how the English base data is
+        // written on most sites. Walk back from the field to that record's own
+        // opening brace and slice only it; harvesting the whole file would print
+        // every record on every page.
+        //
+        // 🔴 This runs BEFORE the keyed lookup whenever `by` is given, and the
+        // order is load-bearing. laplandnightlife's cities.ts holds BOTH the
+        // city array (`{ slug: 'muonio', … }`) and a quick-facts map keyed by
+        // the same slugs with LIST values (`muonio: [ {label, value}, … ]`).
+        // Once findKeyBlocks learned to match `key: [`, the keyed lookup won and
+        // returned the four-row fact list instead of the city record, and the
+        // English city pages silently dropped from ~370 words to ~248. `by` is
+        // an explicit statement of how the record is identified, so it takes
+        // precedence over a name that merely happens to collide.
+        let b = null;
+        if (rec.by) b = findRecordByField(src, rec.by, rec.key);
+        // Otherwise a keyed entry (`oulu: { … }`) or a top-level const
         // (`const levi: DestinationFacts = { … }`) — both shapes exist.
-        let b = findKeyBlock(src, rec.key);
+        if (!b) b = findKeyBlock(src, rec.key);
         if (!b) {
           const cm = new RegExp(`\\bconst\\s+${rec.key.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}\\b[^=]*=\\s*\\{`).exec(src);
           if (cm) b = sliceBlock(src, cm.index + cm[0].length - 1);
         }
-        // Third shape: an ARRAY of records identified by a field
-        // (`{ slug: 'levi', … }`) rather than an object map — this is how the
-        // English base data is written on most sites. Walk back from the field
-        // to that record's own opening brace and slice only it; harvesting the
-        // whole file would print every record on every page.
-        if (!b) {
-          const idField = rec.by || 'slug';
-          const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, (c) => '\\' + c);
-          const idRe = new RegExp('["\']?' + esc(idField) + '["\']?\\s*:\\s*([\'"])' + esc(rec.key) + '\\1');
-          const im = idRe.exec(src);
-          if (im) {
-            let depth = 0, open = -1;
-            for (let i = im.index; i >= 0; i--) {
-              const c = src[i];
-              if (c === '}') depth++;
-              else if (c === '{') { if (depth === 0) { open = i; break; } depth--; }
-            }
-            if (open >= 0) b = sliceBlock(src, open);
-          }
-        }
+        if (!b) b = findRecordByField(src, 'slug', rec.key);
         if (b) {
           if (rec.mode === 'localeMap') {
             // The record is ONE object whose fields are per-language maps
@@ -920,6 +988,15 @@ function harvestRouteText(loc, route, meta) {
         let src = inlinePageCache.get(fp);
         if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
         if (perLangFile) { harvestFromTsBlock(src, out, meta, seen, budget); continue; }
+        // A route declared for ONE locale is a single-market landing page: its
+        // component holds that language and no other, with no per-language block
+        // to find. Harvest the whole file, JSX included. Same-locale by
+        // construction — the route does not exist in any other locale.
+        if (Array.isArray(route.locales) && route.locales.length === 1) {
+          harvestFromTsBlock(src, out, meta, seen, budget);
+          harvestJsxPage(src, out, meta, seen, budget);
+          continue;
+        }
         const reConst = new RegExp(`\\bconst\\s+${loc.ident}\\b\\s*(?::[^=]+)?=\\s*\\{`, 'g');
         const m = reConst.exec(src);
         if (m) { harvestFromTsBlock(sliceBlock(src, m.index + m[0].length - 1), out, meta, seen, budget); continue; }

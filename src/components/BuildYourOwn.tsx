@@ -155,7 +155,7 @@ const rails: RailCard[] = [
         label: '02  ·  Fahren',
         headline: 'Ein Mietwagen am Flughafen',
         body:
-          'Selbstfahrer ab Rovaniemi, Kittilä oder Ivalo. Spike-Winterreifen serienmäßig. Zahlung bei Abholung, kostenfreie Änderung.',
+          'Selbstfahrer ab Rovaniemi, Kittilä oder Ivalo. Winterreifen mit Spikes serienmäßig. Zahlung bei Abholung, kostenfreie Änderung.',
         priceLine: 'Live-Preise auf EconomyBookings · Winterreifen inklusive',
         ctaLabel: 'Mietwagen vergleichen',
       },

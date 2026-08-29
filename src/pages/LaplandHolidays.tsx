@@ -392,7 +392,7 @@ const COPY: Record<CopyLang, {
   'pt-BR': {
     metaTitle: 'As operadoras: Lapônia finlandesa | #LaplandTours',
     metaDescription:
-      'Um guia honesto de seis operadoras britânicas e europeias que vendem viagens à Lapônia finlandesa em 2026: o que cada uma faz bem e de onde voam.',
+      'Um guia honesto de seis operadoras locais sediadas na Finlândia em 2026: o que cada uma faz bem, onde ficam e o que você recebe ao reservar direto.',
     canonical: 'https://laplandtours.online/br/lapland-holidays',
     breadcrumbHome: 'Início',
     breadcrumbName: 'Guia de operadoras',

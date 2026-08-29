@@ -27,7 +27,7 @@ export const COPY: Record<Lang, { operators: string; practical: string; age: str
   },
   de: {
     operators: 'Reise­veranstalter',
-    practical: 'Praxis',
+    practical: 'Praktisches',
     age: 'Alters-Guide',
     bespoke: 'Individuell',
     cta: 'Reise planen',

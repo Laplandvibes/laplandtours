@@ -66,7 +66,7 @@ const COPY: Record<CopyLang, {
     hLine1: 'So',
     hLine2: 'arbeitet diese Seite',
     p1:
-      'Eine kleine redaktionelle Einheit aus Rovaniemi in Finnland. Sechs lappländische Anbieter sind hier gelistet, weil sie offen sagen, was sie anbieten und was nicht. Es werden keine Reisen verkauft. Bei einer Buchung über einen Anbieter kommt der Vertrag mit dessen Bedingungen zustande.',
+      'Eine kleine Redaktion aus Rovaniemi in Finnland. Sechs lappländische Anbieter sind hier gelistet, weil sie offen sagen, was sie anbieten und was nicht. Es werden keine Reisen verkauft. Bei einer Buchung über einen Anbieter kommt der Vertrag mit dessen Bedingungen zustande.',
     stats:
       '6 Anbieter im Vergleich  ·  alle in Finnisch-Lappland ansässig  ·  0 % Provision für Sie  ·  geprüft Juli 2026',
     bullets: [
@@ -82,7 +82,7 @@ const COPY: Record<CopyLang, {
       'Sollte auf dieser Seite etwas falsch oder veraltet sein, melden Sie es bitte an <a href="mailto:info@laplandvibes.com" class="text-vibe-pink hover:underline">info@laplandvibes.com</a>. Es wird korrigiert.',
     ],
     privacy: 'Datenschutz',
-    terms: 'AGB',
+    terms: 'Nutzungsbedingungen',
     cookie: 'Cookie-Richtlinie',
   },
   ko: {

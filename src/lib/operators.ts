@@ -1370,7 +1370,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
         'Vilkas monen tukikohdan toimija, ei intiimi yhden oppaan yritys. Lennot järjestät itse.',
     },
     de: {
-      tagline: 'Volles Aktivitätenangebot, auch E-Schlitten',
+      tagline: 'Volles Aktivitätenangebot, auch E-Schneemobile',
       bestFor: 'Für Reisende, die ein breites Angebot und eine emissionsärmere Option wollen, mit optional gebündelter Unterkunft.',
       basedIn: 'Rovaniemi, Finnland',
       typicalLength: 'Vom halben Tag bis zur Mehrtagestour',
@@ -1712,7 +1712,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       typicalLength: '3–8 Std., kleine Gruppe',
       tierLabel: 'Polarlicht-Spezialist',
       whatTheyDoWell:
-        "Ein Anbieter aus Rovaniemi und Levi der Familie Rytilahti, spezialisiert auf die Polarlichtjagd mit Gruppen von rund fünf Personen und Luxus-Vans (Baujahr 2025), die dorthin fahren, wo der Himmel am klarsten ist. Die meisten Touren umfassen Fotografie und rund um die Uhr Polarlicht-Tracking. Von Tripadvisor als 'Best of the Best' (Top 1 %) ausgezeichnet.",
+        "Ein Anbieter aus Rovaniemi und Levi der Familie Rytilahti, spezialisiert auf die Polarlichtjagd mit Gruppen von rund fünf Personen und Luxus-Vans (Baujahr 2025), die dorthin fahren, wo der Himmel am klarsten ist. Die meisten Touren umfassen Fotografie und laufendes Polarlicht-Tracking. Von Tripadvisor als „Best of the Best“ (Top 1 %) ausgezeichnet.",
       whatTheyDont:
         'Polarlicht-orientiert und Premium, kein breiter Familien-Aktivanbieter. Winterlastig; die Sommerauswahl ist dünner.',
     },
