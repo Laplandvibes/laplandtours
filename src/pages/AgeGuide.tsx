@@ -44,7 +44,7 @@ const COPY: Record<CopyLang, {
       'Which Lapland activities work at which age, and which do not. A practical matrix covering five age bands and the six staples: aurora hunt, husky, snowmobile, reindeer, sauna, glass igloo.',
     matrixEyebrow: 'The matrix',
     ageHeader: 'Age',
-    legend: '✓ available · — not offered · "passenger" / "tandem" / "solo" specifies the role',
+    legend: '✓ available ·, not offered · "passenger" / "tandem" / "solo" specifies the role',
     activities: ['Aurora hunt', 'Husky', 'Snowmobile', 'Reindeer', 'Sauna', 'Glass igloo'],
     altHero: 'Snowy fell summit at golden hour in Finnish Lapland',
     rows: [
@@ -133,7 +133,7 @@ const COPY: Record<CopyLang, {
       'Mitkä Lapin päiväretket sopivat mihinkin ikään ja mitkä eivät. Käytännön taulukko viidessä ikäryhmässä ja kuudessa peruspaketissa: revontulet, husky, kelkka, poro, sauna, lasi-iglu.',
     matrixEyebrow: 'Taulukko',
     ageHeader: 'Ikä',
-    legend: '✓ tarjolla · — ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
+    legend: '✓ tarjolla ·, ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
     activities: ['Revontuliretki', 'Husky', 'Kelkkasafari', 'Pororetki', 'Sauna', 'Lasi-iglu'],
     altHero: 'Luminen tunturin huippu kultaisen tunnin valossa Suomen Lapissa',
     rows: [
@@ -223,7 +223,7 @@ const COPY: Record<CopyLang, {
       'Welche Lappland-Tagestouren zu welchem Alter passen, und welche nicht. Eine praktische Matrix für fünf Altersgruppen und die sechs Klassiker: Polarlichtjagd, Husky, Schneemobil, Rentier, Sauna, Glas-Iglu.',
     matrixEyebrow: 'Die Matrix',
     ageHeader: 'Alter',
-    legend: '✓ verfügbar · — nicht im Angebot · "Mitfahrer" / "Tandem" / "selbst" beschreibt die Rolle',
+    legend: '✓ verfügbar ·, nicht im Angebot · "Mitfahrer" / "Tandem" / "selbst" beschreibt die Rolle',
     activities: ['Polarlichtjagd', 'Husky', 'Schneemobil', 'Rentier', 'Sauna', 'Glas-Iglu'],
     altHero: 'Verschneiter Fjäll-Gipfel im goldenen Licht in Finnisch-Lappland',
     rows: [
@@ -403,7 +403,7 @@ const COPY: Record<CopyLang, {
       '라플란드의 어떤 액티비티가 어느 연령에 맞고, 어떤 것은 맞지 않는지. 다섯 개 연령대와 여섯 가지 대표 액티비티(오로라 헌트, 허스키, 스노모빌, 순록, 사우나, 글래스 이글루)를 다루는 실용 매트릭스입니다.',
     matrixEyebrow: '매트릭스',
     ageHeader: '연령',
-    legend: '✓ 가능 · — 미제공 · "동승자" / "탠덤" / "단독" 은 역할을 의미합니다',
+    legend: '✓ 가능 ·, 미제공 · "동승자" / "탠덤" / "단독" 은 역할을 의미합니다',
     activities: ['오로라 헌트', '허스키', '스노모빌', '순록', '사우나', '글래스 이글루'],
     altHero: '핀란드 라플란드의 황금빛 시간 속 눈 덮인 펠 정상',
     rows: [
@@ -493,7 +493,7 @@ const COPY: Record<CopyLang, {
       'Quelles activités en Laponie fonctionnent à quel âge, et lesquelles ne fonctionnent pas. Une matrice pratique couvrant cinq tranches d\'âge et les six classiques : chasse aux aurores, husky, motoneige, renne, sauna, iglou de verre.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Âge',
-    legend: '✓ disponible · — non proposé · « passager » / « tandem » / « seul » indique le rôle',
+    legend: '✓ disponible ·, non proposé · « passager » / « tandem » / « seul » indique le rôle',
     activities: ['Chasse aux aurores', 'Husky', 'Motoneige', 'Renne', 'Sauna', 'Iglou de verre'],
     altHero: 'Sommet de fjäll enneigé à l\'heure dorée en Laponie finlandaise',
     rows: [
@@ -583,7 +583,7 @@ const COPY: Record<CopyLang, {
       'Quali attività in Lapponia funzionano a quale età e quali no. Una matrice pratica che copre cinque fasce di età e i sei classici: caccia all\'aurora, husky, motoslitta, renna, sauna, iglù di vetro.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Età',
-    legend: '✓ disponibile · — non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
+    legend: '✓ disponibile ·, non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
     activities: ['Caccia all\'aurora', 'Husky', 'Motoslitta', 'Renna', 'Sauna', 'Iglù di vetro'],
     altHero: 'Vetta di un fjäll innevato all\'ora d\'oro in Lapponia finlandese',
     rows: [
@@ -673,7 +673,7 @@ const COPY: Record<CopyLang, {
       'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers: aurora-jacht, husky, sneeuwscooter, rendier, sauna, glaziglo.',
     matrixEyebrow: 'De matrix',
     ageHeader: 'Leeftijd',
-    legend: '✓ mogelijk · — niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
+    legend: '✓ mogelijk ·, niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
     activities: ['Aurora-jacht', 'Husky', 'Sneeuwscooter', 'Rendier', 'Sauna', 'Glaziglo'],
     altHero: 'Besneeuwde fjäll-top in het gouden uur in Fins Lapland',
     rows: [
@@ -762,7 +762,7 @@ const COPY: Record<CopyLang, {
       'Vilka Lapplandsaktiviteter fungerar i vilken ålder, och vilka gör det inte. En praktisk matris över fem åldersgrupper och de sex grundpelarna: norrskensjakt, husky, skoter, ren, bastu, glasiglo.',
     matrixEyebrow: 'Matrisen',
     ageHeader: 'Ålder',
-    legend: '✓ tillgängligt · — erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
+    legend: '✓ tillgängligt ·, erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
     activities: ['Norrskensjakt', 'Husky', 'Skoter', 'Ren', 'Bastu', 'Glasiglo'],
     altHero: 'Snöig fjälltopp i gyllene timme i finska Lappland',
     rows: [
@@ -852,7 +852,7 @@ const COPY: Record<CopyLang, {
       'Qué actividades de Laponia funcionan a cada edad y cuáles no. Una matriz práctica con cinco franjas de edad y los seis básicos: caza de auroras, huskies, motonieve, renos, sauna e iglú de cristal.',
     matrixEyebrow: 'La matriz',
     ageHeader: 'Edad',
-    legend: '✓ disponible · — no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
+    legend: '✓ disponible ·, no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
     activities: ['Caza de auroras', 'Husky', 'Motonieve', 'Renos', 'Sauna', 'Iglú de cristal'],
     altHero: 'Cumbre nevada de un fell a la hora dorada en la Laponia finlandesa',
     rows: [
@@ -942,7 +942,7 @@ const COPY: Record<CopyLang, {
       'Quais atividades da Lapônia funcionam em cada idade e quais não. Uma matriz prática com cinco faixas etárias e os seis clássicos: caça à aurora, huskies, snowmobile, renas, sauna e iglu de vidro.',
     matrixEyebrow: 'A matriz',
     ageHeader: 'Idade',
-    legend: '✓ disponível · — não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
+    legend: '✓ disponível ·, não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
     activities: ['Caça à aurora', 'Husky', 'Snowmobile', 'Renas', 'Sauna', 'Iglu de vidro'],
     altHero: 'Cume nevado de um fell na hora dourada na Lapônia finlandesa',
     rows: [
