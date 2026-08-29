@@ -197,7 +197,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Itsenäiset',
         summary:
-          'Kohdellaan aikuisina useimmissa retkissä. Itsenäinen kelkka-ajo täydellä ajokortilla (Suomessa 16+), pidemmät huskyretket, jääkiipeily, monipäiväiset tunturivaellukset. Revontulivalokuvauksen työpajat vaativat myös tätä ikää.',
+          'Kohdellaan aikuisina useimmissa retkissä. Itsenäinen kelkka-ajo ajokortilla (vuokraamot vaativat yleensä 18 v), pidemmät huskyretket, jääkiipeily, monipäiväiset tunturivaellukset. Revontulivalokuvauksen työpajat vaativat myös tätä ikää.',
         cells: [
           '✓',
           '✓',
