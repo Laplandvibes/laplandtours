@@ -46,17 +46,17 @@ const COPY: Record<CopyLang, {
   en: {
     metaTitle: 'The Operators: Six tour companies for Finnish Lapland | #LaplandTours',
     metaDescription:
-      'An honest guide to six UK and European operators selling Finnish Lapland holidays in 2026: what each one does well, where they fly from, and what you actually get when you book.',
+      'An honest guide to six Finland-based local operators running Lapland activities themselves in 2026: what each one does well, and what you actually get when you book.',
     canonical: 'https://laplandtours.online/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Operator guide',
     articleHeadline: 'The Operators: Six tour companies for Finnish Lapland',
     articleDescription:
-      'An editorial guide to the six tour operators that send people to Finnish Lapland.',
+      'An editorial guide to six local operators that run Finnish Lapland trips on the ground.',
     h1: 'The operators',
     introCap: 'Drop cap',
     intro:
-      'Finnish Lapland is a long, thin country. Most British and European visitors get there on a packaged trip from one of six operators that have been doing this for years. What they sell is not the same: TUI is a 3-night day trip from a regional airport; Magnetic North is a six-night bespoke itinerary with a private aurora photographer. All six are listed honestly, side by side, so the right one for the trip you actually want is easy to find.',
+      'Finnish Lapland is a long, thin region, and its own operators run the activities on the ground. You fly in and book straight from them rather than buying a charter package from abroad. What they offer is not the same: Lapland Safaris covers the whole activity range from five centres; Arctic GM takes a group of about five aurora hunting in a luxury van. All six are listed honestly, side by side, so the right one for the trip you actually want is easy to find. Written from Finland, sources visible.',
     noteEyebrow: 'A note on what this is',
     noteBody:
       'These packages are not sold here. There is no commercial agreement with any of the six operators below. Click through and the operator pays nothing back. Affiliate commission is earned only on the cross-sell rail (hotel night, car rental, day activity) at the bottom of this page.',

@@ -66,7 +66,7 @@ const COPY: Record<CopyLang, {
         range: '3–5',
         label: 'Pre-school',
         summary:
-          "The sweet spot for Santa-themed packages. Santa's Lapland and TUI build the itinerary around this age. Reindeer rides, Santa visit, snowmobile passenger sled, tobogganing all work.",
+          'The sweet spot for Santa-themed packages, and the age most programmes are built around. Reindeer rides, Santa visit, snowmobile passenger sled, tobogganing all work.',
         cells: [
           { v: 'short', note: 'late-evening cap' },
           { v: 'passenger', note: 'short, supervised' },
@@ -94,7 +94,7 @@ const COPY: Record<CopyLang, {
         range: '10–15',
         label: 'Tweens & teens',
         summary:
-          'All standard activities open up. From age 12+, many operators allow tandem snowmobile driving with a parent. Adventure-week packages (Transun, Inghams Adventure) target this age strongly.',
+          'All standard activities open up. From age 12+, many operators allow tandem snowmobile driving with a parent. Multi-day adventure weeks target this age strongly.',
         cells: [
           '✓',
           '✓',
@@ -108,7 +108,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Independent',
         summary:
-          'Treated as adults for most activities. Solo snowmobile driving with full driving licence (16+ in Finland), longer husky drives, ice climbing, multi-day fell hiking. Aurora photography workshops also need this maturity.',
+          'Treated as adults for most activities. Solo snowmobile driving with a driving licence (rental companies usually require 18+), longer husky drives, ice climbing, multi-day fell hiking. Aurora photography workshops also need this maturity.',
         cells: [
           '✓',
           '✓',

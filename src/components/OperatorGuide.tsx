@@ -16,9 +16,9 @@ const HEADINGS: Record<CopyLang, {
 }> = {
   en: {
     eyebrow: 'Path two',
-    h2: 'Or buy a bundle',
+    h2: 'Or book a local operator',
     lead:
-      'Six tour operators that fly UK and European travellers to Finnish Lapland on ready-made packages. There is no commercial agreement with any of them. This is editorial signposting, not a storefront. Updated every six months.',
+      'Six Finland-based companies that run Lapland activities themselves: husky, aurora, snowmobile, reindeer. You book direct on their terms; there is no commercial agreement with any of them. This is editorial signposting, not a storefront. Checked July 2026. Written from Finland, sources visible.',
     visit: 'Visit',
     tier: 'Tier',
     length: 'Length',

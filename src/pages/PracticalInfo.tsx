@@ -46,7 +46,7 @@ const COPY: Record<CopyLang, {
         n: '01',
         title: 'Getting there',
         body:
-          'Most operators fly UK-regional (LGW / MAN / BHX / BRS / EDI / EMA / GLA) to Rovaniemi (RVN), Kittilä (KTT) or Ivalo (IVL). You can also fly via Helsinki on Finnair, then connect on a 1-hour domestic flight or take the overnight VR sleeper train (12 hours, lie-flat cabins).',
+          'Fly into Rovaniemi (RVN), Kittilä (KTT) or Ivalo (IVL): from Helsinki, Finnair connects in about an hour, and the overnight VR sleeper train (12 hours, lie-flat cabins) runs to Rovaniemi. In winter, direct seasonal routes also operate from several European cities.',
       },
       {
         n: '02',
