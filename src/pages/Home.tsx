@@ -73,7 +73,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
   it: {
     title: 'Tour Lapponia 2026: sei operatori a confronto, prezzi reali',
     description:
-      'Prenota un tour Lapponia 2026: sei operatori locali della Lapponia finlandese, prezzi reali, prenotazione diretta o componi tu. Hotel, husky, aurora, Babbo Natale, transfer a confronto.',
+      'Prenota un tour Lapponia 2026: sei operatori locali della Lapponia finlandese, prezzi reali, prenotazione diretta o lo componga Lei. Hotel, husky, aurora, Babbo Natale, transfer a confronto.',
     canonical: 'https://laplandtours.online/it',
     breadcrumbHome: 'Home',
   },

@@ -281,7 +281,7 @@ const COPY: Record<CopyLang, {
     addonActivity: 'Attività di un giorno →',
     noneEyebrow: 'Nessuno fa al caso suo ?',
     noneLine: 'Ci descriva il suo viaggio: le proporremo un operatore compatibile.',
-    noneCta: 'Progetta il tuo viaggio →',
+    noneCta: 'Progetti il Suo viaggio →',
     altHero: 'Muta di husky in corsa lungo un corridoio di abeti innevati',
     altQuote: 'Suite con tetto in vetro nella natura all\'ora blu, con una debole aurora visibile attraverso il soffitto',
   },

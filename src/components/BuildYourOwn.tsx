@@ -390,7 +390,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
   },
   it: {
     eyebrow: 'Strada 1',
-    h2: 'Componi da te',
+    h2: 'Lo componga Lei',
     lead:
       'Scelga dove dormire, come spostarsi e cosa fare sul posto. Tre binari, prezzi in tempo reale, prenotazione diretta sul sito di ciascun partner.',
     affiliateNote:

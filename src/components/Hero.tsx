@@ -93,8 +93,8 @@ const COPY: Record<Lang, {
     alt: 'Paysage de fjells lapons à l’heure dorée, lac au premier plan',
   },
   it: {
-    h1: 'Pianifica il tuo viaggio in Lapponia',
-    pinkLine: 'Componi tu, oppure scegli un operatore locale.',
+    h1: 'Pianifichi il Suo viaggio in Lapponia',
+    pinkLine: 'Lo componga Lei, oppure scelga un operatore locale.',
     lead:
       'Due modi per raggiungere la Lapponia finlandese. Combina hotel, auto a noleggio e attività giornaliera, oppure prenota direttamente con uno dei sei operatori locali. Guide scritte dalla Finlandia, fonti citate.',
     primary: 'Componi il mio viaggio',

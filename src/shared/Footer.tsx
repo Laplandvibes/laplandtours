@@ -716,6 +716,22 @@ interface SharedFooterProps {
    */
   extraLegalLinks?: { to: string; label: string }[];
   /**
+   * Per-site slugs for the three canonical legal pages. Defaults are the
+   * network standard and 26/27 sites need nothing here.
+   *
+   * 🔴 laplandskiresorts serves its privacy policy at `/privacy-policy` — its
+   * canonical, sitemap and hreflang set have carried that slug since launch and
+   * `/privacy` has never existed there. The hardcoded `/privacy` link therefore
+   * pointed at a real 404 in the footer of every page on that site (found by
+   * e2e/check-links.mjs 2026-08-22). The same split already exists in
+   * shared/NewsletterPopup (`privacyHref`), which is why this is a prop and not
+   * a per-site fork of the Footer.
+   *
+   * Pass the slug WITHOUT locale prefix and WITHOUT trailing slash; the Footer
+   * adds both, so the link stays canonical and Cloudflare never answers 308.
+   */
+  legalPaths?: { privacy?: string; cookie?: string; terms?: string };
+  /**
    * Destination for the "Website by …" credit link. Defaults to yrityspaketit.fi;
    * pass e.g. "https://www.zatap.fi" on sites whose `websiteBy` label names Zatap,
    * so the label and the link target match.
@@ -863,7 +879,7 @@ function ContactModal({ kind, title, c, lang, onClose }: { kind: ContactKind; ti
   );
 }
 
-export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPillarClick, editorialNote, extraLegalLinks = [], dict, websiteByHref = 'https://yrityspaketit.fi' }: SharedFooterProps) {
+export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPillarClick, editorialNote, extraLegalLinks = [], legalPaths, dict, websiteByHref = 'https://yrityspaketit.fi' }: SharedFooterProps) {
   const d = mergeDict(dict);
   const siteGroups = buildSiteGroups(d);
   const [contactKind, setContactKind] = useState<ContactKind | null>(null);
@@ -1291,9 +1307,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
             <div className="flex flex-col items-center gap-3 text-xs font-normal">
               <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-1">
                 {[
-                  { to: `${localePrefix}/privacy/`, label: d.legal.privacy },
-                  { to: `${localePrefix}/cookie-policy/`, label: d.legal.cookie },
-                  { to: `${localePrefix}/terms/`, label: d.legal.terms },
+                  { to: `${localePrefix}${legalPaths?.privacy ?? '/privacy'}/`, label: d.legal.privacy },
+                  { to: `${localePrefix}${legalPaths?.cookie ?? '/cookie-policy'}/`, label: d.legal.cookie },
+                  { to: `${localePrefix}${legalPaths?.terms ?? '/terms'}/`, label: d.legal.terms },
                   ...extraLegalLinks,
                 ].map(({ to, label }) => (
                   <Link
