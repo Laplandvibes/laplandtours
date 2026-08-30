@@ -52,8 +52,8 @@ const TEXT: Record<Lang, { compact: string; full: string }> = {
     full: 'Questa pagina contiene link di affiliazione. Se prenota tramite questi link, #LaplandTours potrebbe ricevere una commissione senza costi aggiuntivi per Lei. Le relazioni di affiliazione non influenzano i contenuti editoriali.',
   },
   nl: {
-    compact: 'Affiliatielinks. Een kleine commissie kan worden verdiend op boekingen, zonder extra kosten voor jou.',
-    full: 'Deze pagina bevat affiliatielinks. Als je via deze links boekt, kan #LaplandTours een commissie ontvangen zonder extra kosten voor jou. Affiliatierelaties beïnvloeden de redactionele inhoud niet.',
+    compact: 'Affiliatielinks. Een kleine commissie kan worden verdiend op boekingen, zonder extra kosten voor u.',
+    full: 'Deze pagina bevat affiliatielinks. Als u via deze links boekt, kan #LaplandTours een commissie ontvangen zonder extra kosten voor u. Affiliatierelaties beïnvloeden de redactionele inhoud niet.',
   },
   sv: {
     compact: 'Affiliatelänkar. En liten provision kan tjänas in på bokningar, utan extra kostnad för dig.',
