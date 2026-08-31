@@ -57,14 +57,14 @@ const ITEMS: Record<
   ja: [
     {
       to: '/age-guide',
-      eyebrow: 'お子様との旅行ですか?',
+      eyebrow: 'お子様との旅行ですか？',
       title: 'どのラップランドのアクティビティが何歳から楽しめるか',
       body: '乳児から16歳以上まで、年齢×アクティビティの実用マトリクスとツアー会社ごとの目安。',
       readLabel: '読む',
     },
     {
       to: '/practical-info',
-      eyebrow: 'ラップランドは初めてですか?',
+      eyebrow: 'ラップランドは初めてですか？',
       title: '気候、ビザ、交通、持ち物',
       body: '冬は−30°Cまで下がり、2026年末からETIAS、予約前に押さえておきたい6つのポイント。',
       readLabel: '読む',

@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
     setPageMeta({
       title: 'Privacy Policy | #LaplandTours',
       description:
-        'How #LaplandTours collects, uses, and protects visitor data. Operated by Lapeso Oy under EU GDPR.',
+        'How #LaplandTours collects, uses, and protects visitor data. Operated by LaPeso Oy under EU GDPR.',
       canonical: 'https://laplandtours.online/privacy',
       robots: 'index, follow',
     });

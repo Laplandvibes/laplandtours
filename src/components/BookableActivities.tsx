@@ -171,7 +171,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; cta: s
   ja: {
     eyebrow: '1日だけ予約',
     h2: 'ツアー1つだけの予約も',
-    lead: 'パッケージまでは決めきれない? GetYourGuideで半日の体験を1つだけ直接予約できます。リアルタイム価格、即時確認、多くは無料キャンセル。',
+    lead: 'パッケージまでは決めきれない？GetYourGuideで半日の体験を1つだけ直接予約できます。リアルタイム価格、即時確認、多くは無料キャンセル。',
     cta: 'GetYourGuideで予約',
     note: 'アフィリエイトリンクを含みます。ご予約に対し、お客様への追加料金なしで手数料が支払われる場合があります。',
   },

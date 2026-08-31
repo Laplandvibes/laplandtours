@@ -195,7 +195,7 @@ export function articleSchema(opts: {
     datePublished: opts.datePublished ?? '2026-05-09',
     dateModified: opts.dateModified ?? '2026-05-09',
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
-    publisher: { '@type': 'Organization', name: 'Lapeso Oy', url: 'https://laplandvibes.com' },
+    publisher: { '@type': 'Organization', name: 'LaPeso Oy', url: 'https://laplandvibes.com' },
   };
 }
 
@@ -221,6 +221,6 @@ export function travelAgencySchema() {
     description:
       'A non-selling editorial guide comparing hand-picked Lapland tour operators, UK & European package operators and Finland-based local specialists, with real prices via direct referrals.',
     areaServed: { '@type': 'Place', name: 'Finnish Lapland' },
-    parentOrganization: { '@type': 'Organization', name: 'Lapeso Oy', url: 'https://laplandvibes.com/' },
+    parentOrganization: { '@type': 'Organization', name: 'LaPeso Oy', url: 'https://laplandvibes.com/' },
   };
 }

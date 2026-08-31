@@ -165,49 +165,49 @@ const FAQS_DE: Faq[] = [
 
 const FAQS_JA: Faq[] = [
   {
-    q: 'ラップランドのパッケージには通常何が含まれていますか?',
+    q: 'ラップランドのパッケージには通常何が含まれていますか？',
     a: '事業者によって異なります。地元の事業者は主に個別のガイド付きツアーを販売しており、料金には通常ガイド、用具一式、暖かい防寒着、街の中心部からの送迎が含まれ、焚き火のそばでの温かい飲み物が付くことも多いです。HarrinivaやNordic Unique Travelsのように、宿泊+アクティビティやオーダーメイドの旅を手配するところもあります。航空券とホテルはご自身で予約します。',
     aHtml:
       '事業者によって異なります。地元の事業者は主に個別のガイド付きツアーを販売しており、料金には通常ガイド、用具一式、暖かい防寒着、街の中心部からの送迎が含まれ、焚き火のそばでの温かい飲み物が付くことも多いです。HarrinivaやNordic Unique Travelsのように、宿泊+アクティビティやオーダーメイドの旅を手配するところもあります。航空券とホテルはご自身で予約します。',
   },
   {
-    q: 'オーロラを観察するのに最適な時期はいつですか?',
+    q: 'オーロラを観察するのに最適な時期はいつですか？',
     a: 'オーロラのシーズンは8月末から4月初めまでで、11月から2月にピークを迎えます。フィンランド・ラップランド（特にイナリ、サーリセルカ、ムオニオ）は世界でも有数のオーロラ観察スポットです。',
     aHtml:
       'オーロラのシーズンは8月末から4月初めまでで、11月から2月にピークを迎えます。フィンランド・ラップランド（特に<a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">イナリ、サーリセルカ、ムオニオ</a>）は世界でも有数のオーロラ観察スポットです。',
   },
   {
-    q: 'ラップランドの気温はどのくらいですか?',
+    q: 'ラップランドの気温はどのくらいですか？',
     a: '冬の気温は−5℃から−30℃の範囲です。すべてのパッケージオペレーターが防寒オーバーオール、ブーツ、手袋を提供します。荷造りのヒントと重ね着のアドバイスについては実用情報ガイドをご覧ください。',
     aHtml:
       '冬の気温は−5℃から−30℃の範囲です。すべてのパッケージオペレーターが防寒オーバーオール、ブーツ、手袋を提供します。荷造りのヒントと重ね着のアドバイスについては<a href="/ja/practical-info" class="text-vibe-pink hover:underline">実用情報ガイド</a>をご覧ください。',
   },
   {
-    q: 'パッケージは子供にも適していますか?',
+    q: 'パッケージは子供にも適していますか？',
     a: 'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については年齢別ガイドをご覧ください。',
     aHtml:
       'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については<a href="/ja/age-guide" class="text-vibe-pink hover:underline">年齢別ガイド</a>をご覧ください。',
   },
   {
     q: 'ラップランドへの行き方を教えてください。',
-    a: 'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由(約1時間の国内線)が一般的です。夜行のVR寝台列車もご利用いただけます。',
+    a: 'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由（約1時間の国内線）が一般的です。夜行のVR寝台列車もご利用いただけます。',
     aHtml:
-      'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由(約1時間の国内線)が一般的です。夜行のVR寝台列車もご利用いただけます。鉄道やレンタカーを含むすべての移動手段については<a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>をご覧ください。',
+      'ロヴァニエミ(RVN)、キッティラ(KTT)、イヴァロ(IVL)へは、フィンエアーでヘルシンキ経由（約1時間の国内線）が一般的です。夜行のVR寝台列車もご利用いただけます。鉄道やレンタカーを含むすべての移動手段については<a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a>をご覧ください。',
   },
   {
-    q: 'どこに宿泊すべきですか?',
+    q: 'どこに宿泊すべきですか？',
     a: 'ラップランドにはガラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。',
     aHtml:
       'ラップランドにはガラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。宿泊施設は<a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a>または<a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>でご覧ください。',
   },
   {
-    q: 'どのようなアクティビティがありますか?',
+    q: 'どのようなアクティビティがありますか？',
     a: '人気のアクティビティには、ハスキーサファリ、スノーモービルツアー、トナカイそり、オーロラ観察、スキー、氷上釣り、サンタクロース村の訪問があります。',
     aHtml:
       '人気のアクティビティには、<a href="https://laplandhuskysafaris.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">ハスキーサファリ</a>、<a href="https://laplandsnowmobile.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">スノーモービルツアー</a>、トナカイそり、オーロラ観察、<a href="https://laplandskiresorts.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">スキー</a>、氷上釣り、サンタクロース村の訪問があります。',
   },
   {
-    q: 'フィンランドへの渡航にはビザが必要ですか?',
+    q: 'フィンランドへの渡航にはビザが必要ですか？',
     a: 'EU/EEA市民は有効なパスポートまたは国民IDのみで渡航可能です。イギリス、アメリカ、カナダ、オーストラリアの市民はシェンゲン圏内で最大90日間ビザなしで滞在できます。',
     aHtml:
       'EU/EEA市民は有効なパスポートまたは国民IDのみで渡航可能です。イギリス、アメリカ、カナダ、オーストラリアの市民はシェンゲン圏内で最大90日間ビザなしで滞在できます。その他の国籍の方は<a href="https://migri.fi/en/home" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">migri.fi</a>でご確認ください。',
