@@ -903,6 +903,12 @@ function harvestRouteText(loc, route, meta) {
       if (fp) {
         let src = inlinePageCache.get(fp);
         if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
+        // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
+        // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
+        // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
+        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        const stopIx = src.indexOf('@harvest-stop');
+        if (stopIx >= 0) src = src.slice(0, stopIx);
         // An ARRAY of records identified by a field (`{ slug: 'levi', … }`)
         // rather than an object map — this is how the English base data is
         // written on most sites. Walk back from the field to that record's own
@@ -968,6 +974,12 @@ function harvestRouteText(loc, route, meta) {
         if (!existsSync(fp)) continue;
         let src = inlinePageCache.get(fp);
         if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
+        // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
+        // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
+        // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
+        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        const stopIx = src.indexOf('@harvest-stop');
+        if (stopIx >= 0) src = src.slice(0, stopIx);
         harvestPickCalls(src, loc, out, meta, seen, budget);
       }
     }
@@ -987,6 +999,12 @@ function harvestRouteText(loc, route, meta) {
         if (!fp || !existsSync(fp)) continue;
         let src = inlinePageCache.get(fp);
         if (!src) { src = readFileSync(fp, 'utf-8'); inlinePageCache.set(fp, src); }
+        // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
+        // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
+        // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
+        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        const stopIx = src.indexOf('@harvest-stop');
+        if (stopIx >= 0) src = src.slice(0, stopIx);
         if (perLangFile) { harvestFromTsBlock(src, out, meta, seen, budget); continue; }
         // A route declared for ONE locale is a single-market landing page: its
         // component holds that language and no other, with no per-language block
