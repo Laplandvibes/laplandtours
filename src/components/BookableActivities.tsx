@@ -81,7 +81,7 @@ const cards: ActivityCard[] = [
       sv: { title: 'Norrskensjakt', body: 'En guide följer den klara himlen och kör dig dit. Saariselkä långt norrut ligger under norrskensovalen.', meta: 'Saariselkä · sep–mars · 3–4 h' },
       es: { title: 'Caza de auroras', body: 'Un guía sigue los cielos despejados y le lleva hasta ellos. El extremo norte de Saariselkä queda bajo el óvalo auroral.', meta: 'Saariselkä · sep–mar · 3–4 h' },
       'pt-BR': { title: 'Caça à aurora', body: 'Um guia acompanha os céus limpos e leva você até eles. O extremo norte de Saariselkä fica sob o oval auroral.', meta: 'Saariselkä · set–mar · 3–4 h' },
-      'zh-CN': { title: '极光追寻', body: '向导追踪晴朗的天空并带你前往。最北端的萨里色尔卡正处于极光带之下。', meta: '萨里色尔卡 · 9–3月 · 3–4 小时' },
+      'zh-CN': { title: '极光追寻', body: '向导追踪晴朗的天空并带你前往。最北端的萨利色尔卡正处于极光带之下。', meta: '萨利色尔卡 · 9–3月 · 3–4 小时' },
     },
   },
   {

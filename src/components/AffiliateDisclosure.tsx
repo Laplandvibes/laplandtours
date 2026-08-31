@@ -36,8 +36,8 @@ const TEXT: Record<Lang, { compact: string; full: string }> = {
     full: 'Esta página contém links de afiliados. Se você reservar por meio destes links, a #LaplandTours pode receber uma comissão sem custo adicional. As relações de afiliação não influenciam a cobertura editorial.',
   },
   'zh-CN': {
-    compact: '联盟链接。预订时可能产生少量佣金,您无需支付额外费用。',
-    full: '本页面包含联盟链接。如果您通过这些链接预订,#LaplandTours 可能会获得佣金,您无需支付额外费用。联盟关系不会影响编辑内容。',
+    compact: '联盟链接。预订时可能产生少量佣金，您无需支付额外费用。',
+    full: '本页面包含联盟链接。如果您通过这些链接预订，#LaplandTours 可能会获得佣金，您无需支付额外费用。联盟关系不会影响编辑内容。',
   },
   ko: {
     compact: '제휴 링크. 예약 시 추가 비용 없이 소액의 수수료가 발생할 수 있습니다.',
