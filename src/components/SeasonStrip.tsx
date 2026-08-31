@@ -127,7 +127,7 @@ const COPY: Record<CopyLang, {
     bestAurora: '오로라 대비 가격이 가장 좋은 시기',
     bestAuroraMonth: '2월',
     bestAuroraBody:
-      '오로라 관측 확률은 정점에 가깝지만 학교 방학은 아직 시작되지 않은 시기입니다. 운영사들은 2월 후반 주간을 크리스마스 대비 15~25% 할인합니다.',
+      '오로라 관측 확률은 정점에 가깝지만 학교 방학은 아직 시작되지 않은 시기입니다. 운영사들은 2월 후반 주간 요금을 크리스마스 시즌보다 15~25% 낮춥니다.',
     cheapestWinter: '가장 저렴한 겨울',
     cheapestWinterMonth: '3월 하순',
     cheapestWinterBody:

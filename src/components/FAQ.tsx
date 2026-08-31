@@ -241,9 +241,9 @@ const FAQS_KO: Faq[] = [
   },
   {
     q: '라플란드에는 어떻게 가나요?',
-    a: '로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다.',
+    a: '로바니에미(RVN), 키틸래(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다.',
     aHtml:
-      '로바니에미(RVN), 키틸레(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다. 기차와 렌터카를 포함한 모든 이동 수단은 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> 에서 확인하세요.',
+      '로바니에미(RVN), 키틸래(KTT), 이발로(IVL)로 가려면 보통 Finnair로 헬싱키를 경유합니다(약 1시간 국내선). VR 야간 침대열차도 이용할 수 있습니다. 기차와 렌터카를 포함한 모든 이동 수단은 <a href="https://laplandtransport.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandTransport.com</a> 에서 확인하세요.',
   },
   {
     q: '어디에 묵어야 하나요?',

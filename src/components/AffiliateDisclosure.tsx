@@ -41,7 +41,7 @@ const TEXT: Record<Lang, { compact: string; full: string }> = {
   },
   ko: {
     compact: '제휴 링크. 예약 시 추가 비용 없이 소액의 수수료가 발생할 수 있습니다.',
-    full: '이 페이지에는 제휴 링크가 포함되어 있습니다. 이 링크를 통해 예약하시면 #LaplandTours가 추가 비용 없이 수수료를 받을 수 있습니다. 제휴 관계는 편집 내용에 영향을 주지 않습니다.',
+    full: '이 페이지에는 제휴 링크가 포함되어 있습니다. 이 링크를 통해 예약하시면 #귀하에게 추가 비용이 발생하지 않으며, LaplandTours가 수수료를 받습니다. 제휴 관계는 편집 내용에 영향을 주지 않습니다.',
   },
   fr: {
     compact: 'Liens d’affiliation. Une petite commission peut être générée sur les réservations, sans coût supplémentaire pour vous.',
