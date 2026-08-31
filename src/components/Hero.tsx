@@ -90,7 +90,7 @@ const COPY: Record<Lang, {
       'Deux façons de rejoindre la Laponie finlandaise. Combinez vous-même hôtel, location de voiture et activité d’une journée, ou réservez directement auprès de l’un des six opérateurs locaux. Guides rédigés depuis la Finlande, sources citées.',
     primary: 'Composer mon voyage',
     secondary: 'Voir les opérateurs',
-    alt: 'Paysage de fjells lapons à l’heure dorée, lac au premier plan',
+    alt: 'Paysage de fjälls lapons à l’heure dorée, lac au premier plan',
   },
   it: {
     h1: 'Pianifichi il Suo viaggio in Lapponia',
@@ -99,7 +99,7 @@ const COPY: Record<Lang, {
       'Due modi per raggiungere la Lapponia finlandese. Combina hotel, auto a noleggio e attività giornaliera, oppure prenota direttamente con uno dei sei operatori locali. Guide scritte dalla Finlandia, fonti citate.',
     primary: 'Componi il mio viaggio',
     secondary: 'Vedi gli operatori',
-    alt: 'Paesaggio di fjell della Lapponia all’ora dorata, lago in primo piano',
+    alt: 'Paesaggio di fjäll della Lapponia all’ora dorata, lago in primo piano',
   },
   nl: {
     h1: 'Plan een Lapland-rondreis',

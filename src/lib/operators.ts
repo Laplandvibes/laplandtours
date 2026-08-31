@@ -1409,7 +1409,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       typicalLength: 'De la demi-journée à plusieurs jours',
       tierLabel: 'Activités et hébergement',
       whatTheyDoWell:
-        "Basée à Rovaniemi, avec des points d'attache à Ylläs, Levi et Saariselkä. Safaris husky, renne et motoneige, chasses aux aurores, pêche blanche et baignade hivernale, et les premiers safaris en motoneige électrique (eSled) au monde. Gère aussi ses propres chalets et hébergements en pleine nature pour des formules séjour + activité.",
+        "Basée à Rovaniemi, avec des points d'attache à Ylläs, Levi et Saariselkä. Safaris en traîneau de huskies et de rennes, sorties motoneige, chasses aux aurores, pêche blanche et baignade hivernale, et les premiers safaris en motoneige électrique (eSled) au monde. Gère aussi ses propres chalets et hébergements en pleine nature pour des formules séjour + activité.",
       whatTheyDont:
         'Un opérateur animé à plusieurs bases, pas une structure intime à guide unique. Les vols restent à votre charge.',
     },

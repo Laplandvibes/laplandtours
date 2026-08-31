@@ -286,7 +286,7 @@ const rails: RailCard[] = [
         label: '03  ·  Faire',
         headline: 'Une journée en pleine nature',
         body:
-          'Safaris husky, sorties motoneige, chasses aux aurores, pêche blanche. Réservez d\'une demi-journée à une semaine via GetYourGuide.',
+          'Safaris en traîneau de huskies, sorties motoneige, chasses aux aurores, pêche blanche. Réservez d\'une demi-journée à une semaine via GetYourGuide.',
         priceLine: 'Tarifs en direct sur GetYourGuide · confirmation immédiate',
         ctaLabel: 'Voir les excursions en Laponie',
       },

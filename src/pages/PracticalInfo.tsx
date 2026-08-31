@@ -64,7 +64,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visa & documents',
         body:
-          'EU/EEA citizens travel on a passport or national ID. UK, US, Canadian and Australian citizens visit visa-free up to 90 days under Schengen rules. ETIAS authorisation begins to apply for visa-exempt travellers from late 2026. Check migri.fi or eu-etias.eu before booking.',
+          'EU/EEA citizens travel on a passport or national ID. UK, US, Canadian and Australian citizens visit visa-free up to 90 days under Schengen rules. ETIAS authorisation begins to apply for visa-exempt travellers from late 2026. Check migri.fi or travel-europe.europa.eu/etias before booking.',
       },
       {
         n: '05',
@@ -123,7 +123,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Viisumi ja paperit',
         body:
-          'EU/ETA-kansalaisille riittää passi tai henkilökortti. Britannian, Yhdysvaltain, Kanadan ja Australian kansalaiset saavat oleskella ilman viisumia 90 päivää Schengen-säännöillä. ETIAS-lupa koskee viisumi­vapaiden maiden matkustajia loppuvuodesta 2026. Tarkista migri.fi tai eu-etias.eu ennen varausta.',
+          'EU/ETA-kansalaisille riittää passi tai henkilökortti. Britannian, Yhdysvaltain, Kanadan ja Australian kansalaiset saavat oleskella ilman viisumia 90 päivää Schengen-säännöillä. ETIAS-lupa koskee viisumi­vapaiden maiden matkustajia loppuvuodesta 2026. Tarkista migri.fi tai travel-europe.europa.eu/etias ennen varausta.',
       },
       {
         n: '05',
@@ -182,7 +182,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visum & Dokumente',
         body:
-          'EU-/EWR-Bürgerinnen und -Bürger reisen mit Pass oder Personalausweis. Reisende aus dem Vereinigten Königreich, den USA, Kanada und Australien dürfen visafrei bis zu 90 Tage im Schengen-Raum bleiben. ETIAS gilt für visumbefreite Reisende ab Ende 2026. Bitte vor der Buchung auf migri.fi oder eu-etias.eu prüfen.',
+          'EU-/EWR-Bürgerinnen und -Bürger reisen mit Pass oder Personalausweis. Reisende aus dem Vereinigten Königreich, den USA, Kanada und Australien dürfen visafrei bis zu 90 Tage im Schengen-Raum bleiben. ETIAS gilt für visumbefreite Reisende ab Ende 2026. Bitte vor der Buchung auf migri.fi oder travel-europe.europa.eu/etias prüfen.',
       },
       {
         n: '05',
@@ -241,7 +241,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'ビザと書類',
         body:
-          'EU/EEAの市民はパスポートまたは国民IDで渡航できます。イギリス、アメリカ、カナダ、オーストラリアの市民はシェンゲン規則のもと最大90日までビザなしで渡航可能です。ETIAS認証は2026年下半期からビザ免除の渡航者に適用が開始されます。ご予約前にmigri.fiまたはeu-etias.euをご確認ください。',
+          'EU/EEAの市民はパスポートまたは国民IDで渡航できます。イギリス、アメリカ、カナダ、オーストラリアの市民はシェンゲン規則のもと最大90日までビザなしで渡航可能です。ETIAS認証は2026年下半期からビザ免除の渡航者に適用が開始されます。ご予約前にmigri.fiまたはtravel-europe.europa.eu/etiasをご確認ください。',
       },
       {
         n: '05',
@@ -300,7 +300,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: '비자 및 서류',
         body:
-          'EU/EEA 시민은 여권 또는 국민 신분증으로 입국 가능합니다. 영국, 미국, 캐나다, 호주 시민은 셴겐 규정에 따라 최대 90일 무비자로 방문할 수 있습니다. ETIAS 인증은 2026년 말부터 무비자 여행자에게 적용됩니다. 예약 전 migri.fi 또는 eu-etias.eu를 확인하세요.',
+          'EU/EEA 시민은 여권 또는 국민 신분증으로 입국 가능합니다. 영국, 미국, 캐나다, 호주 시민은 셴겐 규정에 따라 최대 90일 무비자로 방문할 수 있습니다. ETIAS 인증은 2026년 말부터 무비자 여행자에게 적용됩니다. 예약 전 migri.fi 또는 travel-europe.europa.eu/etias를 확인하세요.',
       },
       {
         n: '05',
@@ -359,7 +359,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visa et documents',
         body:
-          'Les ressortissants UE/EEE voyagent avec un passeport ou une carte d\'identité. Les ressortissants du Royaume-Uni, des États-Unis, du Canada et d\'Australie peuvent rester jusqu\'à 90 jours sans visa selon les règles Schengen. L\'autorisation ETIAS s\'applique aux voyageurs exemptés de visa à partir de fin 2026. Vérifiez migri.fi ou eu-etias.eu avant de réserver.',
+          'Les ressortissants UE/EEE voyagent avec un passeport ou une carte d\'identité. Les ressortissants du Royaume-Uni, des États-Unis, du Canada et d\'Australie peuvent rester jusqu\'à 90 jours sans visa selon les règles Schengen. L\'autorisation ETIAS s\'applique aux voyageurs exemptés de visa à partir de fin 2026. Vérifiez migri.fi ou travel-europe.europa.eu/etias avant de réserver.',
       },
       {
         n: '05',
@@ -418,7 +418,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visto e documenti',
         body:
-          'I cittadini UE/SEE viaggiano con passaporto o carta d\'identità. I cittadini di Regno Unito, Stati Uniti, Canada e Australia possono rimanere fino a 90 giorni senza visto nell\'area Schengen. L\'autorizzazione ETIAS si applicherà ai viaggiatori esenti da visto da fine 2026. Verifichi migri.fi o eu-etias.eu prima di prenotare.',
+          'I cittadini UE/SEE viaggiano con passaporto o carta d\'identità. I cittadini di Regno Unito, Stati Uniti, Canada e Australia possono rimanere fino a 90 giorni senza visto nell\'area Schengen. L\'autorizzazione ETIAS si applicherà ai viaggiatori esenti da visto da fine 2026. Verifichi migri.fi o travel-europe.europa.eu/etias prima di prenotare.',
       },
       {
         n: '05',
@@ -477,7 +477,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visum en documenten',
         body:
-          'EU/EER-burgers reizen met paspoort of identiteitskaart. Reizigers uit het VK, de VS, Canada en Australië mogen tot 90 dagen zonder visum verblijven volgens de Schengenregels. ETIAS-autorisatie gaat vanaf eind 2026 gelden voor visumvrije reizigers. Controleer migri.fi of eu-etias.eu vóór het boeken.',
+          'EU/EER-burgers reizen met paspoort of identiteitskaart. Reizigers uit het VK, de VS, Canada en Australië mogen tot 90 dagen zonder visum verblijven volgens de Schengenregels. ETIAS-autorisatie gaat vanaf eind 2026 gelden voor visumvrije reizigers. Controleer migri.fi of travel-europe.europa.eu/etias vóór het boeken.',
       },
       {
         n: '05',
@@ -536,7 +536,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visum och dokument',
         body:
-          'EU/EES-medborgare reser med pass eller nationellt id-kort. Medborgare i Storbritannien, USA, Kanada och Australien får vistas visumfritt upp till 90 dagar enligt Schengenreglerna. ETIAS-tillståndet börjar gälla för visumfria resenärer från slutet av 2026. Kontrollera migri.fi eller eu-etias.eu innan du bokar.',
+          'EU/EES-medborgare reser med pass eller nationellt id-kort. Medborgare i Storbritannien, USA, Kanada och Australien får vistas visumfritt upp till 90 dagar enligt Schengenreglerna. ETIAS-tillståndet börjar gälla för visumfria resenärer från slutet av 2026. Kontrollera migri.fi eller travel-europe.europa.eu/etias innan du bokar.',
       },
       {
         n: '05',
@@ -595,7 +595,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visado y documentos',
         body:
-          'Los ciudadanos de la UE/EEE viajan con pasaporte o documento de identidad. Quienes vienen del Reino Unido, EE. UU., Canadá y Australia pueden estar hasta 90 días sin visado según las normas Schengen. La autorización ETIAS empieza a aplicarse a los viajeros exentos de visado desde finales de 2026: consulte migri.fi o eu-etias.eu antes de reservar.',
+          'Los ciudadanos de la UE/EEE viajan con pasaporte o documento de identidad. Quienes vienen del Reino Unido, EE. UU., Canadá y Australia pueden estar hasta 90 días sin visado según las normas Schengen. La autorización ETIAS empieza a aplicarse a los viajeros exentos de visado desde finales de 2026: consulte migri.fi o travel-europe.europa.eu/etias antes de reservar.',
       },
       {
         n: '05',
@@ -654,7 +654,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: 'Visto e documentos',
         body:
-          'Cidadãos da UE/EEE viajam com passaporte ou documento de identidade. Viajantes do Reino Unido, EUA, Canadá e Austrália podem ficar até 90 dias sem visto pelas regras Schengen. A autorização ETIAS começa a valer para viajantes isentos de visto a partir do fim de 2026. Confira migri.fi ou eu-etias.eu antes de reservar.',
+          'Cidadãos da UE/EEE viajam com passaporte ou documento de identidade. Viajantes do Reino Unido, EUA, Canadá e Austrália podem ficar até 90 dias sem visto pelas regras Schengen. A autorização ETIAS começa a valer para viajantes isentos de visto a partir do fim de 2026. Confira migri.fi ou travel-europe.europa.eu/etias antes de reservar.',
       },
       {
         n: '05',
@@ -713,7 +713,7 @@ const COPY: Record<CopyLang, {
         n: '04',
         title: '签证与证件',
         body:
-          '欧盟/欧洲经济区公民凭护照或身份证即可。来自英国、美国、加拿大和澳大利亚的旅客按申根规定可免签停留至多 90 天。自 2026 年底起，ETIAS 授权开始适用于免签旅客。预订前请查阅 migri.fi 或 eu-etias.eu。',
+          '欧盟/欧洲经济区公民凭护照或身份证即可。来自英国、美国、加拿大和澳大利亚的旅客按申根规定可免签停留至多 90 天。自 2026 年底起，ETIAS 授权开始适用于免签旅客。预订前请查阅 migri.fi 或 travel-europe.europa.eu/etias。',
       },
       {
         n: '05',
