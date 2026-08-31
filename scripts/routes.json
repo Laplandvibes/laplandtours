@@ -193,7 +193,7 @@
   {
     "path": "/privacy",
     "fallbackTitle": "Privacy Policy | #LaplandTours",
-    "fallbackDescription": "How #LaplandTours collects, uses, and protects visitor data. Operated by Lapeso Oy under EU GDPR.",
+    "fallbackDescription": "How #LaplandTours collects, uses, and protects visitor data. Operated by LaPeso Oy under EU GDPR.",
     "fallbackTitleByLang": {
       "en": "Privacy Policy | #LaplandTours",
       "fi": "Tietosuojaseloste | #LaplandTours",
@@ -209,18 +209,18 @@
       "sv": "Integritetspolicy | #LaplandTours"
     },
     "fallbackDescriptionByLang": {
-      "en": "How #LaplandTours collects, uses, and protects visitor data. Operated by Lapeso Oy under EU GDPR.",
-      "fi": "Miten #LaplandTours kerää, käyttää ja suojaa kävijätietoja. Ylläpitäjä Lapeso Oy, EU:n GDPR:n mukaisesti.",
-      "de": "Wie #LaplandTours Besucherdaten erhebt, nutzt und schützt. Betrieben von Lapeso Oy gemäß der EU-DSGVO.",
-      "ja": "#LaplandTours が訪問者データをどのように収集・利用・保護するか。運営は Lapeso Oy、EU の GDPR に準拠しています。",
-      "es": "Cómo #LaplandTours recopila, usa y protege los datos de los visitantes. Operado por Lapeso Oy conforme al RGPD de la UE.",
-      "pt-BR": "Como o #LaplandTours coleta, usa e protege os dados dos visitantes. Operado pela Lapeso Oy sob o RGPD da UE.",
-      "zh-CN": "#LaplandTours 如何收集、使用和保护访客数据。由 Lapeso Oy 依据欧盟 GDPR 运营。",
-      "ko": "#LaplandTours가 방문자 데이터를 수집·이용·보호하는 방식. EU GDPR에 따라 Lapeso Oy가 운영합니다.",
-      "fr": "Comment #LaplandTours collecte, utilise et protège les données des visiteurs. Exploité par Lapeso Oy selon le RGPD de l'UE.",
-      "it": "Come #LaplandTours raccoglie, usa e protegge i dati dei visitatori. Gestito da Lapeso Oy ai sensi del GDPR dell'UE.",
-      "nl": "Hoe #LaplandTours bezoekersgegevens verzamelt, gebruikt en beschermt. Beheerd door Lapeso Oy onder de EU-AVG.",
-      "sv": "Hur #LaplandTours samlar in, använder och skyddar besökardata. Drivs av Lapeso Oy enligt EU:s GDPR."
+      "en": "How #LaplandTours collects, uses, and protects visitor data. Operated by LaPeso Oy under EU GDPR.",
+      "fi": "Miten #LaplandTours kerää, käyttää ja suojaa kävijätietoja. Ylläpitäjä LaPeso Oy, EU:n GDPR:n mukaisesti.",
+      "de": "Wie #LaplandTours Besucherdaten erhebt, nutzt und schützt. Betrieben von LaPeso Oy gemäß der EU-DSGVO.",
+      "ja": "#LaplandTours が訪問者データをどのように収集・利用・保護するか。運営は LaPeso Oy、EU の GDPR に準拠しています。",
+      "es": "Cómo #LaplandTours recopila, usa y protege los datos de los visitantes. Operado por LaPeso Oy conforme al RGPD de la UE.",
+      "pt-BR": "Como o #LaplandTours coleta, usa e protege os dados dos visitantes. Operado pela LaPeso Oy sob o RGPD da UE.",
+      "zh-CN": "#LaplandTours 如何收集、使用和保护访客数据。由 LaPeso Oy 依据欧盟 GDPR 运营。",
+      "ko": "#LaplandTours가 방문자 데이터를 수집·이용·보호하는 방식. EU GDPR에 따라 LaPeso Oy가 운영합니다.",
+      "fr": "Comment #LaplandTours collecte, utilise et protège les données des visiteurs. Exploité par LaPeso Oy selon le RGPD de l'UE.",
+      "it": "Come #LaplandTours raccoglie, usa e protegge i dati dei visitatori. Gestito da LaPeso Oy ai sensi del GDPR dell'UE.",
+      "nl": "Hoe #LaplandTours bezoekersgegevens verzamelt, gebruikt en beschermt. Beheerd door LaPeso Oy onder de EU-AVG.",
+      "sv": "Hur #LaplandTours samlar in, använder och skyddar besökardata. Drivs av LaPeso Oy enligt EU:s GDPR."
     },
     "harvestFiles": [
       "src/shared/Legal/PrivacyContent.tsx"
