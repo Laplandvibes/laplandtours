@@ -642,7 +642,7 @@ const COPY: Record<CopyLang, {
         n: '02',
         title: 'Clima e o que levar',
         body:
-          'Inverno (nov–mar): de −5 °C a −30 °C. As operadoras fornecem macacões térmicos, botas e luvas. Leve camadas-base térmicas, uma camada intermediária de lã, gorro quente, gola tipo bandana, luvas tipo mãe e botas de caminhada firmes. Verão (jun–ago): 10–25 °C, com muitos mosquitos, então leve repelente.',
+          'Inverno (nov–mar): de −5 °C a −30 °C. As operadoras fornecem macacões térmicos, botas e luvas. Leve camadas-base térmicas, uma camada intermediária de lã, gorro quente, gola tipo bandana, luvas tipo mitene e botas de caminhada firmes. Verão (jun–ago): 10–25 °C, com muitos mosquitos, então leve repelente.',
       },
       {
         n: '03',
