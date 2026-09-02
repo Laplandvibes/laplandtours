@@ -966,7 +966,7 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
       typicalLength: '3–6 nachten',
       tierLabel: 'Maatwerk luxe',
       whatTheyDoWell:
-        'Op maat gemaakte reisroutes, opgebouwd in een telefoongesprek met een gespecialiseerde adviseur. Het glasiglo-product is hun vlaggenschip (Kakslauttanen, Levin Iglut, Wilderness Hotels). Privé-aurorajachten met fotograaf zijn routine.',
+        'Op maat gemaakte reisroutes, opgebouwd in een telefoongesprek met een gespecialiseerde adviseur. Het glasiglo-product is hun vlaggenschip (Kakslauttanen, Levin Iglut, Wilderness Hotels). Privé-noorderlichtjachten met fotograaf zijn routine.',
       whatTheyDont:
         'Geen prijsgevoelige optie. Geen vast pakketmenu. Elke offerte is maatwerk, wat de doorlooptijd verlengt.',
     },
@@ -1767,7 +1767,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       typicalLength: '3–8 u, kleine groep',
       tierLabel: 'Aurora-specialist',
       whatTheyDoWell:
-        "Een aanbieder uit Rovaniemi en Levi van de familie Rytilahti, gericht op noorderlichtjacht met groepen van ongeveer vijf personen en luxe bestelbussen uit 2025 die naar de helderste hemel rijden. De meeste tochten omvatten fotografie en 24/7 auroramonitoring. Door Tripadvisor beoordeeld als 'Best of the Best' (top 1%).",
+        "Een aanbieder uit Rovaniemi en Levi van de familie Rytilahti, gericht op noorderlichtjacht met groepen van ongeveer vijf personen en luxe bestelbussen uit 2025 die naar de helderste hemel rijden. De meeste tochten omvatten fotografie en 24/7 noorderlichtmonitoring. Door Tripadvisor beoordeeld als 'Best of the Best' (top 1%).",
       whatTheyDont:
         'Noorderlichtgericht en premium, geen brede aanbieder van gezinsactiviteiten. Wintergericht; het zomeraanbod is dunner.',
     },
