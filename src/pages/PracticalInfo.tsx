@@ -471,7 +471,7 @@ const COPY: Record<CopyLang, {
         n: '03',
         title: 'Wanneer gaan',
         body:
-          'Aurora-seizoen van eind augustus tot begin april (piek nov–feb). Kerstman-reizen: 1–24 december. Sneeuwseizoen: eind november–april. Middernachtszon: eind mei–eind juli. Herfstkleuren (ruska): half september.',
+          'Noorderlichtseizoen van eind augustus tot begin april (piek nov–feb). Kerstman-reizen: 1–24 december. Sneeuwseizoen: eind november–april. Middernachtszon: eind mei–eind juli. Herfstkleuren (ruska): half september.',
       },
       {
         n: '04',

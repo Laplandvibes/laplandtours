@@ -468,7 +468,7 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
     },
     nl: {
       tagline: 'Britse Lapland-specialist met lange staat van dienst',
-      bestFor: 'Gezinnen met kinderen van 4–12 jaar voor een 4–7-daagse aurora- of kerstreis vanaf een Britse regionale luchthaven.',
+      bestFor: 'Gezinnen met kinderen van 4–12 jaar voor een 4–7-daagse noorderlicht- of kerstreis vanaf een Britse regionale luchthaven.',
       basedIn: 'Surrey, Verenigd Koninkrijk',
       typicalLength: '3–7 nachten',
       tierLabel: 'Middensegment, mass-market',
@@ -842,7 +842,7 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
       typicalLength: '4–7 nachten',
       tierLabel: 'Premium avontuur',
       whatTheyDoWell:
-        'Activiteitgerichte weken (husky-sledetochten, sneeuwscootersafari\'s en aurora-jachten), gebundeld per nacht in plaats van per losse excursie. Sterk op de noordelijke bases Saariselkä en Inari, waar de zichtbaarheid van het noorderlicht statistisch hoger is.',
+        'Activiteitgerichte weken (husky-sledetochten, sneeuwscootersafari\'s en noorderlichtjachten), gebundeld per nacht in plaats van per losse excursie. Sterk op de noordelijke bases Saariselkä en Inari, waar de zichtbaarheid van het noorderlicht statistisch hoger is.',
       whatTheyDont:
         "Minder gezinsvriendelijk dan Inghams of Santa's Lapland. Kleinere vertreklijst.",
     },
@@ -961,12 +961,12 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
     },
     nl: {
       tagline: 'Maatwerk Noords luxesegment',
-      bestFor: 'Stellen en professionals van rond de 30 op een glaziglo + aurora-jacht in het topsegment.',
+      bestFor: 'Stellen en professionals van rond de 30 op een glasiglo + noorderlichtjacht in het topsegment.',
       basedIn: 'Hampshire, Verenigd Koninkrijk',
       typicalLength: '3–6 nachten',
       tierLabel: 'Maatwerk luxe',
       whatTheyDoWell:
-        'Op maat gemaakte reisroutes, opgebouwd in een telefoongesprek met een gespecialiseerde adviseur. Het glaziglo-product is hun vlaggenschip (Kakslauttanen, Levin Iglut, Wilderness Hotels). Privé-aurorajachten met fotograaf zijn routine.',
+        'Op maat gemaakte reisroutes, opgebouwd in een telefoongesprek met een gespecialiseerde adviseur. Het glasiglo-product is hun vlaggenschip (Kakslauttanen, Levin Iglut, Wilderness Hotels). Privé-aurorajachten met fotograaf zijn routine.',
       whatTheyDont:
         'Geen prijsgevoelige optie. Geen vast pakketmenu. Elke offerte is maatwerk, wat de doorlooptijd verlengt.',
     },
@@ -1202,7 +1202,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
     },
     nl: {
       tagline: 'Laplands grootste activiteitenaanbieder',
-      bestFor: 'Voor de reiziger die één aanbieder wil voor het hele activiteitenaanbod, husky, sneeuwscooter, rendier, aurora, op meerdere bestemmingen.',
+      bestFor: 'Voor de reiziger die één aanbieder wil voor het hele activiteitenaanbod, husky, sneeuwscooter, rendier, noorderlicht, op meerdere bestemmingen.',
       basedIn: 'Rovaniemi, Finland',
       typicalLength: 'Halve dag tot meerdaags',
       tierLabel: 'Activiteitenaanbieder met volledig aanbod',
@@ -1431,7 +1431,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       typicalLength: 'Halve dag tot meerdaags',
       tierLabel: 'Activiteiten & verblijf',
       whatTheyDoWell:
-        "Gevestigd in Rovaniemi, met bases in Ylläs, Levi en Saariselkä. Husky-, rendier- en sneeuwscootersafari's, aurorajachten, ijsvissen en winterzwemmen, en 's werelds eerste elektrische sneeuwscooter- (eSled) safari's. Runt ook eigen chalets en wildernisverblijven voor verblijf-plus-activiteit-pakketten.",
+        "Gevestigd in Rovaniemi, met bases in Ylläs, Levi en Saariselkä. Husky-, rendier- en sneeuwscootersafari's, noorderlichtjachten, ijsvissen en winterzwemmen, en 's werelds eerste elektrische sneeuwscooter- (eSled) safari's. Runt ook eigen chalets en wildernisverblijven voor verblijf-plus-activiteit-pakketten.",
       whatTheyDont:
         'Een drukke aanbieder met meerdere bases, geen intiem één-gidsbedrijf. Vluchten regelt u zelf.',
     },
@@ -1655,7 +1655,7 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       typicalLength: 'Halve dag tot volledige reis',
       tierLabel: 'DMC & maatwerk',
       whatTheyDoWell:
-        "Een destinatiemanagementbedrijf (DMC) uit Rovaniemi met aurorajachten (hun specialiteit), husky- en rendierbezoeken, wildlifesafari's en bezoeken aan de Kerstman, als vaste groepsvertrekken of als volledig op maat gemaakte reizen, samengesteld door een lokale specialist.",
+        "Een destinatiemanagementbedrijf (DMC) uit Rovaniemi met noorderlichtjachten (hun specialiteit), husky- en rendierbezoeken, wildlifesafari's en bezoeken aan de Kerstman, als vaste groepsvertrekken of als volledig op maat gemaakte reizen, samengesteld door een lokale specialist.",
       whatTheyDont:
         'Maatwerk vraagt om een gesprek en tijd, geen directe boeking met één klik. Eén base, dus de activiteiten liggen rond Rovaniemi.',
     },
@@ -1762,14 +1762,14 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
     },
     nl: {
       tagline: 'The Original Aurora Hunters®',
-      bestFor: 'Voor stellen en fotografen die een hoogwaardige, mobiele aurorajacht in een kleine groep willen.',
+      bestFor: 'Voor stellen en fotografen die een hoogwaardige, mobiele noorderlichtjacht in een kleine groep willen.',
       basedIn: 'Rovaniemi, Finland',
       typicalLength: '3–8 u, kleine groep',
       tierLabel: 'Aurora-specialist',
       whatTheyDoWell:
         "Een aanbieder uit Rovaniemi en Levi van de familie Rytilahti, gericht op noorderlichtjacht met groepen van ongeveer vijf personen en luxe bestelbussen uit 2025 die naar de helderste hemel rijden. De meeste tochten omvatten fotografie en 24/7 auroramonitoring. Door Tripadvisor beoordeeld als 'Best of the Best' (top 1%).",
       whatTheyDont:
-        'Aurora-gericht en premium, geen brede aanbieder van gezinsactiviteiten. Wintergericht; het zomeraanbod is dunner.',
+        'Noorderlichtgericht en premium, geen brede aanbieder van gezinsactiviteiten. Wintergericht; het zomeraanbod is dunner.',
     },
     es: {
       tagline: 'The Original Aurora Hunters®',

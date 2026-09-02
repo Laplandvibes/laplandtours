@@ -109,7 +109,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Route 2',
     h2: 'Of boek een lokale aanbieder',
     lead:
-      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, aurora, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
+      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, noorderlicht, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
     visit: 'Bezoeken',
     tier: 'Klasse',
     length: 'Duur',

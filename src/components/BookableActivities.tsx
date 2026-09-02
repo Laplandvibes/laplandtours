@@ -77,7 +77,7 @@ const cards: ActivityCard[] = [
       ko: { title: '오로라 헌트', body: '가이드가 맑은 하늘을 쫓아 그곳으로 데려갑니다. 북부 사리셀카는 오로라 타원 아래에 있습니다.', meta: '사리셀카 · 9~3월 · 3~4시간' },
       fr: { title: 'Chasse aux aurores', body: 'Un guide suit le ciel dégagé et vous y conduit. Saariselkä, au grand nord, se trouve sous l’ovale auroral.', meta: 'Saariselkä · sept.–mars · 3–4 h' },
       it: { title: 'Caccia all’aurora', body: 'Una guida segue il cielo sereno e vi accompagna. Saariselkä, nell’estremo nord, è sotto l’ovale aurorale.', meta: 'Saariselkä · set–mar · 3–4 h' },
-      nl: { title: 'Aurora-jacht', body: 'Een gids volgt de heldere lucht en rijdt u ernaartoe. Het hoge noorden van Saariselkä ligt onder de aurora-ovaal.', meta: 'Saariselkä · sep–mrt · 3–4 u' },
+      nl: { title: 'Noorderlichtjacht', body: 'Een gids volgt de heldere lucht en rijdt u ernaartoe. Het hoge noorden van Saariselkä ligt onder de noorderlichtovaal.', meta: 'Saariselkä · sep–mrt · 3–4 u' },
       sv: { title: 'Norrskensjakt', body: 'En guide följer den klara himlen och kör dig dit. Saariselkä långt norrut ligger under norrskensovalen.', meta: 'Saariselkä · sep–mars · 3–4 h' },
       es: { title: 'Caza de auroras', body: 'Un guía sigue los cielos despejados y le lleva hasta ellos. El extremo norte de Saariselkä queda bajo el óvalo auroral.', meta: 'Saariselkä · sep–mar · 3–4 h' },
       'pt-BR': { title: 'Caça à aurora', body: 'Um guia acompanha os céus limpos e leva você até eles. O extremo norte de Saariselkä fica sob o oval auroral.', meta: 'Saariselkä · set–mar · 3–4 h' },

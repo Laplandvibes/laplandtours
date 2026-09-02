@@ -130,7 +130,7 @@ const ITEMS: Record<
       to: '/practical-info',
       eyebrow: 'Voor het eerst in Lapland?',
       title: 'Klimaat, visum, vervoer, inpakken',
-      body: 'Wintervloer −30 °C, ETIAS-regels vanaf eind 2026, zes punten om te weten vóór het boeken.',
+      body: 'Winterdieptepunt −30 °C, ETIAS-regels vanaf eind 2026, zes punten om te weten vóór het boeken.',
       readLabel: 'Lezen',
     },
   ],

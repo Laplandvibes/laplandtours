@@ -670,18 +670,18 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Een leeftijd × activiteit-matrix voor Lapland-reizen, van baby tot 16+.',
     lead:
-      'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers: aurora-jacht, husky, sneeuwscooter, rendier, sauna, glaziglo.',
+      'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers: noorderlichtjacht, husky, sneeuwscooter, rendier, sauna, glasiglo.',
     matrixEyebrow: 'De matrix',
     ageHeader: 'Leeftijd',
     legend: '✓ mogelijk · streepje: niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
-    activities: ['Aurora-jacht', 'Husky', 'Sneeuwscooter', 'Rendier', 'Sauna', 'Glaziglo'],
+    activities: ['Noorderlichtjacht', 'Husky', 'Sneeuwscooter', 'Rendier', 'Sauna', 'Glasiglo'],
     altHero: 'Besneeuwde fjäll-top in het gouden uur in Fins Lapland',
     rows: [
       {
         range: '0–2',
         label: 'Baby\'s',
         summary:
-          'Een reis waarbij volwassenen de plek beleven met een baby op sleeptouw. Min-graden sluiten een gewone kinderwagen uit. Neem een arctische draagzak of wagenzak mee. De meeste reisorganisaties bieden een gratis of korting-tarief voor baby\'s.',
+          'Een reis waarbij volwassenen de plek beleven met een baby op sleeptouw. Vriestemperaturen sluiten een gewone kinderwagen uit. Neem een arctische draagzak of wagenzak mee. De meeste reisorganisaties bieden een gratis of kortingstarief voor baby\'s.',
         cells: [
           '✓',
           { v: '—', note: 'te koud, sledebewegingen' },
@@ -709,7 +709,7 @@ const COPY: Record<CopyLang, {
         range: '6–9',
         label: 'Basisschool',
         summary:
-          'Actief genoeg voor een halve dag husky- en sneeuwscootersafari (als passagier). Aurora-jachten kunnen, als een late starttijd uitkomt. Skiprogramma\'s gaan zinvol worden in Levi, Ylläs en Saariselkä.',
+          'Actief genoeg voor een halve dag husky- en sneeuwscootersafari (als passagier). Noorderlichtjachten kunnen, als een late starttijd uitkomt. Skiprogramma\'s gaan zinvol worden in Levi, Ylläs en Saariselkä.',
         cells: [
           '✓',
           { v: 'passagier', note: 'halve dag' },
@@ -737,7 +737,7 @@ const COPY: Record<CopyLang, {
         range: '16+',
         label: 'Zelfstandig',
         summary:
-          'Worden bij de meeste activiteiten als volwassenen behandeld. Solo sneeuwscooter met rijbewijs (verhuurders eisen meestal 18 jaar), langere husky-tochten, ijsklimmen, meerdaagse fjäll-tochten. Aurora-fotografieworkshops vragen ook deze leeftijd.',
+          'Worden bij de meeste activiteiten als volwassenen behandeld. Solo sneeuwscooter met rijbewijs (verhuurders eisen meestal 18 jaar), langere husky-tochten, ijsklimmen, meerdaagse fjäll-tochten. Noorderlichtfotografieworkshops vragen ook deze leeftijd.',
         cells: [
           '✓',
           '✓',

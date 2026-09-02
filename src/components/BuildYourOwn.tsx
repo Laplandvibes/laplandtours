@@ -89,7 +89,7 @@ const rails: RailCard[] = [
         label: '01  ·  Verblijf',
         headline: 'Een bed in Lapland',
         body:
-          'Van hotelkamers in Rovaniemi tot glaziglo\'s in Saariselkä. Vergelijken op Trip.com en direct boeken, geen tussenpersoon.',
+          'Van hotelkamers in Rovaniemi tot glasiglo\'s in Saariselkä. Vergelijken op Trip.com en direct boeken, geen tussenpersoon.',
         priceLine: 'Live prijzen op Trip.com · direct boeken op de partnersite',
         ctaLabel: 'Lapland-hotels bekijken',
       },
@@ -195,7 +195,7 @@ const rails: RailCard[] = [
         label: '02  ·  Rijden',
         headline: 'Een auto op de luchthaven',
         body:
-          'Zelf rijden vanaf Rovaniemi, Kittilä of Ivalo. Spike-winterbanden standaard. Betaling bij ophalen, gratis wijzigen.',
+          'Zelf rijden vanaf Rovaniemi, Kittilä of Ivalo. Winterbanden met spikes standaard. Betaling bij ophalen, gratis wijzigen.',
         priceLine: 'Live prijzen op EconomyBookings · winterbanden inbegrepen',
         ctaLabel: 'Huurauto\'s vergelijken',
       },
@@ -302,7 +302,7 @@ const rails: RailCard[] = [
         label: '03  ·  Doen',
         headline: 'Een dag in de wildernis',
         body:
-          'Husky-safari\'s, sneeuwscootertochten, aurora-jachten, ijsvissen. Boek een halve dag of een hele week via GetYourGuide.',
+          'Husky-safari\'s, sneeuwscootertochten, noorderlichtjachten, ijsvissen. Boek een halve dag of een hele week via GetYourGuide.',
         priceLine: 'Live prijzen op GetYourGuide · directe bevestiging',
         ctaLabel: 'Lapland-activiteiten bekijken',
       },

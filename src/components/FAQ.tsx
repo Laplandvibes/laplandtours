@@ -376,9 +376,9 @@ const FAQS_NL: Faq[] = [
   },
   {
     q: 'Wanneer is de beste tijd om het noorderlicht te zien ?',
-    a: 'Het aurora-seizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral Inari, Saariselkä en Muonio, is een van de beste plekken ter wereld om het noorderlicht te zien.',
+    a: 'Het noorderlichtseizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral Inari, Saariselkä en Muonio, is een van de beste plekken ter wereld om het noorderlicht te zien.',
     aHtml:
-      'Het aurora-seizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä en Muonio</a>, is een van de beste plekken ter wereld om het noorderlicht te zien.',
+      'Het noorderlichtseizoen loopt van eind augustus tot begin april, met piekactiviteit tussen november en februari. Fins Lapland, vooral <a href="https://laplandnature.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">Inari, Saariselkä en Muonio</a>, is een van de beste plekken ter wereld om het noorderlicht te zien.',
   },
   {
     q: 'Hoe koud is het in Lapland ?',
@@ -400,9 +400,9 @@ const FAQS_NL: Faq[] = [
   },
   {
     q: 'Waar kan ik verblijven ?',
-    a: 'Lapland heeft glaziglo\'s, blokhutten, hotels en bijzondere sneeuwhotels. Populaire bases zijn Rovaniemi, Levi, Saariselkä en Luosto.',
+    a: 'Lapland heeft glasiglo\'s, blokhutten, hotels en bijzondere sneeuwhotels. Populaire bases zijn Rovaniemi, Levi, Saariselkä en Luosto.',
     aHtml:
-      'Lapland heeft glaziglo\'s, blokhutten, hotels en bijzondere sneeuwhotels. Populaire bases zijn Rovaniemi, Levi, Saariselkä en Luosto. Blader door accommodaties op <a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a> of <a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>.',
+      'Lapland heeft glasiglo\'s, blokhutten, hotels en bijzondere sneeuwhotels. Populaire bases zijn Rovaniemi, Levi, Saariselkä en Luosto. Blader door accommodaties op <a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a> of <a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>.',
   },
   {
     q: 'Welke activiteiten zijn er ?',

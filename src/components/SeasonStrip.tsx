@@ -177,22 +177,22 @@ const COPY: Record<CopyLang, {
   },
   nl: {
     h2Line1: 'Wanneer gaan',
-    meta: 'Aurora · Sneeuw · Prijsklasse  ·  Januari tot en met december',
+    meta: 'Noorderlicht · Sneeuw · Prijsklasse  ·  Januari tot en met december',
     aurora: 'Aurora',
     snow: 'Sneeuw',
     price: 'Prijsklasse',
     bestAurora: 'Beste verhouding aurora–prijs',
     bestAuroraMonth: 'Februari',
     bestAuroraBody:
-      'De kans op aurora bereikt zijn piek terwijl de schoolvakanties nog niet begonnen zijn; reisorganisaties verlagen de prijzen voor de tweede helft van februari met 15–25 % ten opzichte van Kerst.',
+      'De kans op noorderlicht bereikt zijn piek terwijl de schoolvakanties nog niet begonnen zijn; reisorganisaties verlagen de prijzen voor de tweede helft van februari met 15–25 % ten opzichte van Kerst.',
     cheapestWinter: 'Goedkoopste winterperiode',
     cheapestWinterMonth: 'Eind maart',
     cheapestWinterBody:
-      'De sneeuw blijft liggen, het daglicht keert terug, de prijzen dalen. Husky- en sneeuwscootertochten lopen nog. Slechtste aurorakansen van het winterseizoen.',
+      'De sneeuw blijft liggen, het daglicht keert terug, de prijzen dalen. Husky- en sneeuwscootertochten lopen nog. Slechtste noorderlichtkansen van het winterseizoen.',
     cheapestOverall: 'Goedkoopste periode van het jaar',
     cheapestOverallMonth: 'Juni – augustus',
     cheapestOverallBody:
-      'Middernachtszon. 30–40 % goedkoper dan de winter. Geen sneeuw, geen aurora. Wandelen, wildwaterraften, bessen plukken. Een heel andere reis.',
+      'Middernachtszon. 30–40 % goedkoper dan de winter. Geen sneeuw, geen noorderlicht. Wandelen, wildwaterraften, bessen plukken. Een heel andere reis.',
   },
   sv: {
     h2Line1: 'När du ska åka',

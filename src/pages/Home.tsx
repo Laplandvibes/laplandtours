@@ -80,7 +80,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
   nl: {
     title: 'Lapland-reizen 2026: zes aanbieders vergeleken, echte prijzen',
     description:
-      'Boek uw Lapland-reis 2026: zes lokale aanbieders uit Fins Lapland, echte prijzen, direct boeken of zelf samenstellen. Hotels, husky, aurora, Kerstman, transfers vergeleken.',
+      'Boek uw Lapland-reis 2026: zes lokale aanbieders uit Fins Lapland, echte prijzen, direct boeken of zelf samenstellen. Hotels, husky, noorderlicht, Kerstman, transfers vergeleken.',
     canonical: 'https://laplandtours.online/nl',
     breadcrumbHome: 'Home',
   },

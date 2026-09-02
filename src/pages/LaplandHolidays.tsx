@@ -292,18 +292,18 @@ const COPY: Record<CopyLang, {
     canonical: 'https://laplandtours.online/nl/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Operator-gids',
-    articleHeadline: 'De reisorganisaties: Zes tour operators voor Fins Lapland',
+    articleHeadline: 'De reisorganisaties: Zes touroperators voor Fins Lapland',
     articleDescription:
       'Een redactionele gids over de zes reisorganisaties die reizigers naar Fins Lapland brengen.',
     h1: 'De operators',
     introCap: 'Drop cap',
     intro:
-      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit. U reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn aurorajacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
+      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit. U reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn noorderlichtjacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
     noteEyebrow: 'Wat deze pagina is',
     noteBody:
       'Hier wordt niets verkocht. Met de zes hieronder genoemde aanbieders is geen commerciële afspraak, en bij doorklikken vloeit niets terug. Affiliate-commissie wordt alleen verdiend op de cross-sell-balk onderaan deze pagina (hotelnacht, huurauto, dagactiviteit).',
     quote:
-      'Een glaziglo is geen prijsgevoelige keuze. De goedkoopste in het land begint bij € 430 per nacht.',
+      'Een glasiglo is geen prijsgevoelige keuze. De goedkoopste in het land begint bij € 430 per nacht.',
     quoteAttribution: 'Over het luxesegment',
     caption: '04 / Suite met glazen dak · Kakslauttanen',
     chapter: 'Hoofdstuk IV',
