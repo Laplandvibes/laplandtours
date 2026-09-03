@@ -121,7 +121,7 @@ const rails: RailCard[] = [
         label: '01  ·  住宿',
         headline: '在拉普兰的一张床',
         body:
-          '从罗瓦涅米的酒店客房到萨利色尔卡的玻璃穹顶屋。在 Trip.com 上比价，直接预订，无中间商。',
+          '从罗瓦涅米的酒店客房到萨利色尔卡的玻璃冰屋。在 Trip.com 上比价，直接预订，无中间商。',
         priceLine: 'Trip.com 实时价格 · 在合作伙伴网站直接预订',
         ctaLabel: '浏览拉普兰酒店',
       },

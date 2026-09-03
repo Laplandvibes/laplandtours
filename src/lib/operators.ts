@@ -754,7 +754,7 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
       whatTheyDoWell:
         '该细分市场中覆盖英国地方机场最广。为注重价格的旅客提供一日游和过夜圣诞老人短途行程。运量大，行程可预期。',
       whatTheyDont:
-        '活动项目比专业运营商更少。没有玻璃穹顶屋。没有定制或私人体验。',
+        '活动项目比专业运营商更少。没有玻璃冰屋。没有定制或私人体验。',
     },
 },
   transun: {
@@ -994,12 +994,12 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
     },
     'zh-CN': {
       tagline: '量身定制的北欧奢华之旅',
-      bestFor: '情侣及三十多岁的专业人士，市场高端的玻璃穹顶屋加极光追寻行程。',
+      bestFor: '情侣及三十多岁的专业人士，市场高端的玻璃冰屋加极光追寻行程。',
       basedIn: '英国汉普郡',
       typicalLength: '3–6 晚',
       tierLabel: '定制奢华',
       whatTheyDoWell:
-        '通过与专属顾问的电话沟通量身定制行程。玻璃穹顶屋是其招牌产品（Kakslauttanen、Levin Iglut、Wilderness Hotels）。配摄影向导的私人极光追寻属于常规项目。',
+        '通过与专属顾问的电话沟通量身定制行程。玻璃冰屋是其招牌产品（Kakslauttanen、Levin Iglut、Wilderness Hotels）。配摄影向导的私人极光追寻属于常规项目。',
       whatTheyDont:
         '并非注重价格的选择。没有固定套餐菜单，每份报价都是定制的，因此响应较慢。',
     },
@@ -1937,7 +1937,7 @@ export const matrixCategoryLabels: Record<
     aurora: '极光',
     husky: '哈士奇',
     snowmobile: '雪地摩托',
-    glassIgloo: '玻璃穹顶屋',
+    glassIgloo: '玻璃冰屋',
     selfDrive: '自驾',
     luxury: '奢华',
   },

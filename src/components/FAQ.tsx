@@ -604,9 +604,9 @@ const FAQS_ZH: Faq[] = [
   },
   {
     q: '应该住在哪里？',
-    a: '拉普兰有玻璃穹顶屋、木屋、酒店以及别具一格的雪屋酒店。热门落脚点包括罗瓦涅米、Levi、Saariselkä 和 Luosto。',
+    a: '拉普兰有玻璃冰屋、木屋、酒店以及别具一格的雪屋酒店。热门落脚点包括罗瓦涅米、Levi、Saariselkä 和 Luosto。',
     aHtml:
-      '拉普兰有玻璃穹顶屋、木屋、酒店以及别具一格的雪屋酒店。热门落脚点包括罗瓦涅米、Levi、Saariselkä 和 Luosto。可在 <a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a> 或 <a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a> 浏览住宿。',
+      '拉普兰有玻璃冰屋、木屋、酒店以及别具一格的雪屋酒店。热门落脚点包括罗瓦涅米、Levi、Saariselkä 和 Luosto。可在 <a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a> 或 <a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a> 浏览住宿。',
   },
   {
     q: '有哪些活动？',
