@@ -196,9 +196,9 @@ const FAQS_JA: Faq[] = [
   },
   {
     q: 'どこに宿泊すべきですか？',
-    a: 'ラップランドにはガラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。',
+    a: 'ラップランドにはグラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。',
     aHtml:
-      'ラップランドにはガラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。宿泊施設は<a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a>または<a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>でご覧ください。',
+      'ラップランドにはグラスイグルー、ログキャビン、ホテル、ユニークなスノーホテルがあります。人気の拠点はロヴァニエミ、レヴィ、サーリセルカ、ルオストです。宿泊施設は<a href="https://stayinlapland.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">StayInLapland.com</a>または<a href="https://laplandstays.com" target="_blank" rel="noopener" class="text-vibe-pink hover:underline">LaplandStays.com</a>でご覧ください。',
   },
   {
     q: 'どのようなアクティビティがありますか？',

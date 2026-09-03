@@ -677,7 +677,7 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
       whatTheyDoWell:
         'このセグメントでイギリスの地方空港カバレッジが最大。価格を重視する方向けの日帰り旅行と1泊のサンタ訪問。大量提供で予測可能なサービスです。',
       whatTheyDont:
-        'アクティビティプログラムは専門業者よりも短いです。ガラスイグルーはありません。カスタマイズやプライベート体験はありません。',
+        'アクティビティプログラムは専門業者よりも短いです。グラスイグルーはありません。カスタマイズやプライベート体験はありません。',
     },
     ko: {
       tagline: '대중형 영국 패키지 운영사',
@@ -917,12 +917,12 @@ const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
     },
     ja: {
       tagline: 'オーダーメイドの北欧ラグジュアリー',
-      bestFor: 'カップルおよび30代の専門職の方、市場の最高級セグメントのガラスイグルー+オーロラ探訪。',
+      bestFor: 'カップルおよび30代の専門職の方、市場の最高級セグメントのグラスイグルー+オーロラ探訪。',
       basedIn: 'ハンプシャー、イギリス',
       typicalLength: '3〜6泊',
       tierLabel: 'カスタマイズラグジュアリー',
       whatTheyDoWell:
-        '専門コンサルタントとの電話相談に基づくオーダーメイドの旅程。ガラスイグルー商品が主力です（Kakslauttanen、Levin Iglut、Wilderness Hotels）。写真ガイド付きのプライベートオーロラハンティングが標準的にご利用いただけます。',
+        '専門コンサルタントとの電話相談に基づくオーダーメイドの旅程。グラスイグルー商品が主力です（Kakslauttanen、Levin Iglut、Wilderness Hotels）。写真ガイド付きのプライベートオーロラハンティングが標準的にご利用いただけます。',
       whatTheyDont:
         '価格を重視する方向けではありません。固定パッケージメニューはなく、各見積もりはオーダーメイドのため、対応にやや時間がかかります。',
     },
@@ -1874,7 +1874,7 @@ export const matrixCategoryLabels: Record<
     aurora: 'オーロラ',
     husky: 'ハスキー',
     snowmobile: 'スノーモービル',
-    glassIgloo: 'ガラスイグルー',
+    glassIgloo: 'グラスイグルー',
     selfDrive: '自由運転',
     luxury: 'ラグジュアリー',
   },

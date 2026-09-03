@@ -178,6 +178,9 @@ if (args.addLocales) {
 const LOCALE_FILTER = args.locales
   ? new Set(args.locales.split(',').map((s) => s.trim()))
   : null;
+// Loppukauttaviiva-normalisointi yhdessa paikassa.
+const SLASH_END = new RegExp(String.fromCharCode(47) + '?$');
+
 const LOCALE_LIST = LOCALE_FILTER
   ? FULL_LOCALE_LIST.filter((l) => LOCALE_FILTER.has(l.lang))
   : FULL_LOCALE_LIST;
@@ -906,7 +909,12 @@ function harvestRouteText(loc, route, meta) {
         // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
         // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
         // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
-        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        // lakisivun crawlable-runkoon 12 kielellä (mitattu 31.8.2026: 23 sivustoa,
+        // 276 sivua). Merkki @harvest-stop on jaetussa Legal-tiedostossa.
+        //
+        // 🔴 TÄMÄ ON KANONINEN KOPIO. sync-shared.mjs vie tämän tiedoston
+        // kahdeksalle sivustolle joka buildissa, joten pelkkä sivustokopion
+        // korjaus katoaa seuraavassa buildissa — niin kävi 31.8.–1.9.
         const stopIx = src.indexOf('@harvest-stop');
         if (stopIx >= 0) src = src.slice(0, stopIx);
         // An ARRAY of records identified by a field (`{ slug: 'levi', … }`)
@@ -977,7 +985,12 @@ function harvestRouteText(loc, route, meta) {
         // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
         // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
         // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
-        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        // lakisivun crawlable-runkoon 12 kielellä (mitattu 31.8.2026: 23 sivustoa,
+        // 276 sivua). Merkki @harvest-stop on jaetussa Legal-tiedostossa.
+        //
+        // 🔴 TÄMÄ ON KANONINEN KOPIO. sync-shared.mjs vie tämän tiedoston
+        // kahdeksalle sivustolle joka buildissa, joten pelkkä sivustokopion
+        // korjaus katoaa seuraavassa buildissa — niin kävi 31.8.–1.9.
         const stopIx = src.indexOf('@harvest-stop');
         if (stopIx >= 0) src = src.slice(0, stopIx);
         harvestPickCalls(src, loc, out, meta, seen, budget);
@@ -1002,7 +1015,12 @@ function harvestRouteText(loc, route, meta) {
         // Varianttilohkot pois: jaetussa Legal-tiedostossa on COPY (oletus) ja
         // SHOP_OVERRIDES (opt-in). Alla oleva haku ottaa jokaisen per-kieli-lohkon,
         // joten ilman tätä katkoa verkkokaupan ehdot päätyivät matkailusivuston
-        // lakisivun crawlable-runkoon 12 kielellä. Merkki on jaetussa tiedostossa.
+        // lakisivun crawlable-runkoon 12 kielellä (mitattu 31.8.2026: 23 sivustoa,
+        // 276 sivua). Merkki @harvest-stop on jaetussa Legal-tiedostossa.
+        //
+        // 🔴 TÄMÄ ON KANONINEN KOPIO. sync-shared.mjs vie tämän tiedoston
+        // kahdeksalle sivustolle joka buildissa, joten pelkkä sivustokopion
+        // korjaus katoaa seuraavassa buildissa — niin kävi 31.8.–1.9.
         const stopIx = src.indexOf('@harvest-stop');
         if (stopIx >= 0) src = src.slice(0, stopIx);
         if (perLangFile) { harvestFromTsBlock(src, out, meta, seen, budget); continue; }
@@ -1404,17 +1422,37 @@ for (const route of routes) {
     // hreflang, so Google folds them into the single real version instead of
     // flagging "Duplicate, Google chose a different canonical than the user".
     // Routes without the field keep the default per-locale self-canonical.
-    const canonicalLoc = route.canonicalLocale
-      ? (LOCALE_LIST.find((l) => l.lang === route.canonicalLocale) || loc)
-      : loc;
-    const canonical = `${SITE}${canonicalLoc.prefix}${cleanPath}`.replace(/\/?$/, '/');
+    // Per-LOCALE consolidation: `nativeLocales` lists the locales that actually
+    // have their own body for this route. Every locale OUTSIDE the list is
+    // serving English prose on a localized URL, so it canonicalises to /en and
+    // drops out of the hreflang cluster; the listed locales keep their normal
+    // self-canonical and cluster among themselves.
+    //
+    // 🔴 Why this is not `canonicalLocale`: that flag is per-ROUTE and means
+    // "one language on this route". Measured 2026-09-01: five hub blog articles
+    // are English-only in SOME locales but translated in others
+    // (what-is-laplandvibes has de/es/fi bodies, aurora-countries-compared has
+    // fi/ko). Flagging the whole route would have folded the real translations
+    // away too. The English-only variants were self-canonical with an English
+    // <title> on 55 localized URLs — and nl is exactly the locale with the
+    // network's worst CTR (25 993 impressions, 262 clicks).
+    const nativeSet = Array.isArray(route.nativeLocales) ? new Set(route.nativeLocales) : null
+    const consolidateTo =
+      route.canonicalLocale || (nativeSet && !nativeSet.has(loc.lang) ? 'en' : null)
+    const canonicalLoc = consolidateTo
+      ? (LOCALE_LIST.find((l) => l.lang === consolidateTo) || loc)
+      : loc
+    const canonical = `${SITE}${canonicalLoc.prefix}${cleanPath}`.replace(SLASH_END, '/')
 
-    const hreflangs = route.canonicalLocale
+    const hreflangLocales = nativeSet
+      ? routeLocales.filter((l) => nativeSet.has(l.lang))
+      : routeLocales
+    const hreflangs = consolidateTo
       ? [{ hreflang: canonicalLoc.lang === 'en' ? 'en' : canonicalLoc.lang, url: canonical }]
-      : routeLocales.map((l) => ({
+      : hreflangLocales.map((l) => ({
           hreflang: l.lang === 'en' ? 'en' : l.lang,
-          url: `${SITE}${l.prefix}${cleanPath}`.replace(/\/?$/, '/'),
-        }));
+          url: `${SITE}${l.prefix}${cleanPath}`.replace(SLASH_END, '/'),
+        }))
 
     const outPath =
       loc.prefix === '' && cleanPath === ''
