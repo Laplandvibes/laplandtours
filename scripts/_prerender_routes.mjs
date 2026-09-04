@@ -1215,7 +1215,23 @@ function shortenTitle(t) {
   return short.length >= 25 && short.length < t.length ? short : t;
 }
 
+// [LV-DESC-CLAMP 2026-09-04] Google shows ~155–160 characters of a meta description and
+// cuts the rest; 556 of 9 200 built pages shipped longer ones (stays 244, visit 241).
+// Cut at the last sentence end at or after 90 characters, else at the last word
+// boundary, never mid-word and never with an ellipsis. Titles are NOT clamped here:
+// article titles are content and Google truncates them on its own.
+function clampDescription(d, max = 160) {
+  if (!d || typeof d !== 'string') return d;
+  const s = d.replace(/\s+/g, ' ').trim();
+  if ([...s].length <= max) return s;
+  const head = [...s].slice(0, max).join('');
+  const sentenceEnd = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '), head.endsWith('.') ? head.length - 1 : -1);
+  if (sentenceEnd >= 90) return head.slice(0, sentenceEnd + 1).trim();
+  const cut = head.lastIndexOf(' ');
+  return (cut > 60 ? head.slice(0, cut) : head).replace(/[\s,;:–—\-(]+$/u, '').trim();
+}
 function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang, internalLinks, paragraphs }) {
+  description = clampDescription(description);
   let html = shell;
   title = shortenTitle(title);
 

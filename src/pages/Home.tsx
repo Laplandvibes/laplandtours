@@ -78,7 +78,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Home',
   },
   nl: {
-    title: 'Lapland-reizen 2026: zes aanbieders vergeleken, echte prijzen',
+    title: 'Lapland-reizen 2026: zes aanbieders, echte prijzen',
     description:
       'Boek uw Lapland-reis 2026: zes lokale aanbieders uit Fins Lapland, echte prijzen, direct boeken of zelf samenstellen. Hotels, husky, noorderlicht, Kerstman, transfers vergeleken.',
     canonical: 'https://laplandtours.online/nl',
@@ -99,7 +99,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Inicio',
   },
   'pt-BR': {
-    title: '#LaplandTours: planeje sua viagem à Lapônia, à la carte ou com operadora local',
+    title: '#LaplandTours: Lapônia à la carte ou com operadora local',
     description:
       'Há duas formas de organizar uma viagem à Lapônia finlandesa. Monte você mesmo hotel, aluguel de carro e atividades, ou reserve direto com uma de seis operadoras locais da Lapônia finlandesa.',
     canonical: 'https://laplandtours.online/br',
