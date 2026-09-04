@@ -1206,7 +1206,7 @@ const BRAND_ALTS = [SITE_NAME, SITE_HOST, SITE_HOST.replace(/\.[a-z]+$/, '')]
   .map(reEsc)
   .join('|');
 const SITE_NAME_SUFFIX_RE = new RegExp(
-  `\\s*[|\\u2014\\u2013\\u00B7•-]\\s*(?:${BRAND_ALTS})(?:\\.(?:com|fi|online|blog))?\\s*$`,
+  `\\s*[|\\u2014\\u2013\\u00B7•-]\\s*#?(?:${BRAND_ALTS})(?:\\.(?:com|fi|online|blog))?\\s*$`,
   'i'
 );
 function shortenTitle(t) {
