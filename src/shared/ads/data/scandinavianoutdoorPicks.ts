@@ -19,7 +19,7 @@ const picks: PartnerSnapshot = {
   "products": [
     {
       "sku": "0195982563138",
-      "name": "Columbia Women's Benton Springs Half Snap Pullover Fleece II naisten",
+      "name": "Columbia Women's Benton Springs Half Snap Pullover Fleece II naisten fleecetakki",
       "shelf": "vaatteet-alus-ja-väliasu",
       "category": "Vaatteet - Alus- ja väliasut - Fleecetakit ja välikerrostakit",
       "brand": "Columbia",
@@ -30,7 +30,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "6438361960789",
-      "name": "Raiski Aili W Winter Anorak naisten",
+      "name": "Raiski Aili W Winter Anorak naisten anorakki",
       "shelf": "outlet-vaatteet-talvitak",
       "category": "Outlet - Vaatteet - Talvitakit",
       "brand": "Raiski",
@@ -41,7 +41,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "8594190394381",
-      "name": "Skinners Compression 2.0",
+      "name": "Skinners Compression 2.0 paljasjalkasukat",
       "shelf": "kengät-paljasjalkakengät",
       "category": "Kengät - Paljasjalkakengät",
       "brand": "Skinners",
@@ -52,7 +52,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "6438519192864",
-      "name": "Halti Women's Jura Mid IC naisten",
+      "name": "Halti Women's Jura Mid IC naisten nilkkurit",
       "shelf": "kengät-talvikengät",
       "category": "Outlet - Kengät - Talvikengät",
       "brand": "Halti",
@@ -63,7 +63,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "4064886549790",
-      "name": "Jack Wolfskin Back to School 25 koulu- ja",
+      "name": "Jack Wolfskin Back to School 25 koulu- ja arkireppu",
       "shelf": "varusteet-reput-ja-rinka",
       "category": "Varusteet - Reput ja rinkat - Reput",
       "brand": "Jack Wolfskin",
@@ -74,7 +74,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "7318841488189",
-      "name": "Haglöfs Mid Slim Pant miesten",
+      "name": "Haglöfs Mid Slim Pant miesten retkeilyhousut",
       "shelf": "vaatteet-housut-vaellush",
       "category": "Vaatteet - Housut - Vaellushousut ja retkeilyhousut",
       "brand": "Haglöfs",
@@ -85,7 +85,7 @@ const picks: PartnerSnapshot = {
     },
     {
       "sku": "7333371411261",
-      "name": "Didriksons Men's Grit 4 Jacket miesten välikausinen vedenpitävä",
+      "name": "Didriksons Men's Grit 4 Jacket miesten välikausinen vedenpitävä kuoritakki",
       "shelf": "vaatteet-takit-vedenpitä",
       "category": "Vaatteet - Takit - Vedenpitävät kuoritakit",
       "brand": "Didriksons",
