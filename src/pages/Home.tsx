@@ -1,3 +1,6 @@
+import ProductRail, { type RailLang } from '../shared/ads/ProductRail'
+import scandinavianoutdoorRail from '../shared/ads/rails/scandinavianoutdoor'
+import scandinavianoutdoorPicks from '../shared/ads/data/scandinavianoutdoorPicks'
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import NewsletterInline from '../shared/NewsletterInline';
@@ -146,6 +149,10 @@ export default function Home() {
       <MainPartnerBanner config={AD_SLOTS} locale={lang} />
       <BuildYourOwn />
       <HomeAdSlots config={AD_SLOTS} locale={lang} />
+      {/* Oikea tuoterivi tyhjän house-ad-kortin tilalle (Vesa 4.9.). */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        <ProductRail partner={scandinavianoutdoorRail} snapshot={scandinavianoutdoorPicks} lang={lang as RailLang} sid="home_gear" variant="dark" />
+      </div>
 
       {/* Varattavat GYG-tuotteet — korkealla sivulla mutta myytyjen mainospaikkojen ALAPUOLELLA */}
       <GygPicks />
