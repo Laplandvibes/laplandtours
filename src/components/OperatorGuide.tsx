@@ -109,7 +109,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Route 2',
     h2: 'Of boek een lokale aanbieder',
     lead:
-      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, noorderlicht, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
+      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, noorderlicht, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is er een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
     visit: 'Bezoeken',
     tier: 'Klasse',
     length: 'Duur',
@@ -135,7 +135,7 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Camino 2',
     h2: 'O reserve un operador local',
     lead:
-      'Seis operadores con sede en Finlandia que gestionan ellos mismos las actividades de Laponia: husky, aurora, motonieve, reno. Reserva directamente, según sus condiciones; no hay acuerdo comercial con ninguno. Es una guía editorial, no una tienda. Revisado en julio de 2026.',
+      'Seis operadores con sede en Finlandia que gestionan ellos mismos las actividades de Laponia: husky, aurora, motonieve, reno. Reserve directamente, según sus condiciones; no hay acuerdo comercial con ninguno. Es una guía editorial, no una tienda. Revisado en julio de 2026.',
     visit: 'Visitar',
     tier: 'Gama',
     length: 'Duración',

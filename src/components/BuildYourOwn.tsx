@@ -347,7 +347,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
     eyebrow: 'Path one',
     h2: 'Build your own',
     lead:
-      "Pick a place to stay, a way to get around, and what to do when you're there. Three rails, real prices, booked direct on each partner's site.",
+      "Pick a place to stay, a way to get around, and what to do when you're there. Three tracks, real prices, book direct on each partner’s site.",
     affiliateNote: 'Affiliate links. A commission may be earned on bookings, at no cost to you.',
   },
   fi: {
@@ -370,7 +370,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
     eyebrow: 'ルート1',
     h2: '自分で組み立てる',
     lead:
-      '宿泊先、移動手段、現地での体験を選んでください。3つのレール、リアルタイム価格、各パートナーのサイトで直接ご予約いただけます。',
+      '宿泊先、移動手段、現地での体験を選んでください。3つの方法、リアルタイム価格、各パートナーのサイトで直接ご予約いただけます。',
     affiliateNote: 'アフィリエイトリンクを含みます。ご予約に対し、お客様への追加料金なしで手数料が支払われる場合があります。',
   },
   ko: {
@@ -394,7 +394,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
     lead:
       'Scelga dove dormire, come spostarsi e cosa fare sul posto. Tre binari, prezzi in tempo reale, prenotazione diretta sul sito di ciascun partner.',
     affiliateNote:
-      'Link di affiliazione. Sulle prenotazioni può maturare una commissione, senza costi aggiuntivi per lei.',
+      'Link di affiliazione. Sulle prenotazioni può maturare una commissione, senza costi aggiuntivi per Lei.',
   },
   nl: {
     eyebrow: 'Route 1',
@@ -408,7 +408,7 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
     eyebrow: 'Väg 1',
     h2: 'Bygg din egen',
     lead:
-      'Välj ett ställe att bo på, ett sätt att ta dig runt och vad du vill göra på plats. Tre spår, verkliga priser, bokat direkt på varje partners sajt.',
+      'Välj ett ställe att bo på, ett sätt att ta dig runt och vad du vill göra på plats. Tre spår, verkliga priser, boka direkt hos varje partner.',
     affiliateNote:
       'Affiliatelänkar. Bokningar kan ge en provision, utan kostnad för dig.',
   },

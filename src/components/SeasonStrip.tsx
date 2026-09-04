@@ -70,7 +70,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Paras revontulet/hinta-suhde',
     bestAuroraMonth: 'Helmikuu',
     bestAuroraBody:
-      'Revontulten todennäköisyys on huipussaan ja koululaisten loma ei vielä alkanut; matkanjärjestäjät laskevat helmikuun loppupuolen hintoja 15–25 % jouluun verrattuna.',
+      'Revontulten todennäköisyys on huipussaan ja koululaisten loma ei ole vielä alkanut; matkanjärjestäjät laskevat helmikuun loppupuolen hintoja 15–25 % jouluun verrattuna.',
     cheapestWinter: 'Edullisin talvi',
     cheapestWinterMonth: 'Maaliskuun loppu',
     cheapestWinterBody:
@@ -146,7 +146,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Meilleur rapport aurore / prix',
     bestAuroraMonth: 'Février',
     bestAuroraBody:
-      'La probabilité d\'aurores atteint son pic alors que les vacances scolaires n\'ont pas encore commencé ; les voyagistes baissent les prix de la seconde moitié de février de 15 à 25 % par rapport à Noël.',
+      'La probabilité d\'aurores boréales atteint son pic alors que les vacances scolaires n\'ont pas encore commencé ; les voyagistes baissent les prix de la seconde moitié de février de 15 à 25 % par rapport à Noël.',
     cheapestWinter: 'Hiver le moins cher',
     cheapestWinterMonth: 'Fin mars',
     cheapestWinterBody:
@@ -165,7 +165,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Miglior rapporto aurora-prezzo',
     bestAuroraMonth: 'Febbraio',
     bestAuroraBody:
-      'La probabilità di vedere l\'aurora raggiunge il picco mentre le vacanze scolastiche non sono ancora iniziate; gli operatori scontano le settimane della seconda metà di febbraio del 15–25 % rispetto al Natale.',
+      'La probabilità di vedere l\'aurora boreale raggiunge il picco mentre le vacanze scolastiche non sono ancora iniziate; gli operatori scontano le settimane della seconda metà di febbraio del 15–25 % rispetto al Natale.',
     cheapestWinter: 'Inverno più economico',
     cheapestWinterMonth: 'Fine marzo',
     cheapestWinterBody:
@@ -222,7 +222,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Mejor relación aurora-precio',
     bestAuroraMonth: 'Febrero',
     bestAuroraBody:
-      'La probabilidad de aurora llega a su punto más alto cuando aún no han empezado las vacaciones escolares; los operadores rebajan las semanas de la segunda mitad de febrero entre un 15 y un 25 % frente a Navidad.',
+      'La probabilidad de aurora boreal llega a su punto más alto cuando aún no han empezado las vacaciones escolares; los operadores rebajan las semanas de la segunda mitad de febrero entre un 15 y un 25 % frente a Navidad.',
     cheapestWinter: 'Invierno más económico',
     cheapestWinterMonth: 'Finales de marzo',
     cheapestWinterBody:
@@ -241,11 +241,11 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Melhor relação aurora-preço',
     bestAuroraMonth: 'Fevereiro',
     bestAuroraBody:
-      'A chance de aurora chega ao auge enquanto as férias escolares ainda não começaram; as operadoras dão desconto de 15 a 25 % nas semanas da segunda metade de fevereiro em relação ao Natal.',
+      'A chance de aurora boreal chega ao auge enquanto as férias escolares ainda não começaram; as operadoras dão desconto de 15 a 25 % nas semanas da segunda metade de fevereiro em relação ao Natal.',
     cheapestWinter: 'Inverno mais barato',
     cheapestWinterMonth: 'Fim de março',
     cheapestWinterBody:
-      'A neve se mantém, a luz do dia volta e os preços caem. As atividades de huskies e snowmobile continuam acontecendo. As piores chances de aurora da temporada de inverno.',
+      'A neve se mantém, a luz do dia volta e os preços caem. As atividades de huskies e moto de neve continuam acontecendo. As piores chances de aurora da temporada de inverno.',
     cheapestOverall: 'Época mais barata do ano',
     cheapestOverallMonth: 'Junho – agosto',
     cheapestOverallBody:

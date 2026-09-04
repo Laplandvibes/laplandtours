@@ -15,7 +15,7 @@ const COPY: Record<Lang, {
     h1: 'Plan a Lapland trip',
     pinkLine: 'Build your own, or buy a bundle.',
     lead:
-      'Two ways to reach Finnish Lapland. Mix a hotel, a car and a day activity yourself, or let one of six tour operators sort the lot.',
+      'Two ways to plan a Finnish Lapland trip. Mix a hotel, a car and a day activity yourself, or let one of six tour operators sort the lot.',
     primary: 'Build my trip',
     secondary: 'See the bundles',
     alt: 'Lapland fell landscape at golden hour, distant fells over open water',
@@ -24,7 +24,7 @@ const COPY: Record<Lang, {
     h1: 'Lapin parhaat reitit, valmiiksi mietittynä',
     pinkLine: 'Kokoa itse, tai varaa paikallinen toimija.',
     lead:
-      'Kaksi tapaa päästä Suomen Lappiin: yhdistä itse hotelli, vuokra-auto ja päiväretki, tai varaa aktiviteetit suoraan yhdeltä kuudesta paikallisesta toimijasta. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Kaksi tapaa suunnitella matka Suomen Lappiin: yhdistä itse hotelli, vuokra-auto ja päiväretki, tai varaa aktiviteetit suoraan yhdeltä kuudesta paikallisesta toimijasta. Kirjoitettu Suomesta, lähteet näkyvillä.',
     primary: 'Kokoa matkani',
     secondary: 'Katso paikalliset toimijat',
     alt: 'Lappilainen tunturimaisema kultaisen tunnin valossa, järvi etualalla',
@@ -42,7 +42,7 @@ const COPY: Record<Lang, {
     h1: 'ラップランドの旅を計画する',
     pinkLine: '自分で組み立てる。または地元の会社に予約する。',
     lead:
-      'フィンランド・ラップランドへの2つの行き方。ホテル、レンタカー、日帰り体験を自分で組み合わせるか、地元の6社のいずれかにアクティビティを直接予約してください。',
+      'フィンランド・ラップランドを旅する2つの方法。ホテル、レンタカー、日帰り体験を自分で組み合わせるか、地元の6社のいずれかにアクティビティを直接予約してください。',
     primary: 'マイ旅程を組み立てる',
     secondary: '地元の会社を見る',
     alt: 'ゴールデンアワーのラップランドの丘陵地帯、手前に湖、遠くに連なる山々',
@@ -51,7 +51,7 @@ const COPY: Record<Lang, {
     h1: 'Planifique su viaje a Laponia',
     pinkLine: 'Personalice usted mismo o reserve con un operador local.',
     lead:
-      'Dos formas de llegar a la Laponia finlandesa: combine usted mismo hotel, coche de alquiler y actividad de un día, o reserve directamente con una de las seis operadoras locales. Reseñas escritas desde Finlandia, con fuentes citadas.',
+      'Dos formas de planificar un viaje a la Laponia finlandesa: combine usted mismo hotel, coche de alquiler y actividad de un día, o reserve directamente con una de las seis operadoras locales. Reseñas escritas desde Finlandia, con fuentes citadas.',
     primary: 'Personalizar mi viaje',
     secondary: 'Ver los operadores',
     alt: 'Paisaje de montañas de Laponia a la hora dorada, lago en primer plano',
@@ -69,7 +69,7 @@ const COPY: Record<Lang, {
     h1: '规划您的拉普兰之旅',
     pinkLine: '自行组合，或预订本地运营商。',
     lead:
-      '前往芬兰拉普兰的两种方式：自己组合酒店、租车和一日活动，或直接向六家本地运营商之一预订活动。来自芬兰当地的评测，来源引用清晰。',
+      '规划芬兰拉普兰之旅的两种方式：自己组合酒店、租车和一日活动，或直接向六家本地运营商之一预订活动。来自芬兰当地的评测，来源引用清晰。',
     primary: '组合我的行程',
     secondary: '查看本地运营商',
     alt: '黄金时刻的拉普兰山峦景观，湖泊在前景',
@@ -78,7 +78,7 @@ const COPY: Record<Lang, {
     h1: '라플란드 여행 계획하기',
     pinkLine: '직접 구성, 또는 현지 운영사 예약.',
     lead:
-      '핀란드 라플란드에 도착하는 두 가지 방법. 호텔, 렌터카, 당일 액티비티를 직접 조합하거나, 현지 운영사 6곳 중 한 곳에 액티비티를 직접 예약하세요. 핀란드 현지에서 작성된 가이드, 출처 인용.',
+      '핀란드 라플란드 여행을 계획하는 두 가지 방법. 호텔, 렌터카, 당일 액티비티를 직접 조합하거나, 현지 운영사 6곳 중 한 곳에 액티비티를 직접 예약하세요. 핀란드 현지에서 작성된 가이드, 출처 인용.',
     primary: '내 여행 만들기',
     secondary: '현지 운영사 보기',
     alt: '황금빛 라플란드 산악 풍경, 앞쪽에 호수와 멀리 보이는 봉우리',
@@ -87,7 +87,7 @@ const COPY: Record<Lang, {
     h1: 'Planifiez votre voyage en Laponie',
     pinkLine: 'À composer soi-même ou avec un opérateur local.',
     lead:
-      'Deux façons de rejoindre la Laponie finlandaise. Combinez vous-même hôtel, location de voiture et activité d’une journée, ou réservez directement auprès de l’un des six opérateurs locaux. Guides rédigés depuis la Finlande, sources citées.',
+      'Deux façons de planifier un voyage en Laponie finlandaise. Combinez vous-même hôtel, location de voiture et activité d’une journée, ou réservez directement auprès de l’un des six opérateurs locaux. Guides rédigés depuis la Finlande, sources citées.',
     primary: 'Composer mon voyage',
     secondary: 'Voir les opérateurs',
     alt: 'Paysage de fjälls lapons à l’heure dorée, lac au premier plan',
@@ -96,7 +96,7 @@ const COPY: Record<Lang, {
     h1: 'Pianifichi il Suo viaggio in Lapponia',
     pinkLine: 'Lo componga Lei, oppure scelga un operatore locale.',
     lead:
-      'Due modi per raggiungere la Lapponia finlandese. Combina hotel, auto a noleggio e attività giornaliera, oppure prenota direttamente con uno dei sei operatori locali. Guide scritte dalla Finlandia, fonti citate.',
+      'Due modi per raggiungere la Lapponia finlandese. Combini hotel, auto a noleggio e attività giornaliera, oppure prenoti direttamente con uno dei sei operatori locali. Guide scritte dalla Finlandia, fonti citate.',
     primary: 'Componi il mio viaggio',
     secondary: 'Vedi gli operatori',
     alt: 'Paesaggio di fjäll della Lapponia all’ora dorata, lago in primo piano',
@@ -105,7 +105,7 @@ const COPY: Record<Lang, {
     h1: 'Plan een Lapland-rondreis',
     pinkLine: 'Zelf samenstellen of een lokale aanbieder boeken.',
     lead:
-      'Twee manieren om Fins Lapland te bereiken. Combineer zelf hotel, huurauto en dagactiviteit, of boek rechtstreeks bij een van zes lokale aanbieders. Gidsen geschreven vanuit Finland, met bronvermelding.',
+      'Twee manieren om een reis naar Fins Lapland te plannen. Combineer zelf hotel, huurauto en dagactiviteit, of boek rechtstreeks bij een van zes lokale aanbieders. Gidsen geschreven vanuit Finland, met bronvermelding.',
     primary: 'Mijn reis samenstellen',
     secondary: 'Bekijk de aanbieders',
     alt: 'Fjell-landschap in Lapland bij gouden uur, meer op de voorgrond',
@@ -114,7 +114,7 @@ const COPY: Record<Lang, {
     h1: 'Planera en resa till Lappland',
     pinkLine: 'Bygg din egen, eller köp ett paket.',
     lead:
-      'Två sätt att ta sig till finska Lappland. Kombinera själv hotell, hyrbil och en dagsaktivitet, eller låt en av sex researrangörer ordna allt.',
+      'Två sätt att planera en resa till finska Lappland. Kombinera själv hotell, hyrbil och en dagsaktivitet, eller låt en av sex researrangörer ordna allt.',
     primary: 'Bygg min resa',
     secondary: 'Se paketen',
     alt: 'Fjällandskap i Lappland i gyllene timmen, avlägsna fjäll över öppet vatten',

@@ -42,7 +42,7 @@ const ITEMS: Record<
     {
       to: '/age-guide',
       eyebrow: 'Reisen Sie mit Kindern?',
-      title: 'Welche Lappland-Touren für welches Alter',
+      title: 'Welche Lappland-Touren passen zu welchem Alter',
       body: 'Eine praxisnahe Matrix Alter × Aktivität vom Säugling bis 16+, dazu Hinweise je Reiseveranstalter.',
       readLabel: 'Lesen',
     },
