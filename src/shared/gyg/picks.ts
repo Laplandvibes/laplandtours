@@ -710,3 +710,19 @@ export const CATEGORY_LINKS: Record<string, GygCategoryLink[]> = {
 export function gygCategoryHref(link: GygCategoryLink, lang?: string): string {
   return gygHref({ path: link.path, title: "", place: "", sid: link.sid }, lang);
 }
+
+/** Ylellisyys-sivun suuret päivät (laplandgifts /luxury + /experiences 'icebreaker'). */
+export const LUXURY_PICKS: GygPick[] = [
+  {
+    // Vesa 5.9.2026 (Ylellisyys-sivu): "eihän täällä ole edes sitä Kemin
+    // kelluntaa meressä Sampo-murtajan kanssa?" Hinta luettu GYG:n fi-sivulta
+    // 2026-09-05 (alkaen 402 €), kesto listauksesta (6,5–7 h). Tuotesivu
+    // verifioitu selaimessa (curl 403 partner-parametreilla).
+    path: "kemi-l98127/kemi-iltapaivan-jaanmurtaja-sampo-risteily-ja-jaalla-kellunta-t504004",
+    price: "402 €",
+    title: "Icebreaker Sampo Cruise with Ice Floating",
+    place: "Kemi",
+    duration: "6.5–7 h",
+    sid: "gifts_luxury_pick_icebreaker_kemi",
+  },
+];

@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback } from 'react';
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
-import { LayoutGrid, ChevronDown, ArrowUpRight, MapPin, Search, X, Smartphone } from 'lucide-react';
+import { LayoutGrid, ChevronDown, ArrowUpRight, MapPin, Search, X, Smartphone, BedDouble, Compass, UtensilsCrossed, Car, Sparkles, ShoppingBag, BookOpen } from 'lucide-react';
 
 /**
  * EcosystemMenu — the network jump-menu that sits to the LEFT of the logo on
@@ -19,6 +19,18 @@ import { LayoutGrid, ChevronDown, ArrowUpRight, MapPin, Search, X, Smartphone } 
  *     any of the 12 languages (es "Gastronomía y productos locales", 216 px);
  *   - the current site is marked IN PLACE inside its group ("Olet tässä");
  *   - lapland.blog and the app (footer's "Get the app") are in the menu.
+ *
+ * v2.1 (Vesa 2026-09-05 evening, "liian samanlaisia kaikki, valkoinen puurouttaa
+ * kaiken, 1–2 hierarkiaa väreissä, taustoja"): every group is a CARD with a
+ * tinted background and border in its category colour, the group title is set
+ * in that colour with a category icon, rows keep snow names + dimmer domains.
+ * Four visible levels instead of one wall of white text.
+ *
+ * v2.2 (Vesa, same evening, "laatikot on eri kokoisia ja ei istu hyvin"): the
+ * CSS column flow is replaced by a 4-column GRID whose cards stretch to the
+ * same height within a row. MENU_ORDER puts the four tallest groups on the
+ * top row (4/6/4/4 sites) and the three 3-site groups + the app tile on the
+ * bottom row, so no card sits under a tall neighbour with a long empty tail.
  *
  * SHARED across all sites, so it is THEME-INDEPENDENT: brand colours are inline
  * hex, and ALL layout lives in the scoped <style> block below (no Tailwind
@@ -77,7 +89,7 @@ const CAT_RGB: Record<Cat, string> = {
   transport: '147, 197, 253', // sky blue
   season: '52, 211, 153',     // aurora green
   shopping: '167, 139, 250',  // violet
-  guide: '34, 211, 238',      // cyan-bright
+  guide: '251, 191, 36',      // amber (v2.1: was cyan-bright, indistinguishable from activity's cyan on tinted cards)
   hub: '236, 72, 153',        // pink
 };
 
@@ -181,6 +193,18 @@ function norm(s: string): string {
   return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 
+/**
+ * Grid order (v2.2). Not CAT_ORDER: the 4-column grid stretches every card in a
+ * row to the tallest one, so the row that holds Tekeminen (6 sites) should
+ * hold the other 4-site groups, and the 3-site groups share the second row
+ * with the app tile. Majoitus keeps the first slot.
+ */
+const MENU_ORDER: Cat[] = ['stay', 'activity', 'season', 'guide', 'food', 'transport', 'shopping'];
+
+type IconCmp = typeof LayoutGrid;
+/** One icon per group so the seven cards differ by shape as well as by colour. */
+const CAT_ICON: Record<Cat, IconCmp> = { hub: LayoutGrid, stay: BedDouble, activity: Compass, food: UtensilsCrossed, transport: Car, season: Sparkles, shopping: ShoppingBag, guide: BookOpen };
+
 const MOBILE_QUERY = '(max-width: 767px)';
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
@@ -209,7 +233,7 @@ const CSS = `
 .lv-eco-hint-pill{position:relative;display:flex;align-items:center;gap:8px;border-radius:999px;padding:6px 6px 6px 14px;font-size:12px;font-weight:600;background:${PINK_FILL};color:#fff;box-shadow:0 14px 34px -12px rgba(236,72,153,.7)}
 .lv-eco-hint-x{display:flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:999px;border:0;padding:0;cursor:pointer;color:rgba(255,255,255,.85);background:rgba(0,0,0,.22);font:inherit;line-height:1}
 .lv-eco-hint-x:hover{color:#fff}
-.lv-eco-panel{position:fixed;z-index:9990;top:var(--lv-eco-t,72px);left:var(--lv-eco-l,16px);width:min(1160px,calc(100vw - var(--lv-eco-l,16px) - 16px));max-height:calc(100vh - var(--lv-eco-t,72px) - 16px);overflow:auto;overscroll-behavior:contain;box-sizing:border-box;background:rgba(15,23,42,.97);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 30px 70px -24px rgba(0,0,0,.85),0 0 60px -30px rgba(236,72,153,.5);color:${SNOW};padding:16px 22px 18px;font-family:${BODY_FONT};animation:lvEcoPop .16s ease-out;transform-origin:top left;text-align:left;line-height:1.4}
+.lv-eco-panel{position:fixed;z-index:9990;top:var(--lv-eco-t,72px);left:var(--lv-eco-l,16px);width:min(1160px,calc(100vw - 32px));max-height:calc(100vh - var(--lv-eco-t,72px) - 16px);overflow:auto;overscroll-behavior:contain;box-sizing:border-box;background:rgba(15,23,42,.97);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 30px 70px -24px rgba(0,0,0,.85),0 0 60px -30px rgba(236,72,153,.5);color:${SNOW};padding:16px 22px 18px;font-family:${BODY_FONT};animation:lvEcoPop .16s ease-out;transform-origin:top left;text-align:left;line-height:1.4}
 .lv-eco-panel:focus{outline:0}
 .lv-eco-panel *,.lv-eco-panel *::before,.lv-eco-panel *::after{box-sizing:border-box}
 .lv-eco-top{display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap}
@@ -227,24 +251,31 @@ const CSS = `
 .lv-eco-search input::-webkit-search-cancel-button,.lv-eco-search input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
 .lv-eco-close{display:none}
 .lv-eco-rule{height:1px;margin:14px 0 16px;background:linear-gradient(to right,rgba(236,72,153,.45),rgba(255,255,255,.1),transparent)}
-.lv-eco-cols{columns:215px;column-gap:22px}
-.lv-eco-group{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;display:block;margin:0 0 18px;padding:0}
-.lv-eco-h{font-family:${WORDMARK_FONT};font-weight:400;font-size:19px;letter-spacing:.06em;line-height:1.1;color:${SNOW};margin:0 0 6px 8px;text-transform:none}
-.lv-eco-h::after{content:"";display:block;width:28px;height:3px;border-radius:2px;background:rgb(var(--c));box-shadow:0 0 10px rgba(var(--c),.55);margin-top:5px}
+.lv-eco-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+@media(min-width:768px) and (max-width:1023px){.lv-eco-cols{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.lv-eco-group{display:flex;flex-direction:column;min-width:0;height:100%;box-sizing:border-box;margin:0;padding:9px 9px 6px;border-radius:14px;background:linear-gradient(180deg,rgba(var(--c),.15),rgba(var(--c),.05));border:1px solid rgba(var(--c),.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.lv-eco-group--app{background:none;border:0;padding:0;box-shadow:none}
+.lv-eco-group--app .lv-eco-app{height:100%;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;padding:16px 16px;background:linear-gradient(160deg,rgba(236,72,153,.26),rgba(236,72,153,.06));border:1px solid rgba(236,72,153,.45)}
+.lv-eco-group--app .lv-eco-appicon{width:40px;height:40px;border-radius:12px;box-shadow:0 0 18px rgba(236,72,153,.45)}
+.lv-eco-group--app .lv-eco-name{font-size:16px}
+.lv-eco-h{display:flex;align-items:center;gap:8px;font-family:${WORDMARK_FONT};font-weight:400;font-size:19px;letter-spacing:.06em;line-height:1.1;color:rgb(var(--c));margin:0 0 5px 3px;padding-bottom:6px;border-bottom:1px solid rgba(var(--c),.22);text-transform:none}
+.lv-eco-h svg{flex:none;filter:drop-shadow(0 0 6px rgba(var(--c),.55))}
+.lv-eco-h .lv-eco-here{margin-left:auto}
+.lv-eco-h .lv-eco-here svg{filter:none}
 .lv-eco-group ul{list-style:none;margin:0;padding:0}
 .lv-eco-group li{margin:0;padding:0}
-.lv-eco-row{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:10px;text-decoration:none;color:${SNOW};transition:background .15s}
-.lv-eco-row:hover{background:rgba(255,255,255,.07);color:${SNOW}}
-.lv-eco-row:focus-visible{outline:0;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 2px rgba(6,182,212,.7)}
+.lv-eco-row{display:flex;align-items:center;gap:10px;padding:6px 7px;border-radius:9px;text-decoration:none;color:${SNOW};transition:background .15s}
+.lv-eco-row:hover{background:rgba(var(--c),.2);color:${SNOW}}
+.lv-eco-row:focus-visible{outline:0;background:rgba(var(--c),.2);box-shadow:inset 0 0 0 2px rgba(6,182,212,.7)}
 .lv-eco-txt{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
-.lv-eco-name{font-size:14px;font-weight:500;line-height:1.25;color:${SNOW}}
-.lv-eco-dom{font-size:12px;color:rgba(249,250,251,.55);line-height:1.2;overflow-wrap:anywhere}
+.lv-eco-name{font-size:14px;font-weight:600;line-height:1.25;color:${SNOW}}
+.lv-eco-dom{font-size:11.5px;color:rgba(249,250,251,.5);line-height:1.2;overflow-wrap:anywhere}
 .lv-eco-arrow{width:14px;height:14px;flex:none;color:rgba(249,250,251,.3);transition:color .15s}
 .lv-eco-row:hover .lv-eco-arrow,.lv-eco-row:focus-visible .lv-eco-arrow{color:${PINK}}
-.lv-eco-row.is-current{background:rgba(236,72,153,.08);box-shadow:inset 0 0 0 1px rgba(236,72,153,.35)}
+.lv-eco-row.is-current{background:rgba(236,72,153,.2);box-shadow:inset 0 0 0 1px rgba(236,72,153,.6)}
 .lv-eco-here{flex:none;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:999px;background:${PINK_FILL};color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1;white-space:nowrap}
-.lv-eco-app{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-decoration:none;color:${SNOW};border:1px solid rgba(236,72,153,.35);background:rgba(236,72,153,.06);transition:background .15s,border-color .15s}
-.lv-eco-app:hover,.lv-eco-app:focus-visible{background:rgba(236,72,153,.12);border-color:rgba(236,72,153,.6);outline:0;color:${SNOW}}
+.lv-eco-app{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-decoration:none;color:${SNOW};border:1px solid rgba(236,72,153,.45);background:rgba(236,72,153,.1);transition:background .15s,border-color .15s;box-sizing:border-box}
+.lv-eco-app:hover,.lv-eco-app:focus-visible{background:rgba(236,72,153,.2);border-color:rgba(236,72,153,.7);outline:0;color:${SNOW}}
 .lv-eco-appicon{flex:none;width:30px;height:30px;border-radius:10px;background:${PINK_FILL};display:inline-flex;align-items:center;justify-content:center;color:#fff}
 .lv-eco-empty{margin:18px 8px 6px;color:rgba(249,250,251,.6);font-size:14px}
 @keyframes lvEcoPop{from{opacity:0;transform:translateY(-6px) scale(.985)}to{opacity:1;transform:none}}
@@ -264,8 +295,12 @@ const CSS = `
 .lv-eco-search{order:3;flex:1 1 100%;max-width:none;height:46px}
 .lv-eco-search input{font-size:16px}
 .lv-eco-rule{display:none}
-.lv-eco-cols{columns:auto;column-count:1;padding:10px 10px 0}
-.lv-eco-h{font-size:20px;margin:6px 0 6px 10px}
+.lv-eco-cols{display:block;padding:10px 10px 0}
+.lv-eco-group{height:auto;margin:0 0 12px;padding:10px 10px 6px}
+.lv-eco-group--app .lv-eco-app{height:auto;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;padding:10px 12px}
+.lv-eco-group--app .lv-eco-appicon{width:30px;height:30px;border-radius:10px;box-shadow:none}
+.lv-eco-group--app .lv-eco-name{font-size:15.5px}
+.lv-eco-h{font-size:20px;margin:0 0 6px 4px}
 .lv-eco-row{min-height:50px;padding:6px 10px;border-radius:12px}
 .lv-eco-name{font-size:15.5px}
 .lv-eco-dom{font-size:12.5px}
@@ -333,7 +368,7 @@ export default function EcosystemMenu({ currentDomain = HUB, lang, variant = 'da
   }, []);
 
   // Groups in trip order; the hub is the wordmark, not a row.
-  const groups = useMemo(() => CAT_ORDER.filter((c) => c !== 'hub').map((cat) => ({
+  const groups = useMemo(() => MENU_ORDER.map((cat) => ({
     cat,
     label: ecosystemCatLabel(cat, lang),
     rgb: CAT_RGB[cat],
@@ -361,7 +396,11 @@ export default function EcosystemMenu({ currentDomain = HUB, lang, variant = 'da
     if (!open) return;
     const update = () => {
       const r = btnRef.current?.getBoundingClientRect();
-      if (r) setPos({ top: Math.round(r.bottom + 8), left: Math.round(r.left) });
+      if (!r) return;
+      const vw = document.documentElement.clientWidth;
+      const w = Math.min(1160, vw - 32);
+      // Right-anchored triggers (laplandgifts) would otherwise push the panel off-screen.
+      setPos({ top: Math.round(r.bottom + 8), left: Math.round(Math.max(16, Math.min(r.left, vw - 16 - w))) });
     };
     update();
     let raf = 0;
@@ -470,9 +509,9 @@ export default function EcosystemMenu({ currentDomain = HUB, lang, variant = 'da
       </div>
       <div className="lv-eco-rule" />
       <div className="lv-eco-cols">
-        {visible.map((g) => (
+        {visible.map((g) => { const Icon = CAT_ICON[g.cat]; return (
           <section key={g.cat} className="lv-eco-group" style={{ '--c': g.rgb } as CSSProperties}>
-            <h3 className="lv-eco-h">{g.label}</h3>
+            <h3 className="lv-eco-h"><Icon size={18} strokeWidth={2.2} aria-hidden="true" />{g.label}{g.sites.some((x) => x.site.domain === currentDomain) && herePill}</h3>
             <ul>
               {g.sites.map(({ site, name }) => {
                 const cur = site.domain === currentDomain;
@@ -489,16 +528,16 @@ export default function EcosystemMenu({ currentDomain = HUB, lang, variant = 'da
                         <span className="lv-eco-name">{name}</span>
                         <span className="lv-eco-dom">{site.domain}</span>
                       </span>
-                      {cur ? herePill : arrow}
+                      {cur ? null : arrow}
                     </a>
                   </li>
                 );
               })}
             </ul>
           </section>
-        ))}
+        ); })}
         {appVisible && (
-          <div className="lv-eco-group">
+          <div className="lv-eco-group lv-eco-group--app">
             <a className="lv-eco-app" href={`https://${APP}`} target="_blank" rel="noopener" data-umami-event="eco_jump" data-umami-event-site={APP}>
               <span className="lv-eco-appicon"><Smartphone size={16} strokeWidth={2.2} aria-hidden="true" /></span>
               <span className="lv-eco-txt">
