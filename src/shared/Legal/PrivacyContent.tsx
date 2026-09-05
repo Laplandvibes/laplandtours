@@ -24,6 +24,8 @@ type Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' |
 interface PrivacyContentProps {
   siteName?: string;
   lang?: Lang;
+  /** Site-specific "last updated" line (the site's own addenda move faster than the network body). */
+  lastUpdated?: string;
 }
 
 const COPY: Record<Lang, {
@@ -960,6 +962,7 @@ const COPY: Record<Lang, {
 };
 
 export default function PrivacyContent({
+  lastUpdated: lastUpdatedOverride,
   siteName = 'LaplandVibes',
   lang = 'en',
 }: PrivacyContentProps = {}) {
@@ -1002,7 +1005,7 @@ export default function PrivacyContent({
     <div className="min-h-screen bg-deep-night pt-24 pb-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-heading font-semibold text-4xl sm:text-5xl text-snow tracking-wide leading-tight mb-2 break-words">{t.h1}</h1>
-        <p className="text-snow/70 text-sm mb-10">{t.lastUpdated}</p>
+        <p className="text-snow/70 text-sm mb-10">{lastUpdatedOverride ?? t.lastUpdated}</p>
         <div className="space-y-8 text-snow/60 leading-relaxed">
 
           <section>

@@ -24,6 +24,10 @@ interface TermsContentProps {
    * Omitting the prop leaves every existing site byte for byte unchanged.
    */
   variant?: 'travel' | 'shop';
+  /** Site-specific first paragraph, when the site is not a travel or shop site (laplandwork: a job board). */
+  intro?: React.ReactNode;
+  /** Site-specific "last updated" line; the shared date is the network's, not the site's. */
+  lastUpdated?: string;
 }
 
 interface TermsCopy {
@@ -1326,6 +1330,8 @@ const SHOP_OVERRIDES: Record<Lang, Partial<TermsCopy>> = {
 };
 
 export default function TermsContent({
+  intro,
+  lastUpdated: lastUpdatedOverride,
   siteName = 'LaplandVibes',
   siteUrl = 'laplandvibes.com',
   lang = 'en',
@@ -1379,13 +1385,13 @@ export default function TermsContent({
       <div className="max-w-3xl mx-auto px-4 py-20 sm:py-28">
         <p className="text-vibe-pink text-sm font-semibold tracking-[0.2em] uppercase mb-4">{t.kicker}</p>
         <h1 className="font-heading font-semibold text-4xl sm:text-5xl text-snow tracking-wide leading-tight mb-6">{t.h1}</h1>
-        <p className="text-snow/75 text-sm mb-12">{t.lastUpdated}</p>
+        <p className="text-snow/75 text-sm mb-12">{lastUpdatedOverride ?? t.lastUpdated}</p>
 
         <div className="space-y-10 text-snow/70 leading-relaxed">
 
           <section>
             <h2 className="font-heading font-semibold text-xl text-snow tracking-wide mb-3">{t.s1Title}</h2>
-            <p>{t.s1P1(siteName, siteUrl)}</p>
+            <p>{intro ?? t.s1P1(siteName, siteUrl)}</p>
             <p className="mt-3">{t.s1P2}</p>
           </section>
 
