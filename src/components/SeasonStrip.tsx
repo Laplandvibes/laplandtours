@@ -310,8 +310,13 @@ export default function SeasonStrip() {
           <p className="cap-meta mt-4">{c.meta}</p>
         </header>
 
-        {/* Heatmap — horizontally scrollable on small screens to keep columns readable */}
-        <div className="-mx-6 sm:mx-0 overflow-x-auto">
+        {/* Heatmap — horizontally scrollable on small screens to keep columns readable.
+            🔴 Oikean reunan häivytys vain mobiilissa (Vesa 2026-09-06, mitattu
+            scripts/mobile_wrap_audit.mjs): 560 px:n taulukko 412 px:n ruudussa
+            katkesi joulukuun kohdalta suoraan reunaan ilman mitään vihjettä
+            siitä että kuukausia on lisää. sm:stä ylös taulukko mahtuu
+            kokonaan ⇒ maski pois, ettei se haalista oikeaa saraketta. */}
+        <div className="-mx-6 overflow-x-auto [mask-image:linear-gradient(to_right,#000_calc(100%_-_44px),transparent_100%)] sm:mx-0 sm:[mask-image:none]">
           <div className="min-w-[560px] px-6 sm:px-0">
             {/* Month header row */}
             <div className="grid grid-cols-[88px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-2">
