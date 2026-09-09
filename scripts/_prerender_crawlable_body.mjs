@@ -70,12 +70,17 @@ function unescapeJs(s) {
     .replace(/\\n/g, ' ').replace(/\\t/g, ' ')
     .replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\`/g, '`')
     .replace(/\\\\/g, '\\')
+    // Hero-h1:n [[korostus]]-merkinta on React-tason ohje (renderAccent -> <em>);
+    // crawlable-tekstiin se vuotaisi kirjaimellisena - puretaan pelkaksi sanaksi.
+    .replace(/\[\[(.+?)\]\]/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
 function esc(s) {
   return String(s)
+    // [[korostus]] on React-tason merkinta (renderAccent) - ei saa vuotaa tekstiin.
+    .replace(/\[\[(.+?)\]\]/g, '$1')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
