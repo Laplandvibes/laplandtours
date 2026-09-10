@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState} from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X} from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 import EcosystemMenu from '../shared/EcosystemMenu';
+import LanguageSwitcher from '../i18n/LanguageSwitcher';
 
 // Exported so other components (e.g. pages/NotFound.tsx) can reuse the same
 // localized section labels instead of inventing new translation keys.
@@ -151,27 +152,12 @@ const LANG_OPTIONS: { code: Lang; label: string; native: string }[] = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const lang = useLang();
   const to = useLocalePath();
   const c = COPY[lang];
 
-  useEffect(() => {
-    if (!langOpen) return;
-    const onClick = (e: MouseEvent) => {
-      if (!langRef.current?.contains(e.target as Node)) setLangOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLangOpen(false); };
-    document.addEventListener('mousedown', onClick);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('mousedown', onClick);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [langOpen]);
 
   const links = [
     { to: to('/lapland-holidays'), label: c.operators },
@@ -240,44 +226,8 @@ export default function Nav() {
               </Link>
             );
           })}
-          <div className="relative ml-1" ref={langRef}>
-            <button
-              type="button"
-              onClick={() => setLangOpen((o) => !o)}
-              aria-haspopup="listbox"
-              aria-expanded={langOpen}
-              aria-label="Select language"
-              className="bg-deep-night/85 backdrop-blur-sm flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase border border-snow/40 text-snow/85 hover:border-vibe-pink hover:text-vibe-pink transition-colors"
-            >
-              <Globe className="w-3.5 h-3.5" />
-              {LANG_OPTIONS.find((l) => l.code === lang)?.label ?? 'EN'}
-              <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {langOpen && (
-              <ul
-                role="listbox"
-                aria-label="Select language"
-                className="absolute right-0 top-full mt-2 min-w-[180px] py-1 bg-deep-night/95 backdrop-blur-md border border-white/15 rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto"
-              >
-                {LANG_OPTIONS.map((l) => {
-                  const isActive = l.code === lang;
-                  return (
-                    <li key={l.code} role="option" aria-selected={isActive}>
-                      <button
-                        type="button"
-                        onClick={() => { switchTo(l.code); setLangOpen(false); }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 text-left text-sm transition-colors ${
-                          isActive ? 'bg-vibe-pink/15 text-vibe-pink font-semibold' : 'text-snow/85 hover:bg-white/5 hover:text-snow'
-                        }`}
-                      >
-                        <span className="w-8 text-xs font-semibold tracking-wide">{l.label}</span>
-                        <span>{l.native}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+          <div className="relative ml-1">
+            <LanguageSwitcher tone={'dark'} />
           </div>
           <Link
             to={to('/design-tour')}
@@ -288,21 +238,7 @@ export default function Nav() {
         </nav>
 
         <div className="lg:hidden flex items-center gap-2">
-          <div className="relative inline-flex items-center">
-            <select
-              value={lang}
-              onChange={(e) => switchTo(e.target.value as Lang)}
-              aria-label="Language"
-              className="appearance-none bg-deep-night/85 backdrop-blur-sm bg-transparent border border-snow/40 rounded pl-2 pr-6 py-1 text-xs font-semibold uppercase text-snow"
-            >
-              {LANG_OPTIONS.map((l) => (
-                <option key={l.code} value={l.code} className="bg-deep-night text-snow">
-                  {l.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-snow" />
-          </div>
+          <LanguageSwitcher tone={'dark'} />
           <button
             onClick={() => setOpen(!open)}
             className="p-2 text-snow/80 min-w-[44px] min-h-[44px] flex items-center justify-center"
