@@ -158,7 +158,7 @@ export default function Hero() {
           {c.pinkLine}
         </p>
 
-        <p className="mt-6 sm:mt-8 text-snow/90 font-body text-base sm:text-lg leading-relaxed max-w-xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+        <p className="mt-6 sm:mt-8 text-snow/90 font-body text-base sm:text-lg leading-relaxed max-w-xl xl:max-w-3xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] xl:text-xl">
           {c.lead}
         </p>
 
