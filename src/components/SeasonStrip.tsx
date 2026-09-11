@@ -51,7 +51,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Best aurora-to-price',
     bestAuroraMonth: 'February',
     bestAuroraBody:
-      "Aurora chance peaks while school holidays haven't started; operators discount the second-half-of-Feb weeks 15–25 % vs Christmas.",
+      "Aurora odds stay high and the Christmas pricing is behind you: operators price the second half of February below the December weeks.",
     cheapestWinter: 'Cheapest winter',
     cheapestWinterMonth: 'Late March',
     cheapestWinterBody:
@@ -59,7 +59,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Cheapest overall',
     cheapestOverallMonth: 'June – August',
     cheapestOverallBody:
-      'Midnight Sun. 30–40 % cheaper than winter. No snow, no aurora. Hiking, river rafting, berry picking. A different trip entirely.',
+      'Midnight Sun. Clearly cheaper than winter. No snow, no aurora. Hiking, river rafting, berry picking. A different trip entirely.',
   },
   fi: {
     h2Line1: 'Milloin mennä',
@@ -70,7 +70,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Paras revontulet/hinta-suhde',
     bestAuroraMonth: 'Helmikuu',
     bestAuroraBody:
-      'Revontulten todennäköisyys on huipussaan ja koululaisten loma ei ole vielä alkanut; matkanjärjestäjät laskevat helmikuun loppupuolen hintoja 15–25 % jouluun verrattuna.',
+      'Revontulien todennäköisyys on yhä korkea ja joulun hinnat takana: matkanjärjestäjät hinnoittelevat helmikuun loppupuolen joulukuuta edullisemmin.',
     cheapestWinter: 'Edullisin talvi',
     cheapestWinterMonth: 'Maaliskuun loppu',
     cheapestWinterBody:
@@ -78,7 +78,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Edullisin kausi',
     cheapestOverallMonth: 'Kesäkuu – elokuu',
     cheapestOverallBody:
-      'Yötön yö. 30–40 % halvempi kuin talvi. Ei lunta, ei revontulia. Vaellus, koskenlasku, marjastus. Täysin erilainen matka.',
+      'Yötön yö. Selvästi talvea edullisempi. Ei lunta, ei revontulia. Vaellus, koskenlasku, marjastus. Täysin erilainen matka.',
   },
   de: {
     h2Line1: 'Wann reisen',
@@ -89,7 +89,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Bestes Polarlicht-Preis-Verhältnis',
     bestAuroraMonth: 'Februar',
     bestAuroraBody:
-      'Die Polarlicht-Wahrscheinlichkeit erreicht ihren Höhepunkt, während die Schulferien noch nicht begonnen haben; Reiseveranstalter senken die Preise in der zweiten Februarhälfte um 15–25 % gegenüber Weihnachten.',
+      'Die Polarlicht-Chancen bleiben hoch, und die Weihnachtspreise liegen hinter Ihnen: Die zweite Februarhälfte kostet bei den Veranstaltern weniger als die Dezemberwochen.',
     cheapestWinter: 'Günstigster Winter',
     cheapestWinterMonth: 'Ende März',
     cheapestWinterBody:
@@ -97,7 +97,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Günstigste Saison',
     cheapestOverallMonth: 'Juni – August',
     cheapestOverallBody:
-      'Mitternachtssonne. 30–40 % günstiger als der Winter. Kein Schnee, kein Polarlicht. Wandern, Wildwasser, Beeren sammeln. Eine ganz andere Reise.',
+      'Mitternachtssonne. Deutlich günstiger als der Winter. Kein Schnee, kein Polarlicht. Wandern, Wildwasser, Beeren sammeln. Eine ganz andere Reise.',
   },
   ja: {
     h2Line1: 'いつ訪れるか',
@@ -108,7 +108,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'オーロラと価格のベストバランス',
     bestAuroraMonth: '2月',
     bestAuroraBody:
-      "オーロラの観察確率がピークに達しつつ、学校の休暇がまだ始まらない時期です。オペレーターは2月後半の料金をクリスマスと比べて15〜25%値下げします。",
+      "オーロラの出現確率は高いまま、クリスマス料金の時期は終わっています。2月後半は各社とも12月より抑えた料金設定です。",
     cheapestWinter: '最も安い冬季',
     cheapestWinterMonth: '3月下旬',
     cheapestWinterBody:
@@ -116,7 +116,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: '通年で最も安い時期',
     cheapestOverallMonth: '6月から8月',
     cheapestOverallBody:
-      '白夜の季節。冬季と比べて30〜40%安くなります。雪もオーロラもありません。ハイキング、ラフティング、ベリー摘み。まったく異なる旅となります。',
+      '白夜の季節。冬季よりはっきりと安くなります。雪もオーロラもありません。ハイキング、ラフティング、ベリー摘み。まったく異なる旅となります。',
   },
   ko: {
     h2Line1: '언제 가야 할까',
@@ -127,7 +127,7 @@ const COPY: Record<CopyLang, {
     bestAurora: '오로라 대비 가격이 가장 좋은 시기',
     bestAuroraMonth: '2월',
     bestAuroraBody:
-      '오로라 관측 확률은 정점에 가깝지만 학교 방학은 아직 시작되지 않은 시기입니다. 운영사들은 2월 후반 주간 요금을 크리스마스 시즌보다 15~25% 낮춥니다.',
+      '오로라 확률은 여전히 높고 크리스마스 요금은 지나갔습니다. 운영사들은 2월 후반을 12월보다 낮은 요금으로 책정합니다.',
     cheapestWinter: '가장 저렴한 겨울',
     cheapestWinterMonth: '3월 하순',
     cheapestWinterBody:
@@ -135,7 +135,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: '연중 가장 저렴한 시기',
     cheapestOverallMonth: '6월~8월',
     cheapestOverallBody:
-      '백야의 계절. 겨울보다 30~40% 저렴합니다. 눈도 오로라도 없습니다. 트레킹, 강 래프팅, 베리 채집. 완전히 다른 여행이 됩니다.',
+      '백야의 계절. 겨울보다 확실히 저렴합니다. 눈도 오로라도 없습니다. 트레킹, 강 래프팅, 베리 채집. 완전히 다른 여행이 됩니다.',
   },
   fr: {
     h2Line1: 'Quand y aller',
@@ -146,7 +146,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Meilleur rapport aurore / prix',
     bestAuroraMonth: 'Février',
     bestAuroraBody:
-      'La probabilité d\'aurores boréales atteint son pic alors que les vacances scolaires n\'ont pas encore commencé ; les voyagistes baissent les prix de la seconde moitié de février de 15 à 25 % par rapport à Noël.',
+      'Les chances d’aurores restent élevées et les tarifs de Noël sont derrière vous : les voyagistes proposent la seconde moitié de février moins cher que les semaines de décembre.',
     cheapestWinter: 'Hiver le moins cher',
     cheapestWinterMonth: 'Fin mars',
     cheapestWinterBody:
@@ -154,7 +154,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Période la moins chère de l\'année',
     cheapestOverallMonth: 'Juin – août',
     cheapestOverallBody:
-      'Soleil de minuit. 30 à 40 % moins cher que l\'hiver. Pas de neige, pas d\'aurore. Randonnée, descente en eau vive, cueillette de baies. Un tout autre voyage.',
+      'Soleil de minuit. Nettement moins cher que l’hiver. Pas de neige, pas d’aurore. Randonnée, descente en eau vive, cueillette de baies. Un tout autre voyage.',
   },
   it: {
     h2Line1: 'Quando andare',
@@ -165,7 +165,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Miglior rapporto aurora-prezzo',
     bestAuroraMonth: 'Febbraio',
     bestAuroraBody:
-      'La probabilità di vedere l\'aurora boreale raggiunge il picco mentre le vacanze scolastiche non sono ancora iniziate; gli operatori scontano le settimane della seconda metà di febbraio del 15–25 % rispetto al Natale.',
+      'Le probabilità di aurora restano alte e i prezzi natalizi sono alle spalle: gli operatori propongono la seconda metà di febbraio a meno delle settimane di dicembre.',
     cheapestWinter: 'Inverno più economico',
     cheapestWinterMonth: 'Fine marzo',
     cheapestWinterBody:
@@ -173,7 +173,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Periodo più economico dell\'anno',
     cheapestOverallMonth: 'Giugno – agosto',
     cheapestOverallBody:
-      'Sole di mezzanotte. Dal 30 al 40 % più economico dell\'inverno. Niente neve, niente aurora. Trekking, rafting, raccolta di bacche. Un viaggio completamente diverso.',
+      'Sole di mezzanotte. Nettamente più economico dell’inverno. Niente neve, niente aurora. Trekking, rafting, raccolta di bacche. Un viaggio completamente diverso.',
   },
   nl: {
     h2Line1: 'Wanneer gaan',
@@ -184,7 +184,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Beste verhouding aurora–prijs',
     bestAuroraMonth: 'Februari',
     bestAuroraBody:
-      'De kans op noorderlicht bereikt zijn piek terwijl de schoolvakanties nog niet begonnen zijn; reisorganisaties verlagen de prijzen voor de tweede helft van februari met 15–25 % ten opzichte van Kerst.',
+      'De kans op noorderlicht blijft hoog en de kerstprijzen liggen achter u: reisorganisaties prijzen de tweede helft van februari lager dan de decemberweken.',
     cheapestWinter: 'Goedkoopste winterperiode',
     cheapestWinterMonth: 'Eind maart',
     cheapestWinterBody:
@@ -192,7 +192,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Goedkoopste periode van het jaar',
     cheapestOverallMonth: 'Juni – augustus',
     cheapestOverallBody:
-      'Middernachtszon. 30–40 % goedkoper dan de winter. Geen sneeuw, geen noorderlicht. Wandelen, wildwaterraften, bessen plukken. Een heel andere reis.',
+      'Middernachtszon. Duidelijk goedkoper dan de winter. Geen sneeuw, geen noorderlicht. Wandelen, wildwaterraften, bessen plukken. Een heel andere reis.',
   },
   sv: {
     h2Line1: 'När du ska åka',
@@ -203,7 +203,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Bäst norrsken för priset',
     bestAuroraMonth: 'februari',
     bestAuroraBody:
-      'Chansen för norrsken är som störst innan skolloven har börjat; arrangörerna sänker priserna för veckorna i andra halvan av februari med 15–25 % jämfört med jul.',
+      'Chansen till norrsken är fortsatt hög och julpriserna ligger bakom dig: arrangörerna prissätter andra halvan av februari lägre än decemberveckorna.',
     cheapestWinter: 'Billigaste vintern',
     cheapestWinterMonth: 'slutet av mars',
     cheapestWinterBody:
@@ -211,7 +211,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Billigast totalt',
     cheapestOverallMonth: 'juni – augusti',
     cheapestOverallBody:
-      'Midnattssol. 30–40 % billigare än vintern. Ingen snö, inget norrsken. Vandring, forsränning, bärplockning. En helt annan sorts resa.',
+      'Midnattssol. Klart billigare än vintern. Ingen snö, inget norrsken. Vandring, forsränning, bärplockning. En helt annan sorts resa.',
   },
   es: {
     h2Line1: 'Cuándo ir',
@@ -222,7 +222,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Mejor relación aurora-precio',
     bestAuroraMonth: 'Febrero',
     bestAuroraBody:
-      'La probabilidad de aurora boreal llega a su punto más alto cuando aún no han empezado las vacaciones escolares; los operadores rebajan las semanas de la segunda mitad de febrero entre un 15 y un 25 % frente a Navidad.',
+      'Las probabilidades de aurora siguen altas y los precios navideños ya quedaron atrás: los operadores ofrecen la segunda mitad de febrero por debajo de las semanas de diciembre.',
     cheapestWinter: 'Invierno más económico',
     cheapestWinterMonth: 'Finales de marzo',
     cheapestWinterBody:
@@ -230,7 +230,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Época más económica del año',
     cheapestOverallMonth: 'Junio – agosto',
     cheapestOverallBody:
-      'Sol de medianoche. Entre un 30 y un 40 % más barato que el invierno. Sin nieve, sin aurora. Senderismo, descenso de ríos, recogida de bayas. Un viaje completamente distinto.',
+      'Sol de medianoche. Claramente más barato que el invierno. Sin nieve, sin aurora. Senderismo, descenso de ríos, recogida de bayas. Un viaje completamente distinto.',
   },
   'pt-BR': {
     h2Line1: 'Quando ir',
@@ -241,7 +241,7 @@ const COPY: Record<CopyLang, {
     bestAurora: 'Melhor relação aurora-preço',
     bestAuroraMonth: 'Fevereiro',
     bestAuroraBody:
-      'A chance de aurora boreal chega ao auge enquanto as férias escolares ainda não começaram; as operadoras dão desconto de 15 a 25 % nas semanas da segunda metade de fevereiro em relação ao Natal.',
+      'As chances de aurora continuam altas e os preços de Natal ficaram para trás: as operadoras cobram menos na segunda metade de fevereiro do que nas semanas de dezembro.',
     cheapestWinter: 'Inverno mais barato',
     cheapestWinterMonth: 'Fim de março',
     cheapestWinterBody:
@@ -249,7 +249,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: 'Época mais barata do ano',
     cheapestOverallMonth: 'Junho – agosto',
     cheapestOverallBody:
-      'Sol da meia-noite. De 30 a 40 % mais barato que o inverno. Sem neve, sem aurora. Trilhas, rafting, colheita de frutas silvestres. Uma viagem totalmente diferente.',
+      'Sol da meia-noite. Bem mais barato que o inverno. Sem neve, sem aurora. Trilhas, rafting, colheita de frutas silvestres. Uma viagem totalmente diferente.',
   },
   'zh-CN': {
     h2Line1: '何时出发',
@@ -260,7 +260,7 @@ const COPY: Record<CopyLang, {
     bestAurora: '极光与价格的最佳平衡',
     bestAuroraMonth: '二月',
     bestAuroraBody:
-      '此时极光出现概率达到高峰，而学校假期尚未开始；相比圣诞期间，运营商把二月下旬的价格下调 15–25%。',
+      '极光概率依然很高，圣诞季的价格已成过去：各运营商对二月下旬的定价低于十二月。',
     cheapestWinter: '最便宜的冬季',
     cheapestWinterMonth: '三月下旬',
     cheapestWinterBody:
@@ -268,7 +268,7 @@ const COPY: Record<CopyLang, {
     cheapestOverall: '全年最便宜',
     cheapestOverallMonth: '六月至八月',
     cheapestOverallBody:
-      '午夜阳光季。比冬季便宜 30–40%。没有积雪，也没有极光。徒步、漂流、采浆果，是一趟截然不同的旅程。',
+      '午夜阳光季。明显比冬季便宜。没有积雪，也没有极光。徒步、漂流、采浆果，是一趟截然不同的旅程。',
   },
 };
 

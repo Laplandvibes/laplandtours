@@ -19,6 +19,8 @@ const COPY: Record<CopyLang, {
   ariaH1: string;
   lead: string;
   altHero: string;
+  /** Link line under "Getting there" → the hub's five road-trip guides (2026-09-11). */
+  driveLink: string;
   sections: { n: string; title: string; body: string }[];
   addonsEyebrow: string;
   addonsH2: string;
@@ -41,6 +43,7 @@ const COPY: Record<CopyLang, {
     lead:
       "That's the floor of a typical Lapland winter night, and the reason operators issue thermal overalls. The rest of the planning is calendar, paperwork and a few phone numbers. Below, six things to know before you book.",
     altHero: 'A long single-track snow road through endless boreal Lapland wilderness',
+    driveLink: 'Driving up instead? Five mapped routes to Lapland',
     sections: [
       {
         n: '01',
@@ -100,6 +103,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Se on tyypillisen lappilaisen talviyön alaraja ja syy siihen, miksi matkanjärjestäjät jakavat lämpöhaalarit. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
     altHero: 'Pitkä, yksittäinen lumitie loputtoman boreaalisen Lapin halki',
+    driveLink: 'Tuletko autolla? Viisi valmiiksi ajettua reittiä Lappiin',
     sections: [
       {
         n: '01',
@@ -159,6 +163,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Das ist der typische Tiefpunkt einer Winternacht in Lappland, und der Grund, warum die Reiseveranstalter Thermokleidung stellen. Der Rest ist Kalender, Papierkram und ein paar Telefonnummern. Sechs Punkte vor der Buchung.',
     altHero: 'Eine lange, einzelne Schneestraße durch die endlose boreale Wildnis Lapplands',
+    driveLink: 'Lieber mit dem Auto? Fünf ausgearbeitete Routen nach Lappland',
     sections: [
       {
         n: '01',
@@ -218,6 +223,7 @@ const COPY: Record<CopyLang, {
     lead:
       'これは典型的なラップランドの冬の夜の最低気温で、オペレーターが防寒オーバーオールを提供する理由でもあります。残りの計画はカレンダー、書類、いくつかの電話番号です。以下、ご予約前に知っておくべき6つのこと。',
     altHero: '広大な北方ラップランドの荒野を貫く長い単線の雪道',
+    driveLink: '車で向かうなら：ラップランドへの5つのルート',
     sections: [
       {
         n: '01',
@@ -277,6 +283,7 @@ const COPY: Record<CopyLang, {
     lead:
       '전형적인 라플란드 겨울밤의 최저 기온이며, 운영사들이 방한복 일체를 지급하는 이유입니다. 나머지 계획은 일정, 서류, 그리고 몇 가지 전화번호입니다. 예약 전 알아야 할 여섯 가지를 정리했습니다.',
     altHero: '광활한 북방림 라플란드 황야를 가로지르는 외길 눈길',
+    driveLink: '자동차로 오신다면: 라플란드까지 다섯 가지 경로',
     sections: [
       {
         n: '01',
@@ -336,6 +343,7 @@ const COPY: Record<CopyLang, {
     lead:
       'C\'est le plancher d\'une nuit d\'hiver typique en Laponie, et la raison pour laquelle les voyagistes fournissent les combinaisons thermiques. Le reste de la préparation est affaire de calendrier, de paperasse et de quelques numéros utiles. Voici six points à connaître avant de réserver.',
     altHero: 'Longue piste enneigée à une seule voie traversant la vaste taïga lapone',
+    driveLink: 'Plutôt en voiture ? Cinq itinéraires balisés vers la Laponie',
     sections: [
       {
         n: '01',
@@ -395,6 +403,7 @@ const COPY: Record<CopyLang, {
     lead:
       'È la temperatura minima di una tipica notte d\'inverno in Lapponia e il motivo per cui gli operatori forniscono le tute termiche. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Di seguito sei cose da sapere prima di prenotare.',
     altHero: 'Lunga strada innevata a singola corsia attraverso la sterminata taiga lapponica',
+    driveLink: 'Preferisce l’auto? Cinque itinerari tracciati verso la Lapponia',
     sections: [
       {
         n: '01',
@@ -454,6 +463,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Dat is de bodem van een typische winternacht in Lapland, en de reden waarom reisorganisaties thermopakken uitdelen. De rest van de planning is agenda, papierwerk en een paar telefoonnummers. Hieronder zes punten om vóór het boeken te kennen.',
     altHero: 'Lange enkelbaans sneeuwweg door de eindeloze boreale Lapland-wildernis',
+    driveLink: 'Liever met de auto? Vijf uitgewerkte routes naar Lapland',
     sections: [
       {
         n: '01',
@@ -513,6 +523,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Det är bottennoteringen en typisk vinternatt i Lappland, och skälet till att aktörerna delar ut termoveraller. Resten av planeringen är kalender, papper och några telefonnummer. Nedan sex saker att veta innan du bokar.',
     altHero: 'En lång enfilig snöväg genom den ändlösa boreala vildmarken i Lappland',
+    driveLink: 'Kör du hellre? Fem färdiga rutter till Lappland',
     sections: [
       {
         n: '01',
@@ -572,6 +583,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Ese es el suelo de una noche típica de invierno en Laponia, y la razón por la que los operadores entregan monos térmicos. El resto de la planificación es calendario, papeleo y un par de teléfonos. Abajo, seis cosas que conviene saber antes de reservar.',
     altHero: 'Una larga carretera nevada de un solo carril a través de la interminable taiga de Laponia',
+    driveLink: '¿Prefiere ir en coche? Cinco rutas trazadas hasta Laponia',
     sections: [
       {
         n: '01',
@@ -631,6 +643,7 @@ const COPY: Record<CopyLang, {
     lead:
       'Esse é o piso de uma típica noite de inverno na Lapônia e o motivo de as operadoras entregarem macacões térmicos. O resto do planejamento é calendário, papelada e alguns telefones. Abaixo, seis coisas para saber antes de reservar.',
     altHero: 'Uma longa estrada de neve de pista única atravessando a interminável taiga da Lapônia',
+    driveLink: 'Prefere ir de carro? Cinco rotas mapeadas até a Lapônia',
     sections: [
       {
         n: '01',
@@ -690,6 +703,7 @@ const COPY: Record<CopyLang, {
     lead:
       '这是拉普兰典型冬夜的最低气温，也是运营商发放保暖连体服的原因。其余的规划无非是日历、文件和几个电话号码。以下是预订前要了解的六件事。',
     altHero: '一条单车道雪路穿过广袤无边的拉普兰北方针叶林',
+    driveLink: '想自驾？前往拉普兰的五条路线',
     sections: [
       {
         n: '01',
@@ -914,6 +928,17 @@ export default function PracticalInfo() {
                 <p className="text-snow/70 font-body text-[15px] sm:text-base leading-[1.7]">
                   {s.body}
                 </p>
+                {i === 0 && (
+                  <a
+                    href={`https://laplandvibes.com/${LANG_TO_PREFIX[lang] ? `${LANG_TO_PREFIX[lang]}/` : ''}blog/drive-to-lapland-by-car/`}
+                    data-umami-event="drive_overview_click"
+                    data-umami-event-surface="practical"
+                    className="mt-4 inline-flex items-center gap-2 text-arctic-cyan hover:text-vibe-pink font-body font-medium text-[15px] transition-colors"
+                  >
+                    <span>{c.driveLink}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </article>
             );
           })}

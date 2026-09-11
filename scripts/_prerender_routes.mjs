@@ -1004,6 +1004,34 @@ function harvestRouteText(loc, route, meta) {
         // English city pages silently dropped from ~370 words to ~248. `by` is
         // an explicit statement of how the record is identified, so it takes
         // precedence over a name that merely happens to collide.
+        // [LV-FILE-MODES 2026-09-07] Two shapes where the WHOLE FILE is the page's
+        // copy and there is no record to look up (rec.key is still required by
+        // the guard above; pass the slug). Same-locale by construction: the
+        // candidates above never fall back to English on a localized URL, so a
+        // missing per-locale file means nothing is harvested, never English.
+        //   jsxFile  — a per-locale post module exporting one component
+        //              (laplandvibes src/blog/posts/{lang}/<slug>.tsx): harvest
+        //              the JSX of its first `return (` … `)`.
+        //   jsonFile — a per-locale JSON copy file (src/locales/{lang}/<slug>.json):
+        //              harvest every string value in document order.
+        if (rec.mode === 'jsxFile') {
+          const ri = src.indexOf('return (');
+          const jsx = ri >= 0 ? sliceParens(src, ri + 'return '.length) : null;
+          if (jsx) harvestJsxText(jsx, out, meta, seen, budget);
+          continue;
+        }
+        if (rec.mode === 'jsonFile') {
+          let j = null;
+          try { j = JSON.parse(src); } catch { j = null; }
+          const walk = (v) => {
+            if (budget.words <= 0) return;
+            if (typeof v === 'string') { const kept = harvestKeep(v, meta, seen); if (kept) { out.push(kept); budget.words -= kept.split(/\s+/).length; } }
+            else if (Array.isArray(v)) v.forEach(walk);
+            else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+          };
+          if (j) walk(j);
+          continue;
+        }
         let b = null;
         if (rec.by) b = findRecordByField(src, rec.by, rec.key);
         // Otherwise a keyed entry (`oulu: { … }`) or a top-level const

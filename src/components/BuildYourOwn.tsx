@@ -1,11 +1,24 @@
-import { Hotel, Car, MapPinned } from 'lucide-react';
+import { Hotel, Car, MapPinned, TreePine, CarTaxiFront } from 'lucide-react';
 import AffiliateCTA from './AffiliateCTA';
 import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
 
 interface RailCard {
-  partner: 'hotels' | 'cars' | 'activities';
+  partner: 'hotels' | 'cars' | 'activities' | 'lomarengas' | 'welcomepickups';
   sid: string;
   destination: string;
+  /**
+   * Per-locale landing page where the partner has one (Lomarengas: /fi and
+   * /en only — /de and /sv measured 404 on 2026-09-11). Falls back to
+   * `destination`.
+   */
+  destinationByLang?: Partial<Record<CopyLang, string>>;
+  /**
+   * 'core' = the three original tracks (stay / drive / do), full-height
+   * cards. 'extra' = the two complements added 2026-09-11 (cabin, airport
+   * transfer) — same partner-rail model, rendered as a shorter second row so
+   * the page still reads as three tracks plus two add-ons, not five equals.
+   */
+  tier?: 'core' | 'extra';
   /** GYG search query for activities (resolving /s/?q= endpoint). */
   gygSearch?: string;
   icon: typeof Hotel;
@@ -340,6 +353,202 @@ const rails: RailCard[] = [
       },
 },
   },
+  // ── Complements (2026-09-11) ─────────────────────────────────────────
+  // Lomarengas: Adtraction, flat fee per booking; the network's only real
+  // cabin feed. Landing pages verified 200 on 2026-09-11 (fi + en).
+  {
+    partner: 'lomarengas',
+    sid: 'home_build_cabin',
+    tier: 'extra',
+    destination: 'https://www.lomarengas.fi/en/cottage-search/lappi',
+    destinationByLang: { fi: 'https://www.lomarengas.fi/mokkihaku/lappi' },
+    icon: TreePine,
+    imgVariant: 'forest',
+    bgHex: '#0E1F1A',
+    labels: {
+      en: {
+        label: '04  ·  Cabin',
+        headline: 'A cabin of your own',
+        body: 'Lakeside and fell-side holiday homes across Lapland. Lomarengas lists them by area; you book there.',
+        priceLine: 'Live availability on Lomarengas · book direct',
+        ctaLabel: 'Browse Lapland cabins',
+      },
+      fi: {
+        label: '04  ·  Mökki',
+        headline: 'Oma mökki Lapissa',
+        body: 'Järven rannalta tunturin kupeeseen. Lomarengas listaa Lapin lomamökit alueittain, ja varaus tehdään suoraan siellä.',
+        priceLine: 'Ajantasainen saatavuus Lomarenkaalla · varaus suoraan',
+        ctaLabel: 'Selaa Lapin mökkejä',
+      },
+      de: {
+        label: '04  ·  Hütte',
+        headline: 'Eine eigene Hütte in Lappland',
+        body: 'Ferienhäuser am See und am Fjäll in ganz Lappland. Lomarengas listet sie nach Gebiet, gebucht wird direkt dort.',
+        priceLine: 'Aktuelle Verfügbarkeit bei Lomarengas · Buchung direkt dort',
+        ctaLabel: 'Hütten in Lappland ansehen',
+      },
+      ja: {
+        label: '04  ·  コテージ',
+        headline: '自分たちだけのコテージ',
+        body: '湖畔や丘陵のふもとに建つ貸別荘がラップランド各地にあります。Lomarengasがエリア別に掲載し、そのまま予約できます。',
+        priceLine: 'Lomarengasで最新の空き状況 · 直接予約',
+        ctaLabel: 'ラップランドのコテージを見る',
+      },
+      ko: {
+        label: '04  ·  통나무집',
+        headline: '우리만의 통나무집',
+        body: '호숫가와 펠 기슭의 휴가용 주택이 라플란드 곳곳에 있습니다. Lomarengas가 지역별로 정리해 두었고, 예약은 바로 그곳에서 합니다.',
+        priceLine: 'Lomarengas 실시간 예약 가능 여부 · 직접 예약',
+        ctaLabel: '라플란드 통나무집 보기',
+      },
+      fr: {
+        label: '04  ·  Chalet',
+        headline: 'Un chalet rien que pour vous',
+        body: 'Des maisons de vacances au bord des lacs et au pied des fjälls, partout en Laponie. Lomarengas les classe par secteur et vous réservez directement chez eux.',
+        priceLine: 'Disponibilités en direct sur Lomarengas · réservation directe',
+        ctaLabel: 'Voir les chalets en Laponie',
+      },
+      it: {
+        label: '04  ·  Baita',
+        headline: 'Una baita tutta per Lei',
+        body: 'Case vacanza in riva ai laghi e ai piedi dei fjäll in tutta la Lapponia. Lomarengas le elenca per zona e la prenotazione si fa direttamente lì.',
+        priceLine: 'Disponibilità in tempo reale su Lomarengas · prenotazione diretta',
+        ctaLabel: 'Vedi le baite in Lapponia',
+      },
+      nl: {
+        label: '04  ·  Hut',
+        headline: 'Een eigen hut in Lapland',
+        body: 'Vakantiehuizen aan het meer en aan de voet van de fjäll, door heel Lapland. Lomarengas ordent ze per gebied en u boekt er rechtstreeks.',
+        priceLine: 'Actuele beschikbaarheid op Lomarengas · rechtstreeks boeken',
+        ctaLabel: 'Hutten in Lapland bekijken',
+      },
+      sv: {
+        label: '04  ·  Stuga',
+        headline: 'En egen stuga i Lappland',
+        body: 'Semesterhus vid sjön och vid fjällets fot i hela Lappland. Lomarengas listar dem områdesvis, och du bokar direkt där.',
+        priceLine: 'Aktuell tillgänglighet hos Lomarengas · boka direkt',
+        ctaLabel: 'Bläddra bland stugor i Lappland',
+      },
+      es: {
+        label: '04  ·  Cabaña',
+        headline: 'Una cabaña para usted',
+        body: 'Casas de vacaciones junto al lago y al pie de los fjäll por toda Laponia. Lomarengas las ordena por zona y la reserva se hace directamente allí.',
+        priceLine: 'Disponibilidad en directo en Lomarengas · reserva directa',
+        ctaLabel: 'Ver cabañas en Laponia',
+      },
+      'pt-BR': {
+        label: '04  ·  Cabana',
+        headline: 'Uma cabana só sua',
+        body: 'Casas de férias à beira do lago e ao pé dos fjäll por toda a Lapônia. A Lomarengas organiza por região, e você reserva direto lá.',
+        priceLine: 'Disponibilidade em tempo real na Lomarengas · reserva direta',
+        ctaLabel: 'Ver cabanas na Lapônia',
+      },
+      'zh-CN': {
+        label: '04  ·  木屋',
+        headline: '一栋属于你的木屋',
+        body: '湖畔与山麓的度假屋遍布拉普兰各地。Lomarengas 按区域列出，可直接在其网站预订。',
+        priceLine: 'Lomarengas 实时空房 · 直接预订',
+        ctaLabel: '查看拉普兰木屋',
+      },
+    },
+  },
+  // Welcome Pickups: Travelpayouts, airport transfers. Rovaniemi city page
+  // verified 200 on 2026-09-11 (/finland/ is 404 — never link the country).
+  {
+    partner: 'welcomepickups',
+    sid: 'home_build_transfer',
+    tier: 'extra',
+    destination: 'https://www.welcomepickups.com/rovaniemi/',
+    icon: CarTaxiFront,
+    imgVariant: 'ice',
+    bgHex: '#101A2E',
+    labels: {
+      en: {
+        label: '05  ·  Transfer',
+        headline: 'Met at the airport',
+        body: 'A driver meets you at Rovaniemi airport and takes you to your hotel or cabin, at a price agreed when you book. Through Welcome Pickups.',
+        priceLine: 'Price fixed at booking on Welcome Pickups · Rovaniemi airport',
+        ctaLabel: 'Book a Rovaniemi transfer',
+      },
+      fi: {
+        label: '05  ·  Kuljetus',
+        headline: 'Kuljettaja vastassa kentällä',
+        body: 'Kuljettaja odottaa Rovaniemen lentoasemalla ja vie hotellille tai mökille hintaan, joka sovitaan jo varatessa. Varaus Welcome Pickupsin kautta.',
+        priceLine: 'Hinta sovitaan varatessa · Rovaniemen lentoasema',
+        ctaLabel: 'Varaa kuljetus Rovaniemellä',
+      },
+      de: {
+        label: '05  ·  Transfer',
+        headline: 'Am Flughafen abgeholt',
+        body: 'Ein Fahrer erwartet Sie am Flughafen Rovaniemi und bringt Sie zum Hotel oder zur Hütte, der Preis steht schon bei der Buchung fest. Gebucht über Welcome Pickups.',
+        priceLine: 'Festpreis bei Welcome Pickups · Flughafen Rovaniemi',
+        ctaLabel: 'Transfer in Rovaniemi buchen',
+      },
+      ja: {
+        label: '05  ·  送迎',
+        headline: '空港でドライバーがお出迎え',
+        body: 'ロヴァニエミ空港でドライバーが待ち、ホテルやコテージまで送ります。料金は予約時に確定します。Welcome Pickupsで予約。',
+        priceLine: 'Welcome Pickupsで予約時に料金確定 · ロヴァニエミ空港',
+        ctaLabel: 'ロヴァニエミの送迎を予約',
+      },
+      ko: {
+        label: '05  ·  픽업',
+        headline: '공항에서 기사가 마중',
+        body: '로바니에미 공항에서 기사가 기다렸다가 호텔이나 통나무집까지 데려다줍니다. 요금은 예약할 때 확정됩니다. Welcome Pickups로 예약합니다.',
+        priceLine: 'Welcome Pickups 예약 시 요금 확정 · 로바니에미 공항',
+        ctaLabel: '로바니에미 픽업 예약',
+      },
+      fr: {
+        label: '05  ·  Transfert',
+        headline: 'Un chauffeur vous attend',
+        body: 'Un chauffeur vous accueille à l’aéroport de Rovaniemi et vous conduit à l’hôtel ou au chalet, au prix fixé dès la réservation. Réservation via Welcome Pickups.',
+        priceLine: 'Prix fixé à la réservation sur Welcome Pickups · aéroport de Rovaniemi',
+        ctaLabel: 'Réserver un transfert à Rovaniemi',
+      },
+      it: {
+        label: '05  ·  Transfer',
+        headline: 'Un autista ad attenderLa',
+        body: 'Un autista La accoglie all’aeroporto di Rovaniemi e La porta in hotel o in baita, al prezzo fissato già al momento della prenotazione. Si prenota tramite Welcome Pickups.',
+        priceLine: 'Prezzo fissato alla prenotazione su Welcome Pickups · aeroporto di Rovaniemi',
+        ctaLabel: 'Prenoti un transfer a Rovaniemi',
+      },
+      nl: {
+        label: '05  ·  Transfer',
+        headline: 'Opgehaald op het vliegveld',
+        body: 'Een chauffeur wacht u op op de luchthaven van Rovaniemi en brengt u naar uw hotel of hut, voor een prijs die al bij het boeken vaststaat. Geboekt via Welcome Pickups.',
+        priceLine: 'Vaste prijs bij Welcome Pickups · luchthaven Rovaniemi',
+        ctaLabel: 'Transfer in Rovaniemi boeken',
+      },
+      sv: {
+        label: '05  ·  Transfer',
+        headline: 'Chaufför som möter på flygplatsen',
+        body: 'En chaufför väntar på Rovaniemi flygplats och kör dig till hotellet eller stugan, till ett pris som bestäms redan vid bokningen. Bokas via Welcome Pickups.',
+        priceLine: 'Fast pris hos Welcome Pickups · Rovaniemi flygplats',
+        ctaLabel: 'Boka transfer i Rovaniemi',
+      },
+      es: {
+        label: '05  ·  Traslado',
+        headline: 'Un conductor le espera',
+        body: 'Un conductor le recibe en el aeropuerto de Rovaniemi y le lleva al hotel o a la cabaña, con el precio fijado al reservar. Se reserva a través de Welcome Pickups.',
+        priceLine: 'Precio fijado al reservar en Welcome Pickups · aeropuerto de Rovaniemi',
+        ctaLabel: 'Reservar un traslado en Rovaniemi',
+      },
+      'pt-BR': {
+        label: '05  ·  Transfer',
+        headline: 'Motorista esperando no aeroporto',
+        body: 'Um motorista espera você no aeroporto de Rovaniemi e leva até o hotel ou a cabana, com o preço definido já na reserva. Reservado pela Welcome Pickups.',
+        priceLine: 'Preço definido na reserva na Welcome Pickups · aeroporto de Rovaniemi',
+        ctaLabel: 'Reservar transfer em Rovaniemi',
+      },
+      'zh-CN': {
+        label: '05  ·  接机',
+        headline: '司机在机场等你',
+        body: '司机在罗瓦涅米机场等候，送你到酒店或木屋，价格在预订时即已确定。通过 Welcome Pickups 预订。',
+        priceLine: 'Welcome Pickups 预订时锁定价格 · 罗瓦涅米机场',
+        ctaLabel: '预订罗瓦涅米接机',
+      },
+    },
+  },
 ];
 
 const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affiliateNote: string }> = {
@@ -438,6 +647,51 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; affili
   },
 };
 
+function RailArticle({ rail: r, lang, tier }: { rail: RailCard; lang: CopyLang; tier: 'core' | 'extra' }) {
+  const t = r.labels[lang];
+  const destination = r.destinationByLang?.[lang] ?? r.destination;
+  const isCore = tier === 'core';
+  return (
+    <article
+      className={`relative flex flex-col overflow-hidden border border-white/8 hover:border-vibe-pink/40 transition-colors ${
+        isCore ? 'p-7 sm:p-8 min-h-[360px] sm:min-h-[420px]' : 'p-6 sm:p-7 min-h-[260px]'
+      }`}
+      style={{ background: r.bgHex }}
+    >
+      <div className={`cap-meta ${isCore ? 'mb-6' : 'mb-4'}`}>{t.label}</div>
+
+      <r.icon className={`${isCore ? 'w-7 h-7 mb-4' : 'w-6 h-6 mb-3'} text-vibe-pink`} strokeWidth={1.4} />
+
+      <h3 className={`font-heading text-snow tracking-tight leading-[0.95] mb-3 ${isCore ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl'}`}>
+        {t.headline}
+      </h3>
+
+      <p className={`text-snow/70 font-body leading-[1.65] ${isCore ? 'text-[14.5px] mb-5' : 'text-[14px] mb-4'}`}>
+        {t.body}
+      </p>
+
+      <p className={`font-mono text-[12px] tracking-[0.04em] text-snow/80 ${isCore ? 'mb-7' : 'mb-5'}`}>
+        {t.priceLine}
+      </p>
+
+      <AffiliateCTA
+        partner={r.partner}
+        sid={r.sid}
+        destination={destination}
+        gygSearch={r.gygSearch}
+        className={`mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 font-body font-semibold text-[14px] transition-colors ${
+          isCore
+            ? 'bg-vibe-pink hover:bg-vibe-pink/90 text-white'
+            : 'border border-snow/30 text-snow hover:border-vibe-pink hover:text-vibe-pink'
+        }`}
+      >
+        <span>{t.ctaLabel}</span>
+        <span aria-hidden="true">→</span>
+      </AffiliateCTA>
+    </article>
+  );
+}
+
 export default function BuildYourOwn() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
@@ -455,43 +709,16 @@ export default function BuildYourOwn() {
         </header>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {rails.map((r) => {
-            const t = r.labels[copyLang(lang)];
-            return (
-              <article
-                key={r.sid}
-                className="relative flex flex-col p-7 sm:p-8 min-h-[360px] sm:min-h-[420px] overflow-hidden border border-white/8 hover:border-vibe-pink/40 transition-colors"
-                style={{ background: r.bgHex }}
-              >
-                <div className="cap-meta mb-6">{t.label}</div>
+          {rails.filter((r) => (r.tier ?? 'core') === 'core').map((r) => (
+            <RailArticle key={r.sid} rail={r} lang={copyLang(lang)} tier="core" />
+          ))}
+        </div>
 
-                <r.icon className="w-7 h-7 text-vibe-pink mb-4" strokeWidth={1.4} />
-
-                <h3 className="font-heading text-snow tracking-tight leading-[0.95] text-3xl sm:text-4xl mb-3">
-                  {t.headline}
-                </h3>
-
-                <p className="text-snow/70 font-body text-[14.5px] leading-[1.65] mb-5">
-                  {t.body}
-                </p>
-
-                <p className="font-mono text-[12px] tracking-[0.04em] text-snow/80 mb-7">
-                  {t.priceLine}
-                </p>
-
-                <AffiliateCTA
-                  partner={r.partner}
-                  sid={r.sid}
-                  destination={r.destination}
-                  gygSearch={r.gygSearch}
-                  className="mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 bg-vibe-pink hover:bg-vibe-pink/90 text-white font-body font-semibold text-[14px] transition-colors"
-                >
-                  <span>{t.ctaLabel}</span>
-                  <span aria-hidden="true">→</span>
-                </AffiliateCTA>
-              </article>
-            );
-          })}
+        {/* Complements — same rail model, shorter cards, second row. */}
+        <div className="grid sm:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6">
+          {rails.filter((r) => r.tier === 'extra').map((r) => (
+            <RailArticle key={r.sid} rail={r} lang={copyLang(lang)} tier="extra" />
+          ))}
         </div>
 
         <p className="cap-meta mt-6 text-snow/60">

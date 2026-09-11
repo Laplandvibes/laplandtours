@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import OperatorGuide from '../components/OperatorGuide';
 import OperatorMatrix from '../components/OperatorMatrix';
+import MatkapojatGroupTrips from '../components/MatkapojatGroupTrips';
 import ImageBreak from '../components/ImageBreak';
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
@@ -630,6 +631,12 @@ export default function LaplandHolidays() {
       />
 
       <OperatorMatrix />
+
+      {/* FI only: the one package-trip partner we can honestly list (Matkapojat,
+          Adtraction). Sits after the no-commission operator table and is
+          labelled as a partner link, so the "0 € from the list" figure above
+          stays true of the list. */}
+      <MatkapojatGroupTrips />
 
       <section className="bg-deep-night py-20 sm:py-28">
         <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-12 gap-8">

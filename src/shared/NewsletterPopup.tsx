@@ -6,17 +6,25 @@ import { Send, AlertCircle, Loader2, X } from 'lucide-react';
  * Shared LaplandVibes ecosystem newsletter popup — founder edition (2026-08-09).
  *
  * Mounted once at the root of every site (laplandvibes.com, laplandstays.com,
- * laplandhuskysafaris.com, etc.). Triggers after 25 s OR 55 % scroll, whichever
+ * laplandhuskysafaris.com, etc.). Triggers after 90 s OR 75 % scroll, whichever
  * comes first. Suppressed on policy / utility routes.
  *
  * 🔴 VERKOSTON MUISTI (Vesa 2026-09-09: *"uutiskirje tulee vähän liian nopeasti
  * kaikilla sivuilla … jos mennään toiselle sisarsivulle, tulee sama pyyntö"*).
- * Nopeus: 60 s / 60 % → 90 s / 75 %, muistutus 7 pv → 30 pv. Sisarsivustot:
- * localStorage on originkohtainen eikä kolmannen osapuolen evästeitä ole, joten
- * eri domainien välillä ei ole jaettua tilaa. Ainoa kanava on OMA linkkimme —
- * tilannut tai sulkenut kävijä saa verkoston linkkeihin `?lv_nl=1`, ja
- * kohdesivusto vaimenee ennen kuin ehtii pyytää mitään. Affiliate-reittiä (`go.`)
- * ei koskaan merkitä. Rajoite: käsin kirjoitettu osoite ei kanna muistia.
+ * Kaksi eri asiaa korjattu:
+ *
+ *  1. NOPEUS. Oli 60 s / 60 % ja muistutus 7 päivän päästä. Nyt 90 s / 75 % ja
+ *     30 päivää. Kolmen sivun selailu ei enää tuota kolmea pyyntöä päivässä.
+ *  2. SISARSIVUSTOT. localStorage on originkohtainen: laplandvisit.com ei voi
+ *     lukea laplandstays.comin tilaa, eikä kolmannen osapuolen evästeitä enää
+ *     ole. Ainoa kanava joka oikeasti toimii on se, jota lukija käyttää —
+ *     OMA linkkimme. Kun kävijä on tilannut tai sulkenut popupin, jokainen
+ *     klikkaus verkoston toiselle sivustolle saa `?lv_nl=1`, ja kohdesivusto
+ *     lukee sen ennen kuin ehtii pyytää mitään (ja siivoaa parametrin pois
+ *     osoiteriviltä). Rajoite, joka on rehellisempää sanoa kuin peittää: jos
+ *     kävijä kirjoittaa sisarsivuston osoitteen käsin, muisti ei seuraa mukana.
+ *     Affiliate-reittiä (`go.`) ei koskaan merkitä — parametri välittyisi
+ *     kumppanille asti.
  *
  * The newsletter list is shared across the entire ecosystem, submissions land
  * in the same Supabase + Resend pipeline. The `source` tag differentiates the

@@ -15,14 +15,28 @@ export type AffiliatePartner =
   | 'hotels-seasonal'
   | 'hotels-budget'
   | 'cars'
-  | 'activities';
+  | 'activities'
+  /** Adtraction (FI): Lapland cabins. `destination` = full lomarengas.fi deep URL. */
+  | 'lomarengas'
+  /** Travelpayouts: airport transfers. `destination` = full welcomepickups.com deep URL. */
+  | 'welcomepickups'
+  /** Adtraction (FI-only programme): package trips. `destination` = full matkapojat.fi deep URL. */
+  | 'matkapojat';
+
+/** Partners whose Worker route takes the landing page as a full `dest=` URL. */
+const DEST_URL_PARTNERS: ReadonlySet<AffiliatePartner> = new Set(['lomarengas', 'welcomepickups', 'matkapojat']);
 
 type _Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 
 export interface AffiliateCTAProps {
   partner: AffiliatePartner;
   sid: string;
-  /** For hotels: search query (city). For cars: pickup IATA. For activities: GYG slug-lID. */
+  /**
+   * For hotels: search query (city). For cars: pickup IATA. For activities:
+   * GYG slug-lID. For lomarengas / welcomepickups / matkapojat: the full
+   * partner deep URL (Worker forwards it as `dest=`; a missing dest lands on
+   * the partner front page, which the network rule forbids — always pass one).
+   */
   destination?: string;
   /**
    * GetYourGuide search query (partner="activities" only) — e.g.
@@ -94,6 +108,8 @@ function buildHref(props: AffiliateCTAProps, lang: _Lang = 'en'): string {
       params.set('ss', anchorHotelsSs(partner, destination));
     } else if (partner === 'cars') {
       params.set('pickup_location', destination);
+    } else if (DEST_URL_PARTNERS.has(partner)) {
+      params.set('dest', destination);
     }
   }
 

@@ -5,8 +5,10 @@ import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import NewsletterInline from '../shared/NewsletterInline';
 import BuildYourOwn from '../components/BuildYourOwn';
+import DriveToLapland from '../components/DriveToLapland';
 import BookableActivities from '../components/BookableActivities';
 import OperatorGuide from '../components/OperatorGuide';
+import MatkapojatGroupTrips from '../components/MatkapojatGroupTrips';
 import SeasonStrip from '../components/SeasonStrip';
 import SectionTeasers from '../components/SectionTeasers';
 import FAQ, { FAQ_BY_LANG } from '../components/FAQ';
@@ -32,9 +34,12 @@ const SUPABASE_ANON_KEY =
 
 const META: Record<CopyLang, { title: string; description: string; canonical: string; breadcrumbHome: string }> = {
   en: {
-    title: 'Lapland Tours 2026: Six Operators Compared',
+    // 2026-09-11: "real prices" dropped — the operator list deliberately
+    // quotes no prices (lib/operators.ts), so the meta promised what the page
+    // does not show. Same fix in ko/fr/it/nl and scripts/routes.json.
+    title: 'Plan a Lapland trip: build your own or buy a bundle',
     description:
-      'Book a 2026 Lapland tour: six hand-picked UK & European operators, real prices, packages or build-your-own. Hotels, husky, aurora, Santa visits compared.',
+      'Two ways to plan a Finnish Lapland trip: mix hotel, cabin, car and day activities yourself, or hand it to one of six tour operators. Plus five road trips.',
     canonical: 'https://laplandtours.online/',
     breadcrumbHome: 'Home',
   },
@@ -60,30 +65,30 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'ホーム',
   },
   ko: {
-    title: '라플란드 투어 2026: 운영사 6곳 비교, 실제 가격',
+    title: '라플란드 여행 계획: 직접 조합하거나 패키지로',
     description:
-      '2026 라플란드 투어 예약. 핀란드 현지 운영사 6곳, 실제 가격, 직접 예약 또는 직접 조립. 호텔, 허스키, 오로라, 산타 방문, 트랜스퍼 비교.',
+      '핀란드 라플란드 여행을 계획하는 두 가지 방법: 호텔, 통나무집, 렌터카, 액티비티를 직접 조합하거나 핀란드 현지 운영사 6곳에 바로 예약하세요. 자동차 경로 다섯 가지도 함께.',
     canonical: 'https://laplandtours.online/kr',
     breadcrumbHome: '홈',
   },
   fr: {
-    title: 'Séjours Laponie 2026 : six voyagistes comparés, vrais prix',
+    title: 'Planifier un voyage en Laponie : à la carte ou en forfait',
     description:
-      'Réservez votre séjour Laponie 2026 : six opérateurs locaux de Laponie finlandaise, vrais prix, réservation directe ou à la carte. Hôtels, husky, aurores, Père Noël, transferts comparés.',
+      'Deux façons de préparer un voyage en Laponie finlandaise : composez hôtel, chalet, voiture et activités, ou confiez tout à l’un de six opérateurs locaux.',
     canonical: 'https://laplandtours.online/fr',
     breadcrumbHome: 'Accueil',
   },
   it: {
-    title: 'Tour Lapponia 2026: sei operatori a confronto, prezzi reali',
+    title: 'Organizzare un viaggio in Lapponia: fai da sé o pacchetto',
     description:
-      'Prenota un tour Lapponia 2026: sei operatori locali della Lapponia finlandese, prezzi reali, prenotazione diretta o lo componga Lei. Hotel, husky, aurora, Babbo Natale, transfer a confronto.',
+      'Due modi per organizzare un viaggio nella Lapponia finlandese: componga Lei hotel, baita, auto e attività, oppure si affidi a uno di sei operatori locali.',
     canonical: 'https://laplandtours.online/it',
     breadcrumbHome: 'Home',
   },
   nl: {
-    title: 'Lapland-reizen 2026: zes aanbieders, echte prijzen',
+    title: 'Een Lapland-reis plannen: zelf samenstellen of pakket',
     description:
-      'Boek uw Lapland-reis 2026: zes lokale aanbieders uit Fins Lapland, echte prijzen, direct boeken of zelf samenstellen. Hotels, husky, noorderlicht, Kerstman, transfers vergeleken.',
+      'Twee manieren om een reis naar Fins Lapland te plannen: stel zelf hotel, hut, auto en activiteiten samen, of kies een van zes lokale aanbieders.',
     canonical: 'https://laplandtours.online/nl',
     breadcrumbHome: 'Home',
   },
@@ -148,6 +153,9 @@ export default function Home() {
 
       <MainPartnerBanner config={AD_SLOTS} locale={lang} />
       <BuildYourOwn />
+      {/* "Tulossa autolla?" — the hub's five road-trip guides, straight after
+          the Drive rail (Vesa 11.9.2026). Network-internal links, not affiliate. */}
+      <DriveToLapland />
       <HomeAdSlots config={AD_SLOTS} locale={lang} />
       {/* Oikea tuoterivi tyhjän house-ad-kortin tilalle (Vesa 4.9.). */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
@@ -159,6 +167,10 @@ export default function Home() {
 
       <BookableActivities />
       <OperatorGuide />
+      {/* FI only: Matkapojat's four Lapland group trips (Adtraction). Renders
+          nothing in the other 11 locales — the programme and its landing
+          pages are Finnish. */}
+      <MatkapojatGroupTrips />
       <SeasonStrip />
       <SectionTeasers />
       <FAQ />
