@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { CheckCircle, ChevronDown, Send } from 'lucide-react';
+import { CheckCircle, Send } from 'lucide-react';
 import { useLang, useLocalePath, useHtmlLang, type CopyLang, copyLang } from '../i18n/useLang';
 
 /**
@@ -89,6 +89,13 @@ const COPY: Record<CopyLang, {
   sentLink: string;
   sentConfirm: string;
   subjectPrefix: string;
+  stepWhen: string;
+  stepWho: string;
+  stepHow: string;
+  next: string;
+  back: string;
+  optional: string;
+  summary: string;
 }> = {
   en: {
     eyebrow: 'Plan it with us',
@@ -134,6 +141,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'the operator guide',
     sentConfirm: 'A confirmation went to',
     subjectPrefix: 'LaplandTours trip brief from',
+    stepWhen: 'When?',
+    stepWho: 'Who is coming?',
+    stepHow: 'Stay, arrival and budget',
+    next: 'Next',
+    back: 'Back',
+    optional: 'optional',
+    summary: 'Your brief so far',
   },
   fi: {
     eyebrow: 'Suunnitellaan yhdessä',
@@ -179,6 +193,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'matkanjärjestäjäopas',
     sentConfirm: 'Vahvistus lähti osoitteeseen',
     subjectPrefix: 'LaplandTours-matkatoive:',
+    stepWhen: 'Milloin?',
+    stepWho: 'Ketkä lähtevät?',
+    stepHow: 'Majoitus, saapuminen ja budjetti',
+    next: 'Seuraava',
+    back: 'Takaisin',
+    optional: 'valinnainen',
+    summary: 'Toiveesi tähän asti',
   },
   de: {
     eyebrow: 'Gemeinsam planen',
@@ -224,6 +245,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'der Anbieter-Guide',
     sentConfirm: 'Eine Bestätigung ging an',
     subjectPrefix: 'LaplandTours-Reisewunsch von',
+    stepWhen: 'Wann?',
+    stepWho: 'Wer reist mit?',
+    stepHow: 'Unterkunft, Anreise und Budget',
+    next: 'Weiter',
+    back: 'Zurück',
+    optional: 'optional',
+    summary: 'Ihre Wünsche bisher',
   },
   ja: {
     eyebrow: '一緒に計画する',
@@ -269,6 +297,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'ツアー会社ガイド',
     sentConfirm: '確認メールの送信先：',
     subjectPrefix: 'LaplandTours 旅行の希望:',
+    stepWhen: 'いつ？',
+    stepWho: '誰が行きますか？',
+    stepHow: '宿泊・移動・予算',
+    next: '次へ',
+    back: '戻る',
+    optional: '任意',
+    summary: 'ここまでのご希望',
   },
   ko: {
     eyebrow: '함께 계획하기',
@@ -314,6 +349,13 @@ const COPY: Record<CopyLang, {
     sentLink: '운영사 가이드',
     sentConfirm: '확인 메일 발송 주소:',
     subjectPrefix: 'LaplandTours 여행 문의:',
+    stepWhen: '언제?',
+    stepWho: '누가 가나요?',
+    stepHow: '숙소, 이동, 예산',
+    next: '다음',
+    back: '이전',
+    optional: '선택',
+    summary: '지금까지의 희망 사항',
   },
   fr: {
     eyebrow: 'On planifie ensemble',
@@ -359,6 +401,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'le guide des opérateurs',
     sentConfirm: 'Une confirmation a été envoyée à',
     subjectPrefix: 'Souhaits de voyage LaplandTours de',
+    stepWhen: 'Quand ?',
+    stepWho: 'Qui part ?',
+    stepHow: 'Hébergement, arrivée et budget',
+    next: 'Suivant',
+    back: 'Retour',
+    optional: 'facultatif',
+    summary: 'Vos souhaits jusqu’ici',
   },
   it: {
     eyebrow: 'Pianifichiamo insieme',
@@ -404,6 +453,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'la guida agli operatori',
     sentConfirm: 'Una conferma è stata inviata a',
     subjectPrefix: 'Richiesta di viaggio LaplandTours di',
+    stepWhen: 'Quando?',
+    stepWho: 'Chi parte?',
+    stepHow: 'Alloggio, arrivo e budget',
+    next: 'Avanti',
+    back: 'Indietro',
+    optional: 'facoltativo',
+    summary: 'Le Sue richieste finora',
   },
   nl: {
     eyebrow: 'Samen plannen',
@@ -449,6 +505,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'de aanbiedersgids',
     sentConfirm: 'Een bevestiging is gestuurd naar',
     subjectPrefix: 'LaplandTours-reiswens van',
+    stepWhen: 'Wanneer?',
+    stepWho: 'Wie gaat mee?',
+    stepHow: 'Verblijf, aankomst en budget',
+    next: 'Volgende',
+    back: 'Terug',
+    optional: 'optioneel',
+    summary: 'Uw wensen tot nu toe',
   },
   sv: {
     eyebrow: 'Vi planerar tillsammans',
@@ -494,6 +557,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'arrangörsguiden',
     sentConfirm: 'En bekräftelse gick till',
     subjectPrefix: 'LaplandTours-reseönskemål från',
+    stepWhen: 'När?',
+    stepWho: 'Vilka åker?',
+    stepHow: 'Boende, ankomst och budget',
+    next: 'Nästa',
+    back: 'Tillbaka',
+    optional: 'valfritt',
+    summary: 'Dina önskemål hittills',
   },
   es: {
     eyebrow: 'Lo planificamos juntos',
@@ -539,6 +609,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'la guía de operadores',
     sentConfirm: 'Se envió una confirmación a',
     subjectPrefix: 'Deseos de viaje LaplandTours de',
+    stepWhen: '¿Cuándo?',
+    stepWho: '¿Quiénes viajan?',
+    stepHow: 'Alojamiento, llegada y presupuesto',
+    next: 'Siguiente',
+    back: 'Atrás',
+    optional: 'opcional',
+    summary: 'Sus deseos hasta ahora',
   },
   'pt-BR': {
     eyebrow: 'Planejamos juntos',
@@ -584,6 +661,13 @@ const COPY: Record<CopyLang, {
     sentLink: 'o guia de operadoras',
     sentConfirm: 'Uma confirmação foi enviada para',
     subjectPrefix: 'Pedido de viagem LaplandTours de',
+    stepWhen: 'Quando?',
+    stepWho: 'Quem vai?',
+    stepHow: 'Hospedagem, chegada e orçamento',
+    next: 'Próximo',
+    back: 'Voltar',
+    optional: 'opcional',
+    summary: 'Seus pedidos até aqui',
   },
   'zh-CN': {
     eyebrow: '一起规划',
@@ -629,23 +713,38 @@ const COPY: Record<CopyLang, {
     sentLink: '运营商指南',
     sentConfirm: '确认邮件已发送至',
     subjectPrefix: 'LaplandTours 行程需求，来自',
+    stepWhen: '什么时候？',
+    stepWho: '谁去？',
+    stepHow: '住宿、到达与预算',
+    next: '下一步',
+    back: '返回',
+    optional: '可选',
+    summary: '到目前为止的需求',
   },
 };
 
+/* ── UI ──────────────────────────────────────────────────────────────────── */
+// Design-system forms (LV-DESIGN-SYSTEM.md): labels 11 px uppercase tracked
+// white/60; choices are rounded-full pills, snow/20 border at rest, vibe-pink
+// only when selected; primary button is the network's rounded-full pink.
+const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-white/60 font-semibold mb-3';
 const FIELD =
-  'w-full px-4 py-3 rounded-lg border border-white/15 bg-deep-night/60 text-snow placeholder-snow/30 font-body text-base focus:outline-none focus:ring-2 focus:ring-vibe-pink/50 focus:border-vibe-pink transition';
-const LABEL = 'block text-sm font-body font-medium text-snow/80 mb-1.5';
+  'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/20 bg-white/[0.04] text-snow placeholder-snow/35 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
+const PRIMARY =
+  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors shadow-lg shadow-vibe-pink/20';
+const GHOST =
+  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full border border-snow/20 text-snow/75 hover:text-snow hover:border-snow/40 font-body font-medium px-6 py-3 transition-colors';
 
-function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: ReactNode }) {
+function Pill({ on, onClick, children }: { on: boolean; onClick: () => void; children: ReactNode }) {
   return (
     <button
       type="button"
       aria-pressed={on}
       onClick={onClick}
-      className={`rounded-full border px-3.5 py-2 font-body text-[14px] leading-none transition-colors ${
+      className={`min-h-[44px] rounded-full border px-5 py-2.5 font-body text-[15px] leading-none transition-colors ${
         on
           ? 'bg-vibe-pink border-vibe-pink text-white'
-          : 'bg-white/[0.03] border-white/15 text-snow/85 hover:border-vibe-pink/60 hover:text-snow'
+          : 'bg-white/[0.04] border-snow/20 text-snow/85 hover:border-arctic-cyan hover:text-snow'
       }`}
     >
       {children}
@@ -653,16 +752,20 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
-function useToggleSet() {
-  const [set, setSet] = useState<Set<number>>(() => new Set());
-  const toggle = (i: number) =>
-    setSet((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i); else next.add(i);
-      return next;
-    });
-  return [set, toggle] as const;
+function Stepper({ label, value, min, max, onChange, name }: { label: string; value: number; min: number; max: number; onChange: (v: number) => void; name: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4 rounded-full border border-snow/15 bg-white/[0.03] pl-5 pr-2 py-2">
+      <span className="font-body text-snow/90 text-[15px]">{label}</span>
+      <span className="inline-flex items-center gap-2">
+        <button type="button" aria-label={`${label} −`} onClick={() => onChange(Math.max(min, value - 1))} className="w-10 h-10 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">−</button>
+        <input type="number" name={name} readOnly value={value} aria-label={label} className="w-8 bg-transparent text-center font-heading text-2xl text-snow tabular-nums [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
+        <button type="button" aria-label={`${label} +`} onClick={() => onChange(Math.min(max, value + 1))} className="w-10 h-10 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">+</button>
+      </span>
+    </div>
+  );
 }
+
+const STEPS = 6;
 
 export default function CustomTourBuilder() {
   const lang = useLang();
@@ -673,22 +776,41 @@ export default function CustomTourBuilder() {
   const [sentTo, setSentTo] = useState('');
   const sentPeriod = lang === 'ja' || lang === 'zh-CN' ? '。' : '.';
 
-  const [dest, toggleDest] = useToggleSet();
-  const [acts, toggleAct] = useToggleSet();
+  // One question per screen (Vesa 11.9.2026: the all-at-once grid "näyttää
+  // niin työläältä"). Everything is state, because only the current step is
+  // in the DOM.
+  const [step, setStep] = useState(0);
+  const [month, setMonth] = useState<number | null>(null); // 0–11, null = not decided
+  const [duration, setDuration] = useState<number | null>(null);
+  const [dates, setDates] = useState('');
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [childAges, setChildAges] = useState('');
+  const [dest, setDest] = useState<Set<number>>(() => new Set());
+  const [acts, setActs] = useState<Set<number>>(() => new Set());
   const [stay, setStay] = useState<number | null>(null);
   const [travel, setTravel] = useState<number | null>(null);
-  const [duration, setDuration] = useState<number | null>(null);
+  const [budget, setBudget] = useState<number | null>(null);
+  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
-  // Month names in the reader's language, from the platform — not 12 × 12 strings.
+  const toggle = (set: Set<number>, i: number, setter: (s: Set<number>) => void) => {
+    const next = new Set(set);
+    if (next.has(i)) next.delete(i); else next.add(i);
+    setter(next);
+  };
+
   const months = Array.from({ length: 12 }, (_, m) =>
     new Intl.DateTimeFormat(bcp47, { month: 'long' }).format(new Date(2027, m, 1)),
   );
 
-  // [LV-FUNNEL] view once when the planner scrolls in; start on first focus/click;
-  // blocked once per submit attempt; submit before fetch; success/error after the
-  // server has answered.
+  // [LV-FUNNEL] view once when the planner scrolls in; start on the first
+  // choice; blocked once per submit attempt; submit before fetch; success /
+  // error after the server has answered.
   const funnelData = { lang };
   const sectionRef = useRef<HTMLElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const startTracked = useRef(false);
   const blockedTracked = useRef(false);
   useEffect(() => {
@@ -710,33 +832,42 @@ export default function CustomTourBuilder() {
     track('tour_builder_start', funnelData);
   };
   const pick = (fn: () => void) => () => { trackStart(); fn(); };
+  const go = (n: number) => {
+    setStep(Math.max(0, Math.min(STEPS - 1, n)));
+    cardRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  };
+
+  const list = (set: Set<number>, keys: string[]) => keys.filter((_, i) => set.has(i)).join(', ') || '—';
+  const summaryParts = [
+    month === null ? c.monthAny : months[month],
+    duration === null ? null : c.durationOpts[duration],
+    `${adults} + ${children}`,
+    dest.size ? DESTINATIONS.filter((_, i) => dest.has(i)).join(', ') : null,
+    acts.size ? c.activities.filter((_, i) => acts.has(i)).join(', ') : null,
+    stay === null ? null : c.stayOpts[stay],
+    travel === null ? null : c.travelOpts[travel],
+    budget === null ? null : c.budgetOpts[budget],
+  ].filter(Boolean) as string[];
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const data = new FormData(e.target as HTMLFormElement);
-    const val = (k: string) => String(data.get(k) ?? '').trim();
-    const name = val('name');
-    const email = val('email');
-    const list = (set: Set<number>, keys: string[]) => keys.filter((_, i) => set.has(i)).join(', ') || '—';
-
-    // The brief is read in sales@, so the keys are English whatever the
-    // reader's language. maxLength on the free fields keeps it under the
-    // function's 5000-character cap.
+    // The brief is read in sales@, so keys are English whatever the reader's language.
     const body = [
-      `Month: ${val('month') || '—'}`,
+      `Month: ${month === null ? '—' : new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date(2027, month, 1))}`,
       `Length: ${duration === null ? '—' : DURATION_KEYS[duration]}`,
-      `Dates: ${val('dates') || '—'}`,
-      `Adults: ${val('adults') || '—'} · Children: ${val('children') || '0'}${val('childAges') ? ` (ages ${val('childAges')})` : ''}`,
+      `Dates: ${dates.trim() || '—'}`,
+      `Adults: ${adults} · Children: ${children}${childAges.trim() ? ` (ages ${childAges.trim()})` : ''}`,
       `Destinations: ${list(dest, DESTINATIONS)}`,
       `Activities: ${list(acts, ACTIVITY_KEYS)}`,
       `Stay: ${stay === null ? '—' : STAY_KEYS[stay]}`,
       `Arrival: ${travel === null ? '—' : TRAVEL_KEYS[travel]}`,
-      `Budget per person (EUR): ${val('budget') || '—'}`,
+      `Budget per person (EUR): ${budget === null ? '—' : BUDGET_KEYS[budget]}`,
       '',
-      val('message') || '—',
+      message.trim() || '—',
       '',
       `— laplandtours.online /design-tour (${lang})`,
     ].join('\n');
+    const website = String(new FormData(e.target as HTMLFormElement).get('website') ?? '');
 
     track('tour_builder_submit', funnelData);
     setStatus('sending');
@@ -745,17 +876,17 @@ export default function CustomTourBuilder() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${CONTACT_ANON_KEY}` },
         body: JSON.stringify({
-          name,
+          name: name.trim(),
           lang,
-          email,
-          subject: `${c.subjectPrefix} ${name}`.trim(),
+          email: email.trim(),
+          subject: `${c.subjectPrefix} ${name.trim()}`.trim(),
           message: body,
-          website: val('website'),
+          website, // honeypot: bots fill it, people never see it
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       track('tour_builder_success', funnelData);
-      setSentTo(email);
+      setSentTo(email.trim());
       setStatus('success');
     } catch (err) {
       track('tour_builder_error', { ...funnelData, reason: err instanceof Error ? err.message : 'network' });
@@ -763,11 +894,13 @@ export default function CustomTourBuilder() {
     }
   }
 
+  const stepTitles = [c.stepWhen, c.stepWho, c.secWhere, c.secWhat, c.stepHow, c.secContact];
+
   return (
     <section id="custom-tour" ref={sectionRef} className="bg-deep-night">
-      {/* Opening: promise on the left, a real photograph on the right. */}
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 pt-16 md:pt-24 pb-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div className="lg:col-span-6">
+      {/* Opening: the promise and one real photograph. */}
+      <div className="max-w-[1100px] mx-auto px-6 sm:px-10 pt-16 md:pt-24 pb-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="lg:col-span-7">
           <p className="cap-meta">{c.eyebrow}</p>
           <h1 className="mt-2 font-heading text-snow/95 tracking-wide leading-[0.95] text-5xl sm:text-6xl lg:text-7xl [text-wrap:balance]">
             {c.h1a}<br />{c.h1b}
@@ -775,43 +908,34 @@ export default function CustomTourBuilder() {
           <p className="mt-6 text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-prose">
             {c.lead}
           </p>
-          <ul className="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3 font-body text-snow/85 text-[15px]">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-snow/80 text-[14.5px]">
             {c.bullets.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <CheckCircle className="w-4 h-4 text-vibe-pink flex-shrink-0 mt-1" aria-hidden="true" />
+              <li key={item} className="inline-flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-arctic-cyan flex-shrink-0" aria-hidden="true" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
-          <img
-            src="/images/hero-design-tour.webp"
-            alt={c.altPhoto}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
+          <img src="/images/hero-design-tour.webp" alt={c.altPhoto} loading="eager" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 pb-20 md:pb-28">
-        <div className="bg-deeper-night border border-white/10 rounded-2xl p-6 sm:p-10">
+      {/* The planner: one question per screen, six screens, max-w-2xl like the
+          network's other narrow forms. */}
+      <div className="max-w-[1100px] mx-auto px-6 sm:px-10 pb-20 md:pb-28">
+        <div ref={cardRef} className="max-w-2xl mx-auto scroll-mt-28 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-10">
           {status === 'success' ? (
-            <div className="py-6 max-w-2xl">
+            <div className="py-4">
               <p className="cap-meta is-success flex items-center gap-2">
                 <CheckCircle className="w-4 h-4" aria-hidden="true" />
                 {c.sentEyebrow}
               </p>
-              <h2 className="mt-3 font-heading text-3xl sm:text-4xl text-snow tracking-wide leading-tight">
-                {c.sentHeadline}
-              </h2>
+              <h2 className="mt-3 font-heading text-3xl sm:text-4xl text-snow tracking-wide leading-tight">{c.sentHeadline}</h2>
               <p className="mt-4 text-snow/80 font-body">
                 {c.sentBody}{' '}
-                <a href={to('/lapland-holidays')} className="text-vibe-pink hover:underline">
-                  {c.sentLink}
-                </a>{sentPeriod}
+                <a href={to('/lapland-holidays')} className="text-vibe-pink hover:underline">{c.sentLink}</a>{sentPeriod}
               </p>
               <p className="cap-meta mt-8 text-snow/55">{c.sentConfirm}</p>
               <p className="mt-1 font-body text-sm text-snow/85 break-words">{sentTo}</p>
@@ -826,86 +950,80 @@ export default function CustomTourBuilder() {
                 const t = e.target as HTMLInputElement;
                 track('tour_builder_blocked', { ...funnelData, reason: t.name || 'field' });
               }}
-              className="space-y-10"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-                {/* 1 — when and who */}
-                <fieldset className="space-y-5">
-                  <legend className="font-heading tracking-wide text-snow text-2xl sm:text-3xl leading-none mb-4">
-                    <span className="text-vibe-pink">01</span> {c.secWhen}
-                  </legend>
-                  <div className="grid grid-cols-1 gap-3">
-                    <div>
-                      <label className={LABEL} htmlFor="tp-month">{c.month}</label>
-                      <div className="relative">
-                        <select id="tp-month" name="month" onFocus={trackStart} className={`${FIELD} pr-10 appearance-none`}>
-                          <option value="" className="bg-deep-night">{c.monthAny}</option>
-                          {months.map((m) => (
-                            <option key={m} value={m} className="bg-deep-night">{m}</option>
-                          ))}
-                        </select>
-                        <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-snow/60" aria-hidden="true" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className={LABEL} htmlFor="tp-dates">{c.dates}</label>
-                      <input id="tp-dates" type="text" name="dates" maxLength={80} onFocus={trackStart} placeholder={c.datesPh} className={FIELD} />
+              {/* Progress */}
+              <div className="flex items-center justify-between gap-4 mb-6">
+                <p className="cap-meta">{step + 1} / {STEPS}</p>
+                <ol className="flex items-center gap-1.5" aria-hidden="true">
+                  {stepTitles.map((t, i) => (
+                    <li key={t} className={`h-1.5 rounded-full transition-all ${i === step ? 'w-6 bg-vibe-pink' : i < step ? 'w-3 bg-arctic-cyan/70' : 'w-3 bg-white/15'}`} />
+                  ))}
+                </ol>
+              </div>
+              <h2 className="font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-none mb-7">{stepTitles[step]}</h2>
+
+              {step === 0 && (
+                <div className="space-y-7">
+                  <div>
+                    <span className={LABEL}>{c.month}</span>
+                    <div className="flex flex-wrap gap-2">
+                      <Pill on={month === null} onClick={pick(() => setMonth(null))}>{c.monthAny}</Pill>
+                      {months.map((m, i) => (
+                        <Pill key={m} on={month === i} onClick={pick(() => setMonth(i))}>{m}</Pill>
+                      ))}
                     </div>
                   </div>
                   <div>
                     <span className={LABEL}>{c.duration}</span>
                     <div className="flex flex-wrap gap-2">
                       {c.durationOpts.map((o, i) => (
-                        <Chip key={o} on={duration === i} onClick={pick(() => setDuration(duration === i ? null : i))}>{o}</Chip>
+                        <Pill key={o} on={duration === i} onClick={pick(() => setDuration(duration === i ? null : i))}>{o}</Pill>
                       ))}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className={LABEL} htmlFor="tp-adults">{c.adults}</label>
-                      <input id="tp-adults" type="number" name="adults" min={1} max={30} defaultValue={2} onFocus={trackStart} className={FIELD} />
-                    </div>
-                    <div>
-                      <label className={LABEL} htmlFor="tp-children">{c.children}</label>
-                      <input id="tp-children" type="number" name="children" min={0} max={20} defaultValue={0} onFocus={trackStart} className={FIELD} />
-                    </div>
-                  </div>
                   <div>
-                    <label className={LABEL} htmlFor="tp-ages">{c.childAges}</label>
-                    <input id="tp-ages" type="text" name="childAges" maxLength={60} onFocus={trackStart} placeholder={c.childAgesPh} className={FIELD} />
+                    <label className={LABEL} htmlFor="tp-dates">{c.dates} · {c.optional}</label>
+                    <input id="tp-dates" type="text" name="dates" value={dates} maxLength={80} onFocus={trackStart} onChange={(e) => setDates(e.target.value)} placeholder={c.datesPh} className={FIELD} />
                   </div>
-                </fieldset>
+                </div>
+              )}
 
-                {/* 2 — where and what */}
-                <fieldset className="space-y-6">
-                  <legend className="font-heading tracking-wide text-snow text-2xl sm:text-3xl leading-none mb-4">
-                    <span className="text-vibe-pink">02</span> {c.secWhere}
-                  </legend>
-                  <div className="flex flex-wrap gap-2">
-                    {DESTINATIONS.map((d, i) => (
-                      <Chip key={d} on={dest.has(i)} onClick={pick(() => toggleDest(i))}>{d}</Chip>
-                    ))}
-                  </div>
-                  <div>
-                    <span className={`${LABEL} text-base text-snow`}>{c.secWhat}</span>
-                    <div className="flex flex-wrap gap-2">
-                      {c.activities.map((a, i) => (
-                        <Chip key={a} on={acts.has(i)} onClick={pick(() => toggleAct(i))}>{a}</Chip>
-                      ))}
+              {step === 1 && (
+                <div className="space-y-4">
+                  <Stepper label={c.adults} value={adults} min={1} max={30} onChange={(v) => { trackStart(); setAdults(v); }} name="adults" />
+                  <Stepper label={c.children} value={children} min={0} max={20} onChange={(v) => { trackStart(); setChildren(v); }} name="children" />
+                  {children > 0 && (
+                    <div className="pt-2">
+                      <label className={LABEL} htmlFor="tp-ages">{c.childAges}</label>
+                      <input id="tp-ages" type="text" name="childAges" value={childAges} maxLength={60} onChange={(e) => setChildAges(e.target.value)} placeholder={c.childAgesPh} className={FIELD} />
                     </div>
-                  </div>
-                </fieldset>
+                  )}
+                </div>
+              )}
 
-                {/* 3 — how and for how much */}
-                <fieldset className="space-y-5">
-                  <legend className="font-heading tracking-wide text-snow text-2xl sm:text-3xl leading-none mb-4">
-                    <span className="text-vibe-pink">03</span> {c.secBudget}
-                  </legend>
+              {step === 2 && (
+                <div className="flex flex-wrap gap-2">
+                  {DESTINATIONS.map((d, i) => (
+                    <Pill key={d} on={dest.has(i)} onClick={pick(() => toggle(dest, i, setDest))}>{d}</Pill>
+                  ))}
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="flex flex-wrap gap-2">
+                  {c.activities.map((a, i) => (
+                    <Pill key={a} on={acts.has(i)} onClick={pick(() => toggle(acts, i, setActs))}>{a}</Pill>
+                  ))}
+                </div>
+              )}
+
+              {step === 4 && (
+                <div className="space-y-7">
                   <div>
                     <span className={LABEL}>{c.secStay}</span>
                     <div className="flex flex-wrap gap-2">
                       {c.stayOpts.map((o, i) => (
-                        <Chip key={o} on={stay === i} onClick={pick(() => setStay(stay === i ? null : i))}>{o}</Chip>
+                        <Pill key={o} on={stay === i} onClick={pick(() => setStay(stay === i ? null : i))}>{o}</Pill>
                       ))}
                     </div>
                   </div>
@@ -913,66 +1031,74 @@ export default function CustomTourBuilder() {
                     <span className={LABEL}>{c.secTravel}</span>
                     <div className="flex flex-wrap gap-2">
                       {c.travelOpts.map((o, i) => (
-                        <Chip key={o} on={travel === i} onClick={pick(() => setTravel(travel === i ? null : i))}>{o}</Chip>
+                        <Pill key={o} on={travel === i} onClick={pick(() => setTravel(travel === i ? null : i))}>{o}</Pill>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className={LABEL} htmlFor="tp-budget">{c.secBudget}</label>
-                    <div className="relative">
-                      <select id="tp-budget" name="budget" onFocus={trackStart} className={`${FIELD} pr-10 appearance-none`}>
-                        {c.budgetOpts.map((o, i) => (
-                          <option key={o} value={BUDGET_KEYS[i]} className="bg-deep-night">{o}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-snow/60" aria-hidden="true" />
+                    <span className={LABEL}>{c.secBudget}</span>
+                    <div className="flex flex-wrap gap-2">
+                      {c.budgetOpts.map((o, i) => (
+                        <Pill key={o} on={budget === i} onClick={pick(() => setBudget(budget === i ? null : i))}>{o}</Pill>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {step === 5 && (
+                <div className="space-y-5">
+                  {summaryParts.length > 0 && (
+                    <p className="rounded-2xl border border-arctic-cyan/25 bg-arctic-cyan/[0.06] px-5 py-4 font-body text-[14.5px] text-snow/85 leading-relaxed">
+                      <span className="block text-[11px] uppercase tracking-[0.15em] text-arctic-cyan font-semibold mb-1">{c.summary}</span>
+                      {summaryParts.join(' · ')}
+                    </p>
+                  )}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className={LABEL} htmlFor="tp-name">{c.name}</label>
+                      <input id="tp-name" type="text" name="name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
+                    </div>
+                    <div>
+                      <label className={LABEL} htmlFor="tp-email">{c.email}</label>
+                      <input id="tp-email" type="email" name="email" required maxLength={255} value={email} onChange={(e) => setEmail(e.target.value)} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
                     </div>
                   </div>
                   <div>
-                    <label className={LABEL} htmlFor="tp-message">{c.message}</label>
-                    <textarea id="tp-message" name="message" rows={4} maxLength={2000} onFocus={trackStart} placeholder={c.messagePh} className={`${FIELD} resize-none`} />
+                    <label className={LABEL} htmlFor="tp-message">{c.message} · {c.optional}</label>
+                    <textarea id="tp-message" name="message" rows={4} maxLength={2000} value={message} onChange={(e) => setMessage(e.target.value)} onFocus={trackStart} placeholder={c.messagePh} className={`${FIELD} rounded-2xl resize-none`} />
                   </div>
-                </fieldset>
-              </div>
+                  {/* Honeypot: hidden from people, filled by bots; the edge function
+                      returns 200 and sends nothing when it is set. */}
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] w-px h-px opacity-0" />
+                  {status === 'error' && (
+                    <p role="alert" className="font-body text-sm text-red-300">
+                      {c.errorMsg}{' '}
+                      <a href="mailto:info@laplandvibes.com" className="underline hover:text-vibe-pink">info@laplandvibes.com</a>
+                    </p>
+                  )}
+                </div>
+              )}
 
-              {/* 4 — contact + send */}
-              <div className="border-t border-white/10 pt-8">
-                <p className="font-heading tracking-wide text-snow text-2xl sm:text-3xl leading-none mb-5">
-                  <span className="text-vibe-pink">04</span> {c.secContact}
-                </p>
-                <div className="grid sm:grid-cols-[1fr_1fr_auto] gap-3 items-end">
-                  <div>
-                    <label className={LABEL} htmlFor="tp-name">{c.name}</label>
-                    <input id="tp-name" type="text" name="name" required maxLength={100} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
-                  </div>
-                  <div>
-                    <label className={LABEL} htmlFor="tp-email">{c.email}</label>
-                    <input id="tp-email" type="email" name="email" required maxLength={255} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={status === 'sending'}
-                    aria-busy={status === 'sending'}
-                    className="inline-flex items-center justify-center gap-2 bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-70 disabled:cursor-wait text-white font-body font-semibold px-6 py-3.5 rounded-lg transition-colors text-base shadow-lg shadow-vibe-pink/25 whitespace-nowrap"
-                  >
+              {/* Navigation */}
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+                {step > 0 ? (
+                  <button type="button" onClick={() => go(step - 1)} className={GHOST}>
+                    <span aria-hidden="true">←</span> {c.back}
+                  </button>
+                ) : (
+                  <span className="cap-meta text-snow/50">{c.noCommitment}</span>
+                )}
+                {step < STEPS - 1 ? (
+                  <button type="button" onClick={() => { trackStart(); go(step + 1); }} className={PRIMARY}>
+                    {c.next} <span aria-hidden="true">→</span>
+                  </button>
+                ) : (
+                  <button type="submit" disabled={status === 'sending'} aria-busy={status === 'sending'} className={PRIMARY}>
                     <Send className="w-4 h-4" aria-hidden="true" />
                     {status === 'sending' ? c.sending : c.submit}
                   </button>
-                </div>
-
-                {/* Honeypot: hidden from people, filled by bots; the edge
-                    function returns 200 and sends nothing when it is set. */}
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] w-px h-px opacity-0" />
-
-                {status === 'error' && (
-                  <p role="alert" className="mt-4 font-body text-sm text-red-300">
-                    {c.errorMsg}{' '}
-                    <a href="mailto:info@laplandvibes.com" className="underline hover:text-vibe-pink">
-                      info@laplandvibes.com
-                    </a>
-                  </p>
                 )}
-                <p className="cap-meta mt-5 text-snow/55">{c.noCommitment}</p>
               </div>
             </form>
           )}
