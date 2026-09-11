@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import OperatorGuide from '../components/OperatorGuide';
 import OperatorMatrix from '../components/OperatorMatrix';
 import MatkapojatGroupTrips from '../components/MatkapojatGroupTrips';
-import ImageBreak from '../components/ImageBreak';
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
@@ -25,13 +24,6 @@ const COPY: Record<CopyLang, {
    * activates when the line truly cannot fit (mobile widths).
    */
   h1: string;
-  introCap: string;
-  intro: string;
-  noteEyebrow: string;
-  noteBody: string;
-  quote: string;
-  quoteAttribution: string;
-  caption: string;
   chapter: string;
   addons: string;
   addonsBody: string;
@@ -42,7 +34,6 @@ const COPY: Record<CopyLang, {
   noneLine: string;
   noneCta: string;
   altHero: string;
-  altQuote: string;
 }> = {
   en: {
     metaTitle: 'The Operators: Six tour companies for Finnish Lapland | #LaplandTours',
@@ -55,16 +46,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'An editorial guide to six local operators that run Finnish Lapland trips on the ground.',
     h1: 'The operators',
-    introCap: 'Drop cap',
-    intro:
-      'Finnish Lapland is a long, thin region, and its own operators run the activities on the ground. You fly in and book straight from them rather than buying a charter package from abroad. What they offer is not the same: Lapland Safaris covers the whole activity range from five centres; Arctic GM takes a group of about five aurora hunting in a luxury van. All six are listed honestly, side by side, so the right one for the trip you actually want is easy to find. Written from Finland, sources visible.',
-    noteEyebrow: 'A note on what this is',
-    noteBody:
-      'These packages are not sold here. There is no commercial agreement with any of the six operators below. Click through and the operator pays nothing back. Affiliate commission is earned only on the cross-sell rail (hotel night, car rental, day activity) at the bottom of this page.',
-    quote:
-      'A glass igloo is not a price-sensitive choice. The cheapest one in the country starts at €430 per night.',
-    quoteAttribution: 'On the luxury tier',
-    caption: '04 / Glass-roofed suite · Kakslauttanen',
     chapter: 'Chapter IV',
     addons: 'The add-ons',
     addonsBody:
@@ -77,7 +58,6 @@ const COPY: Record<CopyLang, {
       "Tell us your trip and a matching operator will be suggested.",
     noneCta: 'Design your trip →',
     altHero: 'Husky team running through a snowy spruce corridor',
-    altQuote: 'Glass-roofed wilderness suite at blue hour with faint aurora visible through the roof',
   },
   fi: {
     metaTitle: 'Matkanjärjestäjät: Suomen Lappi | #LaplandTours',
@@ -90,16 +70,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Toimituksellinen opas kuuteen matkanjärjestäjään, joiden kautta ihmiset matkustavat Suomen Lappiin.',
     h1: 'Matkan­järjestäjät',
-    introCap: 'Lähestymistapa',
-    intro:
-      'Suomen Lappi on pitkä ja kapea maakunta. Sen omat toimijat pyörittävät aktiviteetit paikan päällä. Lennät perille ja varaat suoraan heiltä, et osta charter-pakettia ulkomailta. Tarjonta vaihtelee: Lapland Safaris kattaa koko aktiviteettikirjon viidellä keskuksella, Arctic GM vie revontulijahtiin noin viiden hengen ryhmän luksuspakulla. Kaikki kuusi on listattu rinnakkain, jotta oikea löytyy. Kirjoitettu Suomesta, lähteet näkyvillä.',
-    noteEyebrow: 'Miksi tämä sivu',
-    noteBody:
-      'Täällä ei myydä mitään. Yhdenkään alla luetellun toimijan kanssa ei ole kaupallista sopimusta, eikä linkin klikkauksesta makseta provisiota. Kumppanuusprovisiota kertyy vain sivun alaosan ristiinmyyntiriviltä (hotelliyö, vuokra-auto, päiväretki).',
-    quote:
-      'Lasi-iglu ei ole hintaherkkä valinta. Maan halvinkin alkaa 430 €:sta yöltä.',
-    quoteAttribution: 'Luksusluokasta',
-    caption: '04 / Lasikattoinen huvila · Kakslauttanen',
     chapter: 'Luku IV',
     addons: 'Lisät',
     addonsBody:
@@ -112,7 +82,6 @@ const COPY: Record<CopyLang, {
       'Kerro matkaideasi, ja sopiva matkanjärjestäjä ehdotetaan.',
     noneCta: 'Suunnittele oma matka →',
     altHero: 'Huskysafari etenee lumisen kuusimetsän käytävässä',
-    altQuote: 'Lasikattoinen erämaa-huvila sinisellä hetkellä, heikko revontuli katon läpi',
   },
   de: {
     metaTitle: 'Die Reiseveranstalter: Finnisch-Lappland | #LaplandTours',
@@ -125,16 +94,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Ein redaktioneller Überblick über die sechs Reiseveranstalter, die Gäste nach Finnisch-Lappland bringen.',
     h1: 'Die Reise­veranstalter',
-    introCap: 'Ausgangslage',
-    intro:
-      'Finnisch-Lappland ist eine lange, schmale Region. Die dortigen Anbieter führen die Aktivitäten selbst durch. Sie reisen an und buchen direkt bei ihnen, statt im Ausland ein Charterpaket zu kaufen. Das Angebot ist unterschiedlich: Lapland Safaris deckt das gesamte Aktivitätenprogramm an fünf Standorten ab, Arctic GM nimmt zur Polarlichtjagd nur rund fünf Personen im Luxus-Van mit. Alle sechs werden offen nebeneinander gestellt, damit die passende Wahl leichter fällt.',
-    noteEyebrow: 'Zum Charakter dieser Seite',
-    noteBody:
-      'Hier wird nichts verkauft. Mit keinem der sechs unten gelisteten Anbieter besteht eine Geschäftsbeziehung, und beim Durchklicken fließt keine Provision zurück. Affiliate-Provision fällt nur auf der Zusatz-Schiene am Seitenende (Hotelnacht, Mietwagen, Tagestour) an.',
-    quote:
-      'Ein Glas-Iglu ist keine preissensible Wahl. Das günstigste im Land startet bei 430 € pro Nacht.',
-    quoteAttribution: 'Zur Luxusklasse',
-    caption: '04 / Glas-Iglu-Suite · Kakslauttanen',
     chapter: 'Kapitel IV',
     addons: 'Die Ergänzungen',
     addonsBody:
@@ -147,7 +106,6 @@ const COPY: Record<CopyLang, {
       'Beschreiben Sie Ihre Reise, und ein passender Reiseveranstalter wird vorgeschlagen.',
     noneCta: 'Reise individuell planen →',
     altHero: 'Husky-Gespann läuft durch einen verschneiten Fichtenkorridor',
-    altQuote: 'Glasüberdachte Wildnis-Suite zur blauen Stunde mit zartem Polarlicht durch das Dach',
   },
   ja: {
     metaTitle: 'ツアー会社｜フィンランド・ラップランドの6社のツアー会社 | #LaplandTours',
@@ -160,16 +118,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'フィンランド・ラップランドへ旅行者を送る6社のツアーオペレーターについての編集ガイドです。',
     h1: '主要オペレーター',
-    introCap: 'ドロップキャップ',
-    intro:
-      'フィンランド・ラップランドは細長い地域です。現地の事業者がアクティビティを自ら運営しており、海外でチャーターのパッケージを買うのではなく、現地に飛んで直接予約します。内容はさまざまで、Lapland Safarisは5つの拠点で全アクティビティを網羅し、Arctic GMは高級バンで約5名までのオーロラハントに絞ります。6社すべてを率直に横並びで掲載していますので、ご希望の旅にぴったりのものが簡単に見つかります。',
-    noteEyebrow: '当ページについての注意',
-    noteBody:
-      'ここでは何も販売していません。以下の6社とは商業的な提携はなく、リンクをクリックしても当サイトへの支払いは発生しません。アフィリエイト手数料は、このページ下部のクロスセル枠（宿泊、レンタカー、日帰りアクティビティ）でのみ発生します。',
-    quote:
-      'グラスイグルーは価格を重視する選択ではありません。国内最安でも1泊430ユーロから始まります。',
-    quoteAttribution: 'ラグジュアリークラスについて',
-    caption: '04 / ガラス屋根のスイート · Kakslauttanen',
     chapter: '第IV章',
     addons: 'アドオン',
     addonsBody:
@@ -182,7 +130,6 @@ const COPY: Record<CopyLang, {
       'ご希望の旅をお聞かせください。マッチするオペレーターをご提案します。',
     noneCta: 'あなたの旅をデザインする →',
     altHero: '雪に覆われたモミの木の通路を走るハスキーチーム',
-    altQuote: 'ブルーアワーに屋根からかすかにオーロラが見えるガラス屋根の自然スイート',
   },
   ko: {
     metaTitle: '운영사: 핀란드 라플란드를 다루는 여섯 운영사 | #LaplandTours',
@@ -195,16 +142,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       '핀란드 라플란드로 사람들을 보내는 여섯 운영사에 대한 편집 가이드입니다.',
     h1: '대표 운영사',
-    introCap: '드롭캡',
-    intro:
-      '핀란드 라플란드는 길고 좁은 지역입니다. 현지 운영사들이 액티비티를 직접 운영하므로, 여행자는 해외 여행사의 패키지 상품을 사는 대신 현지로 날아가 직접 예약합니다. 제공 내용은 제각각입니다. Lapland Safaris는 다섯 곳의 거점에서 전 종목을 아우르고, Arctic GM은 럭셔리 밴으로 약 다섯 명까지만 받는 오로라 헌팅에 집중합니다. 여섯 곳 모두 솔직하게 나란히 게재하여 원하시는 여행에 맞는 곳을 쉽게 찾을 수 있도록 했습니다.',
-    noteEyebrow: '이 페이지의 성격',
-    noteBody:
-      '여기서는 아무것도 판매하지 않습니다. 아래 여섯 운영사와 상업적 계약은 없으며, 링크를 클릭하셔도 수수료는 발생하지 않습니다. 제휴 수수료는 이 페이지 하단의 크로스셀 영역(호텔 숙박, 렌터카, 당일 액티비티)에서만 발생합니다.',
-    quote:
-      '글래스 이글루는 가격에 민감한 선택이 아닙니다. 핀란드에서 가장 저렴한 곳도 1박 430유로부터 시작합니다.',
-    quoteAttribution: '럭셔리 등급에 대해',
-    caption: '04 / 글래스 지붕 스위트 · Kakslauttanen',
     chapter: '챕터 IV',
     addons: '추가 옵션',
     addonsBody:
@@ -216,7 +153,6 @@ const COPY: Record<CopyLang, {
     noneLine: '원하시는 여행을 알려주시면 적합한 운영사를 제안해 드립니다.',
     noneCta: '여행 디자인하기 →',
     altHero: '눈 덮인 가문비나무 사이를 달리는 허스키 팀',
-    altQuote: '블루아워에 지붕 너머로 희미한 오로라가 보이는 글래스 지붕 야생 스위트',
   },
   fr: {
     metaTitle: 'Les voyagistes : Laponie finlandaise | #LaplandTours',
@@ -229,16 +165,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Un guide éditorial des six tour-opérateurs qui emmènent les voyageurs en Laponie finlandaise.',
     h1: 'Les voyagistes',
-    introCap: 'Lettrine',
-    intro:
-      'La Laponie finlandaise est une région longue et étroite. Ses propres opérateurs exploitent les activités sur place. Vous vous y rendez et réservez directement auprès d\'eux, plutôt que d\'acheter un forfait charter à l\'étranger. Les offres diffèrent : Lapland Safaris couvre tout le programme sur cinq stations, Arctic GM limite sa chasse aux aurores à cinq personnes environ, en van de luxe. Les six sont présentés honnêtement, côte à côte, pour trouver facilement celui qui correspond au voyage que vous souhaitez.',
-    noteEyebrow: 'Ce que cette page est',
-    noteBody:
-      'Rien n\'est vendu ici. Aucun accord commercial avec les six opérateurs ci-dessous ; le clic ne rapporte rien. Une commission d\'affiliation n\'est perçue que sur le rail de ventes croisées (nuit d\'hôtel, location de voiture, activité à la journée) en bas de page.',
-    quote:
-      'Un iglou de verre n\'est pas un choix sensible au prix. Le moins cher du pays démarre à 430 € la nuit.',
-    quoteAttribution: 'Sur la gamme luxe',
-    caption: '04 / Suite avec toit en verre · Kakslauttanen',
     chapter: 'Chapitre IV',
     addons: 'Les compléments',
     addonsBody:
@@ -250,7 +176,6 @@ const COPY: Record<CopyLang, {
     noneLine: 'Décrivez votre voyage et un voyagiste compatible vous sera proposé.',
     noneCta: 'Concevoir votre voyage →',
     altHero: 'Attelage de huskies traversant un couloir d\'épicéas enneigés',
-    altQuote: 'Suite en pleine nature au toit en verre à l\'heure bleue, faible aurore visible à travers le plafond',
   },
   it: {
     metaTitle: 'I tour operator: Lapponia finlandese | #LaplandTours',
@@ -263,16 +188,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Una guida editoriale ai sei tour operator che portano persone in Lapponia finlandese.',
     h1: 'Gli operatori',
-    introCap: 'Capolettera',
-    intro:
-      'La Lapponia finlandese è una regione lunga e stretta. Sono gli operatori del posto a gestire le attività. Lei arriva e prenota direttamente da loro, invece di comprare un pacchetto charter all\'estero. L\'offerta varia: Lapland Safaris copre tutte le attività su cinque località, Arctic GM limita la caccia all\'aurora a circa cinque persone in van di lusso. Tutti e sei sono presentati onestamente, fianco a fianco, per trovare facilmente quello giusto per il viaggio che vuole davvero.',
-    noteEyebrow: 'Una nota su questa pagina',
-    noteBody:
-      'Qui non si vende nulla. Con i sei operatori elencati di seguito non vi è alcun accordo commerciale; il clic non produce alcuna commissione a loro carico. La commissione di affiliazione si attiva solo sul rail di cross-sell in fondo a questa pagina (notte in hotel, noleggio auto, attività di un giorno).',
-    quote:
-      'Un iglù di vetro non è una scelta sensibile al prezzo. Il più economico del paese parte da 430 € a notte.',
-    quoteAttribution: 'Sulla fascia lusso',
-    caption: '04 / Suite con tetto in vetro · Kakslauttanen',
     chapter: 'Capitolo IV',
     addons: 'I complementi',
     addonsBody:
@@ -284,7 +199,6 @@ const COPY: Record<CopyLang, {
     noneLine: 'Ci descriva il suo viaggio: le proporremo un operatore compatibile.',
     noneCta: 'Progetti il Suo viaggio →',
     altHero: 'Muta di husky in corsa lungo un corridoio di abeti innevati',
-    altQuote: 'Suite con tetto in vetro nella natura all\'ora blu, con una debole aurora visibile attraverso il soffitto',
   },
   nl: {
     metaTitle: 'De reisorganisaties: Fins Lapland | #LaplandTours',
@@ -297,16 +211,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Een redactionele gids over de zes reisorganisaties die reizigers naar Fins Lapland brengen.',
     h1: 'De operators',
-    introCap: 'Drop cap',
-    intro:
-      'Fins Lapland is een lang, smal gebied. De aanbieders ter plaatse voeren de activiteiten zelf uit. U reist ernaartoe en boekt rechtstreeks bij hen, in plaats van in het buitenland een charterpakket te kopen. Het aanbod verschilt: Lapland Safaris dekt het hele activiteitenprogramma op vijf bestemmingen, Arctic GM beperkt zijn noorderlichtjacht tot ongeveer vijf personen in een luxe bus. Alle zes staan eerlijk naast elkaar, zodat de juiste keuze voor uw reis snel zichtbaar is.',
-    noteEyebrow: 'Wat deze pagina is',
-    noteBody:
-      'Hier wordt niets verkocht. Met de zes hieronder genoemde aanbieders is geen commerciële afspraak, en bij doorklikken vloeit niets terug. Affiliate-commissie wordt alleen verdiend op de cross-sell-balk onderaan deze pagina (hotelnacht, huurauto, dagactiviteit).',
-    quote:
-      'Een glasiglo is geen prijsgevoelige keuze. De goedkoopste in het land begint bij € 430 per nacht.',
-    quoteAttribution: 'Over het luxesegment',
-    caption: '04 / Suite met glazen dak · Kakslauttanen',
     chapter: 'Hoofdstuk IV',
     addons: 'De aanvullingen',
     addonsBody:
@@ -318,7 +222,6 @@ const COPY: Record<CopyLang, {
     noneLine: 'Vertel ons uw reis en we stellen een passende reisorganisatie voor.',
     noneCta: 'Ontwerp uw reis →',
     altHero: 'Husky-team rent door een besneeuwde sparrenlaan',
-    altQuote: 'Wildernissuite met glazen dak tijdens het blauwe uur, met vaag noorderlicht door het dak',
   },
   sv: {
     metaTitle: 'Aktörerna: finska Lappland | #LaplandTours',
@@ -331,16 +234,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'En redaktionell guide till de sex aktörer som tar resenärer till finska Lappland.',
     h1: 'Aktörerna',
-    introCap: 'Utgångsläge',
-    intro:
-      'Finska Lappland är en lång, smal region. Aktörerna på plats driver aktiviteterna själva. Du reser dit och bokar direkt hos dem, i stället för att köpa ett charterpaket utomlands. Utbudet varierar: Lapland Safaris täcker hela aktivitetsprogrammet på fem orter, Arctic GM tar med sig runt fem personer på norrskensjakt i en lyxig van. Alla sex listas öppet sida vid sida, så att du lätt hittar rätt för resan du faktiskt vill ha.',
-    noteEyebrow: 'Vad den här sidan är',
-    noteBody:
-      'Här säljs ingenting. Det finns inget kommersiellt avtal med någon av de sex aktörerna nedan, och att klicka på en länk ger ingen provision. Affiliateprovision tjänas bara in på korsförsäljningsraden längst ned på sidan (hotellnatt, hyrbil, dagsutflykt).',
-    quote:
-      'En glasiglo är inget priskänsligt val. Den billigaste i landet börjar på 430 € per natt.',
-    quoteAttribution: 'Om lyxsegmentet',
-    caption: '04 / Svit med glastak · Kakslauttanen',
     chapter: 'Kapitel IV',
     addons: 'Tilläggen',
     addonsBody:
@@ -353,7 +246,6 @@ const COPY: Record<CopyLang, {
       'Berätta om din resa, så föreslår vi en aktör som passar.',
     noneCta: 'Planera din resa →',
     altHero: 'Huskyspann springer genom en snötäckt grankorridor',
-    altQuote: 'Svit i vildmarken med glastak i blå timmen, svagt norrsken syns genom taket',
   },
   es: {
     metaTitle: 'Los operadores: Laponia finlandesa | #LaplandTours',
@@ -366,16 +258,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Una guía editorial de los seis operadores que llevan gente a la Laponia finlandesa.',
     h1: 'Los operadores',
-    introCap: 'Capitular',
-    intro:
-      'La Laponia finlandesa es una región larga y estrecha. Son sus propios operadores quienes gestionan las actividades sobre el terreno: usted llega y reserva directamente con ellos, en lugar de comprar un paquete chárter en el extranjero. La oferta varía: Lapland Safaris cubre todo el programa en cinco estaciones; Arctic GM limita su caza de auroras a unas cinco personas en una furgoneta de lujo. Los seis están listados con honestidad, uno al lado del otro, para que sea fácil dar con el adecuado para el viaje que de verdad quiere.',
-    noteEyebrow: 'Qué es esto',
-    noteBody:
-      'Aquí no se vende nada. No hay acuerdo comercial con ninguno de los seis operadores de abajo: al hacer clic, el operador no paga nada de vuelta. La comisión de afiliación solo se obtiene en la franja de venta cruzada (noche de hotel, alquiler de coche, actividad de un día) al final de esta página.',
-    quote:
-      'Un iglú de cristal no es una elección para quien mira el precio. El más barato del país parte de 430 € por noche.',
-    quoteAttribution: 'Sobre la gama de lujo',
-    caption: '04 / Suite con techo de cristal · Kakslauttanen',
     chapter: 'Capítulo IV',
     addons: 'Los complementos',
     addonsBody:
@@ -388,7 +270,6 @@ const COPY: Record<CopyLang, {
       'Cuéntenos su viaje y le sugeriremos un operador a medida.',
     noneCta: 'Diseñe su viaje →',
     altHero: 'Tiro de huskies corriendo por un corredor nevado de abetos',
-    altQuote: 'Suite de naturaleza con techo de cristal a la hora azul, con una aurora tenue visible a través del techo',
   },
   'pt-BR': {
     metaTitle: 'As operadoras: Lapônia finlandesa | #LaplandTours',
@@ -401,16 +282,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Um guia editorial das seis operadoras que levam pessoas à Lapônia finlandesa.',
     h1: 'As operadoras',
-    introCap: 'Capitular',
-    intro:
-      'A Lapônia finlandesa é uma região longa e estreita. São as próprias operadoras locais que conduzem as atividades no destino. Você viaja até lá e reserva direto com elas, em vez de comprar um pacote charter no exterior. A oferta varia: a Lapland Safaris cobre todo o programa em cinco estações; a Arctic GM limita sua caça à aurora a cerca de cinco pessoas em uma van de luxo. As seis estão listadas com honestidade, lado a lado, para você achar com facilidade a certa para a viagem que realmente quer.',
-    noteEyebrow: 'O que é isto',
-    noteBody:
-      'Aqui não se vende nada. Não há acordo comercial com nenhuma das seis operadoras abaixo, e ao clicar, a operadora não repassa nada. A comissão de afiliado só é obtida na faixa de venda cruzada (diária de hotel, aluguel de carro, atividade de um dia) no fim desta página.',
-    quote:
-      'Um iglu de vidro não é uma escolha para quem é sensível a preço. O mais barato do país começa em € 430 por noite.',
-    quoteAttribution: 'Sobre a faixa de luxo',
-    caption: '04 / Suíte com teto de vidro · Kakslauttanen',
     chapter: 'Capítulo IV',
     addons: 'Os complementos',
     addonsBody:
@@ -423,7 +294,6 @@ const COPY: Record<CopyLang, {
       'Conte-nos sua viagem e sugerimos uma operadora compatível.',
     noneCta: 'Crie a sua viagem →',
     altHero: 'Matilha de huskies correndo por um corredor nevado de abetos',
-    altQuote: 'Suíte na natureza com teto de vidro na hora azul, com uma aurora tênue visível pelo teto',
   },
   'zh-CN': {
     metaTitle: '运营商：六家做芬兰拉普兰的旅游公司 | #LaplandTours',
@@ -436,16 +306,6 @@ const COPY: Record<CopyLang, {
     articleDescription:
       '一份关于六家把旅客送往芬兰拉普兰的运营商的编辑指南。',
     h1: '这些运营商',
-    introCap: '首字下沉',
-    intro:
-      '芬兰拉普兰是一片狭长的地区。活动由当地运营商亲自运营——你飞过去，直接向它们预订，而不是在境外购买包机套餐。各家不尽相同：Lapland Safaris 在五个度假地覆盖全部活动，Arctic GM 用豪华厢车把极光追寻的人数控制在约五人。六家都被坦诚地并排列出，方便你为真正想要的行程找到合适的一家。',
-    noteEyebrow: '这个页面是什么',
-    noteBody:
-      '本站不销售任何东西。我们与下面六家运营商都没有商业协议，你点击进入后，运营商不会返给我们任何报酬。联盟佣金只来自本页底部的交叉销售栏目（酒店住宿、租车、一日活动）。',
-    quote:
-      '玻璃冰屋并非注重价格的选择。全国最便宜的也要每晚 430 欧元起。',
-    quoteAttribution: '关于奢华档位',
-    caption: '04 / 玻璃顶套房 · Kakslauttanen',
     chapter: '第四章',
     addons: '附加项',
     addonsBody:
@@ -458,90 +318,9 @@ const COPY: Record<CopyLang, {
       '告诉我们你的行程，我们会推荐合适的运营商。',
     noneCta: '定制你的行程 →',
     altHero: '一队哈士奇在覆雪的云杉通道中奔跑',
-    altQuote: '蓝色时刻的玻璃顶荒野套房，透过屋顶可见淡淡的极光',
   },
 };
 
-/**
- * Hero stat tiles — REAL numbers only, sourced from this page's own content:
- * 6 operators listed, 7 comparison categories in the matrix, 0 € commission
- * from the operator list (stated in the "note" copy), last editorial review
- * July 2026 (OperatorGuide/OperatorMatrix leads).
- */
-const STATS: Record<CopyLang, { value: string; label: string }[]> = {
-  en: [
-    { value: '6', label: 'Operators compared' },
-    { value: '7', label: 'Categories rated' },
-    { value: '0 €', label: 'Commission from list' },
-    { value: '07/26', label: 'Last reviewed' },
-  ],
-  fi: [
-    { value: '6', label: 'Toimijaa vertailussa' },
-    { value: '7', label: 'Vertailualuetta' },
-    { value: '0 €', label: 'Provisiota listalta' },
-    { value: '07/26', label: 'Viimeksi tarkistettu' },
-  ],
-  de: [
-    { value: '6', label: 'Anbieter im Vergleich' },
-    { value: '7', label: 'Bewertete Kategorien' },
-    { value: '0 €', label: 'Provision aus der Liste' },
-    { value: '07/26', label: 'Zuletzt geprüft' },
-  ],
-  ja: [
-    { value: '6', label: '比較する会社' },
-    { value: '7', label: '評価カテゴリー' },
-    { value: '0 €', label: 'リストからの手数料' },
-    { value: '07/26', label: '最終確認' },
-  ],
-  ko: [
-    { value: '6', label: '비교 운영사' },
-    { value: '7', label: '평가 카테고리' },
-    { value: '0 €', label: '목록 수수료' },
-    { value: '07/26', label: '최근 검토' },
-  ],
-  fr: [
-    { value: '6', label: 'Opérateurs comparés' },
-    { value: '7', label: 'Catégories notées' },
-    { value: '0 €', label: 'Commission sur la liste' },
-    { value: '07/26', label: 'Dernier examen' },
-  ],
-  it: [
-    { value: '6', label: 'Operatori a confronto' },
-    { value: '7', label: 'Categorie valutate' },
-    { value: '0 €', label: 'Commissioni dalla lista' },
-    { value: '07/26', label: 'Ultima revisione' },
-  ],
-  nl: [
-    { value: '6', label: 'Aanbieders vergeleken' },
-    { value: '7', label: 'Beoordeelde categorieën' },
-    { value: '0 €', label: 'Commissie uit de lijst' },
-    { value: '07/26', label: 'Laatst herzien' },
-  ],
-  sv: [
-    { value: '6', label: 'Aktörer jämförda' },
-    { value: '7', label: 'Bedömda kategorier' },
-    { value: '0 €', label: 'Provision från listan' },
-    { value: '07/26', label: 'Senast granskad' },
-  ],
-  es: [
-    { value: '6', label: 'Operadores comparados' },
-    { value: '7', label: 'Categorías valoradas' },
-    { value: '0 €', label: 'Comisión de la lista' },
-    { value: '07/26', label: 'Última revisión' },
-  ],
-  'pt-BR': [
-    { value: '6', label: 'Operadoras comparadas' },
-    { value: '7', label: 'Categorias avaliadas' },
-    { value: '0 €', label: 'Comissão da lista' },
-    { value: '07/26', label: 'Última revisão' },
-  ],
-  'zh-CN': [
-    { value: '6', label: '对比运营商' },
-    { value: '7', label: '评估类别' },
-    { value: '0 €', label: '列表佣金' },
-    { value: '07/26', label: '最近复核' },
-  ],
-};
 
 export default function LaplandHolidays() {
   const lang = useLang();
@@ -568,67 +347,38 @@ export default function LaplandHolidays() {
 
   return (
     <>
-      <section className="relative min-h-[56svh] md:min-h-[64svh] flex items-center overflow-hidden bg-deep-night">
+      {/* 2026-09-11: hero rebuilt. Vesa on the old top: "ihan levällään kaikki,
+          alku on ihan paskaa, ei aiheuta mitään himoa lukea". Gone: the four
+          stat tiles (incl. "0 € commission"), the drop-cap essay and the
+          "nothing is sold here" note. Now: one real photograph, the title, one
+          sentence, and the operators start within a screen. */}
+      <section className="relative min-h-[60svh] md:min-h-[68svh] flex items-end overflow-hidden bg-deep-night">
         <ImagePlaceholder
           variant="twilight"
           src="/images/hero-holidays.webp"
           alt={c.altHero}
           priority
-          imgClassName="brightness-[1.35] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
+              'linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.45) 45%, rgba(15,23,42,0.05) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
-          {/* One line at lg+ (soft hyphens in fi/de copy only break below md widths). */}
-          <h1 className="font-heading tracking-tight leading-[0.92] text-snow text-[clamp(2.75rem,7.5vw,7rem)] [hyphens:manual] break-words [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
+        <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6 sm:px-10 pt-32 pb-14 md:pb-20">
+          <h1 className="mt-3 font-heading tracking-wide leading-[0.95] text-snow text-[clamp(2.75rem,7vw,6rem)] [hyphens:manual] break-words [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.9)]">
             {c.h1}
           </h1>
+          <p className="mt-5 text-snow/90 font-body text-lg sm:text-xl leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+            {c.articleDescription}
+          </p>
         </div>
       </section>
-
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-10 -mt-12 md:-mt-14 mb-2">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {STATS[copyLang(lang)].map((s) => (
-            <div
-              key={s.label}
-              className="rounded-2xl border border-white/10 bg-deep-night/85 backdrop-blur-md p-4 md:p-5 text-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
-            >
-              <p className="font-heading text-4xl md:text-5xl text-vibe-pink leading-none">{s.value}</p>
-              <p className="cap-meta mt-2 !tracking-[0.14em]">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
 
       <PageBreadcrumb />
-
-      <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[820px] mx-auto px-6 sm:px-10">
-          <p className="drop-cap text-snow/85 text-lg sm:text-xl leading-[1.75] font-body">
-            {c.intro}
-          </p>
-
-          <p className="cap-meta mt-10 mb-3">{c.noteEyebrow}</p>
-          <p className="text-snow/65 font-body text-[15px] leading-relaxed">
-            {c.noteBody}
-          </p>
-        </div>
-      </section>
-
       <OperatorGuide />
 
-      <ImageBreak
-        src="/images/card-luxury-aurora.webp"
-        alt={c.altQuote}
-        quote={c.quote}
-        attribution={c.quoteAttribution}
-        caption={c.caption}
-      />
 
       <OperatorMatrix />
 

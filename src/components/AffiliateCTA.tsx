@@ -21,10 +21,20 @@ export type AffiliatePartner =
   /** Travelpayouts: airport transfers. `destination` = full welcomepickups.com deep URL. */
   | 'welcomepickups'
   /** Adtraction (FI-only programme): package trips. `destination` = full matkapojat.fi deep URL. */
-  | 'matkapojat';
+  | 'matkapojat'
+  /** Travelpayouts: travel insurance (25 %). No deep link — the Worker lands on EKTA's front. */
+  | 'ekta'
+  /** Travelpayouts: eSIM. `destination` = full airalo.com deep URL (e.g. /finland-esim). */
+  | 'airalo'
+  /** Adtraction (FI shop): winter gear. `destination` = full scandinavianoutdoor.fi URL. */
+  | 'scandinavianoutdoor'
+  /** Trip.com trains via the Worker: pass departurecity / arrivalcity / tripTab in `query`. */
+  | 'trains';
 
 /** Partners whose Worker route takes the landing page as a full `dest=` URL. */
-const DEST_URL_PARTNERS: ReadonlySet<AffiliatePartner> = new Set(['lomarengas', 'welcomepickups', 'matkapojat']);
+const DEST_URL_PARTNERS: ReadonlySet<AffiliatePartner> = new Set([
+  'lomarengas', 'welcomepickups', 'matkapojat', 'airalo', 'scandinavianoutdoor',
+]);
 
 type _Lang = 'en' | 'fi' | 'de' | 'ja' | 'es' | 'pt-BR' | 'zh-CN' | 'ko' | 'fr' | 'it' | 'nl' | 'sv';
 

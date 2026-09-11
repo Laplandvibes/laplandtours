@@ -224,16 +224,13 @@ export default function SectionTeasers() {
             >
               {img ? (
                 <div className="relative h-36 sm:h-40 overflow-hidden">
-                  <picture>
-                    <source srcSet={`${img}.avif`} type="image/avif" />
-                    <img
-                      src={`${img}.webp`}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 w-full h-full object-cover brightness-[1.3] saturate-[1.1] transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </picture>
+                  <img
+                    src={`${img}.webp`}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{

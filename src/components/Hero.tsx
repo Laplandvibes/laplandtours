@@ -121,26 +121,24 @@ const COPY: Record<Lang, {
   },
 };
 
-// May–Sep (months 5–9) shows the summer hero; Oct–Apr shows the winter hero.
-const isSummerSeason = () => {
-  const m = new Date().getMonth() + 1;
-  return m >= 5 && m <= 9;
-};
-
+/**
+ * 2026-09-11: one real photograph (Pyhä chairlift over the fells, July 2026
+ * road trip) replaces the two AI heroes. Vesa: "hero kuva ei ole tarpeeksi
+ * korkealaatuinen, pixelöityy … katso nyt noi ai generoidut jutut pois".
+ * No brightness filter: the AI image needed lifting, a photograph does not.
+ */
 export default function Hero() {
   const lang = useLang();
   const to = useLocalePath();
   const c = COPY[lang];
-  const heroBase = isSummerSeason() ? 'hero-home-summer' : 'hero-home';
   return (
     <section className="relative flex items-center min-h-[62svh] sm:min-h-[76svh] lg:min-h-[620px] lg:max-h-[760px] overflow-hidden">
       <ImagePlaceholder
         variant="aurora"
-        src={`/images/${heroBase}.webp`}
+        src="/images/hero-home.webp"
         alt={c.alt}
-        objectPosition="center 35%"
+        objectPosition="center 40%"
         priority
-        imgClassName={heroBase === 'hero-home' ? 'brightness-[1.3] saturate-[1.08]' : ''}
       />
       <div
         className="absolute inset-0 pointer-events-none"

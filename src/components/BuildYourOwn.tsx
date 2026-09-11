@@ -21,6 +21,12 @@ interface RailCard {
   tier?: 'core' | 'extra';
   /** GYG search query for activities (resolving /s/?q= endpoint). */
   gygSearch?: string;
+  /**
+   * Own photograph from the July 2026 road trip (Vesa 11.9.2026: "tähän
+   * tarvitaan elämää ja kuvia … katso nyt noi ai generoidut jutut pois").
+   * Decorative on the card — the headline carries the meaning, so alt="".
+   */
+  image: string;
   icon: typeof Hotel;
   imgVariant: 'twilight' | 'ice' | 'forest';
   bgHex: string;
@@ -37,6 +43,7 @@ const rails: RailCard[] = [
   {
     partner: 'hotels',
     sid: 'home_build_hotels',
+    image: '/images/rail-stay.webp',
     destination: 'Rovaniemi',
     icon: Hotel,
     imgVariant: 'twilight',
@@ -143,6 +150,7 @@ const rails: RailCard[] = [
   {
     partner: 'cars',
     sid: 'home_build_cars',
+    image: '/images/rail-drive.webp',
     destination: 'RVN',
     icon: Car,
     imgVariant: 'ice',
@@ -249,6 +257,7 @@ const rails: RailCard[] = [
   {
     partner: 'activities',
     sid: 'home_build_activities',
+    image: '/images/rail-do.webp',
     destination: 's569-finnish-lapland-tc16',
     gygSearch: 'Lapland activities Rovaniemi',
     icon: MapPinned,
@@ -359,6 +368,7 @@ const rails: RailCard[] = [
   {
     partner: 'lomarengas',
     sid: 'home_build_cabin',
+    image: '/images/rail-cabin.webp',
     tier: 'extra',
     destination: 'https://www.lomarengas.fi/en/cottage-search/lappi',
     destinationByLang: { fi: 'https://www.lomarengas.fi/mokkihaku/lappi' },
@@ -457,6 +467,7 @@ const rails: RailCard[] = [
   {
     partner: 'welcomepickups',
     sid: 'home_build_transfer',
+    image: '/images/rail-transfer.webp',
     tier: 'extra',
     destination: 'https://www.welcomepickups.com/rovaniemi/',
     icon: CarTaxiFront,
@@ -653,41 +664,53 @@ function RailArticle({ rail: r, lang, tier }: { rail: RailCard; lang: CopyLang; 
   const isCore = tier === 'core';
   return (
     <article
-      className={`relative flex flex-col overflow-hidden border border-white/8 hover:border-vibe-pink/40 transition-colors ${
-        isCore ? 'p-7 sm:p-8 min-h-[360px] sm:min-h-[420px]' : 'p-6 sm:p-7 min-h-[260px]'
-      }`}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 hover:border-vibe-pink/50 transition-colors"
       style={{ background: r.bgHex }}
     >
-      <div className={`cap-meta ${isCore ? 'mb-6' : 'mb-4'}`}>{t.label}</div>
+      {/* Photo first: the card is a picture of the thing, then the words. */}
+      <div className={`relative overflow-hidden ${isCore ? 'aspect-[16/10]' : 'aspect-[21/9]'}`}>
+        <img
+          src={r.image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: `linear-gradient(to top, ${r.bgHex} 0%, transparent 100%)` }} aria-hidden="true" />
+        <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-deep-night/70 backdrop-blur px-3 py-1.5 border border-white/15">
+          <r.icon className="w-4 h-4 text-vibe-pink" strokeWidth={1.6} aria-hidden="true" />
+          <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-snow/90">{t.label}</span>
+        </div>
+      </div>
 
-      <r.icon className={`${isCore ? 'w-7 h-7 mb-4' : 'w-6 h-6 mb-3'} text-vibe-pink`} strokeWidth={1.4} />
+      <div className={`flex flex-col flex-1 ${isCore ? 'p-6 sm:p-7' : 'p-5 sm:p-6'}`}>
+        <h3 className={`font-heading text-snow/95 tracking-wide leading-[0.98] mb-3 ${isCore ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl'}`}>
+          {t.headline}
+        </h3>
 
-      <h3 className={`font-heading text-snow tracking-tight leading-[0.95] mb-3 ${isCore ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl'}`}>
-        {t.headline}
-      </h3>
+        <p className={`text-snow/75 font-body leading-[1.65] ${isCore ? 'text-[15px] mb-4' : 'text-[14px] mb-3'}`}>
+          {t.body}
+        </p>
 
-      <p className={`text-snow/70 font-body leading-[1.65] ${isCore ? 'text-[14.5px] mb-5' : 'text-[14px] mb-4'}`}>
-        {t.body}
-      </p>
+        <p className="font-mono text-[12px] tracking-[0.04em] text-arctic-cyan/90 mb-5">
+          {t.priceLine}
+        </p>
 
-      <p className={`font-mono text-[12px] tracking-[0.04em] text-snow/80 ${isCore ? 'mb-7' : 'mb-5'}`}>
-        {t.priceLine}
-      </p>
-
-      <AffiliateCTA
-        partner={r.partner}
-        sid={r.sid}
-        destination={destination}
-        gygSearch={r.gygSearch}
-        className={`mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 font-body font-semibold text-[14px] transition-colors ${
-          isCore
-            ? 'bg-vibe-pink hover:bg-vibe-pink/90 text-white'
-            : 'border border-snow/30 text-snow hover:border-vibe-pink hover:text-vibe-pink'
-        }`}
-      >
-        <span>{t.ctaLabel}</span>
-        <span aria-hidden="true">→</span>
-      </AffiliateCTA>
+        <AffiliateCTA
+          partner={r.partner}
+          sid={r.sid}
+          destination={destination}
+          gygSearch={r.gygSearch}
+          className={`mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 rounded-lg font-body font-semibold text-[14px] transition-colors ${
+            isCore
+              ? 'bg-vibe-pink hover:bg-vibe-pink/90 text-white'
+              : 'border border-snow/30 text-snow hover:border-vibe-pink hover:text-vibe-pink'
+          }`}
+        >
+          <span>{t.ctaLabel}</span>
+          <span aria-hidden="true">→</span>
+        </AffiliateCTA>
+      </div>
     </article>
   );
 }

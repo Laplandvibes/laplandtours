@@ -17,7 +17,6 @@ import HomeAdSlots, { MainPartnerBanner } from '../shared/HomeAdSlots';
 import { AD_SLOTS } from '../data/adSlots';
 import { setPageMeta, breadcrumbList, faqPageSchema, travelAgencySchema } from '../lib/meta';
 import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
-import GygPicks from '../components/GygPicks';
 import { AppPromoHero } from '../components/AppPromo';
 
 // Shared network creds hardcoded (public anon key) — SAME reason as this
@@ -161,9 +160,6 @@ export default function Home() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <ProductRail partner={scandinavianoutdoorRail} snapshot={scandinavianoutdoorPicks} lang={lang as RailLang} sid="home_gear" variant="dark" />
       </div>
-
-      {/* Varattavat GYG-tuotteet — korkealla sivulla mutta myytyjen mainospaikkojen ALAPUOLELLA */}
-      <GygPicks />
 
       <BookableActivities />
       <OperatorGuide />

@@ -83,8 +83,8 @@ export const operators: Operator[] = [
       'Reliable family-skewed packages with strong UK-regional departures, full-board hotel basis at Saariselkä Holiday Club and Luosto Aurora Chalets, and a fixed activity slate that suits parents with kids who don\'t want to plan day by day.',
     whatTheyDont:
       'No self-drive options. Activity menu is the same week to week, so independent-minded travellers may find it formulaic.',
-    image: '/images/card-northern-lights.webp',
-    alt: 'Faint green-cyan aurora arc above a frozen Lapland lake',
+    image: '/images/op-lapland-safaris.webp',
+    alt: 'Ylläs village and the fell behind it in July',
     isFeatured: true,
   },
   {
@@ -105,8 +105,8 @@ export const operators: Operator[] = [
       'Single-purpose December operator built around a one-on-one Santa visit in a Saariselkä forest setting, plus thermal-clothing hire and a tight all-inclusive activity slate. Books out from August onwards.',
     whatTheyDont:
       'Operates only late Nov–24 Dec. No summer or non-Christmas product. Limited choice of base.',
-    image: '/images/card-christmas-santa.webp',
-    alt: 'Two reindeer grazing in a snowy Lapland forest at twilight',
+    image: '/images/op-nordic-unique.webp',
+    alt: 'Terrace at Santa Claus Village, Rovaniemi, on a summer afternoon',
   },
   {
     slug: 'tui',
@@ -126,8 +126,8 @@ export const operators: Operator[] = [
       'Widest UK regional-airport coverage in the segment. Day trips and overnight Santa breaks for the price-sensitive. Volume-driven, predictable.',
     whatTheyDont:
       'Activity programme is shorter than specialist operators. No glass igloos. No bespoke or private experiences.',
-    image: '/images/card-family-holiday.webp',
-    alt: 'Snowy Lapland forest path at golden afternoon light with two empty wooden sleds',
+    image: '/images/op-arctic-gm.webp',
+    alt: 'Levi village centre with hotels and the fell in summer',
   },
   {
     slug: 'transun',
@@ -147,8 +147,8 @@ export const operators: Operator[] = [
       'Activity-led weeks with husky sledding, snowmobile safaris and aurora hunting bundled by night, not by single excursion. Strong on northern Saariselkä / Inari base where aurora visibility is statistically higher.',
     whatTheyDont:
       'Less family-soft than Inghams or Santa\'s Lapland. Smaller departure list.',
-    image: '/images/card-arctic-adventure.webp',
-    alt: 'A single snowmobile track curving across a vast frozen Lapland lake',
+    image: '/images/op-safartica.webp',
+    alt: 'Signpost at the Arctic Circle, Rovaniemi',
   },
   {
     slug: 'magnetic-north',
@@ -168,8 +168,8 @@ export const operators: Operator[] = [
       'Bespoke itineraries built on a phone call with a specialist consultant. Glass igloo product is their flagship (Kakslauttanen, Levin Iglut, Wilderness Hotels). Private aurora hunts with photography guide are routine.',
     whatTheyDont:
       'Not a price-sensitive option. No fixed package menu. Every quote is bespoke, which means slower turnaround.',
-    image: '/images/card-luxury-aurora.webp',
-    alt: 'Premium glass-roofed wilderness suite at blue hour with faint aurora through the roof',
+    image: '/images/op-beyond-arctic.webp',
+    alt: 'Midnight sun over a lake at Kemijärvi',
   },
   {
     slug: 'nordic-visitor',
@@ -189,8 +189,8 @@ export const operators: Operator[] = [
       'Best self-drive product in the network, with pre-booked rental, route, and accommodation across Finnish Lapland, plus summer Midnight Sun trips that the UK winter-only operators don\'t cover. Multi-country itineraries (Lapland + Iceland, Lapland + Norway).',
     whatTheyDont:
       'No UK-departure flights bundled. You book your own flights to Helsinki or Lapland. Less hand-holding than UK specialists.',
-    image: '/images/card-midnight-sun.webp',
-    alt: 'Lapland river bend at midnight sun, low warm horizontal golden light',
+    image: '/images/op-harriniva.webp',
+    alt: 'Road into Ylläs with the fell on the horizon',
   },
 ];
 
@@ -230,8 +230,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       "Running since 1982, with bases in Rovaniemi, Levi, Ylläs, Saariselkä and Luosto and the widest activity range in Finnish Lapland: husky and reindeer farms, snowmobile safaris, aurora tours, snowshoeing and equipment hire. Guiding is rooted in local and Sámi knowledge, and they hold Finland's national tourism safety award.",
     whatTheyDont:
       'They sell activities, not flights or full holiday packages. You arrange your own travel and accommodation. As the largest operator, group tours can be busier than a small-group specialist.',
-    image: '/images/card-family-holiday.webp',
-    alt: 'Snowy Lapland forest path at golden afternoon light with two empty wooden sleds',
+    image: '/images/op-lapland-safaris.webp',
+    alt: 'Ylläs village and the fell behind it in July',
     isFeatured: true,
   },
   {
@@ -252,8 +252,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       'A Rovaniemi company (also Levi and Pyhä-Luosto) that never runs a tour over eight people. Northern-lights photography is the core, with reindeer and husky visits, national-park hikes and summer midnight-sun shoots. Holds the Sustainable Travel Finland label.',
     whatTheyDont:
       'Not built for large families or big groups. No accommodation or self-drive: activities only.',
-    image: '/images/card-northern-lights.webp',
-    alt: 'Faint green-cyan aurora arc above a frozen Lapland lake',
+    image: '/images/op-beyond-arctic.webp',
+    alt: 'Midnight sun over a lake at Kemijärvi',
   },
   {
     slug: 'safartica',
@@ -273,8 +273,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       "Based in Rovaniemi with bases in Ylläs, Levi and Saariselkä. Husky, reindeer and snowmobile safaris, aurora hunts, ice fishing and winter swimming, and the world's first electric snowmobile (eSled) safaris. Also runs its own chalets and wilderness lodging for stay-plus-activity bundles.",
     whatTheyDont:
       'A busy, multi-base operation rather than an intimate one-guide outfit. Flights are on you.',
-    image: '/images/card-arctic-adventure.webp',
-    alt: 'A single snowmobile track curving across a vast frozen Lapland lake',
+    image: '/images/op-safartica.webp',
+    alt: 'Signpost at the Arctic Circle, Rovaniemi',
   },
   {
     slug: 'harriniva',
@@ -294,8 +294,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       'A family business in Muonio since 1973, now third generation, built around its own large husky kennel and multi-day safaris. Runs three resorts, Harriniva, Jeris Lakeside and Torassieppi reindeer farm, with in-house restaurants, plus summer rafting and hiking. Transfers from Kittilä airport and Kolari railway.',
     whatTheyDont:
       'Muonio is remote, roughly 1.5 hours from Kittilä airport. Not a Rovaniemi day-trip operator.',
-    image: '/images/card-christmas-santa.webp',
-    alt: 'Two reindeer grazing in a snowy Lapland forest at twilight',
+    image: '/images/op-harriniva.webp',
+    alt: 'Road into Ylläs with the fell on the horizon',
   },
   {
     slug: 'nordic-unique',
@@ -315,8 +315,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       'A Rovaniemi destination-management company running aurora hunts (their specialty), husky and reindeer visits, wildlife safaris and Santa visits, in fixed group departures or fully tailor-made holidays arranged by a local specialist.',
     whatTheyDont:
       'Tailor-made planning takes a conversation and time, not an instant one-click booking. Single-base, so activities cluster around Rovaniemi.',
-    image: '/images/card-midnight-sun.webp',
-    alt: 'Lapland river bend at midnight sun, low warm horizontal golden light',
+    image: '/images/op-nordic-unique.webp',
+    alt: 'Terrace at Santa Claus Village, Rovaniemi, on a summer afternoon',
   },
   {
     slug: 'arctic-gm',
@@ -336,8 +336,8 @@ export const OPERATORS_LOCAL: Operator[] = [
       "A Rovaniemi and Levi operator from the Rytilahti family, focused on northern-lights hunting with groups capped around five and 2025 luxury vans that drive to wherever the sky is clearest. Most aurora tours include photography and 24/7 aurora tracking. Rated Tripadvisor 'Best of the Best' (top 1%).",
     whatTheyDont:
       'Aurora-led and premium, not a broad family-activity operator. Winter-weighted; summer choice is thinner.',
-    image: '/images/card-luxury-aurora.webp',
-    alt: 'Premium glass-roofed wilderness suite at blue hour with faint aurora through the roof',
+    image: '/images/op-arctic-gm.webp',
+    alt: 'Levi village centre with hotels and the fell in summer',
   },
 ];
 
@@ -1833,9 +1833,21 @@ export function localizeOperator(op: Operator, lang: OperatorLang): Operator {
  * Finland-based local operators, since a Finnish, German or Japanese reader
  * has no use for "departs Gatwick" package trips. (Vesa 2026-07-08.)
  */
+/**
+ * 2026-09-11: EN now gets the same six Finland-based operators as every other
+ * locale (base records are English). The UK package-operator list stays in
+ * `operators` / `ukPackageOperators()` but is no longer rendered: Vesa,
+ * "ei me nyt ohjata minnekään ilman että siitä saadaan rahaa" — those six
+ * had no commission route, and the local six now sell through GetYourGuide.
+ */
 export function localizedOperators(lang: OperatorLang): Operator[] {
-  if (lang === 'en') return operators.map((op) => localizeOperator(op, 'en'));
+  if (lang === 'en') return OPERATORS_LOCAL;
   return OPERATORS_LOCAL.map((op) => withL10n(op, L10N_LOCAL[op.slug]?.[lang]));
+}
+
+/** Retired 2026-09-11 (see localizedOperators). Kept for the record, unused by any page. */
+export function ukPackageOperators(): Operator[] {
+  return operators.map((op) => localizeOperator(op, 'en'));
 }
 
 export const matrixCategoryLabels: Record<

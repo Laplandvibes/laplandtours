@@ -10,9 +10,28 @@
  * Only real GYG-bookable experiences live here — no museums, no free landmarks,
  * no the-VR-train. Copy is factual (activity site), no em-dash poetry.
  */
-import { Dog, Snowflake, Sparkles, Fish, Ship, Mountain } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Dog, Snowflake, Sparkles, Fish, Ship, Mountain, ArrowUpRight } from 'lucide-react';
 import AffiliateCTA from './AffiliateCTA';
-import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
+import { useLang, type CopyLang, copyLang, type Lang } from '../i18n/useLang';
+
+/**
+ * [2026-09-11] The six text-only cards became a GetYourGuide "activities"
+ * widget (real product photos, live prices, availability) plus a compact
+ * browse-by-type row. Vesa: "tähän pitää myös saada visuaalisuus kuntoon ja
+ * kunnolla menoa" — and the only honest winter photos we can show are the
+ * products' own. The widget is mounted by the Integration Analyzer script
+ * already in index.html; 'auto'/'city' modes are banned network-wide, so it
+ * is pinned to the Lapland location (2652, same as laplanddeals 10.9.).
+ * Ad-block fallback: if no iframe mounts within ~12 s the box collapses and
+ * the type row (Worker-routed, D1-logged) carries the section alone.
+ */
+const GYG_PARTNER_ID = 'VRMKD7N';
+const LAPLAND_LOCATION_ID = '2652';
+const GYG_LOCALE: Record<Lang, string> = {
+  en: 'en-US', fi: 'fi-FI', de: 'de-DE', ja: 'ja-JP', es: 'es-ES',
+  'pt-BR': 'pt-BR', 'zh-CN': 'zh-CN', ko: 'ko-KR', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL', sv: 'sv-SE',
+};
 
 interface ActivityCard {
   sid: string;
@@ -236,56 +255,83 @@ const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; cta: s
 export default function BookableActivities() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [blocked, setBlocked] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let waited = 0;
+    const FIRST = 2500, STEP = 1000, MAX = 12000;
+    const tick = (delay: number): ReturnType<typeof setTimeout> =>
+      setTimeout(() => {
+        if (cancelled) return;
+        waited += delay;
+        if (boxRef.current?.querySelector('iframe')) { setBlocked(false); return; }
+        setBlocked(true);
+        if (waited < MAX) tick(STEP);
+      }, delay);
+    const t = tick(FIRST);
+    return () => { cancelled = true; clearTimeout(t); };
+  }, [lang]);
+
   return (
     <section id="book-a-tour" className="bg-deeper-night pt-20 sm:pt-28 pb-12 sm:pb-16">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
-        <header className="mb-10 sm:mb-14 max-w-[820px]">
+        <header className="mb-8 sm:mb-10 max-w-[820px]">
           <p className="cap-meta">{c.eyebrow}</p>
-          <h2 className="mt-2 font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl [text-wrap:balance]">
+          <h2 className="mt-2 font-heading tracking-wide leading-[0.95] text-snow/95 text-5xl sm:text-7xl [text-wrap:balance]">
             {c.h2}
           </h2>
-          <p className="mt-5 text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-xl [text-wrap:pretty]">
+          <p className="mt-5 text-snow/75 font-body text-base sm:text-lg leading-relaxed max-w-xl [text-wrap:pretty]">
             {c.lead}
           </p>
         </header>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* Live GetYourGuide products for Lapland: the partners' own photos and
+            today's prices. Key on lang so a language switch remounts the widget. */}
+        <div
+          ref={boxRef}
+          key={`gyg-${lang}`}
+          className={blocked ? 'h-0 overflow-hidden' : 'min-h-[160px]'}
+          data-gyg-widget="activities"
+          data-gyg-partner-id={GYG_PARTNER_ID}
+          data-gyg-locale-code={GYG_LOCALE[lang]}
+          data-gyg-cmp="lv_laplandtours_home"
+          data-gyg-location-id={LAPLAND_LOCATION_ID}
+          data-gyg-number-of-items="6"
+        />
+
+        {/* Browse by type — Worker-routed searches (logged in D1), one row. */}
+        <ul className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ${blocked ? '' : 'mt-8'}`}>
           {cards.map((card) => {
             const t = card.labels[copyLang(lang)];
             return (
-              <article
-                key={card.sid}
-                className="relative flex flex-col h-full p-7 sm:p-8 overflow-hidden border border-white/8 hover:border-vibe-pink/40 transition-colors"
-                style={{ background: card.bgHex }}
-              >
-                <card.icon className="w-7 h-7 text-vibe-pink mb-4" strokeWidth={1.4} />
-
-                <h3 className="font-heading text-snow tracking-tight leading-[0.95] text-3xl sm:text-4xl mb-3 [text-wrap:balance]">
-                  {t.title}
-                </h3>
-
-                <p className="text-snow/70 font-body text-[14.5px] leading-[1.65] mb-4 [text-wrap:pretty]">
-                  {t.body}
-                </p>
-
-                <p className="font-mono text-[12px] tracking-[0.04em] text-snow/80 mb-7">
-                  {t.meta}
-                </p>
-
+              <li key={card.sid} className="min-w-0">
                 <AffiliateCTA
                   partner="activities"
                   sid={card.sid}
                   gygSearch={card.gygSearch}
                   ariaLabel={`${t.title}: ${c.cta}`}
-                  className="mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 bg-vibe-pink hover:bg-vibe-pink/90 text-white font-body font-semibold text-[14px] transition-colors"
+                  className="group flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-vibe-pink/50 hover:bg-white/[0.06] px-4 py-3.5 transition-colors"
                 >
-                  <span>{c.cta}</span>
-                  <span aria-hidden="true">→</span>
+                  <span
+                    className="flex items-center justify-center w-9 h-9 rounded-lg shrink-0"
+                    style={{ background: 'rgba(236,72,153,0.12)', border: '1px solid rgba(236,72,153,0.35)' }}
+                  >
+                    <card.icon className="w-4 h-4 text-vibe-pink" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-heading tracking-wide text-snow/95 text-lg sm:text-xl leading-tight group-hover:text-vibe-pink transition-colors">
+                      {t.title}
+                    </span>
+                    <span className="block font-mono text-[11px] tracking-[0.04em] text-snow/60 truncate">{t.meta}</span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-arctic-cyan shrink-0 group-hover:text-vibe-pink transition-colors" strokeWidth={1.6} aria-hidden="true" />
                 </AffiliateCTA>
-              </article>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
         <p className="cap-meta mt-6 text-snow/60 [text-wrap:pretty]">{c.note}</p>
       </div>

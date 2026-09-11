@@ -5,7 +5,8 @@ import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
-import { useLang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+import { Link } from 'react-router-dom';
+import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
 
 const COPY: Record<CopyLang, {
   metaTitle: string;
@@ -751,6 +752,27 @@ const COPY: Record<CopyLang, {
 };
 
 /** Icon per numbered section (01–06), arctic-cyan chip per the LV card pattern. */
+
+/** Pill style shared by the six action rows (2026-09-11). */
+const PILL =
+  'inline-flex items-center gap-1 rounded-full border border-arctic-cyan/40 bg-arctic-cyan/10 hover:bg-vibe-pink/15 hover:border-vibe-pink/60 hover:text-vibe-pink text-arctic-cyan font-body font-medium text-[13.5px] px-3.5 py-1.5 transition-colors';
+
+/** Action labels per card. Short — they sit as pills under the body. */
+const ACTIONS: Record<CopyLang, { flights: string; train: string; gear: string; season: string; etias: string; cars: string; transfer: string; insurance: string; esim: string }> = {
+  en: { flights: 'Compare flights', train: 'Night train Helsinki–Rovaniemi', gear: 'Winter kit', season: 'Month-by-month heat map', etias: 'Official ETIAS site', cars: 'Rental cars at Rovaniemi airport', transfer: 'Airport transfer', insurance: 'Travel insurance', esim: 'Finland eSIM' },
+  fi: { flights: 'Vertaile lennot', train: 'Yöjuna Helsinki–Rovaniemi', gear: 'Talvivarusteet', season: 'Kuukausikartta', etias: 'Virallinen ETIAS-sivu', cars: 'Vuokra-autot Rovaniemen kentältä', transfer: 'Kuljetus kentältä', insurance: 'Matkavakuutus', esim: 'Suomen eSIM' },
+  de: { flights: 'Flüge vergleichen', train: 'Nachtzug Helsinki–Rovaniemi', gear: 'Winterausrüstung', season: 'Monat für Monat', etias: 'Offizielle ETIAS-Seite', cars: 'Mietwagen ab Flughafen Rovaniemi', transfer: 'Flughafentransfer', insurance: 'Reiseversicherung', esim: 'eSIM für Finnland' },
+  ja: { flights: '航空券を比較', train: '夜行列車 ヘルシンキ–ロヴァニエミ', gear: '冬の装備', season: '月別の見どころ', etias: 'ETIAS公式サイト', cars: 'ロヴァニエミ空港のレンタカー', transfer: '空港送迎', insurance: '旅行保険', esim: 'フィンランドeSIM' },
+  ko: { flights: '항공권 비교', train: '야간열차 헬싱키–로바니에미', gear: '겨울 장비', season: '월별 한눈에', etias: 'ETIAS 공식 사이트', cars: '로바니에미 공항 렌터카', transfer: '공항 픽업', insurance: '여행자 보험', esim: '핀란드 eSIM' },
+  fr: { flights: 'Comparer les vols', train: 'Train de nuit Helsinki–Rovaniemi', gear: 'Équipement d’hiver', season: 'Mois par mois', etias: 'Site officiel ETIAS', cars: 'Voitures de location à Rovaniemi', transfer: 'Transfert aéroport', insurance: 'Assurance voyage', esim: 'eSIM Finlande' },
+  it: { flights: 'Confronta i voli', train: 'Treno notturno Helsinki–Rovaniemi', gear: 'Attrezzatura invernale', season: 'Mese per mese', etias: 'Sito ufficiale ETIAS', cars: 'Auto a noleggio a Rovaniemi', transfer: 'Transfer aeroportuale', insurance: 'Assicurazione di viaggio', esim: 'eSIM Finlandia' },
+  nl: { flights: 'Vluchten vergelijken', train: 'Nachttrein Helsinki–Rovaniemi', gear: 'Winteruitrusting', season: 'Maand voor maand', etias: 'Officiële ETIAS-site', cars: 'Huurauto’s op Rovaniemi airport', transfer: 'Luchthaventransfer', insurance: 'Reisverzekering', esim: 'eSIM voor Finland' },
+  sv: { flights: 'Jämför flyg', train: 'Nattåg Helsingfors–Rovaniemi', gear: 'Vinterutrustning', season: 'Månad för månad', etias: 'Officiell ETIAS-sida', cars: 'Hyrbilar på Rovaniemi flygplats', transfer: 'Flygplatstransfer', insurance: 'Reseförsäkring', esim: 'eSIM för Finland' },
+  es: { flights: 'Comparar vuelos', train: 'Tren nocturno Helsinki–Rovaniemi', gear: 'Equipo de invierno', season: 'Mes a mes', etias: 'Sitio oficial de ETIAS', cars: 'Coches de alquiler en Rovaniemi', transfer: 'Traslado desde el aeropuerto', insurance: 'Seguro de viaje', esim: 'eSIM para Finlandia' },
+  'pt-BR': { flights: 'Comparar voos', train: 'Trem noturno Helsinque–Rovaniemi', gear: 'Equipamento de inverno', season: 'Mês a mês', etias: 'Site oficial do ETIAS', cars: 'Aluguel de carro em Rovaniemi', transfer: 'Transfer do aeroporto', insurance: 'Seguro viagem', esim: 'eSIM para a Finlândia' },
+  'zh-CN': { flights: '比较航班', train: '赫尔辛基–罗瓦涅米夜间火车', gear: '冬季装备', season: '逐月看', etias: 'ETIAS 官方网站', cars: '罗瓦涅米机场租车', transfer: '机场接送', insurance: '旅行保险', esim: '芬兰 eSIM' },
+};
+
 const SECTION_ICONS = [Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse];
 
 /**
@@ -835,6 +857,8 @@ const STATS: Record<CopyLang, { value: string; label: string }[]> = {
 
 export default function PracticalInfo() {
   const lang = useLang();
+  const lp = useLocalePath();
+  const act = ACTIONS[copyLang(lang)];
   const c = COPY[copyLang(lang)];
   useEffect(() => {
     setPageMeta({
@@ -863,22 +887,25 @@ export default function PracticalInfo() {
           src="/images/hero-practical.webp"
           alt={c.altHero}
           priority
-          imgClassName="brightness-[1.35] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,0.66) 0%, rgba(15,23,42,0.24) 50%, rgba(15,23,42,0.06) 100%)',
+              'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.40) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
+        {/* 2026-09-11: the h1 is the page's real title again (Vesa: "voiko h1
+            olla -30?" — no). The temperature stays as a kicker. */}
         <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <h1
-            className="font-heading text-vibe-pink leading-[0.78] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
-            style={{ fontSize: 'clamp(3.5rem,12vw,9rem)' }}
+          <p
+            className="font-heading text-vibe-pink leading-none tracking-wide drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)] text-[clamp(2.5rem,7vw,5rem)]"
             aria-label={c.ariaH1}
           >
             {c.h1}
+          </p>
+          <h1 className="mt-3 font-heading tracking-wide leading-[0.95] text-snow text-[clamp(2.25rem,5.5vw,4.5rem)] [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
+            {c.articleHeadline}
           </h1>
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
@@ -928,17 +955,68 @@ export default function PracticalInfo() {
                 <p className="text-snow/70 font-body text-[15px] sm:text-base leading-[1.7]">
                   {s.body}
                 </p>
-                {i === 0 && (
-                  <a
-                    href={`https://laplandvibes.com/${LANG_TO_PREFIX[lang] ? `${LANG_TO_PREFIX[lang]}/` : ''}blog/drive-to-lapland-by-car/`}
-                    data-umami-event="drive_overview_click"
-                    data-umami-event-surface="practical"
-                    className="mt-4 inline-flex items-center gap-2 text-arctic-cyan hover:text-vibe-pink font-body font-medium text-[15px] transition-colors"
-                  >
-                    <span>{c.driveLink}</span>
-                    <span aria-hidden="true">→</span>
-                  </a>
-                )}
+                {/* 2026-09-11: every card ends in something the reader can DO
+                    (Vesa: "täyttösivu ilman funktiota ja aitoa halua palvella
+                    asiakasta"). Affiliate pills go through the Worker; the
+                    ETIAS pill is the official EU site; the season pill is our
+                    own heat map. */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {i === 0 && (
+                    <>
+                      <a href="https://laplandflights.fi/" data-umami-event="practical_flights_click" className={PILL}>
+                        {act.flights}<span aria-hidden="true"> →</span>
+                      </a>
+                      <AffiliateCTA partner="trains" sid="practical_train" query={{ departurecity: 'Helsinki', arrivalcity: 'Rovaniemi', tripTab: 'train' }} className={PILL}>
+                        {act.train}<span aria-hidden="true"> →</span>
+                      </AffiliateCTA>
+                      <a
+                        href={`https://laplandvibes.com/${LANG_TO_PREFIX[lang] ? `${LANG_TO_PREFIX[lang]}/` : ''}blog/drive-to-lapland-by-car/`}
+                        data-umami-event="drive_overview_click"
+                        data-umami-event-surface="practical"
+                        className={PILL}
+                      >
+                        {c.driveLink}<span aria-hidden="true"> →</span>
+                      </a>
+                    </>
+                  )}
+                  {i === 1 && (
+                    <AffiliateCTA partner="scandinavianoutdoor" sid="practical_gear" destination={lang === 'fi' ? 'https://scandinavianoutdoor.fi/' : 'https://scandinavianoutdoor.fi/en/'} className={PILL}>
+                      {act.gear}<span aria-hidden="true"> →</span>
+                    </AffiliateCTA>
+                  )}
+                  {i === 2 && (
+                    <Link to={`${lp('/')}#season`} className={PILL}>
+                      {act.season}<span aria-hidden="true"> →</span>
+                    </Link>
+                  )}
+                  {i === 3 && (
+                    <a href="https://travel-europe.europa.eu/etias" target="_blank" rel="noopener" className={PILL}>
+                      {act.etias}<span aria-hidden="true"> ↗</span>
+                    </a>
+                  )}
+                  {i === 4 && (
+                    <>
+                      <AffiliateCTA partner="cars" sid="practical_cars_pill" destination="RVN" className={PILL}>
+                        {act.cars}<span aria-hidden="true"> →</span>
+                      </AffiliateCTA>
+                      <AffiliateCTA partner="welcomepickups" sid="practical_transfer" destination="https://www.welcomepickups.com/rovaniemi/" className={PILL}>
+                        {act.transfer}<span aria-hidden="true"> →</span>
+                      </AffiliateCTA>
+                    </>
+                  )}
+                  {i === 5 && (
+                    <>
+                      {lang !== 'fi' && (
+                        <AffiliateCTA partner="ekta" sid="practical_insurance" className={PILL}>
+                          {act.insurance}<span aria-hidden="true"> →</span>
+                        </AffiliateCTA>
+                      )}
+                      <AffiliateCTA partner="airalo" sid="practical_esim" destination="https://www.airalo.com/finland-esim" className={PILL}>
+                        {act.esim}<span aria-hidden="true"> →</span>
+                      </AffiliateCTA>
+                    </>
+                  )}
+                </div>
               </article>
             );
           })}

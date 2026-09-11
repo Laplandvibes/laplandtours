@@ -1,12 +1,37 @@
 import { ExternalLink } from 'lucide-react';
-import { localizedOperators, withUtm, matrixCategoryLabels, operatorLang, type Operator } from '../lib/operators';
+import AffiliateCTA from './AffiliateCTA';
+import { localizedOperators, matrixCategoryLabels, operatorLang, type Operator } from '../lib/operators';
 import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
+
+/**
+ * GetYourGuide search per operator (Worker builds the resolving /s/?q= URL).
+ * Measured 2026-09-11: a bare operator NAME returns GYG's generic "500+"
+ * inventory (no supplier match), so the query names the operator's home base
+ * and signature product instead — that is what lands the reader on the right
+ * shelf. Verified counts: "northern lights Saariselka" 5, "reindeer sleigh
+ * Levi" 205, "ice fishing Rovaniemi" 500+.
+ */
+const GYG_SEARCH: Record<string, string> = {
+  'lapland-safaris': 'Rovaniemi snowmobile safari',
+  'beyond-arctic': 'northern lights photography tour Rovaniemi',
+  safartica: 'Rovaniemi husky safari',
+  harriniva: 'husky safari Muonio',
+  'nordic-unique': 'Rovaniemi day tours',
+  'arctic-gm': 'northern lights hunting Rovaniemi',
+  inghams: 'Saariselkä activities',
+  'santas-lapland': 'Santa Claus Village Rovaniemi',
+  tui: 'Levi activities',
+  transun: 'Rovaniemi snowmobile',
+  'magnetic-north': 'glass igloo Saariselkä',
+  'nordic-visitor': 'Lapland tours',
+};
 
 const HEADINGS: Record<CopyLang, {
   eyebrow: string;
   h2: string;
   lead: string;
   visit: string;
+  gyg: string;
   tier: string;
   length: string;
   departures: string;
@@ -18,8 +43,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Path two',
     h2: 'Or book a local operator',
     lead:
-      'Six Finland-based companies that run Lapland activities themselves: husky, aurora, snowmobile, reindeer. You book direct on their terms; there is no commercial agreement with any of them. This is editorial signposting, not a storefront. Checked July 2026. Written from Finland, sources visible.',
+      'Six Finland-based companies that run Lapland’s activities themselves: husky, aurora, snowmobile, reindeer. What each does best, and where the matching tours are booked.',
     visit: 'Visit',
+    gyg: 'See tours on GetYourGuide',
     tier: 'Tier',
     length: 'Length',
     departures: 'Departures',
@@ -31,8 +57,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Polku 2',
     h2: 'Tai varaa paikallinen toimija',
     lead:
-      'Kuusi Suomessa toimivaa yritystä, jotka pyörittävät Lapin aktiviteetit itse: husky, revontulet, kelkka, poro. Varaat suoraan heidän ehdoillaan; yhdenkään kanssa ei ole kaupallista sopimusta. Kyseessä on toimituksellinen opas, ei kauppapaikka. Tarkistettu heinäkuu 2026. Kirjoitettu Suomesta, lähteet näkyvillä.',
+      'Kuusi Suomessa toimivaa yritystä, jotka pyörittävät Lapin aktiviteetit itse: husky, revontulet, kelkka, poro. Mitä kukin osaa parhaiten, ja mistä vastaavat retket varataan.',
     visit: 'Vieraile',
+    gyg: 'Katso retkiä GetYourGuidessa',
     tier: 'Hintaluokka',
     length: 'Kesto',
     departures: 'Lähin kenttä',
@@ -44,8 +71,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Weg zwei',
     h2: 'Oder einen lokalen Anbieter buchen',
     lead:
-      'Sechs in Finnland ansässige Anbieter, die Lapplands Aktivitäten selbst durchführen: Husky, Polarlicht, Schneemobil, Rentier. Sie buchen direkt zu deren Bedingungen; mit keinem besteht eine Geschäftsbeziehung. Dies ist ein redaktioneller Wegweiser, kein Shop. Überprüft im Juli 2026.',
+      'Sechs Unternehmen aus Finnland, die Lapplands Aktivitäten selbst durchführen: Husky, Polarlicht, Schneemobil, Rentier. Was jedes am besten kann, und wo Sie die passenden Touren buchen.',
     visit: 'Besuchen',
+    gyg: 'Touren auf GetYourGuide ansehen',
     tier: 'Klasse',
     length: 'Dauer',
     departures: 'Nächste Flughäfen',
@@ -57,8 +85,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'ルート2',
     h2: '地元の会社に直接予約する',
     lead:
-      'ラップランドのアクティビティを自ら運営する、フィンランドを拠点とする6社をご紹介します。ハスキー、オーロラ、スノーモービル、トナカイ。各社の条件で直接予約でき、いずれとも商業的な提携はありません。これは編集による道しるべであり、販売窓口ではありません。2026年7月確認。',
+      'ラップランドのアクティビティを自社で運営するフィンランドの6社。ハスキー、オーロラ、スノーモービル、トナカイ。各社の得意分野と、該当ツアーの予約先。',
     visit: 'サイトを見る',
+    gyg: 'GetYourGuideでツアーを見る',
     tier: 'クラス',
     length: '日数',
     departures: '最寄り空港',
@@ -70,8 +99,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: '경로 2',
     h2: '또는 현지 운영사에 직접 예약',
     lead:
-      '라플란드의 액티비티를 직접 운영하는, 핀란드에 기반을 둔 여섯 곳을 소개합니다. 허스키, 오로라, 스노모빌, 순록. 각 업체의 조건으로 직접 예약하며, 누구와도 상업적 제휴는 없습니다. 이것은 편집 가이드이지 판매 창구가 아닙니다. 2026년 7월 확인.',
+      '라플란드 액티비티를 직접 운영하는 핀란드 회사 6곳: 허스키, 오로라, 스노모빌, 순록. 각 회사가 가장 잘하는 것과, 해당 투어를 예약하는 곳.',
     visit: '방문',
+    gyg: 'GetYourGuide에서 투어 보기',
     tier: '가격대',
     length: '일정',
     departures: '가까운 공항',
@@ -83,8 +113,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Voie 2',
     h2: 'Ou réservez un opérateur local',
     lead:
-      'Six opérateurs établis en Finlande qui exploitent eux-mêmes les activités de Laponie: husky, aurore, motoneige, renne. Vous réservez directement, à leurs conditions ; aucun accord commercial avec aucun d\'eux. Il s\'agit d\'un repérage éditorial, pas d\'une boutique. Vérifié en juillet 2026.',
+      'Six entreprises basées en Finlande qui exploitent elles-mêmes les activités de Laponie : huskys, aurores, motoneige, rennes. Ce que chacune fait de mieux, et où réserver les excursions correspondantes.',
     visit: 'Visiter',
+    gyg: 'Voir les excursions sur GetYourGuide',
     tier: 'Gamme',
     length: 'Durée',
     departures: 'Aéroport le plus proche',
@@ -96,8 +127,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Strada 2',
     h2: 'O prenota un operatore locale',
     lead:
-      'Sei operatori con sede in Finlandia che gestiscono in prima persona le attività della Lapponia: husky, aurora, motoslitta, renna. Prenoti direttamente, alle loro condizioni; con nessuno vi è un accordo commerciale. È una guida editoriale, non una vetrina. Verificato a luglio 2026.',
+      'Sei aziende con sede in Finlandia che gestiscono in proprio le attività della Lapponia: husky, aurora, motoslitta, renne. Cosa fa meglio ciascuna, e dove si prenotano le escursioni corrispondenti.',
     visit: 'Visita',
+    gyg: 'Vedi le escursioni su GetYourGuide',
     tier: 'Fascia',
     length: 'Durata',
     departures: 'Aeroporto più vicino',
@@ -109,8 +141,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Route 2',
     h2: 'Of boek een lokale aanbieder',
     lead:
-      'Zes in Finland gevestigde aanbieders die de activiteiten van Lapland zelf uitvoeren: husky, noorderlicht, sneeuwscooter, rendier. U boekt rechtstreeks, op hun voorwaarden; met geen van hen is er een commerciële afspraak. Dit is redactionele wegwijzering, geen winkel. Gecontroleerd in juli 2026.',
+      'Zes bedrijven uit Finland die de activiteiten in Lapland zelf uitvoeren: husky, noorderlicht, sneeuwscooter, rendier. Waar elk het beste in is, en waar u de bijbehorende tours boekt.',
     visit: 'Bezoeken',
+    gyg: 'Tours bekijken op GetYourGuide',
     tier: 'Klasse',
     length: 'Duur',
     departures: 'Dichtstbijzijnde luchthaven',
@@ -122,8 +155,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Väg 2',
     h2: 'Eller boka en lokal arrangör',
     lead:
-      'Sex företag baserade i Finland som driver Lapplands aktiviteter själva: husky, norrsken, skoter, ren. Du bokar direkt på deras villkor; vi har ingen affärsrelation med någon av dem. Det här är en redaktionell vägvisare, inte en butik. Kontrollerad juli 2026.',
+      'Sex företag i Finland som driver Lapplands aktiviteter själva: husky, norrsken, skoter, ren. Vad var och en gör bäst, och var du bokar motsvarande turer.',
     visit: 'Besök',
+    gyg: 'Se turer på GetYourGuide',
     tier: 'Prisklass',
     length: 'Längd',
     departures: 'Närmaste flygplats',
@@ -135,8 +169,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Camino 2',
     h2: 'O reserve un operador local',
     lead:
-      'Seis operadores con sede en Finlandia que gestionan ellos mismos las actividades de Laponia: husky, aurora, motonieve, reno. Reserve directamente, según sus condiciones; no hay acuerdo comercial con ninguno. Es una guía editorial, no una tienda. Revisado en julio de 2026.',
+      'Seis empresas con sede en Finlandia que operan ellas mismas las actividades de Laponia: huskies, auroras, motonieve, renos. En qué destaca cada una y dónde se reservan las excursiones correspondientes.',
     visit: 'Visitar',
+    gyg: 'Ver excursiones en GetYourGuide',
     tier: 'Gama',
     length: 'Duración',
     departures: 'Aeropuerto más cercano',
@@ -148,8 +183,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: 'Caminho 2',
     h2: 'Ou reserve uma operadora local',
     lead:
-      'Seis operadoras sediadas na Finlândia que conduzem elas mesmas as atividades da Lapônia: husky, aurora, snowmobile, rena. Você reserva direto, segundo os termos delas; não há acordo comercial com nenhuma. É uma orientação editorial, não uma loja. Revisado em julho de 2026.',
+      'Seis empresas sediadas na Finlândia que operam elas mesmas as atividades da Lapônia: huskies, aurora, snowmobile, renas. No que cada uma é melhor, e onde reservar os passeios correspondentes.',
     visit: 'Visitar',
+    gyg: 'Ver passeios no GetYourGuide',
     tier: 'Categoria',
     length: 'Duração',
     departures: 'Aeroporto mais próximo',
@@ -161,8 +197,9 @@ const HEADINGS: Record<CopyLang, {
     eyebrow: '路线 2',
     h2: '或直接预订本地运营商',
     lead:
-      '六家总部设在芬兰、自行运营拉普兰活动的公司——哈士奇、极光、雪地摩托、驯鹿。你按它们的条款直接预订；我们与其中任何一家都没有商业协议。这是编辑性的指引，而非购物商店。2026 年 7 月核实。',
+      '六家总部在芬兰、自行运营拉普兰活动的公司：哈士奇、极光、雪地摩托、驯鹿。各家最擅长什么，以及相应行程在哪里预订。',
     visit: '访问',
+    gyg: '在 GetYourGuide 查看行程',
     tier: '档位',
     length: '时长',
     departures: '最近机场',
@@ -204,15 +241,13 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
 
   return (
     <article className="relative grid grid-cols-12 gap-x-5 sm:gap-x-10 gap-y-6 py-16 sm:py-20 border-t border-white/8 first:border-t-0">
-      {/* Image */}
-      <a
-        href={withUtm(op.url, op.slug)}
-        target="_blank"
-        rel="sponsored nofollow noopener"
-        aria-label={`Visit ${op.name}`}
+      {/* Image — a real photograph of the operator's home region (July 2026
+          road trip), no longer a link: Vesa 11.9.2026, "ei me nyt ohjata
+          minnekään ilman että siitä saadaan rahaa". */}
+      <div
         className={`col-span-12 ${
           imageLeft ? 'sm:col-span-5 sm:order-1' : 'sm:col-span-5 sm:col-start-8 sm:order-2'
-        } relative block ${aspect} overflow-hidden bg-deep-night`}
+        } relative block ${aspect} overflow-hidden rounded-2xl bg-deep-night`}
       >
         <img
           src={op.image}
@@ -220,9 +255,9 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
           loading={eager ? 'eager' : 'lazy'}
           fetchPriority={eager ? 'high' : undefined}
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-      </a>
+      </div>
 
       {/* Body */}
       <div
@@ -272,15 +307,18 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
           ))}
         </div>
 
-        <a
-          href={withUtm(op.url, op.slug)}
-          target="_blank"
-          rel="sponsored nofollow noopener"
-          className="inline-flex items-center gap-2 text-snow hover:text-vibe-pink border-b border-snow/40 hover:border-vibe-pink pb-1 self-start font-body font-medium transition-colors text-[15px]"
+        {/* The click that earns: the matching tours on GetYourGuide through
+            the Worker (8 %, D1-logged). The operator's own site is named in
+            the copy but not linked — no free referrals. */}
+        <AffiliateCTA
+          partner="activities"
+          sid={`operators_${op.slug}_gyg`}
+          gygSearch={GYG_SEARCH[op.slug] ?? 'Lapland activities Rovaniemi'}
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-vibe-pink hover:bg-vibe-pink/90 text-white self-start font-body font-semibold transition-colors text-[15px]"
         >
-          {labels.visit} {op.domain}
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
+          {labels.gyg}
+          <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+        </AffiliateCTA>
       </div>
     </article>
   );

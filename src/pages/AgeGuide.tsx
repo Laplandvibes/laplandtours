@@ -1136,6 +1136,8 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
  * (0–2 / 3–5 / 6–9 / 10–15 / 16+), 6 staple activities, snowmobile tandem
  * from 12 with a parent, solo with a driving licence (rentals usually 18+).
  */
+/** Band photos, index = row order 0–2 / 3–5 / 6–9 / 10–15 / 16+. */
+const AGE_IMAGES = ['/images/age-0-2.webp', '/images/age-3-5.webp', '/images/age-6-9.webp', '/images/age-10-15.webp', '/images/age-16.webp'];
 const STATS: Record<CopyLang, { value: string; label: string }[]> = {
   en: [
     { value: '5', label: 'Age bands' },
@@ -1241,7 +1243,6 @@ export default function AgeGuide() {
           src="/images/hero-age-guide.webp"
           alt={c.altHero}
           priority
-          imgClassName="brightness-[1.3] saturate-[1.1]"
         />
         <div
           className="absolute inset-0"
@@ -1326,17 +1327,35 @@ export default function AgeGuide() {
         </div>
       </section>
 
+      {/* 2026-09-11: each age band gets a real photograph beside the text
+          (Vesa: "jokin kuva rinnalla tekstien kanssa, eloa, iloisuutta").
+          Own July 2026 photos, no people in focus: beach playground,
+          Mini Ruka gate, the Ruka water park, the bike park, a sauna. */}
       <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-14">
-          {c.rows.map((r) => (
-            <article key={r.range} className="grid grid-cols-12 gap-x-6 gap-y-3 pb-12 rule-hairline">
-              <span className="col-span-12 sm:col-span-2 cap-meta self-start pt-1">{r.range}</span>
-              <h2 className="col-span-12 sm:col-span-3 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
-                {r.label}
-              </h2>
-              <p className="col-span-12 sm:col-span-7 text-snow/70 font-body text-[15px] sm:text-base leading-[1.7]">
-                {r.summary}
-              </p>
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-12 sm:space-y-16">
+          {c.rows.map((r, i) => (
+            <article key={r.range} className="grid grid-cols-12 gap-x-8 gap-y-5 items-center">
+              <div className={`col-span-12 sm:col-span-5 ${i % 2 ? 'sm:order-2' : ''} relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/10`}>
+                <img
+                  src={AGE_IMAGES[i] ?? AGE_IMAGES[0]}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-deep-night/75 backdrop-blur px-3 py-1 font-heading tracking-wide text-snow text-xl leading-none border border-white/15">
+                  {r.range}
+                </span>
+              </div>
+              <div className={`col-span-12 sm:col-span-7 ${i % 2 ? 'sm:order-1' : ''}`}>
+                <span className="cap-meta block mb-2">{r.range}</span>
+                <h2 className="font-heading tracking-wide text-snow/95 text-3xl sm:text-4xl leading-tight">
+                  {r.label}
+                </h2>
+                <p className="mt-4 text-snow/75 font-body text-[15px] sm:text-base leading-[1.7]">
+                  {r.summary}
+                </p>
+              </div>
             </article>
           ))}
         </div>

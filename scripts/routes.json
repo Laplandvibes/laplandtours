@@ -41,7 +41,6 @@
       "src/components/BuildYourOwn.tsx",
       "src/components/DriveToLapland.tsx",
       "src/components/OperatorGuide.tsx",
-      "src/components/GygPicks.tsx",
       "src/components/FAQ.tsx"
     ]
   },
