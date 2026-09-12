@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
+import { ArrowUpRight } from 'lucide-react';
+import AffiliateCTA from '../components/AffiliateCTA';
+import PhotoCredit from '../components/PhotoCredit';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
@@ -29,6 +32,7 @@ const COPY: Record<CopyLang, {
   activities: string[];
   rows: Row[];
   altHero: string;
+  gygCta: string;
 }> = {
   en: {
     metaTitle: 'Age guide: which Lapland activities suit which age | #LaplandTours',
@@ -46,7 +50,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Age',
     legend: '✓ available · dash: not offered · "passenger" / "tandem" / "solo" specifies the role',
     activities: ['Aurora hunt', 'Husky', 'Snowmobile', 'Reindeer', 'Sauna', 'Glass igloo'],
-    altHero: 'Snowy fell summit at golden hour in Finnish Lapland',
+    altHero: 'View from a fell summit over the boreal forest of Finnish Lapland',
+    gygCta: 'Tours on GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -135,7 +140,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Ikä',
     legend: '✓ tarjolla · viiva: ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
     activities: ['Revontuliretki', 'Husky', 'Kelkkasafari', 'Pororetki', 'Sauna', 'Lasi-iglu'],
-    altHero: 'Luminen tunturin huippu kultaisen tunnin valossa Suomen Lapissa',
+    altHero: 'Näkymä tunturin laelta Suomen Lapin metsien yli',
+    gygCta: 'Retket GetYourGuidessa',
     rows: [
       {
         range: '0–2',
@@ -225,7 +231,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Alter',
     legend: '✓ verfügbar · Strich: nicht im Angebot · „Mitfahrer“ / „Tandem“ / „selbst“ beschreibt die Rolle',
     activities: ['Polarlichtjagd', 'Husky', 'Schneemobil', 'Rentier', 'Sauna', 'Glas-Iglu'],
-    altHero: 'Verschneiter Fjäll-Gipfel im goldenen Licht in Finnisch-Lappland',
+    altHero: 'Blick von einem Fjäll-Gipfel über die borealen Wälder Finnisch-Lapplands',
+    gygCta: 'Touren auf GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -315,7 +322,8 @@ const COPY: Record<CopyLang, {
     ageHeader: '年齢',
     legend: '✓ 利用可能 · — 提供なし · 「passenger（同乗者）」/「tandem（タンデム）」/「solo（単独）」は役割を示します',
     activities: ['オーロラ観察', 'ハスキー', 'スノーモービル', 'トナカイ', 'サウナ', 'グラスイグルー'],
-    altHero: 'フィンランド・ラップランドのゴールデンアワーに輝く雪の山頂',
+    altHero: 'フィンランド・ラップランドの森を丘陵の頂から望む',
+    gygCta: 'GetYourGuideのツアー',
     rows: [
       {
         range: '0〜2歳',
@@ -405,7 +413,8 @@ const COPY: Record<CopyLang, {
     ageHeader: '연령',
     legend: '✓ 가능 · 줄표(—): 미제공 · "동승자" / "탠덤" / "단독"은 역할을 의미합니다',
     activities: ['오로라 헌트', '허스키', '스노모빌', '순록', '사우나', '글래스 이글루'],
-    altHero: '핀란드 라플란드의 황금빛 시간 속 눈 덮인 펠 정상',
+    altHero: '핀란드 라플란드의 숲을 펠 정상에서 내려다본 풍경',
+    gygCta: 'GetYourGuide 투어',
     rows: [
       {
         range: '0~2세',
@@ -495,7 +504,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Âge',
     legend: '✓ disponible · tiret : non proposé · « passager » / « tandem » / « seul » indique le rôle',
     activities: ['Chasse aux aurores', 'Husky', 'Motoneige', 'Renne', 'Sauna', 'Iglou de verre'],
-    altHero: 'Sommet de fjäll enneigé à l\'heure dorée en Laponie finlandaise',
+    altHero: 'Vue depuis un sommet de fjäll sur les forêts boréales de Laponie finlandaise',
+    gygCta: 'Excursions sur GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -585,7 +595,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Età',
     legend: '✓ disponibile · trattino: non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
     activities: ['Caccia all\'aurora', 'Husky', 'Motoslitta', 'Renna', 'Sauna', 'Iglù di vetro'],
-    altHero: 'Vetta di un fjäll innevato all\'ora d\'oro in Lapponia finlandese',
+    altHero: 'Veduta da una cima di fjäll sulle foreste boreali della Lapponia finlandese',
+    gygCta: 'Escursioni su GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -675,7 +686,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Leeftijd',
     legend: '✓ mogelijk · streepje: niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
     activities: ['Noorderlichtjacht', 'Husky', 'Sneeuwscooter', 'Rendier', 'Sauna', 'Glasiglo'],
-    altHero: 'Besneeuwde fjäll-top in het gouden uur in Fins Lapland',
+    altHero: 'Uitzicht vanaf een fjäll-top over de boreale bossen van Fins Lapland',
+    gygCta: 'Tours op GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -764,7 +776,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Ålder',
     legend: '✓ tillgängligt · streck: erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
     activities: ['Norrskensjakt', 'Husky', 'Skoter', 'Ren', 'Bastu', 'Glasiglo'],
-    altHero: 'Snöig fjälltopp i gyllene timme i finska Lappland',
+    altHero: 'Utsikt från en fjälltopp över finska Lapplands barrskogar',
+    gygCta: 'Turer på GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -854,7 +867,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Edad',
     legend: '✓ disponible · guion: no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
     activities: ['Caza de auroras', 'Husky', 'Motonieve', 'Renos', 'Sauna', 'Iglú de cristal'],
-    altHero: 'Cumbre nevada de un fell a la hora dorada en la Laponia finlandesa',
+    altHero: 'Vista desde la cima de un fjäll sobre los bosques boreales de la Laponia finlandesa',
+    gygCta: 'Excursiones en GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -944,7 +958,8 @@ const COPY: Record<CopyLang, {
     ageHeader: 'Idade',
     legend: '✓ disponível · traço: não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
     activities: ['Caça à aurora', 'Husky', 'Snowmobile', 'Renas', 'Sauna', 'Iglu de vidro'],
-    altHero: 'Cume nevado de um fell na hora dourada na Lapônia finlandesa',
+    altHero: 'Vista do alto de um fjäll sobre as florestas boreais da Lapônia finlandesa',
+    gygCta: 'Passeios no GetYourGuide',
     rows: [
       {
         range: '0–2',
@@ -1034,7 +1049,8 @@ const COPY: Record<CopyLang, {
     ageHeader: '年龄',
     legend: '✓ 可参加 · — 不提供 · “乘客”/“双人”/“单独”表示角色',
     activities: ['极光追寻', '哈士奇', '雪地摩托', '驯鹿', '桑拿', '玻璃冰屋'],
-    altHero: '芬兰拉普兰黄金时刻覆雪的山丘之巅',
+    altHero: '从山顶俯瞰芬兰拉普兰的北方森林',
+    gygCta: '在 GetYourGuide 查看',
     rows: [
       {
         range: '0–2',
@@ -1136,8 +1152,15 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
  * (0–2 / 3–5 / 6–9 / 10–15 / 16+), 6 staple activities, snowmobile tandem
  * from 12 with a parent, solo with a driving licence (rentals usually 18+).
  */
-/** Band photos, index = row order 0–2 / 3–5 / 6–9 / 10–15 / 16+. */
-const AGE_IMAGES = ['/images/age-0-2.webp', '/images/age-3-5.webp', '/images/age-6-9.webp', '/images/age-10-15.webp', '/images/age-16.webp'];
+/** Band colour + the GetYourGuide search that fits that age. Verified 2026-09-11: a
+ *  search naming place + product returns real Lapland inventory; a bare age does not. */
+const BANDS = [
+  { bg: 'linear-gradient(135deg,#13233A 0%,#101A2C 100%)', ink: '#7DD3FC', gyg: 'Rovaniemi family activities' },
+  { bg: 'linear-gradient(135deg,#1B2138 0%,#121826 100%)', ink: '#F9A8D4', gyg: 'Santa Claus Village Rovaniemi' },
+  { bg: 'linear-gradient(135deg,#10261F 0%,#0E1A22 100%)', ink: '#6EE7B7', gyg: 'husky safari Rovaniemi' },
+  { bg: 'linear-gradient(135deg,#1E1B33 0%,#141428 100%)', ink: '#C4B5FD', gyg: 'snowmobile tour Rovaniemi' },
+  { bg: 'linear-gradient(135deg,#2A1A2B 0%,#181022 100%)', ink: '#FDBA74', gyg: 'northern lights tour Saariselka' },
+];
 const STATS: Record<CopyLang, { value: string; label: string }[]> = {
   en: [
     { value: '5', label: 'Age bands' },
@@ -1261,6 +1284,7 @@ export default function AgeGuide() {
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
+          <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
         </div>
       </section>
 
@@ -1327,37 +1351,53 @@ export default function AgeGuide() {
         </div>
       </section>
 
-      {/* 2026-09-11: each age band gets a real photograph beside the text
-          (Vesa: "jokin kuva rinnalla tekstien kanssa, eloa, iloisuutta").
-          Own July 2026 photos, no people in focus: beach playground,
-          Mini Ruka gate, the Ruka water park, the bike park, a sauna. */}
+      {/* 2026-09-12: the five band photographs are gone. Vesa: "takana
+          vesipuisto ja puhutaan igluista?" — every own photo we have is from
+          July 2026 and this page is about winter activities, so a photo beside
+          the text contradicted the text. The colour, the big age number and a
+          per-band GetYourGuide search carry the section instead: the product
+          photos the reader wants to see are winter photos, and they live on
+          the partner's page, not in our (summer-only) library. */}
       <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-12 sm:space-y-16">
-          {c.rows.map((r, i) => (
-            <article key={r.range} className="grid grid-cols-12 gap-x-8 gap-y-5 items-center">
-              <div className={`col-span-12 sm:col-span-5 ${i % 2 ? 'sm:order-2' : ''} relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/10`}>
-                <img
-                  src={AGE_IMAGES[i] ?? AGE_IMAGES[0]}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-deep-night/75 backdrop-blur px-3 py-1 font-heading tracking-wide text-snow text-xl leading-none border border-white/15">
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid gap-4 sm:gap-5 md:grid-cols-2">
+          {c.rows.map((r, i) => {
+            const band = BANDS[i] ?? BANDS[0];
+            return (
+              <article
+                key={r.range}
+                className="group relative flex flex-col rounded-3xl border border-white/10 p-6 sm:p-8 overflow-hidden"
+                style={{ background: band.bg }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-4 -top-8 font-heading leading-none select-none text-[7rem] sm:text-[9rem]"
+                  style={{ color: band.ink, opacity: 0.16 }}
+                >
                   {r.range}
                 </span>
-              </div>
-              <div className={`col-span-12 sm:col-span-7 ${i % 2 ? 'sm:order-1' : ''}`}>
-                <span className="cap-meta block mb-2">{r.range}</span>
-                <h2 className="font-heading tracking-wide text-snow/95 text-3xl sm:text-4xl leading-tight">
-                  {r.label}
-                </h2>
-                <p className="mt-4 text-snow/75 font-body text-[15px] sm:text-base leading-[1.7]">
-                  {r.summary}
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="relative">
+                  <span className="font-heading tracking-wide text-4xl sm:text-5xl leading-none" style={{ color: band.ink }}>
+                    {r.range}
+                  </span>
+                  <h2 className="mt-2 font-heading tracking-wide text-snow/95 text-2xl sm:text-3xl leading-tight">
+                    {r.label}
+                  </h2>
+                  <p className="mt-4 text-snow/75 font-body text-[15px] leading-[1.7]">
+                    {r.summary}
+                  </p>
+                  <AffiliateCTA
+                    partner="activities"
+                    sid={`age_${r.range.replace(/[^0-9+]/g, '_')}_gyg`}
+                    gygSearch={band.gyg}
+                    className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-snow/25 bg-white/[0.06] px-4 py-2.5 font-body font-medium text-[14px] text-snow/90 hover:border-vibe-pink hover:text-vibe-pink transition-colors"
+                  >
+                    {c.gygCta}
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                  </AffiliateCTA>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { CheckCircle, Send } from 'lucide-react';
+import PhotoCredit from './PhotoCredit';
 import { useLang, useLocalePath, useHtmlLang, type CopyLang, copyLang } from '../i18n/useLang';
 
 /**
@@ -104,7 +105,7 @@ const COPY: Record<CopyLang, {
     lead: 'Pick where, when, what and roughly how much. Within 24–48 hours you get a reply with concrete operators, a realistic budget and an honest word on what does not fit.',
     bullets: ['Real operators and tours, not a brochure', 'A budget check before you book anything', 'Written from Finland by people who drive these roads', 'No obligation, no fee to you'],
     noCommitment: 'No obligation. No fee to you.',
-    altPhoto: 'Reindeer on a gravel yard by the forest at Ylläs in July',
+    altPhoto: 'Chandeliers and gilded armchairs in the lounge of a historic hotel in Tornio',
     secWhen: 'When and who',
     month: 'Month',
     monthAny: 'Not decided yet',
@@ -156,7 +157,7 @@ const COPY: Record<CopyLang, {
     lead: 'Valitse minne, milloin, mitä ja suunnilleen millä rahalla. Saat 24–48 tunnin sisällä vastauksen, jossa on oikeat toimijat, realistinen budjetti ja rehellinen sana siitä, mikä ei sovi.',
     bullets: ['Oikeita toimijoita ja retkiä, ei esitettä', 'Budjettitarkistus ennen kuin varaat mitään', 'Kirjoitettu Suomesta, näitä teitä ajaneiden käsin', 'Ei sitoumusta, ei maksua sinulle'],
     noCommitment: 'Ei sitoumusta. Ei maksua sinulle.',
-    altPhoto: 'Poroja sorapihalla metsän reunassa Ylläksellä heinäkuussa',
+    altPhoto: 'Kattokruunut ja kullatut nojatuolit historiallisen hotellin salongissa Torniossa',
     secWhen: 'Milloin ja ketkä',
     month: 'Kuukausi',
     monthAny: 'Ei vielä päätetty',
@@ -208,7 +209,7 @@ const COPY: Record<CopyLang, {
     lead: 'Wählen Sie wohin, wann, was und ungefähr für wie viel. Innerhalb von 24–48 Stunden erhalten Sie eine Antwort mit konkreten Anbietern, einem realistischen Budget und einem ehrlichen Wort dazu, was nicht passt.',
     bullets: ['Echte Anbieter und Touren, kein Prospekt', 'Ein Budget-Check, bevor Sie etwas buchen', 'Aus Finnland geschrieben, von Leuten, die diese Straßen fahren', 'Unverbindlich, ohne Gebühr für Sie'],
     noCommitment: 'Unverbindlich. Ohne Gebühr für Sie.',
-    altPhoto: 'Rentiere auf einem Schotterhof am Waldrand in Ylläs im Juli',
+    altPhoto: 'Kronleuchter und vergoldete Sessel im Salon eines historischen Hotels in Tornio',
     secWhen: 'Wann und wer',
     month: 'Monat',
     monthAny: 'Noch offen',
@@ -260,7 +261,7 @@ const COPY: Record<CopyLang, {
     lead: '行き先、時期、やりたいこと、おおよその予算を選ぶだけ。24〜48時間以内に、具体的な会社、現実的な予算、合わない点についての率直な一言を添えて返信します。',
     bullets: ['パンフレットではなく、実在の会社とツアー', '予約前の予算チェック', 'この道を走った者がフィンランドから書きます', '義務も手数料もありません'],
     noCommitment: '義務なし。手数料なし。',
-    altPhoto: '7月のユッラス、森のそばの砂利の広場にいるトナカイ',
+    altPhoto: 'トルニオの歴史あるホテルのサロン。シャンデリアと金彩の椅子',
     secWhen: '時期と人数',
     month: '月',
     monthAny: 'まだ未定',
@@ -312,7 +313,7 @@ const COPY: Record<CopyLang, {
     lead: '어디로, 언제, 무엇을, 대략 얼마로 갈지 고르세요. 24~48시간 안에 실제 운영사, 현실적인 예산, 맞지 않는 부분에 대한 솔직한 한마디를 담아 답장합니다.',
     bullets: ['브로슈어가 아닌 실제 운영사와 투어', '예약 전 예산 점검', '이 길을 직접 달려 본 사람들이 핀란드에서 작성', '의무도 수수료도 없습니다'],
     noCommitment: '의무 없음. 수수료 없음.',
-    altPhoto: '7월 윌래스, 숲가 자갈 마당의 순록',
+    altPhoto: '토르니오의 역사적인 호텔 살롱, 샹들리에와 금박 안락의자',
     secWhen: '언제, 누구와',
     month: '월',
     monthAny: '아직 미정',
@@ -364,7 +365,7 @@ const COPY: Record<CopyLang, {
     lead: 'Choisissez où, quand, quoi et à peu près pour combien. Sous 24 à 48 heures, vous recevez une réponse avec des opérateurs concrets, un budget réaliste et un mot honnête sur ce qui ne colle pas.',
     bullets: ['De vrais opérateurs et de vraies excursions, pas une brochure', 'Un contrôle du budget avant toute réservation', 'Écrit depuis la Finlande par des gens qui roulent sur ces routes', 'Sans engagement, sans frais pour vous'],
     noCommitment: 'Sans engagement. Sans frais pour vous.',
-    altPhoto: 'Rennes sur une cour de gravier en lisière de forêt à Ylläs, en juillet',
+    altPhoto: 'Lustres et fauteuils dorés dans le salon d’un hôtel historique de Tornio',
     secWhen: 'Quand et qui',
     month: 'Mois',
     monthAny: 'Pas encore décidé',
@@ -416,7 +417,7 @@ const COPY: Record<CopyLang, {
     lead: 'Scelga dove, quando, cosa e più o meno a quale prezzo. Entro 24–48 ore riceve una risposta con operatori concreti, un budget realistico e una parola onesta su ciò che non è adatto.',
     bullets: ['Operatori ed escursioni reali, non un dépliant', 'Una verifica del budget prima di prenotare qualsiasi cosa', 'Scritto dalla Finlandia da chi percorre queste strade', 'Nessun impegno, nessun costo per Lei'],
     noCommitment: 'Nessun impegno. Nessun costo per Lei.',
-    altPhoto: 'Renne su un piazzale di ghiaia ai margini del bosco a Ylläs, a luglio',
+    altPhoto: 'Lampadari e poltrone dorate nel salone di un hotel storico a Tornio',
     secWhen: 'Quando e chi',
     month: 'Mese',
     monthAny: 'Non ancora deciso',
@@ -468,7 +469,7 @@ const COPY: Record<CopyLang, {
     lead: 'Kies waarheen, wanneer, wat en ongeveer voor hoeveel. Binnen 24–48 uur krijgt u een antwoord met concrete aanbieders, een realistisch budget en een eerlijk woord over wat niet past.',
     bullets: ['Echte aanbieders en tours, geen brochure', 'Een budgetcheck voordat u iets boekt', 'Geschreven vanuit Finland door mensen die deze wegen rijden', 'Vrijblijvend, zonder kosten voor u'],
     noCommitment: 'Vrijblijvend. Zonder kosten voor u.',
-    altPhoto: 'Rendieren op een grindplein aan de bosrand in Ylläs, in juli',
+    altPhoto: 'Kroonluchters en verguld meubilair in de salon van een historisch hotel in Tornio',
     secWhen: 'Wanneer en wie',
     month: 'Maand',
     monthAny: 'Nog niet besloten',
@@ -520,7 +521,7 @@ const COPY: Record<CopyLang, {
     lead: 'Välj vart, när, vad och ungefär för hur mycket. Inom 24–48 timmar får du ett svar med konkreta arrangörer, en realistisk budget och ett ärligt ord om vad som inte passar.',
     bullets: ['Riktiga arrangörer och turer, ingen broschyr', 'En budgetkoll innan du bokar något', 'Skrivet från Finland av folk som kör de här vägarna', 'Ingen förbindelse, ingen avgift för dig'],
     noCommitment: 'Ingen förbindelse. Ingen avgift för dig.',
-    altPhoto: 'Renar på en grusplan vid skogskanten i Ylläs i juli',
+    altPhoto: 'Kristallkronor och förgyllda fåtöljer i salongen på ett historiskt hotell i Torneå',
     secWhen: 'När och vilka',
     month: 'Månad',
     monthAny: 'Inte bestämt än',
@@ -572,7 +573,7 @@ const COPY: Record<CopyLang, {
     lead: 'Elija dónde, cuándo, qué y más o menos por cuánto. En 24–48 horas recibe una respuesta con operadores concretos, un presupuesto realista y una palabra honesta sobre lo que no encaja.',
     bullets: ['Operadores y excursiones reales, no un folleto', 'Una revisión del presupuesto antes de reservar nada', 'Escrito desde Finlandia por gente que conduce por estas carreteras', 'Sin compromiso, sin coste para usted'],
     noCommitment: 'Sin compromiso. Sin coste para usted.',
-    altPhoto: 'Renos en una explanada de grava junto al bosque en Ylläs, en julio',
+    altPhoto: 'Lámparas de araña y sillones dorados en el salón de un hotel histórico de Tornio',
     secWhen: 'Cuándo y quiénes',
     month: 'Mes',
     monthAny: 'Aún sin decidir',
@@ -624,7 +625,7 @@ const COPY: Record<CopyLang, {
     lead: 'Escolha para onde, quando, o quê e mais ou menos por quanto. Em 24–48 horas você recebe uma resposta com operadoras concretas, um orçamento realista e uma palavra honesta sobre o que não encaixa.',
     bullets: ['Operadoras e passeios reais, não um folheto', 'Uma checagem do orçamento antes de reservar qualquer coisa', 'Escrito da Finlândia por quem dirige nessas estradas', 'Sem compromisso, sem custo para você'],
     noCommitment: 'Sem compromisso. Sem custo para você.',
-    altPhoto: 'Renas em um pátio de cascalho à beira da floresta em Ylläs, em julho',
+    altPhoto: 'Lustres e poltronas douradas no salão de um hotel histórico em Tornio',
     secWhen: 'Quando e quem',
     month: 'Mês',
     monthAny: 'Ainda não decidido',
@@ -676,7 +677,7 @@ const COPY: Record<CopyLang, {
     lead: '选择去哪里、什么时候、做什么、大概花多少。24–48 小时内你会收到回复：具体的运营商、切实的预算，以及哪些不合适的坦率建议。',
     bullets: ['真实的运营商和行程，不是宣传册', '预订任何东西之前先核对预算', '由跑过这些路的人在芬兰撰写', '不设义务，不收费用'],
     noCommitment: '不设义务。不收费用。',
-    altPhoto: '七月的于莱斯，林边砾石场上的驯鹿',
+    altPhoto: '托尔尼奥一家历史酒店的沙龙：水晶吊灯与镀金扶手椅',
     secWhen: '时间与人数',
     month: '月份',
     monthAny: '尚未决定',
@@ -727,13 +728,22 @@ const COPY: Record<CopyLang, {
 // Design-system forms (LV-DESIGN-SYSTEM.md): labels 11 px uppercase tracked
 // white/60; choices are rounded-full pills, snow/20 border at rest, vibe-pink
 // only when selected; primary button is the network's rounded-full pink.
-const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-white/60 font-semibold mb-3';
+/**
+ * 2026-09-12 colour pass. Vesa: "värimaailmaa ei ole mietitty". Three inks,
+ * one job each, and nothing else:
+ *   snow      — every word the reader has to read
+ *   pink      — the current choice and the one button that moves forward
+ *   cyan      — only what has already been answered (done steps, focus ring)
+ * The card sits on a lifted plum-tinted panel (`#151B2C`) so the pills read as
+ * objects on a surface rather than outlines floating on the page background.
+ */
+const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-snow/65 font-semibold mb-3';
 const FIELD =
-  'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/20 bg-white/[0.04] text-snow placeholder-snow/35 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
+  'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/25 bg-white/[0.07] text-snow placeholder-snow/40 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
 const PRIMARY =
-  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors shadow-lg shadow-vibe-pink/20';
+  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
 const GHOST =
-  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full border border-snow/20 text-snow/75 hover:text-snow hover:border-snow/40 font-body font-medium px-6 py-3 transition-colors';
+  'inline-flex items-center gap-2 min-h-[48px] font-body font-medium text-snow/65 hover:text-snow transition-colors';
 
 function Pill({ on, onClick, children }: { on: boolean; onClick: () => void; children: ReactNode }) {
   return (
@@ -744,7 +754,7 @@ function Pill({ on, onClick, children }: { on: boolean; onClick: () => void; chi
       className={`min-h-[44px] rounded-full border px-5 py-2.5 font-body text-[15px] leading-none transition-colors ${
         on
           ? 'bg-vibe-pink border-vibe-pink text-white'
-          : 'bg-white/[0.04] border-snow/20 text-snow/85 hover:border-arctic-cyan hover:text-snow'
+          : 'bg-white/[0.07] border-snow/25 text-snow/90 hover:bg-white/[0.12] hover:border-snow/45'
       }`}
     >
       {children}
@@ -804,6 +814,13 @@ export default function CustomTourBuilder() {
   const months = Array.from({ length: 12 }, (_, m) =>
     new Intl.DateTimeFormat(bcp47, { month: 'long' }).format(new Date(2027, m, 1)),
   );
+  // Short names in the picker. Twelve long month pills wrapped onto five rows at
+  // 375 px, so screen 1 was 899 px tall while the others were 554 — and a card that
+  // changes height that much makes the browser clamp the scroll position, which is
+  // the jump Vesa saw. Long names stay in the summary and in the brief.
+  const monthsShort = Array.from({ length: 12 }, (_, m) =>
+    new Intl.DateTimeFormat(bcp47, { month: 'short' }).format(new Date(2027, m, 1)).replace(/\.$/, ''),
+  );
 
   // [LV-FUNNEL] view once when the planner scrolls in; start on the first
   // choice; blocked once per submit attempt; submit before fetch; success /
@@ -832,10 +849,14 @@ export default function CustomTourBuilder() {
     track('tour_builder_start', funnelData);
   };
   const pick = (fn: () => void) => () => { trackStart(); fn(); };
-  const go = (n: number) => {
-    setStep(Math.max(0, Math.min(STEPS - 1, n)));
-    cardRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  };
+  /**
+   * 2026-09-12: no scrolling here. Vesa: "lomaketta kun täyttää niin se koko
+   * sivu pomppii kun painaa seuraava" — `scrollIntoView` moved the page on
+   * every step, and because each screen is a different height the card jumped
+   * twice. The card now keeps a fixed body height instead, so the heading and
+   * the buttons stay exactly where the reader last saw them.
+   */
+  const go = (n: number) => setStep(Math.max(0, Math.min(STEPS - 1, n)));
 
   const list = (set: Set<number>, keys: string[]) => keys.filter((_, i) => set.has(i)).join(', ') || '—';
   const summaryParts = [
@@ -917,15 +938,22 @@ export default function CustomTourBuilder() {
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
-          <img src="/images/hero-design-tour.webp" alt={c.altPhoto} loading="eager" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="lg:col-span-5">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
+            <img src="/images/hero-design-tour.webp" alt={c.altPhoto} loading="eager" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <PhotoCredit taken="2026-07-21" place="Tornio" className="mt-3" />
         </div>
       </div>
 
       {/* The planner: one question per screen, six screens, max-w-2xl like the
           network's other narrow forms. */}
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10 pb-20 md:pb-28">
-        <div ref={cardRef} className="max-w-2xl mx-auto scroll-mt-28 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-10">
+        <div
+          ref={cardRef}
+          className="max-w-2xl mx-auto scroll-mt-28 rounded-3xl border border-white/12 p-6 sm:p-10 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.9)]"
+          style={{ background: 'linear-gradient(180deg,#182034 0%,#131A2A 100%)' }}
+        >
           {status === 'success' ? (
             <div className="py-4">
               <p className="cap-meta is-success flex items-center gap-2">
@@ -951,143 +979,158 @@ export default function CustomTourBuilder() {
                 track('tour_builder_blocked', { ...funnelData, reason: t.name || 'field' });
               }}
             >
-              {/* Progress */}
-              <div className="flex items-center justify-between gap-4 mb-6">
-                <p className="cap-meta">{step + 1} / {STEPS}</p>
-                <ol className="flex items-center gap-1.5" aria-hidden="true">
-                  {stepTitles.map((t, i) => (
-                    <li key={t} className={`h-1.5 rounded-full transition-all ${i === step ? 'w-6 bg-vibe-pink' : i < step ? 'w-3 bg-arctic-cyan/70' : 'w-3 bg-white/15'}`} />
-                  ))}
-                </ol>
+              {/* Progress: one track, filled as far as the reader has come. Six
+                  separate dashes read as six more things to do. */}
+              <div className="mb-7">
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="cap-meta text-snow/60">{step + 1} / {STEPS}</p>
+                  <p className="cap-meta text-arctic-cyan">{Math.round(((step + 1) / STEPS) * 100)} %</p>
+                </div>
+                <div className="mt-2 h-[3px] w-full rounded-full bg-white/12 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-vibe-pink transition-[width] duration-300 ease-out"
+                    style={{ width: `${((step + 1) / STEPS) * 100}%` }}
+                  />
+                </div>
               </div>
-              <h2 className="font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-none mb-7">{stepTitles[step]}</h2>
 
-              {step === 0 && (
-                <div className="space-y-7">
-                  <div>
-                    <span className={LABEL}>{c.month}</span>
-                    <div className="flex flex-wrap gap-2">
-                      <Pill on={month === null} onClick={pick(() => setMonth(null))}>{c.monthAny}</Pill>
-                      {months.map((m, i) => (
-                        <Pill key={m} on={month === i} onClick={pick(() => setMonth(i))}>{m}</Pill>
-                      ))}
+              {/* Fixed body height: the card must not resize between steps,
+                  or the buttons move under the cursor (Vesa 12.9.: "sivu pomppii"). */}
+              <div data-planner-body className="min-h-[590px] sm:min-h-[420px]">
+                <h2 className="font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-none mb-7">{stepTitles[step]}</h2>
+                {step === 0 && (
+                  <div className="space-y-7">
+                    <div>
+                      <span className={LABEL}>{c.month}</span>
+                      <div className="space-y-2">
+                        <Pill on={month === null} onClick={pick(() => setMonth(null))}>{c.monthAny}</Pill>
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                          {monthsShort.map((m, i) => (
+                            <Pill key={m} on={month === i} onClick={pick(() => setMonth(i))}>{m}</Pill>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <span className={LABEL}>{c.duration}</span>
-                    <div className="flex flex-wrap gap-2">
-                      {c.durationOpts.map((o, i) => (
-                        <Pill key={o} on={duration === i} onClick={pick(() => setDuration(duration === i ? null : i))}>{o}</Pill>
-                      ))}
+                    <div>
+                      <span className={LABEL}>{c.duration}</span>
+                      <div className="flex flex-wrap gap-2">
+                        {c.durationOpts.map((o, i) => (
+                          <Pill key={o} on={duration === i} onClick={pick(() => setDuration(duration === i ? null : i))}>{o}</Pill>
+                        ))}
+                      </div>
                     </div>
+
                   </div>
-                  <div>
+                )}
+  
+                {step === 1 && (
+                  <div className="space-y-4">
+                    <Stepper label={c.adults} value={adults} min={1} max={30} onChange={(v) => { trackStart(); setAdults(v); }} name="adults" />
+                    <Stepper label={c.children} value={children} min={0} max={20} onChange={(v) => { trackStart(); setChildren(v); }} name="children" />
+                    {children > 0 && (
+                      <div className="pt-2">
+                        <label className={LABEL} htmlFor="tp-ages">{c.childAges}</label>
+                        <input id="tp-ages" type="text" name="childAges" value={childAges} maxLength={60} onChange={(e) => setChildAges(e.target.value)} placeholder={c.childAgesPh} className={FIELD} />
+                      </div>
+                    )}
+                    <div>
                     <label className={LABEL} htmlFor="tp-dates">{c.dates} · {c.optional}</label>
                     <input id="tp-dates" type="text" name="dates" value={dates} maxLength={80} onFocus={trackStart} onChange={(e) => setDates(e.target.value)} placeholder={c.datesPh} className={FIELD} />
-                  </div>
-                </div>
-              )}
-
-              {step === 1 && (
-                <div className="space-y-4">
-                  <Stepper label={c.adults} value={adults} min={1} max={30} onChange={(v) => { trackStart(); setAdults(v); }} name="adults" />
-                  <Stepper label={c.children} value={children} min={0} max={20} onChange={(v) => { trackStart(); setChildren(v); }} name="children" />
-                  {children > 0 && (
-                    <div className="pt-2">
-                      <label className={LABEL} htmlFor="tp-ages">{c.childAges}</label>
-                      <input id="tp-ages" type="text" name="childAges" value={childAges} maxLength={60} onChange={(e) => setChildAges(e.target.value)} placeholder={c.childAgesPh} className={FIELD} />
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {step === 2 && (
-                <div className="flex flex-wrap gap-2">
-                  {DESTINATIONS.map((d, i) => (
-                    <Pill key={d} on={dest.has(i)} onClick={pick(() => toggle(dest, i, setDest))}>{d}</Pill>
-                  ))}
-                </div>
-              )}
-
-              {step === 3 && (
-                <div className="flex flex-wrap gap-2">
-                  {c.activities.map((a, i) => (
-                    <Pill key={a} on={acts.has(i)} onClick={pick(() => toggle(acts, i, setActs))}>{a}</Pill>
-                  ))}
-                </div>
-              )}
-
-              {step === 4 && (
-                <div className="space-y-7">
-                  <div>
-                    <span className={LABEL}>{c.secStay}</span>
-                    <div className="flex flex-wrap gap-2">
-                      {c.stayOpts.map((o, i) => (
-                        <Pill key={o} on={stay === i} onClick={pick(() => setStay(stay === i ? null : i))}>{o}</Pill>
-                      ))}
                     </div>
                   </div>
-                  <div>
-                    <span className={LABEL}>{c.secTravel}</span>
-                    <div className="flex flex-wrap gap-2">
-                      {c.travelOpts.map((o, i) => (
-                        <Pill key={o} on={travel === i} onClick={pick(() => setTravel(travel === i ? null : i))}>{o}</Pill>
-                      ))}
-                    </div>
+                )}
+  
+                {step === 2 && (
+                  <div className="flex flex-wrap gap-2">
+                    {DESTINATIONS.map((d, i) => (
+                      <Pill key={d} on={dest.has(i)} onClick={pick(() => toggle(dest, i, setDest))}>{d}</Pill>
+                    ))}
                   </div>
-                  <div>
-                    <span className={LABEL}>{c.secBudget}</span>
-                    <div className="flex flex-wrap gap-2">
-                      {c.budgetOpts.map((o, i) => (
-                        <Pill key={o} on={budget === i} onClick={pick(() => setBudget(budget === i ? null : i))}>{o}</Pill>
-                      ))}
-                    </div>
+                )}
+  
+                {step === 3 && (
+                  <div className="flex flex-wrap gap-2">
+                    {c.activities.map((a, i) => (
+                      <Pill key={a} on={acts.has(i)} onClick={pick(() => toggle(acts, i, setActs))}>{a}</Pill>
+                    ))}
                   </div>
-                </div>
-              )}
-
-              {step === 5 && (
-                <div className="space-y-5">
-                  {summaryParts.length > 0 && (
-                    <p className="rounded-2xl border border-arctic-cyan/25 bg-arctic-cyan/[0.06] px-5 py-4 font-body text-[14.5px] text-snow/85 leading-relaxed">
-                      <span className="block text-[11px] uppercase tracking-[0.15em] text-arctic-cyan font-semibold mb-1">{c.summary}</span>
-                      {summaryParts.join(' · ')}
-                    </p>
-                  )}
-                  <div className="grid sm:grid-cols-2 gap-4">
+                )}
+  
+                {step === 4 && (
+                  <div className="space-y-7">
                     <div>
-                      <label className={LABEL} htmlFor="tp-name">{c.name}</label>
-                      <input id="tp-name" type="text" name="name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
+                      <span className={LABEL}>{c.secStay}</span>
+                      <div className="flex flex-wrap gap-2">
+                        {c.stayOpts.map((o, i) => (
+                          <Pill key={o} on={stay === i} onClick={pick(() => setStay(stay === i ? null : i))}>{o}</Pill>
+                        ))}
+                      </div>
                     </div>
                     <div>
-                      <label className={LABEL} htmlFor="tp-email">{c.email}</label>
-                      <input id="tp-email" type="email" name="email" required maxLength={255} value={email} onChange={(e) => setEmail(e.target.value)} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
+                      <span className={LABEL}>{c.secTravel}</span>
+                      <div className="flex flex-wrap gap-2">
+                        {c.travelOpts.map((o, i) => (
+                          <Pill key={o} on={travel === i} onClick={pick(() => setTravel(travel === i ? null : i))}>{o}</Pill>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span className={LABEL}>{c.secBudget}</span>
+                      <div className="flex flex-wrap gap-2">
+                        {c.budgetOpts.map((o, i) => (
+                          <Pill key={o} on={budget === i} onClick={pick(() => setBudget(budget === i ? null : i))}>{o}</Pill>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <label className={LABEL} htmlFor="tp-message">{c.message} · {c.optional}</label>
-                    <textarea id="tp-message" name="message" rows={4} maxLength={2000} value={message} onChange={(e) => setMessage(e.target.value)} onFocus={trackStart} placeholder={c.messagePh} className={`${FIELD} rounded-2xl resize-none`} />
+                )}
+  
+                {step === 5 && (
+                  <div className="space-y-5">
+                    {summaryParts.length > 0 && (
+                      <p className="rounded-2xl border border-arctic-cyan/25 bg-arctic-cyan/[0.06] px-5 py-4 font-body text-[14.5px] text-snow/85 leading-relaxed">
+                        <span className="block text-[11px] uppercase tracking-[0.15em] text-arctic-cyan font-semibold mb-1">{c.summary}</span>
+                        {summaryParts.join(' · ')}
+                      </p>
+                    )}
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className={LABEL} htmlFor="tp-name">{c.name}</label>
+                        <input id="tp-name" type="text" name="name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
+                      </div>
+                      <div>
+                        <label className={LABEL} htmlFor="tp-email">{c.email}</label>
+                        <input id="tp-email" type="email" name="email" required maxLength={255} value={email} onChange={(e) => setEmail(e.target.value)} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
+                      </div>
+                    </div>
+                    <div>
+                      <label className={LABEL} htmlFor="tp-message">{c.message} · {c.optional}</label>
+                      <textarea id="tp-message" name="message" rows={4} maxLength={2000} value={message} onChange={(e) => setMessage(e.target.value)} onFocus={trackStart} placeholder={c.messagePh} className={`${FIELD} rounded-2xl resize-none`} />
+                    </div>
+                    {/* Honeypot: hidden from people, filled by bots; the edge function
+                        returns 200 and sends nothing when it is set. */}
+                    <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] w-px h-px opacity-0" />
+                    {status === 'error' && (
+                      <p role="alert" className="font-body text-sm text-red-300">
+                        {c.errorMsg}{' '}
+                        <a href="mailto:info@laplandvibes.com" className="underline hover:text-vibe-pink">info@laplandvibes.com</a>
+                      </p>
+                    )}
                   </div>
-                  {/* Honeypot: hidden from people, filled by bots; the edge function
-                      returns 200 and sends nothing when it is set. */}
-                  <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] w-px h-px opacity-0" />
-                  {status === 'error' && (
-                    <p role="alert" className="font-body text-sm text-red-300">
-                      {c.errorMsg}{' '}
-                      <a href="mailto:info@laplandvibes.com" className="underline hover:text-vibe-pink">info@laplandvibes.com</a>
-                    </p>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
 
-              {/* Navigation */}
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+              {/* Navigation. Fixed height and a fixed left slot: the reassurance
+                  line used to sit here on step 1 only, wrapped to two lines on a
+                  phone, and that alone changed the card height between steps. It
+                  now lives under the card, where it never moves. */}
+              <div className="mt-8 flex items-center justify-between gap-3 min-h-[48px]">
                 {step > 0 ? (
                   <button type="button" onClick={() => go(step - 1)} className={GHOST}>
                     <span aria-hidden="true">←</span> {c.back}
                   </button>
                 ) : (
-                  <span className="cap-meta text-snow/50">{c.noCommitment}</span>
+                  <span aria-hidden="true" />
                 )}
                 {step < STEPS - 1 ? (
                   <button type="button" onClick={() => { trackStart(); go(step + 1); }} className={PRIMARY}>
@@ -1103,6 +1146,7 @@ export default function CustomTourBuilder() {
             </form>
           )}
         </div>
+        <p className="max-w-2xl mx-auto mt-4 cap-meta text-snow/50 text-center">{c.noCommitment}</p>
       </div>
     </section>
   );

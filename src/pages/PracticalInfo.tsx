@@ -3,6 +3,7 @@ import { Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse } 
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
+import PhotoCredit from '../components/PhotoCredit';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
 import { Link } from 'react-router-dom';
@@ -15,10 +16,7 @@ const COPY: Record<CopyLang, {
   breadcrumbHome: string;
   breadcrumbName: string;
   articleHeadline: string;
-  articleDescription: string;
-  h1: string;
-  ariaH1: string;
-  lead: string;
+  articleDescription: string;  lead: string;
   altHero: string;
   /** Link line under "Getting there" → the hub's five road-trip guides (2026-09-11). */
   driveLink: string;
@@ -38,12 +36,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Practical info',
     articleHeadline: 'Practical info: climate, visas, transport for Finnish Lapland',
     articleDescription:
-      'A practical pre-trip briefing for Finnish Lapland: how to get there, climate by season, visa rules, what to pack, and how to extend a package.',
-    h1: '−30 °C',
-    ariaH1: 'Minus 30 degrees Celsius',
-    lead:
-      "That's the floor of a typical Lapland winter night, and the reason operators issue thermal overalls. The rest of the planning is calendar, paperwork and a few phone numbers. Below, six things to know before you book.",
-    altHero: 'A long single-track snow road through endless boreal Lapland wilderness',
+      'A practical pre-trip briefing for Finnish Lapland: how to get there, climate by season, visa rules, what to pack, and how to extend a package.',    lead: 'Three airports, a night train and the road north. The rest of the planning is calendar, paperwork and a few phone numbers. Six things to know before you book.',
+    altHero: 'An empty road running north through boreal forest towards the fells',
     driveLink: 'Driving up instead? Five mapped routes to Lapland',
     sections: [
       {
@@ -98,12 +92,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Käytännön tieto',
     articleHeadline: 'Käytännön tieto: sää, viisumi, kulkuyhteydet Suomen Lappiin',
     articleDescription:
-      'Käytännön ennakkopaketti Suomen Lapin matkalle: miten päästä perille, sää kausittain, viisumi, pakkaaminen ja paketin jatkaminen.',
-    h1: '−30 °C',
-    ariaH1: 'Miinus 30 celsiusastetta',
-    lead:
-      'Se on tyypillisen lappilaisen talviyön alaraja ja syy siihen, miksi matkanjärjestäjät jakavat lämpöhaalarit. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
-    altHero: 'Pitkä, yksittäinen lumitie loputtoman boreaalisen Lapin halki',
+      'Käytännön ennakkopaketti Suomen Lapin matkalle: miten päästä perille, sää kausittain, viisumi, pakkaaminen ja paketin jatkaminen.',    lead: 'Kolme lentoasemaa, yöjuna ja tie pohjoiseen. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
+    altHero: 'Tyhjä tie kohti tuntureita boreaalisen metsän halki',
     driveLink: 'Tuletko autolla? Viisi valmiiksi ajettua reittiä Lappiin',
     sections: [
       {
@@ -158,12 +148,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktische Hinweise',
     articleHeadline: 'Praktische Hinweise: Klima, Visum, Transport für Finnisch-Lappland',
     articleDescription:
-      'Ein praktisches Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste und Paket-Verlängerung.',
-    h1: '−30 °C',
-    ariaH1: 'Minus 30 Grad Celsius',
-    lead:
-      'Das ist der typische Tiefpunkt einer Winternacht in Lappland, und der Grund, warum die Reiseveranstalter Thermokleidung stellen. Der Rest ist Kalender, Papierkram und ein paar Telefonnummern. Sechs Punkte vor der Buchung.',
-    altHero: 'Eine lange, einzelne Schneestraße durch die endlose boreale Wildnis Lapplands',
+      'Ein praktisches Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste und Paket-Verlängerung.',    lead: 'Drei Flughäfen, ein Nachtzug und die Straße nach Norden. Der Rest der Planung ist Kalender, Papiere und ein paar Telefonnummern. Sechs Dinge vor der Buchung.',
+    altHero: 'Eine leere Straße nach Norden durch borealen Wald in Richtung Fjälls',
     driveLink: 'Lieber mit dem Auto? Fünf ausgearbeitete Routen nach Lappland',
     sections: [
       {
@@ -218,12 +204,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '実用情報',
     articleHeadline: '実用情報｜フィンランド・ラップランドの気候、ビザ、交通',
     articleDescription:
-      'フィンランド・ラップランドへの旅行前の実用ブリーフィング：行き方、季節別の気候、ビザ規則、持ち物、パッケージの拡張方法。',
-    h1: '−30 °C',
-    ariaH1: 'マイナス30度',
-    lead:
-      'これは典型的なラップランドの冬の夜の最低気温で、オペレーターが防寒オーバーオールを提供する理由でもあります。残りの計画はカレンダー、書類、いくつかの電話番号です。以下、ご予約前に知っておくべき6つのこと。',
-    altHero: '広大な北方ラップランドの荒野を貫く長い単線の雪道',
+      'フィンランド・ラップランドへの旅行前の実用ブリーフィング：行き方、季節別の気候、ビザ規則、持ち物、パッケージの拡張方法。',    lead: '空港は三つ、夜行列車、そして北へ続く道。あとの計画はカレンダーと書類、そして数本の電話です。予約の前に知っておきたい六つのこと。',
+    altHero: '北へ続く空いた道。ボレアル林を抜けて丘陵へ',
     driveLink: '車で向かうなら：ラップランドへの5つのルート',
     sections: [
       {
@@ -278,12 +260,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '실용 정보',
     articleHeadline: '실용 정보: 핀란드 라플란드의 기후, 비자, 교통',
     articleDescription:
-      '핀란드 라플란드 여행 전 실용 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 패키지 연장 방법.',
-    h1: '−30 °C',
-    ariaH1: '영하 30도',
-    lead:
-      '전형적인 라플란드 겨울밤의 최저 기온이며, 운영사들이 방한복 일체를 지급하는 이유입니다. 나머지 계획은 일정, 서류, 그리고 몇 가지 전화번호입니다. 예약 전 알아야 할 여섯 가지를 정리했습니다.',
-    altHero: '광활한 북방림 라플란드 황야를 가로지르는 외길 눈길',
+      '핀란드 라플란드 여행 전 실용 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 패키지 연장 방법.',    lead: '공항 세 곳, 야간열차, 그리고 북쪽으로 이어진 길. 나머지 계획은 일정과 서류, 그리고 몇 번의 전화입니다. 예약 전에 알아둘 여섯 가지.',
+    altHero: '보레알 숲을 지나 펠 지대로 향하는 텅 빈 길',
     driveLink: '자동차로 오신다면: 라플란드까지 다섯 가지 경로',
     sections: [
       {
@@ -338,12 +316,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Infos pratiques',
     articleHeadline: 'Infos pratiques : climat, visa, transport pour la Laponie finlandaise',
     articleDescription:
-      'Un briefing pratique avant un séjour en Laponie finlandaise : y aller, climat par saison, règles de visa, bagages et prolongation d\'un forfait.',
-    h1: '−30 °C',
-    ariaH1: 'Moins trente degrés Celsius',
-    lead:
-      'C\'est le plancher d\'une nuit d\'hiver typique en Laponie, et la raison pour laquelle les voyagistes fournissent les combinaisons thermiques. Le reste de la préparation est affaire de calendrier, de paperasse et de quelques numéros utiles. Voici six points à connaître avant de réserver.',
-    altHero: 'Longue piste enneigée à une seule voie traversant la vaste taïga lapone',
+      'Un briefing pratique avant un séjour en Laponie finlandaise : y aller, climat par saison, règles de visa, bagages et prolongation d\'un forfait.',    lead: 'Trois aéroports, un train de nuit et la route vers le nord. Le reste de la planification, c’est un calendrier, des papiers et quelques numéros de téléphone. Six choses à savoir avant de réserver.',
+    altHero: 'Une route déserte vers le nord à travers la forêt boréale, en direction des fjälls',
     driveLink: 'Plutôt en voiture ? Cinq itinéraires balisés vers la Laponie',
     sections: [
       {
@@ -398,12 +372,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Informazioni pratiche',
     articleHeadline: 'Informazioni pratiche: clima, visto, trasporti per la Lapponia finlandese',
     articleDescription:
-      'Un briefing pratico prima del viaggio in Lapponia finlandese: come arrivare, clima per stagione, regole sui visti, bagaglio e come estendere un pacchetto.',
-    h1: '−30 °C',
-    ariaH1: 'Meno trenta gradi Celsius',
-    lead:
-      'È la temperatura minima di una tipica notte d\'inverno in Lapponia e il motivo per cui gli operatori forniscono le tute termiche. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Di seguito sei cose da sapere prima di prenotare.',
-    altHero: 'Lunga strada innevata a singola corsia attraverso la sterminata taiga lapponica',
+      'Un briefing pratico prima del viaggio in Lapponia finlandese: come arrivare, clima per stagione, regole sui visti, bagaglio e come estendere un pacchetto.',    lead: 'Tre aeroporti, un treno notturno e la strada verso nord. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Sei cose da sapere prima di prenotare.',
+    altHero: 'Una strada deserta verso nord attraverso la foresta boreale, in direzione dei fjäll',
     driveLink: 'Preferisce l’auto? Cinque itinerari tracciati verso la Lapponia',
     sections: [
       {
@@ -458,12 +428,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktische info',
     articleHeadline: 'Praktische info: klimaat, visum, vervoer voor Fins Lapland',
     articleDescription:
-      'Een praktische briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken en het verlengen van een arrangement.',
-    h1: '−30 °C',
-    ariaH1: 'Min dertig graden Celsius',
-    lead:
-      'Dat is de bodem van een typische winternacht in Lapland, en de reden waarom reisorganisaties thermopakken uitdelen. De rest van de planning is agenda, papierwerk en een paar telefoonnummers. Hieronder zes punten om vóór het boeken te kennen.',
-    altHero: 'Lange enkelbaans sneeuwweg door de eindeloze boreale Lapland-wildernis',
+      'Een praktische briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken en het verlengen van een arrangement.',    lead: 'Drie luchthavens, een nachttrein en de weg naar het noorden. De rest van de planning is agenda, papieren en een paar telefoonnummers. Zes dingen om te weten voordat u boekt.',
+    altHero: 'Een lege weg naar het noorden door het boreale bos richting de fjäll',
     driveLink: 'Liever met de auto? Vijf uitgewerkte routes naar Lapland',
     sections: [
       {
@@ -518,12 +484,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktisk info',
     articleHeadline: 'Praktisk info: klimat, visum, transport för finska Lappland',
     articleDescription:
-      'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',
-    h1: '−30 °C',
-    ariaH1: 'Minus 30 grader Celsius',
-    lead:
-      'Det är bottennoteringen en typisk vinternatt i Lappland, och skälet till att aktörerna delar ut termoveraller. Resten av planeringen är kalender, papper och några telefonnummer. Nedan sex saker att veta innan du bokar.',
-    altHero: 'En lång enfilig snöväg genom den ändlösa boreala vildmarken i Lappland',
+      'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',    lead: 'Tre flygplatser, ett nattåg och vägen norrut. Resten av planeringen är kalender, papper och ett par telefonnummer. Sex saker att veta innan du bokar.',
+    altHero: 'En tom väg norrut genom barrskogen mot fjällen',
     driveLink: 'Kör du hellre? Fem färdiga rutter till Lappland',
     sections: [
       {
@@ -578,12 +540,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Información práctica',
     articleHeadline: 'Información práctica: clima, visados, transporte para la Laponia finlandesa',
     articleDescription:
-      'Un resumen práctico previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, normas de visado, qué llevar y cómo ampliar un paquete.',
-    h1: '−30 °C',
-    ariaH1: 'Menos treinta grados Celsius',
-    lead:
-      'Ese es el suelo de una noche típica de invierno en Laponia, y la razón por la que los operadores entregan monos térmicos. El resto de la planificación es calendario, papeleo y un par de teléfonos. Abajo, seis cosas que conviene saber antes de reservar.',
-    altHero: 'Una larga carretera nevada de un solo carril a través de la interminable taiga de Laponia',
+      'Un resumen práctico previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, normas de visado, qué llevar y cómo ampliar un paquete.',    lead: 'Tres aeropuertos, un tren nocturno y la carretera hacia el norte. El resto de la planificación es calendario, papeles y un par de números de teléfono. Seis cosas antes de reservar.',
+    altHero: 'Una carretera vacía hacia el norte a través del bosque boreal, rumbo a los fjäll',
     driveLink: '¿Prefiere ir en coche? Cinco rutas trazadas hasta Laponia',
     sections: [
       {
@@ -638,12 +596,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Informações práticas',
     articleHeadline: 'Informações práticas: clima, vistos, transporte para a Lapônia finlandesa',
     articleDescription:
-      'Um resumo prático pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar e como estender um pacote.',
-    h1: '−30 °C',
-    ariaH1: 'Menos trinta graus Celsius',
-    lead:
-      'Esse é o piso de uma típica noite de inverno na Lapônia e o motivo de as operadoras entregarem macacões térmicos. O resto do planejamento é calendário, papelada e alguns telefones. Abaixo, seis coisas para saber antes de reservar.',
-    altHero: 'Uma longa estrada de neve de pista única atravessando a interminável taiga da Lapônia',
+      'Um resumo prático pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar e como estender um pacote.',    lead: 'Três aeroportos, um trem noturno e a estrada para o norte. O resto do planejamento é calendário, documentos e alguns telefones. Seis coisas para saber antes de reservar.',
+    altHero: 'Uma estrada vazia para o norte pela floresta boreal, rumo aos fjäll',
     driveLink: 'Prefere ir de carro? Cinco rotas mapeadas até a Lapônia',
     sections: [
       {
@@ -698,12 +652,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '实用信息',
     articleHeadline: '实用信息：芬兰拉普兰的气候、签证与交通',
     articleDescription:
-      '一份前往芬兰拉普兰的实用行前须知：如何抵达、各季节气候、签证规定、行李清单，以及如何延长套餐。',
-    h1: '−30 °C',
-    ariaH1: '零下三十摄氏度',
-    lead:
-      '这是拉普兰典型冬夜的最低气温，也是运营商发放保暖连体服的原因。其余的规划无非是日历、文件和几个电话号码。以下是预订前要了解的六件事。',
-    altHero: '一条单车道雪路穿过广袤无边的拉普兰北方针叶林',
+      '一份前往芬兰拉普兰的实用行前须知：如何抵达、各季节气候、签证规定、行李清单，以及如何延长套餐。',    lead: '三座机场、一列夜行火车，还有一路向北的公路。其余的规划就是日历、文件和几个电话号码。预订前先了解这六件事。',
+    altHero: '一条向北的空路，穿过北方森林通往山地',
     driveLink: '想自驾？前往拉普兰的五条路线',
     sections: [
       {
@@ -895,21 +845,20 @@ export default function PracticalInfo() {
               'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.40) 50%, rgba(15,23,42,0.06) 100%)',
           }}
         />
-        {/* 2026-09-11: the h1 is the page's real title again (Vesa: "voiko h1
-            olla -30?" — no). The temperature stays as a kicker. */}
+        {/* 2026-09-12: the "−30 °C" kicker is gone. Vesa: "kesä kuva ja -30
+            luku hero osiossa?" — the photo is from July, so a winter floor
+            printed over it is a contradiction the reader sees before any copy.
+            The temperature lives in card 02, which states the season, and the
+            hero now says when the picture was taken. */}
         <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <p
-            className="font-heading text-vibe-pink leading-none tracking-wide drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)] text-[clamp(2.5rem,7vw,5rem)]"
-            aria-label={c.ariaH1}
-          >
-            {c.h1}
-          </p>
+          <p className="cap-meta text-arctic-cyan drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">{c.breadcrumbName}</p>
           <h1 className="mt-3 font-heading tracking-wide leading-[0.95] text-snow text-[clamp(2.25rem,5.5vw,4.5rem)] [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
             {c.articleHeadline}
           </h1>
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
+          <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
         </div>
       </section>
 
