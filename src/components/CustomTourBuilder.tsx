@@ -726,6 +726,12 @@ const COPY: Record<CopyLang, {
 
 /* ── UI ──────────────────────────────────────────────────────────────────── */
 // Design-system forms (LV-DESIGN-SYSTEM.md): labels 11 px uppercase tracked
+// 🔴 MITATTU 12.9.2026 uudella lomakeportilla (`scripts/audit_lomakkeet.mjs`):
+// valkoinen teksti verkoston litteällä pinkillä #EC4899 on 3,53:1, ja AA vaatii
+// 4,5:1 kun labeli on 15 px lihavoitu. Täytetty pinkki on siksi #DB2777 (4,63:1)
+// — sama askel alas pinkin rampilla kuin laplandhoteldealsin 14 px pillereissä
+// (CLAUDE.md, dokumentoitu poikkeus). Iso hero-CTA saa jäädä #EC4899:ään, koska
+// ≥ 18,66 px lihavoidulle riittää 3:1.
 // white/60; choices are rounded-full pills, snow/20 border at rest, vibe-pink
 // only when selected; primary button is the network's rounded-full pink.
 /**
@@ -741,7 +747,7 @@ const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-snow/65 font-s
 const FIELD =
   'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/25 bg-white/[0.07] text-snow placeholder-snow/40 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
 const PRIMARY =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
+  'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap min-h-[48px] rounded-full bg-[#DB2777] hover:bg-[#BE185D] disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
 const GHOST =
   'inline-flex items-center gap-2 min-h-[48px] font-body font-medium text-snow/65 hover:text-snow transition-colors';
 
@@ -753,7 +759,7 @@ function Pill({ on, onClick, children }: { on: boolean; onClick: () => void; chi
       onClick={onClick}
       className={`min-h-[44px] rounded-full border px-5 py-2.5 font-body text-[15px] leading-none transition-colors ${
         on
-          ? 'bg-vibe-pink border-vibe-pink text-white'
+          ? 'bg-[#DB2777] border-[#DB2777] text-white'
           : 'bg-white/[0.07] border-snow/25 text-snow/90 hover:bg-white/[0.12] hover:border-snow/45'
       }`}
     >
@@ -762,14 +768,23 @@ function Pill({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
+/**
+ * Stepper — luku kahden napin valissa.
+ *
+ * 🔴 Mitattu `scripts/audit_lomakkeet.mjs`:lla 12.9.2026: napit olivat 40 px ja
+ * lukukentta 32 px, eli molemmat alle 44 px:n kosketuskohteen, ja nakyva label
+ * oli pelkka <span> jota mikaan ei kytkenyt kenttaan (kentalla oli vain
+ * aria-label). Kolme kierrosta silmalla ei ollut huomannut kumpaakaan.
+ */
 function Stepper({ label, value, min, max, onChange, name }: { label: string; value: number; min: number; max: number; onChange: (v: number) => void; name: string }) {
+  const id = `tp-${name}`;
   return (
-    <div className="flex items-center justify-between gap-4 rounded-full border border-snow/15 bg-white/[0.03] pl-5 pr-2 py-2">
-      <span className="font-body text-snow/90 text-[15px]">{label}</span>
+    <div className="flex items-center justify-between gap-4 rounded-full border border-snow/15 bg-white/[0.03] pl-5 pr-2 py-1.5">
+      <label htmlFor={id} className="font-body text-snow/90 text-[15px]">{label}</label>
       <span className="inline-flex items-center gap-2">
-        <button type="button" aria-label={`${label} −`} onClick={() => onChange(Math.max(min, value - 1))} className="w-10 h-10 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">−</button>
-        <input type="number" name={name} readOnly value={value} aria-label={label} className="w-8 bg-transparent text-center font-heading text-2xl text-snow tabular-nums [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
-        <button type="button" aria-label={`${label} +`} onClick={() => onChange(Math.min(max, value + 1))} className="w-10 h-10 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">+</button>
+        <button type="button" aria-label={`${label} −`} onClick={() => onChange(Math.max(min, value - 1))} className="w-11 h-11 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">−</button>
+        <input id={id} type="number" name={name} readOnly value={value} className="w-10 h-11 bg-transparent text-center font-heading text-2xl text-snow tabular-nums [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
+        <button type="button" aria-label={`${label} +`} onClick={() => onChange(Math.min(max, value + 1))} className="w-11 h-11 rounded-full border border-snow/20 text-snow hover:border-arctic-cyan transition-colors leading-none">+</button>
       </span>
     </div>
   );
@@ -1004,9 +1019,9 @@ export default function CustomTourBuilder() {
                   valilla, tai napit liikkuvat kursorin alta (Vesa 12.9.: "sivu pomppii").
                   🔴 Lattia on MITATTU uudelleen 12.9. illalla, kun valinnoille tuli
                   kaivot: puhelimessa askel 5 (majoitus+saapuminen+budjetti) on korkein
-                  642 px ja tyopoydalla 434 px. Jos lisaat kaivon, pillerin tai rivin,
+                  642 px ja tyopoydalla askel 6 on 435 px (lattia 436). Jos lisaat kaivon, pillerin tai rivin,
                   MITTAA uudestaan (.tmp/wiz-measure.mjs) — muuten pomppiminen palaa. */}
-              <div data-planner-body className="min-h-[642px] sm:min-h-[434px]">
+              <div data-planner-body className="min-h-[642px] sm:min-h-[436px]">
                 <h2 className="font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-none mb-7">{stepTitles[step]}</h2>
                 {step === 0 && (
                   <div className="rounded-2xl border border-white/10 bg-black/20 divide-y divide-white/10">
@@ -1105,16 +1120,36 @@ export default function CustomTourBuilder() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className={LABEL} htmlFor="tp-name">{c.name}</label>
-                        <input id="tp-name" type="text" name="name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
+                        <input id="tp-name" type="text" name="name" autoComplete="name" required maxLength={100} value={name} onChange={(e) => setName(e.target.value)} onFocus={trackStart} placeholder={c.namePh} className={FIELD} />
                       </div>
                       <div>
                         <label className={LABEL} htmlFor="tp-email">{c.email}</label>
-                        <input id="tp-email" type="email" name="email" required maxLength={255} value={email} onChange={(e) => setEmail(e.target.value)} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
+                        <input id="tp-email" type="email" name="email" autoComplete="email" required maxLength={255} value={email} onChange={(e) => setEmail(e.target.value)} onFocus={trackStart} placeholder={c.emailPh} className={FIELD} />
                       </div>
                     </div>
                     <div>
                       <label className={LABEL} htmlFor="tp-message">{c.message} · {c.optional}</label>
-                      <textarea id="tp-message" name="message" rows={4} maxLength={2000} value={message} onChange={(e) => setMessage(e.target.value)} onFocus={trackStart} placeholder={c.messagePh} className={`${FIELD} rounded-2xl resize-none`} />
+                      {/* 🔴 Esimerkit olivat placeholderina: 96 merkkia, joka katosi heti
+                          ensimmaisesta kirjaimesta, ja nelja rivia korkeassa laatikossa ne
+                          nayttivat leijuvan (Vesa 12.9.: "miksi tuossa isossa puhekuplassa
+                          tekstit ei ole keskella sita?"). Kentan teksti ei voi olla
+                          pystykeskitettya - kirjoittaminen alkaa vasemmasta ylakulmasta -
+                          joten laatikko tehtiin sisaltonsa kokoiseksi ja esimerkit
+                          nostettiin vihjeriville, jossa ne pysyvat nakyvissa. */}
+                      <p id="tp-message-hint" className="-mt-1 mb-2 font-body text-[13px] leading-relaxed text-snow/55">
+                        {c.messagePh}
+                      </p>
+                      <textarea
+                        id="tp-message"
+                        name="message"
+                        rows={3}
+                        maxLength={2000}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onFocus={trackStart}
+                        aria-describedby="tp-message-hint"
+                        className="w-full px-5 py-4 rounded-2xl border border-snow/25 bg-white/[0.07] text-snow font-body text-base leading-relaxed resize-none focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition"
+                      />
                     </div>
                     {/* Honeypot: hidden from people, filled by bots; the edge function
                         returns 200 and sends nothing when it is set. */}
