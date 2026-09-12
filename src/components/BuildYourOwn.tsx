@@ -39,7 +39,7 @@ interface RailCard {
   }>;
 }
 
-const rails: RailCard[] = [
+export const rails: RailCard[] = [
   {
     partner: 'hotels',
     sid: 'home_build_hotels',
@@ -749,5 +749,52 @@ export default function BuildYourOwn() {
         </p>
       </div>
     </section>
+  );
+}
+
+/**
+ * RailTile — the same rail, compact. Used at the foot of other pages where the
+ * reader has finished reading and needs the next booking step (Vesa 12.9.:
+ * *"tama ns. sivun alhaalla oleva navigaatio toisiin tuotteisiin voisi olla
+ * paljon enemman"* — kolme paljasta nappia ei ollut navigaatio).
+ */
+export function RailTile({ rail: r, lang }: { rail: RailCard; lang: CopyLang }) {
+  const t = r.labels[lang];
+  const destination = r.destinationByLang?.[lang] ?? r.destination;
+  return (
+    <div
+      className="group relative flex overflow-hidden rounded-2xl border border-white/10 hover:border-vibe-pink/50 transition-colors"
+      style={{ background: r.bgHex }}
+    >
+    <AffiliateCTA
+      partner={r.partner}
+      sid={`${r.sid}_tile`}
+      destination={destination}
+      gygSearch={r.gygSearch}
+      className="flex flex-col w-full"
+    >
+      <span className="relative block aspect-[16/10] overflow-hidden">
+        <img
+          src={r.image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        />
+        <span className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: `linear-gradient(to top, ${r.bgHex} 0%, transparent 100%)` }} aria-hidden="true" />
+        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-deep-night/70 backdrop-blur px-3 py-1.5 border border-white/15">
+          <r.icon className="w-3.5 h-3.5 text-vibe-pink" strokeWidth={1.6} aria-hidden="true" />
+          <span className="font-mono text-[10.5px] tracking-[0.12em] uppercase text-snow/90">{t.label}</span>
+        </span>
+      </span>
+      <span className="flex flex-col flex-1 p-5">
+        <span className="font-heading text-snow/95 tracking-wide leading-[1.0] text-2xl mb-2">{t.headline}</span>
+        <span className="font-body text-[13.5px] leading-[1.6] text-snow/70 mb-4">{t.body}</span>
+        <span className="mt-auto inline-flex items-center gap-2 font-body font-semibold text-[13.5px] text-vibe-pink group-hover:text-white transition-colors">
+          {t.ctaLabel}<span aria-hidden="true">→</span>
+        </span>
+      </span>
+    </AffiliateCTA>
+    </div>
   );
 }

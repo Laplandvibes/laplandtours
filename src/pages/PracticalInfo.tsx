@@ -1,13 +1,29 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse } from 'lucide-react';
 import AffiliateCTA from '../components/AffiliateCTA';
 import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PhotoCredit from '../components/PhotoCredit';
 import PageBreadcrumb from '../components/PageBreadcrumb';
+import { rails, RailTile } from '../components/BuildYourOwn';
+import { COPY as NAV_COPY } from '../components/Nav';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
 import { Link } from 'react-router-dom';
 import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+
+/**
+ * Kuvakaistat korttien valissa (12.9.2026). Kuvat ovat heinakuun 2026 reissun
+ * omia valokuvia, ja kumpikaan ei vaita kautta jota siina ei ole: tienviitat
+ * ovat ympari vuoden samat, ja myohaisen illan aurinko on juuri se mita kortti
+ * 03 tarkoittaa. Ei kuvatekstia = ei vaitetta; `PhotoCredit` kertoo kuukauden.
+ * 🔴 Per-kortti-kuvia ei tehty: varasto on heinakuulta ja neljan kortin teksti
+ * on talvipainoinen (-30 C, paleltumat), ja viisi kuvallista + yksi kuvaton
+ * kortti on oma erillinen vika (laplandflights 12.9.).
+ */
+const BANDS: Record<number, { src: string; taken: string; place?: string }> = {
+  1: { src: '/images/band-signs.webp', taken: '2026-07-19' },
+  3: { src: '/images/band-midnight.webp', taken: '2026-07-19', place: 'Kemijärvi' },
+};
 
 const COPY: Record<CopyLang, {
   metaTitle: string;
@@ -16,16 +32,19 @@ const COPY: Record<CopyLang, {
   breadcrumbHome: string;
   breadcrumbName: string;
   articleHeadline: string;
-  articleDescription: string;  lead: string;
+  articleDescription: string;
+  lead: string;
   altHero: string;
   /** Link line under "Getting there" → the hub's five road-trip guides (2026-09-11). */
   driveLink: string;
   sections: { n: string; title: string; body: string }[];
-  addonsEyebrow: string;
-  addonsH2: string;
-  addonHotel: string;
-  addonCar: string;
-  addonActivity: string;
+  /** Sivun jalka: viisi raidetta + oman sivuston sivut (12.9.2026). Vanhat
+   *  addonHotel/addonCar/addonActivity poistettiin kokonaan - prerender
+   *  harvestoi copyn lahteesta, joten kaytosta poistettu teksti jaisi
+   *  robottien lukemaan runkoon (sama ansa kuin laplandflightsin PROVIDERS). */
+  railsEyebrow: string;
+  railsH2: string;
+  alsoRead: string;
 }> = {
   en: {
     metaTitle: 'Finnish Lapland practical info: climate, visas, transport',
@@ -36,7 +55,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Practical info',
     articleHeadline: 'Practical info: climate, visas, transport for Finnish Lapland',
     articleDescription:
-      'A practical pre-trip briefing for Finnish Lapland: how to get there, climate by season, visa rules, what to pack, and how to extend a package.',    lead: 'Three airports, a night train and the road north. The rest of the planning is calendar, paperwork and a few phone numbers. Six things to know before you book.',
+      'A practical pre-trip briefing for Finnish Lapland: how to get there, climate by season, visa rules, what to pack, and how to extend a package.',
+    lead: 'Three airports, a night train and the road north. The rest of the planning is calendar, paperwork and a few phone numbers. Six things to know before you book.',
     altHero: 'An empty road running north through boreal forest towards the fells',
     driveLink: 'Driving up instead? Five mapped routes to Lapland',
     sections: [
@@ -77,11 +97,9 @@ const COPY: Record<CopyLang, {
           'Finnish public healthcare is excellent. EU citizens use EHIC/GHIC; non-EU travellers need travel insurance. Tap water is safe to drink. Frostbite risk is real at −25 °C+, so keep cheeks, nose and fingers covered. Dial 112 for any emergency.',
       },
     ],
-    addonsEyebrow: 'Plan the extras',
-    addonsH2: 'Three rails to extend the trip',
-    addonHotel: 'Hotel night →',
-    addonCar: 'Self-drive →',
-    addonActivity: 'Day activity →',
+    railsEyebrow: 'Book the rest',
+    railsH2: 'Five rails to finish the trip',
+    alsoRead: 'Read next',
   },
   fi: {
     metaTitle: 'Käytännön tieto: Suomen Lappi | #LaplandTours',
@@ -92,7 +110,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Käytännön tieto',
     articleHeadline: 'Käytännön tieto: sää, viisumi, kulkuyhteydet Suomen Lappiin',
     articleDescription:
-      'Käytännön ennakkopaketti Suomen Lapin matkalle: miten päästä perille, sää kausittain, viisumi, pakkaaminen ja paketin jatkaminen.',    lead: 'Kolme lentoasemaa, yöjuna ja tie pohjoiseen. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
+      'Käytännön ennakkopaketti Suomen Lapin matkalle: miten päästä perille, sää kausittain, viisumi, pakkaaminen ja paketin jatkaminen.',
+    lead: 'Kolme lentoasemaa, yöjuna ja tie pohjoiseen. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
     altHero: 'Tyhjä tie kohti tuntureita boreaalisen metsän halki',
     driveLink: 'Tuletko autolla? Viisi valmiiksi ajettua reittiä Lappiin',
     sections: [
@@ -133,11 +152,9 @@ const COPY: Record<CopyLang, {
           'Suomen julkinen terveydenhuolto on erinomainen. EU-kansalaiset käyttävät EHIC/GHIC-korttia; EU:n ulkopuolelta tulevat tarvitsevat matkavakuutuksen. Hanavesi on juomakelpoista. Paleltuma­riski on todellinen −25 °C alapuolella, joten peitä posket, nenä ja sormet. Hätänumero 112.',
       },
     ],
-    addonsEyebrow: 'Suunnittele lisät',
-    addonsH2: 'Kolme raidetta jatkaa matkaa',
-    addonHotel: 'Hotelliyö →',
-    addonCar: 'Vuokra-auto →',
-    addonActivity: 'Päiväretki →',
+    railsEyebrow: 'Varaa loput',
+    railsH2: 'Viisi raidetta, joilla matka täydentyy',
+    alsoRead: 'Lue seuraavaksi',
   },
   de: {
     metaTitle: 'Praktische Hinweise: Finnisch-Lappland | #LaplandTours',
@@ -148,7 +165,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktische Hinweise',
     articleHeadline: 'Praktische Hinweise: Klima, Visum, Transport für Finnisch-Lappland',
     articleDescription:
-      'Ein praktisches Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste und Paket-Verlängerung.',    lead: 'Drei Flughäfen, ein Nachtzug und die Straße nach Norden. Der Rest der Planung ist Kalender, Papiere und ein paar Telefonnummern. Sechs Dinge vor der Buchung.',
+      'Ein praktisches Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste und Paket-Verlängerung.',
+    lead: 'Drei Flughäfen, ein Nachtzug und die Straße nach Norden. Der Rest der Planung ist Kalender, Papiere und ein paar Telefonnummern. Sechs Dinge vor der Buchung.',
     altHero: 'Eine leere Straße nach Norden durch borealen Wald in Richtung Fjälls',
     driveLink: 'Lieber mit dem Auto? Fünf ausgearbeitete Routen nach Lappland',
     sections: [
@@ -189,11 +207,9 @@ const COPY: Record<CopyLang, {
           'Das öffentliche Gesundheitswesen in Finnland ist hervorragend. EU-Bürgerinnen und -Bürger nutzen EHIC/GHIC; Reisende aus Nicht-EU-Ländern benötigen eine Reisekrankenversicherung. Leitungswasser ist trinkbar. Erfrierungsrisiko unter −25 °C: Wangen, Nase und Finger bedeckt halten. Notruf 112.',
       },
     ],
-    addonsEyebrow: 'Zusätze planen',
-    addonsH2: 'Drei Schienen zur Verlängerung',
-    addonHotel: 'Hotelnacht →',
-    addonCar: 'Selbstfahrer →',
-    addonActivity: 'Tagestour →',
+    railsEyebrow: 'Den Rest buchen',
+    railsH2: 'Fünf Schienen, die die Reise vollenden',
+    alsoRead: 'Weiterlesen',
   },
   ja: {
     metaTitle: '実用情報｜フィンランド・ラップランドの気候、ビザ、交通 | #LaplandTours',
@@ -204,7 +220,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '実用情報',
     articleHeadline: '実用情報｜フィンランド・ラップランドの気候、ビザ、交通',
     articleDescription:
-      'フィンランド・ラップランドへの旅行前の実用ブリーフィング：行き方、季節別の気候、ビザ規則、持ち物、パッケージの拡張方法。',    lead: '空港は三つ、夜行列車、そして北へ続く道。あとの計画はカレンダーと書類、そして数本の電話です。予約の前に知っておきたい六つのこと。',
+      'フィンランド・ラップランドへの旅行前の実用ブリーフィング：行き方、季節別の気候、ビザ規則、持ち物、パッケージの拡張方法。',
+    lead: '空港は三つ、夜行列車、そして北へ続く道。あとの計画はカレンダーと書類、そして数本の電話です。予約の前に知っておきたい六つのこと。',
     altHero: '北へ続く空いた道。ボレアル林を抜けて丘陵へ',
     driveLink: '車で向かうなら：ラップランドへの5つのルート',
     sections: [
@@ -245,11 +262,9 @@ const COPY: Record<CopyLang, {
           'フィンランドの公的医療制度は優れています。EU市民はEHIC/GHICを利用可能。EU圏外の渡航者は旅行保険が必要です。水道水は飲用可能です。−25℃以上では凍傷のリスクがあります。頬、鼻、指を覆ってください。緊急時は112にお電話ください。',
       },
     ],
-    addonsEyebrow: '追加プランを計画',
-    addonsH2: '旅を拡張する3つの方法',
-    addonHotel: '宿泊 →',
-    addonCar: '自由運転 →',
-    addonActivity: '日帰りアクティビティ →',
+    railsEyebrow: '残りを予約',
+    railsH2: '旅を仕上げる5つのレール',
+    alsoRead: '次に読む',
   },
   ko: {
     metaTitle: '실용 정보: 핀란드 라플란드의 기후, 비자, 교통 | #LaplandTours',
@@ -260,7 +275,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '실용 정보',
     articleHeadline: '실용 정보: 핀란드 라플란드의 기후, 비자, 교통',
     articleDescription:
-      '핀란드 라플란드 여행 전 실용 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 패키지 연장 방법.',    lead: '공항 세 곳, 야간열차, 그리고 북쪽으로 이어진 길. 나머지 계획은 일정과 서류, 그리고 몇 번의 전화입니다. 예약 전에 알아둘 여섯 가지.',
+      '핀란드 라플란드 여행 전 실용 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 패키지 연장 방법.',
+    lead: '공항 세 곳, 야간열차, 그리고 북쪽으로 이어진 길. 나머지 계획은 일정과 서류, 그리고 몇 번의 전화입니다. 예약 전에 알아둘 여섯 가지.',
     altHero: '보레알 숲을 지나 펠 지대로 향하는 텅 빈 길',
     driveLink: '자동차로 오신다면: 라플란드까지 다섯 가지 경로',
     sections: [
@@ -301,11 +317,9 @@ const COPY: Record<CopyLang, {
           '핀란드의 공공 의료는 우수합니다. EU 시민은 EHIC/GHIC 카드를 사용합니다. EU 외 여행자는 여행자 보험이 필요합니다. 수돗물은 음용 가능합니다. −25 °C 이하에서는 동상 위험이 실제로 있으니 뺨, 코, 손가락을 가리세요. 응급 전화는 112입니다.',
       },
     ],
-    addonsEyebrow: '추가 옵션 계획',
-    addonsH2: '여행을 연장하는 세 가지 방법',
-    addonHotel: '호텔 숙박 →',
-    addonCar: '자유 운전 →',
-    addonActivity: '당일 액티비티 →',
+    railsEyebrow: '나머지 예약하기',
+    railsH2: '여행을 완성하는 다섯 갈래',
+    alsoRead: '다음 읽기',
   },
   fr: {
     metaTitle: 'Infos pratiques : Laponie finlandaise | #LaplandTours',
@@ -316,7 +330,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Infos pratiques',
     articleHeadline: 'Infos pratiques : climat, visa, transport pour la Laponie finlandaise',
     articleDescription:
-      'Un briefing pratique avant un séjour en Laponie finlandaise : y aller, climat par saison, règles de visa, bagages et prolongation d\'un forfait.',    lead: 'Trois aéroports, un train de nuit et la route vers le nord. Le reste de la planification, c’est un calendrier, des papiers et quelques numéros de téléphone. Six choses à savoir avant de réserver.',
+      'Un briefing pratique avant un séjour en Laponie finlandaise : y aller, climat par saison, règles de visa, bagages et prolongation d\'un forfait.',
+    lead: 'Trois aéroports, un train de nuit et la route vers le nord. Le reste de la planification, c’est un calendrier, des papiers et quelques numéros de téléphone. Six choses à savoir avant de réserver.',
     altHero: 'Une route déserte vers le nord à travers la forêt boréale, en direction des fjälls',
     driveLink: 'Plutôt en voiture ? Cinq itinéraires balisés vers la Laponie',
     sections: [
@@ -357,11 +372,9 @@ const COPY: Record<CopyLang, {
           'Le système de santé public finlandais est excellent. Les citoyens UE utilisent la CEAM/GHIC ; les voyageurs hors UE ont besoin d\'une assurance voyage. L\'eau du robinet est potable. Risque de gelures réel en dessous de −25 °C : couvrez joues, nez et doigts. Numéro d\'urgence : 112.',
       },
     ],
-    addonsEyebrow: 'Planifier les extras',
-    addonsH2: 'Trois rails pour prolonger le séjour',
-    addonHotel: 'Nuit d\'hôtel →',
-    addonCar: 'Autotour →',
-    addonActivity: 'Activité à la journée →',
+    railsEyebrow: 'Réservez le reste',
+    railsH2: 'Cinq rails pour compléter le voyage',
+    alsoRead: 'À lire ensuite',
   },
   it: {
     metaTitle: 'Informazioni pratiche: Lapponia | #LaplandTours',
@@ -372,7 +385,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Informazioni pratiche',
     articleHeadline: 'Informazioni pratiche: clima, visto, trasporti per la Lapponia finlandese',
     articleDescription:
-      'Un briefing pratico prima del viaggio in Lapponia finlandese: come arrivare, clima per stagione, regole sui visti, bagaglio e come estendere un pacchetto.',    lead: 'Tre aeroporti, un treno notturno e la strada verso nord. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Sei cose da sapere prima di prenotare.',
+      'Un briefing pratico prima del viaggio in Lapponia finlandese: come arrivare, clima per stagione, regole sui visti, bagaglio e come estendere un pacchetto.',
+    lead: 'Tre aeroporti, un treno notturno e la strada verso nord. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Sei cose da sapere prima di prenotare.',
     altHero: 'Una strada deserta verso nord attraverso la foresta boreale, in direzione dei fjäll',
     driveLink: 'Preferisce l’auto? Cinque itinerari tracciati verso la Lapponia',
     sections: [
@@ -413,11 +427,9 @@ const COPY: Record<CopyLang, {
           'Il sistema sanitario pubblico finlandese è eccellente. I cittadini UE usano la TEAM/GHIC; i viaggiatori extra-UE hanno bisogno di un\'assicurazione viaggio. L\'acqua del rubinetto è potabile. Il rischio di congelamento è reale sotto i −25 °C: copra guance, naso e dita. Numero di emergenza: 112.',
       },
     ],
-    addonsEyebrow: 'Pianifica gli extra',
-    addonsH2: 'Tre binari per estendere il viaggio',
-    addonHotel: 'Notte in hotel →',
-    addonCar: 'Autotour →',
-    addonActivity: 'Attività di un giorno →',
+    railsEyebrow: 'Prenoti il resto',
+    railsH2: 'Cinque binari per completare il viaggio',
+    alsoRead: 'Da leggere poi',
   },
   nl: {
     metaTitle: 'Praktische info: Fins Lapland | #LaplandTours',
@@ -428,7 +440,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktische info',
     articleHeadline: 'Praktische info: klimaat, visum, vervoer voor Fins Lapland',
     articleDescription:
-      'Een praktische briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken en het verlengen van een arrangement.',    lead: 'Drie luchthavens, een nachttrein en de weg naar het noorden. De rest van de planning is agenda, papieren en een paar telefoonnummers. Zes dingen om te weten voordat u boekt.',
+      'Een praktische briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken en het verlengen van een arrangement.',
+    lead: 'Drie luchthavens, een nachttrein en de weg naar het noorden. De rest van de planning is agenda, papieren en een paar telefoonnummers. Zes dingen om te weten voordat u boekt.',
     altHero: 'Een lege weg naar het noorden door het boreale bos richting de fjäll',
     driveLink: 'Liever met de auto? Vijf uitgewerkte routes naar Lapland',
     sections: [
@@ -469,11 +482,9 @@ const COPY: Record<CopyLang, {
           'De Finse publieke gezondheidszorg is uitstekend. EU-burgers gebruiken EHIC/GHIC; niet-EU-reizigers hebben een reisverzekering nodig. Kraanwater is drinkbaar. Vanaf −25 °C is bevriezing reëel, dus houd wangen, neus en vingers bedekt. Noodnummer: 112.',
       },
     ],
-    addonsEyebrow: 'Extra\'s plannen',
-    addonsH2: 'Drie sporen om de reis uit te breiden',
-    addonHotel: 'Hotelnacht →',
-    addonCar: 'Zelfrijden →',
-    addonActivity: 'Dagactiviteit →',
+    railsEyebrow: 'Boek de rest',
+    railsH2: 'Vijf sporen om de reis af te maken',
+    alsoRead: 'Lees verder',
   },
   sv: {
     metaTitle: 'Praktisk info: klimat, visum, transport för finska Lappland | #LaplandTours',
@@ -484,7 +495,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Praktisk info',
     articleHeadline: 'Praktisk info: klimat, visum, transport för finska Lappland',
     articleDescription:
-      'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',    lead: 'Tre flygplatser, ett nattåg och vägen norrut. Resten av planeringen är kalender, papper och ett par telefonnummer. Sex saker att veta innan du bokar.',
+      'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',
+    lead: 'Tre flygplatser, ett nattåg och vägen norrut. Resten av planeringen är kalender, papper och ett par telefonnummer. Sex saker att veta innan du bokar.',
     altHero: 'En tom väg norrut genom barrskogen mot fjällen',
     driveLink: 'Kör du hellre? Fem färdiga rutter till Lappland',
     sections: [
@@ -525,11 +537,9 @@ const COPY: Record<CopyLang, {
           'Den finländska offentliga sjukvården är utmärkt. EU-medborgare använder EHIC/GHIC; resenärer från länder utanför EU behöver reseförsäkring. Kranvattnet går bra att dricka. Risken för köldskador är verklig vid −25 °C och kallare, så håll kinder, näsa och fingrar täckta. Ring 112 vid nödsituationer.',
       },
     ],
-    addonsEyebrow: 'Planera tilläggen',
-    addonsH2: 'Tre spår för att förlänga resan',
-    addonHotel: 'Hotellnatt →',
-    addonCar: 'Hyrbil →',
-    addonActivity: 'Dagsutflykt →',
+    railsEyebrow: 'Boka resten',
+    railsH2: 'Fem spår som gör resan komplett',
+    alsoRead: 'Läs vidare',
   },
   es: {
     metaTitle: 'Información práctica: Laponia finlandesa | #LaplandTours',
@@ -540,7 +550,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Información práctica',
     articleHeadline: 'Información práctica: clima, visados, transporte para la Laponia finlandesa',
     articleDescription:
-      'Un resumen práctico previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, normas de visado, qué llevar y cómo ampliar un paquete.',    lead: 'Tres aeropuertos, un tren nocturno y la carretera hacia el norte. El resto de la planificación es calendario, papeles y un par de números de teléfono. Seis cosas antes de reservar.',
+      'Un resumen práctico previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, normas de visado, qué llevar y cómo ampliar un paquete.',
+    lead: 'Tres aeropuertos, un tren nocturno y la carretera hacia el norte. El resto de la planificación es calendario, papeles y un par de números de teléfono. Seis cosas antes de reservar.',
     altHero: 'Una carretera vacía hacia el norte a través del bosque boreal, rumbo a los fjäll',
     driveLink: '¿Prefiere ir en coche? Cinco rutas trazadas hasta Laponia',
     sections: [
@@ -581,11 +592,9 @@ const COPY: Record<CopyLang, {
           'La sanidad pública finlandesa es excelente. Los ciudadanos de la UE usan la EHIC/GHIC; los viajeros de fuera de la UE necesitan seguro de viaje. El agua del grifo es potable. El riesgo de congelación es real a partir de −25 °C: mantenga cubiertas mejillas, nariz y dedos. Marque el 112 ante cualquier emergencia.',
       },
     ],
-    addonsEyebrow: 'Planifique los extras',
-    addonsH2: 'Tres vías para ampliar el viaje',
-    addonHotel: 'Noche de hotel →',
-    addonCar: 'Coche de alquiler →',
-    addonActivity: 'Actividad de un día →',
+    railsEyebrow: 'Reserve el resto',
+    railsH2: 'Cinco vías para completar el viaje',
+    alsoRead: 'Siga leyendo',
   },
   'pt-BR': {
     metaTitle: 'Informações práticas: Lapônia | #LaplandTours',
@@ -596,7 +605,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: 'Informações práticas',
     articleHeadline: 'Informações práticas: clima, vistos, transporte para a Lapônia finlandesa',
     articleDescription:
-      'Um resumo prático pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar e como estender um pacote.',    lead: 'Três aeroportos, um trem noturno e a estrada para o norte. O resto do planejamento é calendário, documentos e alguns telefones. Seis coisas para saber antes de reservar.',
+      'Um resumo prático pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar e como estender um pacote.',
+    lead: 'Três aeroportos, um trem noturno e a estrada para o norte. O resto do planejamento é calendário, documentos e alguns telefones. Seis coisas para saber antes de reservar.',
     altHero: 'Uma estrada vazia para o norte pela floresta boreal, rumo aos fjäll',
     driveLink: 'Prefere ir de carro? Cinco rotas mapeadas até a Lapônia',
     sections: [
@@ -637,11 +647,9 @@ const COPY: Record<CopyLang, {
           'A saúde pública finlandesa é excelente. Cidadãos da UE usam o EHIC/GHIC; viajantes de fora da UE precisam de seguro-viagem. A água da torneira é potável. O risco de congelamento é real a partir de −25 °C: mantenha bochechas, nariz e dedos cobertos. Disque 112 em qualquer emergência.',
       },
     ],
-    addonsEyebrow: 'Planeje os extras',
-    addonsH2: 'Três trilhos para estender a viagem',
-    addonHotel: 'Diária de hotel →',
-    addonCar: 'Autotour →',
-    addonActivity: 'Atividade de um dia →',
+    railsEyebrow: 'Reserve o resto',
+    railsH2: 'Cinco trilhos para completar a viagem',
+    alsoRead: 'Leia a seguir',
   },
   'zh-CN': {
     metaTitle: '实用信息：芬兰拉普兰的气候、签证与交通 | #LaplandTours',
@@ -652,7 +660,8 @@ const COPY: Record<CopyLang, {
     breadcrumbName: '实用信息',
     articleHeadline: '实用信息：芬兰拉普兰的气候、签证与交通',
     articleDescription:
-      '一份前往芬兰拉普兰的实用行前须知：如何抵达、各季节气候、签证规定、行李清单，以及如何延长套餐。',    lead: '三座机场、一列夜行火车，还有一路向北的公路。其余的规划就是日历、文件和几个电话号码。预订前先了解这六件事。',
+      '一份前往芬兰拉普兰的实用行前须知：如何抵达、各季节气候、签证规定、行李清单，以及如何延长套餐。',
+    lead: '三座机场、一列夜行火车，还有一路向北的公路。其余的规划就是日历、文件和几个电话号码。预订前先了解这六件事。',
     altHero: '一条向北的空路，穿过北方森林通往山地',
     driveLink: '想自驾？前往拉普兰的五条路线',
     sections: [
@@ -693,11 +702,9 @@ const COPY: Record<CopyLang, {
           '芬兰公共医疗水平很高。欧盟公民使用 EHIC/GHIC；非欧盟旅客需购买旅行保险。自来水可直接饮用。−25 °C 以下冻伤风险真实存在，请遮好脸颊、鼻子和手指。任何紧急情况请拨打 112。',
       },
     ],
-    addonsEyebrow: '规划附加项',
-    addonsH2: '延长行程的三条线路',
-    addonHotel: '酒店住宿 →',
-    addonCar: '自驾 →',
-    addonActivity: '一日活动 →',
+    railsEyebrow: '订下其余部分',
+    railsH2: '让行程完整的五条线',
+    alsoRead: '继续阅读',
   },
 };
 
@@ -810,6 +817,7 @@ export default function PracticalInfo() {
   const lp = useLocalePath();
   const act = ACTIONS[copyLang(lang)];
   const c = COPY[copyLang(lang)];
+  const nav = NAV_COPY[lang];
   useEffect(() => {
     setPageMeta({
       title: c.metaTitle,
@@ -882,10 +890,11 @@ export default function PracticalInfo() {
         <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid md:grid-cols-2 gap-5 md:gap-6">
           {c.sections.map((s, i) => {
             const Icon = SECTION_ICONS[i] ?? Plane;
+            const band = BANDS[i];
             return (
+              <Fragment key={s.n}>
               <article
-                key={s.n}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
+                className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <span
@@ -909,7 +918,7 @@ export default function PracticalInfo() {
                     asiakasta"). Affiliate pills go through the Worker; the
                     ETIAS pill is the official EU site; the season pill is our
                     own heat map. */}
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap gap-2">
                   {i === 0 && (
                     <>
                       <a href="https://laplandflights.fi/" data-umami-event="practical_flights_click" className={PILL}>
@@ -967,45 +976,64 @@ export default function PracticalInfo() {
                   )}
                 </div>
               </article>
+              {band && (
+                <figure className="md:col-span-2 my-1 md:my-2">
+                  <div className="relative overflow-hidden rounded-2xl border border-white/10">
+                    <img
+                      src={band.src}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      width={1800}
+                      height={771}
+                      className="block w-full h-full object-cover"
+                    />
+                  </div>
+                  <figcaption>
+                    <PhotoCredit taken={band.taken} place={band.place} className="mt-3" />
+                  </figcaption>
+                </figure>
+              )}
+              </Fragment>
             );
           })}
         </div>
       </section>
 
+      {/* SIVUN JALKA — 🔴 Vesa 12.9.: *"tama ns. sivun alhaalla oleva navigaatio
+          toisiin tuotteisiin voisi olla paljon enemman."* Tassa oli kolme paljasta
+          tekstinappia (Hotelliyo / Vuokra-auto / Paivaretki) rivissa oikealla: ei
+          kuvaa, ei syyta klikata, ei kertomaa mita takana on.
+          Nyt samat viisi raidetta jotka etusivu jo tuntee (`rails`) — omat
+          heinakuun valokuvat, 12 kielen copy ja samat Worker-reitit — compact
+          `RailTile`-muodossa, ja alle rivi oman sivuston sivuille (labelit Navin
+          COPYsta, joten uutta kaannosta ei tarvittu).
+          🔴 Ruudukko on 3 + 2 eika 3-sarakkeinen viiden kortin lista: viisi korttia
+          kolmessa sarakkeessa jattaisi riviin reijan (sama vika jonka Vesa nakyi
+          laplandflightsin kumppanikorteissa samana paivana). */}
       <section className="bg-deeper-night py-16 sm:py-20">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-12 gap-6">
-          <div className="sm:col-span-5">
-            <p className="cap-meta">{c.addonsEyebrow}</p>
-            <h2 className="mt-2 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
-              {c.addonsH2}
-            </h2>
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10">
+          <p className="cap-meta">{c.railsEyebrow}</p>
+          <h2 className="mt-2 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
+            {c.railsH2}
+          </h2>
+
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {rails.filter((r) => (r.tier ?? 'core') === 'core').map((r) => (
+              <RailTile key={r.sid} rail={r} lang={copyLang(lang)} />
+            ))}
           </div>
-          <div className="sm:col-span-6 sm:col-start-7 grid sm:grid-cols-3 gap-3 self-end">
-            <AffiliateCTA
-              partner="hotels"
-              sid="practical_hotels_cta"
-              destination="Rovaniemi"
-              className="block px-5 py-4 bg-vibe-pink text-white font-body font-semibold hover:bg-vibe-pink/90 transition-colors text-[15px]"
-            >
-              {c.addonHotel}
-            </AffiliateCTA>
-            <AffiliateCTA
-              partner="cars"
-              sid="practical_cars_cta"
-              destination="RVN"
-              className="block px-5 py-4 border border-snow/30 text-snow font-body font-medium hover:border-vibe-pink hover:text-vibe-pink transition-colors text-[15px]"
-            >
-              {c.addonCar}
-            </AffiliateCTA>
-            <AffiliateCTA
-              partner="activities"
-              sid="practical_activities_cta"
-              destination="s569-finnish-lapland-tc16"
-              gygSearch="Lapland activities Rovaniemi"
-              className="block px-5 py-4 border border-snow/30 text-snow font-body font-medium hover:border-vibe-pink hover:text-vibe-pink transition-colors text-[15px]"
-            >
-              {c.addonActivity}
-            </AffiliateCTA>
+          <div className="mt-5 grid sm:grid-cols-2 gap-5">
+            {rails.filter((r) => r.tier === 'extra').map((r) => (
+              <RailTile key={r.sid} rail={r} lang={copyLang(lang)} />
+            ))}
+          </div>
+
+          <p className="cap-meta mt-12 text-snow/60">{c.alsoRead}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Link to={lp('/lapland-holidays')} className={PILL}>{nav.operators}<span aria-hidden="true"> →</span></Link>
+            <Link to={lp('/age-guide')} className={PILL}>{nav.age}<span aria-hidden="true"> →</span></Link>
+            <Link to={lp('/design-tour')} className={PILL}>{nav.bespoke}<span aria-hidden="true"> →</span></Link>
           </div>
         </div>
       </section>

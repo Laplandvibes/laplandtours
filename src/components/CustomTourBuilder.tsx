@@ -741,7 +741,7 @@ const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-snow/65 font-s
 const FIELD =
   'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/25 bg-white/[0.07] text-snow placeholder-snow/40 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
 const PRIMARY =
-  'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap min-h-[48px] rounded-full bg-vibe-pink hover:bg-vibe-pink/90 disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
 const GHOST =
   'inline-flex items-center gap-2 min-h-[48px] font-body font-medium text-snow/65 hover:text-snow transition-colors';
 
@@ -951,7 +951,13 @@ export default function CustomTourBuilder() {
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10 pb-20 md:pb-28">
         <div
           ref={cardRef}
-          className="max-w-2xl mx-auto scroll-mt-28 rounded-3xl border border-white/12 p-6 sm:p-10 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.9)]"
+          /* 🔴 Vesa 12.9. (2. kierros): "edelleen lomake nayttaa liian kelluvalta,
+             pitaa saada vahan rajoja." Kortilla oli yksi 12 %:n reunaviiva ja
+             pehmea varjo, eika sisalla ollut yhtaan viivaa: otsikko, valinnat ja
+             navi leijuivat samassa tilassa. Nyt kortti on kehys: vahvempi reuna,
+             sisapuolen valokehä, oma ylapalkki ja alapalkki taysleveilla viivoilla,
+             ja valinnat omissa kaivoissaan. */
+          className="max-w-2xl mx-auto scroll-mt-28 overflow-hidden rounded-3xl border border-snow/20 p-6 sm:p-10 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(249,250,251,0.07)]"
           style={{ background: 'linear-gradient(180deg,#182034 0%,#131A2A 100%)' }}
         >
           {status === 'success' ? (
@@ -981,7 +987,7 @@ export default function CustomTourBuilder() {
             >
               {/* Progress: one track, filled as far as the reader has come. Six
                   separate dashes read as six more things to do. */}
-              <div className="mb-7">
+              <div className="-mx-6 sm:-mx-10 px-6 sm:px-10 pb-5 mb-7 border-b border-white/10">
                 <div className="flex items-baseline justify-between gap-4">
                   <p className="cap-meta text-snow/60">{step + 1} / {STEPS}</p>
                   <p className="cap-meta text-arctic-cyan">{Math.round(((step + 1) / STEPS) * 100)} %</p>
@@ -994,13 +1000,17 @@ export default function CustomTourBuilder() {
                 </div>
               </div>
 
-              {/* Fixed body height: the card must not resize between steps,
-                  or the buttons move under the cursor (Vesa 12.9.: "sivu pomppii"). */}
-              <div data-planner-body className="min-h-[590px] sm:min-h-[420px]">
+              {/* Kiintea rungon korkeus: kortti ei saa muuttaa kokoaan askelten
+                  valilla, tai napit liikkuvat kursorin alta (Vesa 12.9.: "sivu pomppii").
+                  🔴 Lattia on MITATTU uudelleen 12.9. illalla, kun valinnoille tuli
+                  kaivot: puhelimessa askel 5 (majoitus+saapuminen+budjetti) on korkein
+                  642 px ja tyopoydalla 434 px. Jos lisaat kaivon, pillerin tai rivin,
+                  MITTAA uudestaan (.tmp/wiz-measure.mjs) — muuten pomppiminen palaa. */}
+              <div data-planner-body className="min-h-[642px] sm:min-h-[434px]">
                 <h2 className="font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-none mb-7">{stepTitles[step]}</h2>
                 {step === 0 && (
-                  <div className="space-y-7">
-                    <div>
+                  <div className="rounded-2xl border border-white/10 bg-black/20 divide-y divide-white/10">
+                    <div className="p-3 sm:p-4">
                       <span className={LABEL}>{c.month}</span>
                       <div className="space-y-2">
                         <Pill on={month === null} onClick={pick(() => setMonth(null))}>{c.monthAny}</Pill>
@@ -1011,7 +1021,7 @@ export default function CustomTourBuilder() {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div className="p-3 sm:p-4">
                       <span className={LABEL}>{c.duration}</span>
                       <div className="flex flex-wrap gap-2">
                         {c.durationOpts.map((o, i) => (
@@ -1019,7 +1029,6 @@ export default function CustomTourBuilder() {
                         ))}
                       </div>
                     </div>
-
                   </div>
                 )}
   
@@ -1041,7 +1050,7 @@ export default function CustomTourBuilder() {
                 )}
   
                 {step === 2 && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4 flex flex-wrap gap-2">
                     {DESTINATIONS.map((d, i) => (
                       <Pill key={d} on={dest.has(i)} onClick={pick(() => toggle(dest, i, setDest))}>{d}</Pill>
                     ))}
@@ -1049,7 +1058,7 @@ export default function CustomTourBuilder() {
                 )}
   
                 {step === 3 && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4 flex flex-wrap gap-2">
                     {c.activities.map((a, i) => (
                       <Pill key={a} on={acts.has(i)} onClick={pick(() => toggle(acts, i, setActs))}>{a}</Pill>
                     ))}
@@ -1057,8 +1066,8 @@ export default function CustomTourBuilder() {
                 )}
   
                 {step === 4 && (
-                  <div className="space-y-7">
-                    <div>
+                  <div className="rounded-2xl border border-white/10 bg-black/20 divide-y divide-white/10">
+                    <div className="p-3 sm:p-4">
                       <span className={LABEL}>{c.secStay}</span>
                       <div className="flex flex-wrap gap-2">
                         {c.stayOpts.map((o, i) => (
@@ -1066,7 +1075,7 @@ export default function CustomTourBuilder() {
                         ))}
                       </div>
                     </div>
-                    <div>
+                    <div className="p-3 sm:p-4">
                       <span className={LABEL}>{c.secTravel}</span>
                       <div className="flex flex-wrap gap-2">
                         {c.travelOpts.map((o, i) => (
@@ -1074,7 +1083,7 @@ export default function CustomTourBuilder() {
                         ))}
                       </div>
                     </div>
-                    <div>
+                    <div className="p-3 sm:p-4">
                       <span className={LABEL}>{c.secBudget}</span>
                       <div className="flex flex-wrap gap-2">
                         {c.budgetOpts.map((o, i) => (
@@ -1124,7 +1133,7 @@ export default function CustomTourBuilder() {
                   line used to sit here on step 1 only, wrapped to two lines on a
                   phone, and that alone changed the card height between steps. It
                   now lives under the card, where it never moves. */}
-              <div className="mt-8 flex items-center justify-between gap-3 min-h-[48px]">
+              <div className="-mx-6 sm:-mx-10 px-6 sm:px-10 pt-6 mt-8 border-t border-white/10 flex items-center justify-between gap-3 min-h-[48px]">
                 {step > 0 ? (
                   <button type="button" onClick={() => go(step - 1)} className={GHOST}>
                     <span aria-hidden="true">←</span> {c.back}

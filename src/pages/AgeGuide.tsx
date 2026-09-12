@@ -45,7 +45,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'An age-by-activity matrix for Finnish Lapland tours, infants to 16+.',
     lead:
-      'Which Lapland activities work at which age, and which do not. A practical matrix covering five age bands and the six staples: aurora hunt, husky, snowmobile, reindeer, sauna, glass igloo.',
+      'Which Lapland activities work at which age, and which do not. A practical matrix covering five age bands and the six staples.',
     matrixEyebrow: 'The matrix',
     ageHeader: 'Age',
     legend: '✓ available · dash: not offered · "passenger" / "tandem" / "solo" specifies the role',
@@ -135,7 +135,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Ikäopas: mitkä Lapin retket sopivat mihinkin ikään',
     articleDescription: 'Ikäkohtainen retkitaulukko Suomen Lapin matkanjärjestäjille, vauvasta 16+ vuotiaisiin.',
     lead:
-      'Mitkä Lapin päiväretket sopivat mihinkin ikään ja mitkä eivät. Käytännön taulukko viidessä ikäryhmässä ja kuudessa peruspaketissa: revontulet, husky, kelkka, poro, sauna, lasi-iglu.',
+      'Mitkä Lapin päiväretket sopivat mihinkin ikään ja mitkä eivät. Käytännön taulukko viidessä ikäryhmässä ja kuudessa peruspaketissa.',
     matrixEyebrow: 'Taulukko',
     ageHeader: 'Ikä',
     legend: '✓ tarjolla · viiva: ei tarjolla · "matkustaja" / "tandem" / "yksin" kertoo roolin',
@@ -226,7 +226,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Eine Matrix Alter × Tour für Lappland-Reisen von Säuglingen bis 16+.',
     lead:
-      'Welche Lappland-Tagestouren zu welchem Alter passen, und welche nicht. Eine praktische Matrix für fünf Altersgruppen und die sechs Klassiker: Polarlichtjagd, Husky, Schneemobil, Rentier, Sauna, Glas-Iglu.',
+      'Welche Lappland-Tagestouren zu welchem Alter passen, und welche nicht. Eine praktische Matrix für fünf Altersgruppen und die sechs Klassiker.',
     matrixEyebrow: 'Die Matrix',
     ageHeader: 'Alter',
     legend: '✓ verfügbar · Strich: nicht im Angebot · „Mitfahrer“ / „Tandem“ / „selbst“ beschreibt die Rolle',
@@ -317,7 +317,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'フィンランド・ラップランドのツアーの年齢別アクティビティマトリクス、乳児から16歳以上まで。',
     lead:
-      'ラップランドのどのアクティビティがどの年齢に適しているか、そして適していないか。5つの年齢層と6つの定番（オーロラ観察、ハスキー、スノーモービル、トナカイ、サウナ、グラスイグルー）をカバーする実用的なマトリクスです。',
+      'ラップランドのどのアクティビティがどの年齢に適しているか、そして適していないか。5つの年齢層と6つの定番をカバーする実用的なマトリクスです。',
     matrixEyebrow: 'マトリクス',
     ageHeader: '年齢',
     legend: '✓ 利用可能 · — 提供なし · 「passenger（同乗者）」/「tandem（タンデム）」/「solo（単独）」は役割を示します',
@@ -408,7 +408,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       '영유아부터 16세 이상까지, 핀란드 라플란드 투어의 연령 × 액티비티 매트릭스.',
     lead:
-      '라플란드의 어떤 액티비티가 어느 연령에 맞고, 어떤 것은 맞지 않는지. 다섯 개 연령대와 여섯 가지 대표 액티비티(오로라 헌트, 허스키, 스노모빌, 순록, 사우나, 글래스 이글루)를 다루는 실용 매트릭스입니다.',
+      '라플란드의 어떤 액티비티가 어느 연령에 맞고, 어떤 것은 맞지 않는지. 다섯 개 연령대와 여섯 가지 대표 액티비티를 다루는 실용 매트릭스입니다.',
     matrixEyebrow: '매트릭스',
     ageHeader: '연령',
     legend: '✓ 가능 · 줄표(—): 미제공 · "동승자" / "탠덤" / "단독"은 역할을 의미합니다',
@@ -499,7 +499,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Une matrice âge × activité pour les circuits en Laponie finlandaise, du nourrisson aux 16 ans et plus.',
     lead:
-      'Quelles activités en Laponie fonctionnent à quel âge, et lesquelles ne fonctionnent pas. Une matrice pratique couvrant cinq tranches d\'âge et les six classiques : chasse aux aurores, husky, motoneige, renne, sauna, iglou de verre.',
+      'Quelles activités en Laponie fonctionnent à quel âge, et lesquelles ne fonctionnent pas. Une matrice pratique couvrant cinq tranches d\'âge et les six classiques.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Âge',
     legend: '✓ disponible · tiret : non proposé · « passager » / « tandem » / « seul » indique le rôle',
@@ -590,7 +590,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Una matrice età × attività per i tour in Lapponia finlandese, dai neonati ai 16+.',
     lead:
-      'Quali attività in Lapponia funzionano a quale età e quali no. Una matrice pratica che copre cinque fasce di età e i sei classici: caccia all\'aurora, husky, motoslitta, renna, sauna, iglù di vetro.',
+      'Quali attività in Lapponia funzionano a quale età e quali no. Una matrice pratica che copre cinque fasce di età e i sei classici.',
     matrixEyebrow: 'La matrice',
     ageHeader: 'Età',
     legend: '✓ disponibile · trattino: non offerto · "passeggero" / "tandem" / "da solo" indica il ruolo',
@@ -681,7 +681,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Een leeftijd × activiteit-matrix voor Lapland-reizen, van baby tot 16+.',
     lead:
-      'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers: noorderlichtjacht, husky, sneeuwscooter, rendier, sauna, glasiglo.',
+      'Welke Lapland-activiteiten passen bij welke leeftijd, en welke niet. Een praktische matrix over vijf leeftijdsgroepen en de zes klassiekers.',
     matrixEyebrow: 'De matrix',
     ageHeader: 'Leeftijd',
     legend: '✓ mogelijk · streepje: niet aangeboden · "passagier" / "tandem" / "solo" geeft de rol aan',
@@ -771,7 +771,7 @@ const COPY: Record<CopyLang, {
     articleHeadline: 'Åldersguide: vilka Lapplandsaktiviteter passar vilken ålder',
     articleDescription: 'En matris över ålder och aktivitet för turer i finska Lappland, från spädbarn till 16+.',
     lead:
-      'Vilka Lapplandsaktiviteter fungerar i vilken ålder, och vilka gör det inte. En praktisk matris över fem åldersgrupper och de sex grundpelarna: norrskensjakt, husky, skoter, ren, bastu, glasiglo.',
+      'Vilka Lapplandsaktiviteter fungerar i vilken ålder, och vilka gör det inte. En praktisk matris över fem åldersgrupper och de sex grundpelarna.',
     matrixEyebrow: 'Matrisen',
     ageHeader: 'Ålder',
     legend: '✓ tillgängligt · streck: erbjuds inte · "passagerare" / "tandem" / "ensam" anger rollen',
@@ -862,7 +862,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Una matriz de edad × actividad para los viajes a la Laponia finlandesa, de bebés a mayores de 16 años.',
     lead:
-      'Qué actividades de Laponia funcionan a cada edad y cuáles no. Una matriz práctica con cinco franjas de edad y los seis básicos: caza de auroras, huskies, motonieve, renos, sauna e iglú de cristal.',
+      'Qué actividades de Laponia funcionan a cada edad y cuáles no. Una matriz práctica con cinco franjas de edad y los seis básicos.',
     matrixEyebrow: 'La matriz',
     ageHeader: 'Edad',
     legend: '✓ disponible · guion: no se ofrece · «pasajero» / «tándem» / «en solitario» indica el papel',
@@ -953,7 +953,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       'Uma matriz de idade × atividade para as viagens à Lapônia finlandesa, de bebês a maiores de 16 anos.',
     lead:
-      'Quais atividades da Lapônia funcionam em cada idade e quais não. Uma matriz prática com cinco faixas etárias e os seis clássicos: caça à aurora, huskies, snowmobile, renas, sauna e iglu de vidro.',
+      'Quais atividades da Lapônia funcionam em cada idade e quais não. Uma matriz prática com cinco faixas etárias e os seis clássicos.',
     matrixEyebrow: 'A matriz',
     ageHeader: 'Idade',
     legend: '✓ disponível · traço: não oferecido · "passageiro" / "tandem" / "sozinho" indica o papel',
@@ -1044,7 +1044,7 @@ const COPY: Record<CopyLang, {
     articleDescription:
       '一份面向芬兰拉普兰旅行的年龄 × 活动对照表，从婴儿到 16 岁以上。',
     lead:
-      '哪些拉普兰活动适合哪个年龄，哪些不适合。一份涵盖五个年龄段和六大经典项目的实用对照表：极光追寻、哈士奇、雪地摩托、驯鹿、桑拿和玻璃冰屋。',
+      '哪些拉普兰活动适合哪个年龄，哪些不适合。一份涵盖五个年龄段和六大经典项目的实用对照表。',
     matrixEyebrow: '对照表',
     ageHeader: '年龄',
     legend: '✓ 可参加 · — 不提供 · “乘客”/“双人”/“单独”表示角色',
@@ -1284,6 +1284,22 @@ export default function AgeGuide() {
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
+          {/* 🔴 Vesa 12.9.: kuusi peruspakettia oli lauseen hantaana ("...ja
+              kuudessa peruspaketissa: ..."), eli ne olivat sivun konkreettisin tieto mutta
+              luettavissa vasta lauseen lopusta. Nyt ne ovat tageja omalla
+              rivillaan. Nimet tulevat `c.activities`ista = samat merkkijonot
+              kuin taulukon sarakeotsikot, joten 12 kielta on jo olemassa eika
+              sama lista ole kahdessa paikassa erikseen kaannettyna. */}
+          <ul className="mt-5 flex flex-wrap justify-center lg:justify-start gap-2" aria-label={c.matrixEyebrow}>
+            {c.activities.map((a) => (
+              <li
+                key={a}
+                className="rounded-full border border-arctic-cyan/40 bg-deep-night/55 backdrop-blur-sm px-4 py-1.5 font-body text-[13.5px] text-snow/95 shadow-[0_2px_10px_rgba(0,0,0,0.55)]"
+              >
+                {a}
+              </li>
+            ))}
+          </ul>
           <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
         </div>
       </section>
