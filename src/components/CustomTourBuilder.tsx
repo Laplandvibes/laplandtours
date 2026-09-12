@@ -745,7 +745,7 @@ const COPY: Record<CopyLang, {
  */
 const LABEL = 'block text-[11px] uppercase tracking-[0.15em] text-snow/65 font-semibold mb-3';
 const FIELD =
-  'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/25 bg-white/[0.07] text-snow placeholder-snow/40 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
+  'w-full min-h-[48px] px-5 py-3 rounded-full border border-snow/25 bg-white/[0.07] text-snow placeholder-snow/60 font-body text-base focus:outline-none focus:border-arctic-cyan focus:ring-2 focus:ring-arctic-cyan/30 transition';
 const PRIMARY =
   'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap min-h-[48px] rounded-full bg-[#DB2777] hover:bg-[#BE185D] disabled:opacity-60 disabled:cursor-wait text-white font-body font-semibold px-7 py-3 transition-colors';
 const GHOST =
