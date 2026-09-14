@@ -206,7 +206,7 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3 sm:gap-5 shrink-0">
           <EcosystemMenu lang={lang} currentDomain="laplandtours.online" />
-          <Link to={to('/')} className="shrink-0" aria-label="LaplandTours home">
+          <Link to={to('/')} className="shrink-0 inline-flex items-center min-h-11" aria-label="LaplandTours home">
             <Logo size="sm" />
           </Link>
         </div>

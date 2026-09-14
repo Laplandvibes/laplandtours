@@ -246,7 +246,7 @@ export default function DriveToLapland() {
           <a
             href={hubUrl(lang, OVERVIEW_SLUG)}
             data-umami-event="drive_overview_click"
-            className="mt-6 inline-flex items-center gap-2 text-snow border-b border-snow/40 hover:border-vibe-pink hover:text-vibe-pink pb-1 font-body font-medium transition-colors"
+            className="lv-tap mt-6 inline-flex items-center gap-2 text-snow border-b border-snow/40 hover:border-vibe-pink hover:text-vibe-pink pb-1 font-body font-medium transition-colors"
           >
             <Route className="w-4 h-4 text-arctic-cyan" strokeWidth={1.6} aria-hidden="true" />
             <span>{c.overview}</span>

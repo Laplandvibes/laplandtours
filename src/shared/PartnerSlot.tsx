@@ -482,7 +482,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         </a>
 
         {(cta || description || (articleUrl && articleLabel)) && (
-          <div className={['p-5 sm:p-6 flex flex-col gap-3 sm:gap-4', layout === 'wide' ? 'md:flex-1 md:justify-center md:p-8 lg:p-10' : ''].filter(Boolean).join(' ')}>
+          <div className={['p-5 sm:p-6 flex flex-1 flex-col gap-3 sm:gap-4', layout === 'wide' ? 'md:flex-1 md:justify-center md:p-8 lg:p-10' : ''].filter(Boolean).join(' ')}>
             {/* Pidempi kuvaus vain sm+: desktopissa on tilaa, mobiilissa ei. */}
             {description && (
               <p
@@ -494,7 +494,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
                 {description}
               </p>
             )}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <div className={[layout === 'wide' ? 'flex flex-wrap items-center gap-x-5 gap-y-3' : 'mt-auto flex flex-col items-start gap-3'].join(' ')}>
               {/* CTA. Renderöityy vain kun kumppanille on annettu ctaLabel —
                   vanhat kumppanit ilman sitä säilyttävät entisen ulkoasunsa. */}
               {cta && (

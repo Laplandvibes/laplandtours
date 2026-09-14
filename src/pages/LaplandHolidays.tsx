@@ -439,7 +439,7 @@ export default function LaplandHolidays() {
           </p>
           <Link
             to={to('/design-tour')}
-            className="mt-8 inline-flex items-center gap-2 text-snow border-b border-snow/40 hover:border-vibe-pink hover:text-vibe-pink pb-1 font-body font-medium transition-colors"
+            className="lv-tap mt-8 inline-flex items-center gap-2 text-snow border-b border-snow/40 hover:border-vibe-pink hover:text-vibe-pink pb-1 font-body font-medium transition-colors"
           >
             {c.noneCta}
           </Link>

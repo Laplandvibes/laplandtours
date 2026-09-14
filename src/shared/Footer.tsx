@@ -1067,7 +1067,15 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                         /* min-w matters as much as min-h here: the link is
                            inline-flex, so its hit box is exactly as wide as the
                            label — and short locale labels ("Offres", "Erbjudanden")
-                           came out 37px wide. lg: restores the plain inline box. */
+                           came out 37px wide. lg: restores the plain inline box.
+
+                           🔴🔴 lg:, EI sm: (mitattu 14.9.2026). Jokainen taman tiedoston
+                           kosketuskohde oli 44 px puhelimessa ja kutistui `sm:`-kohdassa
+                           — mutta sm: on 640 px, eli TABLETTI on yha sormikayttoinen.
+                           768 px:lla nama rivit olivat 18 px, some-ikonit 40 px,
+                           pillerit 38 px ja "Lataa sovellus" 36 px. Hiiri alkaa vasta
+                           lg:sta (1024 px), joten kosketuskoon saa purkaa vasta siina.
+                           Verkoston saanto: mittaa 360/390/412/768/1280, kosketus <1024. */
                         className="text-[13px] sm:text-sm font-normal leading-snug transition-colors duration-200 inline-flex items-center min-h-[44px] min-w-[44px] lg:inline lg:min-h-0 lg:min-w-0"
                         style={{ color: 'rgba(248,250,252,0.85)' }}
                         onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#EC4899')}

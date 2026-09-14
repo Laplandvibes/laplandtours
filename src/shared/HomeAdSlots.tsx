@@ -196,7 +196,7 @@ export default function HomeAdSlots({ config, locale, surface = 'dark', houseAdT
 
         <div className={[
           'grid grid-cols-1 gap-4 sm:gap-5 items-stretch',
-          bothEmpty || single ? '' : 'sm:grid-cols-2',
+          bothEmpty || single ? '' : 'md:grid-cols-2',
           // 62rem = sama sisäleveys kuin tuoteriveillä (max-w-5xl − px-4).
           single ? 'max-w-[62rem] mx-auto' : '',
         ].filter(Boolean).join(' ')}>
