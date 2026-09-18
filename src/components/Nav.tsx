@@ -5,6 +5,9 @@ import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 import EcosystemMenu from '../shared/EcosystemMenu';
 import LanguageSwitcher from '../i18n/LanguageSwitcher';
 
+/** Sama sivu loppukauttaviivasta riippumatta: sisääntulo on `/x/`, linkki voi olla `/x` (18.9.2026). */
+const samePath = (a: string, b: string) => a.replace(/\/+$/, '') === b.replace(/\/+$/, '');
+
 // Exported so other components (e.g. pages/NotFound.tsx) can reuse the same
 // localized section labels instead of inventing new translation keys.
 export const COPY: Record<Lang, { operators: string; practical: string; age: string; bespoke: string; cta: string; menu: string; close: string }> = {
@@ -213,7 +216,7 @@ export default function Nav() {
 
         <nav className="hidden lg:flex items-center gap-5">
           {links.map(({ to, label }) => {
-            const active = location.pathname === to;
+            const active = samePath(location.pathname, to);
             return (
               <Link
                 key={to}
@@ -253,7 +256,7 @@ export default function Nav() {
       {open && (
         <nav className="lg:hidden bg-deep-night border-t border-white/10 px-4 py-4 flex flex-col gap-1">
           {links.map(({ to, label }) => {
-            const active = location.pathname === to;
+            const active = samePath(location.pathname, to);
             return (
               <Link
                 key={to}

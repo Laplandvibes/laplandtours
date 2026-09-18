@@ -5,8 +5,9 @@ import path from 'node:path'
 
 import compression from 'vite-plugin-compression2'
 
+import { trailingSlashLinks } from "./src/shared/router/trailingSlashPlugin";
 export default defineConfig({
-  plugins: [react(), tailwindcss(), compression({ algorithms: ['brotliCompress'], threshold: 1024 })],
+  plugins: [trailingSlashLinks(), react(), tailwindcss(), compression({ algorithms: ['brotliCompress'], threshold: 1024 })],
   resolve: {
     dedupe: ['react', 'react-dom', 'react-router-dom'],
     alias: {
