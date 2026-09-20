@@ -179,7 +179,12 @@ export default function Hero() {
         <div className="mt-7 sm:mt-9 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3">
           <a
             href="#build"
-            className="group inline-flex items-center gap-2 px-5 py-3 bg-vibe-pink hover:bg-vibe-pink/90 text-white font-body font-semibold text-base transition-colors shadow-lg shadow-vibe-pink/25"
+            // 🔴 #DB2777, ei #EC4899: teksti on 16 px eli WCAG:n pienta tekstia, ja
+            // valkoinen #EC4899:n paalla on 3,53:1 (korttiteksti-portti 20.9.2026
+            // mittasi tasan sen kahdella leveydella, 100 % pikseleista rajan alle).
+            // Valkoinen #DB2777:n paalla on 4,63:1. Sama askel pinkin rampilla kuin
+            // laplandhoteldealsissa, jossa tama mitattiin ensin (CLAUDE.md).
+            className="group inline-flex items-center gap-2 px-5 py-3 bg-[#DB2777] hover:bg-[#BE185D] text-white font-body font-semibold text-base transition-colors shadow-lg shadow-[#DB2777]/25"
           >
             {c.primary}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

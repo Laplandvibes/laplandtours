@@ -230,7 +230,11 @@ export default function Nav() {
               <Link
                 key={to}
                 to={to}
-                className={`text-sm font-medium transition-colors ${
+                // 🔴 min-h-11 (44 px): ilman sita linkin laatikko on tasmalleen
+                // rivikorkeus eli 20 px, ja navi-portti raportoi siita 144 loydosta
+                // (4 linkkia x 3 leveytta x 12 kielta, 20.9.2026). Sama 44 px:n
+                // kosketusalue kuin sanamerkilla tassa samassa palkissa.
+                className={`text-sm font-medium transition-colors inline-flex items-center min-h-11 ${
                   active ? 'text-vibe-pink' : 'text-snow/70 hover:text-vibe-pink'
                 }`}
               >
