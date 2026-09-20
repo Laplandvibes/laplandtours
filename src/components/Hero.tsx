@@ -140,11 +140,27 @@ export default function Hero() {
         objectPosition="center 40%"
         priority
       />
+      {/* 🔴🔴 Häivytys mitattiin 20.9.2026 heroteksti-portilla, joka lukee musteen
+          TODELLISEN taustan pikseleinä: valkoinen h1 kirkkaan taivaan päällä
+          mediaani 2,68–2,87:1 (raja 3:1 isolle tekstille, 61–74 % pikseleistä alle)
+          ja pinkki rivi metsän päällä 1,80–2,52:1, 97–100 % alle rajan. Vanha
+          häivytys oli ylhäällä 8 % — käytännössä olematon juuri siellä missä
+          otsikko on. Kuva on oikea valokuva (Pyhän kesätuolihissi), joten
+          häivytys viedään sinne missä teksti on eikä koko kuvan päälle:
+          puhelimessa pystysuunta (teksti keskitetty), työpöydällä vasen reuna
+          (teksti vasemmalla), jolloin oikea puoli maisemasta jää kirkkaana näkyviin. */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none lg:hidden"
         style={{
           background:
-            'linear-gradient(to top, rgba(15,23,42,0.68) 0%, rgba(15,23,42,0.26) 50%, rgba(15,23,42,0.08) 100%)',
+            'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.72) 50%, rgba(15,23,42,0.58) 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(15,23,42,0.90) 0%, rgba(15,23,42,0.74) 42%, rgba(15,23,42,0.30) 72%, rgba(15,23,42,0.12) 100%)',
         }}
       />
 
@@ -152,7 +168,7 @@ export default function Hero() {
         <h1 className="font-heading tracking-tight leading-[0.95] text-snow text-[clamp(2.5rem,6vw,5rem)] break-words hyphens-auto [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)] xl:text-[clamp(80px,1.25vw_+_64px,96px)]">
           {c.h1}
         </h1>
-        <p className="mt-3 sm:mt-4 font-heading tracking-wide text-vibe-pink text-[clamp(1.5rem,4.5vw,3rem)] leading-tight break-words drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+        <p className="mt-3 sm:mt-4 font-heading tracking-wide text-[#F9A8D4] text-[clamp(1.5rem,4.5vw,3rem)] leading-tight break-words drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
           {c.pinkLine}
         </p>
 
