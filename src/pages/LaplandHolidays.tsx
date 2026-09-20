@@ -405,7 +405,7 @@ export default function LaplandHolidays() {
                 partner="hotels"
                 sid="holidays_addon_hotels"
                 destination="Rovaniemi"
-                className="block px-5 py-4 bg-vibe-pink text-white font-body font-semibold hover:bg-vibe-pink/90 transition-colors text-[15px]"
+                className="block px-5 py-4 bg-[#DB2777] text-white font-body font-semibold hover:bg-[#BE185D] transition-colors text-[15px]"
               >
                 {c.addonHotel}
               </AffiliateCTA>

@@ -314,7 +314,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
           partner="activities"
           sid={`operators_${op.slug}_gyg`}
           gygSearch={GYG_SEARCH[op.slug] ?? 'Lapland activities Rovaniemi'}
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-vibe-pink hover:bg-vibe-pink/90 text-white self-start font-body font-semibold transition-colors text-[15px]"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#DB2777] hover:bg-[#BE185D] text-white self-start font-body font-semibold transition-colors text-[15px]"
         >
           {labels.gyg}
           <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />

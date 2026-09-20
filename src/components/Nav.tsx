@@ -247,7 +247,7 @@ export default function Nav() {
           </div>
           <Link
             to={to('/design-tour')}
-            className="ml-2 px-5 py-2 bg-vibe-pink hover:bg-vibe-pink/90 text-white text-sm font-semibold rounded-full transition-colors shadow-lg shadow-vibe-pink/25"
+            className="ml-2 px-5 py-2 bg-[#DB2777] hover:bg-[#BE185D] text-white text-sm font-semibold rounded-full transition-colors shadow-lg shadow-vibe-pink/25"
           >
             {c.cta}
           </Link>
@@ -296,7 +296,7 @@ export default function Nav() {
           <Link
             to={to('/design-tour')}
             onClick={() => setOpen(false)}
-            className="mt-2 px-5 py-3 bg-vibe-pink text-white text-base font-semibold rounded-full text-center"
+            className="mt-2 px-5 py-3 bg-[#DB2777] text-white text-base font-semibold rounded-full text-center"
           >
             {c.cta}
           </Link>

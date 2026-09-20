@@ -370,7 +370,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   es: {
     successHeadline: 'Ya casi.',
     successBody: 'Confirme su suscripción desde el correo que acabamos de enviarle.',
-    alreadyHeadline: '¡Ya estabas en la lista!',
+    alreadyHeadline: '¡Ya estaba en la lista!',
     alreadyBody: 'Su suscripción ya estaba activa. Sabrá de mí cuando haya algo que contar.',
     emailPlaceholder: 'Su correo electrónico',
     submit: '¡Me apunto!',
@@ -1031,7 +1031,7 @@ export default function NewsletterPopup({
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full px-6 py-3 rounded-full hover:bg-pink-600 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
+                  className="w-full px-6 py-3 rounded-full hover:bg-[#BE185D] text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-vibe-pink/25 cursor-pointer"
                   style={{ backgroundColor: '#DB2777' }}
                 >
                   {status === 'loading' ? (

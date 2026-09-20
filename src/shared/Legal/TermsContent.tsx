@@ -509,7 +509,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s1Title: '1. 关于本网站',
     s1P1: (siteName, siteUrl) => (
       <>
-        {siteName}(<strong className="text-snow/90">{siteUrl}</strong>)是一个芬兰拉普兰旅游信息中心，由在芬兰注册的{' '}
+        {siteName}（<strong className="text-snow/90">{siteUrl}</strong>）是一个芬兰拉普兰旅游信息中心，由在芬兰注册的{' '}
         <strong className="text-snow/90">LaPeso Oy</strong> 运营。我们提供编辑型旅游指南、目的地信息以及指向第三方预订服务的链接。
       </>
     ),
@@ -538,7 +538,7 @@ const COPY: Record<Lang, TermsCopy> = {
       <>
         任何旅游服务合同（住宿、机票、租车、行程等）均由您与相应的第三方提供方直接签订，适用其条款与隐私政策。
         适用的是其取消、退款及消费者保护规则，而非我们的规则。芬兰《消费者保护法》第6章
-        (<em>kuluttajansuojalaki 6 luku</em>)规定的撤回权由您向商家主张;{siteName} 不参与该过程。
+        (<em>kuluttajansuojalaki 6 luku</em>)规定的撤回权由您向商家主张；{siteName} 不参与该过程。
       </>
     ),
     s6Title: '6. 电子简报',
@@ -559,8 +559,8 @@ const COPY: Record<Lang, TermsCopy> = {
     s10Body: '我们可能会不时更新本条款。变更自发布之日起生效。更新后继续使用本网站即视为接受修订后的条款。',
     s11Title: '11. 可分性',
     s11Body: '如果有管辖权的法院判定本条款中的任何条款无效、违法或不可执行，其余条款仍然完全有效。无效条款将在法律允许的范围内被替换为最接近原商业意图的有效条款。',
-    s12Title: '12. 《数字服务法》(DSA)联络点',
-    s12Intro: '根据欧盟《数字服务法》(法规 (EU) 2022/2065)，我们指定的面向监管机构与服务用户的联络点为：',
+    s12Title: '12. 《数字服务法》（DSA）联络点',
+    s12Intro: '根据欧盟《数字服务法》（法规 (EU) 2022/2065），我们指定的面向监管机构与服务用户的联络点为：',
     s12Items: [
       '电子邮件：info@laplandvibes.com',
       '运营者：LaPeso Oy，芬兰',
