@@ -57,7 +57,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       "Tell us your trip and a matching operator will be suggested.",
     noneCta: 'Design your trip →',
-    altHero: 'Husky team running through a snowy spruce corridor',
+    altHero: 'Santa Claus Office at the Arctic Circle in Rovaniemi on a summer day',
   },
   fi: {
     metaTitle: 'Matkanjärjestäjät: Suomen Lappi | #LaplandTours',
@@ -81,7 +81,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'Kerro matkaideasi, ja sopiva matkanjärjestäjä ehdotetaan.',
     noneCta: 'Suunnittele oma matka →',
-    altHero: 'Huskysafari etenee lumisen kuusimetsän käytävässä',
+    altHero: 'Joulupukin kammari napapiirillä Rovaniemellä kesäpäivänä',
   },
   de: {
     metaTitle: 'Die Reiseveranstalter: Finnisch-Lappland | #LaplandTours',
@@ -105,7 +105,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'Beschreiben Sie Ihre Reise, und ein passender Reiseveranstalter wird vorgeschlagen.',
     noneCta: 'Reise individuell planen →',
-    altHero: 'Husky-Gespann läuft durch einen verschneiten Fichtenkorridor',
+    altHero: 'Das Büro des Weihnachtsmanns am Polarkreis in Rovaniemi an einem Sommertag',
   },
   ja: {
     metaTitle: 'ツアー会社｜フィンランド・ラップランドの6社のツアー会社 | #LaplandTours',
@@ -129,7 +129,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'ご希望の旅をお聞かせください。マッチするオペレーターをご提案します。',
     noneCta: 'あなたの旅をデザインする →',
-    altHero: '雪に覆われたモミの木の通路を走るハスキーチーム',
+    altHero: '夏の日のロヴァニエミ、北極圏にあるサンタクロース・オフィス',
   },
   ko: {
     metaTitle: '운영사: 핀란드 라플란드를 다루는 여섯 운영사 | #LaplandTours',
@@ -152,7 +152,7 @@ const COPY: Record<CopyLang, {
     noneEyebrow: '이 중에 맞는 게 없으신가요?',
     noneLine: '원하시는 여행을 알려주시면 적합한 운영사를 제안해 드립니다.',
     noneCta: '여행 디자인하기 →',
-    altHero: '눈 덮인 가문비나무 사이를 달리는 허스키 팀',
+    altHero: '여름날 로바니에미 북극권의 산타클로스 오피스',
   },
   fr: {
     metaTitle: 'Les voyagistes : Laponie finlandaise | #LaplandTours',
@@ -175,7 +175,7 @@ const COPY: Record<CopyLang, {
     noneEyebrow: 'Aucun ne convient ?',
     noneLine: 'Décrivez votre voyage et un voyagiste compatible vous sera proposé.',
     noneCta: 'Concevoir votre voyage →',
-    altHero: 'Attelage de huskies traversant un couloir d\'épicéas enneigés',
+    altHero: 'Le bureau du Père Noël sur le cercle polaire, à Rovaniemi, un jour d’été',
   },
   it: {
     metaTitle: 'I tour operator: Lapponia finlandese | #LaplandTours',
@@ -198,7 +198,7 @@ const COPY: Record<CopyLang, {
     noneEyebrow: 'Nessuno fa al caso suo ?',
     noneLine: 'Ci descriva il suo viaggio: le proporremo un operatore compatibile.',
     noneCta: 'Progetti il Suo viaggio →',
-    altHero: 'Muta di husky in corsa lungo un corridoio di abeti innevati',
+    altHero: 'L’ufficio di Babbo Natale sul Circolo Polare Artico a Rovaniemi, in un giorno d’estate',
   },
   nl: {
     metaTitle: 'De reisorganisaties: Fins Lapland | #LaplandTours',
@@ -221,7 +221,7 @@ const COPY: Record<CopyLang, {
     noneEyebrow: 'Niets van uw gading ?',
     noneLine: 'Vertel ons uw reis en we stellen een passende reisorganisatie voor.',
     noneCta: 'Ontwerp uw reis →',
-    altHero: 'Husky-team rent door een besneeuwde sparrenlaan',
+    altHero: 'Het kantoor van de Kerstman op de poolcirkel in Rovaniemi op een zomerdag',
   },
   sv: {
     metaTitle: 'Aktörerna: finska Lappland | #LaplandTours',
@@ -245,7 +245,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'Berätta om din resa, så föreslår vi en aktör som passar.',
     noneCta: 'Planera din resa →',
-    altHero: 'Huskyspann springer genom en snötäckt grankorridor',
+    altHero: 'Jultomtens kontor vid polcirkeln i Rovaniemi en sommardag',
   },
   es: {
     metaTitle: 'Los operadores: Laponia finlandesa | #LaplandTours',
@@ -269,7 +269,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'Cuéntenos su viaje y le sugeriremos un operador a medida.',
     noneCta: 'Diseñe su viaje →',
-    altHero: 'Tiro de huskies corriendo por un corredor nevado de abetos',
+    altHero: 'La oficina de Papá Noel en el Círculo Polar Ártico, en Rovaniemi, un día de verano',
   },
   'pt-BR': {
     metaTitle: 'As operadoras: Lapônia finlandesa | #LaplandTours',
@@ -293,7 +293,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       'Conte-nos sua viagem e sugerimos uma operadora compatível.',
     noneCta: 'Crie a sua viagem →',
-    altHero: 'Matilha de huskies correndo por um corredor nevado de abetos',
+    altHero: 'O escritório do Papai Noel no Círculo Polar Ártico, em Rovaniemi, em um dia de verão',
   },
   'zh-CN': {
     metaTitle: '运营商：六家做芬兰拉普兰的旅游公司 | #LaplandTours',
@@ -317,7 +317,7 @@ const COPY: Record<CopyLang, {
     noneLine:
       '告诉我们你的行程，我们会推荐合适的运营商。',
     noneCta: '定制你的行程 →',
-    altHero: '一队哈士奇在覆雪的云杉通道中奔跑',
+    altHero: '夏日里罗瓦涅米北极圈上的圣诞老人办公室',
   },
 };
 
