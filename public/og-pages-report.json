@@ -1,0 +1,326 @@
+{
+  "lapland-holidays": {
+    "route": "/lapland-holidays",
+    "line": "Local tour operators and what you get",
+    "kaudet": {
+      "summer": {
+        "hero": "/images/op-beyond-arctic.webp",
+        "bytes": 142293,
+        "sha256": "ca555abae09e3146c4d3fd601d2c321940bdd2d20f588f4d7360997b7590c389",
+        "heroSha": "6f546c6d9d3d63ad",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 16366,
+        "inkBox": [
+          335,
+          493,
+          865,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 92.6,
+        "centerSq": 112.7,
+        "photoRegion": 112.7,
+        "photoRegionRef": 112.7,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 533,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": []
+      },
+      "winter": {
+        "hero": "/images/op-beyond-arctic.webp",
+        "bytes": 142293,
+        "sha256": "ca555abae09e3146c4d3fd601d2c321940bdd2d20f588f4d7360997b7590c389",
+        "heroSha": "6f546c6d9d3d63ad",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 16366,
+        "inkBox": [
+          335,
+          493,
+          865,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 92.6,
+        "centerSq": 112.7,
+        "photoRegion": 112.7,
+        "photoRegionRef": 112.7,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 533,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": [],
+        "samaKuinKesa": true
+      }
+    }
+  },
+  "practical-info": {
+    "route": "/practical-info",
+    "line": "Airports, night train, visas, packing",
+    "kaudet": {
+      "summer": {
+        "hero": "/images/hero-practical.webp",
+        "bytes": 175639,
+        "sha256": "46c9e5dcebacfc0883d006392af4ad87e8f2ac2fccd3fe0044666a0512935241",
+        "heroSha": "62d71a4d74336923",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15997,
+        "inkBox": [
+          361,
+          493,
+          838,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 101.9,
+        "centerSq": 107.1,
+        "photoRegion": 125.4,
+        "photoRegionRef": 125.4,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 479,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": []
+      },
+      "winter": {
+        "hero": "/images/hero-practical.webp",
+        "bytes": 175639,
+        "sha256": "46c9e5dcebacfc0883d006392af4ad87e8f2ac2fccd3fe0044666a0512935241",
+        "heroSha": "62d71a4d74336923",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15997,
+        "inkBox": [
+          361,
+          493,
+          838,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 101.9,
+        "centerSq": 107.1,
+        "photoRegion": 125.4,
+        "photoRegionRef": 125.4,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 479,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": [],
+        "samaKuinKesa": true
+      }
+    }
+  },
+  "age-guide": {
+    "route": "/age-guide",
+    "line": "Which activities suit which age",
+    "kaudet": {
+      "summer": {
+        "hero": "/images/hero-age-guide.webp",
+        "bytes": 156265,
+        "sha256": "a50709b5f82a1964863e5d70bc8b5ac295bf0b1da4c0ed64694e8af468bdbe3f",
+        "heroSha": "2bac885ba254cde5",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15649,
+        "inkBox": [
+          384,
+          493,
+          815,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 88.2,
+        "centerSq": 92.1,
+        "photoRegion": 106.9,
+        "photoRegionRef": 106.9,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 433,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": []
+      },
+      "winter": {
+        "hero": "/images/hero-age-guide.webp",
+        "bytes": 156265,
+        "sha256": "a50709b5f82a1964863e5d70bc8b5ac295bf0b1da4c0ed64694e8af468bdbe3f",
+        "heroSha": "2bac885ba254cde5",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15649,
+        "inkBox": [
+          384,
+          493,
+          815,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 88.2,
+        "centerSq": 92.1,
+        "photoRegion": 106.9,
+        "photoRegionRef": 106.9,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 433,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": [],
+        "samaKuinKesa": true
+      }
+    }
+  },
+  "design-tour": {
+    "route": "/design-tour",
+    "line": "Tell us the trip, we send back a plan",
+    "kaudet": {
+      "summer": {
+        "hero": "/images/hero-design-tour.webp",
+        "bytes": 131430,
+        "sha256": "ce9ef2d223af51851c158647d78f0d1d5d7b88597bc0f8566b5aea2ed8235c17",
+        "heroSha": "7f31f3be06017b50",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15938,
+        "inkBox": [
+          353,
+          493,
+          845,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 76.7,
+        "centerSq": 97.6,
+        "photoRegion": 91.1,
+        "photoRegionRef": 91.1,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 494,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": []
+      },
+      "winter": {
+        "hero": "/images/hero-design-tour.webp",
+        "bytes": 131430,
+        "sha256": "ce9ef2d223af51851c158647d78f0d1d5d7b88597bc0f8566b5aea2ed8235c17",
+        "heroSha": "7f31f3be06017b50",
+        "bandH": 168,
+        "photoPct": 73.3,
+        "ink": 15938,
+        "inkBox": [
+          353,
+          493,
+          845,
+          603
+        ],
+        "safe": true,
+        "accentP10": 5.06,
+        "accentMed": 5.06,
+        "whiteP10": 17.08,
+        "whiteMed": 17.08,
+        "mean": 76.7,
+        "centerSq": 97.6,
+        "photoRegion": 91.1,
+        "photoRegionRef": 91.1,
+        "overlayPixels": 0,
+        "maxDiff": 0,
+        "fit": {
+          "size": 74,
+          "lines": 1,
+          "ts": 30,
+          "tagW": 494,
+          "fits": true,
+          "bandH": 168
+        },
+        "contrastOk": true,
+        "zeroOverlay": true,
+        "errors": [],
+        "samaKuinKesa": true
+      }
+    }
+  }
+}

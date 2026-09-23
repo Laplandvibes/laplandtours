@@ -78,7 +78,13 @@
     },
     "harvestFiles": [
       "src/pages/LaplandHolidays.tsx"
-    ]
+    ],
+    "ogImage": "/og/lapland-holidays.jpg",
+    "ogCard": {
+      "hero": "/images/op-beyond-arctic.webp",
+      "line": "Local tour operators and what you get",
+      "focus": "50% 28%"
+    }
   },
   {
     "path": "/practical-info",
@@ -114,7 +120,12 @@
     },
     "harvestFiles": [
       "src/pages/PracticalInfo.tsx"
-    ]
+    ],
+    "ogImage": "/og/practical-info.jpg",
+    "ogCard": {
+      "hero": "/images/hero-practical.webp",
+      "line": "Airports, night train, visas, packing"
+    }
   },
   {
     "path": "/age-guide",
@@ -150,7 +161,12 @@
     },
     "harvestFiles": [
       "src/pages/AgeGuide.tsx"
-    ]
+    ],
+    "ogImage": "/og/age-guide.jpg",
+    "ogCard": {
+      "hero": "/images/hero-age-guide.webp",
+      "line": "Which activities suit which age"
+    }
   },
   {
     "path": "/design-tour",
@@ -188,7 +204,12 @@
       "src/pages/DesignTour.tsx",
       "src/components/CustomTourBuilder.tsx",
       "src/components/AffiliateDisclosure.tsx"
-    ]
+    ],
+    "ogImage": "/og/design-tour.jpg",
+    "ogCard": {
+      "hero": "/images/hero-design-tour.webp",
+      "line": "Tell us the trip, we send back a plan"
+    }
   },
   {
     "path": "/privacy",
