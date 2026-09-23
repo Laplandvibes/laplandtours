@@ -43,7 +43,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Home',
   },
   fi: {
-    title: '#LaplandTours: suunnittele Lapin matka, kokoa itse tai varaa paikallinen toimija',
+    title: 'Suunnittele Lapin matka: kokoa itse tai osta paketti',
     description:
       'Suomen Lapin matkan voi koota kahdella tavalla. Yhdistä itse hotelli, vuokra-auto ja päiväretket, tai varaa aktiviteetit suoraan yhdeltä kuudesta luotettavasta lappilaisesta paikallistoimijasta.',
     canonical: 'https://laplandtours.online/fi',
@@ -57,7 +57,7 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Start',
   },
   ja: {
-    title: '#LaplandTours：ラップランドの旅を計画。自分で組み立てるか地元の会社に予約',
+    title: 'ラップランドの旅を計画：自分で組み立てるかパッケージを購入',
     description:
       'フィンランド・ラップランドへの旅を2つの方法で計画できます。ホテル、レンタカー、アクティビティを自分で組み合わせるか、信頼できる地元ラップランドの6社にアクティビティを直接予約できます。',
     canonical: 'https://laplandtours.online/ja',
@@ -92,28 +92,28 @@ const META: Record<CopyLang, { title: string; description: string; canonical: st
     breadcrumbHome: 'Home',
   },
   sv: {
-    title: '#LaplandTours: planera din Lapplandsresa, sätt ihop själv eller boka en lokal aktör',
+    title: 'Planera din Lapplandsresa: sätt ihop själv eller köp paket',
     description:
       'En resa till finska Lappland kan planeras på två sätt. Sätt ihop hotell, hyrbil och dagsutflykter själv, eller boka aktiviteterna direkt hos en av sex pålitliga lokala aktörer i finska Lappland.',
     canonical: 'https://laplandtours.online/sv',
     breadcrumbHome: 'Hem',
   },
   es: {
-    title: '#LaplandTours: planifique su viaje a Laponia, a la carta o con operador local',
+    title: 'Planifique su viaje a Laponia: a la carta o con paquete',
     description:
       'Hay dos formas de organizar un viaje a la Laponia finlandesa. Combine usted mismo hotel, coche de alquiler y actividades, o reserve directamente con uno de seis operadores locales de la Laponia finlandesa.',
     canonical: 'https://laplandtours.online/es',
     breadcrumbHome: 'Inicio',
   },
   'pt-BR': {
-    title: '#LaplandTours: Lapônia à la carte ou com operadora local',
+    title: 'Viagem à Lapônia, à la carte ou pacote',
     description:
       'Há duas formas de organizar uma viagem à Lapônia finlandesa. Monte você mesmo hotel, aluguel de carro e atividades, ou reserve direto com uma de seis operadoras locais da Lapônia finlandesa.',
     canonical: 'https://laplandtours.online/br',
     breadcrumbHome: 'Início',
   },
   'zh-CN': {
-    title: '#LaplandTours：规划你的拉普兰之旅，自由组合或预订本地运营商',
+    title: '规划你的拉普兰之旅：自由组合或购买套餐',
     description:
       '前往芬兰拉普兰有两种规划方式。自己组合酒店、租车和活动，或者直接向六家芬兰本地拉普兰运营商预订活动。',
     canonical: 'https://laplandtours.online/cn',

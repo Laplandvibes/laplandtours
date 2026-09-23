@@ -102,7 +102,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Read next',
   },
   fi: {
-    metaTitle: 'Käytännön tieto: Suomen Lappi | #LaplandTours',
+    metaTitle: 'Käytännön tieto: Suomen Lappi',
     metaDescription:
       'Ennen matkaa luettava opas Suomen Lapista: perilletulo, säätyypit kausittain, viisumi, pakkauslista, kulkuyhteydet sekä terveys ja turvallisuus.',
     canonical: 'https://laplandtours.online/fi/practical-info',
@@ -157,7 +157,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Lue seuraavaksi',
   },
   de: {
-    metaTitle: 'Praktische Hinweise: Finnisch-Lappland | #LaplandTours',
+    metaTitle: 'Praktische Hinweise: Finnisch-Lappland',
     metaDescription:
       'Ein Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste, Transport vor Ort sowie Gesundheit und Sicherheit.',
     canonical: 'https://laplandtours.online/de/practical-info',
@@ -212,7 +212,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Weiterlesen',
   },
   ja: {
-    metaTitle: '実用情報｜フィンランド・ラップランドの気候、ビザ、交通 | #LaplandTours',
+    metaTitle: '実用情報｜フィンランド・ラップランドの気候、ビザ、交通',
     metaDescription:
       'フィンランド・ラップランドへの旅行前のブリーフィング。行き方、季節別の気候、ビザ規則、持ち物、移動方法、健康と安全の基本。',
     canonical: 'https://laplandtours.online/ja/practical-info',
@@ -267,7 +267,7 @@ const COPY: Record<CopyLang, {
     alsoRead: '次に読む',
   },
   ko: {
-    metaTitle: '실용 정보: 핀란드 라플란드의 기후, 비자, 교통 | #LaplandTours',
+    metaTitle: '실용 정보: 핀란드 라플란드의 기후, 비자, 교통',
     metaDescription:
       '핀란드 라플란드 여행 전 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 현지 이동, 건강과 안전.',
     canonical: 'https://laplandtours.online/kr/practical-info',
@@ -322,7 +322,7 @@ const COPY: Record<CopyLang, {
     alsoRead: '다음 읽기',
   },
   fr: {
-    metaTitle: 'Infos pratiques : Laponie finlandaise | #LaplandTours',
+    metaTitle: 'Infos pratiques : Laponie finlandaise',
     metaDescription:
       'Un briefing avant le départ pour la Laponie finlandaise : y aller, climat par saison, visa, bagages, déplacements et notions de santé et sécurité.',
     canonical: 'https://laplandtours.online/fr/practical-info',
@@ -377,7 +377,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'À lire ensuite',
   },
   it: {
-    metaTitle: 'Informazioni pratiche: Lapponia | #LaplandTours',
+    metaTitle: 'Informazioni pratiche: Lapponia',
     metaDescription:
       'Un briefing pre-partenza per la Lapponia finlandese: come arrivare, clima per stagione, visti, valigia, spostamenti, salute e sicurezza.',
     canonical: 'https://laplandtours.online/it/practical-info',
@@ -432,7 +432,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Da leggere poi',
   },
   nl: {
-    metaTitle: 'Praktische info: Fins Lapland | #LaplandTours',
+    metaTitle: 'Praktische info: Fins Lapland',
     metaDescription:
       'Een briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken, vervoer en basis gezondheid en veiligheid.',
     canonical: 'https://laplandtours.online/nl/practical-info',
@@ -487,7 +487,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Lees verder',
   },
   sv: {
-    metaTitle: 'Praktisk info: klimat, visum, transport för finska Lappland | #LaplandTours',
+    metaTitle: 'Praktisk info: klimat, visum, transport för finska Lappland',
     metaDescription:
       'En genomgång inför resan till finska Lappland: att ta sig dit, klimat per säsong, visumregler, packlista, att ta sig runt samt hälsa och säkerhet.',
     canonical: 'https://laplandtours.online/sv/practical-info',
@@ -542,7 +542,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Läs vidare',
   },
   es: {
-    metaTitle: 'Información práctica: Laponia finlandesa | #LaplandTours',
+    metaTitle: 'Información práctica: Laponia finlandesa',
     metaDescription:
       'Un resumen previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, visados, qué llevar, cómo moverse y nociones de salud y seguridad.',
     canonical: 'https://laplandtours.online/es/practical-info',
@@ -597,7 +597,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Siga leyendo',
   },
   'pt-BR': {
-    metaTitle: 'Informações práticas: Lapônia | #LaplandTours',
+    metaTitle: 'Informações práticas: Lapônia',
     metaDescription:
       'Um resumo pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar, como se locomover e noções de saúde e segurança.',
     canonical: 'https://laplandtours.online/br/practical-info',
@@ -652,7 +652,7 @@ const COPY: Record<CopyLang, {
     alsoRead: 'Leia a seguir',
   },
   'zh-CN': {
-    metaTitle: '实用信息：芬兰拉普兰的气候、签证与交通 | #LaplandTours',
+    metaTitle: '实用信息：芬兰拉普兰的气候、签证与交通',
     metaDescription:
       '一份前往芬兰拉普兰的行前须知：如何抵达、各季节气候、签证规定、行李清单、当地交通，以及健康与安全要点。',
     canonical: 'https://laplandtours.online/cn/practical-info',

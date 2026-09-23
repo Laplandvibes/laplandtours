@@ -15,7 +15,7 @@ const META: Record<CopyLang, {
   articleDescription: string;
 }> = {
   en: {
-    title: 'Design your own Lapland trip | #LaplandTours',
+    title: 'Design your own Lapland trip',
     description:
       'Describe the Lapland holiday you actually want (group size, dates, budget and special requests), and a bespoke itinerary lands within 24 hours.',
     canonical: 'https://laplandtours.online/design-tour',
@@ -26,7 +26,7 @@ const META: Record<CopyLang, {
       'A request form for travellers who need a fully bespoke Lapland itinerary: proposals, family birthdays, multi-region trips and luxury bookings.',
   },
   fi: {
-    title: 'Suunnittele oma Lapin matkasi | #LaplandTours',
+    title: 'Suunnittele oma Lapin matkasi',
     description:
       'Kuvaile millaisen Lapin matkan haluat (ryhmäkoko, päivämäärät, budjetti ja erityistoiveet), niin räätälöity matkaehdotus saapuu 24 tunnissa.',
     canonical: 'https://laplandtours.online/fi/design-tour',
@@ -37,7 +37,7 @@ const META: Record<CopyLang, {
       'Tiedustelu­lomake matkustajille, jotka haluavat täysin räätälöidyn matkasuunnitelman: kosinta, perheen syntymäpäivät, useamman alueen matka tai luksusvaraus.',
   },
   de: {
-    title: 'Individuelle Lappland-Reise planen | #LaplandTours',
+    title: 'Individuelle Lappland-Reise planen',
     description:
       'Beschreiben Sie Ihre Wunschreise nach Lappland: Gruppengröße, Termine, Budget und besondere Anlässe. Innerhalb von 24 Stunden folgt ein Vorschlag.',
     canonical: 'https://laplandtours.online/de/design-tour',
@@ -48,7 +48,7 @@ const META: Record<CopyLang, {
       'Anfrageformular für Reisende, die einen vollständig maßgeschneiderten Lappland-Reiseplan wünschen: Heiratsanträge, Familiengeburtstage, Reisen durch mehrere Regionen oder Luxusbuchungen.',
   },
   ja: {
-    title: 'ラップランドの旅をデザインする | #LaplandTours',
+    title: 'ラップランドの旅をデザインする',
     description:
       'ご希望のラップランド旅行をお聞かせください（人数、日程、ご予算、特別なご要望）。24時間以内にカスタマイズされた旅程をお送りします。',
     canonical: 'https://laplandtours.online/ja/design-tour',
@@ -59,7 +59,7 @@ const META: Record<CopyLang, {
       '完全にカスタマイズされたラップランドの旅程をご希望の方向けのお問い合わせフォーム：プロポーズ、家族の誕生日、複数地域の旅行、ラグジュアリー予約。',
   },
   ko: {
-    title: '라플란드 여행을 직접 디자인하기 | #LaplandTours',
+    title: '라플란드 여행을 직접 디자인하기',
     description:
       '원하시는 라플란드 휴가를 설명해 주세요(인원, 날짜, 예산, 특별한 요청). 24시간 안에 맞춤형 일정을 보내드립니다.',
     canonical: 'https://laplandtours.online/kr/design-tour',
@@ -70,7 +70,7 @@ const META: Record<CopyLang, {
       '완전 맞춤형 라플란드 일정이 필요한 여행자를 위한 요청 양식: 청혼, 가족 생일, 복수 지역 여행, 럭셔리 예약.',
   },
   fr: {
-    title: 'Concevez votre voyage en Laponie | #LaplandTours',
+    title: 'Concevez votre voyage en Laponie',
     description:
       'Décrivez le séjour en Laponie que vous souhaitez réellement (taille du groupe, dates, budget et demandes particulières) : un itinéraire sur mesure arrive sous 24 heures.',
     canonical: 'https://laplandtours.online/fr/design-tour',
@@ -81,7 +81,7 @@ const META: Record<CopyLang, {
       'Formulaire de demande pour les voyageurs qui veulent un itinéraire entièrement sur mesure en Laponie : demandes en mariage, anniversaires en famille, voyages multi-régions et réservations de luxe.',
   },
   it: {
-    title: 'Progetti il suo viaggio in Lapponia | #LaplandTours',
+    title: 'Progetti il suo viaggio in Lapponia',
     description:
       'Descriva la vacanza in Lapponia che desidera davvero (numero di partecipanti, date, budget e richieste speciali), entro 24 ore le inviamo un itinerario su misura.',
     canonical: 'https://laplandtours.online/it/design-tour',
@@ -92,7 +92,7 @@ const META: Record<CopyLang, {
       'Modulo di richiesta per i viaggiatori che desiderano un itinerario in Lapponia interamente su misura: proposte di matrimonio, compleanni in famiglia, viaggi multi-regione e prenotazioni di lusso.',
   },
   nl: {
-    title: 'Ontwerp uw eigen reis naar Lapland | #LaplandTours',
+    title: 'Ontwerp uw eigen reis naar Lapland',
     description:
       'Beschrijf de Lapland-vakantie die u écht wilt (groepsgrootte, data, budget en speciale wensen), binnen 24 uur ligt er een reis op maat klaar.',
     canonical: 'https://laplandtours.online/nl/design-tour',
@@ -103,7 +103,7 @@ const META: Record<CopyLang, {
       'Aanvraagformulier voor reizigers die een volledig op maat gemaakte Lapland-reisplanning willen: aanzoeken, gezinsverjaardagen, meerregio-reizen en luxe boekingen.',
   },
   sv: {
-    title: 'Planera din egen Lapplandsresa | #LaplandTours',
+    title: 'Planera din egen Lapplandsresa',
     description:
       'Beskriv den Lapplandsresa du faktiskt vill ha (gruppstorlek, datum, budget och särskilda önskemål), så får du ett skräddarsytt reseförslag inom 24 timmar.',
     canonical: 'https://laplandtours.online/sv/design-tour',
@@ -114,7 +114,7 @@ const META: Record<CopyLang, {
       'Ett förfrågningsformulär för resenärer som vill ha ett helt skräddarsytt Lapplandsprogram: frierier, familjefödelsedagar, resor över flera regioner och lyxbokningar.',
   },
   es: {
-    title: 'Diseñe su propio viaje a Laponia | #LaplandTours',
+    title: 'Diseñe su propio viaje a Laponia',
     description:
       'Describa las vacaciones en Laponia que de verdad quiere (tamaño del grupo, fechas, presupuesto y peticiones especiales), y recibirá un itinerario a medida en menos de 24 horas.',
     canonical: 'https://laplandtours.online/es/design-tour',
@@ -125,7 +125,7 @@ const META: Record<CopyLang, {
       'Formulario de solicitud para viajeros que necesitan un itinerario en Laponia totalmente a medida: pedidas de mano, cumpleaños familiares, viajes por varias regiones y reservas de lujo.',
   },
   'pt-BR': {
-    title: 'Crie a sua própria viagem à Lapônia | #LaplandTours',
+    title: 'Crie a sua própria viagem à Lapônia',
     description:
       'Descreva as férias na Lapônia que você realmente quer (tamanho do grupo, datas, orçamento e pedidos especiais), e receba um roteiro sob medida em até 24 horas.',
     canonical: 'https://laplandtours.online/br/design-tour',
@@ -136,7 +136,7 @@ const META: Record<CopyLang, {
       'Formulário de pedido para viajantes que precisam de um roteiro na Lapônia totalmente sob medida: pedidos de casamento, aniversários em família, viagens por várias regiões e reservas de luxo.',
   },
   'zh-CN': {
-    title: '定制你自己的拉普兰之旅 | #LaplandTours',
+    title: '定制你自己的拉普兰之旅',
     description:
       '描述你真正想要的拉普兰假期（人数、日期、预算和特别要求），我们会在 24 小时内为你送上一份定制行程。',
     canonical: 'https://laplandtours.online/cn/design-tour',
