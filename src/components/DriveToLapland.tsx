@@ -193,7 +193,7 @@ const COPY: Record<CopyLang, {
     eyebrow: 'Vindo de carro',
     h2: 'Subir de carro. Cinco rotas mapeadas.',
     lead:
-      'Com o próprio carro ou com um alugado no sul? Os guias de road trip da LaplandVibes percorrem cada rota parada por parada: onde dormir, onde comer, onde esticar as pernas.',
+      'Com o próprio carro ou com um alugado no sul? Os guias de road trip do LaplandVibes percorrem cada rota parada por parada: onde dormir, onde comer, onde esticar as pernas.',
     cta: 'Ver a rota',
     overview: 'As cinco rotas em um só artigo',
     routes: {
