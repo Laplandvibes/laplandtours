@@ -67,85 +67,85 @@ const SIDE_STRIPE_BG =
 
 const PILLARS_EN = [
   { name: 'Operator guide', href: '/lapland-holidays' },
-  { name: 'Practical info', href: '/practical-info' },
-  { name: 'Age guide', href: '/age-guide' },
+  { name: 'Practical info', href: '/practical-info/' },
+  { name: 'Age guide', href: '/age-guide/' },
   { name: 'Custom tour', href: '/design-tour' },
 ];
 
 const PILLARS_FI = [
   { name: 'Matkapaketit', href: '/fi/lapland-holidays' },
-  { name: 'Käytännön tieto', href: '/fi/practical-info' },
-  { name: 'Ikäopas', href: '/fi/age-guide' },
+  { name: 'Käytännön tieto', href: '/fi/practical-info/' },
+  { name: 'Ikäopas', href: '/fi/age-guide/' },
   { name: 'Räätälöity matka', href: '/fi/design-tour' },
 ];
 
 const PILLARS_DE = [
   { name: 'Reise­veranstalter', href: '/de/lapland-holidays' },
-  { name: 'Praktische Hinweise', href: '/de/practical-info' },
-  { name: 'Alters-Guide', href: '/de/age-guide' },
+  { name: 'Praktische Hinweise', href: '/de/practical-info/' },
+  { name: 'Alters-Guide', href: '/de/age-guide/' },
   { name: 'Individuelle Reise', href: '/de/design-tour' },
 ];
 
 const PILLARS_JA = [
   { name: 'ツアーオペレーター', href: '/ja/lapland-holidays' },
-  { name: '実用情報', href: '/ja/practical-info' },
-  { name: '年齢別ガイド', href: '/ja/age-guide' },
+  { name: '実用情報', href: '/ja/practical-info/' },
+  { name: '年齢別ガイド', href: '/ja/age-guide/' },
   { name: 'カスタムツアー', href: '/ja/design-tour' },
 ];
 
 const PILLARS_ES = [
   { name: 'Operadoras de tour', href: '/es/lapland-holidays' },
-  { name: 'Información práctica', href: '/es/practical-info' },
-  { name: 'Guía por edad', href: '/es/age-guide' },
+  { name: 'Información práctica', href: '/es/practical-info/' },
+  { name: 'Guía por edad', href: '/es/age-guide/' },
   { name: 'Tour personalizado', href: '/es/design-tour' },
 ];
 
 const PILLARS_BR = [
   { name: 'Operadoras de tour', href: '/br/lapland-holidays' },
-  { name: 'Informações práticas', href: '/br/practical-info' },
-  { name: 'Guia por idade', href: '/br/age-guide' },
+  { name: 'Informações práticas', href: '/br/practical-info/' },
+  { name: 'Guia por idade', href: '/br/age-guide/' },
   { name: 'Tour personalizado', href: '/br/design-tour' },
 ];
 
 const PILLARS_CN = [
   { name: '旅行社指南', href: '/cn/lapland-holidays' },
-  { name: '实用信息', href: '/cn/practical-info' },
-  { name: '年龄指南', href: '/cn/age-guide' },
+  { name: '实用信息', href: '/cn/practical-info/' },
+  { name: '年龄指南', href: '/cn/age-guide/' },
   { name: '定制旅行团', href: '/cn/design-tour' },
 ];
 
 const PILLARS_KO = [
   { name: '투어 운영사 가이드', href: '/kr/lapland-holidays' },
-  { name: '실용 정보', href: '/kr/practical-info' },
-  { name: '연령별 가이드', href: '/kr/age-guide' },
+  { name: '실용 정보', href: '/kr/practical-info/' },
+  { name: '연령별 가이드', href: '/kr/age-guide/' },
   { name: '맞춤 투어 패키지', href: '/kr/design-tour' },
 ];
 
 const PILLARS_FR = [
   { name: 'Guide des opérateurs', href: '/fr/lapland-holidays' },
-  { name: 'Infos pratiques', href: '/fr/practical-info' },
-  { name: 'Guide par âge', href: '/fr/age-guide' },
+  { name: 'Infos pratiques', href: '/fr/practical-info/' },
+  { name: 'Guide par âge', href: '/fr/age-guide/' },
   { name: 'Forfait sur mesure', href: '/fr/design-tour' },
 ];
 
 const PILLARS_IT = [
   { name: 'Guida agli operatori', href: '/it/lapland-holidays' },
-  { name: 'Info pratiche', href: '/it/practical-info' },
-  { name: 'Guida per età', href: '/it/age-guide' },
+  { name: 'Info pratiche', href: '/it/practical-info/' },
+  { name: 'Guida per età', href: '/it/age-guide/' },
   { name: 'Pacchetto su misura', href: '/it/design-tour' },
 ];
 
 const PILLARS_NL = [
   { name: 'Tourgids', href: '/nl/lapland-holidays' },
-  { name: 'Praktische info', href: '/nl/practical-info' },
-  { name: 'Leeftijdsgids', href: '/nl/age-guide' },
+  { name: 'Praktische info', href: '/nl/practical-info/' },
+  { name: 'Leeftijdsgids', href: '/nl/age-guide/' },
   { name: 'Maatwerk-rondreis', href: '/nl/design-tour' },
 ];
 
 const PILLARS_SV = [
   { name: 'Researrangörer', href: '/sv/lapland-holidays' },
-  { name: 'Praktisk info', href: '/sv/practical-info' },
-  { name: 'Åldersguide', href: '/sv/age-guide' },
+  { name: 'Praktisk info', href: '/sv/practical-info/' },
+  { name: 'Åldersguide', href: '/sv/age-guide/' },
   { name: 'Skräddarsydd resa', href: '/sv/design-tour' },
 ];
 
