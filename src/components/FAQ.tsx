@@ -27,13 +27,13 @@ const FAQS_EN: Faq[] = [
     q: 'How cold is it in Lapland?',
     a: 'Winter temperatures range from −5 °C to −30 °C. All package operators provide thermal overalls, boots and gloves. See the practical info guide for packing tips and layering advice.',
     aHtml:
-      'Winter temperatures range from −5 °C to −30 °C. All package operators provide thermal overalls, boots and gloves. See the <a href="/practical-info" class="text-vibe-pink hover:underline">practical info guide</a> for packing tips and layering advice.',
+      'Winter temperatures range from −5 °C to −30 °C. All package operators provide thermal overalls, boots and gloves. See the <a href="/practical-info/" class="text-vibe-pink hover:underline">practical info guide</a> for packing tips and layering advice.',
   },
   {
     q: 'Are the packages suitable for children?',
     a: "Yes, operators like Santa's Lapland and TUI specialise in family packages. Most activities suit children aged 3+. See the age guide for detailed recommendations.",
     aHtml:
-      'Yes, operators like <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> and TUI specialise in family packages. Most activities suit children aged 3+. See the <a href="/age-guide" class="text-vibe-pink hover:underline">age guide</a> for detailed recommendations.',
+      'Yes, operators like <a href="https://www.santaslapland.com?utm_source=laplandtours.online&utm_medium=referral&utm_campaign=faq" target="_blank" rel="sponsored nofollow noopener" class="text-vibe-pink hover:underline">Santa\'s Lapland</a> and TUI specialise in family packages. Most activities suit children aged 3+. See the <a href="/age-guide/" class="text-vibe-pink hover:underline">age guide</a> for detailed recommendations.',
   },
   {
     q: 'How do I get to Lapland?',
@@ -78,13 +78,13 @@ const FAQS_FI: Faq[] = [
     q: 'Kuinka kylmää Lapissa on?',
     a: 'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Matkanjärjestäjät tarjoavat yleensä lämpöhaalarit, saappaat ja hanskat. Lisätietoa pakkauslistasta käytännön oppaassa.',
     aHtml:
-      'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Matkanjärjestäjät tarjoavat yleensä lämpöhaalarit, saappaat ja hanskat. Tutustu <a href="/fi/practical-info" class="text-vibe-pink hover:underline">käytännön oppaaseen</a> pakkauslistaa ja kerrostuspukeutumista varten.',
+      'Talvella lämpötila vaihtelee −5 °C:n ja −30 °C:n välillä. Matkanjärjestäjät tarjoavat yleensä lämpöhaalarit, saappaat ja hanskat. Tutustu <a href="/fi/practical-info/" class="text-vibe-pink hover:underline">käytännön oppaaseen</a> pakkauslistaa ja kerrostuspukeutumista varten.',
   },
   {
     q: 'Sopivatko paketit lapsille?',
     a: 'Kyllä. Paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue ikäkohtainen opas yksityiskohtia varten.',
     aHtml:
-      'Kyllä. Paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue <a href="/fi/age-guide" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
+      'Kyllä. Paikalliset toimijat järjestävät perheystävällisiä ohjelmia, ja suurin osa retkistä sopii 3 vuotta täyttäneille. Poro- ja huskyvierailut, joulupukin tapaaminen ja lyhyet kelkkakyydit toimivat hyvin. Lue <a href="/fi/age-guide/" class="text-vibe-pink hover:underline">ikäkohtainen opas</a> yksityiskohtia varten.',
   },
   {
     q: 'Miten Lappiin pääsee?',
@@ -129,13 +129,13 @@ const FAQS_DE: Faq[] = [
     q: 'Wie kalt ist es in Lappland?',
     a: 'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Die Anbieter stellen in der Regel Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen finden Sie im Praxis-Guide.',
     aHtml:
-      'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Die Anbieter stellen in der Regel Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen und zum Zwiebelprinzip finden Sie im <a href="/de/practical-info" class="text-vibe-pink hover:underline">Praxis-Guide</a>.',
+      'Die Wintertemperaturen liegen zwischen −5 °C und −30 °C. Die Anbieter stellen in der Regel Thermokleidung, Stiefel und Handschuhe. Hinweise zum Packen und zum Zwiebelprinzip finden Sie im <a href="/de/practical-info/" class="text-vibe-pink hover:underline">Praxis-Guide</a>.',
   },
   {
     q: 'Sind die Pakete für Kinder geeignet?',
     a: 'Ja, lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im Alters-Guide.',
     aHtml:
-      'Ja, lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im <a href="/de/age-guide" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
+      'Ja, lokale Anbieter haben familienfreundliche Programme, und die meisten Aktivitäten eignen sich ab 3 Jahren. Rentier- und Huskybesuche, ein Besuch beim Weihnachtsmann und kurze Schneemobil-Mitfahrten funktionieren gut. Detaillierte Hinweise finden Sie im <a href="/de/age-guide/" class="text-vibe-pink hover:underline">Alters-Guide</a>.',
   },
   {
     q: 'Wie reise ich nach Lappland?',
@@ -180,13 +180,13 @@ const FAQS_JA: Faq[] = [
     q: 'ラップランドの気温はどのくらいですか？',
     a: '冬の気温は−5℃から−30℃の範囲です。すべてのパッケージオペレーターが防寒オーバーオール、ブーツ、手袋を提供します。荷造りのヒントと重ね着のアドバイスについては実用情報ガイドをご覧ください。',
     aHtml:
-      '冬の気温は−5℃から−30℃の範囲です。すべてのパッケージオペレーターが防寒オーバーオール、ブーツ、手袋を提供します。荷造りのヒントと重ね着のアドバイスについては<a href="/ja/practical-info" class="text-vibe-pink hover:underline">実用情報ガイド</a>をご覧ください。',
+      '冬の気温は−5℃から−30℃の範囲です。すべてのパッケージオペレーターが防寒オーバーオール、ブーツ、手袋を提供します。荷造りのヒントと重ね着のアドバイスについては<a href="/ja/practical-info/" class="text-vibe-pink hover:underline">実用情報ガイド</a>をご覧ください。',
   },
   {
     q: 'パッケージは子供にも適していますか？',
     a: 'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については年齢別ガイドをご覧ください。',
     aHtml:
-      'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については<a href="/ja/age-guide" class="text-vibe-pink hover:underline">年齢別ガイド</a>をご覧ください。',
+      'はい。地元の事業者は家族向けの内容を用意しており、ほとんどのアクティビティは3歳以上のお子様に適しています。トナカイやハスキーの訪問、サンタクロースとの面会、短いスノーモービルの同乗などが楽しめます。詳しい推奨事項については<a href="/ja/age-guide/" class="text-vibe-pink hover:underline">年齢別ガイド</a>をご覧ください。',
   },
   {
     q: 'ラップランドへの行き方を教えてください。',
@@ -231,13 +231,13 @@ const FAQS_KO: Faq[] = [
     q: '라플란드는 얼마나 추운가요?',
     a: '겨울 기온은 −5 °C에서 −30 °C 사이입니다. 모든 패키지 운영사가 방한복 일체, 부츠, 장갑을 제공합니다. 짐 싸기 팁과 레이어링 조언은 실용 가이드를 참고하세요.',
     aHtml:
-      '겨울 기온은 −5 °C에서 −30 °C 사이입니다. 모든 패키지 운영사가 방한복 일체, 부츠, 장갑을 제공합니다. 짐 싸기 팁과 레이어링 조언은 <a href="/kr/practical-info" class="text-vibe-pink hover:underline">실용 가이드</a>를 참고하세요.',
+      '겨울 기온은 −5 °C에서 −30 °C 사이입니다. 모든 패키지 운영사가 방한복 일체, 부츠, 장갑을 제공합니다. 짐 싸기 팁과 레이어링 조언은 <a href="/kr/practical-info/" class="text-vibe-pink hover:underline">실용 가이드</a>를 참고하세요.',
   },
   {
     q: '패키지가 아이들에게도 적합한가요?',
     a: '네, 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 연령별 가이드를 참고하세요.',
     aHtml:
-      '네, 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 <a href="/kr/age-guide" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
+      '네, 현지 운영사는 가족 친화적인 프로그램을 운영하며, 대부분의 액티비티는 3세 이상에게 적합합니다. 순록·허스키 방문, 산타 만남, 짧은 스노모빌 동승 등이 좋습니다. 자세한 추천은 <a href="/kr/age-guide/" class="text-vibe-pink hover:underline">연령별 가이드</a>를 참고하세요.',
   },
   {
     q: '라플란드에는 어떻게 가나요?',
@@ -282,13 +282,13 @@ const FAQS_FR: Faq[] = [
     q: 'Quel froid fait-il en Laponie ?',
     a: 'Les températures hivernales vont de −5 °C à −30 °C. Les voyagistes fournissent en général combinaisons thermiques, bottes et gants. Consultez le guide pratique pour les conseils de bagages et la technique des couches.',
     aHtml:
-      'Les températures hivernales vont de −5 °C à −30 °C. Les voyagistes fournissent en général combinaisons thermiques, bottes et gants. Consultez le <a href="/fr/practical-info" class="text-vibe-pink hover:underline">guide pratique</a> pour les conseils de bagages et la technique des couches.',
+      'Les températures hivernales vont de −5 °C à −30 °C. Les voyagistes fournissent en général combinaisons thermiques, bottes et gants. Consultez le <a href="/fr/practical-info/" class="text-vibe-pink hover:underline">guide pratique</a> pour les conseils de bagages et la technique des couches.',
   },
   {
     q: 'Les forfaits conviennent-ils aux enfants ?',
     a: 'Oui, les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le guide par âge pour les recommandations détaillées.',
     aHtml:
-      'Oui, les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le <a href="/fr/age-guide" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
+      'Oui, les opérateurs locaux proposent des programmes adaptés aux familles, et la plupart des activités conviennent aux enfants de 3 ans et plus. Visites de rennes et de huskies, rencontre avec le Père Noël et courtes sorties en motoneige en passager fonctionnent bien. Voir le <a href="/fr/age-guide/" class="text-vibe-pink hover:underline">guide par âge</a> pour les recommandations détaillées.',
   },
   {
     q: 'Comment se rendre en Laponie ?',
@@ -333,13 +333,13 @@ const FAQS_IT: Faq[] = [
     q: 'Che freddo fa in Lapponia ?',
     a: 'In inverno le temperature vanno da −5 °C a −30 °C. Gli operatori forniscono di norma tute termiche, stivali e guanti. Veda la guida pratica per consigli su bagaglio e abbigliamento a strati.',
     aHtml:
-      'In inverno le temperature vanno da −5 °C a −30 °C. Gli operatori forniscono di norma tute termiche, stivali e guanti. Veda la <a href="/it/practical-info" class="text-vibe-pink hover:underline">guida pratica</a> per consigli su bagaglio e abbigliamento a strati.',
+      'In inverno le temperature vanno da −5 °C a −30 °C. Gli operatori forniscono di norma tute termiche, stivali e guanti. Veda la <a href="/it/practical-info/" class="text-vibe-pink hover:underline">guida pratica</a> per consigli su bagaglio e abbigliamento a strati.',
   },
   {
     q: 'I pacchetti sono adatti ai bambini ?',
     a: 'Sì, gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la guida per età per consigli dettagliati.',
     aHtml:
-      'Sì, gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la <a href="/it/age-guide" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
+      'Sì, gli operatori locali propongono programmi adatti alle famiglie e la maggior parte delle attività è adatta dai 3 anni in su. Visite a renne e husky, incontro con Babbo Natale e brevi giri in motoslitta come passeggero funzionano bene. Veda la <a href="/it/age-guide/" class="text-vibe-pink hover:underline">guida per età</a> per consigli dettagliati.',
   },
   {
     q: 'Come si arriva in Lapponia ?',
@@ -384,13 +384,13 @@ const FAQS_NL: Faq[] = [
     q: 'Hoe koud is het in Lapland ?',
     a: 'De wintertemperaturen lopen van −5 °C tot −30 °C. Alle reisorganisaties leveren thermopakken, laarzen en handschoenen. Zie de praktische gids voor inpaktips en advies over kleding in laagjes.',
     aHtml:
-      'De wintertemperaturen lopen van −5 °C tot −30 °C. Alle reisorganisaties leveren thermopakken, laarzen en handschoenen. Zie de <a href="/nl/practical-info" class="text-vibe-pink hover:underline">praktische gids</a> voor inpaktips en advies over kleding in laagjes.',
+      'De wintertemperaturen lopen van −5 °C tot −30 °C. Alle reisorganisaties leveren thermopakken, laarzen en handschoenen. Zie de <a href="/nl/practical-info/" class="text-vibe-pink hover:underline">praktische gids</a> voor inpaktips en advies over kleding in laagjes.',
   },
   {
     q: 'Zijn de arrangementen geschikt voor kinderen ?',
     a: 'Ja, lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de leeftijdsgids voor gedetailleerde aanbevelingen.',
     aHtml:
-      'Ja, lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de <a href="/nl/age-guide" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
+      'Ja, lokale aanbieders hebben gezinsvriendelijke programma\'s en de meeste activiteiten zijn geschikt vanaf 3 jaar. Rendier- en huskybezoeken, een bezoek aan de Kerstman en korte sneeuwscooterritten als passagier werken goed. Zie de <a href="/nl/age-guide/" class="text-vibe-pink hover:underline">leeftijdsgids</a> voor gedetailleerde aanbevelingen.',
   },
   {
     q: 'Hoe kom ik in Lapland ?',
@@ -435,13 +435,13 @@ const FAQS_SV: Faq[] = [
     q: 'Hur kallt är det i Lappland?',
     a: 'Vintertemperaturen ligger mellan −5 °C och −30 °C. Arrangörerna tillhandahåller i regel termooveraller, kängor och handskar. Se den praktiska guiden för packtips och råd om lager-på-lager-klädsel.',
     aHtml:
-      'Vintertemperaturen ligger mellan −5 °C och −30 °C. Arrangörerna tillhandahåller i regel termooveraller, kängor och handskar. Se den <a href="/sv/practical-info" class="text-vibe-pink hover:underline">praktiska guiden</a> för packtips och råd om lager-på-lager-klädsel.',
+      'Vintertemperaturen ligger mellan −5 °C och −30 °C. Arrangörerna tillhandahåller i regel termooveraller, kängor och handskar. Se den <a href="/sv/practical-info/" class="text-vibe-pink hover:underline">praktiska guiden</a> för packtips och råd om lager-på-lager-klädsel.',
   },
   {
     q: 'Passar paketen för barn?',
     a: 'Ja, lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs åldersguiden för detaljerade rekommendationer.',
     aHtml:
-      'Ja, lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs <a href="/sv/age-guide" class="text-vibe-pink hover:underline">åldersguiden</a> för detaljerade rekommendationer.',
+      'Ja, lokala arrangörer erbjuder familjevänliga program, och de flesta aktiviteter passar från 3 år. Ren- och huskybesök, möte med jultomten och korta skoterturer som passagerare fungerar bra. Läs <a href="/sv/age-guide/" class="text-vibe-pink hover:underline">åldersguiden</a> för detaljerade rekommendationer.',
   },
   {
     q: 'Hur tar jag mig till Lappland?',
@@ -486,13 +486,13 @@ const FAQS_ES: Faq[] = [
     q: '¿Qué frío hace en Laponia?',
     a: 'En invierno la temperatura oscila entre −5 °C y −30 °C. Los operadores de paquetes suelen facilitar monos térmicos, botas y guantes. Consulte la guía de información práctica para consejos de equipaje y de capas de ropa.',
     aHtml:
-      'En invierno la temperatura oscila entre −5 °C y −30 °C. Los operadores de paquetes suelen facilitar monos térmicos, botas y guantes. Consulte la <a href="/es/practical-info" class="text-vibe-pink hover:underline">guía de información práctica</a> para consejos de equipaje y de capas de ropa.',
+      'En invierno la temperatura oscila entre −5 °C y −30 °C. Los operadores de paquetes suelen facilitar monos térmicos, botas y guantes. Consulte la <a href="/es/practical-info/" class="text-vibe-pink hover:underline">guía de información práctica</a> para consejos de equipaje y de capas de ropa.',
   },
   {
     q: '¿Los paquetes son adecuados para niños?',
     a: 'Sí, los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la guía por edades para recomendaciones detalladas.',
     aHtml:
-      'Sí, los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la <a href="/es/age-guide" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
+      'Sí, los operadores locales ofrecen programas para familias y la mayoría de las actividades sirven a partir de los 3 años. Visitas a renos y huskies, encuentro con Papá Noel y cortos paseos en motonieve como pasajero funcionan bien. Consulte la <a href="/es/age-guide/" class="text-vibe-pink hover:underline">guía por edades</a> para recomendaciones detalladas.',
   },
   {
     q: '¿Cómo se llega a Laponia?',
@@ -537,13 +537,13 @@ const FAQS_PTBR: Faq[] = [
     q: 'Quanto frio faz na Lapônia?',
     a: 'No inverno, a temperatura varia de −5 °C a −30 °C. As operadoras de pacote costumam fornecer macacões térmicos, botas e luvas. Veja o guia de informações práticas para dicas de mala e de sobreposição de roupas.',
     aHtml:
-      'No inverno, a temperatura varia de −5 °C a −30 °C. As operadoras de pacote costumam fornecer macacões térmicos, botas e luvas. Veja o <a href="/br/practical-info" class="text-vibe-pink hover:underline">guia de informações práticas</a> para dicas de mala e de sobreposição de roupas.',
+      'No inverno, a temperatura varia de −5 °C a −30 °C. As operadoras de pacote costumam fornecer macacões térmicos, botas e luvas. Veja o <a href="/br/practical-info/" class="text-vibe-pink hover:underline">guia de informações práticas</a> para dicas de mala e de sobreposição de roupas.',
   },
   {
     q: 'Os pacotes são adequados para crianças?',
     a: 'Sim, as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o guia por idade para recomendações detalhadas.',
     aHtml:
-      'Sim, as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o <a href="/br/age-guide" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
+      'Sim, as operadoras locais oferecem programas para famílias e a maioria das atividades serve para crianças a partir de 3 anos. Visitas a renas e huskies, encontro com o Papai Noel e curtos passeios de snowmobile como passageiro funcionam bem. Veja o <a href="/br/age-guide/" class="text-vibe-pink hover:underline">guia por idade</a> para recomendações detalhadas.',
   },
   {
     q: 'Como chego à Lapônia?',
@@ -588,13 +588,13 @@ const FAQS_ZH: Faq[] = [
     q: '拉普兰有多冷？',
     a: '冬季气温在 −5 °C 到 −30 °C 之间。所有套餐运营商都会提供保暖连体服、靴子和手套。打包与分层穿衣建议请参阅实用信息指南。',
     aHtml:
-      '冬季气温在 −5 °C 到 −30 °C 之间。所有套餐运营商都会提供保暖连体服、靴子和手套。打包与分层穿衣建议请参阅<a href="/cn/practical-info" class="text-vibe-pink hover:underline">实用信息指南</a>。',
+      '冬季气温在 −5 °C 到 −30 °C 之间。所有套餐运营商都会提供保暖连体服、靴子和手套。打包与分层穿衣建议请参阅<a href="/cn/practical-info/" class="text-vibe-pink hover:underline">实用信息指南</a>。',
   },
   {
     q: '套餐适合儿童吗？',
     a: '适合——本地运营商提供适合家庭的项目，多数活动适合 3 岁以上的儿童。驯鹿与哈士奇探访、拜访圣诞老人以及短途雪地摩托同乘都很合适。详细建议请参阅年龄指南。',
     aHtml:
-      '适合——本地运营商提供适合家庭的项目，多数活动适合 3 岁以上的儿童。驯鹿与哈士奇探访、拜访圣诞老人以及短途雪地摩托同乘都很合适。详细建议请参阅<a href="/cn/age-guide" class="text-vibe-pink hover:underline">年龄指南</a>。',
+      '适合——本地运营商提供适合家庭的项目，多数活动适合 3 岁以上的儿童。驯鹿与哈士奇探访、拜访圣诞老人以及短途雪地摩托同乘都很合适。详细建议请参阅<a href="/cn/age-guide/" class="text-vibe-pink hover:underline">年龄指南</a>。',
   },
   {
     q: '如何前往拉普兰？',
