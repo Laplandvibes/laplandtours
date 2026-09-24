@@ -318,8 +318,12 @@ export default function SeasonStrip() {
             kokonaan ⇒ maski pois, ettei se haalista oikeaa saraketta. */}
         <div className="-mx-6 overflow-x-auto [mask-image:linear-gradient(to_right,#000_calc(100%_-_44px),transparent_100%)] sm:mx-0 sm:[mask-image:none]">
           <div className="min-w-[560px] px-6 sm:px-0">
+            {/* Row-label column 112 px below sm: the 11 px mono caption with 0.28em
+                tracking needs ~97 px for REVONTULET / POLARLICHT and ~107 px for
+                PREISNIVEAU / PRIJSKLASSE, so a narrower column puts the label on
+                top of January's cell. */}
             {/* Month header row */}
-            <div className="grid grid-cols-[88px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-2">
+            <div className="grid grid-cols-[112px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-2">
               <div />
               {months.map((m, i) => (
                 <div key={m} className="cap-meta text-center !text-[10px]">
@@ -331,7 +335,7 @@ export default function SeasonStrip() {
             </div>
 
             {/* Aurora row */}
-            <div className="grid grid-cols-[88px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-1">
+            <div className="grid grid-cols-[112px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-1">
               <div className="cap-meta self-center pr-3">{c.aurora}</div>
               {aurora.map((lvl, i) => (
                 <HeatCell
@@ -342,7 +346,7 @@ export default function SeasonStrip() {
             </div>
 
             {/* Snow row */}
-            <div className="grid grid-cols-[88px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-1">
+            <div className="grid grid-cols-[112px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-1">
               <div className="cap-meta self-center pr-3">{c.snow}</div>
               {snow.map((lvl, i) => (
                 <HeatCell
@@ -353,7 +357,7 @@ export default function SeasonStrip() {
             </div>
 
             {/* Price row */}
-            <div className="grid grid-cols-[88px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-6">
+            <div className="grid grid-cols-[112px_repeat(12,1fr)] sm:grid-cols-[120px_repeat(12,1fr)] gap-1 mb-6">
               <div className="cap-meta self-center pr-3">{c.price}</div>
               {price.map((lvl, i) => (
                 <HeatCell
