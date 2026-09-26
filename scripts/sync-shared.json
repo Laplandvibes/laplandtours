@@ -1,0 +1,6 @@
+{
+  "rootFiles": [
+    "_prerender_routes.mjs"
+  ],
+  "followImports": true
+}
