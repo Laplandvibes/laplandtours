@@ -418,7 +418,7 @@ const COPY: Record<CopyLang, {
         n: '05',
         title: 'Spostamenti',
         body:
-          'La maggior parte dei pacchetti include tutti i transfer. Per prolungare in autonomia: voli interni Helsinki ↔ Rovaniemi/Kittilä/Ivalo, treno notturno VR Helsinki–Rovaniemi o noleggio auto da uno dei tre aeroporti lapponi.',
+          'La maggior parte dei pacchetti include tutti i transfer. Per prolungare in autonomia: voli interni Helsinki ↔ Rovaniemi/Kittilä/Ivalo, treno notturno VR Helsinki–Rovaniemi o noleggio auto da uno dei tre aeroporti della Lapponia.',
       },
       {
         n: '06',
@@ -769,13 +769,13 @@ const STATS: Record<CopyLang, { value: string; label: string }[]> = {
     { value: '112', label: '응급 전화' },
   ],
   fr: [
-    { value: '3', label: 'Aéroports lapons' },
+    { value: '3', label: 'Aéroports en Laponie' },
     { value: '12 h', label: 'Train de nuit depuis HEL' },
     { value: '90', label: 'Jours sans visa' },
     { value: '112', label: 'Numéro d\'urgence' },
   ],
   it: [
-    { value: '3', label: 'Aeroporti lapponi' },
+    { value: '3', label: 'Aeroporti in Lapponia' },
     { value: '12 h', label: 'Treno notturno da HEL' },
     { value: '90', label: 'Giorni senza visto' },
     { value: '112', label: 'Numero di emergenza' },
@@ -793,7 +793,7 @@ const STATS: Record<CopyLang, { value: string; label: string }[]> = {
     { value: '112', label: 'Nödnummer' },
   ],
   es: [
-    { value: '3', label: 'Aeropuertos lapones' },
+    { value: '3', label: 'Aeropuertos en Laponia' },
     { value: '12 h', label: 'Tren nocturno desde HEL' },
     { value: '90', label: 'Días sin visado' },
     { value: '112', label: 'Número de emergencias' },

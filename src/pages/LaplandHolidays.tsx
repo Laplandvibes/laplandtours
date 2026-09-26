@@ -157,7 +157,7 @@ const COPY: Record<CopyLang, {
   fr: {
     metaTitle: 'Les voyagistes : Laponie finlandaise',
     metaDescription:
-      'Un guide honnête de six opérateurs lapons établis en Finlande en 2026 : leurs points forts, où ils sont basés et ce que vous obtenez en réservant en direct.',
+      'Un guide honnête de six opérateurs de Laponie établis en Finlande en 2026 : leurs points forts, où ils sont basés et ce que vous obtenez en réservant en direct.',
     canonical: 'https://laplandtours.online/fr/lapland-holidays',
     breadcrumbHome: 'Accueil',
     breadcrumbName: 'Guide des voyagistes',
@@ -180,7 +180,7 @@ const COPY: Record<CopyLang, {
   it: {
     metaTitle: 'I tour operator: Lapponia finlandese',
     metaDescription:
-      'Una guida onesta a sei operatori lapponi con sede in Finlandia nel 2026: punti di forza, dove hanno sede e cosa ottiene prenotando direttamente.',
+      'Una guida onesta a sei operatori della Lapponia con sede in Finlandia nel 2026: punti di forza, dove hanno sede e cosa ottiene prenotando direttamente.',
     canonical: 'https://laplandtours.online/it/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Guida agli operatori',
@@ -250,7 +250,7 @@ const COPY: Record<CopyLang, {
   es: {
     metaTitle: 'Los operadores: Laponia finlandesa',
     metaDescription:
-      'Una guía honesta de seis operadores lapones con sede en Finlandia en 2026: qué hace bien cada uno, dónde están y qué obtiene al reservar directamente.',
+      'Una guía honesta de seis operadores de Laponia con sede en Finlandia en 2026: qué hace bien cada uno, dónde están y qué obtiene al reservar directamente.',
     canonical: 'https://laplandtours.online/es/lapland-holidays',
     breadcrumbHome: 'Inicio',
     breadcrumbName: 'Guía de operadores',

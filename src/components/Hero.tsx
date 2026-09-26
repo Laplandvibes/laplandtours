@@ -90,7 +90,7 @@ const COPY: Record<Lang, {
       'Deux façons de planifier un voyage en Laponie finlandaise. Combinez vous-même hôtel, location de voiture et activité d’une journée, ou réservez directement auprès de l’un des six opérateurs locaux. Guides rédigés depuis la Finlande, sources citées.',
     primary: 'Composer mon voyage',
     secondary: 'Voir les opérateurs',
-    alt: 'Paysage de fjälls lapons à l’heure dorée, lac au premier plan',
+    alt: 'Paysage de fjälls de Laponie à l’heure dorée, lac au premier plan',
   },
   it: {
     h1: 'Pianifichi il Suo viaggio in Lapponia',
