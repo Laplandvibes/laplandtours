@@ -291,7 +291,7 @@ const COPY: Record<Lang, TermsCopy> = {
   ja: {
     kicker: '法的情報',
     h1: '利用規約',
-    lastUpdated: '最終更新: 2026年5月 · 運営: LaPeso Oy',
+    lastUpdated: '最終更新：2026年5月 · 運営：LaPeso Oy',
     s1Title: '1. 本サイトについて',
     s1P1: (siteName, siteUrl) => (
       <>
@@ -368,7 +368,7 @@ const COPY: Record<Lang, TermsCopy> = {
     s2Title: '2. Exactitud de la información',
     s2Body: 'La información turística, incluidos precios, horarios, condiciones meteorológicas y disponibilidad, cambia con frecuencia. Procuramos mantener el contenido preciso y actualizado, pero no podemos garantizar que toda la información esté vigente en el momento de su visita. Verifique siempre los detalles críticos directamente con el proveedor antes de reservar.',
     s3Title: '3. Enlaces de afiliados y colaboraciones',
-    s3P1: (siteName) => `Algunos enlaces de ${siteName} son enlaces de afiliados. Cuando hace clic en estos enlaces y realiza una reserva o compra, podemos recibir una pequeña comisión sin coste adicional para usted. Las relaciones de afiliación no influyen en nuestras recomendaciones editoriales. Solo enlazamos a servicios que consideramos que aportan valor real.`,
+    s3P1: (siteName) => `Algunos enlaces de ${siteName} son enlaces de afiliados. Cuando hace clic en estos enlaces y realiza una reserva o compra, podemos recibir una pequeña comisión sin costo adicional para usted. Las relaciones de afiliación no influyen en nuestras recomendaciones editoriales. Solo enlazamos a servicios que consideramos que aportan valor real.`,
     s3P2: 'Entre nuestros socios afiliados se incluyen, sin limitarse a: Sembo, Trip.com, EconomyBookings, GetYourGuide y otros proveedores de servicios turísticos a través de redes de afiliación como Adtraction y Travelpayouts. Cada reserva está sujeta a los términos y condiciones del proveedor correspondiente.',
     s4Title: '4. Contenido patrocinado',
     s4Body: (siteName) => (

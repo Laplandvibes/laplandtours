@@ -295,7 +295,7 @@ const COPY: Record<Lang, {
   },
   ja: {
     h1: 'プライバシーポリシー',
-    lastUpdated: '最終更新: 2026年7月',
+    lastUpdated: '最終更新：2026年7月',
     s1Title: '1. 管理者',
     s1Body: () => <>LaPeso Oy（ID 3309136-7）、フィンランド。メール：<a href="mailto:info@laplandvibes.com" className="text-vibe-pink">info@laplandvibes.com</a></>,
     s2Title: '2. 収集するデータ',
@@ -337,7 +337,7 @@ const COPY: Record<Lang, {
     s8aTitle: '8a. 国際的なデータ移転',
     s8aIntro: '当方が利用している第三者サービスの一部は、欧州経済領域(EEA)外、特に米国を拠点としているか、データを移転しています：',
     s8aItems: [
-      { strong: 'Google Analytics', body: '（Google LLC、米国）：EU–US Data Privacy Framework (DPF) の対象。' },
+      { strong: 'Google Analytics', body: '（Google LLC、米国）：EU–米国データプライバシー枠組み（DPF）の対象。' },
       { strong: 'Cloudflare', body: '（Cloudflare Inc.、米国）：EU–US Data Privacy Framework と標準契約条項（SCC）の対象。' },
       { strong: 'Resend', body: '（Resend Inc.、米国）：標準契約条項（SCC）の対象。' },
       { strong: 'Supabase', body: '（Supabase Inc.、米国、EU リージョン利用可能）：標準契約条項（SCC）の対象。' },
@@ -361,7 +361,7 @@ const COPY: Record<Lang, {
     s10Title: '10. 自動化された意思決定',
     s10Body: 'GDPR 第22条の意味における、お客様に法的または同等に重要な影響を与える自動意思決定、プロファイリング、その他の処理は行っていません。',
     s11Title: '11. 子ども',
-    s11Body: '本サイトおよびニュースレターは大人向けです。13歳未満の子ども（フィンランド法および GDPR でのデジタルサービス年齢基準）から意図的にデータを収集することはありません。子どもが個人情報を提供したと思われる場合は、お知らせください。削除いたします。',
+    s11Body: '本サイトおよびニュースレターは成人を対象としています。13歳未満の子ども（フィンランド法および GDPR でのデジタルサービス年齢基準）から意図的にデータを収集することはありません。子どもが個人情報を提供したと思われる場合は、お知らせください。削除いたします。',
     s12Title: '12. 本ポリシーの変更',
     s12Body: '本プライバシーポリシーは随時更新されることがあります。冒頭の「最終更新」日付が直近の改訂を反映しています。重要な変更については、ホームページで少なくとも14日間お知らせします。',
     backToHome: '← ホームへ戻る',
@@ -407,7 +407,7 @@ const COPY: Record<Lang, {
     ],
     s8Title: '8. Publicidad',
     s8Body1: (siteName) => `Este sitio muestra contenido patrocinado de terceros anunciantes. El contenido patrocinado está claramente identificado con la etiqueta "Patrocinado". Al hacer clic en enlaces patrocinados puede ser redirigido a sitios externos con sus propias políticas de privacidad. ${siteName} no es responsable de las prácticas de tratamiento de datos de los anunciantes externos.`,
-    s8Body2: 'Participamos en programas de afiliación a través de las redes Adtraction, Daisycon y Travelpayouts y del programa de socios de Trip.com; entre nuestros socios están Sembo, Lomarengas, Trip.com y EconomyBookings. Cuando hace clic en un enlace de afiliado y realiza una compra o reserva, podemos recibir una comisión sin coste adicional para usted.',
+    s8Body2: 'Participamos en programas de afiliación a través de las redes Adtraction, Daisycon y Travelpayouts y del programa de socios de Trip.com; entre nuestros socios están Sembo, Lomarengas, Trip.com y EconomyBookings. Cuando hace clic en un enlace de afiliado y realiza una compra o reserva, podemos recibir una comisión sin costo adicional para usted.',
     s8aTitle: '8a. Transferencias internacionales de datos',
     s8aIntro: 'Varios de los servicios externos que utilizamos tienen su sede o transfieren datos a países fuera del Espacio Económico Europeo (EEE), normalmente Estados Unidos:',
     s8aItems: [
@@ -572,7 +572,7 @@ const COPY: Record<Lang, {
     s9Items: [
       { strong: '访问权（第15条）', body: '请求获取我们持有的关于您个人数据的副本。' },
       { strong: '更正权（第16条）', body: '要求我们更正不准确或不完整的数据。' },
-      { strong: '删除权 / "被遗忘权"（第17条）', body: '在不存在压倒性保留理由时，要求我们删除您的数据。' },
+      { strong: '删除权 / “被遗忘权”（第17条）', body: '在不存在压倒性保留理由时，要求我们删除您的数据。' },
       { strong: '限制处理权（第18条）', body: '在问题正在解决期间，要求我们暂停处理。' },
       { strong: '数据可携带权（第20条）', body: '以结构化、机器可读的格式获取您的数据。' },
       { strong: '反对权（第21条）', body: '反对基于合法利益的处理，包括直接营销。' },
@@ -581,7 +581,7 @@ const COPY: Record<Lang, {
     ],
     s9Tail: (email) => <>如需行使上述任何权利，请通过 {email} 与我们联系。我们将在一个月内回复。</>,
     s10Title: '10. 自动化决策',
-    s10Body: '我们不会进行通用数据保护条例第22条所述的、对您产生法律或类似重大影响的自动化决策、用户画像或其他相关处理。',
+    s10Body: '我们不会进行 GDPR 第22条所述的、对您产生法律或类似重大影响的自动化决策、用户画像或其他相关处理。',
     s11Title: '11. 未成年人',
     s11Body: '本网站及我们的电子简报面向成年人。我们不会有意收集13岁以下儿童的数据（芬兰法律及通用数据保护条例规定的数字服务年龄门槛）。如果您认为某位儿童向我们提供了个人数据，请联系我们，我们将予以删除。',
     s12Title: '12. 本政策的变更',
@@ -967,9 +967,10 @@ export default function PrivacyContent({
   lang = 'en',
 }: PrivacyContentProps = {}) {
   const t = COPY[lang] ?? COPY.en;
-  /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; ko uses the halfwidth one. */
+  /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; fr puts a no-break
+     space before the colon, as every fr string in this file does ("Durée : 1 an"); ko uses the halfwidth one. */
   const cjk = lang === 'ja' || lang === 'zh-CN';
-  const sep = cjk ? '：' : ':';
+  const sep = cjk ? '：' : lang === 'fr' ? '\u00a0:' : ':';
   const gap = cjk ? '' : ' ';
   const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink">info@laplandvibes.com</a>;
   const cookieLink = <Link to={localePath('/cookie-policy', lang)} className="text-vibe-pink">{
@@ -1073,7 +1074,7 @@ export default function PrivacyContent({
             <p>{t.s8aIntro}</p>
             <ul className="list-disc pl-5 mt-3 space-y-1">
               {t.s8aItems.map((it, i) => (
-                <li key={i}><strong className="text-snow/80">{it.strong}</strong> {it.body}</li>
+                <li key={i}><strong className="text-snow/80">{it.strong}</strong>{gap}{it.body}</li>
               ))}
             </ul>
             <p className="mt-3">{t.s8aTail}</p>

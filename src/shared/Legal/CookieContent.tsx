@@ -235,20 +235,20 @@ const COPY: Record<Lang, CookieCopy> = {
   ja: {
     kicker: '法的情報',
     h1: 'クッキーポリシー',
-    lastUpdated: '最終更新: 2026年7月',
+    lastUpdated: '最終更新：2026年7月',
     whatAreTitle: 'クッキーとは？',
     whatAreBody: 'クッキーとは、ウェブサイトを訪問した際にお客様のデバイスに保存される小さなテキストファイルです。ウェブサイトがお客様の設定を記憶し、サイトの使われ方を把握するのに役立ちます。クッキーはブラウザの設定または当サイトの同意バナーから管理できます。',
     cookiesWeUseTitle: '使用しているクッキー',
     essentialBadge: '必須',
     essentialNote: '常時有効、無効化できません',
     essentialBody: 'これらのクッキーはウェブサイトの動作に必要です。ご訪問のたびに確認しないように、同意設定を保存します。',
-    essentialDur: '保存期間: 1年',
+    essentialDur: '保存期間：1年',
     analyticsBadge: '解析',
     analyticsNote: '同意が必要',
     analyticsBody: 'Google Analytics 4 のクッキーは、サイトの使われ方を把握するのに役立ちます：どのページが人気か、滞在時間、利用デバイス、訪問元の国と都市など。氏名やメールアドレスなど直接個人を特定できる情報は取得せず、クッキーに保存されたランダムな識別子で訪問者を区別しています。',
     analyticsDur: '保存期間：14ヶ月',
     recordingBody: 'Microsoft Clarity は、マウスの動き、クリック、スクロールを匿名で記録し、そこからヒートマップを作成します。これにより、ページのどの部分が分かりにくいかを把握できます。記録は個人と結び付けられず、広告には使用しません。',
-    recordingDur: '保存期間: 1年',
+    recordingDur: '保存期間：1年',
     cjBadge: 'アフィリエイト',
     cjNote: 'アフィリエイトリンクをクリックすると第三者によって設定されます',
     cjBody: (siteName) => <>{siteName} で予約リンクやアフィリエイトリンクをクリックすると、提携ネットワークがトラッキングクッキーを設定するか、リンクに計測パラメータを付与し、予約を {siteName} に帰属させることがあります。対象：Adtraction（Sembo、Lomarengas などのパートナー。<span className="font-mono text-xs text-snow/80">do.sembo.fi</span> / <span className="font-mono text-xs text-snow/80">on.lomarengas.fi</span> 経由）、Daisycon(<span className="font-mono text-xs text-snow/80">jdt8.net</span>)、Travelpayouts（EconomyBookings など。<span className="font-mono text-xs text-snow/80">tp.media</span> 経由）、Trip.com（<span className="font-mono text-xs text-snow/80">trip.com</span> 上のパートナーパラメータ）。ご予約の際に追加費用なしで当サイトが少額の手数料を受け取る仕組みです。</>,
@@ -301,7 +301,7 @@ const COPY: Record<Lang, CookieCopy> = {
     recordingDur: 'Duración: 1 año',
     cjBadge: 'Afiliados',
     cjNote: 'Las establecen terceros al hacer clic en enlaces de afiliados',
-    cjBody: (siteName) => <>Cuando hace clic en un enlace de reserva o de afiliado en {siteName}, nuestras redes de afiliación pueden establecer una cookie de seguimiento o añadir un parámetro de seguimiento al enlace para atribuir la reserva a {siteName}: Adtraction (socios como Sembo y Lomarengas, a través de <span className="font-mono text-xs text-snow/80">do.sembo.fi</span> y <span className="font-mono text-xs text-snow/80">on.lomarengas.fi</span>), Daisycon (<span className="font-mono text-xs text-snow/80">jdt8.net</span>), Travelpayouts (socios como EconomyBookings, vía <span className="font-mono text-xs text-snow/80">tp.media</span>) y Trip.com (parámetros de socio en <span className="font-mono text-xs text-snow/80">trip.com</span>). Así ganamos una pequeña comisión cuando reserva, sin coste adicional para usted.</>,
+    cjBody: (siteName) => <>Cuando hace clic en un enlace de reserva o de afiliado en {siteName}, nuestras redes de afiliación pueden establecer una cookie de seguimiento o añadir un parámetro de seguimiento al enlace para atribuir la reserva a {siteName}: Adtraction (socios como Sembo y Lomarengas, a través de <span className="font-mono text-xs text-snow/80">do.sembo.fi</span> y <span className="font-mono text-xs text-snow/80">on.lomarengas.fi</span>), Daisycon (<span className="font-mono text-xs text-snow/80">jdt8.net</span>), Travelpayouts (socios como EconomyBookings, vía <span className="font-mono text-xs text-snow/80">tp.media</span>) y Trip.com (parámetros de socio en <span className="font-mono text-xs text-snow/80">trip.com</span>). Así ganamos una pequeña comisión cuando reserva, sin costo adicional para usted.</>,
     cjDur: 'Duración: sesión – 45 días (según el socio)',
     gygBadge: 'Afiliados (GYG)',
     gygNote: 'Establecidas por widgets y clics de GetYourGuide',
@@ -693,9 +693,10 @@ export default function CookieContent({
   const t = COPY[lang] ?? COPY.en;
   const consentKey = `${siteId}_cookie_consent`;
   const popupKey = `${siteId}_newsletter_popup`;
-  /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; ko uses the halfwidth one. */
+  /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; fr puts a no-break
+     space before the colon, as every fr string in this file does ("Durée : 1 an"); ko uses the halfwidth one. */
   const cjk = lang === 'ja' || lang === 'zh-CN';
-  const sep = cjk ? '：' : ':';
+  const sep = cjk ? '：' : lang === 'fr' ? '\u00a0:' : ':';
   const gap = cjk ? '' : ' ';
 
   const purposeStrings: Record<Lang, { consent: string; popup: string; gaUser: string; gaSession: string; cj: string; gyg: string }> = {
@@ -925,7 +926,7 @@ export default function CookieContent({
                     <span className="text-xs text-snow/60 shrink-0">{row.type}</span>
                   </div>
                   <p className="text-sm text-snow/60 mt-1">{row.purpose}</p>
-                  <p className="text-xs text-snow/70 mt-1">{t.tableDuration}: {row.duration}</p>
+                  <p className="text-xs text-snow/70 mt-1">{t.tableDuration}{sep}{gap}{row.duration}</p>
                 </div>
               ))}
             </div>
