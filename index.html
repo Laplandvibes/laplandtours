@@ -12,16 +12,10 @@
           for (var p in map) {
             if (path === '/' + p || path.indexOf('/' + p + '/') === 0) { loc = map[p]; break; }
           }
-          // 🔴🔴 EI YLIKIRJOITETA ESIRENDEROITYA OTSIKKOA (21.9.2026, ajoitus korjattu 24.9.2026).
-          // T on kasin yllapidetty kopio etusivun otsikoista ja ehti vanhentua; sivut esirenderoidaan
-          // kielittain, joten palvelin lahettaa jo oikean otsikon. 21.9. vartija ei toiminut: tama
-          // lohko on headin alussa ja title-elementti jasennetaan vasta sen jalkeen, joten ajohetkella
-          // document.title oli '' ja kirjoitus loi oman elementin palvelimen otsikon eteen (mitattu
-          // 24.9.2026: laplandchristmas.com/fi/accommodation/ valilehdella "Joulu Lapissa: ..." 12 ms,
-          // kunnes React vaihtoi sivun oman 763 ms). Siksi vertailu vasta readyState 'interactive'
-          // -hetkella: koko HTML on jasennetty, Reactin moduuliskripti ei viela ajanut. T:ta kaytetaan
-          // vain kun otsikko puuttuu tai muunkielinen reitti kantaa yha kuoren EN-oletusta
-          // (= esirenderoimaton reitti). Lahde: scripts/lib/otsikkovartija.mjs, ala muokkaa kasin.
+          // Otsikkovartija: T:ta kaytetaan vain, kun sivulla ei ole otsikkoa tai muunkielinen
+          // reitti kantaa yha kuoren EN-oletusta (= esirenderoimaton reitti). Vertailu tehdaan
+          // readyState 'interactive' -hetkella, kun title-elementti on jasennetty.
+          // Lahde: scripts/lib/otsikkovartija.mjs, ala muokkaa kasin.
           var oletus = "#LaplandTours: Plan a Lapland trip your way";
           var aseta = function () {
             try {
@@ -167,17 +161,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      /* 🔴 Ala mittaa kehityskonetta eika Cloudflaren esikatselubuildeja tuotanto-
-         propertyyn. Mitattu 27.8.2026 hubin GA:sta: hostnamena esiintyi localhost
-         (/fi 96 katselua, /fi/media 81) ja SEITSEMAN eri *.pages.dev-esikatselua.
-         Sama portti jonka Umami saa data-domains-attribuutista; GA:n oma
-         IP-suodatin ei kata naita lainkaan. */
-      /* QA-liikenne pois mittareista (Vesa 17.9.2026, laplandstays-auditin kohta 6;
-         levitys koko verkostoon 17.9. illalla). Ei IP-listoja: kotiyhteyden osoite
-         vaihtuu ja puhelin on eri verkossa. ?w=qa kerran => lippu jaa selaimen
-         localStorageen ja GA + Umami ovat pois paalta talla selaimella pysyvasti;
-         ?w=live palauttaa. navigator.webdriver = Playwright/Puppeteer-portit, eivat
-         kavijoita. Poikkeus lv_measure=1: verify_funnel_live DEEP tarvitsee lahetykset. */
+      /* Kehityskone (localhost) ja Cloudflaren esikatselubuildit (*.pages.dev) eivat
+         mittaa tuotanto-propertyyn. Umamilla sama rajaus on data-domains-attribuutti. */
+      /* QA-liikenne pois mittareista: ?w=qa asettaa selaimeen lipun, jolla GA ja Umami
+         ovat pois paalta; ?w=live palauttaa. Automaatioselain (navigator.webdriver)
+         ohitetaan samoin, paitsi kun localStorage lv_measure=1. */
       var lvQa = false;
       try {
         var lvW = new URLSearchParams(location.search).get('w');
@@ -189,9 +177,8 @@
       } catch (e) {}
       var lvHost = location.hostname;
       if (lvQa || lvHost === 'localhost' || lvHost === '127.0.0.1' || lvHost === '[::1]' || lvHost.indexOf('.pages.dev') !== -1) {
-        /* GA:n virallinen opt-out. Pelkka gtagin neutralointi ei riita:
-           gtag/js?id=... lataa kontin joka tapauksessa (mitattu esikatselu-
-           hostilla: google_tag_manager sai avaimen vaikka gtag oli no-op). */
+        /* GA:n virallinen opt-out. Pelkka gtagin neutralointi ei riita, koska
+           gtag/js?id=... lataa kontin joka tapauksessa. */
         window['ga-disable-G-V00ZG3416R'] = true;
         gtag = function () {};
       }
@@ -253,7 +240,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
       <script async src="https://cloud.umami.is/script.js" data-website-id="f602b771-ded0-4943-a94d-00ea52f9d3e3" data-domains="laplandtours.online,www.laplandtours.online" data-exclude-hash="true"></script>
-    <!-- Self-hosted fonts (2026-08-16). Preload is required: without it the
+    <!-- Self-hosted fonts. Preload is required: without it the
          browser cannot discover the faces until the bundled CSS has parsed,
          which guarantees a visible pass in the fallback sans on every cold
          load. crossorigin is required even same-origin — fonts are fetched in
