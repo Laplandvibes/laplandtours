@@ -61,7 +61,7 @@ const CONTACT_FORM_COPY: Record<string, ContactFormCopy> = {
   en: { name:'Your name', email:'Your email', subject:'Subject', message:'Message', send:'Send message', sending:'Sending…', successTitle:'Message sent!', successBody:"Thanks, we'll get back to you within 24–48 hours.", errorMsg:'Something went wrong. Please try again.', close:'Close', required:'Please fill in all fields with a valid email.', subj:{ error:'Error report', partner:'Partnership inquiry', press:'Press inquiry', general:'General inquiry' } },
   fi: { name:'Nimesi', email:'Sähköpostisi', subject:'Aihe', message:'Viesti', send:'Lähetä viesti', sending:'Lähetetään…', successTitle:'Viesti lähetetty!', successBody:'Kiitos, vastaamme 24–48 tunnin kuluessa.', errorMsg:'Jokin meni pieleen. Yritä uudelleen.', close:'Sulje', required:'Täytä kaikki kentät ja anna kelvollinen sähköposti.', subj:{ error:'Virheilmoitus', partner:'Yhteistyötiedustelu', press:'Lehdistötiedustelu', general:'Yleinen tiedustelu' } },
   de: { name:'Ihr Name', email:'Ihre E-Mail', subject:'Betreff', message:'Nachricht', send:'Nachricht senden', sending:'Senden…', successTitle:'Nachricht gesendet!', successBody:'Danke, wir melden uns innerhalb von 24–48 Stunden.', errorMsg:'Etwas ist schiefgelaufen. Bitte erneut versuchen.', close:'Schließen', required:'Bitte alle Felder mit gültiger E-Mail ausfüllen.', subj:{ error:'Fehlermeldung', partner:'Kooperationsanfrage', press:'Presseanfrage', general:'Allgemeine Anfrage' } },
-  ja: { name:'お名前', email:'メールアドレス', subject:'件名', message:'メッセージ', send:'送信', sending:'送信中…', successTitle:'送信しました!', successBody:'ありがとうございます。24〜48時間以内にご返信します。', errorMsg:'問題が発生しました。もう一度お試しください。', close:'閉じる', required:'すべての項目と有効なメールアドレスをご入力ください。', subj:{ error:'エラー報告', partner:'提携のお問い合わせ', press:'プレスのお問い合わせ', general:'一般的なお問い合わせ' } },
+  ja: { name:'お名前', email:'メールアドレス', subject:'件名', message:'メッセージ', send:'送信', sending:'送信中…', successTitle:'送信しました！', successBody:'ありがとうございます。24〜48時間以内にご返信します。', errorMsg:'問題が発生しました。もう一度お試しください。', close:'閉じる', required:'すべての項目と有効なメールアドレスをご入力ください。', subj:{ error:'エラー報告', partner:'提携のお問い合わせ', press:'プレスのお問い合わせ', general:'一般的なお問い合わせ' } },
   es: { name:'Su nombre', email:'Su correo', subject:'Asunto', message:'Mensaje', send:'Enviar mensaje', sending:'Enviando…', successTitle:'¡Mensaje enviado!', successBody:'Gracias, le responderemos en 24–48 horas.', errorMsg:'Algo salió mal. Inténtelo de nuevo.', close:'Cerrar', required:'Complete todos los campos con un correo válido.', subj:{ error:'Reporte de error', partner:'Consulta de colaboración', press:'Consulta de prensa', general:'Consulta general' } },
   'pt-BR': { name:'Seu nome', email:'Seu e-mail', subject:'Assunto', message:'Mensagem', send:'Enviar mensagem', sending:'Enviando…', successTitle:'Mensagem enviada!', successBody:'Obrigado, responderemos em 24–48 horas.', errorMsg:'Algo deu errado. Tente novamente.', close:'Fechar', required:'Preencha todos os campos com um e-mail válido.', subj:{ error:'Relatar erro', partner:'Consulta de parceria', press:'Consulta de imprensa', general:'Consulta geral' } },
   'zh-CN': { name:'您的姓名', email:'您的邮箱', subject:'主题', message:'留言', send:'发送', sending:'发送中…', successTitle:'已发送!', successBody:'谢谢，我们将在 24–48 小时内回复。', errorMsg:'出错了，请重试。', close:'关闭', required:'请填写所有字段并提供有效邮箱。', subj:{ error:'错误报告', partner:'合作咨询', press:'媒体咨询', general:'一般咨询' } },
@@ -1343,7 +1343,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                       (2026-08-11). Toimittaja haluaa ensin tietää keitä olemme; lomake on
                       väärä ensimmäinen askel ja mediapaketti oli sen takana näkymättömissä.
                       URL on ABSOLUUTTINEN, koska /press on vain hubissa ja tämä alatunniste
-                      on byte-identtinen verkoston jokaisella sivustolla. */}
+                      on byte-identtinen verkoston jokaisella sivustolla.
+                      🔴 Kauttaviiva (24.9.) ja kielietuliite (25.9.): hubin `/xx/press/`
+                      on olemassa kaikilla 11 kielellä — mitattu 11/11 ennen lokalisointia. */}
                   <a
                     href={localeHref('https://laplandvibes.com/press/', localePrefix)}
                     className="inline-flex items-center justify-center w-full @md:w-auto @md:self-start px-3 @md:px-6 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 min-h-[44px] shadow-sm cursor-pointer whitespace-nowrap no-underline"
@@ -1400,6 +1402,9 @@ export default function SharedFooter({ pillarLinks = defaultPillarLinks, onPilla
                   { to: `${localePrefix}${legalPaths?.privacy ?? '/privacy'}/`, label: d.legal.privacy },
                   { to: `${localePrefix}${legalPaths?.cookie ?? '/cookie-policy'}/`, label: d.legal.cookie },
                   { to: `${localePrefix}${legalPaths?.terms ?? '/terms'}/`, label: d.legal.terms },
+                  // 🔴 extraLegalLinks tulee sivustolta raakana polkuna (luxuryvillas /contact,
+                  // work /jobs/post). Sekin kuuluu lukijan kieleen; localeHref on idempotentti,
+                  // joten yllä jo etuliitetyt kolme riviä palautuvat tavulleen ennallaan.
                   ...extraLegalLinks,
                 ].map(({ to, label }) => (
                   <Link
