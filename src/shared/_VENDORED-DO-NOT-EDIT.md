@@ -1,16 +1,15 @@
 # Vendored copy — do not edit
 
-These files are copies of the monorepo `../shared/` (source of truth for the
-whole LV ecosystem), taken from its **committed** state (`git show HEAD:...`),
-never from its working tree. They are committed here so GitHub Actions can
-build this repo standalone, without access to the private parent monorepo.
+These files are copies of the monorepo `../shared/` (source of truth for the whole LV ecosystem), taken from
+its COMMITTED history (HEAD, its upstream and origin/main), never from its working tree. They are committed
+here so GitHub Actions can build this repo standalone, without access to the private parent monorepo.
 
-Edit the monorepo `shared/` instead, COMMIT there, then run
-`npm run sync:shared` (also runs automatically before every local build/dev)
-and commit the refreshed copies here.
+`scripts/sync-shared.mjs` refreshes them before every local build/dev. It only ever moves a file FORWARD: a
+copy that is newer than, or diverged from, the newest committed canonical is HELD and reported, never reverted.
+Edit the monorepo `shared/` instead, commit there, then run `npm run sync:shared` and commit the result here.
 
-Only the files listed below are vendored, on purpose — this is a refresh, not a
-mirror. To vendor a new one: `cp ../shared/<file> src/shared/<file>` and commit.
+Only the files listed below are vendored, on purpose — this is a refresh, not a mirror. To vendor a new one:
+`git -C .. show origin/main:shared/<file> > src/shared/<file>` and commit it.
 
 - Breadcrumbs.tsx
 - CookieBanner.tsx

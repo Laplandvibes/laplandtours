@@ -161,7 +161,10 @@ export function gygHref(pick: GygPick, lang?: string, sidOverride?: string): str
  * `<prefix>/-t<id>/` → 301 to that locale's own product slug for 48 ids, 0 to
  * search. The other 2 (t449218, t1005215) redirect to their location page in
  * every locale, bare id included, and so does their full English slug through
- * the Worker: the products are gone, not mis-linked by this function.
+ * the Worker: GetYourGuide itself sends them there right now, not this function.
+ * Not proof of deletion — a parallel re-measurement the same day saw t1130814
+ * come back from that state, and t449218 is a winter tour. Re-measure in late
+ * November before replacing them (gyg_tuotepolut_uudelleenmittaus_20260926).
  *
  * Location and category paths (no `-t<id>` at the end; `-tc146` is a
  * category) are returned unchanged: the Worker prefixes those itself.
