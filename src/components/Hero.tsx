@@ -18,7 +18,7 @@ const COPY: Record<Lang, {
       'Two ways to plan a Finnish Lapland trip. Mix a hotel, a car and a day activity yourself, or let one of six tour operators sort the lot.',
     primary: 'Build my trip',
     secondary: 'See the bundles',
-    alt: 'Lapland fell landscape at golden hour, distant fells over open water',
+    alt: 'Summer view from the top of a ski fell: a chairlift overhead, forest and small lakes stretching to the horizon',
   },
   fi: {
     h1: 'Lapin parhaat reitit, valmiiksi mietittynä',
@@ -27,7 +27,7 @@ const COPY: Record<Lang, {
       'Kaksi tapaa suunnitella matka Suomen Lappiin: yhdistä itse hotelli, vuokra-auto ja päiväretki, tai varaa aktiviteetit suoraan yhdeltä kuudesta paikallisesta toimijasta. Kirjoitettu Suomesta, lähteet näkyvillä.',
     primary: 'Kokoa matkani',
     secondary: 'Katso paikalliset toimijat',
-    alt: 'Lappilainen tunturimaisema kultaisen tunnin valossa, järvi etualalla',
+    alt: 'Kesänäkymä laskettelutunturin laelta: tuolihissi yläpuolella, metsää ja pieniä järviä horisonttiin asti',
   },
   de: {
     h1: 'Planen Sie Ihre Lappland-Reise',
@@ -36,7 +36,7 @@ const COPY: Record<Lang, {
       'Zwei Wege nach Finnisch-Lappland: Hotel, Mietwagen und Tagestour selbst kombinieren, oder Aktivitäten direkt bei einem von sechs lokalen Anbietern buchen.',
     primary: 'Reise selbst zusammenstellen',
     secondary: 'Anbieter ansehen',
-    alt: 'Fjäll-Landschaft in Lappland im goldenen Abendlicht, See im Vordergrund',
+    alt: 'Sommerblick vom Gipfel eines Skifjells: oben ein Sessellift, darunter Wald und kleine Seen bis zum Horizont',
   },
   ja: {
     h1: 'ラップランドの旅を計画する',
@@ -45,7 +45,7 @@ const COPY: Record<Lang, {
       'フィンランド・ラップランドを旅する2つの方法。ホテル、レンタカー、日帰り体験を自分で組み合わせるか、地元の6社のいずれかにアクティビティを直接予約してください。',
     primary: 'マイ旅程を組み立てる',
     secondary: '地元の会社を見る',
-    alt: 'ゴールデンアワーのラップランドの丘陵地帯、手前に湖、遠くに連なる山々',
+    alt: 'スキー場の山頂から見た夏の景色：頭上にチェアリフト、地平線まで続く森と小さな湖',
   },
   es: {
     h1: 'Planifique su viaje a Laponia',
@@ -54,7 +54,7 @@ const COPY: Record<Lang, {
       'Dos formas de planificar un viaje a la Laponia finlandesa: combine usted mismo hotel, coche de alquiler y actividad de un día, o reserve directamente con una de las seis operadoras locales. Reseñas escritas desde Finlandia, con fuentes citadas.',
     primary: 'Personalizar mi viaje',
     secondary: 'Ver los operadores',
-    alt: 'Paisaje de montañas de Laponia a la hora dorada, lago en primer plano',
+    alt: 'Vista de verano desde la cima de una montaña de esquí: un telesilla arriba, bosque y pequeños lagos hasta el horizonte',
   },
   'pt-BR': {
     h1: 'Planeje sua viagem à Lapônia',
@@ -63,7 +63,7 @@ const COPY: Record<Lang, {
       'Duas formas de chegar à Lapônia finlandesa: combine você mesmo hotel, aluguel de carro e atividade do dia, ou reserve direto com uma das seis operadoras locais. Avaliações escritas a partir da Finlândia, com fontes citadas.',
     primary: 'Montar minha viagem',
     secondary: 'Ver as operadoras',
-    alt: 'Paisagem de montanhas da Lapônia na hora dourada, lago em primeiro plano',
+    alt: 'Vista de verão do topo de uma montanha de esqui: um teleférico acima, floresta e pequenos lagos até o horizonte',
   },
   'zh-CN': {
     h1: '规划您的拉普兰之旅',
@@ -72,7 +72,7 @@ const COPY: Record<Lang, {
       '规划芬兰拉普兰之旅的两种方式：自己组合酒店、租车和一日活动，或直接向六家本地运营商之一预订活动。来自芬兰当地的评测，来源引用清晰。',
     primary: '组合我的行程',
     secondary: '查看本地运营商',
-    alt: '黄金时刻的拉普兰山峦景观，湖泊在前景',
+    alt: '从滑雪山顶望出的夏日景色：头顶是吊椅缆车，森林和小湖一直延伸到天边',
   },
   ko: {
     h1: '라플란드 여행 계획하기',
@@ -81,7 +81,7 @@ const COPY: Record<Lang, {
       '핀란드 라플란드 여행을 계획하는 두 가지 방법. 호텔, 렌터카, 당일 액티비티를 직접 조합하거나, 현지 운영사 6곳 중 한 곳에 액티비티를 직접 예약하세요. 핀란드 현지에서 작성된 가이드, 출처 인용.',
     primary: '내 여행 만들기',
     secondary: '현지 운영사 보기',
-    alt: '황금빛 라플란드 산악 풍경, 앞쪽에 호수와 멀리 보이는 봉우리',
+    alt: '스키장 펠 정상에서 본 여름 풍경: 머리 위의 체어리프트, 지평선까지 펼쳐진 숲과 작은 호수들',
   },
   fr: {
     h1: 'Planifiez votre voyage en Laponie',
@@ -90,7 +90,7 @@ const COPY: Record<Lang, {
       'Deux façons de planifier un voyage en Laponie finlandaise. Combinez vous-même hôtel, location de voiture et activité d’une journée, ou réservez directement auprès de l’un des six opérateurs locaux. Guides rédigés depuis la Finlande, sources citées.',
     primary: 'Composer mon voyage',
     secondary: 'Voir les opérateurs',
-    alt: 'Paysage de fjälls de Laponie à l’heure dorée, lac au premier plan',
+    alt: 'Vue d’été depuis le sommet d’un fjell de ski : un télésiège au-dessus, la forêt et de petits lacs jusqu’à l’horizon',
   },
   it: {
     h1: 'Pianifichi il Suo viaggio in Lapponia',
@@ -99,7 +99,7 @@ const COPY: Record<Lang, {
       'Due modi per raggiungere la Lapponia finlandese. Combini hotel, auto a noleggio e attività giornaliera, oppure prenoti direttamente con uno dei sei operatori locali. Guide scritte dalla Finlandia, fonti citate.',
     primary: 'Componi il mio viaggio',
     secondary: 'Vedi gli operatori',
-    alt: 'Paesaggio di fjäll della Lapponia all’ora dorata, lago in primo piano',
+    alt: 'Vista estiva dalla cima di un fjell sciistico: una seggiovia sopra, boschi e piccoli laghi fino all’orizzonte',
   },
   nl: {
     h1: 'Plan een Lapland-rondreis',
@@ -108,7 +108,7 @@ const COPY: Record<Lang, {
       'Twee manieren om een reis naar Fins Lapland te plannen. Combineer zelf hotel, huurauto en dagactiviteit, of boek rechtstreeks bij een van zes lokale aanbieders. Gidsen geschreven vanuit Finland, met bronvermelding.',
     primary: 'Mijn reis samenstellen',
     secondary: 'Bekijk de aanbieders',
-    alt: 'Fjell-landschap in Lapland bij gouden uur, meer op de voorgrond',
+    alt: 'Zomers uitzicht vanaf de top van een skifjell: een stoeltjeslift erboven, bos en kleine meren tot aan de horizon',
   },
   sv: {
     h1: 'Planera en resa till Lappland',
@@ -117,7 +117,7 @@ const COPY: Record<Lang, {
       'Två sätt att planera en resa till finska Lappland. Kombinera själv hotell, hyrbil och en dagsaktivitet, eller låt en av sex researrangörer ordna allt.',
     primary: 'Bygg min resa',
     secondary: 'Se paketen',
-    alt: 'Fjällandskap i Lappland i gyllene timmen, avlägsna fjäll över öppet vatten',
+    alt: 'Sommarvy från toppen av ett skidfjäll: en stollift ovanför, skog och små sjöar ända bort till horisonten',
   },
 };
 
