@@ -364,16 +364,16 @@ export function withUtm(url: string, slug: string): string {
 // domain, departures, bases and image stay language-neutral.
 // =====================================================================
 
-export type OperatorLang = 'en' | 'fi' | 'de' | 'ja' | 'ko' | 'fr' | 'it' | 'nl' | 'es' | 'pt-BR' | 'zh-CN';
+export type OperatorLang = 'en' | 'fi' | 'de' | 'ja' | 'ko' | 'fr' | 'it' | 'nl' | 'es' | 'pt-BR' | 'zh-CN' | 'sv';
 
 /**
- * Narrow the site's UI language to an OperatorLang. Swedish (the network's 12th
- * language) has no translated operator editorial yet, so /sv shows the English
- * operator descriptions + category labels while all site chrome stays Swedish
- * (phased rollout). Every other locale maps 1:1.
+ * Narrow the site's UI language to an OperatorLang: every locale maps 1:1. Until
+ * 2026-09-28 Swedish mapped to 'en', so /sv/ showed the six local operators'
+ * descriptions and the matrix labels in English under Swedish page chrome.
+ * The retired UK operators (L10N) have no Swedish; they are not rendered.
  */
 export function operatorLang(lang: string): OperatorLang {
-  return (lang === 'sv' ? 'en' : lang) as OperatorLang;
+  return lang as OperatorLang;
 }
 
 interface OperatorL10n {
@@ -386,7 +386,7 @@ interface OperatorL10n {
   whatTheyDont: string;
 }
 
-const L10N: Record<string, Record<OperatorLang, OperatorL10n>> = {
+const L10N: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = {
   inghams: {
     en: {
       tagline: "UK's long-running Lapland specialist",
@@ -1244,6 +1244,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       whatTheyDont:
         '他们销售的是活动，而非机票或整套打包行程——交通和住宿需你自行安排。作为最大的运营商，团队出行可能比小团专营者更热闹。',
     },
+    sv: {
+      tagline: 'Lapplands största aktivitetsarrangör',
+      bestFor: 'För dig som vill ha en och samma arrangör för alla aktiviteter: husky, snöskoter, ren och norrsken på flera orter.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Från halvdag till flera dagar',
+      tierLabel: 'Arrangör med fullt utbud',
+      whatTheyDoWell:
+        'Företaget har funnits sedan 1982, har baser i Rovaniemi, Levi, Ylläs, Saariselkä och Luosto och erbjuder finska Lapplands bredaste aktivitetsutbud: husky- och renfarmer, snöskotersafarier, norrskensturer, snöskovandring och uthyrning av utrustning. Guidningen bygger på lokal och samisk kunskap, och företaget har tilldelats Finlands nationella säkerhetspris för turism.',
+      whatTheyDont:
+        'De säljer aktiviteter, inte flyg eller kompletta paketresor. Resa och boende ordnar du själv. Eftersom de är den största arrangören kan gruppturerna ha fler deltagare än hos en specialist på små grupper.',
+    },
   },
   'beyond-arctic': {
     fi: {
@@ -1355,6 +1366,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
         '一家罗瓦涅米的公司（在莱维和皮哈-卢奥斯托也设点），每次出行不超过八人。核心是极光摄影，另有驯鹿与哈士奇探访、国家公园徒步以及夏季午夜阳光拍摄。持有 Sustainable Travel Finland 可持续旅行标识。',
       whatTheyDont:
         '不适合大家庭或大型团队。不含住宿或自驾——只做活动。',
+    },
+    sv: {
+      tagline: 'Specialist på norrsken och fotografering i små grupper',
+      bestFor: 'För fotografer och par som vill ha små grupper och en guide som jagar klar himmel.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: '3–8 h, liten grupp',
+      tierLabel: 'Specialist på små grupper',
+      whatTheyDoWell:
+        'Ett företag från Rovaniemi (även Levi och Pyhä-Luosto) som aldrig tar med fler än åtta personer på en tur. Norrskensfotografering är kärnan, med ren- och huskybesök, vandringar i nationalparker och fotografering i midnattssolen på sommaren. Har märkningen Sustainable Travel Finland.',
+      whatTheyDont:
+        'Passar inte för stora familjer eller större grupper. Inget boende och ingen hyrbil: bara aktiviteter.',
     },
   },
   safartica: {
@@ -1468,6 +1490,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       whatTheyDont:
         '这是一家多基地、节奏繁忙的运营商，而非单向导的小而精团队。机票需你自理。',
     },
+    sv: {
+      tagline: 'Fullt aktivitetsutbud, även elsnöskotrar',
+      bestFor: 'För dig som vill ha ett brett aktivitetsutbud och ett alternativ med lägre utsläpp, med möjlighet att boka boende i samma paket.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Från halvdag till flera dagar',
+      tierLabel: 'Aktiviteter och boende',
+      whatTheyDoWell:
+        'Utgår från Rovaniemi med baser i Ylläs, Levi och Saariselkä. Husky-, ren- och snöskotersafarier, norrskensjakter, pimpelfiske och vinterbad samt världens första safarier med elsnöskotrar (eSled). Driver också egna stugor och vildmarksboenden för paket med boende och aktiviteter.',
+      whatTheyDont:
+        'En livlig verksamhet med flera baser snarare än en liten, personlig arrangör med en enda guide. Flyget ordnar du själv.',
+    },
   },
   harriniva: {
     fi: {
@@ -1579,6 +1612,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
         '穆奥尼奥的家族企业，始于 1973 年，如今已是第三代，核心是自有的大型哈士奇犬舍和多日团队游。经营三处度假村——Harriniva、Jeris 湖畔和 Torassieppi 驯鹿农场——并配有自营餐厅，夏季还有漂流和徒步。提供从基蒂莱机场和科拉里火车站的接送。',
       whatTheyDont:
         '穆奥尼奥地处偏远——距基蒂莱机场约 1.5 小时。并非从罗瓦涅米出发的一日游运营商。',
+    },
+    sv: {
+      tagline: 'Familjeföretag i Muonios vildmark, tredje generationen',
+      bestFor: 'För huskyälskare och alla som söker en vildmarksresa på flera dagar snarare än en enstaka eftermiddagsutflykt.',
+      basedIn: 'Muonio, Finland',
+      typicalLength: 'Från dagsturer till expeditioner på flera dagar',
+      tierLabel: 'Vildmarksanläggningar och safarier',
+      whatTheyDoWell:
+        'Ett familjeföretag i Muonio sedan 1973, nu i tredje generationen, byggt kring en egen stor huskykennel och safarier på flera dagar. Driver tre anläggningar, Harriniva, Jeris Lakeside och renfarmen Torassieppi, med egna restauranger samt forsränning och vandring på sommaren. Transfer från Kittilä flygplats och Kolari järnvägsstation.',
+      whatTheyDont:
+        'Muonio ligger avsides, ungefär 1,5 timmar från Kittilä flygplats. Ingen arrangör för dagsturer från Rovaniemi.',
     },
   },
   'nordic-unique': {
@@ -1692,6 +1736,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
       whatTheyDont:
         '定制规划需要沟通和时间——并非一键即订。仅一个基地，活动集中在罗瓦涅米周边。',
     },
+    sv: {
+      tagline: 'Lokal researrangör i Rovaniemi, grupp eller skräddarsytt',
+      bestFor: 'För dig som vill att en lokal specialist sätter ihop hela resplanen, inte bara bokar en aktivitet.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: 'Från halvdag till en hel resa',
+      tierLabel: 'Researrangör och skräddarsytt',
+      whatTheyDoWell:
+        'En researrangör (DMC) i Rovaniemi som ordnar norrskensjakter (specialiteten), husky- och renbesök, djursafarier och besök hos jultomten, som gruppresor med fasta avgångar eller helt skräddarsydda resor som planeras av en lokal specialist.',
+      whatTheyDont:
+        'Skräddarsydd planering kräver dialog och tid, inte en direktbokning med ett klick. Bara en bas, så aktiviteterna samlas kring Rovaniemi.',
+    },
   },
   'arctic-gm': {
     fi: {
@@ -1803,6 +1858,17 @@ const L10N_LOCAL: Record<string, Partial<Record<OperatorLang, OperatorL10n>>> = 
         '一家由 Rytilahti 家族在罗瓦涅米和莱维经营的运营商，专注极光追寻，团队约五人上限，配 2025 款豪华厢车，开往天空最晴朗的地方。多数极光团含摄影和全天候极光追踪。获猫途鹰（Tripadvisor）"Best of the Best"（前 1%）评级。',
       whatTheyDont:
         '以极光为主、走高端路线，并非面面俱到的家庭活动运营商。偏重冬季，夏季选择较少。',
+    },
+    sv: {
+      tagline: 'The Original Aurora Hunters®',
+      bestFor: 'För par och fotografer som vill ha en exklusiv och rörlig norrskensjakt i liten grupp.',
+      basedIn: 'Rovaniemi, Finland',
+      typicalLength: '3–8 h, liten grupp',
+      tierLabel: 'Norrskensspecialist',
+      whatTheyDoWell:
+        'En arrangör i Rovaniemi och Levi som drivs av familjen Rytilahti och är inriktad på norrskensjakt, med grupper på högst omkring fem personer och lyxminibussar av 2025 års modell som kör dit himlen är klarast. De flesta norrskensturer omfattar fotografering och norrskensbevakning dygnet runt. Utsedd till Tripadvisors ”Best of the Best” (topp 1 %).',
+      whatTheyDont:
+        'Inriktad på norrsken och exklusiv, ingen bred arrangör av familjeaktiviteter. Tyngdpunkt på vintern; sommarutbudet är mindre.',
     },
   },
 };
@@ -1952,5 +2018,14 @@ export const matrixCategoryLabels: Record<
     glassIgloo: '玻璃冰屋',
     selfDrive: '自驾',
     luxury: '奢华',
+  },
+  sv: {
+    family: 'Familj',
+    aurora: 'Norrsken',
+    husky: 'Husky',
+    snowmobile: 'Snöskoter',
+    glassIgloo: 'Glasigloo',
+    selfDrive: 'Hyrbil',
+    luxury: 'Lyx',
   },
 };
