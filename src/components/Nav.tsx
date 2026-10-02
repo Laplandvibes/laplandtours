@@ -4,6 +4,11 @@ import { Menu, X} from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 import EcosystemMenu from '../shared/EcosystemMenu';
 import LanguageSwitcher from '../i18n/LanguageSwitcher';
+import type { CSSProperties } from 'react';
+
+// Sanamerkin leveys 1 px:n fontilla (Bebas Neue + tracking-wide). Puhelin- ja tablettinavissa koko lasketaan
+// tästä ja vapaasta tilasta (index.css LV-NAV-SANAMERKKI): 24 px (tabletilla 30 px), pienempi vain kun ei mahdu.
+const WM_STYLE = { '--lv-wm-k': 5.4, '--lv-wm-max-md': '30px' } as CSSProperties;
 
 /** Sama sivu loppukauttaviivasta riippumatta: sisääntulo on `/x/`, linkki voi olla `/x` (18.9.2026). */
 const samePath = (a: string, b: string) => a.replace(/\/+$/, '') === b.replace(/\/+$/, '');
@@ -127,10 +132,10 @@ const LANG_PREFIX: Record<Lang, string> = {
   ko: 'kr', fr: 'fr', it: 'it', nl: 'nl', sv: 'sv',
 };
 
-function Logo({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+function Logo({ size = 'sm', nav = false }: { size?: 'sm' | 'lg'; nav?: boolean }) {
   const textSize = size === 'lg' ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl';
   return (
-    <span className={`font-heading tracking-wide ${textSize}`}>
+    <span className={`font-heading tracking-wide ${textSize}${nav ? ' lv-wm' : ''}`} data-lv-sanamerkki={nav ? '' : undefined} style={nav ? WM_STYLE : undefined}>
       <span className="text-vibe-pink">#</span>
       <span className="text-snow">LAPLAND</span>
       <span className="text-vibe-pink">TOURS</span>
@@ -206,21 +211,23 @@ export default function Nav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-deep-night/90 backdrop-blur-sm border-b border-white/10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3 sm:gap-5 shrink-0">
+      <div className="lv-navrivi max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="lv-navvasen flex items-center gap-3 sm:gap-5 shrink-0">
           <EcosystemMenu lang={lang} currentDomain="laplandtours.online" />
-          <Link to={to('/')} className="shrink-0 inline-flex items-center min-h-11" aria-label="LaplandTours home"
-            onClick={() => {
-              // 🔴 Verkostovika, mitattu 20.9.2026 seitsemällä sivustolla seitsemästä:
-              // ScrollToTop kuuntelee pathnamea, joka ei muutu kun ollaan jo
-              // etusivulla, joten logon klikkaus ei tehnyt siellä mitään.
-              if (window.location.pathname.replace(/\/$/, '') === to('/').replace(/\/$/, '')) {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }
-            }}
-          >
-            <Logo size="sm" />
-          </Link>
+          <div className="lv-wm-paikka">
+            <Link to={to('/')} className="shrink-0 inline-flex items-center min-h-11" aria-label="LaplandTours home"
+              onClick={() => {
+                // 🔴 Verkostovika, mitattu 20.9.2026 seitsemällä sivustolla seitsemästä:
+                // ScrollToTop kuuntelee pathnamea, joka ei muutu kun ollaan jo
+                // etusivulla, joten logon klikkaus ei tehnyt siellä mitään.
+                if (window.location.pathname.replace(/\/$/, '') === to('/').replace(/\/$/, '')) {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+            >
+              <Logo size="sm" nav />
+            </Link>
+          </div>
         </div>
 
         <nav className="hidden lg:flex items-center gap-5">
