@@ -211,7 +211,7 @@ export default function Nav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-deep-night/90 backdrop-blur-sm border-b border-white/10">
-      <div className="lv-navrivi max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="lv-navrivi max-w-screen-2xl mx-auto px-4 sm:px-6 xl:px-8 h-16 flex items-center justify-between">
         <div className="lv-navvasen flex items-center gap-3 sm:gap-5 shrink-0">
           <EcosystemMenu lang={lang} currentDomain="laplandtours.online" />
           <div className="lv-wm-paikka">
