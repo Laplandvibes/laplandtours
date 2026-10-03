@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Route, ArrowUpRight } from 'lucide-react';
 import { useLang, useHtmlLang, LANG_TO_PREFIX, type CopyLang, copyLang } from '../i18n/useLang';
 
@@ -221,6 +222,9 @@ const COPY: Record<CopyLang, {
   },
 };
 
+/** "Aja Lappiin. Viisi valmiiksi ajettua reittiä." ⇒ lauseet; ja/zh ilman välilyöntiä 。:n jälkeen. */
+const sentences = (s: string) => s.split(/(?<=[?!.])\s+|(?<=[？！。])(?=\S)/).filter(Boolean);
+
 function hubUrl(lang: CopyLang, slug: string): string {
   const prefix = LANG_TO_PREFIX[lang];
   return `https://laplandvibes.com/${prefix ? `${prefix}/` : ''}${slug}/`;
@@ -234,12 +238,24 @@ export default function DriveToLapland() {
 
   return (
     <section id="drive" className="bg-deep-night py-16 sm:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-        <header className="lg:col-span-4">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-8 lg:gap-x-10">
+        {/* Otsikko koko leveydelle tietokoneella (Vesa 3.10.2026: "tehdään turhaan kolmirivisiä"). Mitattu livenä
+            3.10.: 11 kieltä 12:sta 3 riviä 347 px:n sivupalstassa ("Aja Lappiin. / Viisi valmiiksi / ajettua
+            reittiä.", de kesken sanan). Nyt otsikko on oma rivinsä gridissä ja lauseet ovat sm+:lla omia
+            kokonaisuuksiaan; ingressi + linkki ja reittilista jatkavat sen alla 4 + 8 sarakkeessa. Puhelimen
+            järjestys ja välit ennallaan (ingressi mt-5, lista 32 px). */}
+        <header className="lg:col-span-12">
           <p className="cap-meta">{c.eyebrow}</p>
-          <h2 className="mt-2 font-heading tracking-wide leading-[0.95] text-snow text-4xl sm:text-5xl [text-wrap:balance]">
-            {c.h2}
+          <h2 className={`mt-2 font-heading tracking-wide leading-[0.95] text-snow text-4xl sm:text-5xl [text-wrap:balance]${lang === 'ko' ? ' [word-break:keep-all]' : ''}`}>
+            {sentences(c.h2).map((part, i) => (
+              <Fragment key={i}>
+                {i > 0 && (lang === 'ja' || lang === 'zh-CN' ? <wbr /> : ' ')}
+                <span className="sm:inline-block">{part}</span>
+              </Fragment>
+            ))}
           </h2>
+        </header>
+        <div className="lg:col-span-4">
           <p className="mt-5 text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-md">
             {c.lead}
           </p>
@@ -251,9 +267,9 @@ export default function DriveToLapland() {
             <Route className="w-4 h-4 text-arctic-cyan" strokeWidth={1.6} aria-hidden="true" />
             <span>{c.overview}</span>
           </a>
-        </header>
+        </div>
 
-        <ol className="lg:col-span-8 lg:col-start-5 border-t border-white/10">
+        <ol className="lg:col-span-8 lg:col-start-5 mt-8 lg:mt-5 border-t border-white/10">
           {ROUTES.map((r, i) => {
             const t = c.routes[r.key];
             return (
