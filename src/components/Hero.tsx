@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { isSummerSeason } from '../lib/season';
 import { ArrowRight } from 'lucide-react';
 import ImagePlaceholder from './ImagePlaceholder';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
@@ -10,6 +11,8 @@ const COPY: Record<Lang, {
   primary: string;
   secondary: string;
   alt: string;
+  /** Winter hero (1.10.–30.4., src/lib/season.ts). */
+  altWinter: string;
 }> = {
   en: {
     h1: 'Plan a Lapland trip',
@@ -19,6 +22,7 @@ const COPY: Record<Lang, {
     primary: 'Build my trip',
     secondary: 'See the bundles',
     alt: 'Summer view from the top of a ski fell: a chairlift overhead, forest and small lakes stretching to the horizon',
+    altWinter: 'Winter view from the top of a ski fell: a groomed run curving between snow-laden trees, forest and frozen bogs stretching to the horizon',
   },
   fi: {
     h1: 'Lapin parhaat reitit, valmiiksi mietittynä',
@@ -28,6 +32,7 @@ const COPY: Record<Lang, {
     primary: 'Kokoa matkani',
     secondary: 'Katso paikalliset toimijat',
     alt: 'Kesänäkymä laskettelutunturin laelta: tuolihissi yläpuolella, metsää ja pieniä järviä horisonttiin asti',
+    altWinter: 'Talvinäkymä laskettelutunturin laelta: rinne kaartuu tykkylumisten puiden välistä, metsää ja jäätyneitä soita horisonttiin asti',
   },
   de: {
     h1: 'Planen Sie Ihre Lappland-Reise',
@@ -37,6 +42,7 @@ const COPY: Record<Lang, {
     primary: 'Reise selbst zusammenstellen',
     secondary: 'Anbieter ansehen',
     alt: 'Sommerblick vom Gipfel eines Skifjells: oben ein Sessellift, darunter Wald und kleine Seen bis zum Horizont',
+    altWinter: 'Winterblick vom Gipfel eines Skifjells: eine präparierte Piste zwischen verschneiten Bäumen, Wald und gefrorene Moore bis zum Horizont',
   },
   ja: {
     h1: 'ラップランドの旅を計画する',
@@ -46,6 +52,7 @@ const COPY: Record<Lang, {
     primary: 'マイ旅程を組み立てる',
     secondary: '地元の会社を見る',
     alt: 'スキー場の山頂から見た夏の景色：頭上にチェアリフト、地平線まで続く森と小さな湖',
+    altWinter: 'スキー場の山頂から見た冬の景色：雪をまとった木々の間を曲がる圧雪コース、地平線まで続く森と凍った湿原',
   },
   es: {
     h1: 'Planifique su viaje a Laponia',
@@ -55,6 +62,7 @@ const COPY: Record<Lang, {
     primary: 'Personalizar mi viaje',
     secondary: 'Ver los operadores',
     alt: 'Vista de verano desde la cima de una montaña de esquí: un telesilla arriba, bosque y pequeños lagos hasta el horizonte',
+    altWinter: 'Vista invernal desde la cima de una montaña de esquí: una pista pisada entre árboles cargados de nieve, bosque y turberas heladas hasta el horizonte',
   },
   'pt-BR': {
     h1: 'Planeje sua viagem à Lapônia',
@@ -64,6 +72,7 @@ const COPY: Record<Lang, {
     primary: 'Montar minha viagem',
     secondary: 'Ver as operadoras',
     alt: 'Vista de verão do topo de uma montanha de esqui: um teleférico acima, floresta e pequenos lagos até o horizonte',
+    altWinter: 'Vista de inverno do topo de uma montanha de esqui: uma pista preparada entre árvores cobertas de neve, floresta e turfeiras congeladas até o horizonte',
   },
   'zh-CN': {
     h1: '规划您的拉普兰之旅',
@@ -73,6 +82,7 @@ const COPY: Record<Lang, {
     primary: '组合我的行程',
     secondary: '查看本地运营商',
     alt: '从滑雪山顶望出的夏日景色：头顶是吊椅缆车，森林和小湖一直延伸到天边',
+    altWinter: '从滑雪山顶望出的冬日景色：压实的雪道在挂满积雪的树木间转弯，森林和冰封的沼泽一直延伸到天边',
   },
   ko: {
     h1: '라플란드 여행 계획하기',
@@ -82,6 +92,7 @@ const COPY: Record<Lang, {
     primary: '내 여행 만들기',
     secondary: '현지 운영사 보기',
     alt: '스키장 펠 정상에서 본 여름 풍경: 머리 위의 체어리프트, 지평선까지 펼쳐진 숲과 작은 호수들',
+    altWinter: '스키장 펠 정상에서 본 겨울 풍경: 눈 덮인 나무 사이로 휘어지는 정설된 슬로프, 지평선까지 펼쳐진 숲과 얼어붙은 습지',
   },
   fr: {
     h1: 'Planifiez votre voyage en Laponie',
@@ -91,6 +102,7 @@ const COPY: Record<Lang, {
     primary: 'Composer mon voyage',
     secondary: 'Voir les opérateurs',
     alt: 'Vue d’été depuis le sommet d’un fjell de ski : un télésiège au-dessus, la forêt et de petits lacs jusqu’à l’horizon',
+    altWinter: 'Vue d’hiver depuis le sommet d’un fjell de ski : une piste damée entre des arbres chargés de neige, la forêt et des tourbières gelées jusqu’à l’horizon',
   },
   it: {
     h1: 'Pianifichi il Suo viaggio in Lapponia',
@@ -100,6 +112,7 @@ const COPY: Record<Lang, {
     primary: 'Componi il mio viaggio',
     secondary: 'Vedi gli operatori',
     alt: 'Vista estiva dalla cima di un fjell sciistico: una seggiovia sopra, boschi e piccoli laghi fino all’orizzonte',
+    altWinter: 'Vista invernale dalla cima di un fjell sciistico: una pista battuta tra alberi carichi di neve, boschi e torbiere ghiacciate fino all’orizzonte',
   },
   nl: {
     h1: 'Plan een Lapland-rondreis',
@@ -109,6 +122,7 @@ const COPY: Record<Lang, {
     primary: 'Mijn reis samenstellen',
     secondary: 'Bekijk de aanbieders',
     alt: 'Zomers uitzicht vanaf de top van een skifjell: een stoeltjeslift erboven, bos en kleine meren tot aan de horizon',
+    altWinter: 'Winters uitzicht vanaf de top van een skifjell: een geprepareerde piste tussen besneeuwde bomen, bos en bevroren venen tot aan de horizon',
   },
   sv: {
     h1: 'Planera en resa till Lappland',
@@ -118,6 +132,7 @@ const COPY: Record<Lang, {
     primary: 'Bygg min resa',
     secondary: 'Se paketen',
     alt: 'Sommarvy från toppen av ett skidfjäll: en stollift ovanför, skog och små sjöar ända bort till horisonten',
+    altWinter: 'Vintervy från toppen av ett skidfjäll: en preparerad pist mellan snötyngda träd, skog och frusna myrar ända bort till horisonten',
   },
 };
 
@@ -131,13 +146,17 @@ export default function Hero() {
   const lang = useLang();
   const to = useLocalePath();
   const c = COPY[lang];
+  const winter = !isSummerSeason();
   return (
     <section className="relative flex items-center min-h-[62svh] sm:min-h-[76svh] lg:min-h-[620px] lg:max-h-[760px] overflow-hidden">
+      {/* Kausikuva (4.10.2026, Vesa: talvella ei kesäkuvaa): talvi 1.10.–30.4. tunturin laki lumessa
+          (Pexels 15270755, Daniel Shipilov, tammikuu 2023), kesä 1.5.–30.9. oma Pyhän tuolihissikuva.
+          Sääntö src/lib/season.ts; esilataus index.html:n kausiskriptissä (sama sääntö). */}
       <ImagePlaceholder
         variant="aurora"
-        src="/images/hero-home.webp"
-        alt={c.alt}
-        objectPosition="center 40%"
+        src={winter ? '/images/hero-home-winter.webp' : '/images/hero-home.webp'}
+        alt={winter ? c.altWinter : c.alt}
+        objectPosition={winter ? 'center 62%' : 'center 40%'}
         priority
       />
       {/* 🔴🔴 Häivytys mitattiin 20.9.2026 heroteksti-portilla, joka lukee musteen

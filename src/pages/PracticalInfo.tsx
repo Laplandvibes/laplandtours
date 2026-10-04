@@ -10,6 +10,7 @@ import { COPY as NAV_COPY } from '../components/Nav';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
 import { Link } from 'react-router-dom';
 import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+import { isSummerSeason } from '../lib/season';
 
 /**
  * Kuvakaistat korttien valissa (12.9.2026). Kuvat ovat heinakuun 2026 reissun
@@ -35,6 +36,8 @@ const COPY: Record<CopyLang, {
   articleDescription: string;
   lead: string;
   altHero: string;
+  /** Winter hero (1.10.–30.4., src/lib/season.ts). */
+  altHeroWinter: string;
   /** Link line under "Getting there" → the hub's five road-trip guides (2026-09-11). */
   driveLink: string;
   sections: { n: string; title: string; body: string }[];
@@ -58,6 +61,7 @@ const COPY: Record<CopyLang, {
       'A practical pre-trip briefing for Finnish Lapland: how to get there, climate by season, visa rules, what to pack, and how to extend a package.',
     lead: 'Three airports, a night train and the road north. The rest of the planning is calendar, paperwork and a few phone numbers. Six things to know before you book.',
     altHero: 'An empty road running north through boreal forest towards the fells',
+    altHeroWinter: 'A traveller in a winter jacket walking away along a snow-packed road between tall pines heavy with snow',
     driveLink: 'Driving up instead? Five mapped routes to Lapland',
     sections: [
       {
@@ -113,6 +117,7 @@ const COPY: Record<CopyLang, {
       'Käytännön ennakkopaketti Suomen Lapin matkalle: miten päästä perille, sää kausittain, viisumi, pakkaaminen ja paketin jatkaminen.',
     lead: 'Kolme lentoasemaa, yöjuna ja tie pohjoiseen. Loput suunnittelusta on kalenteria, papereita ja pari puhelinnumeroa. Alla kuusi asiaa ennen varausta.',
     altHero: 'Tyhjä tie kohti tuntureita boreaalisen metsän halki',
+    altHeroWinter: 'Talvitakkinen kulkija kävelee poispäin lumisella tiellä korkeiden lumikuormaisten mäntyjen välissä',
     driveLink: 'Tuletko autolla? Viisi valmiiksi ajettua reittiä Lappiin',
     sections: [
       {
@@ -168,6 +173,7 @@ const COPY: Record<CopyLang, {
       'Ein praktisches Briefing vor der Reise nach Finnisch-Lappland: Anreise, Klima nach Saison, Visumregeln, Packliste und Paket-Verlängerung.',
     lead: 'Drei Flughäfen, ein Nachtzug und die Straße nach Norden. Der Rest der Planung ist Kalender, Papiere und ein paar Telefonnummern. Sechs Dinge vor der Buchung.',
     altHero: 'Eine leere Straße nach Norden durch borealen Wald in Richtung Fjälls',
+    altHeroWinter: 'Eine Person in Winterjacke geht auf einer schneebedeckten Straße zwischen hohen, schneebeladenen Kiefern davon',
     driveLink: 'Lieber mit dem Auto? Fünf ausgearbeitete Routen nach Lappland',
     sections: [
       {
@@ -223,6 +229,7 @@ const COPY: Record<CopyLang, {
       'フィンランド・ラップランドへの旅行前の実用ブリーフィング：行き方、季節別の気候、ビザ規則、持ち物、パッケージの拡張方法。',
     lead: '空港は三つ、夜行列車、そして北へ続く道。あとの計画はカレンダーと書類、そして数本の電話です。予約の前に知っておきたい六つのこと。',
     altHero: '北へ続く空いた道。ボレアル林を抜けて丘陵へ',
+    altHeroWinter: '冬用ジャケットを着た旅行者が、雪の重みでしなる高い松の間の圧雪路を歩いていく後ろ姿',
     driveLink: '車で向かうなら：ラップランドへの5つのルート',
     sections: [
       {
@@ -278,6 +285,7 @@ const COPY: Record<CopyLang, {
       '핀란드 라플란드 여행 전 실용 브리핑: 가는 방법, 계절별 기후, 비자 규정, 짐 싸기, 패키지 연장 방법.',
     lead: '공항 세 곳, 야간열차, 그리고 북쪽으로 이어진 길. 나머지 계획은 일정과 서류, 그리고 몇 번의 전화입니다. 예약 전에 알아둘 여섯 가지.',
     altHero: '보레알 숲을 지나 펠 지대로 향하는 텅 빈 길',
+    altHeroWinter: '겨울 재킷을 입은 여행자가 눈을 잔뜩 인 키 큰 소나무 사이의 눈길을 걸어가는 뒷모습',
     driveLink: '자동차로 오신다면: 라플란드까지 다섯 가지 경로',
     sections: [
       {
@@ -333,6 +341,7 @@ const COPY: Record<CopyLang, {
       'Un briefing pratique avant un séjour en Laponie finlandaise : y aller, climat par saison, règles de visa, bagages et prolongation d\'un forfait.',
     lead: 'Trois aéroports, un train de nuit et la route vers le nord. Le reste de la planification, c’est un calendrier, des papiers et quelques numéros de téléphone. Six choses à savoir avant de réserver.',
     altHero: 'Une route déserte vers le nord à travers la forêt boréale, en direction des fjälls',
+    altHeroWinter: 'Une personne en veste d’hiver s’éloigne sur une route enneigée, entre de grands pins chargés de neige',
     driveLink: 'Plutôt en voiture ? Cinq itinéraires balisés vers la Laponie',
     sections: [
       {
@@ -388,6 +397,7 @@ const COPY: Record<CopyLang, {
       'Un briefing pratico prima del viaggio in Lapponia finlandese: come arrivare, clima per stagione, regole sui visti, bagaglio e come estendere un pacchetto.',
     lead: 'Tre aeroporti, un treno notturno e la strada verso nord. Il resto della pianificazione è calendario, documenti e qualche numero di telefono. Sei cose da sapere prima di prenotare.',
     altHero: 'Una strada deserta verso nord attraverso la foresta boreale, in direzione dei fjäll',
+    altHeroWinter: 'Una persona con giacca invernale si allontana su una strada innevata tra alti pini carichi di neve',
     driveLink: 'Preferisce l’auto? Cinque itinerari tracciati verso la Lapponia',
     sections: [
       {
@@ -443,6 +453,7 @@ const COPY: Record<CopyLang, {
       'Een praktische briefing vóór uw reis naar Fins Lapland: hoe u er komt, klimaat per seizoen, visumregels, inpakken en het verlengen van een arrangement.',
     lead: 'Drie luchthavens, een nachttrein en de weg naar het noorden. De rest van de planning is agenda, papieren en een paar telefoonnummers. Zes dingen om te weten voordat u boekt.',
     altHero: 'Een lege weg naar het noorden door het boreale bos richting de fjäll',
+    altHeroWinter: 'Iemand in een winterjas loopt over een besneeuwde weg tussen hoge, met sneeuw beladen dennen',
     driveLink: 'Liever met de auto? Vijf uitgewerkte routes naar Lapland',
     sections: [
       {
@@ -498,6 +509,7 @@ const COPY: Record<CopyLang, {
       'En praktisk genomgång inför resan till finska Lappland: hur du tar dig dit, klimat per säsong, visumregler, packlista och hur du förlänger ett paket.',
     lead: 'Tre flygplatser, ett nattåg och vägen norrut. Resten av planeringen är kalender, papper och ett par telefonnummer. Sex saker att veta innan du bokar.',
     altHero: 'En tom väg norrut genom barrskogen mot fjällen',
+    altHeroWinter: 'En resenär i vinterjacka går bort längs en snötäckt väg mellan höga, snötyngda tallar',
     driveLink: 'Kör du hellre? Fem färdiga rutter till Lappland',
     sections: [
       {
@@ -553,6 +565,7 @@ const COPY: Record<CopyLang, {
       'Un resumen práctico previo al viaje a la Laponia finlandesa: cómo llegar, clima por temporada, normas de visado, qué llevar y cómo ampliar un paquete.',
     lead: 'Tres aeropuertos, un tren nocturno y la carretera hacia el norte. El resto de la planificación es calendario, papeles y un par de números de teléfono. Seis cosas antes de reservar.',
     altHero: 'Una carretera vacía hacia el norte a través del bosque boreal, rumbo a los fjäll',
+    altHeroWinter: 'Una persona con chaqueta de invierno se aleja por una carretera nevada entre altos pinos cargados de nieve',
     driveLink: '¿Prefiere ir en coche? Cinco rutas trazadas hasta Laponia',
     sections: [
       {
@@ -608,6 +621,7 @@ const COPY: Record<CopyLang, {
       'Um resumo prático pré-viagem para a Lapônia finlandesa: como chegar, clima por temporada, regras de visto, o que levar e como estender um pacote.',
     lead: 'Três aeroportos, um trem noturno e a estrada para o norte. O resto do planejamento é calendário, documentos e alguns telefones. Seis coisas para saber antes de reservar.',
     altHero: 'Uma estrada vazia para o norte pela floresta boreal, rumo aos fjäll',
+    altHeroWinter: 'Uma pessoa de jaqueta de inverno se afasta por uma estrada coberta de neve entre pinheiros altos carregados de neve',
     driveLink: 'Prefere ir de carro? Cinco rotas mapeadas até a Lapônia',
     sections: [
       {
@@ -663,6 +677,7 @@ const COPY: Record<CopyLang, {
       '一份前往芬兰拉普兰的实用行前须知：如何抵达、各季节气候、签证规定、行李清单，以及如何延长套餐。',
     lead: '三座机场、一列夜行火车，还有一路向北的公路。其余的规划就是日历、文件和几个电话号码。预订前先了解这六件事。',
     altHero: '一条向北的空路，穿过北方森林通往山地',
+    altHeroWinter: '一位穿冬季外套的旅行者走在积雪的道路上，两旁是挂满积雪的高大松树',
     driveLink: '想自驾？前往拉普兰的五条路线',
     sections: [
       {
@@ -817,6 +832,7 @@ export default function PracticalInfo() {
   const lp = useLocalePath();
   const act = ACTIONS[copyLang(lang)];
   const c = COPY[copyLang(lang)];
+  const winter = !isSummerSeason();
   const nav = NAV_COPY[lang];
   useEffect(() => {
     setPageMeta({
@@ -840,19 +856,43 @@ export default function PracticalInfo() {
   return (
     <>
       <section className="relative bg-deep-night overflow-hidden flex items-center min-h-[56svh] md:min-h-[64svh]">
+        {/* Kausikuva (4.10.2026, Vesa: talvella ei kesäkuvaa): talvi 1.10.–30.4. Pexels 4180244
+            (Francesco Ungaro, tammikuu 2020), kesä 1.5.–30.9. oma Pyhän tiekuva heinäkuulta. */}
         <ImagePlaceholder
           variant="ice"
-          src="/images/hero-practical.webp"
-          alt={c.altHero}
+          src={winter ? '/images/hero-practical-winter.webp' : '/images/hero-practical.webp'}
+          alt={winter ? c.altHeroWinter : c.altHero}
+          objectPosition={winter ? 'center 55%' : undefined}
           priority
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.40) 50%, rgba(15,23,42,0.06) 100%)',
-          }}
-        />
+        {winter ? (
+          <>
+            {/* Talvikuvan keskellä on kirkas taivasaukko juuri tekstin takana (heroteksti-portti 4.10.2026:
+                yläotsikko 1,08:1, h1 2,2:1 puhelimessa). Puhelimessa teksti on keskellä ⇒ pystysuora
+                tummennus vahvana ylhäältä; tietokoneella teksti vasemmalla ⇒ vaakasuora, jolloin kulkija
+                ja tie jäävät oikealle näkyviin. */}
+            <div
+              className="absolute inset-0 lg:hidden"
+              style={{ background: 'linear-gradient(to bottom, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.84) 55%, rgba(15,23,42,0.9) 100%)' }}
+            />
+            <div
+              className="absolute inset-0 hidden lg:block"
+              style={{ background: 'linear-gradient(to right, rgba(15,23,42,0.93) 0%, rgba(15,23,42,0.86) 45%, rgba(15,23,42,0.5) 72%, rgba(15,23,42,0.25) 100%)' }}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-1/3 hidden lg:block"
+              style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0) 100%)' }}
+            />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.40) 50%, rgba(15,23,42,0.06) 100%)',
+            }}
+          />
+        )}
         {/* 2026-09-12: the "−30 °C" kicker is gone. Vesa: "kesä kuva ja -30
             luku hero osiossa?" — the photo is from July, so a winter floor
             printed over it is a contradiction the reader sees before any copy.
@@ -866,7 +906,11 @@ export default function PracticalInfo() {
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
-          <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
+          {winter ? (
+            <PhotoCredit taken="2020-01-31" credit={{ author: 'Francesco Ungaro', license: 'Pexels', licenseUrl: 'https://www.pexels.com/license/', sourceUrl: 'https://www.pexels.com/photo/unrecognizable-traveler-walking-on-snowy-road-4180244/' }} className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
+          ) : (
+            <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
+          )}
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { isSummerSeason } from '../lib/season';
 import { ArrowRight } from 'lucide-react';
 import { useLang, useLocalePath, type CopyLang, copyLang } from '../i18n/useLang';
 
@@ -203,7 +204,8 @@ const ITEMS: Record<
 /** Image top per teaser target — reuses hero art already in the repo (no new assets). */
 const TEASER_IMAGE: Record<string, string> = {
   '/age-guide': '/images/hero-age-guide',
-  '/practical-info': '/images/hero-practical',
+  // Kausittain kuten sivun oma hero (4.10.2026): talvella talvitie (800 px kopio, kortti on matala).
+  '/practical-info': isSummerSeason() ? '/images/hero-practical' : '/images/hero-practical-winter-800',
 };
 
 export default function SectionTeasers() {
