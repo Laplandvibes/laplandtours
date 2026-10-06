@@ -8,11 +8,11 @@ import AffiliateDisclosure from '../components/AffiliateDisclosure';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
+import { routeMeta } from '../lib/routeMeta';
 import { useLang, useLocalePath, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
 
+// Otsikko ja kuvaus: routeMeta('/lapland-holidays') eli scripts/routes.json, sama lähde kuin esirenderöinnillä.
 const COPY: Record<CopyLang, {
-  metaTitle: string;
-  metaDescription: string;
   canonical: string;
   breadcrumbHome: string;
   breadcrumbName: string;
@@ -36,9 +36,6 @@ const COPY: Record<CopyLang, {
   altHero: string;
 }> = {
   en: {
-    metaTitle: 'The Operators: Six tour companies for Finnish Lapland',
-    metaDescription:
-      'An honest guide to six Finland-based local operators running Lapland activities themselves in 2026: what each one does well, and what you actually get when you book.',
     canonical: 'https://laplandtours.online/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Operator guide',
@@ -60,9 +57,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Santa Claus Office at the Arctic Circle in Rovaniemi on a summer day',
   },
   fi: {
-    metaTitle: 'Matkanjärjestäjät: Suomen Lappi',
-    metaDescription:
-      'Rehellinen opas kuuteen suomalaiseen Lapin toimijaan 2026: mitä kukin osaa, missä ne sijaitsevat ja mitä todella saat, kun varaat suoraan.',
     canonical: 'https://laplandtours.online/fi/lapland-holidays',
     breadcrumbHome: 'Etusivu',
     breadcrumbName: 'Matkanjärjestäjät',
@@ -84,9 +78,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Joulupukin kammari napapiirillä Rovaniemellä kesäpäivänä',
   },
   de: {
-    metaTitle: 'Die Reiseveranstalter: Finnisch-Lappland',
-    metaDescription:
-      'Ein ehrlicher Überblick über sechs in Finnland ansässige Lappland-Anbieter 2026: Stärken, Standorte und was Sie bei der Direktbuchung wirklich bekommen.',
     canonical: 'https://laplandtours.online/de/lapland-holidays',
     breadcrumbHome: 'Start',
     breadcrumbName: 'Reiseveranstalter',
@@ -108,9 +99,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Das Büro des Weihnachtsmanns am Polarkreis in Rovaniemi an einem Sommertag',
   },
   ja: {
-    metaTitle: 'ツアー会社｜フィンランド・ラップランドの6社のツアー会社',
-    metaDescription:
-      '2026年、フィンランドを拠点とするラップランドの6社を率直にご紹介します。各社の得意分野、拠点、そして直接予約したときに実際に得られるもの。',
     canonical: 'https://laplandtours.online/ja/lapland-holidays',
     breadcrumbHome: 'ホーム',
     breadcrumbName: 'ツアー会社ガイド',
@@ -132,9 +120,6 @@ const COPY: Record<CopyLang, {
     altHero: '夏の日のロヴァニエミ、北極圏にあるサンタクロース・オフィス',
   },
   ko: {
-    metaTitle: '운영사: 핀란드 라플란드를 다루는 여섯 운영사',
-    metaDescription:
-      '2026년 핀란드에 기반을 둔 라플란드 운영사 여섯 곳을 솔직하게 안내합니다. 각 운영사의 강점, 위치, 그리고 직접 예약 시 실제로 받게 되는 내용.',
     canonical: 'https://laplandtours.online/kr/lapland-holidays',
     breadcrumbHome: '홈',
     breadcrumbName: '운영사 가이드',
@@ -155,9 +140,6 @@ const COPY: Record<CopyLang, {
     altHero: '여름날 로바니에미 북극권의 산타클로스 오피스',
   },
   fr: {
-    metaTitle: 'Les voyagistes : Laponie finlandaise',
-    metaDescription:
-      'Un guide honnête de six opérateurs de Laponie établis en Finlande en 2026 : leurs points forts, où ils sont basés et ce que vous obtenez en réservant en direct.',
     canonical: 'https://laplandtours.online/fr/lapland-holidays',
     breadcrumbHome: 'Accueil',
     breadcrumbName: 'Guide des voyagistes',
@@ -178,9 +160,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Le bureau du Père Noël sur le cercle polaire, à Rovaniemi, un jour d’été',
   },
   it: {
-    metaTitle: 'I tour operator: Lapponia finlandese',
-    metaDescription:
-      'Una guida onesta a sei operatori della Lapponia con sede in Finlandia nel 2026: punti di forza, dove hanno sede e cosa ottiene prenotando direttamente.',
     canonical: 'https://laplandtours.online/it/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Guida agli operatori',
@@ -201,9 +180,6 @@ const COPY: Record<CopyLang, {
     altHero: 'L’ufficio di Babbo Natale sul Circolo Polare Artico a Rovaniemi, in un giorno d’estate',
   },
   nl: {
-    metaTitle: 'De reisorganisaties: Fins Lapland',
-    metaDescription:
-      'Een eerlijke gids over zes in Finland gevestigde Lapland-aanbieders in 2026: sterktes, waar ze gevestigd zijn en wat u krijgt als u direct boekt.',
     canonical: 'https://laplandtours.online/nl/lapland-holidays',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Operator-gids',
@@ -224,9 +200,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Het kantoor van de Kerstman op de poolcirkel in Rovaniemi op een zomerdag',
   },
   sv: {
-    metaTitle: 'Aktörerna: finska Lappland',
-    metaDescription:
-      'En ärlig guide till sex aktörer baserade i finska Lappland 2026: vad var och en är bra på, var de finns och vad du faktiskt får när du bokar direkt.',
     canonical: 'https://laplandtours.online/sv/lapland-holidays',
     breadcrumbHome: 'Hem',
     breadcrumbName: 'Aktörsguide',
@@ -248,9 +221,6 @@ const COPY: Record<CopyLang, {
     altHero: 'Jultomtens kontor vid polcirkeln i Rovaniemi en sommardag',
   },
   es: {
-    metaTitle: 'Los operadores: Laponia finlandesa',
-    metaDescription:
-      'Una guía honesta de seis operadores de Laponia con sede en Finlandia en 2026: qué hace bien cada uno, dónde están y qué obtiene al reservar directamente.',
     canonical: 'https://laplandtours.online/es/lapland-holidays',
     breadcrumbHome: 'Inicio',
     breadcrumbName: 'Guía de operadores',
@@ -272,9 +242,6 @@ const COPY: Record<CopyLang, {
     altHero: 'La oficina de Papá Noel en el Círculo Polar Ártico, en Rovaniemi, un día de verano',
   },
   'pt-BR': {
-    metaTitle: 'As operadoras: Lapônia finlandesa',
-    metaDescription:
-      'Um guia honesto de seis operadoras locais sediadas na Finlândia em 2026: o que cada uma faz bem, onde ficam e o que você recebe ao reservar direto.',
     canonical: 'https://laplandtours.online/br/lapland-holidays',
     breadcrumbHome: 'Início',
     breadcrumbName: 'Guia de operadoras',
@@ -296,9 +263,6 @@ const COPY: Record<CopyLang, {
     altHero: 'O escritório do Papai Noel no Círculo Polar Ártico, em Rovaniemi, em um dia de verão',
   },
   'zh-CN': {
-    metaTitle: '运营商：六家做芬兰拉普兰的旅游公司',
-    metaDescription:
-      '一份关于 2026 年六家总部设在芬兰的拉普兰运营商的坦诚指南：各家擅长什么、位于何处，以及直接预订后你实际能得到什么。',
     canonical: 'https://laplandtours.online/cn/lapland-holidays',
     breadcrumbHome: '首页',
     breadcrumbName: '运营商指南',
@@ -326,10 +290,11 @@ export default function LaplandHolidays() {
   const lang = useLang();
   const to = useLocalePath();
   const c = COPY[copyLang(lang)];
+  const { title, description } = routeMeta('/lapland-holidays', lang);
   useEffect(() => {
     setPageMeta({
-      title: c.metaTitle,
-      description: c.metaDescription,
+      title,
+      description,
       canonical: c.canonical,
       jsonLd: [
         breadcrumbList([
@@ -343,7 +308,7 @@ export default function LaplandHolidays() {
         }),
       ],
     });
-  }, [lang, c]);
+  }, [lang, c, title, description]);
 
   return (
     <>

@@ -6,6 +6,7 @@ import PhotoCredit from '../components/PhotoCredit';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
+import { routeMeta } from '../lib/routeMeta';
 import { useLang, type Lang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
 
 type Cell = string | { v: string; note?: string };
@@ -17,9 +18,8 @@ interface Row {
   cells: Cell[];
 }
 
+// Otsikko ja kuvaus: routeMeta('/age-guide') eli scripts/routes.json, sama lähde kuin esirenderöinnillä.
 const COPY: Record<CopyLang, {
-  metaTitle: string;
-  metaDescription: string;
   canonical: string;
   breadcrumbHome: string;
   breadcrumbName: string;
@@ -35,9 +35,6 @@ const COPY: Record<CopyLang, {
   gygCta: string;
 }> = {
   en: {
-    metaTitle: 'Age guide: which Lapland activities suit which age',
-    metaDescription:
-      'A practical age-by-activity matrix for Finnish Lapland. See which tours work for infants, pre-schoolers, early-school, tweens, teens and adults, and which operators specialise in each band.',
     canonical: 'https://laplandtours.online/age-guide',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Age guide',
@@ -126,9 +123,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   fi: {
-    metaTitle: 'Ikäopas: Lapin retket eri ikäisille',
-    metaDescription:
-      'Käytännön ikä × retki -taulukko Suomen Lapin matkoille: mikä sopii vauvalle, lapselle, teinille ja aikuiselle ja mihin kukin matkanjärjestäjä on erikoistunut.',
     canonical: 'https://laplandtours.online/fi/age-guide',
     breadcrumbHome: 'Etusivu',
     breadcrumbName: 'Ikäopas',
@@ -216,9 +210,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   de: {
-    metaTitle: 'Alters-Guide: Lappland-Tour je Alter',
-    metaDescription:
-      'Eine praktische Matrix Alter × Tour für Finnisch-Lappland: was für Kinder, Teenager und Erwachsene funktioniert und worauf Anbieter spezialisiert sind.',
     canonical: 'https://laplandtours.online/de/age-guide',
     breadcrumbHome: 'Start',
     breadcrumbName: 'Alters-Guide',
@@ -307,9 +298,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   ja: {
-    metaTitle: '年齢別ガイド：ラップランドのアクティビティが適した年齢層',
-    metaDescription:
-      'フィンランド・ラップランドの年齢別アクティビティマトリクス。乳児、未就学児、学童、ティーンエイジャー、大人それぞれに合うツアー、各年齢層を得意とするオペレーターをご紹介します。',
     canonical: 'https://laplandtours.online/ja/age-guide',
     breadcrumbHome: 'ホーム',
     breadcrumbName: '年齢別ガイド',
@@ -398,9 +386,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   ko: {
-    metaTitle: '연령 가이드: 어떤 라플란드 액티비티가 어느 연령에 맞나요',
-    metaDescription:
-      '핀란드 라플란드의 실용 연령 × 액티비티 매트릭스. 영유아, 미취학, 초등 저학년, 청소년, 성인 각 연령에 맞는 투어와 각 그룹에 강한 운영사 소개.',
     canonical: 'https://laplandtours.online/kr/age-guide',
     breadcrumbHome: '홈',
     breadcrumbName: '연령 가이드',
@@ -489,9 +474,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   fr: {
-    metaTitle: 'Guide par âge : activités en Laponie',
-    metaDescription:
-      'Une matrice pratique âge × activité pour la Laponie finlandaise : quelles excursions pour enfants, ados et adultes, et quels voyagistes se spécialisent.',
     canonical: 'https://laplandtours.online/fr/age-guide',
     breadcrumbHome: 'Accueil',
     breadcrumbName: 'Guide par âge',
@@ -580,9 +562,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   it: {
-    metaTitle: 'Guida per età: attività in Lapponia',
-    metaDescription:
-      'Una matrice pratica età × attività per la Lapponia finlandese: quali escursioni per bambini, adolescenti e adulti, e quali operatori si specializzano.',
     canonical: 'https://laplandtours.online/it/age-guide',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Guida per età',
@@ -671,9 +650,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   nl: {
-    metaTitle: 'Leeftijdsgids: Lapland per leeftijd',
-    metaDescription:
-      'Een praktische leeftijd × activiteit-matrix voor Fins Lapland: wat past bij kinderen, tieners en volwassenen, en welke reisorganisaties zich richten.',
     canonical: 'https://laplandtours.online/nl/age-guide',
     breadcrumbHome: 'Home',
     breadcrumbName: 'Leeftijdsgids',
@@ -762,9 +738,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   sv: {
-    metaTitle: 'Åldersguide: vilka Lapplandsaktiviteter passar vilken ålder',
-    metaDescription:
-      'En praktisk matris över ålder och aktivitet för finska Lappland. Se vilka turer som fungerar för spädbarn, förskolebarn, lågstadiebarn, tweens, tonåringar och vuxna, och vilka arrangörer som är specialiserade på varje grupp.',
     canonical: 'https://laplandtours.online/sv/age-guide',
     breadcrumbHome: 'Hem',
     breadcrumbName: 'Åldersguide',
@@ -852,9 +825,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   es: {
-    metaTitle: 'Guía por edades: actividades en Laponia',
-    metaDescription:
-      'Una matriz práctica de edad × actividad para la Laponia finlandesa: qué sirve para bebés, niños, adolescentes y adultos, y en qué se especializa cada operador.',
     canonical: 'https://laplandtours.online/es/age-guide',
     breadcrumbHome: 'Inicio',
     breadcrumbName: 'Guía por edades',
@@ -943,9 +913,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   'pt-BR': {
-    metaTitle: 'Guia por idade: atividades na Lapônia',
-    metaDescription:
-      'Uma matriz prática de idade × atividade para a Lapônia finlandesa: o que serve para crianças, adolescentes e adultos, e a especialidade de cada operadora.',
     canonical: 'https://laplandtours.online/br/age-guide',
     breadcrumbHome: 'Início',
     breadcrumbName: 'Guia por idade',
@@ -1034,9 +1001,6 @@ const COPY: Record<CopyLang, {
     ],
   },
   'zh-CN': {
-    metaTitle: '年龄指南：哪个年龄适合哪种拉普兰活动',
-    metaDescription:
-      '一份面向芬兰拉普兰的年龄 × 活动实用对照表。涵盖婴儿、学龄前、低年级、青春期前、青少年和成人各自适合的活动，以及各运营商专长于哪个年龄段。',
     canonical: 'https://laplandtours.online/cn/age-guide',
     breadcrumbHome: '首页',
     breadcrumbName: '年龄指南',
@@ -1239,10 +1203,11 @@ const STATS: Record<CopyLang, { value: string; label: string }[]> = {
 export default function AgeGuide() {
   const lang = useLang();
   const c = COPY[copyLang(lang)];
+  const { title, description } = routeMeta('/age-guide', lang);
   useEffect(() => {
     setPageMeta({
-      title: c.metaTitle,
-      description: c.metaDescription,
+      title,
+      description,
       canonical: c.canonical,
       jsonLd: [
         breadcrumbList([
@@ -1256,7 +1221,7 @@ export default function AgeGuide() {
         }),
       ],
     });
-  }, [lang, c]);
+  }, [lang, c, title, description]);
 
   return (
     <>
