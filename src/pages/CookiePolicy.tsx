@@ -15,5 +15,5 @@ export default function CookiePolicy() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
-  return <CookieContent siteName="LaplandTours" lang={lang} />;
+  return <CookieContent siteId="laplandtours" siteName="LaplandTours" lang={lang} />;
 }
