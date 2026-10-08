@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X} from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
@@ -160,6 +160,13 @@ const LANG_OPTIONS: { code: Lang; label: string; native: string }[] = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  // LV-VALIKKO-VAAKA (8.10.2026): Escape sulkee mobiilivalikon.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
   const location = useLocation();
   const navigate = useNavigate();
   const lang = useLang();
@@ -273,8 +280,11 @@ export default function Nav() {
         </div>
       </div>
 
+      {/* LV-VALIKKO-VAAKA (8.10.2026): laatikko oli kiinteän navin sisällä ilman korkeusrajaa, joten vaakapuhelimessa
+          alimmat linkit jäivät ruudun ulkopuolelle eikä niitä saanut esiin. Nyt enintään näkyvän ruudun korkuinen ja
+          vierittyvä, ≥ 640 px linkit palstoina; z-[45] verkostovalikon vihjeen (z 40) yli. */}
       {open && (
-        <nav className="lg:hidden bg-deep-night border-t border-white/10 px-4 py-4 flex flex-col gap-1">
+        <nav className="lg:hidden bg-deep-night border-t border-white/10 px-4 py-4 flex flex-col gap-1 max-h-[calc(100vh_-_4rem)] supports-[height:100dvh]:max-h-[calc(100dvh_-_4rem)] overflow-y-auto overscroll-contain relative z-[45] sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 sm:content-start">
           {links.map(({ to, label }) => {
             const active = samePath(location.pathname, to);
             return (
@@ -292,7 +302,7 @@ export default function Nav() {
               </Link>
             );
           })}
-          <div className="flex items-center flex-wrap gap-2 px-3 py-3 border-t border-white/10 mt-1" role="group" aria-label="Language">
+          <div className="flex items-center flex-wrap gap-2 px-3 py-3 border-t border-white/10 mt-1 sm:col-span-full" role="group" aria-label="Language">
             {LANG_OPTIONS.map((l, i) => (
               <span key={l.code} className="flex items-center gap-2">
                 {i > 0 && <span className="text-snow/30 text-xs">·</span>}
@@ -303,7 +313,7 @@ export default function Nav() {
           <Link
             to={to('/design-tour')}
             onClick={() => setOpen(false)}
-            className="mt-2 px-5 py-3 bg-[#DB2777] text-white text-base font-semibold rounded-full text-center"
+            className="mt-2 px-5 py-3 bg-[#DB2777] text-white text-base font-semibold rounded-full text-center sm:col-span-full"
           >
             {c.cta}
           </Link>
