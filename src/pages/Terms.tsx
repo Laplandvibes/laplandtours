@@ -10,7 +10,7 @@ export default function Terms() {
   useEffect(() => {
     // Otsikko, kuvaus ja kanoninen nykyisellä kielellä samasta lähteestä kuin
     // prerender (scripts/routes.json) — ks. lib/legalMeta.ts.
-    setPageMeta({ ...legalMeta('/terms', lang, localePath), robots: 'index, follow' });
+    setPageMeta({ ...legalMeta('/terms', lang, localePath) });
     // localePath johdetaan langista, joten lang riittää riippuvuudeksi.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
