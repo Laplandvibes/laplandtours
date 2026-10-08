@@ -694,19 +694,19 @@ const PILL =
   'inline-flex items-center gap-1 rounded-full border border-arctic-cyan/40 bg-arctic-cyan/10 hover:bg-vibe-pink/15 hover:border-vibe-pink/60 hover:text-vibe-pink text-arctic-cyan font-body font-medium text-[13.5px] px-3.5 py-1.5 transition-colors';
 
 /** Action labels per card. Short — they sit as pills under the body. */
-const ACTIONS: Record<CopyLang, { flights: string; train: string; gear: string; season: string; etias: string; cars: string; transfer: string; insurance: string; esim: string }> = {
-  en: { flights: 'Compare flights', train: 'Night train Helsinki–Rovaniemi', gear: 'Winter kit', season: 'Month-by-month heat map', etias: 'Official ETIAS site', cars: 'Rental cars at Rovaniemi airport', transfer: 'Airport transfer', insurance: 'Travel insurance', esim: 'Finland eSIM' },
-  fi: { flights: 'Vertaile lentoja', train: 'Yöjuna Helsinki–Rovaniemi', gear: 'Talvivarusteet', season: 'Kuukausikartta', etias: 'Virallinen ETIAS-sivu', cars: 'Vuokra-autot Rovaniemen kentältä', transfer: 'Kuljetus kentältä', insurance: 'Matkavakuutus', esim: 'Suomen eSIM' },
-  de: { flights: 'Flüge vergleichen', train: 'Nachtzug Helsinki–Rovaniemi', gear: 'Winterausrüstung', season: 'Monat für Monat', etias: 'Offizielle ETIAS-Seite', cars: 'Mietwagen ab Flughafen Rovaniemi', transfer: 'Flughafentransfer', insurance: 'Reiseversicherung', esim: 'eSIM für Finnland' },
-  ja: { flights: '航空券を比較', train: '夜行列車 ヘルシンキ–ロヴァニエミ', gear: '冬の装備', season: '月別の見どころ', etias: 'ETIAS公式サイト', cars: 'ロヴァニエミ空港のレンタカー', transfer: '空港送迎', insurance: '旅行保険', esim: 'フィンランドeSIM' },
-  ko: { flights: '항공권 비교', train: '야간열차 헬싱키–로바니에미', gear: '겨울 장비', season: '월별 한눈에', etias: 'ETIAS 공식 사이트', cars: '로바니에미 공항 렌터카', transfer: '공항 픽업', insurance: '여행자 보험', esim: '핀란드 eSIM' },
-  fr: { flights: 'Comparer les vols', train: 'Train de nuit Helsinki–Rovaniemi', gear: 'Équipement d’hiver', season: 'Mois par mois', etias: 'Site officiel ETIAS', cars: 'Voitures de location à Rovaniemi', transfer: 'Transfert aéroport', insurance: 'Assurance voyage', esim: 'eSIM Finlande' },
-  it: { flights: 'Confronta i voli', train: 'Treno notturno Helsinki–Rovaniemi', gear: 'Attrezzatura invernale', season: 'Mese per mese', etias: 'Sito ufficiale ETIAS', cars: 'Auto a noleggio a Rovaniemi', transfer: 'Transfer aeroportuale', insurance: 'Assicurazione di viaggio', esim: 'eSIM Finlandia' },
-  nl: { flights: 'Vluchten vergelijken', train: 'Nachttrein Helsinki–Rovaniemi', gear: 'Winteruitrusting', season: 'Maand voor maand', etias: 'Officiële ETIAS-site', cars: 'Huurauto’s op Rovaniemi airport', transfer: 'Luchthaventransfer', insurance: 'Reisverzekering', esim: 'eSIM voor Finland' },
-  sv: { flights: 'Jämför flyg', train: 'Nattåg Helsingfors–Rovaniemi', gear: 'Vinterutrustning', season: 'Månad för månad', etias: 'Officiell ETIAS-sida', cars: 'Hyrbilar på Rovaniemi flygplats', transfer: 'Flygplatstransfer', insurance: 'Reseförsäkring', esim: 'eSIM för Finland' },
-  es: { flights: 'Comparar vuelos', train: 'Tren nocturno Helsinki–Rovaniemi', gear: 'Equipo de invierno', season: 'Mes a mes', etias: 'Sitio oficial de ETIAS', cars: 'Coches de alquiler en Rovaniemi', transfer: 'Traslado desde el aeropuerto', insurance: 'Seguro de viaje', esim: 'eSIM para Finlandia' },
-  'pt-BR': { flights: 'Comparar voos', train: 'Trem noturno Helsinque–Rovaniemi', gear: 'Equipamento de inverno', season: 'Mês a mês', etias: 'Site oficial do ETIAS', cars: 'Aluguel de carro em Rovaniemi', transfer: 'Transfer do aeroporto', insurance: 'Seguro viagem', esim: 'eSIM para a Finlândia' },
-  'zh-CN': { flights: '比较航班', train: '赫尔辛基–罗瓦涅米夜间火车', gear: '冬季装备', season: '逐月看', etias: 'ETIAS 官方网站', cars: '罗瓦涅米机场租车', transfer: '机场接送', insurance: '旅行保险', esim: '芬兰 eSIM' },
+const ACTIONS: Record<CopyLang, { flights: string; train: string; gear: string; season: string; etias: string; cars: string; transfer: string; esim: string }> = {
+  en: { flights: 'Compare flights', train: 'Night train Helsinki–Rovaniemi', gear: 'Winter kit', season: 'Month-by-month heat map', etias: 'Official ETIAS site', cars: 'Rental cars at Rovaniemi airport', transfer: 'Airport transfer', esim: 'Finland eSIM' },
+  fi: { flights: 'Vertaile lentoja', train: 'Yöjuna Helsinki–Rovaniemi', gear: 'Talvivarusteet', season: 'Kuukausikartta', etias: 'Virallinen ETIAS-sivu', cars: 'Vuokra-autot Rovaniemen kentältä', transfer: 'Kuljetus kentältä', esim: 'Suomen eSIM' },
+  de: { flights: 'Flüge vergleichen', train: 'Nachtzug Helsinki–Rovaniemi', gear: 'Winterausrüstung', season: 'Monat für Monat', etias: 'Offizielle ETIAS-Seite', cars: 'Mietwagen ab Flughafen Rovaniemi', transfer: 'Flughafentransfer', esim: 'eSIM für Finnland' },
+  ja: { flights: '航空券を比較', train: '夜行列車 ヘルシンキ–ロヴァニエミ', gear: '冬の装備', season: '月別の見どころ', etias: 'ETIAS公式サイト', cars: 'ロヴァニエミ空港のレンタカー', transfer: '空港送迎', esim: 'フィンランドeSIM' },
+  ko: { flights: '항공권 비교', train: '야간열차 헬싱키–로바니에미', gear: '겨울 장비', season: '월별 한눈에', etias: 'ETIAS 공식 사이트', cars: '로바니에미 공항 렌터카', transfer: '공항 픽업', esim: '핀란드 eSIM' },
+  fr: { flights: 'Comparer les vols', train: 'Train de nuit Helsinki–Rovaniemi', gear: 'Équipement d’hiver', season: 'Mois par mois', etias: 'Site officiel ETIAS', cars: 'Voitures de location à Rovaniemi', transfer: 'Transfert aéroport', esim: 'eSIM Finlande' },
+  it: { flights: 'Confronta i voli', train: 'Treno notturno Helsinki–Rovaniemi', gear: 'Attrezzatura invernale', season: 'Mese per mese', etias: 'Sito ufficiale ETIAS', cars: 'Auto a noleggio a Rovaniemi', transfer: 'Transfer aeroportuale', esim: 'eSIM Finlandia' },
+  nl: { flights: 'Vluchten vergelijken', train: 'Nachttrein Helsinki–Rovaniemi', gear: 'Winteruitrusting', season: 'Maand voor maand', etias: 'Officiële ETIAS-site', cars: 'Huurauto’s op Rovaniemi airport', transfer: 'Luchthaventransfer', esim: 'eSIM voor Finland' },
+  sv: { flights: 'Jämför flyg', train: 'Nattåg Helsingfors–Rovaniemi', gear: 'Vinterutrustning', season: 'Månad för månad', etias: 'Officiell ETIAS-sida', cars: 'Hyrbilar på Rovaniemi flygplats', transfer: 'Flygplatstransfer', esim: 'eSIM för Finland' },
+  es: { flights: 'Comparar vuelos', train: 'Tren nocturno Helsinki–Rovaniemi', gear: 'Equipo de invierno', season: 'Mes a mes', etias: 'Sitio oficial de ETIAS', cars: 'Coches de alquiler en Rovaniemi', transfer: 'Traslado desde el aeropuerto', esim: 'eSIM para Finlandia' },
+  'pt-BR': { flights: 'Comparar voos', train: 'Trem noturno Helsinque–Rovaniemi', gear: 'Equipamento de inverno', season: 'Mês a mês', etias: 'Site oficial do ETIAS', cars: 'Aluguel de carro em Rovaniemi', transfer: 'Transfer do aeroporto', esim: 'eSIM para a Finlândia' },
+  'zh-CN': { flights: '比较航班', train: '赫尔辛基–罗瓦涅米夜间火车', gear: '冬季装备', season: '逐月看', etias: 'ETIAS 官方网站', cars: '罗瓦涅米机场租车', transfer: '机场接送', esim: '芬兰 eSIM' },
 };
 
 const SECTION_ICONS = [Plane, Thermometer, CalendarDays, FileCheck2, TrainFront, HeartPulse];
@@ -973,11 +973,6 @@ export default function PracticalInfo() {
                   )}
                   {i === 5 && (
                     <>
-                      {lang !== 'fi' && (
-                        <AffiliateCTA partner="ekta" sid="practical_insurance" className={PILL}>
-                          {act.insurance}<span aria-hidden="true"> →</span>
-                        </AffiliateCTA>
-                      )}
                       <AffiliateCTA partner="airalo" sid="practical_esim" destination="https://www.airalo.com/finland-esim" className={PILL}>
                         {act.esim}<span aria-hidden="true"> →</span>
                       </AffiliateCTA>

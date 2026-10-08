@@ -23,8 +23,6 @@ export type AffiliatePartner =
   | 'welcomepickups'
   /** Adtraction (FI-only programme): package trips. `destination` = full matkapojat.fi deep URL. */
   | 'matkapojat'
-  /** Travelpayouts: travel insurance (25 %). No deep link — the Worker lands on EKTA's front. */
-  | 'ekta'
   /** Travelpayouts: eSIM. `destination` = full airalo.com deep URL (e.g. /finland-esim). */
   | 'airalo'
   /** Adtraction (FI shop): winter gear. `destination` = full scandinavianoutdoor.fi URL. */
