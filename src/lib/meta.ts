@@ -126,15 +126,8 @@ export function setPageMeta(input: PageMetaInput): void {
     upsertMeta('twitter:image', input.ogImage);
   }
 
-  // og:locale:alternate × 10
-  document.head.querySelectorAll('meta[property="og:locale:alternate"][data-seo-alt]').forEach((el) => el.remove());
-  SUPPORTED.filter((l) => l !== lang).forEach((l) => {
-    const m = document.createElement('meta');
-    m.setAttribute('property', 'og:locale:alternate');
-    m.setAttribute('content', OG_LOCALE[l]);
-    m.setAttribute('data-seo-alt', 'true');
-    document.head.appendChild(m);
-  });
+  // og:locale:alternate EI täällä (8.10.2026): esirenderöity HTML ei kirjoita sitä, ja Facebook lukee vain
+  // staattisen HTML:n, joten tämän hookin lisäämällä tagilla ei ollut lukijaa (gate:og-js "vain-js" joka sivulla).
 
   upsertCanonical(canonical);
 
