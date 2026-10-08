@@ -1116,14 +1116,16 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
  * (0–2 / 3–5 / 6–9 / 10–15 / 16+), 6 staple activities, snowmobile tandem
  * from 12 with a parent, solo with a driving licence (rentals usually 18+).
  */
-/** Band colour + the GetYourGuide search that fits that age. Verified 2026-09-11: a
- *  search naming place + product returns real Lapland inventory; a bare age does not. */
+/** Band colour + the GetYourGuide page that fits that age: a location or category
+ *  path (8.10.2026; these were search words, and GYG's /s?q= has ignored the query
+ *  since 2026-08-23). Sources: hub gygCategories.ts VERIFIED, _gyg-catalog 30.7.,
+ *  and the Santa Claus Village location the Worker itself uses for "santa". */
 const BANDS = [
-  { bg: 'linear-gradient(135deg,#13233A 0%,#101A2C 100%)', ink: '#7DD3FC', gyg: 'Rovaniemi family activities' },
-  { bg: 'linear-gradient(135deg,#1B2138 0%,#121826 100%)', ink: '#F9A8D4', gyg: 'Santa Claus Village Rovaniemi' },
-  { bg: 'linear-gradient(135deg,#10261F 0%,#0E1A22 100%)', ink: '#6EE7B7', gyg: 'husky safari Rovaniemi' },
-  { bg: 'linear-gradient(135deg,#1E1B33 0%,#141428 100%)', ink: '#C4B5FD', gyg: 'snowmobile tour Rovaniemi' },
-  { bg: 'linear-gradient(135deg,#2A1A2B 0%,#181022 100%)', ink: '#FDBA74', gyg: 'northern lights tour Saariselka' },
+  { bg: 'linear-gradient(135deg,#13233A 0%,#101A2C 100%)', ink: '#7DD3FC', gyg: 'rovaniemi-l2653/family-friendly-activities-tc1094' },
+  { bg: 'linear-gradient(135deg,#1B2138 0%,#121826 100%)', ink: '#F9A8D4', gyg: 'santa-claus-village-l93203' },
+  { bg: 'linear-gradient(135deg,#10261F 0%,#0E1A22 100%)', ink: '#6EE7B7', gyg: 'rovaniemi-l2653/dog-sledding-husky-tours-tc118' },
+  { bg: 'linear-gradient(135deg,#1E1B33 0%,#141428 100%)', ink: '#C4B5FD', gyg: 'rovaniemi-l2653/snowmobile-tours-tc119' },
+  { bg: 'linear-gradient(135deg,#2A1A2B 0%,#181022 100%)', ink: '#FDBA74', gyg: 'saariselka-l181615/northern-lights-tc310' },
 ];
 const STATS: Record<CopyLang, { value: string; label: string }[]> = {
   en: [
@@ -1336,7 +1338,7 @@ export default function AgeGuide() {
           vesipuisto ja puhutaan igluista?" — every own photo we have is from
           July 2026 and this page is about winter activities, so a photo beside
           the text contradicted the text. The colour, the big age number and a
-          per-band GetYourGuide search carry the section instead: the product
+          per-band GetYourGuide page carry the section instead: the product
           photos the reader wants to see are winter photos, and they live on
           the partner's page, not in our (summer-only) library. */}
       <section className="bg-deep-night py-20 sm:py-28">
@@ -1369,7 +1371,7 @@ export default function AgeGuide() {
                   <AffiliateCTA
                     partner="activities"
                     sid={`age_${r.range.replace(/[^0-9+]/g, '_')}_gyg`}
-                    gygSearch={band.gyg}
+                    destination={band.gyg}
                     className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-snow/25 bg-white/[0.06] px-4 py-2.5 font-body font-medium text-[14px] text-snow/90 hover:border-vibe-pink hover:text-vibe-pink transition-colors"
                   >
                     {c.gygCta}

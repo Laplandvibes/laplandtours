@@ -385,8 +385,7 @@ export default function LaplandHolidays() {
               <AffiliateCTA
                 partner="activities"
                 sid="holidays_addon_activities"
-                destination="s569-finnish-lapland-tc16"
-                gygSearch="Lapland activities Rovaniemi"
+                destination="rovaniemi-l2653"
                 className="block px-5 py-4 border border-snow/30 text-snow font-body font-medium hover:border-vibe-pink hover:text-vibe-pink transition-colors text-[15px]"
               >
                 {c.addonActivity}

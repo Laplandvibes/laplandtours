@@ -4,26 +4,33 @@ import { localizedOperators, matrixCategoryLabels, operatorLang, type Operator }
 import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
 
 /**
- * GetYourGuide search per operator (Worker builds the resolving /s/?q= URL).
- * Measured 2026-09-11: a bare operator NAME returns GYG's generic "500+"
- * inventory (no supplier match), so the query names the operator's home base
- * and signature product instead — that is what lands the reader on the right
- * shelf. Verified counts: "northern lights Saariselka" 5, "reindeer sleigh
- * Levi" 205, "ice fishing Rovaniemi" 500+.
+ * GetYourGuide page per operator: the operator's home base and signature kind
+ * of tour, as a location or category path. A bare operator NAME finds no
+ * supplier match on GYG (measured 2026-09-11), so the shelf is chosen by place
+ * and kind instead.
+ *
+ * 🔴 8.10.2026: these were search words. GYG's /s?q= stopped honouring the
+ * query on 2026-08-23, so every button opened the generic Lapland list until
+ * the Worker's topic fallback (4.10.), which widens Rovaniemi aurora to all of
+ * Lapland. Paths come from the hub's gygCategories.ts VERIFIED counts and
+ * _gyg-catalog (30.7.). Transun and Santa's Lapland are Saariselkä operators
+ * (bases in lib/operators.ts), so their buttons no longer open Rovaniemi
+ * snowmobiles and Santa Claus Village; Harriniva's Muonio has no GYG
+ * location, so its husky tours are Lapland-wide.
  */
-const GYG_SEARCH: Record<string, string> = {
-  'lapland-safaris': 'Rovaniemi snowmobile safari',
-  'beyond-arctic': 'northern lights photography tour Rovaniemi',
-  safartica: 'Rovaniemi husky safari',
-  harriniva: 'husky safari Muonio',
-  'nordic-unique': 'Rovaniemi day tours',
-  'arctic-gm': 'northern lights hunting Rovaniemi',
-  inghams: 'Saariselkä activities',
-  'santas-lapland': 'Santa Claus Village Rovaniemi',
-  tui: 'Levi activities',
-  transun: 'Rovaniemi snowmobile',
-  'magnetic-north': 'glass igloo Saariselkä',
-  'nordic-visitor': 'Lapland tours',
+const GYG_PATH: Record<string, string> = {
+  'lapland-safaris': 'rovaniemi-l2653/snowmobile-tours-tc119',
+  'beyond-arctic': 'rovaniemi-l2653/northern-lights-tc310',
+  safartica: 'rovaniemi-l2653/dog-sledding-husky-tours-tc118',
+  harriniva: 'lapland-finland-l2652/dog-sledding-husky-tours-tc118',
+  'nordic-unique': 'rovaniemi-l2653/day-trips-tc172',
+  'arctic-gm': 'rovaniemi-l2653/northern-lights-tc310',
+  inghams: 'saariselka-l181615',
+  'santas-lapland': 'saariselka-l181615',
+  tui: 'levi-sirkka-l150197',
+  transun: 'saariselka-l181615/snowmobile-tours-tc119',
+  'magnetic-north': 'saariselka-l181615',
+  'nordic-visitor': 'lapland-finland-l2652',
 };
 
 const HEADINGS: Record<CopyLang, {
@@ -313,7 +320,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
         <AffiliateCTA
           partner="activities"
           sid={`operators_${op.slug}_gyg`}
-          gygSearch={GYG_SEARCH[op.slug] ?? 'Lapland activities Rovaniemi'}
+          destination={GYG_PATH[op.slug] ?? 'lapland-finland-l2652'}
           className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#DB2777] hover:bg-[#BE185D] text-white self-start font-body font-semibold transition-colors text-[15px]"
         >
           {labels.gyg}

@@ -1,11 +1,18 @@
 /**
  * Bookable activities rail — the live booking layer.
  *
- * Each card is a genuinely bookable Lapland tour routed to a SPECIFIC
- * GetYourGuide search ("activity + place") via AffiliateCTA partner="activities"
- * + gygSearch. Those /s/?q= links always resolve (HTTP 200), so a browser-only
- * visitor who isn't ready for a full operator bundle can still book a single
- * half-day and we earn the commission.
+ * Each row names one KIND of tour in one place ("Husky safari · Rovaniemi")
+ * and opens GetYourGuide's own category page for exactly that: the husky tours
+ * of Rovaniemi, not every tour in Lapland. A visitor who isn't ready for a
+ * full operator bundle can still book a single half-day and we earn the
+ * commission.
+ *
+ * 🔴 8.10.2026: these rows used to send search words (`gygSearch`). GYG's
+ * /s?q= stopped honouring the query on 2026-08-23 and every row opened the
+ * same generic Lapland list (measured 4.10., gyg_haku_kuoli_verkosto). The
+ * paths below come from verified sources only: shared/gyg/picks.ts, the hub's
+ * gygCategories.ts VERIFIED counts and _gyg-catalog (30.7., per-place
+ * category counts). A row's place must be a place its category page covers.
  *
  * Only real GYG-bookable experiences live here — no museums, no free landmarks,
  * no the-VR-train. Copy is factual (activity site), no em-dash poetry.
@@ -35,8 +42,11 @@ const GYG_LOCALE: Record<Lang, string> = {
 
 interface ActivityCard {
   sid: string;
-  /** Specific GYG search query — activity + place. Verified to resolve. */
-  gygSearch: string;
+  /**
+   * GetYourGuide CATEGORY path `<location-lNNN>/<name-tcNNN>`: this kind of
+   * tour in this place. A browse row, so a category and not one product.
+   */
+  path: string;
   icon: typeof Dog;
   bgHex: string;
   labels: Record<CopyLang, { title: string; body: string; meta: string }>;
@@ -45,7 +55,8 @@ interface ActivityCard {
 const cards: ActivityCard[] = [
   {
     sid: 'do_husky_rovaniemi',
-    gygSearch: 'husky safari Rovaniemi',
+    // hub gygCategories VERIFIED 87 (10.8.), catalog 83 (30.7.)
+    path: 'rovaniemi-l2653/dog-sledding-husky-tours-tc118',
     icon: Dog,
     bgHex: '#0E1A1F',
     labels: {
@@ -65,7 +76,8 @@ const cards: ActivityCard[] = [
   },
   {
     sid: 'do_snowmobile_rovaniemi',
-    gygSearch: 'snowmobile tour Rovaniemi',
+    // catalog 96 (30.7.); Worker GYG_PAIRS rovaniemi × snowmobile (31.7.)
+    path: 'rovaniemi-l2653/snowmobile-tours-tc119',
     icon: Snowflake,
     bgHex: '#0E1726',
     labels: {
@@ -85,7 +97,8 @@ const cards: ActivityCard[] = [
   },
   {
     sid: 'do_aurora_saariselka',
-    gygSearch: 'northern lights tour Saariselka',
+    // catalog 26 (30.7.)
+    path: 'saariselka-l181615/northern-lights-tc310',
     icon: Sparkles,
     bgHex: '#101830',
     labels: {
@@ -105,7 +118,8 @@ const cards: ActivityCard[] = [
   },
   {
     sid: 'do_reindeer_levi',
-    gygSearch: 'reindeer sleigh ride Levi',
+    // catalog 20 (30.7.); reindeer sleigh rides sit under GYG's reindeer category
+    path: 'levi-sirkka-l150197/reindeer-farms-experiences-tc2351',
     icon: Mountain,
     bgHex: '#0F1B33',
     labels: {
@@ -124,28 +138,32 @@ const cards: ActivityCard[] = [
     },
   },
   {
-    sid: 'do_icefishing_rovaniemi',
-    gygSearch: 'ice fishing Rovaniemi',
+    // 🔴 Was "Rovaniemi". GYG has no ice-fishing category and fishing-tours-tc62
+    // is verified only for all of Lapland (hub VERIFIED 103, 23.8.: top three
+    // all ice fishing, in Inari and Sirkka), so the row now says Lapland.
+    sid: 'do_icefishing_lapland',
+    path: 'lapland-finland-l2652/fishing-tours-tc62',
     icon: Fish,
     bgHex: '#0E1726',
     labels: {
-      en: { title: 'Ice fishing', body: 'Drill a hole through a metre of lake ice, drop a line, wait. A guide brings the gear and the hot drinks.', meta: 'Rovaniemi · Jan–Apr · 2–3 h' },
-      fi: { title: 'Pilkkiminen', body: 'Kairaa reikä metrin paksuun järvijäähän, laske siima, odota. Opas tuo välineet ja kuumat juomat.', meta: 'Rovaniemi · tammi–huhti · 2–3 h' },
-      de: { title: 'Eisfischen', body: 'Bohren Sie ein Loch durch meterdickes Seeeis, lassen Sie die Schnur hinab, warten Sie. Ein Guide bringt Ausrüstung und Heißgetränke.', meta: 'Rovaniemi · Jan–Apr · 2–3 Std.' },
-      ja: { title: '氷上釣り', body: '1メートルの湖氷に穴を開け、糸を垂らして待つ。ガイドが道具と温かい飲み物を用意します。', meta: 'ロヴァニエミ · 1〜4月 · 2〜3時間' },
-      ko: { title: '얼음낚시', body: '1미터 두께의 호수 얼음을 뚫고 줄을 내린 뒤 기다립니다. 가이드가 장비와 따뜻한 음료를 준비합니다.', meta: '로바니에미 · 1~4월 · 2~3시간' },
-      fr: { title: 'Pêche blanche', body: 'Percez un trou dans un mètre de glace, descendez la ligne, attendez. Un guide apporte le matériel et les boissons chaudes.', meta: 'Rovaniemi · janv.–avr. · 2–3 h' },
-      it: { title: 'Pesca sul ghiaccio', body: 'Si trapana un foro in un metro di ghiaccio, si cala la lenza, si aspetta. Una guida porta attrezzatura e bevande calde.', meta: 'Rovaniemi · gen–apr · 2–3 h' },
-      nl: { title: 'IJsvissen', body: 'Boor een gat door een meter meerijs, laat de lijn zakken, wacht. Een gids brengt de uitrusting en warme dranken.', meta: 'Rovaniemi · jan–apr · 2–3 u' },
-      sv: { title: 'Pimpelfiske', body: 'Borra ett hål genom en meter sjöis, sänk ner reven, vänta. En guide tar med utrustningen och de varma dryckerna.', meta: 'Rovaniemi · jan–apr · 2–3 h' },
-      es: { title: 'Pesca en hielo', body: 'Perfore un agujero en un metro de hielo, suelte el sedal, espere. Un guía lleva el equipo y las bebidas calientes.', meta: 'Rovaniemi · ene–abr · 2–3 h' },
-      'pt-BR': { title: 'Pesca no gelo', body: 'Fure um buraco em um metro de gelo, solte a linha, espere. Um guia leva o equipamento e as bebidas quentes.', meta: 'Rovaniemi · jan–abr · 2–3 h' },
-      'zh-CN': { title: '冰上垂钓', body: '在一米厚的湖冰上钻孔，垂下钓线，静候。向导带来装备与热饮。', meta: '罗瓦涅米 · 1–4月 · 2–3 小时' },
+      en: { title: 'Ice fishing', body: 'Drill a hole through a metre of lake ice, drop a line, wait. A guide brings the gear and the hot drinks.', meta: 'Lapland · Jan–Apr · 2–3 h' },
+      fi: { title: 'Pilkkiminen', body: 'Kairaa reikä metrin paksuun järvijäähän, laske siima, odota. Opas tuo välineet ja kuumat juomat.', meta: 'Lappi · tammi–huhti · 2–3 h' },
+      de: { title: 'Eisfischen', body: 'Bohren Sie ein Loch durch meterdickes Seeeis, lassen Sie die Schnur hinab, warten Sie. Ein Guide bringt Ausrüstung und Heißgetränke.', meta: 'Lappland · Jan–Apr · 2–3 Std.' },
+      ja: { title: '氷上釣り', body: '1メートルの湖氷に穴を開け、糸を垂らして待つ。ガイドが道具と温かい飲み物を用意します。', meta: 'ラップランド · 1〜4月 · 2〜3時間' },
+      ko: { title: '얼음낚시', body: '1미터 두께의 호수 얼음을 뚫고 줄을 내린 뒤 기다립니다. 가이드가 장비와 따뜻한 음료를 준비합니다.', meta: '라플란드 · 1~4월 · 2~3시간' },
+      fr: { title: 'Pêche blanche', body: 'Percez un trou dans un mètre de glace, descendez la ligne, attendez. Un guide apporte le matériel et les boissons chaudes.', meta: 'Laponie · janv.–avr. · 2–3 h' },
+      it: { title: 'Pesca sul ghiaccio', body: 'Si trapana un foro in un metro di ghiaccio, si cala la lenza, si aspetta. Una guida porta attrezzatura e bevande calde.', meta: 'Lapponia · gen–apr · 2–3 h' },
+      nl: { title: 'IJsvissen', body: 'Boor een gat door een meter meerijs, laat de lijn zakken, wacht. Een gids brengt de uitrusting en warme dranken.', meta: 'Lapland · jan–apr · 2–3 u' },
+      sv: { title: 'Pimpelfiske', body: 'Borra ett hål genom en meter sjöis, sänk ner reven, vänta. En guide tar med utrustningen och de varma dryckerna.', meta: 'Lappland · jan–apr · 2–3 h' },
+      es: { title: 'Pesca en hielo', body: 'Perfore un agujero en un metro de hielo, suelte el sedal, espere. Un guía lleva el equipo y las bebidas calientes.', meta: 'Laponia · ene–abr · 2–3 h' },
+      'pt-BR': { title: 'Pesca no gelo', body: 'Fure um buraco em um metro de gelo, solte a linha, espere. Um guia leva o equipamento e as bebidas quentes.', meta: 'Lapônia · jan–abr · 2–3 h' },
+      'zh-CN': { title: '冰上垂钓', body: '在一米厚的湖冰上钻孔，垂下钓线，静候。向导带来装备与热饮。', meta: '拉普兰 · 1–4月 · 2–3 小时' },
     },
   },
   {
     sid: 'do_icebreaker_kemi',
-    gygSearch: 'Sampo icebreaker Kemi',
+    // catalog 12 (30.7.): the Kemi icebreaker cruises (Sampo, Polar Explorer)
+    path: 'kemi-l98127/cruises-boat-tours-tc48',
     icon: Ship,
     bgHex: '#0D1A2B',
     labels: {
@@ -165,89 +183,94 @@ const cards: ActivityCard[] = [
   },
 ];
 
+/**
+ * `cta` is the rows' accessible name after the title ("Husky safari: See tours
+ * on GetYourGuide"). A row opens a category page, so it says "see", not
+ * "book" (8.10.2026); the strings are OperatorGuide's existing `gyg` button.
+ */
 const COPY: Record<CopyLang, { eyebrow: string; h2: string; lead: string; cta: string; note: string }> = {
   en: {
     eyebrow: 'Book a single day',
     h2: 'Or just book one tour',
     lead: 'Not ready for a whole bundle? Book a single half-day direct on GetYourGuide. Live prices, instant confirmation, free cancellation on most.',
-    cta: 'Book on GetYourGuide',
+    cta: 'See tours on GetYourGuide',
     note: 'Affiliate links. A commission may be earned on bookings, at no cost to you.',
   },
   fi: {
     eyebrow: 'Varaa yksittäinen päivä',
     h2: 'Tai varaa vain yksi retki',
     lead: 'Et halua koko pakettia? Varaa yksittäinen puolen päivän retki suoraan GetYourGuidesta. Reaaliaikaiset hinnat, vahvistus heti, useimmissa ilmainen peruutus.',
-    cta: 'Varaa GetYourGuidessa',
+    cta: 'Katso retkiä GetYourGuidessa',
     note: 'Kumppanuuslinkkejä. Varauksesta voi tulla pieni provisio, ilman lisäkustannuksia sinulle.',
   },
   de: {
     eyebrow: 'Einen Tag buchen',
     h2: 'Oder einfach eine Tour buchen',
     lead: 'Noch kein ganzes Paket? Buchen Sie einen einzelnen Halbtag direkt auf GetYourGuide. Live-Preise, sofortige Bestätigung, meist kostenlose Stornierung.',
-    cta: 'Auf GetYourGuide buchen',
+    cta: 'Touren auf GetYourGuide ansehen',
     note: 'Partnerlinks. Bei einer Buchung kann eine geringe Provision anfallen, ohne Mehrkosten für Sie.',
   },
   ja: {
     eyebrow: '1日だけ予約',
     h2: 'ツアー1つだけの予約も',
     lead: 'パッケージにまだ迷っていますか？GetYourGuideで半日の体験を1つだけ直接予約できます。リアルタイム価格、即時確認、多くは無料キャンセル。',
-    cta: 'GetYourGuideで予約',
+    cta: 'GetYourGuideでツアーを見る',
     note: 'アフィリエイトリンクを含みます。ご予約に対し、お客様への追加料金なしで手数料が支払われる場合があります。',
   },
   ko: {
     eyebrow: '하루만 예약',
     h2: '아니면 투어 하나만 예약하세요',
     lead: '아직 전체 패키지가 부담스러우신가요? GetYourGuide에서 반나절 체험 하나만 바로 예약하세요. 실시간 가격, 즉시 확정, 대부분 무료 취소.',
-    cta: 'GetYourGuide에서 예약',
+    cta: 'GetYourGuide에서 투어 보기',
     note: '제휴 링크가 포함되어 있습니다. 예약 시 고객 추가 부담 없이 소액의 수수료가 발생할 수 있습니다.',
   },
   fr: {
     eyebrow: 'Réserver une journée',
     h2: 'Ou réservez une seule excursion',
     lead: 'Pas prêt pour un forfait complet ? Réservez une demi-journée directement sur GetYourGuide. Tarifs en direct, confirmation immédiate, annulation gratuite la plupart du temps.',
-    cta: 'Réserver sur GetYourGuide',
+    cta: 'Voir les excursions sur GetYourGuide',
     note: 'Liens d’affiliation. Une commission peut être perçue sur les réservations, sans coût supplémentaire pour vous.',
   },
   it: {
     eyebrow: 'Prenota una sola giornata',
     h2: 'Oppure prenoti una sola escursione',
     lead: 'Non è pronto per un pacchetto intero? Prenoti una singola mezza giornata direttamente su GetYourGuide. Prezzi in tempo reale, conferma immediata, nella maggior parte dei casi cancellazione gratuita.',
-    cta: 'Prenota su GetYourGuide',
+    cta: 'Vedi le escursioni su GetYourGuide',
     note: 'Link di affiliazione. Sulle prenotazioni può maturare una commissione, senza costi aggiuntivi per Lei.',
   },
   nl: {
     eyebrow: 'Boek één dag',
     h2: 'Of boek gewoon één excursie',
     lead: 'Nog niet klaar voor een heel pakket? Boek een losse halve dag direct op GetYourGuide. Live prijzen, directe bevestiging, meestal gratis annuleren.',
-    cta: 'Boek op GetYourGuide',
+    cta: 'Tours bekijken op GetYourGuide',
     note: 'Affiliate-links. Bij een boeking kan een kleine commissie worden uitgekeerd, zonder extra kosten voor u.',
   },
   sv: {
     eyebrow: 'Boka en enda dag',
     h2: 'Eller boka bara en tur',
     lead: 'Inte redo för ett helt paket? Boka en enskild halvdag direkt på GetYourGuide. Aktuella priser, direkt bekräftelse, fri avbokning på de flesta.',
-    cta: 'Boka på GetYourGuide',
+    cta: 'Se turer på GetYourGuide',
     note: 'Affiliatelänkar. Bokningar kan ge en provision, utan kostnad för dig.',
   },
   es: {
     eyebrow: 'Reserve un solo día',
     h2: 'O reserve solo una excursión',
     lead: '¿Aún no se decide por un paquete entero? Reserve una media jornada suelta directamente en GetYourGuide. Precios en directo, confirmación inmediata y, en la mayoría, cancelación gratuita.',
-    cta: 'Reservar en GetYourGuide',
+    cta: 'Ver excursiones en GetYourGuide',
     note: 'Enlaces de afiliado. Las reservas pueden generar una comisión, sin coste adicional para usted.',
   },
   'pt-BR': {
     eyebrow: 'Reserve um único dia',
     h2: 'Ou reserve só um passeio',
     lead: 'Ainda não quer um pacote inteiro? Reserve um meio dia avulso direto no GetYourGuide. Preços em tempo real, confirmação imediata e, na maioria, cancelamento grátis.',
-    cta: 'Reservar no GetYourGuide',
+    cta: 'Ver passeios no GetYourGuide',
     note: 'Links de afiliado. As reservas podem gerar uma comissão, sem custo adicional para você.',
   },
   'zh-CN': {
     eyebrow: '只订一天',
     h2: '也可以只订一项行程',
     lead: '还没想好整套套餐？可在 GetYourGuide 上直接预订单项半日体验。实时价格，即时确认，大多支持免费取消。',
-    cta: '在 GetYourGuide 预订',
+    cta: '在 GetYourGuide 查看行程',
     note: '含联盟链接。预订可能产生佣金，您无需额外付费。',
   },
 };
@@ -301,7 +324,8 @@ export default function BookableActivities() {
           data-gyg-number-of-items="6"
         />
 
-        {/* Browse by type — Worker-routed searches (logged in D1), one row. */}
+        {/* Browse by type — each row a GYG category page for that kind of tour
+            in that place, through the Worker (logged in D1). */}
         <ul className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ${blocked ? '' : 'mt-8'}`}>
           {cards.map((card) => {
             const t = card.labels[copyLang(lang)];
@@ -310,7 +334,7 @@ export default function BookableActivities() {
                 <AffiliateCTA
                   partner="activities"
                   sid={card.sid}
-                  gygSearch={card.gygSearch}
+                  destination={card.path}
                   ariaLabel={`${t.title}: ${c.cta}`}
                   className="group flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-vibe-pink/50 hover:bg-white/[0.06] px-4 py-3.5 transition-colors"
                 >

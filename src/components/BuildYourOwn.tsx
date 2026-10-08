@@ -19,8 +19,6 @@ interface RailCard {
    * the page still reads as three tracks plus two add-ons, not five equals.
    */
   tier?: 'core' | 'extra';
-  /** GYG search query for activities (resolving /s/?q= endpoint). */
-  gygSearch?: string;
   /**
    * Own photograph from the July 2026 road trip (Vesa 11.9.2026: "tähän
    * tarvitaan elämää ja kuvia … katso nyt noi ai generoidut jutut pois").
@@ -258,8 +256,9 @@ export const rails: RailCard[] = [
     partner: 'activities',
     sid: 'home_build_activities',
     image: '/images/rail-do.webp',
-    destination: 's569-finnish-lapland-tc16',
-    gygSearch: 'Lapland activities Rovaniemi',
+    // "Browse Lapland activities": the Lapland location page, a browse target.
+    // Was search words that the Worker resolved to ROVANIEMI (8.10.2026).
+    destination: 'lapland-finland-l2652',
     icon: MapPinned,
     imgVariant: 'forest',
     bgHex: '#0E1A1F',
@@ -700,7 +699,6 @@ function RailArticle({ rail: r, lang, tier }: { rail: RailCard; lang: CopyLang; 
           partner={r.partner}
           sid={r.sid}
           destination={destination}
-          gygSearch={r.gygSearch}
           className={`mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 rounded-lg font-body font-semibold text-[14px] transition-colors ${
             isCore
               ? 'bg-vibe-pink hover:bg-vibe-pink/90 text-white'
@@ -770,7 +768,6 @@ export function RailTile({ rail: r, lang }: { rail: RailCard; lang: CopyLang }) 
       partner={r.partner}
       sid={`${r.sid}_tile`}
       destination={destination}
-      gygSearch={r.gygSearch}
       className="flex flex-col w-full"
     >
       <span className="relative block aspect-[16/10] overflow-hidden">
