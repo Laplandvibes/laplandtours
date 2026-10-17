@@ -51,8 +51,8 @@ export const rails: RailCard[] = [
         label: '01  ·  Stay',
         headline: 'A bed in Lapland',
         body:
-          'From hotel rooms in Rovaniemi to glass igloos in Saariselkä. Compare on Trip.com, book direct, no middleman.',
-        priceLine: 'Live prices on Trip.com · book direct on the partner site',
+          'From hotel rooms in Rovaniemi to glass igloos in Saariselkä. Compare on Sembo and book on the partner site.',
+        priceLine: 'Live prices on Sembo · book direct on the partner site',
         ctaLabel: 'Browse Lapland hotels',
       },
       fi: {
@@ -67,8 +67,8 @@ export const rails: RailCard[] = [
         label: '01  ·  Übernachten',
         headline: 'Ein Bett in Lappland',
         body:
-          'Vom Hotelzimmer in Rovaniemi bis zum Glas-Iglu in Saariselkä. Vergleichen Sie auf Trip.com und buchen Sie direkt, ohne Zwischenhändler.',
-        priceLine: 'Live-Preise auf Trip.com · Buchung direkt auf der Partnerseite',
+          'Vom Hotelzimmer in Rovaniemi bis zum Glas-Iglu in Saariselkä. Vergleichen Sie bei Sembo und buchen Sie direkt auf der Partnerseite.',
+        priceLine: 'Live-Preise bei Sembo · Buchung direkt auf der Partnerseite',
         ctaLabel: 'Hotels in Lappland ansehen',
       },
       ja: {
@@ -115,8 +115,8 @@ export const rails: RailCard[] = [
         label: '01  ·  Bo',
         headline: 'En säng i Lappland',
         body:
-          'Från hotellrum i Rovaniemi till glasiglor i Saariselkä. Jämför på Trip.com, boka direkt, ingen mellanhand.',
-        priceLine: 'Aktuella priser på Trip.com · boka direkt på partnersajten',
+          'Från hotellrum i Rovaniemi till glasiglor i Saariselkä. Jämför på Sembo och boka direkt på partnersajten.',
+        priceLine: 'Aktuella priser på Sembo · boka direkt på partnersajten',
         ctaLabel: 'Bläddra bland hotell i Lappland',
       },
       es: {
