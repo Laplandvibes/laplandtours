@@ -246,7 +246,7 @@ export default function SectionTeasers() {
               )}
               <div className="p-6 sm:p-7">
                 <p className="cap-meta">{it.eyebrow}</p>
-                <h3 className="mt-3 font-heading tracking-wide text-snow group-hover:text-vibe-pink text-3xl sm:text-4xl leading-[1.05] transition-colors [text-wrap:balance]">
+                <h3 className="mt-3 font-heading tracking-wide text-snow group-hover:text-vibe-pink text-3xl sm:text-4xl sm:[:lang(ja)_&]:text-3xl leading-[1.05] transition-colors [text-wrap:balance]">
                   {it.title}
                 </h3>
                 <p className="mt-3 text-snow/80 font-body text-[15px] leading-relaxed max-w-md">
