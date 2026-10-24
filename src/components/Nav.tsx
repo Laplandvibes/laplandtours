@@ -3,6 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X} from 'lucide-react';
 import { useLang, useLocalePath, type Lang } from '../i18n/useLang';
 import EcosystemMenu from '../shared/EcosystemMenu';
+
+/** Logolinkin nimi ruudunlukijalle sivun kielellä (verkoston sanasto, gate:a11y-nimet 24.10.2026). */
+const HOME_LABEL: Record<Lang, string> = {
+  en: 'LaplandTours home', fi: 'LaplandTours, etusivu', sv: 'LaplandTours, startsida',
+  de: 'LaplandTours, Startseite', es: 'LaplandTours, página de inicio', fr: 'LaplandTours, page d’accueil',
+  it: 'LaplandTours, pagina iniziale', nl: 'LaplandTours, startpagina', 'pt-BR': 'LaplandTours, página inicial',
+  ja: 'LaplandTours ホーム', ko: 'LaplandTours 홈', 'zh-CN': 'LaplandTours 首页',
+};
 import LanguageSwitcher from '../i18n/LanguageSwitcher';
 import type { CSSProperties } from 'react';
 
@@ -222,7 +230,7 @@ export default function Nav() {
         <div className="lv-navvasen flex items-center gap-3 sm:gap-5 shrink-0">
           <EcosystemMenu lang={lang} currentDomain="laplandtours.online" />
           <div className="lv-wm-paikka">
-            <Link to={to('/')} className="shrink-0 inline-flex items-center min-h-11" aria-label="LaplandTours home"
+            <Link to={to('/')} className="shrink-0 inline-flex items-center min-h-11" aria-label={HOME_LABEL[lang] ?? HOME_LABEL.en}
               onClick={() => {
                 // 🔴 Verkostovika, mitattu 20.9.2026 seitsemällä sivustolla seitsemästä:
                 // ScrollToTop kuuntelee pathnamea, joka ei muutu kun ollaan jo

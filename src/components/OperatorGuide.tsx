@@ -2,6 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import AffiliateCTA from './AffiliateCTA';
 import { localizedOperators, matrixCategoryLabels, operatorLang, type Operator } from '../lib/operators';
 import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
+import { operatorAlt } from '../lib/operatorAlts';
 
 /**
  * GetYourGuide page per operator: the operator's home base and signature kind
@@ -258,7 +259,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
       >
         <img
           src={op.image}
-          alt={op.alt}
+          alt={operatorAlt(op.alt, lang)}
           loading={eager ? 'eager' : 'lazy'}
           fetchPriority={eager ? 'high' : undefined}
           decoding="async"

@@ -5,7 +5,8 @@ import {
   operatorLang,
   type Operator,
 } from '../lib/operators';
-import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
+import { useLang, type CopyLang, type Lang, copyLang } from '../i18n/useLang';
+import { starsLabel } from '../lib/operatorAlts';
 
 const COPY: Record<CopyLang, {
   h2Line1: string;
@@ -100,16 +101,16 @@ const COPY: Record<CopyLang, {
   },
 };
 
-function Stars({ n, max = 4 }: { n: number; max?: number }) {
+function Stars({ n, max = 4, lang }: { n: number; max?: number; lang: Lang }) {
   if (n === 0) {
     return (
-      <span className="text-snow/25 font-mono text-sm" aria-label="not offered">
+      <span className="text-snow/25 font-mono text-sm" aria-label={starsLabel(0, max, lang)}>
         —
       </span>
     );
   }
   return (
-    <span className="inline-flex gap-0.5" aria-label={`${n} of ${max}`}>
+    <span className="inline-flex gap-0.5" aria-label={starsLabel(n, max, lang)}>
       {Array.from({ length: max }).map((_, i) => (
         <span
           key={i}
@@ -193,7 +194,7 @@ export default function OperatorMatrix() {
                   </th>
                   {orderedKeys.map((k) => (
                     <td key={k} className="py-5 px-3 align-middle">
-                      <Stars n={op.stars[k]} />
+                      <Stars n={op.stars[k]} lang={lang} />
                     </td>
                   ))}
                   <td className="py-5 px-3 pr-6 sm:pr-0 align-middle text-right font-body text-snow/85 text-[13px] italic whitespace-nowrap">
