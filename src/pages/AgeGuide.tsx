@@ -1242,11 +1242,13 @@ export default function AgeGuide() {
           }}
         />
         <div className="relative z-10 max-w-[1300px] w-full mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-32 md:pb-36 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="relative isolate max-w-2xl">
+            <div aria-hidden="true" className="absolute -inset-x-16 -inset-y-12 -z-10 bg-[radial-gradient(closest-side,rgba(15,23,42,0.90)_0%,rgba(15,23,42,0.82)_65%,rgba(15,23,42,0)_100%)]" />
           <h1
-            className="font-heading text-snow leading-[0.82] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
+            className="inline-block rounded-2xl bg-deep-night/95 px-4 py-3 font-heading text-snow leading-[1.2] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
             style={{ fontSize: 'clamp(3rem,10vw,8rem)' }}
           >
-            0&nbsp;–&nbsp;<span className="text-vibe-pink">16+</span>
+            0&nbsp;–&nbsp;<span className="text-[#F9A8D4]">16+</span>
           </h1>
           <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
@@ -1267,7 +1269,8 @@ export default function AgeGuide() {
               </li>
             ))}
           </ul>
-          <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" />
+          <PhotoCredit taken="2026-07-19" place="Pyhä" className="mt-6 inline-block rounded-lg bg-deep-night/90 px-3 py-2 !text-sm !text-snow/90" />
+          </div>
         </div>
       </section>
 
