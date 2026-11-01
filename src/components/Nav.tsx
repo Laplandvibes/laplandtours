@@ -143,7 +143,7 @@ const LANG_PREFIX: Record<Lang, string> = {
 function Logo({ size = 'sm', nav = false }: { size?: 'sm' | 'lg'; nav?: boolean }) {
   const textSize = size === 'lg' ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl';
   return (
-    <span className={`font-heading tracking-wide ${textSize}${nav ? ' lv-wm' : ''}`} data-lv-sanamerkki={nav ? '' : undefined} style={nav ? WM_STYLE : undefined}>
+    <span translate="no" className={`notranslate font-heading tracking-wide ${textSize}${nav ? ' lv-wm' : ''}`} data-lv-sanamerkki={nav ? '' : undefined} style={nav ? WM_STYLE : undefined}>
       <span className="text-vibe-pink">#</span>
       <span className="text-snow">LAPLAND</span>
       <span className="text-vibe-pink">TOURS</span>
