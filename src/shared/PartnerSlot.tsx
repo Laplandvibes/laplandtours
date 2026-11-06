@@ -77,7 +77,7 @@ export type Partner = {
    * versiota (se katoaisi chippiin).
    */
   logoSrc?: string;
-  /** Logon alt-teksti. Oletus: "{name} logo". Anna jos brändinimi eroaa. */
+  /** Logon alt-teksti. Oletus: kumppanin nimi (logo kertoo nimen; "{name} logo" oli englantia kaikilla 12 kielellä, gate:a11y-nimet 24.10.2026). Anna jos brändinimi eroaa. */
   logoAlt?: string;
   badgeLabel?: string;
   /**
@@ -459,14 +459,14 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             >
               <img
                 src={partner.logoSrc}
-                alt={partner.logoAlt ?? `${partner.name} logo`}
+                alt={partner.logoAlt ?? partner.name}
                 // 🔴 EI `loading="lazy"`: kortin oma valokuva latautuu eagerinä,
                 // joten lazy logo saapuisi sen jälkeen ja maksaneen kumppanin
                 // brändimerkki "poksahtaisi" paikalleen viiveellä. Logo on
                 // ~30 kt, eli säästö ei ole sen arvoinen.
                 decoding="async"
-                className="block w-auto object-contain"
-                style={{ height: 'clamp(26px, 5.5vw, 40px)', maxWidth: '160px' }}
+                className="block h-14 xl:h-10 w-auto object-contain"
+                style={{ maxWidth: '160px' }}
               />
             </div>
           )}
@@ -565,7 +565,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         target="_blank"
         rel="sponsored nofollow noopener"
         className={[
-          'group relative flex items-center gap-4 sm:gap-5 overflow-hidden rounded-2xl w-full',
+          'group relative flex flex-wrap xl:flex-nowrap items-center gap-4 sm:gap-5 overflow-hidden rounded-2xl w-full',
           'px-4 py-3.5 sm:px-5 sm:py-4 transition-all duration-300',
           className,
         ]
@@ -614,7 +614,7 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         )}
 
         {/* Teksti */}
-        <div className="flex flex-col gap-0.5 min-w-0">
+        <div className="flex flex-1 flex-col gap-0.5 min-w-0">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center rounded-full bg-[#BE185D] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-white shadow-sm">
               {badge}
@@ -652,12 +652,12 @@ export default function PartnerSlot({ partner, variant, locale, className, place
         {/* Oikea reuna: kumppanin logo + oikea CTA-nappi. Paljas nuoli ei kerro
             mihin klikkaus vie eikä anna maksaneelle kumppanille brändinäkyvyyttä.
             Logo istuu aina valkoisella chipillä (sama sääntö kuin korttivariantissa:
-            merkin kontrastia ei jätetä sivuston pinnan varaan) ja piilotetaan alle
-            sm:n, jossa rivi on muutenkin tiukka. */}
-        <span className="ml-auto flex shrink-0 items-center gap-3 sm:gap-4">
+            merkin kontrastia ei jätetä sivuston pinnan varaan). Alle xl:n logo
+            ja toimintolinkki saavat oman rivin; logo säilyy myös puhelimessa. */}
+        <span className="ml-auto flex w-full xl:w-auto shrink-0 flex-wrap items-center justify-between gap-3 sm:gap-4">
           {partner.logoSrc && (
             <span
-              className="hidden sm:inline-flex items-center justify-center"
+              className="inline-flex items-center justify-center"
               style={{
                 background: 'rgba(255,255,255,0.96)',
                 borderRadius: '0.625rem',
@@ -667,10 +667,10 @@ export default function PartnerSlot({ partner, variant, locale, className, place
             >
               <img
                 src={partner.logoSrc}
-                alt={partner.logoAlt ?? `${partner.name} logo`}
+                alt={partner.logoAlt ?? partner.name}
                 decoding="async"
-                className="block w-auto object-contain"
-                style={{ height: '26px', maxWidth: '116px' }}
+                className="block h-12 xl:h-[26px] w-auto object-contain"
+                style={{ maxWidth: '116px' }}
               />
             </span>
           )}

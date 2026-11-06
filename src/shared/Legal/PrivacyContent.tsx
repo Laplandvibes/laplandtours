@@ -43,6 +43,12 @@ interface PrivacyContentProps {
    * Sama prop kuin CookieContentissa. Oletus false. Teksti haravointimerkin alla (FLIGHT_SEARCH_PRIVACY).
    */
   flightSearch?: boolean;
+  /**
+   * Upotetut YouTube-videot (klikkisuostumus, youtube-nocookie.com) kohtiin 2a, 3, 4a/4b, 7 ja 8a. Vain sivustolle, jolla
+   * upotuksia oikeasti on (lapland.blog /finnish-bands/, 25.10.2026). Sama prop kuin CookieContentissa. Oletus false.
+   * Teksti haravointimerkin alla (YOUTUBE_PRIVACY).
+   */
+  youtubeEmbeds?: boolean;
 }
 
 const COPY: Record<Lang, {
@@ -1023,6 +1029,7 @@ export default function PrivacyContent({
   sessionRecording = false,
   variant = 'travel',
   flightSearch = false,
+  youtubeEmbeds = false,
 }: PrivacyContentProps = {}) {
   const base = COPY[lang] ?? COPY.en;
   const kumppanit = variant === 'shop' ? SHOP_PRIVACY : TRAVEL_PRIVACY;
@@ -1077,11 +1084,21 @@ export default function PrivacyContent({
   /* Lentohaku (vain flightSearch) kohdan 3 loppuun ja kohdassa 7 heti GetYourGuide-rivin jälkeen
      (GA, Umami, kumppaniverkostot, GetYourGuide, Travelpayouts-haku, Resend, …). */
   const fl = flightSearch ? (FLIGHT_SEARCH_PRIVACY[lang] ?? FLIGHT_SEARCH_PRIVACY.en) : null;
-  const s3Items = fl ? [...t.s3Items, fl.s3Flight] : t.s3Items;
-  const s7Base = fl ? [...t.s7Items.slice(0, 4), fl.s7Flight, ...t.s7Items.slice(4)] : t.s7Items;
+  /* YouTube (vain youtubeEmbeds): oma osio kohdan 4 (ja Clarityn 4a:n) jälkeen, rivit kohtiin 2a, 3, 7 (GetYourGuiden ja
+     lentohaun jälkeen) ja 8a (Google Analyticsin ja Clarityn jälkeen, sama Google-konserni). */
+  const yt = youtubeEmbeds ? (YOUTUBE_PRIVACY[lang] ?? YOUTUBE_PRIVACY.en) : null;
+  const ytNo = sessionRecording ? '4b' : '4a';
+  const googleLink = yt ? <a href={`https://policies.google.com/privacy?hl=${lang}`} target="_blank" rel="noopener" className="text-vibe-pink">{yt.googlePrivacy}</a> : null;
+  const s2aItems = yt ? [...t.s2aItems, yt.s2aItem(ytNo)] : t.s2aItems;
+  const s3Base = fl ? [...t.s3Items, fl.s3Flight] : t.s3Items;
+  const s3Items = yt ? [...s3Base, yt.s3Item(ytNo)] : s3Base;
+  const s7Flight = fl ? [...t.s7Items.slice(0, 4), fl.s7Flight, ...t.s7Items.slice(4)] : t.s7Items;
+  const s7Base = yt ? [...s7Flight.slice(0, fl ? 5 : 4), yt.s7Item, ...s7Flight.slice(fl ? 5 : 4)] : s7Flight;
   /* Clarity rows go right after Google Analytics, the other analytics service, in both lists. */
   const s7Items = sessionRecording ? [s7Base[0], rec.s7Item, ...s7Base.slice(1)] : s7Base;
-  const s8aItems = sessionRecording ? [t.s8aItems[0], rec.s8aItem, ...t.s8aItems.slice(1)] : t.s8aItems;
+  const s8aClarity = sessionRecording ? [t.s8aItems[0], rec.s8aItem, ...t.s8aItems.slice(1)] : t.s8aItems;
+  const s8aGoogle = sessionRecording ? 2 : 1;
+  const s8aItems = yt ? [...s8aClarity.slice(0, s8aGoogle), yt.s8aItem, ...s8aClarity.slice(s8aGoogle)] : s8aClarity;
 
   return (
     <div className="min-h-screen bg-deep-night pt-24 pb-20">
@@ -1105,7 +1122,7 @@ export default function PrivacyContent({
             <h2 className="font-heading font-semibold text-xl text-snow tracking-wide mb-3">{t.s2aTitle}</h2>
             <p>{t.s2aIntro}</p>
             <ul className="list-disc pl-5 mt-3 space-y-1">
-              {t.s2aItems.map((it, i) => (
+              {s2aItems.map((it, i) => (
                 <li key={i}><strong className="text-snow/80">{it.strong}{sep}</strong>{gap}{it.body}</li>
               ))}
             </ul>
@@ -1135,6 +1152,13 @@ export default function PrivacyContent({
               <h2 className="font-heading font-semibold text-xl text-snow tracking-wide mb-3">{rec.s4aTitle}</h2>
               <p>{rec.s4aBody1}</p>
               <p className="mt-3">{rec.s4aBody2(msLink)}</p>
+            </section>
+          )}
+
+          {yt && (
+            <section>
+              <h2 className="font-heading font-semibold text-xl text-snow tracking-wide mb-3">{ytNo}. {yt.title}</h2>
+              <p>{yt.body(ytNo, googleLink)}</p>
             </section>
           )}
 
@@ -1213,7 +1237,7 @@ export default function PrivacyContent({
  * @harvest-stop — esirenderöinnin haravointi loppuu tähän.
  *
  * Kaikki tämän alapuolella oleva on ehdollista tekstiä: `sessionRecording` (Microsoft Clarity), jota näyttää vain
- * sivusto, joka oikeasti lataa Clarityn (hubi), varianttikohtaiset kumppanirivit ja `flightSearch` (laplandflights.fi).
+ * sivusto, joka oikeasti lataa Clarityn (hubi), varianttikohtaiset kumppanirivit, `flightSearch` (laplandflights.fi) ja `youtubeEmbeds` (lapland.blog).
  * Crawlable-body-haravoija lukee tiedostosta JOKAISEN
  * kielilohkon ja leikkaa tämän merkin kohdalta. Kun nämä tekstit olivat COPY-kielilohkoissa, ne
  * päätyivät myös muiden sivustojen staattiseen tietosuojasivuun, vaikka sivusto ei käytä Claritya
@@ -1613,5 +1637,138 @@ const FLIGHT_SEARCH_PRIVACY: Record<Lang, FlightSearchPrivacyCopy> = {
   sv: {
     s3Flight: { strong: 'Cookies för flygsökningen', body: 'placeras av Travelpayouts flygsök, som laddas först när du accepterar cookies. Namn och varaktighet finns i vår cookiepolicy.' },
     s7Flight: 'Travelpayouts: flygsök, först när du accepterar cookies (resultat från Aviasales och dess partner)',
+  },
+};
+
+/**
+ * Upotetut YouTube-videot, vain `youtubeEmbeds`-propilla (lapland.blog /finnish-bands/, Vesa hyväksyi 25.10.2026).
+ * Kohdat 2a, 3, 4a/4b (oma osio heti kohdan 4 ja Clarityn 4a:n jälkeen), 7 ja 8a. Haravointimerkin alla samasta
+ * syystä kuin lentohaku: muut sivustot eivät upota YouTubea, joten teksti ei saa päätyä niiden staattiseen sivuun.
+ * Väitteet mitattu livesivulta 25.10.2026 (Playwright, Chrome-UA): ennen painallusta 0 pyyntöä Googlen/YouTuben
+ * palvelimiin ja 0 evästettä; painalluksen jälkeen pyynnöt youtube-nocookie.com, google.com, googlevideo.com,
+ * ytimg.com, gstatic.com ja googleapis.com, ja youtube-nocookie.com-kehykseen localStorage-merkintöjä (yt-…,
+ * ytidb::…). Evästeitä ei syntynyt mittauksessa, mutta Google ei lupaa, ettei niitä synny ⇒ "voi asettaa".
+ * Rekisterinpitäjä EU:ssa: Google Ireland Limited (policies.google.com/privacy, luettu 25.10.2026).
+ */
+interface YoutubePrivacyCopy {
+  /** Osion otsikko ilman numeroa; numero (4a tai 4b) lisätään piirrossa. */
+  title: string;
+  /** Linkkiteksti Googlen tietosuojakäytäntöön. */
+  googlePrivacy: string;
+  body: (n: string, googleLink: React.ReactNode) => React.ReactNode;
+  s2aItem: (n: string) => { strong: string; body: string };
+  s3Item: (n: string) => { strong: string; body: string };
+  s7Item: string;
+  s8aItem: { strong: string; body: string };
+}
+
+const YOUTUBE_PRIVACY: Record<Lang, YoutubePrivacyCopy> = {
+  en: {
+    title: 'Embedded YouTube videos',
+    googlePrivacy: 'Google Privacy Policy',
+    body: (_n, g) => <>Some of our pages contain videos from YouTube, a service provided in the EU by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). Before you press play, the page shows our own photo in place of the video and loads nothing from YouTube or Google. Only when you press play on a video does your browser load the YouTube player from youtube-nocookie.com, YouTube's privacy-enhanced mode. From then on, Google receives your IP address, details of your browser and device, and the address of our site. YouTube may also place cookies or store similar information in your browser (for example in localStorage) on its own domains. How Google uses this information is described in the {g}. The legal basis is your consent (Art. 6(1)(a)), which you give by pressing play. If you do not press play, nothing is sent to YouTube, and the rest of the page works without the video. You can delete what YouTube has stored through your browser settings. We count presses of the play button with Umami (section 4), without cookies.</>,
+    s2aItem: (n) => ({ strong: 'Consent (Art. 6(1)(a))', body: `for playing embedded YouTube videos (section ${n}). You give consent by pressing play on a video; until then, nothing is loaded from YouTube.` }),
+    s3Item: (n) => ({ strong: 'YouTube cookies', body: `may be placed by YouTube only after you press play on an embedded video (section ${n}).` }),
+    s7Item: 'YouTube (Google): embedded videos, only after you press play',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Ireland; Google LLC, USA): Google LLC is covered by the EU–US Data Privacy Framework (DPF).' },
+  },
+  fi: {
+    title: 'Upotetut YouTube-videot',
+    googlePrivacy: 'Googlen tietosuojakäytännössä',
+    body: (_n, g) => <>Osalla sivuistamme on YouTube-videoita. YouTube on palvelu, jota EU:ssa tarjoaa Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlanti). Ennen kuin painat toistopainiketta, sivulla näkyy videon paikalla oma valokuvamme, eikä sivu lataa mitään YouTubesta tai Googlesta. Vasta kun painat videon toistopainiketta, selaimesi lataa YouTube-soittimen osoitteesta youtube-nocookie.com, joka on YouTuben tehostetun yksityisyyden tila. Siitä lähtien Google saa IP-osoitteesi, tietoja selaimestasi ja laitteestasi sekä sivustomme osoitteen, ja YouTube voi asettaa selaimeesi evästeitä tai tallentaa sinne muuta vastaavaa tietoa (esimerkiksi localStorage-tallenteeseen) omissa verkkotunnuksissaan. Tietojen käytöstä kerrotaan {g}. Käsittelyn oikeusperuste on suostumuksesi (6 art. 1 kohta a), jonka annat painamalla toistopainiketta. Jos et paina sitä, YouTubeen ei lähetetä mitään, ja sivun muu sisältö toimii ilman videota. Voit poistaa YouTuben tallentamat tiedot selaimesi asetuksista. Laskemme toistopainikkeen painallukset Umamilla (kohta 4) ilman evästeitä.</>,
+    s2aItem: (n) => ({ strong: 'Suostumus (6 art. 1 kohta a)', body: `upotettujen YouTube-videoiden toistamista varten (kohta ${n}). Annat suostumuksen painamalla videon toistopainiketta; sitä ennen YouTubesta ei ladata mitään.` }),
+    s3Item: (n) => ({ strong: 'YouTuben evästeet', body: `YouTube voi asettaa niitä vasta, kun painat upotetun videon toistopainiketta (kohta ${n}).` }),
+    s7Item: 'YouTube (Google): upotetut videot, vasta kun painat toistopainiketta',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irlanti; Google LLC, Yhdysvallat): Google LLC kuuluu EU–US Data Privacy Framework (DPF) -järjestelyyn.' },
+  },
+  de: {
+    title: 'Eingebettete YouTube-Videos',
+    googlePrivacy: 'Datenschutzerklärung von Google',
+    body: (_n, g) => <>Einige unserer Seiten enthalten Videos von YouTube, einem Dienst, der in der EU von Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irland) angeboten wird. Bevor Sie auf die Wiedergabeschaltfläche klicken, zeigt die Seite anstelle des Videos ein Foto von uns und lädt nichts von YouTube oder Google. Erst wenn Sie bei einem Video auf die Wiedergabeschaltfläche klicken, lädt Ihr Browser den YouTube-Player im erweiterten Datenschutzmodus von YouTube (youtube-nocookie.com). Ab dann erhält Google Ihre IP-Adresse, Angaben zu Ihrem Browser und Gerät sowie die Adresse unserer Website, und YouTube kann auf seinen eigenen Domains Cookies setzen oder ähnliche Informationen in Ihrem Browser speichern (zum Beispiel im localStorage). Wie Google diese Informationen verwendet, steht in der {g}. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie mit dem Klick auf die Wiedergabeschaltfläche erteilen. Wenn Sie nicht auf die Wiedergabeschaltfläche klicken, wird nichts an YouTube übermittelt, und die übrige Seite funktioniert ohne das Video. Was YouTube gespeichert hat, können Sie in Ihren Browsereinstellungen löschen. Klicks auf die Wiedergabeschaltfläche zählen wir mit Umami (Abschnitt 4), ohne Cookies.</>,
+    s2aItem: (n) => ({ strong: 'Einwilligung (Art. 6 Abs. 1 lit. a)', body: `für die Wiedergabe eingebetteter YouTube-Videos (Abschnitt ${n}). Sie erteilen die Einwilligung mit dem Klick auf die Wiedergabeschaltfläche; bis dahin wird nichts von YouTube geladen.` }),
+    s3Item: (n) => ({ strong: 'YouTube-Cookies', body: `kann YouTube erst setzen, nachdem Sie bei einem eingebetteten Video auf die Wiedergabeschaltfläche geklickt haben (Abschnitt ${n}).` }),
+    s7Item: 'YouTube (Google): eingebettete Videos, erst nach Ihrem Klick auf die Wiedergabeschaltfläche',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irland; Google LLC, USA): Google LLC ist durch das EU-US Data Privacy Framework (DPF) abgedeckt.' },
+  },
+  ja: {
+    title: '埋め込み YouTube 動画',
+    googlePrivacy: 'Google プライバシー ポリシー',
+    body: (_n, g) => <>当サイトの一部のページには YouTube の動画を掲載しています。YouTube は、EU では Google Ireland Limited（Gordon House, Barrow Street, Dublin 4, Ireland）が提供するサービスです。再生ボタンを押すまでは、動画の代わりに当方の写真を表示し、YouTube や Google からは何も読み込みません。動画の再生ボタンを押したときに初めて、お使いのブラウザが YouTube のプライバシー強化モードである youtube-nocookie.com からプレーヤーを読み込みます。それ以降、Google はお客様の IP アドレス、ブラウザと端末に関する情報、および当サイトのアドレスを受け取ります。また、YouTube は自社のドメイン上で、お客様のブラウザにクッキーを設定したり、同様の情報（localStorage など）を保存したりすることがあります。Google がこれらの情報をどのように利用するかは、{g}に記載されています。法的根拠はお客様の同意（第6条第1項(a)）で、再生ボタンを押すことで、お客様が同意を与えることになります。再生ボタンを押さなければ YouTube には何も送信されず、動画以外のページ内容はそのままご利用いただけます。YouTube が保存した情報は、ブラウザの設定から削除できます。再生ボタンが押された回数は、クッキーを使用せずに Umami で数えています（第4項）。</>,
+    s2aItem: (n) => ({ strong: '同意（第6条第1項(a)）', body: `埋め込み YouTube 動画の再生について（第${n}項）。動画の再生ボタンを押すことで、お客様が同意を与えることになります。それまでは YouTube から何も読み込みません。` }),
+    s3Item: (n) => ({ strong: 'YouTube のクッキー', body: `埋め込み動画の再生ボタンを押した後にのみ、YouTube が設定することがあります（第${n}項）。` }),
+    s7Item: 'YouTube（Google）：埋め込み動画（再生ボタンを押した後のみ）',
+    s8aItem: { strong: 'YouTube', body: '（Google Ireland Limited、アイルランド。Google LLC、米国）：Google LLC は EU–米国データプライバシーフレームワーク（DPF）の対象。' },
+  },
+  es: {
+    title: 'Videos de YouTube insertados',
+    googlePrivacy: 'Política de Privacidad de Google',
+    body: (_n, g) => <>Algunas de nuestras páginas contienen videos de YouTube, un servicio que en la UE presta Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlanda). Antes de que usted haga clic en el botón de reproducción, la página muestra una foto nuestra en lugar del video y no carga nada de YouTube ni de Google. Solo cuando usted hace clic en el botón de reproducción de un video, su navegador carga el reproductor de YouTube desde youtube-nocookie.com, el modo de privacidad mejorada de YouTube. A partir de ese momento, Google recibe su dirección IP, datos de su navegador y dispositivo y la dirección de nuestro sitio, y YouTube puede establecer cookies o guardar información similar en su navegador (por ejemplo, en localStorage) en sus propios dominios. La forma en que Google utiliza esta información se describe en la {g}. La base jurídica es su consentimiento (Art. 6(1)(a)), que usted otorga al hacer clic en el botón de reproducción. Si no hace clic en él, no se envía nada a YouTube y el resto de la página funciona sin el video. Puede borrar lo que YouTube haya guardado desde la configuración de su navegador. Contamos los clics en el botón de reproducción con Umami (apartado 4), sin cookies.</>,
+    s2aItem: (n) => ({ strong: 'Consentimiento (Art. 6(1)(a))', body: `para reproducir videos de YouTube insertados (apartado ${n}). Usted otorga su consentimiento al hacer clic en el botón de reproducción de un video; hasta entonces no se carga nada de YouTube.` }),
+    s3Item: (n) => ({ strong: 'Cookies de YouTube', body: `YouTube solo puede establecerlas después de que usted haga clic en el botón de reproducción de un video insertado (apartado ${n}).` }),
+    s7Item: 'YouTube (Google): videos insertados, solo después de que usted haga clic en el botón de reproducción',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irlanda; Google LLC, EE. UU.): Google LLC está amparada por el Marco de Privacidad de Datos UE–EE. UU. (DPF).' },
+  },
+  'pt-BR': {
+    title: 'Vídeos do YouTube incorporados',
+    googlePrivacy: 'Política de Privacidade do Google',
+    body: (_n, g) => <>Algumas das nossas páginas contêm vídeos do YouTube, um serviço oferecido na UE pela Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlanda). Antes de você clicar em reproduzir, a página mostra uma foto nossa no lugar do vídeo e não carrega nada do YouTube nem do Google. Só quando você clica em reproduzir em um vídeo é que o seu navegador carrega o player do YouTube a partir de youtube-nocookie.com, o modo de privacidade avançada do YouTube. A partir daí, o Google recebe o seu endereço IP, informações sobre o seu navegador e dispositivo e o endereço do nosso site, e o YouTube pode definir cookies ou guardar informações semelhantes no seu navegador (por exemplo, no localStorage) nos domínios do próprio YouTube. A forma como o Google usa essas informações está descrita na {g}. A base legal é o seu consentimento (Art. 6(1)(a) GDPR / Art. 7º, I LGPD), que você dá ao clicar em reproduzir. Se você não clicar em reproduzir, nada é enviado ao YouTube, e o restante da página funciona sem o vídeo. Você pode apagar o que o YouTube guardou nas configurações do seu navegador. Contamos os cliques no botão de reprodução com o Umami (seção 4), sem cookies.</>,
+    s2aItem: (n) => ({ strong: 'Consentimento (Art. 6(1)(a) GDPR / Art. 7º, I LGPD)', body: `para reproduzir vídeos do YouTube incorporados (seção ${n}). Você dá o consentimento ao clicar em reproduzir em um vídeo; até lá, nada é carregado do YouTube.` }),
+    s3Item: (n) => ({ strong: 'Cookies do YouTube', body: `podem ser definidos pelo YouTube somente depois que você clica em reproduzir em um vídeo incorporado (seção ${n}).` }),
+    s7Item: 'YouTube (Google): vídeos incorporados, só depois que você clica em reproduzir',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irlanda; Google LLC, EUA): a Google LLC é coberta pelo Quadro de Privacidade de Dados UE–EUA (DPF).' },
+  },
+  'zh-CN': {
+    title: '嵌入的 YouTube 视频',
+    googlePrivacy: 'Google 隐私权政策',
+    body: (_n, g) => <>我们的部分页面包含 YouTube 视频。YouTube 在欧盟由 Google Ireland Limited（Gordon House, Barrow Street, Dublin 4, Ireland）提供。在您点击播放按钮之前，页面会在视频位置显示我们自己的照片，不会从 YouTube 或 Google 加载任何内容。只有当您点击某个视频的播放按钮时，您的浏览器才会从 youtube-nocookie.com（YouTube 的隐私权保护增强模式）加载 YouTube 播放器。此后，Google 会收到您的 IP 地址、有关您的浏览器和设备的信息以及我们网站的地址，YouTube 也可能在其自有域名下向您的浏览器设置 cookie 或存储类似信息（例如在 localStorage 中）。Google 如何使用这些信息，请参阅 {g}。法律依据是您的同意（第6(1)(a)条），您点击播放按钮即表示同意。如果您不点击播放按钮，则不会向 YouTube 发送任何内容，页面的其余部分在没有视频的情况下也能正常使用。您可以在浏览器设置中删除 YouTube 存储的信息。我们使用 Umami 统计播放按钮的点击次数（第4节），不使用 cookie。</>,
+    s2aItem: (n) => ({ strong: '同意（第6(1)(a)条）', body: `用于播放嵌入的 YouTube 视频（第${n}节）。您点击视频的播放按钮即表示同意；在此之前，不会从 YouTube 加载任何内容。` }),
+    s3Item: (n) => ({ strong: 'YouTube cookie', body: `仅在您点击嵌入视频的播放按钮后，YouTube 才可能设置（第${n}节）。` }),
+    s7Item: 'YouTube（Google）：嵌入的视频（仅在您点击播放按钮后）',
+    s8aItem: { strong: 'YouTube', body: '（Google Ireland Limited，爱尔兰；Google LLC，美国）：Google LLC 受欧盟–美国数据隐私框架（DPF）保护。' },
+  },
+  ko: {
+    title: '삽입된 YouTube 동영상',
+    googlePrivacy: 'Google 개인정보처리방침',
+    body: (_n, g) => <>당사의 일부 페이지에는 YouTube 동영상이 있습니다. YouTube는 EU에서 Google Ireland Limited(Gordon House, Barrow Street, Dublin 4, Ireland)가 제공하는 서비스입니다. 재생 버튼을 누르기 전에는 동영상 자리에 당사의 사진이 표시되며, YouTube나 Google에서 아무것도 불러오지 않습니다. 동영상의 재생 버튼을 누를 때에만 브라우저가 YouTube의 개인 정보 보호 강화 모드인 youtube-nocookie.com에서 YouTube 플레이어를 불러옵니다. 그때부터 Google은 귀하의 IP 주소, 브라우저와 기기에 관한 정보, 당사 사이트의 주소를 받으며, YouTube는 자체 도메인에서 귀하의 브라우저에 쿠키를 설정하거나 이와 유사한 정보(예: localStorage)를 저장할 수 있습니다. Google이 이 정보를 어떻게 사용하는지는 {g}에 설명되어 있습니다. 법적 근거는 귀하의 동의(제6조 제1항 (a))이며, 재생 버튼을 누르시면 동의하신 것으로 봅니다. 재생 버튼을 누르지 않으면 YouTube로 아무것도 전송되지 않으며, 동영상 외의 페이지 내용은 그대로 이용하실 수 있습니다. YouTube가 저장한 정보는 브라우저 설정에서 삭제하실 수 있습니다. 당사는 재생 버튼을 누른 횟수를 쿠키 없이 Umami로 집계합니다(제4항).</>,
+    s2aItem: (n) => ({ strong: '동의(제6조 제1항 (a))', body: `삽입된 YouTube 동영상 재생(제${n}항). 동영상의 재생 버튼을 누르시면 동의하신 것으로 보며, 그 전에는 YouTube에서 아무것도 불러오지 않습니다.` }),
+    s3Item: (n) => ({ strong: 'YouTube 쿠키', body: `삽입된 동영상의 재생 버튼을 누르신 후에만 YouTube가 설정할 수 있습니다(제${n}항).` }),
+    s7Item: 'YouTube(Google): 삽입된 동영상(재생 버튼을 누르신 후에만)',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, 아일랜드; Google LLC, 미국): Google LLC는 EU–미국 데이터 프라이버시 프레임워크(DPF) 적용.' },
+  },
+  fr: {
+    title: 'Vidéos YouTube intégrées',
+    googlePrivacy: 'Règles de confidentialité de Google',
+    body: (_n, g) => <>Certaines de nos pages contiennent des vidéos YouTube, un service fourni dans l'UE par Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlande). Avant que vous n'appuyiez sur le bouton de lecture, la page affiche l'une de nos propres photos à la place de la vidéo et ne charge rien depuis YouTube ni Google. C'est seulement lorsque vous appuyez sur le bouton de lecture d'une vidéo que votre navigateur charge le lecteur YouTube depuis youtube-nocookie.com, le mode de confidentialité avancé de YouTube. À partir de ce moment, Google reçoit votre adresse IP, des informations sur votre navigateur et votre appareil ainsi que l'adresse de notre site, et YouTube peut déposer des cookies ou enregistrer des informations similaires dans votre navigateur (par exemple dans le localStorage) sur ses propres domaines. L'usage que Google fait de ces informations est décrit dans les {g}. La base juridique est votre consentement (Art. 6(1)(a)), que vous donnez en appuyant sur le bouton de lecture. Si vous n'appuyez pas sur ce bouton, rien n'est envoyé à YouTube, et le reste de la page fonctionne sans la vidéo. Vous pouvez supprimer, dans les paramètres de votre navigateur, ce que YouTube a enregistré. Nous comptons les clics sur le bouton de lecture avec Umami (section 4), sans cookies.</>,
+    s2aItem: (n) => ({ strong: 'Consentement (Art. 6(1)(a))', body: `pour la lecture des vidéos YouTube intégrées (section ${n}). Vous donnez votre consentement en appuyant sur le bouton de lecture d'une vidéo ; jusque-là, rien n'est chargé depuis YouTube.` }),
+    s3Item: (n) => ({ strong: 'Cookies YouTube', body: `YouTube ne peut les déposer qu'après que vous avez appuyé sur le bouton de lecture d'une vidéo intégrée (section ${n}).` }),
+    s7Item: 'YouTube (Google) : vidéos intégrées, uniquement après que vous avez appuyé sur le bouton de lecture',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irlande ; Google LLC, États-Unis) : Google LLC est couverte par le cadre de protection des données UE–États-Unis (DPF).' },
+  },
+  it: {
+    title: 'Video di YouTube incorporati',
+    googlePrivacy: 'Norme sulla privacy di Google',
+    body: (_n, g) => <>Alcune nostre pagine contengono video di YouTube, un servizio fornito nell'UE da Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlanda). Prima che Lei prema il pulsante di riproduzione, la pagina mostra al posto del video una foto nostra e non carica nulla da YouTube né da Google. Solo quando Lei preme il pulsante di riproduzione di un video, il Suo browser carica il player di YouTube da youtube-nocookie.com, la modalità di privacy avanzata di YouTube. Da quel momento Google riceve il Suo indirizzo IP, informazioni sul Suo browser e sul Suo dispositivo e l'indirizzo del nostro sito, e YouTube può impostare cookie o salvare informazioni simili nel Suo browser (per esempio nel localStorage) sui propri domini. Il modo in cui Google utilizza queste informazioni è descritto nelle {g}. La base giuridica è il Suo consenso (Art. 6(1)(a)), che Lei presta premendo il pulsante di riproduzione. Se non lo preme, a YouTube non viene inviato nulla e il resto della pagina funziona senza il video. Può cancellare ciò che YouTube ha salvato dalle impostazioni del Suo browser. Con Umami (sezione 4), senza cookie, conteggiamo quante volte viene premuto il pulsante di riproduzione.</>,
+    s2aItem: (n) => ({ strong: 'Consenso (Art. 6(1)(a))', body: `per la riproduzione dei video di YouTube incorporati (sezione ${n}). Lei presta il consenso premendo il pulsante di riproduzione di un video; fino ad allora non viene caricato nulla da YouTube.` }),
+    s3Item: (n) => ({ strong: 'Cookie di YouTube', body: `YouTube può impostarli solo dopo che Lei ha premuto il pulsante di riproduzione di un video incorporato (sezione ${n}).` }),
+    s7Item: 'YouTube (Google): video incorporati, solo dopo che Lei ha premuto il pulsante di riproduzione',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irlanda; Google LLC, USA): Google LLC è coperta dall\'EU–US Data Privacy Framework (DPF).' },
+  },
+  nl: {
+    title: "Ingesloten YouTube-video's",
+    googlePrivacy: 'privacybeleid van Google',
+    body: (_n, g) => <>Sommige van onze pagina's bevatten video's van YouTube, een dienst die in de EU wordt aangeboden door Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ierland). Voordat u op de afspeelknop drukt, toont de pagina op de plaats van de video een eigen foto en laadt ze niets van YouTube of Google. Pas wanneer u op de afspeelknop van een video drukt, laadt uw browser de YouTube-speler van youtube-nocookie.com, de privacymodus van YouTube. Vanaf dat moment ontvangt Google uw IP-adres, gegevens over uw browser en apparaat en het adres van onze website, en kan YouTube op zijn eigen domeinen cookies plaatsen of vergelijkbare informatie in uw browser opslaan (bijvoorbeeld in localStorage). Hoe Google deze informatie gebruikt, staat in het {g}. De rechtsgrond is uw toestemming (Art. 6(1)(a)), die u geeft door op de afspeelknop te drukken. Als u niet op de afspeelknop drukt, wordt er niets naar YouTube verzonden en werkt de rest van de pagina zonder de video. Wat YouTube heeft opgeslagen, kunt u verwijderen via de instellingen van uw browser. Wij tellen het aantal keren dat op de afspeelknop wordt gedrukt met Umami (sectie 4), zonder cookies.</>,
+    s2aItem: (n) => ({ strong: 'Toestemming (Art. 6(1)(a))', body: `voor het afspelen van ingesloten YouTube-video's (sectie ${n}). U geeft toestemming door op de afspeelknop van een video te drukken; tot dan wordt er niets van YouTube geladen.` }),
+    s3Item: (n) => ({ strong: 'YouTube-cookies', body: `kunnen door YouTube pas worden geplaatst nadat u op de afspeelknop van een ingesloten video heeft gedrukt (sectie ${n}).` }),
+    s7Item: "YouTube (Google): ingesloten video's, pas nadat u op de afspeelknop heeft gedrukt",
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Ierland; Google LLC, VS): Google LLC is gedekt door het EU–US Data Privacy Framework (DPF).' },
+  },
+  sv: {
+    title: 'Inbäddade YouTube-videor',
+    googlePrivacy: 'Googles integritetspolicy',
+    body: (_n, g) => <>Några av våra sidor innehåller videor från YouTube, en tjänst som i EU tillhandahålls av Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irland). Innan du trycker på uppspelningsknappen visar sidan ett eget foto i stället för videon och laddar ingenting från YouTube eller Google. Först när du trycker på uppspelningsknappen för en video laddar din webbläsare YouTube-spelaren från youtube-nocookie.com, YouTubes avancerade integritetsläge. Från och med då tar Google emot din IP-adress, uppgifter om din webbläsare och enhet och adressen till vår webbplats, och YouTube kan placera cookies eller spara liknande information i din webbläsare (till exempel i localStorage) på sina egna domäner. Hur Google använder informationen beskrivs i {g}. Den rättsliga grunden är ditt samtycke (artikel 6.1 a), som du lämnar genom att trycka på uppspelningsknappen. Om du inte trycker på den skickas ingenting till YouTube, och resten av sidan fungerar utan videon. Du kan radera det som YouTube har sparat via webbläsarens inställningar. Vi räknar tryck på uppspelningsknappen med Umami (avsnitt 4), utan cookies.</>,
+    s2aItem: (n) => ({ strong: 'Samtycke (artikel 6.1 a)', body: `för uppspelning av inbäddade YouTube-videor (avsnitt ${n}). Du lämnar samtycke genom att trycka på uppspelningsknappen för en video; innan dess laddas ingenting från YouTube.` }),
+    s3Item: (n) => ({ strong: 'YouTube-cookies', body: `kan placeras av YouTube först när du har tryckt på uppspelningsknappen för en inbäddad video (avsnitt ${n}).` }),
+    s7Item: 'YouTube (Google): inbäddade videor, först när du trycker på uppspelningsknappen',
+    s8aItem: { strong: 'YouTube', body: '(Google Ireland Limited, Irland; Google LLC, USA): Google LLC omfattas av EU–US Data Privacy Framework (DPF).' },
   },
 };

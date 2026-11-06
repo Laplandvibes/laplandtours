@@ -34,6 +34,12 @@ interface CookieContentProps {
    * Teksti on tiedoston lopussa haravointimerkin alla, koska muut sivustot eivat lataa hakua.
    */
   flightSearch?: boolean;
+  /**
+   * Upotetut YouTube-videot (klikkisuostumus, youtube-nocookie.com): kortti ja taulukkorivi. Vain sivustolle, jolla
+   * upotuksia oikeasti on (lapland.blog /finnish-bands/, 25.10.2026). Sama prop kuin PrivacyContentissa. Oletus false.
+   * Teksti tiedoston lopussa haravointimerkin alla (YOUTUBE_COOKIES).
+   */
+  youtubeEmbeds?: boolean;
 }
 
 interface CookieCopy {
@@ -743,10 +749,12 @@ export default function CookieContent({
   lang = 'en',
   sessionRecording = false,
   flightSearch = false,
+  youtubeEmbeds = false,
 }: CookieContentProps) {
   const t = COPY[lang] ?? COPY.en;
   const rec = SESSION_RECORDING[lang] ?? SESSION_RECORDING.en;
   const fl = FLIGHT_SEARCH[lang] ?? FLIGHT_SEARCH.en;
+  const yt = YOUTUBE_COOKIES[lang] ?? YOUTUBE_COOKIES.en;
   const consentKey = `${siteId}_cookie_consent`;
   const popupKey = `${siteId}_newsletter_popup`;
   /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; fr puts a no-break
@@ -893,6 +901,7 @@ export default function CookieContent({
           { name: 'snowplowOutQueue_sp, __wlcc, __wlft, __wlrt', type: fl.badge, purpose: fl.pStorage, duration: fl.dStorage },
         ]
       : []),
+    ...(youtubeEmbeds ? [{ name: 'youtube-nocookie.com, …', type: yt.badge, purpose: yt.purpose, duration: yt.dur }] : []),
   ];
 
   const email = <a href="mailto:info@laplandvibes.com" className="text-vibe-pink">info@laplandvibes.com</a>;
@@ -980,6 +989,18 @@ export default function CookieContent({
                 </div>
               )}
 
+              {/* YouTube-upotukset, vain lapland.blog (youtubeEmbeds) */}
+              {youtubeEmbeds && (
+                <div className="rounded-xl p-5" style={{ background: 'rgba(0,47,108,0.12)', border: '1px solid rgba(0,47,108,0.30)' }}>
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">{yt.badge}</span>
+                    <span className="text-snow/80 font-medium text-sm">{yt.note}</span>
+                  </div>
+                  <p className="text-sm">{yt.body(siteName, <a href={`https://policies.google.com/privacy?hl=${lang}`} target="_blank" rel="noopener" className="text-vibe-pink">{yt.googlePrivacy}</a>)}</p>
+                  <p className="text-xs text-snow/70 mt-2 font-mono">youtube-nocookie.com · {yt.dur}</p>
+                </div>
+              )}
+
               {/* localStorage */}
               <div className="rounded-xl p-5" style={{ background: 'rgba(0,47,108,0.08)', border: '1px solid rgba(0,47,108,0.25)' }}>
                 <div className="flex items-center gap-2 mb-2">
@@ -992,7 +1013,7 @@ export default function CookieContent({
                   <li><span className="font-mono text-xs text-snow/80">{popupKey}</span>{sep}{gap}{t.lsPopupDesc}</li>
                   <li>{t.lsLangDesc}</li>
                 </ul>
-                <p className="text-xs text-snow/70 mt-3">{t.lsTail}</p>
+                <p className="text-base text-snow/80 mt-3">{t.lsTail}</p>
               </div>
             </div>
           </section>
@@ -1072,7 +1093,7 @@ export default function CookieContent({
  * @harvest-stop — esirenderöinnin haravointi loppuu tähän.
  *
  * Kaikki tämän alapuolella oleva on ehdollista tekstiä: `sessionRecording` (Microsoft Clarity), jota näyttää vain
- * sivusto, joka oikeasti lataa Clarityn (hubi), ja `flightSearch` (Travelpayouts-lentohaku, vain laplandflights.fi).
+ * sivusto, joka oikeasti lataa Clarityn (hubi), `flightSearch` (Travelpayouts-lentohaku, vain laplandflights.fi) ja `youtubeEmbeds` (YouTube-upotukset, vain lapland.blog).
  * Crawlable-body-haravoija lukee tiedostosta JOKAISEN
  * kielilohkon ja leikkaa tämän merkin kohdalta. Kun nämä tekstit olivat COPY-kielilohkoissa, ne
  * päätyivät myös muiden sivustojen staattiseen evästesivuun, vaikka sivusto ei käytä Claritya
@@ -1361,5 +1382,124 @@ const FLIGHT_SEARCH: Record<Lang, FlightSearchCookieCopy> = {
     d400: '400 dagar',
     dUnderDay: 'Mindre än 1 dag',
     dStorage: 'Tills den rensas (localStorage) / tills sessionen slutar (sessionStorage)',
+  },
+};
+
+/**
+ * Upotetut YouTube-videot, vain `youtubeEmbeds`-propilla (lapland.blog /finnish-bands/, Vesa hyväksyi 25.10.2026):
+ * kortti lentohaun jälkeen ja rivi taulukkoon. Haravointimerkin alla, koska muut sivustot eivät upota YouTubea.
+ * Mitattu livesivulta 25.10.2026: ennen painallusta ei yhtään pyyntöä Googlelle eikä evästettä; painalluksen jälkeen
+ * youtube-nocookie.com-kehykseen localStorage-merkintöjä, evästeitä ei mittauksessa syntynyt. Nimiä ja kestoja ei
+ * luetella, koska ne ovat Googlen päätettävissä ja vaihtuvat: kortti kertoo kuka ne asettaa ja milloin.
+ */
+interface YoutubeCookieCopy {
+  /** Kortin merkki ja taulukon tyyppisarake. */
+  badge: string;
+  /** Kortin merkin viereinen huomautus. */
+  note: string;
+  googlePrivacy: string;
+  body: (siteName: string, googleLink: React.ReactNode) => React.ReactNode;
+  /** Taulukon tarkoitus. */
+  purpose: string;
+  /** Taulukon ja kortin kesto. */
+  dur: string;
+}
+
+const YOUTUBE_COOKIES: Record<Lang, YoutubeCookieCopy> = {
+  en: {
+    badge: 'YouTube videos',
+    note: 'Only after you press play',
+    googlePrivacy: 'Google Privacy Policy',
+    body: (siteName, g) => <>Some of our pages contain YouTube videos. Before you press play, nothing is loaded from YouTube or Google, and YouTube places no cookies. When you press play, the video loads from youtube-nocookie.com, YouTube's privacy-enhanced mode. YouTube may then place cookies or store similar information in your browser (for example in localStorage) on youtube-nocookie.com and other Google domains. Google, not {siteName}, decides what is stored and for how long; see the {g}. You can delete this information in your browser settings.</>,
+    purpose: 'Video playback, set by YouTube only after you press play',
+    dur: 'Set by Google',
+  },
+  fi: {
+    badge: 'YouTube-videot',
+    note: 'Vasta kun painat toistopainiketta',
+    googlePrivacy: 'Googlen tietosuojakäytäntö',
+    body: (siteName, g) => <>Osalla sivuistamme on YouTube-videoita. Ennen kuin painat toistopainiketta, YouTubesta tai Googlesta ei ladata mitään, eikä YouTube aseta evästeitä. Kun painat toistopainiketta, video latautuu osoitteesta youtube-nocookie.com, joka on YouTuben tehostetun yksityisyyden tila. YouTube voi silloin asettaa selaimeesi evästeitä tai tallentaa sinne muuta vastaavaa tietoa (esimerkiksi localStorage-tallenteeseen) verkkotunnuksessa youtube-nocookie.com ja muissa Googlen verkkotunnuksissa. Google päättää, mitä tallennetaan ja kuinka kauan, ei {siteName}; katso {g}. Voit poistaa tiedot selaimesi asetuksista.</>,
+    purpose: 'Videon toisto; YouTube voi asettaa nämä vasta, kun painat toistopainiketta',
+    dur: 'Googlen määrittämä',
+  },
+  de: {
+    badge: 'YouTube-Videos',
+    note: 'Erst nach dem Klick auf Wiedergabe',
+    googlePrivacy: 'Datenschutzerklärung von Google',
+    body: (siteName, g) => <>Einige unserer Seiten enthalten YouTube-Videos. Bevor Sie auf die Wiedergabeschaltfläche klicken, wird nichts von YouTube oder Google geladen, und YouTube setzt keine Cookies. Wenn Sie auf die Wiedergabeschaltfläche klicken, wird das Video im erweiterten Datenschutzmodus von YouTube (youtube-nocookie.com) geladen. YouTube kann dann auf youtube-nocookie.com und anderen Google-Domains Cookies setzen oder ähnliche Informationen in Ihrem Browser speichern (zum Beispiel im localStorage). Was gespeichert wird und wie lange, entscheidet Google, nicht {siteName}; siehe {g}. Sie können diese Informationen in Ihren Browsereinstellungen löschen.</>,
+    purpose: 'Videowiedergabe; wird von YouTube erst nach dem Klick auf die Wiedergabeschaltfläche gesetzt',
+    dur: 'Von Google festgelegt',
+  },
+  ja: {
+    badge: 'YouTube 動画',
+    note: '再生ボタンを押した後のみ',
+    googlePrivacy: 'Google プライバシー ポリシー',
+    body: (siteName, g) => <>一部のページには YouTube の動画を掲載しています。再生ボタンを押すまでは YouTube や Google から何も読み込まず、YouTube がクッキーを設定することもありません。再生ボタンを押すと、YouTube のプライバシー強化モードである youtube-nocookie.com から動画が読み込まれます。その際、YouTube は youtube-nocookie.com やその他の Google のドメイン上で、お客様のブラウザにクッキーを設定したり、同様の情報（localStorage など）を保存したりすることがあります。何をどれだけの期間保存するかは、{siteName} ではなく Google が決定します。詳しくは{g}をご覧ください。保存された情報は、ブラウザの設定から削除できます。</>,
+    purpose: '動画の再生（再生ボタンを押した後にのみ YouTube が設定）',
+    dur: 'Google が決定',
+  },
+  es: {
+    badge: 'Videos de YouTube',
+    note: 'Solo después de hacer clic en reproducir',
+    googlePrivacy: 'Política de Privacidad de Google',
+    body: (siteName, g) => <>Algunas de nuestras páginas contienen videos de YouTube. Antes de que usted haga clic en el botón de reproducción, no se carga nada de YouTube ni de Google, y YouTube no establece cookies. Cuando usted hace clic en el botón de reproducción, el video se carga desde youtube-nocookie.com, el modo de privacidad mejorada de YouTube. YouTube puede entonces establecer cookies o guardar información similar en su navegador (por ejemplo, en localStorage) en youtube-nocookie.com y otros dominios de Google. Es Google, y no {siteName}, quien decide qué se guarda y durante cuánto tiempo; consulte la {g}. Puede borrar esta información desde la configuración de su navegador.</>,
+    purpose: 'Reproducción de video; YouTube puede establecer cookies o información similar solo después de que usted haga clic en el botón de reproducción',
+    dur: 'Determinada por Google',
+  },
+  'pt-BR': {
+    badge: 'Vídeos do YouTube',
+    note: 'Só depois que você clica em reproduzir',
+    googlePrivacy: 'Política de Privacidade do Google',
+    body: (siteName, g) => <>Algumas das nossas páginas contêm vídeos do YouTube. Antes de você clicar em reproduzir, nada é carregado do YouTube nem do Google, e o YouTube não define cookies. Quando você clica em reproduzir, o vídeo é carregado a partir de youtube-nocookie.com, o modo de privacidade avançada do YouTube. O YouTube pode então definir cookies ou guardar informações semelhantes no seu navegador (por exemplo, no localStorage) em youtube-nocookie.com e em outros domínios do Google. Quem decide o que é guardado e por quanto tempo é o Google, não o {siteName}; veja a {g}. Você pode apagar essas informações nas configurações do seu navegador.</>,
+    purpose: 'Reprodução de vídeo; cookies definidos pelo YouTube só depois que você clica em reproduzir',
+    dur: 'Definida pelo Google',
+  },
+  'zh-CN': {
+    badge: 'YouTube 视频',
+    note: '仅在您点击播放后',
+    googlePrivacy: 'Google 隐私权政策',
+    body: (siteName, g) => <>我们的部分页面包含 YouTube 视频。在您点击播放按钮之前，不会从 YouTube 或 Google 加载任何内容，YouTube 也不会设置 Cookie。当您点击播放按钮时，视频从 youtube-nocookie.com（YouTube 的隐私权保护增强模式）加载。此时，YouTube 可能在 youtube-nocookie.com 及其他 Google 域名下向您的浏览器设置 Cookie 或存储类似信息（例如在 localStorage 中）。存储哪些信息以及保存多久由 Google 决定，而不是 {siteName}；详情请参阅 {g}。您可以在浏览器设置中删除这些信息。</>,
+    purpose: '视频播放，仅在您点击播放按钮后由 YouTube 设置',
+    dur: '由 Google 决定',
+  },
+  ko: {
+    badge: 'YouTube 동영상',
+    note: '재생 버튼을 누르신 후에만',
+    googlePrivacy: 'Google 개인정보처리방침',
+    body: (siteName, g) => <>일부 페이지에는 YouTube 동영상이 있습니다. 재생 버튼을 누르기 전에는 YouTube나 Google에서 아무것도 불러오지 않으며, YouTube가 쿠키를 설정하지도 않습니다. 재생 버튼을 누르시면 YouTube의 개인 정보 보호 강화 모드인 youtube-nocookie.com에서 동영상을 불러옵니다. 이때 YouTube는 youtube-nocookie.com과 기타 Google 도메인에서 귀하의 브라우저에 쿠키를 설정하거나 이와 유사한 정보(예: localStorage)를 저장할 수 있습니다. 무엇을 얼마 동안 저장할지는 {siteName} 사이트가 아니라 Google이 결정합니다. 자세한 내용은 {g}을 참조하십시오. 저장된 정보는 브라우저 설정에서 삭제하실 수 있습니다.</>,
+    purpose: '동영상 재생, 재생 버튼을 누르신 후에만 YouTube가 설정',
+    dur: 'Google이 결정',
+  },
+  fr: {
+    badge: 'Vidéos YouTube',
+    note: 'Uniquement après un appui sur le bouton de lecture',
+    googlePrivacy: 'Règles de confidentialité de Google',
+    body: (siteName, g) => <>Certaines de nos pages contiennent des vidéos YouTube. Avant que vous n'appuyiez sur le bouton de lecture, rien n'est chargé depuis YouTube ni Google, et YouTube ne dépose aucun cookie. Lorsque vous appuyez sur le bouton de lecture, la vidéo se charge depuis youtube-nocookie.com, le mode de confidentialité avancé de YouTube. YouTube peut alors déposer des cookies ou enregistrer des informations similaires dans votre navigateur (par exemple dans le localStorage) sur youtube-nocookie.com et d'autres domaines de Google. C'est Google, et non {siteName}, qui décide de ce qui est enregistré et pour combien de temps ; consultez les {g}. Vous pouvez supprimer ces informations dans les paramètres de votre navigateur.</>,
+    purpose: 'Lecture de la vidéo ; cookies déposés par YouTube uniquement après que vous avez appuyé sur le bouton de lecture',
+    dur: 'Fixée par Google',
+  },
+  it: {
+    badge: 'Video di YouTube',
+    note: 'Solo dopo aver premuto il pulsante di riproduzione',
+    googlePrivacy: 'Norme sulla privacy di Google',
+    body: (siteName, g) => <>Alcune nostre pagine contengono video di YouTube. Prima che Lei prema il pulsante di riproduzione, non viene caricato nulla da YouTube né da Google e YouTube non imposta alcun cookie. Quando Lei preme il pulsante di riproduzione, il video si carica da youtube-nocookie.com, la modalità di privacy avanzata di YouTube. YouTube può allora impostare cookie o salvare informazioni simili nel Suo browser (per esempio nel localStorage) su youtube-nocookie.com e su altri domini di Google. Che cosa viene salvato e per quanto tempo lo decide Google, non {siteName}; consulti le {g}. Può cancellare queste informazioni dalle impostazioni del Suo browser.</>,
+    purpose: 'Riproduzione del video, cookie impostato da YouTube solo dopo che Lei ha premuto il pulsante di riproduzione',
+    dur: 'Stabilita da Google',
+  },
+  nl: {
+    badge: "YouTube-video's",
+    note: 'Pas nadat u op de afspeelknop drukt',
+    googlePrivacy: 'privacybeleid van Google',
+    body: (siteName, g) => <>Sommige van onze pagina's bevatten YouTube-video's. Voordat u op de afspeelknop drukt, wordt er niets van YouTube of Google geladen en plaatst YouTube geen cookies. Wanneer u op de afspeelknop drukt, wordt de video geladen vanaf youtube-nocookie.com, de privacymodus van YouTube. YouTube kan dan op youtube-nocookie.com en andere domeinen van Google cookies plaatsen of vergelijkbare informatie in uw browser opslaan (bijvoorbeeld in localStorage). Wat er wordt opgeslagen en hoe lang, bepaalt Google, niet {siteName}; zie het {g}. U kunt deze informatie verwijderen via de instellingen van uw browser.</>,
+    purpose: 'Afspelen van de video; YouTube kan deze pas plaatsen nadat u op de afspeelknop drukt',
+    dur: 'Bepaald door Google',
+  },
+  sv: {
+    badge: 'YouTube-videor',
+    note: 'Först när du trycker på uppspelningsknappen',
+    googlePrivacy: 'Googles integritetspolicy',
+    body: (siteName, g) => <>Några av våra sidor innehåller YouTube-videor. Innan du trycker på uppspelningsknappen laddas ingenting från YouTube eller Google, och YouTube placerar inga cookies. När du trycker på uppspelningsknappen laddas videon från youtube-nocookie.com, YouTubes avancerade integritetsläge. YouTube kan då placera cookies eller spara liknande information i din webbläsare (till exempel i localStorage) på youtube-nocookie.com och andra Google-domäner. Det är Google, inte {siteName}, som bestämmer vad som sparas och hur länge; se {g}. Du kan radera informationen via webbläsarens inställningar.</>,
+    purpose: 'Videouppspelning (placeras av YouTube först när du trycker på uppspelningsknappen)',
+    dur: 'Bestäms av Google',
   },
 };

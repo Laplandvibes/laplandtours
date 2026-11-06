@@ -32,7 +32,15 @@ Only the files listed below are vendored, on purpose — this is a refresh, not 
 - ads/data/partnerTypes.ts
 - ads/data/scandinavianoutdoorPicks.ts
 - ads/rails/scandinavianoutdoor.ts
+- appPromo/AppPromo.tsx
+- appPromo/copy.ts
+- appPromo/screens.ts
 - appStats.ts
+- cjk/cjkJsxDevRuntime.ts
+- cjk/cjkJsxRuntime.ts
+- cjk/cjkOtsikotPlugin.ts
+- cjk/fraasit.ts
+- cjk/otsikko.ts
 - gyg/picks.ts
 - router/trailingSlashPlugin.ts
 - router/trailingSlashRouter.tsx

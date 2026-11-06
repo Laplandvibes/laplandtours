@@ -92,6 +92,34 @@ export interface GygPick {
  */
 export const GYG_PRICE_AS_OF = "2026-07-29";
 
+/**
+ * How long a price may be shown after it was read (Vesa 4.10.2026: hide prices
+ * older than seven days). GetYourGuide moves its prices, and we cannot read them
+ * automatically: every automated client gets a Cloudflare challenge, which the
+ * network does not bypass, and no partner API key has been requested. So an
+ * older price is not printed at all; the card falls back to "via GetYourGuide".
+ * Checked when the page renders in the browser, so an old build cannot keep
+ * showing an expired price. Refresh: scripts/gyg-add-prices.mjs after a new read.
+ */
+export const GYG_PRICE_MAX_AGE_DAYS = 7;
+
+/** The day this row's price was read: its own priceAsOf, else GYG_PRICE_AS_OF. */
+export function gygPriceAsOf(pick: { priceAsOf?: string }): string {
+  return pick.priceAsOf ?? GYG_PRICE_AS_OF;
+}
+
+/** Whether a price read on `asOf` (YYYY-MM-DD) may still be shown at `now`. */
+export function isGygPriceFresh(asOf: string, now: number = Date.now()): boolean {
+  const read = Date.parse(asOf + "T00:00:00Z");
+  if (Number.isNaN(read)) return false;
+  return now - read <= GYG_PRICE_MAX_AGE_DAYS * 86400000;
+}
+
+/** The row's price while it is fresh, otherwise undefined: render without a price. */
+export function gygFreshPrice(pick: { price?: string; priceAsOf?: string }, now?: number): string | undefined {
+  return pick.price && isGygPriceFresh(gygPriceAsOf(pick), now) ? pick.price : undefined;
+}
+
 const GO = "https://go.laplandvibes.com/go/activities";
 
 /**
@@ -316,13 +344,13 @@ export interface LocalizedGygPick extends GygPick {
  */
 export function localizePick(pick: GygPick, lang?: string): LocalizedGygPick | null {
   if (!lang || lang === "en") {
-    return { ...pick, duration: gygDuration(pick, "en"), source: pick };
+    return { ...pick, price: gygFreshPrice(pick), duration: gygDuration(pick, "en"), source: pick };
   }
   if (!isGygLocale(lang)) return null;
   const title = pick.titles?.[lang];
   const place = PLACE_NAMES[pick.place]?.[lang];
   if (!title || !place) return null;
-  return { ...pick, title, place, duration: gygDuration(pick, lang), source: pick };
+  return { ...pick, title, place, price: gygFreshPrice(pick), duration: gygDuration(pick, lang), source: pick };
 }
 
 /** Every row that can be shown in `lang`, in order. */
