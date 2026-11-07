@@ -794,10 +794,10 @@ export default function FAQ() {
   return (
     <section className="bg-deep-night py-24 sm:py-32">
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10">
-        <h2 className="font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl mb-2 break-words hyphens-auto [text-wrap:balance]">
+        <h2 className="text-center lg:text-left font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl mb-2 break-words hyphens-auto [text-wrap:balance]">
           {heading.h2}
         </h2>
-        <p className="text-snow/80 font-body text-base mb-16 sm:mb-20 max-w-md">
+        <p className="mx-auto w-fit lg:mx-0 lg:w-auto text-snow/80 font-body text-base mb-16 sm:mb-20 max-w-md">
           {heading.lead('info@laplandvibes.com')}
         </p>
 

@@ -339,12 +339,12 @@ export default function OperatorGuide() {
   return (
     <section id="operators" className="bg-deep-night pt-20 sm:pt-28 pb-12 sm:pb-16">
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10">
-        <header className="mb-12 sm:mb-16 max-w-[820px]">
+        <header className="mb-12 sm:mb-16 max-w-[820px] mx-auto text-center lg:mx-0 lg:text-left">
           <p className="cap-meta">{c.eyebrow}</p>
           <h2 className="mt-2 font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl break-words hyphens-auto [text-wrap:balance]">
             {c.h2}
           </h2>
-          <p className="mt-5 text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-2xl">
+          <p className="mt-5 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-2xl">
             {c.lead}
           </p>
         </header>

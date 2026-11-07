@@ -67,15 +67,15 @@ export default function MatkapojatGroupTrips() {
   return (
     <section id="ryhmalle" className="bg-deeper-night py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-        <header className="lg:col-span-4">
+        <header className="lg:col-span-4 text-center lg:text-left">
           <p className="cap-meta">{COPY.eyebrow}</p>
           <h2 className="mt-2 font-heading tracking-wide leading-[0.95] text-snow text-4xl sm:text-5xl [text-wrap:balance]">
             {COPY.h2}
           </h2>
-          <p className="mt-5 text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-md">
+          <p className="mt-5 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-md">
             {COPY.lead}
           </p>
-          <p className="mt-6 text-snow/50 font-body text-[13px] leading-relaxed max-w-md">
+          <p className="mt-6 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/50 font-body text-[13px] leading-relaxed max-w-md">
             {COPY.note}
           </p>
         </header>

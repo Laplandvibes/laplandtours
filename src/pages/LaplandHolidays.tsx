@@ -331,11 +331,11 @@ export default function LaplandHolidays() {
               'linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.45) 45%, rgba(15,23,42,0.05) 100%)',
           }}
         />
-        <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6 sm:px-10 pt-32 pb-14 md:pb-20">
+        <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6 sm:px-10 pt-32 pb-14 md:pb-20 text-center lg:text-left">
           <h1 className="mt-3 font-heading tracking-wide leading-[0.95] text-snow text-[clamp(2.75rem,7vw,6rem)] [hyphens:manual] break-words [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.9)]">
             {c.h1}
           </h1>
-          <p className="mt-5 text-snow/90 font-body text-lg sm:text-xl leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          <p className="mt-5 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/90 font-body text-lg sm:text-xl leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.articleDescription}
           </p>
         </div>

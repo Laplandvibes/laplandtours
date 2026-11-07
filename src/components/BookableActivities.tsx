@@ -300,12 +300,12 @@ export default function BookableActivities() {
   return (
     <section id="book-a-tour" className="bg-deeper-night pt-20 sm:pt-28 pb-12 sm:pb-16">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
-        <header className="mb-8 sm:mb-10 max-w-[820px]">
+        <header className="mb-8 sm:mb-10 max-w-[820px] mx-auto text-center lg:mx-0 lg:text-left">
           <p className="cap-meta">{c.eyebrow}</p>
           <h2 className="mt-2 font-heading tracking-wide leading-[0.95] text-snow/95 text-5xl sm:text-7xl [text-wrap:balance]">
             {c.h2}
           </h2>
-          <p className="mt-5 text-snow/75 font-body text-base sm:text-lg leading-relaxed max-w-xl [text-wrap:pretty]">
+          <p className="mt-5 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/75 font-body text-base sm:text-lg leading-relaxed max-w-xl [text-wrap:pretty]">
             {c.lead}
           </p>
         </header>

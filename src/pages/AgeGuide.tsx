@@ -1250,7 +1250,7 @@ export default function AgeGuide() {
           >
             0&nbsp;–&nbsp;<span className="text-[#F9A8D4]">16+</span>
           </h1>
-          <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          <p className="mt-6 max-lg:mx-auto max-lg:w-fit max-lg:text-left text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
           {/* 🔴 Vesa 12.9.: kuusi peruspakettia oli lauseen hantaana ("...ja

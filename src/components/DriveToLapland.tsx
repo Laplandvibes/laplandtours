@@ -244,7 +244,7 @@ export default function DriveToLapland() {
             reittiä.", de kesken sanan). Nyt otsikko on oma rivinsä gridissä ja lauseet ovat sm+:lla omia
             kokonaisuuksiaan; ingressi + linkki ja reittilista jatkavat sen alla 4 + 8 sarakkeessa. Puhelimen
             järjestys ja välit ennallaan (ingressi mt-5, lista 32 px). */}
-        <header className="lg:col-span-12">
+        <header className="lg:col-span-12 text-center lg:text-left">
           <p className="cap-meta">{c.eyebrow}</p>
           <h2 className={`mt-2 font-heading tracking-wide leading-[0.95] text-snow text-4xl sm:text-5xl [text-wrap:balance]${lang === 'ko' ? ' [word-break:keep-all]' : ''}`}>
             {sentences(c.h2).map((part, i) => (
@@ -255,8 +255,8 @@ export default function DriveToLapland() {
             ))}
           </h2>
         </header>
-        <div className="lg:col-span-4">
-          <p className="mt-5 text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-md">
+        <div className="lg:col-span-4 text-center lg:text-left">
+          <p className="mt-5 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/70 font-body text-base sm:text-lg leading-relaxed max-w-md">
             {c.lead}
           </p>
           <a

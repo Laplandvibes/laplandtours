@@ -936,15 +936,15 @@ export default function CustomTourBuilder() {
     <section id="custom-tour" ref={sectionRef} className="bg-deep-night">
       {/* Opening: the promise and one real photograph. */}
       <div className="max-w-[1100px] mx-auto px-6 sm:px-10 pt-16 md:pt-24 pb-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 text-center lg:text-left">
           <p className="cap-meta">{c.eyebrow}</p>
           <h1 className="mt-2 font-heading text-snow/95 tracking-wide leading-[0.95] text-5xl sm:text-6xl lg:text-7xl [text-wrap:balance]">
             {c.h1a}<br />{c.h1b}
           </h1>
-          <p className="mt-6 text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-prose">
+          <p className="mt-6 mx-auto w-fit text-left lg:mx-0 lg:w-auto text-snow/80 font-body text-base sm:text-lg leading-relaxed max-w-prose">
             {c.lead}
           </p>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-body text-snow/80 text-[14.5px]">
+          <ul className="mt-6 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 font-body text-snow/80 text-[14.5px]">
             {c.bullets.map((item) => (
               <li key={item} className="inline-flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-arctic-cyan flex-shrink-0" aria-hidden="true" />

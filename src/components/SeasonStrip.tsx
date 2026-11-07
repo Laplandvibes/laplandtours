@@ -303,7 +303,7 @@ export default function SeasonStrip() {
   return (
     <section id="season" className="bg-deep-night py-20 md:py-28">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10">
-        <header className="mb-12 sm:mb-16 text-center sm:text-left">
+        <header className="mb-12 sm:mb-16 text-center lg:text-left">
           <h2 className="font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl break-words hyphens-auto [text-wrap:balance]">
             {c.h2Line1}
           </h2>

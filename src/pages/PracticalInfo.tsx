@@ -868,7 +868,7 @@ export default function PracticalInfo() {
           <h1 className="mt-3 font-heading tracking-wide leading-[0.95] text-snow text-[clamp(2.25rem,5.5vw,4.5rem)] [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
             {c.articleHeadline}
           </h1>
-          <p className="mt-6 text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          <p className="mt-6 max-lg:w-fit max-lg:text-left text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}
           </p>
           {winter ? (
@@ -1017,8 +1017,8 @@ export default function PracticalInfo() {
           laplandflightsin kumppanikorteissa samana paivana). */}
       <section className="bg-deeper-night py-16 sm:py-20">
         <div className="max-w-[1100px] mx-auto px-6 sm:px-10">
-          <p className="cap-meta">{c.railsEyebrow}</p>
-          <h2 className="mt-2 font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
+          <p className="cap-meta text-center lg:text-left">{c.railsEyebrow}</p>
+          <h2 className="mt-2 text-center lg:text-left font-heading tracking-wide text-snow text-3xl sm:text-4xl leading-tight">
             {c.railsH2}
           </h2>
 
