@@ -40,6 +40,12 @@ interface CookieContentProps {
    * Teksti tiedoston lopussa haravointimerkin alla (YOUTUBE_COOKIES).
    */
   youtubeEmbeds?: boolean;
+  /**
+   * Meta-pikseli (Facebook- ja Instagram-mainosten mittaus): kortti ja taulukkorivit _fbp, _fbc ja fr. Vain laplandvibes.com ja
+   * app.laplandvibes.com, joilla pikseli latautuu vasta evästebannerin hyväksynnästä (7.11.2026). Sama prop kuin
+   * PrivacyContentissa. Oletus false. Teksti tiedoston lopussa haravointimerkin alla (META_PIXEL_COOKIES).
+   */
+  metaPixel?: boolean;
 }
 
 interface CookieCopy {
@@ -703,7 +709,8 @@ const COPY: Record<Lang, CookieCopy> = {
  *
  * Valinta on localStoragessa eika evasteessa, joten aiempi ohje ("tyhjenna sivuston evasteet") ei palauttanut banneria.
  * Poistetaan valinta, portitettujen palveluiden omat tallenteet (GetYourGuide, lentohaun Travelpayouts) ja sivuston
- * omaan domainiin asetetut seurantaevasteet (GA4, Clarity, GYG session_id, lentohaun tpwl_* ja Snowplow _sp_*),
+ * omaan domainiin asetetut seurantaevasteet (GA4, Clarity, GYG session_id, lentohaun tpwl_* ja Snowplow _sp_*, Meta-pikselin
+ * _fbp ja mainosklikistä syntyvä _fbc),
  * suljetaan Google Consent Mode ja ladataan sivu uudelleen: kerran ladattua kolmannen osapuolen skriptia ei voi
  * pysayttaa, joten vain uusi lataus palauttaa sivun tilaan ilman niita, ja banneri nakyy taas.
  * Kolmansien osapuolten domainien evasteita (getyourguide.com, avsplow.com) selain ei anna poistaa taalta.
@@ -716,7 +723,7 @@ function withdrawConsent(siteId: string): void {
   for (const k of ['gyg_visitor_id', '__wlft', '__wlrt']) {
     try { window.sessionStorage.removeItem(k); } catch { /* estetty tallennus */ }
   }
-  const fixed = ['_ga', '_gid', '_clck', '_clsk', 'session_id', 'tpwl_locale', 'tpwl_currency'];
+  const fixed = ['_ga', '_gid', '_clck', '_clsk', '_fbp', '_fbc', 'session_id', 'tpwl_locale', 'tpwl_currency'];
   const names = new Set(fixed);
   try {
     for (const part of document.cookie.split(';')) {
@@ -750,11 +757,13 @@ export default function CookieContent({
   sessionRecording = false,
   flightSearch = false,
   youtubeEmbeds = false,
+  metaPixel = false,
 }: CookieContentProps) {
   const t = COPY[lang] ?? COPY.en;
   const rec = SESSION_RECORDING[lang] ?? SESSION_RECORDING.en;
   const fl = FLIGHT_SEARCH[lang] ?? FLIGHT_SEARCH.en;
   const yt = YOUTUBE_COOKIES[lang] ?? YOUTUBE_COOKIES.en;
+  const mp = META_PIXEL_COOKIES[lang] ?? META_PIXEL_COOKIES.en;
   const consentKey = `${siteId}_cookie_consent`;
   const popupKey = `${siteId}_newsletter_popup`;
   /* Label/description separator. ja + zh-CN take the fullwidth colon with no space; fr puts a no-break
@@ -890,6 +899,13 @@ export default function CookieContent({
           { name: '_clsk', type: t.typeAnalytics, purpose: rec.claritySession, duration: d.oneDay },
         ]
       : []),
+    ...(metaPixel
+      ? [
+          { name: '_fbp', type: mp.type, purpose: mp.pFbp, duration: mp.d90 },
+          { name: '_fbc', type: mp.type, purpose: mp.pFbc, duration: mp.d90 },
+          { name: 'fr', type: mp.type, purpose: mp.pFr, duration: mp.d90 },
+        ]
+      : []),
     { name: 'at_gd, dci, btagClickId, Union, …', type: t.typeAffiliateCj, purpose: p.cj, duration: d.cjDur },
     { name: 'visitor_id, session_id, __cf_bm, partner_id, gyg_visitor_id', type: t.typeAffiliateGyg, purpose: p.gyg, duration: d.gygDur },
     ...(flightSearch
@@ -954,6 +970,18 @@ export default function CookieContent({
                   <p className="text-sm">{rec.recordingBody}</p>
                   <p className="text-xs text-snow/70 mt-2 font-mono">_clck · {rec.recordingDur}</p>
                   <p className="text-xs text-snow/70 mt-1 font-mono">_clsk · {rec.recordingSessionDur}</p>
+                </div>
+              )}
+
+              {/* Meta-pikseli, vain hubi ja appi (metaPixel) */}
+              {metaPixel && (
+                <div className="rounded-xl p-5" style={{ background: 'rgba(0,47,108,0.12)', border: '1px solid rgba(0,47,108,0.30)' }}>
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">{mp.badge}</span>
+                    <span className="text-snow/80 font-medium text-sm">{t.analyticsNote}</span>
+                  </div>
+                  <p className="text-sm">{mp.body}</p>
+                  <p className="text-xs text-snow/70 mt-2 font-mono">_fbp, _fbc, fr · {mp.dur}</p>
                 </div>
               )}
 
@@ -1093,7 +1121,8 @@ export default function CookieContent({
  * @harvest-stop — esirenderöinnin haravointi loppuu tähän.
  *
  * Kaikki tämän alapuolella oleva on ehdollista tekstiä: `sessionRecording` (Microsoft Clarity), jota näyttää vain
- * sivusto, joka oikeasti lataa Clarityn (hubi), `flightSearch` (Travelpayouts-lentohaku, vain laplandflights.fi) ja `youtubeEmbeds` (YouTube-upotukset, vain lapland.blog).
+ * sivusto, joka oikeasti lataa Clarityn (hubi), `flightSearch` (Travelpayouts-lentohaku, vain laplandflights.fi), `youtubeEmbeds` (YouTube-upotukset, vain lapland.blog)
+ * ja `metaPixel` (Meta-pikseli, vain hubi ja appi).
  * Crawlable-body-haravoija lukee tiedostosta JOKAISEN
  * kielilohkon ja leikkaa tämän merkin kohdalta. Kun nämä tekstit olivat COPY-kielilohkoissa, ne
  * päätyivät myös muiden sivustojen staattiseen evästesivuun, vaikka sivusto ei käytä Claritya
@@ -1501,5 +1530,156 @@ const YOUTUBE_COOKIES: Record<Lang, YoutubeCookieCopy> = {
     body: (siteName, g) => <>Några av våra sidor innehåller YouTube-videor. Innan du trycker på uppspelningsknappen laddas ingenting från YouTube eller Google, och YouTube placerar inga cookies. När du trycker på uppspelningsknappen laddas videon från youtube-nocookie.com, YouTubes avancerade integritetsläge. YouTube kan då placera cookies eller spara liknande information i din webbläsare (till exempel i localStorage) på youtube-nocookie.com och andra Google-domäner. Det är Google, inte {siteName}, som bestämmer vad som sparas och hur länge; se {g}. Du kan radera informationen via webbläsarens inställningar.</>,
     purpose: 'Videouppspelning (placeras av YouTube först när du trycker på uppspelningsknappen)',
     dur: 'Bestäms av Google',
+  },
+};
+
+/**
+ * Meta-pikseli, vain `metaPixel`-propilla (laplandvibes.com ja app.laplandvibes.com, Vesa 7.11.2026: pikseli ennen
+ * mainosten alkua): kortti Clarityn jälkeen ja rivit _fbp, _fbc ja fr taulukkoon. Haravointimerkin alla, koska muut sivustot
+ * eivät lataa pikseliä: COPYssa teksti päätyisi niiden staattiseen evästesivuun.
+ * Väitteet lataajasta (hubin index.html, appin src/lib/metaPixel.ts, 7.11.2026): fbevents.js vasta suostumuksesta,
+ * autoConfig pois, ei advanced matchingia, tapahtuma PageView. Evästeet _fbp (oma domain, 90 pv) ja fr (facebook.com,
+ * 90 pv, vain jos selain sallii Facebookin evästeet). _fbc (oma domain, 90 pv) syntyy vain,
+ * kun saapumisosoitteessa on fbclid: Metan dokumentaatio liittää sen mainosklikkiin, mutta Facebook lisää fbclid:n myös
+ * muihin ulos vieviin linkkeihin, siksi teksti sanoo "esimerkiksi mainoksestamme" (7.11.2026). withdrawConsent() poistaa sen.
+ */
+interface MetaPixelCookieCopy {
+  /** Kortin merkki. */
+  badge: string;
+  /** Taulukon tyyppisarake. */
+  type: string;
+  body: string;
+  /** Kortin alarivi: kesto. */
+  dur: string;
+  /** Taulukon kesto. */
+  d90: string;
+  /** Taulukon tarkoitus: _fbp. */
+  pFbp: string;
+  /** Taulukon tarkoitus: fr. */
+  pFr: string;
+  /** Taulukon tarkoitus: _fbc (syntyy vain, kun saapumisosoitteessa on fbclid). */
+  pFbc: string;
+}
+
+const META_PIXEL_COOKIES: Record<Lang, MetaPixelCookieCopy> = {
+  en: {
+    badge: 'Advertising',
+    type: 'Advertising (Meta)',
+    body: "With your consent, this site loads the Meta pixel (ID 1492705142722059) from connect.facebook.net. We use it to measure how well our Facebook and Instagram ads work, that is, whether an ad brought a visitor to the site, and to help Meta show our ads to people who are more likely to be interested in them. The pixel sends Meta the address of the page and of the previous page, a page view event, details of your browser and device, your IP address, a timestamp and the ID in the _fbp cookie (and in the _fbc cookie, if there is one). It sends no form content, no name and no email address, and it does not automatically collect information about the page's buttons or metadata. The pixel stores _fbp on this site's own domain, and Meta uses it to tell your browser apart from others. If you arrive from a Facebook or Instagram link with the click ID fbclid in its address, such as our ad, the pixel also stores that ID in the _fbc cookie on the same domain, so that Meta can link your visit to the ad. If your browser allows Facebook cookies, Meta can also use its own fr cookie on facebook.com (a third-party cookie). If you are logged in to Facebook in the same browser, Meta can link this information to your account. Without your consent, the pixel script is not loaded and nothing is sent to Meta. Our Privacy Policy explains how responsibility for the data is shared between us and Meta.",
+    dur: 'Duration: 90 days',
+    d90: '90 days',
+    pFbp: 'Meta pixel (only after consent): lets Meta tell your browser apart from others when we measure our Facebook and Instagram ads',
+    pFr: 'Meta (facebook.com, third-party cookie, only if your browser allows Facebook cookies): measuring our ads and showing them to people likely to be interested in them',
+    pFbc: 'Meta pixel (only after consent, and only if you arrive from a Facebook or Instagram link with the click ID fbclid in its address, such as our ad): stores the click ID so that Meta can link your visit to the ad',
+  },
+  fi: {
+    badge: 'Mainonta',
+    type: 'Mainonta (Meta)',
+    body: 'Kun annat suostumuksesi, sivusto lataa Meta-pikselin (tunnus 1492705142722059) osoitteesta connect.facebook.net. Mittaamme sillä Facebook- ja Instagram-mainostemme toimivuutta eli sitä, toiko mainos kävijän sivustolle, ja autamme Metaa näyttämään mainoksiamme ihmisille, joita ne todennäköisemmin kiinnostavat. Pikseli lähettää Metalle sivun osoitteen ja sen sivun osoitteen, jolta tulit, sivunäyttötapahtuman, selaimesi ja laitteesi tiedot, IP-osoitteesi, aikaleiman sekä _fbp-evästeen ja mahdollisen _fbc-evästeen tunnisteet. Lomakkeiden sisältöä, nimeäsi tai sähköpostiosoitettasi se ei lähetä, eikä se kerää automaattisesti tietoja sivun painikkeista tai metatiedoista. Pikseli tallentaa _fbp-evästeen tämän sivuston omaan domainiin, ja Meta erottaa sillä selaimesi muista. Jos tulet sivustolle Facebookin tai Instagramin linkistä, jonka osoitteessa on klikkaustunniste fbclid (esimerkiksi mainoksestamme), pikseli tallentaa tunnisteen _fbc-evästeeseen samaan domainiin, jotta Meta voi liittää käyntisi mainokseen. Jos selaimesi sallii Facebookin evästeet, Meta voi käyttää myös omaa fr-evästettään facebook.com-domainissa (kolmannen osapuolen eväste). Jos olet kirjautuneena Facebookiin samassa selaimessa, Meta voi yhdistää tiedot tiliisi. Ilman suostumustasi pikselin skriptiä ei ladata eikä Metalle lähetetä mitään. Tietosuojaselosteessamme kerrotaan, miten vastuu tiedoista jakautuu meidän ja Metan kesken.',
+    dur: 'Kesto: 90 päivää',
+    d90: '90 päivää',
+    pFbp: 'Meta-pikseli (vain suostumuksella): Meta erottaa sillä selaimesi muista, kun mittaamme Facebook- ja Instagram-mainoksiamme',
+    pFr: 'Meta (facebook.com, kolmannen osapuolen eväste, vain jos selaimesi sallii Facebookin evästeet): mainostemme mittaus ja niiden näyttäminen ihmisille, joita ne todennäköisesti kiinnostavat',
+    pFbc: 'Meta-pikseli (vain suostumuksella ja vain jos tulet sivustolle Facebookin tai Instagramin linkistä, jonka osoitteessa on klikkaustunniste fbclid, esimerkiksi mainoksestamme): tallentaa klikkaustunnisteen, jotta Meta voi liittää käyntisi mainokseen',
+  },
+  de: {
+    badge: 'Werbung',
+    type: 'Werbung (Meta)',
+    body: 'Mit Ihrer Einwilligung lädt diese Website das Meta-Pixel (ID 1492705142722059) von connect.facebook.net. Damit messen wir, wie unsere Anzeigen auf Facebook und Instagram wirken, also ob eine Anzeige einen Besucher auf die Website gebracht hat, und helfen Meta, unsere Anzeigen Menschen zu zeigen, die sich eher dafür interessieren. Das Pixel sendet an Meta die Adresse der Seite und die der zuvor besuchten Seite, das Ereignis „Seitenaufruf“, Angaben zu Ihrem Browser und Gerät, Ihre IP-Adresse, einen Zeitstempel und die Kennung aus dem Cookie _fbp (und, falls vorhanden, aus dem Cookie _fbc). Formularinhalte, Ihren Namen und Ihre E-Mail-Adresse sendet es nicht, und es erfasst nicht automatisch Angaben zu Schaltflächen oder Metadaten der Seite. Das Pixel speichert _fbp auf der eigenen Domain dieser Website; Meta unterscheidet damit Ihren Browser von anderen. Kommen Sie über einen Link von Facebook oder Instagram, dessen Adresse die Klick-ID fbclid enthält, etwa über unsere Anzeige, speichert das Pixel diese Kennung auch im Cookie _fbc auf derselben Domain, damit Meta Ihren Besuch der Anzeige zuordnen kann. Wenn Ihr Browser Cookies von Facebook zulässt, kann Meta zusätzlich sein eigenes Cookie fr auf facebook.com verwenden (Drittanbieter-Cookie). Sind Sie im selben Browser bei Facebook angemeldet, kann Meta diese Angaben Ihrem Konto zuordnen. Ohne Ihre Einwilligung wird das Pixel-Skript nicht geladen und nichts an Meta gesendet. Wie die Verantwortung für die Daten zwischen uns und Meta aufgeteilt ist, erklärt unsere Datenschutzerklärung.',
+    dur: 'Dauer: 90 Tage',
+    d90: '90 Tage',
+    pFbp: 'Meta-Pixel (nur mit Einwilligung): Meta unterscheidet damit Ihren Browser von anderen, wenn wir unsere Anzeigen auf Facebook und Instagram messen',
+    pFr: 'Meta (facebook.com, Drittanbieter-Cookie, nur wenn Ihr Browser Facebook-Cookies zulässt): Messung unserer Anzeigen und ihre Ausspielung an Menschen, die sich eher dafür interessieren',
+    pFbc: 'Meta-Pixel (nur mit Einwilligung und nur, wenn Sie über einen Link von Facebook oder Instagram mit der Klick-ID fbclid in der Adresse kommen, etwa über unsere Anzeige): speichert die Klick-ID, damit Meta Ihren Besuch der Anzeige zuordnen kann',
+  },
+  ja: {
+    badge: '広告',
+    type: '広告（Meta）',
+    body: 'お客様の同意を得た場合、当サイトは connect.facebook.net から Meta ピクセル（ID 1492705142722059）を読み込みます。これは、当方の Facebook 広告と Instagram 広告の効果、つまり広告をきっかけにサイトへの訪問があったかどうかを測定し、また広告に関心を持つ可能性が高い人に当方の広告を表示できるよう Meta を支援するためのものです。ピクセルは、ページのアドレスと直前のページのアドレス、「ページビュー」イベント、ブラウザと端末に関する情報、IP アドレス、タイムスタンプ、および _fbp クッキー（存在する場合は _fbc クッキーも）の識別子を Meta に送信します。フォームの入力内容、氏名、メールアドレスは送信せず、ページのボタンやメタデータに関する情報を自動的に収集することもありません。ピクセルは当サイト自身のドメインに _fbp を保存し、Meta はこれによってお客様のブラウザを識別します。当方の広告など、アドレスにクリック ID「fbclid」が付いた Facebook または Instagram のリンクからアクセスされた場合は、Meta が訪問を広告と関連付けられるよう、ピクセルがその ID を同じドメインの _fbc クッキーにも保存します。お客様のブラウザが Facebook のクッキーを許可している場合、Meta は facebook.com 上の自社のクッキー fr（サードパーティクッキー）も使用することがあります。同じブラウザで Facebook にログインしている場合、Meta はこれらの情報をお客様のアカウントと関連付けることがあります。同意がない場合、ピクセルのスクリプトは読み込まれず、Meta には何も送信されません。データに対する責任を当方と Meta がどのように分担しているかは、プライバシーポリシーで説明しています。',
+    dur: '保存期間：90日',
+    d90: '90日',
+    pFbp: 'Meta ピクセル（同意後のみ）：Facebook 広告と Instagram 広告の測定のため、Meta がブラウザを識別',
+    pFr: 'Meta（facebook.com、サードパーティクッキー、ブラウザが Facebook のクッキーを許可している場合のみ）：広告の測定と、関心を持つ可能性が高い人への広告表示',
+    pFbc: 'Meta ピクセル（同意後のみ。当方の広告など、アドレスにクリック ID「fbclid」が付いた Facebook または Instagram のリンクからアクセスされた場合のみ）：Meta が訪問を広告と関連付けられるよう、クリック ID を保存',
+  },
+  es: {
+    badge: 'Publicidad',
+    type: 'Publicidad (Meta)',
+    body: 'Con su consentimiento, este sitio carga el píxel de Meta (ID 1492705142722059) desde connect.facebook.net. Lo usamos para medir cómo funcionan nuestros anuncios en Facebook e Instagram, es decir, si un anuncio trajo a un visitante al sitio, y para ayudar a Meta a mostrar nuestros anuncios a las personas con más probabilidades de interesarse por ellos. El píxel envía a Meta la dirección de la página y la de la página anterior, el evento "vista de página", datos de su navegador y dispositivo, su dirección IP, una marca de tiempo y el identificador de la cookie _fbp (y el de la cookie _fbc, si existe). No envía el contenido de los formularios, su nombre ni su dirección de correo electrónico, y no recopila automáticamente información sobre los botones ni los metadatos de la página. El píxel guarda la cookie _fbp en el dominio propio de este sitio, y Meta la usa para distinguir su navegador de otros. Si usted llega desde un enlace de Facebook o Instagram con el identificador de clic fbclid en la dirección, por ejemplo, desde nuestro anuncio, el píxel también guarda ese identificador en la cookie _fbc del mismo dominio para que Meta pueda vincular su visita con el anuncio. Si su navegador admite las cookies de Facebook, Meta también puede usar su propia cookie fr en facebook.com (cookie de terceros). Si usted tiene una sesión iniciada en Facebook en el mismo navegador, Meta puede vincular esta información con su cuenta. Sin su consentimiento, el script del píxel no se carga y no se envía nada a Meta. Nuestra Política de Privacidad explica cómo se reparte la responsabilidad sobre los datos entre nosotros y Meta.',
+    dur: 'Duración: 90 días',
+    d90: '90 días',
+    pFbp: 'Píxel de Meta (solo con consentimiento): permite a Meta distinguir su navegador de otros cuando medimos nuestros anuncios en Facebook e Instagram',
+    pFr: 'Meta (facebook.com, cookie de terceros, solo si su navegador admite las cookies de Facebook): medición de nuestros anuncios y su presentación a las personas con más probabilidades de interesarse por ellos',
+    pFbc: 'Píxel de Meta (solo con consentimiento y solo si usted llega desde un enlace de Facebook o Instagram con el identificador de clic fbclid en la dirección, por ejemplo, desde nuestro anuncio): guarda el identificador de clic para que Meta pueda vincular su visita con el anuncio',
+  },
+  'pt-BR': {
+    badge: 'Publicidade',
+    type: 'Publicidade (Meta)',
+    body: 'Com o seu consentimento, este site carrega o pixel da Meta (ID 1492705142722059) a partir de connect.facebook.net. Nós o usamos para medir como funcionam nossos anúncios no Facebook e no Instagram, ou seja, se um anúncio trouxe um visitante ao site, e para ajudar a Meta a mostrar nossos anúncios a pessoas com mais chance de se interessar por eles. O pixel envia à Meta o endereço da página e o da página anterior, o evento "visualização de página", informações sobre o seu navegador e dispositivo, o seu endereço IP, um registro de data e hora e o identificador do cookie _fbp (e o do cookie _fbc, se houver). Ele não envia o conteúdo de formulários, o seu nome nem o seu endereço de e-mail, e não coleta automaticamente informações sobre os botões nem os metadados da página. O pixel salva o cookie _fbp no domínio do próprio site, e a Meta o usa para distinguir o seu navegador dos demais. Se você chegar por um link do Facebook ou do Instagram com o identificador de clique fbclid no endereço, por exemplo, pelo nosso anúncio, o pixel também salva esse identificador no cookie _fbc, no mesmo domínio, para que a Meta possa associar a sua visita ao anúncio. Se o seu navegador permitir cookies do Facebook, a Meta também pode usar o próprio cookie fr em facebook.com (cookie de terceiros). Se você tiver uma sessão do Facebook aberta no mesmo navegador, a Meta pode vincular essas informações à sua conta. Sem o seu consentimento, o script do pixel não é carregado e nada é enviado à Meta. Nossa Política de Privacidade explica como a responsabilidade pelos dados é dividida entre nós e a Meta.',
+    dur: 'Duração: 90 dias',
+    d90: '90 dias',
+    pFbp: 'Pixel da Meta (só com consentimento): permite que a Meta distinga o seu navegador dos demais quando medimos nossos anúncios no Facebook e no Instagram',
+    pFr: 'Meta (facebook.com, cookie de terceiros, só se o seu navegador permitir cookies do Facebook): medição dos nossos anúncios e exibição deles a pessoas com chance de se interessar',
+    pFbc: 'Pixel da Meta (só com consentimento e só se você chegar por um link do Facebook ou do Instagram com o identificador de clique fbclid no endereço, por exemplo, pelo nosso anúncio): salva o identificador de clique para que a Meta possa associar a sua visita ao anúncio',
+  },
+  'zh-CN': {
+    badge: '广告',
+    type: '广告（Meta）',
+    body: '在您同意后，本网站会从 connect.facebook.net 加载 Meta 像素（ID 1492705142722059）。我们用它衡量我们在 Facebook 和 Instagram 上的广告效果，即广告是否为网站带来了访客，并帮助 Meta 将我们的广告展示给更可能感兴趣的人。像素会向 Meta 发送页面地址和上一个页面的地址、“页面浏览”事件、您的浏览器和设备信息、IP 地址、时间戳以及 _fbp Cookie（如有，还包括 _fbc Cookie）中的标识符。它不会发送表单内容、您的姓名或电子邮件地址，也不会自动收集有关页面按钮或元数据的信息。像素将 _fbp 存储在本网站自身的域名下，Meta 借此区分您的浏览器。如果您通过网址中带有点击标识符 fbclid 的 Facebook 或 Instagram 链接（例如我们的广告）访问本网站，像素还会将该标识符存储在同一域名下的 _fbc Cookie 中，以便 Meta 将您的访问与该广告关联。如果您的浏览器允许 Facebook 的 Cookie，Meta 还可能使用其在 facebook.com 上的 Cookie fr（第三方 Cookie）。如果您在同一浏览器中登录了 Facebook，Meta 可能会将这些信息与您的账户关联。未经您的同意，不会加载像素脚本，也不会向 Meta 发送任何内容。关于我们与 Meta 如何分担数据责任，请参阅我们的隐私政策。',
+    dur: '保留期限：90天',
+    d90: '90天',
+    pFbp: 'Meta 像素（仅在同意后）：Meta 借此区分您的浏览器，用于衡量我们的 Facebook 和 Instagram 广告',
+    pFr: 'Meta（facebook.com，第三方 Cookie，仅在您的浏览器允许 Facebook Cookie 时）：衡量我们的广告，并将其展示给可能感兴趣的人',
+    pFbc: 'Meta 像素（仅在同意后，且仅当您通过网址中带有点击标识符 fbclid 的 Facebook 或 Instagram 链接访问时，例如我们的广告）：保存点击标识符，以便 Meta 将您的访问与该广告关联',
+  },
+  ko: {
+    badge: '광고',
+    type: '광고(Meta)',
+    body: '귀하가 동의하시면 이 사이트는 connect.facebook.net에서 Meta 픽셀(ID 1492705142722059)을 불러옵니다. 당사는 이를 통해 Facebook과 Instagram 광고의 효과, 즉 광고를 통해 사이트를 방문한 사람이 있었는지를 측정하고, 광고에 관심을 가질 가능성이 높은 사람들에게 당사 광고를 보여 줄 수 있도록 Meta를 돕습니다. 픽셀은 페이지 주소와 이전 페이지 주소, "페이지 조회" 이벤트, 브라우저와 기기에 관한 정보, IP 주소, 타임스탬프, _fbp 쿠키(있는 경우 _fbc 쿠키 포함)의 식별자를 Meta로 전송합니다. 양식에 입력하신 내용, 성명, 이메일 주소는 전송하지 않으며, 페이지의 버튼이나 메타데이터에 관한 정보를 자동으로 수집하지도 않습니다. 픽셀은 이 사이트의 자체 도메인에 _fbp를 저장하며, Meta는 이를 통해 귀하의 브라우저를 구별합니다. 당사 광고처럼 주소에 클릭 식별자 fbclid가 붙은 Facebook 또는 Instagram 링크로 방문하시면, Meta가 방문을 해당 광고와 연결할 수 있도록 픽셀이 이 식별자를 같은 도메인의 _fbc 쿠키에도 저장합니다. 귀하의 브라우저가 Facebook 쿠키를 허용하는 경우 Meta는 facebook.com의 자체 쿠키 fr(제3자 쿠키)도 사용할 수 있습니다. 같은 브라우저에서 Facebook에 로그인되어 있으면 Meta가 이 정보를 귀하의 계정과 연결할 수 있습니다. 동의하지 않으시면 픽셀 스크립트를 불러오지 않으며 Meta로 아무것도 전송하지 않습니다. 당사와 Meta가 데이터에 대한 책임을 어떻게 나누는지는 개인정보 처리방침에서 설명합니다.',
+    dur: '보관 기간: 90일',
+    d90: '90일',
+    pFbp: 'Meta 픽셀(동의 후에만): Facebook·Instagram 광고 측정을 위해 Meta가 브라우저를 구별',
+    pFr: 'Meta(facebook.com, 제3자 쿠키, 브라우저가 Facebook 쿠키를 허용하는 경우에만): 광고 측정 및 관심을 가질 가능성이 높은 사람에게 광고 표시',
+    pFbc: 'Meta 픽셀(동의 후에만, 그리고 당사 광고처럼 주소에 클릭 식별자 fbclid가 붙은 Facebook 또는 Instagram 링크로 방문하신 경우에만): Meta가 방문을 해당 광고와 연결할 수 있도록 클릭 식별자를 저장',
+  },
+  fr: {
+    badge: 'Publicité',
+    type: 'Publicité (Meta)',
+    body: "Avec votre consentement, ce site charge le pixel Meta (identifiant 1492705142722059) depuis connect.facebook.net. Il nous sert à mesurer l'efficacité de nos publicités Facebook et Instagram, c'est-à-dire à savoir si une publicité a amené un visiteur sur le site, et à aider Meta à montrer nos publicités aux personnes les plus susceptibles de s'y intéresser. Le pixel envoie à Meta l'adresse de la page et celle de la page précédente, l'événement « page vue », des informations sur votre navigateur et votre appareil, votre adresse IP, un horodatage et l'identifiant du cookie _fbp (ainsi que celui du cookie _fbc, s'il existe). Il n'envoie ni le contenu des formulaires, ni votre nom, ni votre adresse e-mail, et il ne collecte pas automatiquement d'informations sur les boutons ou les métadonnées de la page. Le pixel dépose le cookie _fbp sur le domaine de ce site, et Meta s'en sert pour distinguer votre navigateur des autres. Si vous arrivez par un lien Facebook ou Instagram dont l'adresse contient l'identifiant de clic fbclid, par exemple depuis notre publicité, le pixel enregistre aussi cet identifiant dans le cookie _fbc, sur le même domaine, pour que Meta puisse rattacher votre visite à la publicité. Si votre navigateur accepte les cookies de Facebook, Meta peut aussi utiliser son propre cookie fr sur facebook.com (cookie tiers). Si vous avez une session Facebook ouverte dans le même navigateur, Meta peut rattacher ces informations à votre compte. Sans votre consentement, le script du pixel n'est pas chargé et rien n'est envoyé à Meta. Notre politique de confidentialité explique comment la responsabilité des données est partagée entre Meta et nous.",
+    dur: 'Durée : 90 jours',
+    d90: '90 jours',
+    pFbp: 'Pixel Meta (uniquement avec consentement) : permet à Meta de distinguer votre navigateur des autres lorsque nous mesurons nos publicités Facebook et Instagram',
+    pFr: "Meta (facebook.com, cookie tiers, uniquement si votre navigateur accepte les cookies de Facebook) : mesure de nos publicités et diffusion auprès des personnes susceptibles de s'y intéresser",
+    pFbc: "Pixel Meta (uniquement avec consentement, et uniquement si vous arrivez par un lien Facebook ou Instagram dont l'adresse contient l'identifiant de clic fbclid, par exemple depuis notre publicité) : enregistre l'identifiant de clic pour que Meta puisse rattacher votre visite à la publicité",
+  },
+  it: {
+    badge: 'Pubblicità',
+    type: 'Pubblicità (Meta)',
+    body: "Con il Suo consenso, questo sito carica il pixel di Meta (ID 1492705142722059) da connect.facebook.net. Lo usiamo per misurare il rendimento dei nostri annunci su Facebook e Instagram, cioè se un annuncio ha portato un visitatore sul sito, e per aiutare Meta a mostrare i nostri annunci alle persone che hanno più probabilità di esserne interessate. Il pixel invia a Meta l'indirizzo della pagina e quello della pagina precedente, l'evento «visualizzazione di pagina», informazioni sul Suo browser e sul Suo dispositivo, il Suo indirizzo IP, una marca temporale e l'identificativo contenuto nel cookie _fbp (e, se presente, nel cookie _fbc). Non invia il contenuto dei moduli, il Suo nome né il Suo indirizzo e-mail e non raccoglie automaticamente informazioni sui pulsanti o sui metadati della pagina. Il pixel salva il cookie _fbp sul dominio di questo sito e Meta lo usa per distinguere il Suo browser dagli altri. Se Lei arriva da un link di Facebook o Instagram con l'identificativo di clic fbclid nell'indirizzo, ad esempio dal nostro annuncio, il pixel salva questo identificativo anche nel cookie _fbc sullo stesso dominio, affinché Meta possa collegare la Sua visita all'annuncio. Se il Suo browser accetta i cookie di Facebook, Meta può usare anche il proprio cookie fr su facebook.com (cookie di terze parti). Se ha effettuato l'accesso a Facebook nello stesso browser, Meta può collegare queste informazioni al Suo account. Senza il Suo consenso lo script del pixel non viene caricato e a Meta non viene inviato nulla. La nostra informativa sulla privacy spiega come la responsabilità dei dati è ripartita tra noi e Meta.",
+    dur: 'Durata: 90 giorni',
+    d90: '90 giorni',
+    pFbp: 'Pixel di Meta (solo con consenso): consente a Meta di distinguere il Suo browser dagli altri quando misuriamo i nostri annunci su Facebook e Instagram',
+    pFr: 'Meta (facebook.com, cookie di terze parti, solo se il Suo browser accetta i cookie di Facebook): misurazione dei nostri annunci e loro visualizzazione alle persone che potrebbero esserne interessate',
+    pFbc: "Pixel di Meta (solo con consenso e solo se Lei arriva da un link di Facebook o Instagram con l'identificativo di clic fbclid nell'indirizzo, ad esempio dal nostro annuncio): salva l'identificativo di clic affinché Meta possa collegare la Sua visita all'annuncio",
+  },
+  nl: {
+    badge: 'Advertenties',
+    type: 'Advertenties (Meta)',
+    body: 'Met uw toestemming laadt deze site de Meta-pixel (ID 1492705142722059) vanaf connect.facebook.net. Daarmee meten wij hoe goed onze advertenties op Facebook en Instagram werken, dus of een advertentie een bezoeker naar de site heeft gebracht, en helpen wij Meta onze advertenties te tonen aan mensen die er waarschijnlijk meer in geïnteresseerd zijn. De pixel stuurt Meta het adres van de pagina en dat van de vorige pagina, de gebeurtenis "paginaweergave", gegevens over uw browser en apparaat, uw IP-adres, een tijdstempel en de code uit de cookie _fbp (en, als die er is, uit de cookie _fbc). Formulierinhoud, uw naam en uw e-mailadres stuurt hij niet door, en hij verzamelt niet automatisch gegevens over knoppen of metagegevens van de pagina. De pixel slaat _fbp op het eigen domein van deze site op; Meta onderscheidt daarmee uw browser van andere. Komt u via een link van Facebook of Instagram met de klik-ID fbclid in het adres, bijvoorbeeld via onze advertentie, dan slaat de pixel die code ook op in de cookie _fbc op hetzelfde domein, zodat Meta uw bezoek aan de advertentie kan koppelen. Als uw browser cookies van Facebook toestaat, kan Meta ook zijn eigen cookie fr op facebook.com gebruiken (cookie van derden). Bent u in dezelfde browser bij Facebook ingelogd, dan kan Meta deze gegevens aan uw account koppelen. Zonder uw toestemming wordt het pixelscript niet geladen en wordt er niets naar Meta verzonden. In ons privacybeleid leest u hoe de verantwoordelijkheid voor de gegevens tussen ons en Meta is verdeeld.',
+    dur: 'Duur: 90 dagen',
+    d90: '90 dagen',
+    pFbp: 'Meta-pixel (alleen met toestemming): Meta onderscheidt hiermee uw browser van andere wanneer wij onze advertenties op Facebook en Instagram meten',
+    pFr: 'Meta (facebook.com, cookie van derden, alleen als uw browser cookies van Facebook toestaat): meten van onze advertenties en tonen ervan aan mensen die waarschijnlijk geïnteresseerd zijn',
+    pFbc: 'Meta-pixel (alleen met toestemming en alleen als u via een link van Facebook of Instagram met de klik-ID fbclid in het adres komt, bijvoorbeeld via onze advertentie): slaat de klik-ID op, zodat Meta uw bezoek aan de advertentie kan koppelen',
+  },
+  sv: {
+    badge: 'Annonsering',
+    type: 'Annonsering (Meta)',
+    body: 'Med ditt samtycke laddar webbplatsen Meta-pixeln (id 1492705142722059) från connect.facebook.net. Med den mäter vi hur väl våra annonser på Facebook och Instagram fungerar, alltså om en annons ledde en besökare till webbplatsen, och hjälper Meta att visa våra annonser för personer som sannolikt är mer intresserade av dem. Pixeln skickar till Meta sidans adress och adressen till föregående sida, händelsen sidvisning, uppgifter om din webbläsare och enhet, din IP-adress, en tidsstämpel och identifieraren i cookien _fbp (och i cookien _fbc, om den finns). Den skickar inte formulärinnehåll, ditt namn eller din e-postadress, och den samlar inte automatiskt in uppgifter om sidans knappar eller metadata. Pixeln sparar _fbp på webbplatsens egen domän, och med den kan Meta skilja din webbläsare från andra. Om du kommer via en länk från Facebook eller Instagram med klick-id:t fbclid i adressen, till exempel från vår annons, sparar pixeln också id:t i cookien _fbc på samma domän, så att Meta kan koppla ditt besök till annonsen. Om din webbläsare tillåter cookies från Facebook kan Meta också använda sin egen cookie fr på facebook.com (tredjepartscookie). Om du är inloggad på Facebook i samma webbläsare kan Meta koppla uppgifterna till ditt konto. Utan ditt samtycke laddas pixelns skript inte och ingenting skickas till Meta. I vår integritetspolicy förklarar vi hur ansvaret för uppgifterna fördelas mellan oss och Meta.',
+    dur: 'Varaktighet: 90 dagar',
+    d90: '90 dagar',
+    pFbp: 'Meta-pixeln (endast med samtycke): låter Meta skilja din webbläsare från andra när vi mäter våra annonser på Facebook och Instagram',
+    pFr: 'Meta (facebook.com, tredjepartscookie, endast om din webbläsare tillåter cookies från Facebook): mätning av våra annonser och visning av dem för personer som sannolikt är intresserade',
+    pFbc: 'Meta-pixeln (endast med samtycke och endast om du kommer via en länk från Facebook eller Instagram med klick-id:t fbclid i adressen, till exempel från vår annons): sparar klick-id:t så att Meta kan koppla ditt besök till annonsen',
   },
 };
