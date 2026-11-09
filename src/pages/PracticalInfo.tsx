@@ -1022,7 +1022,7 @@ export default function PracticalInfo() {
             {c.railsH2}
           </h2>
 
-          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:max-lg:[&>*:last-child:nth-child(odd)]:col-span-2 sm:max-lg:[&>*:last-child:nth-child(odd)]:justify-self-center sm:max-lg:[&>*:last-child:nth-child(odd)]:w-[calc(50%_-_0.625rem)]">
             {rails.filter((r) => (r.tier ?? 'core') === 'core').map((r) => (
               <RailTile key={r.sid} rail={r} lang={copyLang(lang)} />
             ))}

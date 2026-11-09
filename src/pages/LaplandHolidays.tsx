@@ -355,7 +355,7 @@ export default function LaplandHolidays() {
 
       <section className="bg-deep-night py-20 sm:py-28">
         <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-12 gap-8">
-          <div className="sm:col-span-4">
+          <div className="sm:col-span-4 max-sm:text-center">
             <p className="cap-meta">{c.chapter}</p>
             <h2 className="mt-2 font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-6xl">
               {c.addons}
@@ -398,7 +398,7 @@ export default function LaplandHolidays() {
       <section className="bg-deeper-night py-16 sm:py-20">
         <div className="max-w-[900px] mx-auto px-6 sm:px-10 text-center">
           <p className="cap-meta">{c.noneEyebrow}</p>
-          <p className="mt-4 font-heading text-snow text-3xl sm:text-4xl tracking-wide leading-tight">
+          <p className="mt-4 font-heading text-snow text-3xl sm:text-4xl tracking-wide leading-tight max-lg:mx-auto max-lg:w-fit max-lg:text-left">
             {c.noneLine}
           </p>
           <Link

@@ -729,7 +729,7 @@ export default function BuildYourOwn() {
           </p>
         </header>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 sm:max-lg:[&>*:last-child:nth-child(odd)]:col-span-2 sm:max-lg:[&>*:last-child:nth-child(odd)]:justify-self-center sm:max-lg:[&>*:last-child:nth-child(odd)]:w-[calc(50%_-_0.625rem)]">
           {rails.filter((r) => (r.tier ?? 'core') === 'core').map((r) => (
             <RailArticle key={r.sid} rail={r} lang={copyLang(lang)} tier="core" />
           ))}

@@ -1345,7 +1345,7 @@ export default function AgeGuide() {
           photos the reader wants to see are winter photos, and they live on
           the partner's page, not in our (summer-only) library. */}
       <section className="bg-deep-night py-20 sm:py-28">
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid gap-4 sm:gap-5 md:grid-cols-2">
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 grid gap-4 sm:gap-5 md:grid-cols-2 md:max-lg:[&>*:last-child:nth-child(odd)]:col-span-2 md:max-lg:[&>*:last-child:nth-child(odd)]:justify-self-center md:max-lg:[&>*:last-child:nth-child(odd)]:w-[calc(50%_-_0.625rem)]">
           {c.rows.map((r, i) => {
             const band = BANDS[i] ?? BANDS[0];
             return (
