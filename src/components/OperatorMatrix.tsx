@@ -7,6 +7,7 @@ import {
 } from '../lib/operators';
 import { useLang, type CopyLang, type Lang, copyLang } from '../i18n/useLang';
 import { starsLabel } from '../lib/operatorAlts';
+import { Erotinrivi, erotinOsat } from '../shared/Erotin';
 
 const COPY: Record<CopyLang, {
   h2Line1: string;
@@ -143,7 +144,7 @@ export default function OperatorMatrix() {
           <h2 className="font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl break-words hyphens-auto">
             {c.h2Line1}
           </h2>
-          <p className="cap-meta mt-4">{c.meta}</p>
+          <Erotinrivi pino className="cap-meta mt-4" osat={erotinOsat(c.meta)} />
         </header>
 
         <div className="-mx-6 sm:mx-0 overflow-x-auto">
@@ -206,7 +207,7 @@ export default function OperatorMatrix() {
           </table>
         </div>
 
-        <p className="cap-meta mt-6">{c.reviewedNote}</p>
+        <Erotinrivi className="cap-meta mt-6" osat={erotinOsat(c.reviewedNote)} />
       </div>
     </section>
   );

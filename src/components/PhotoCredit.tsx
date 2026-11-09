@@ -1,4 +1,5 @@
 import { useLang, useHtmlLang, type CopyLang, copyLang } from '../i18n/useLang';
+import { Erotinrivi } from '../shared/Erotin';
 
 /**
  * Photo credit with the month the picture was taken.
@@ -55,19 +56,19 @@ export default function PhotoCredit({
     const prefix = label.slice(0, label.length - 'LaplandVibes'.length);
     return (
       <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/70 ${className}`}>
-        {prefix}
-        <a href={credit.sourceUrl} target="_blank" rel="noopener" className="lv-tap underline decoration-snow/40 underline-offset-2 hover:text-snow">{credit.author}</a>
-        {' · '}
-        <a href={credit.licenseUrl} target="_blank" rel="license noopener" className="lv-tap whitespace-nowrap underline decoration-snow/40 underline-offset-2 hover:text-snow">{credit.license}</a>
-        {' · '}{when}
-        {place ? ` · ${place}` : ''}
+        {/* " · " rivittyi irralleen 360 px:llä (Vesa 9.11.2026): Erotinrivi piirtää pisteen vain samalla rivillä. */}
+        <Erotinrivi as="span" osat={[
+          <>{prefix}<a href={credit.sourceUrl} target="_blank" rel="noopener" className="lv-tap underline decoration-snow/40 underline-offset-2 hover:text-snow">{credit.author}</a></>,
+          <a href={credit.licenseUrl} target="_blank" rel="license noopener" className="lv-tap whitespace-nowrap underline decoration-snow/40 underline-offset-2 hover:text-snow">{credit.license}</a>,
+          when,
+          place,
+        ]} />
       </p>
     );
   }
   return (
     <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/55 ${className}`}>
-      {label} · {when}
-      {place ? ` · ${place}` : ''}
+      <Erotinrivi as="span" osat={[label, when, place]} />
     </p>
   );
 }

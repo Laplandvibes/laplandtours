@@ -1,6 +1,7 @@
 import { Hotel, Car, MapPinned, TreePine, CarTaxiFront } from 'lucide-react';
 import AffiliateCTA from './AffiliateCTA';
 import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
+import { Erotinrivi, erotinOsat } from '../shared/Erotin';
 
 interface RailCard {
   partner: 'hotels' | 'cars' | 'activities' | 'lomarengas' | 'welcomepickups';
@@ -691,9 +692,7 @@ function RailArticle({ rail: r, lang, tier }: { rail: RailCard; lang: CopyLang; 
           {t.body}
         </p>
 
-        <p className="font-mono text-[12px] tracking-[0.04em] text-arctic-cyan/90 mb-5">
-          {t.priceLine}
-        </p>
+        <Erotinrivi className="font-mono text-[12px] tracking-[0.04em] text-arctic-cyan/90 mb-5" osat={erotinOsat(t.priceLine)} />
 
         <AffiliateCTA
           partner={r.partner}

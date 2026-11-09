@@ -10,6 +10,7 @@
  */
 
 import { useLang, type CopyLang, copyLang } from '../i18n/useLang';
+import { Erotinrivi, erotinOsat } from '../shared/Erotin';
 
 const MONTHS_BY_LANG: Record<CopyLang, string[]> = {
   en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -307,7 +308,7 @@ export default function SeasonStrip() {
           <h2 className="font-heading tracking-tight leading-[0.92] text-snow text-5xl sm:text-7xl break-words hyphens-auto [text-wrap:balance]">
             {c.h2Line1}
           </h2>
-          <p className="cap-meta mt-4">{c.meta}</p>
+          <Erotinrivi pino className="cap-meta mt-4" osat={erotinOsat(c.meta)} />
         </header>
 
         {/* Heatmap — horizontally scrollable on small screens to keep columns readable.

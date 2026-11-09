@@ -3,6 +3,7 @@ import AffiliateCTA from './AffiliateCTA';
 import { localizedOperators, matrixCategoryLabels, operatorLang, type Operator } from '../lib/operators';
 import { useLang, type Lang, type CopyLang, copyLang } from '../i18n/useLang';
 import { operatorAlt } from '../lib/operatorAlts';
+import { Erotinrivi } from '../shared/Erotin';
 
 /**
  * GetYourGuide page per operator: the operator's home base and signature kind
@@ -297,7 +298,7 @@ function OperatorRow({ op, index, eager, lang }: { op: Operator; index: number; 
           <dt className="cap-meta self-center">{labels.length}</dt>
           <dd className="text-snow/85 font-body">{op.typicalLength}</dd>
           <dt className="cap-meta self-center">{labels.departures}</dt>
-          <dd className="text-snow/85 font-mono text-[13px]">{op.departures.join(' · ')}</dd>
+          <dd className="text-snow/85 font-mono text-[13px]"><Erotinrivi as="span" osat={op.departures} /></dd>
           <dt className="cap-meta self-center">{labels.bases}</dt>
           <dd className="text-snow/85 font-body">{op.bases.join(', ')}</dd>
           <dt className="cap-meta self-center">{labels.bestFor}</dt>

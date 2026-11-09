@@ -8,6 +8,7 @@ import PageBreadcrumb from '../components/PageBreadcrumb';
 import { setPageMeta, breadcrumbList, articleSchema } from '../lib/meta';
 import { routeMeta } from '../lib/routeMeta';
 import { useLang, type Lang, type CopyLang, copyLang, LANG_TO_PREFIX } from '../i18n/useLang';
+import { Erotinrivi, erotinOsat } from '../shared/Erotin';
 
 type Cell = string | { v: string; note?: string };
 
@@ -1333,7 +1334,7 @@ export default function AgeGuide() {
             </table>
           </div>
 
-          <p className="cap-meta mt-6">{c.legend}</p>
+          <Erotinrivi className="cap-meta mt-6" osat={erotinOsat(c.legend)} />
         </div>
       </section>
 
