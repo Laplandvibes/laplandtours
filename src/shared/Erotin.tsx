@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, type CSSProperties, type ReactNode } from 'react';
 import './erotin.css';
 
 /**
@@ -30,17 +30,19 @@ import './erotin.css';
 // either side is part of a name (zh 乌尔霍·凯科宁), and the katakana dot ・ is another character: neither is split.
 export const erotinOsat = (text: string): string[] => text.split(/\s+·\s+/).map((s) => s.trim()).filter((s) => s.length > 0);
 
-export function Erotinrivi({ osat, className = '', as: Tag = 'p', pino = false }: {
+export function Erotinrivi({ osat, className = '', as: Tag = 'p', pino = false, style }: {
   osat: ReactNode[];
   className?: string;
   as?: 'p' | 'div' | 'span';
+  /** Inline style for the row (colour, letter-spacing). Do not set display, flex-wrap, gap or overflow here. */
+  style?: CSSProperties;
   /** The row is centred below 1024 px: stack the items there, no dots (`.lv-erotin-pino`). */
   pino?: boolean;
 }) {
   // The spaces between the items are not laid out (white space between flex items is dropped), but they keep
   // the words apart in the text a screen reader or a copy-paste gets ("250 arvostelua 5 h", not "arvostelua5 h").
   return (
-    <Tag className={`lv-erotin${pino ? ' lv-erotin-pino' : ''} ${className}`.trim()}>
+    <Tag className={`lv-erotin${pino ? ' lv-erotin-pino' : ''} ${className}`.trim()} style={style}>
       {osat.filter((osa) => osa !== null && osa !== undefined && osa !== false && osa !== '').map((osa, k) => (
         <Fragment key={k}>{k > 0 && ' '}<span>{osa}</span></Fragment>
       ))}

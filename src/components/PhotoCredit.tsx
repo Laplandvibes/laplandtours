@@ -55,7 +55,7 @@ export default function PhotoCredit({
     // Same prefix as our own photos ("Photo: ", "Kuva: ", "写真：" …), then the author and the licence.
     const prefix = label.slice(0, label.length - 'LaplandVibes'.length);
     return (
-      <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/70 ${className}`}>
+      <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/70 text-left ${className}`}>
         {/* " · " rivittyi irralleen 360 px:llä (Vesa 9.11.2026): Erotinrivi piirtää pisteen vain samalla rivillä. */}
         <Erotinrivi as="span" osat={[
           <>{prefix}<a href={credit.sourceUrl} target="_blank" rel="noopener" className="lv-tap underline decoration-snow/40 underline-offset-2 hover:text-snow">{credit.author}</a></>,
@@ -67,7 +67,7 @@ export default function PhotoCredit({
     );
   }
   return (
-    <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/55 ${className}`}>
+    <p className={`font-mono text-[11px] tracking-[0.06em] text-snow/55 text-left ${className}`}>
       <Erotinrivi as="span" osat={[label, when, place]} />
     </p>
   );
