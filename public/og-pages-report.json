@@ -5,19 +5,21 @@
     "kaudet": {
       "summer": {
         "hero": "/images/op-beyond-arctic.webp",
-        "bytes": 142293,
-        "sha256": "ca555abae09e3146c4d3fd601d2c321940bdd2d20f588f4d7360997b7590c389",
+        "bytes": 139257,
+        "sha256": "d88266b78309bd4664504b23729b5f1360d29477ed83ecba21eeec8a165313b6",
         "heroSha": "6f546c6d9d3d63ad",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 16366,
         "inkBox": [
           335,
-          493,
+          26,
           865,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -42,19 +44,21 @@
       },
       "winter": {
         "hero": "/images/op-beyond-arctic.webp",
-        "bytes": 142293,
-        "sha256": "ca555abae09e3146c4d3fd601d2c321940bdd2d20f588f4d7360997b7590c389",
+        "bytes": 139257,
+        "sha256": "d88266b78309bd4664504b23729b5f1360d29477ed83ecba21eeec8a165313b6",
         "heroSha": "6f546c6d9d3d63ad",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 16366,
         "inkBox": [
           335,
-          493,
+          26,
           865,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -86,19 +90,21 @@
     "kaudet": {
       "summer": {
         "hero": "/images/hero-practical.webp",
-        "bytes": 175639,
-        "sha256": "46c9e5dcebacfc0883d006392af4ad87e8f2ac2fccd3fe0044666a0512935241",
+        "bytes": 173147,
+        "sha256": "1aebc80f848424d3074d7e221635990e08900643979e21a6c13e9566b6589d5b",
         "heroSha": "62d71a4d74336923",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15997,
         "inkBox": [
           361,
-          493,
+          26,
           838,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -123,19 +129,21 @@
       },
       "winter": {
         "hero": "/images/hero-practical.webp",
-        "bytes": 175639,
-        "sha256": "46c9e5dcebacfc0883d006392af4ad87e8f2ac2fccd3fe0044666a0512935241",
+        "bytes": 173147,
+        "sha256": "1aebc80f848424d3074d7e221635990e08900643979e21a6c13e9566b6589d5b",
         "heroSha": "62d71a4d74336923",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15997,
         "inkBox": [
           361,
-          493,
+          26,
           838,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -167,19 +175,21 @@
     "kaudet": {
       "summer": {
         "hero": "/images/hero-age-guide.webp",
-        "bytes": 156265,
-        "sha256": "a50709b5f82a1964863e5d70bc8b5ac295bf0b1da4c0ed64694e8af468bdbe3f",
+        "bytes": 154187,
+        "sha256": "a3da5f1e811d90a4d5680516e168bf7a71e7827264c706f5acf600663b1af801",
         "heroSha": "2bac885ba254cde5",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15649,
         "inkBox": [
           384,
-          493,
+          26,
           815,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -204,19 +214,21 @@
       },
       "winter": {
         "hero": "/images/hero-age-guide.webp",
-        "bytes": 156265,
-        "sha256": "a50709b5f82a1964863e5d70bc8b5ac295bf0b1da4c0ed64694e8af468bdbe3f",
+        "bytes": 154187,
+        "sha256": "a3da5f1e811d90a4d5680516e168bf7a71e7827264c706f5acf600663b1af801",
         "heroSha": "2bac885ba254cde5",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15649,
         "inkBox": [
           384,
-          493,
+          26,
           815,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -248,19 +260,21 @@
     "kaudet": {
       "summer": {
         "hero": "/images/hero-design-tour.webp",
-        "bytes": 131430,
-        "sha256": "ce9ef2d223af51851c158647d78f0d1d5d7b88597bc0f8566b5aea2ed8235c17",
+        "bytes": 128315,
+        "sha256": "73926d0238e46967c309ec0e289fe5cff81ff2740c68067ccf725e5eaa9d0a18",
         "heroSha": "7f31f3be06017b50",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15938,
         "inkBox": [
           353,
-          493,
+          26,
           845,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
@@ -285,19 +299,21 @@
       },
       "winter": {
         "hero": "/images/hero-design-tour.webp",
-        "bytes": 131430,
-        "sha256": "ce9ef2d223af51851c158647d78f0d1d5d7b88597bc0f8566b5aea2ed8235c17",
+        "bytes": 128315,
+        "sha256": "73926d0238e46967c309ec0e289fe5cff81ff2740c68067ccf725e5eaa9d0a18",
         "heroSha": "7f31f3be06017b50",
         "bandH": 168,
         "photoPct": 73.3,
         "ink": 15938,
         "inkBox": [
           353,
-          493,
+          26,
           845,
-          603
+          136
         ],
         "safe": true,
+        "palkki": "yla",
+        "xVapaa": true,
         "accentP10": 5.06,
         "accentMed": 5.06,
         "whiteP10": 17.08,
