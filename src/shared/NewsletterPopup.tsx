@@ -293,6 +293,24 @@ interface NewsletterPopupProps {
   thanksImage?: string;
 }
 
+/**
+ * Tuliko kävijä tähän istuntoon maksetusta somemainoksesta? `paid_social` = omat merkinnät, `paid` = Metan automaattiset
+ * URL-parametrit (utm_source=fb|ig&utm_medium=paid), jotka korvasivat omat 3/4 mainoksessa (mitattu Umamista 10.11.2026).
+ */
+export function paidSocialVisit(): boolean {
+  try {
+    const KEY = 'lv_paid_social';
+    const medium = new URLSearchParams(window.location.search).get('utm_medium');
+    if (medium === 'paid_social' || medium === 'paid') {
+      sessionStorage.setItem(KEY, '1');
+      return true;
+    }
+    return sessionStorage.getItem(KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 function readStored(key: string): StoredState | null {
   try {
     const raw = localStorage.getItem(key);
@@ -478,7 +496,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   ja: {
     successHeadline: 'あと少しです。',
     successBody: 'いまお送りしたメールから登録を確認してください。',
-    alreadyHeadline: 'すでに登録済みです!',
+    alreadyHeadline: 'すでに登録済みです！',
     alreadyBody: 'すでにご登録いただいています。お伝えしたいことがあるときにご連絡します。',
     emailPlaceholder: 'メールアドレス',
     submit: '参加します！',
@@ -488,7 +506,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
     closeLabel: '閉じる',
     trust: '本当に価値のある時だけお届けします。いつでも解除可能。メールアドレスを第三者と共有しません。',
     errorGeneric: '登録に失敗しました。もう一度お試しください。',
-    socialLead: 'それまでの間、ラップランドの旅の投稿はこちら:',
+    socialLead: 'それまでの間、ラップランドの旅の投稿はこちら：',
     founderAlt: 'LaplandVibes創業者のヴェサ',
     consent: `入力したメールアドレス宛に、LaplandVibesがニュースレター（旅のヒント、シーズン情報、キャンペーン情報）を送ることに同意します。私は18歳以上です。`,
     privacy: `プライバシーポリシー`,
@@ -496,7 +514,7 @@ const LOCALE_DICTS: Record<SupportedLang, Required<NewsletterPopupDict>> = {
   es: {
     successHeadline: 'Ya casi.',
     successBody: 'Confirme su suscripción desde el correo que acabamos de enviarle.',
-    alreadyHeadline: '¡Ya estaba en la lista!',
+    alreadyHeadline: '¡Usted ya estaba en la lista!',
     alreadyBody: 'Su suscripción ya estaba activa. Sabrá de mí cuando haya algo que contar.',
     emailPlaceholder: 'Su correo electrónico',
     submit: '¡Me apunto!',
@@ -885,6 +903,10 @@ export default function NewsletterPopup({
     // Already shown once this session → do not re-arm on this (or any later)
     // page view. This is what stops it appearing on every page as you browse.
     try { if (sessionStorage.getItem(sessionShownKey)) return; } catch { /* private mode */ }
+    // Maksetusta somemainoksesta tullut kävijä ei saa ikkunaa koko istunnon aikana (Vesa 6.11.2026:
+    // mainoskävijälle aukesi evästeikkunan jälkeen koko ruudun uutiskirje). Tieto säilyy istunnon ajan,
+    // koska UTM-kysely katoaa osoitteesta ensimmäisen sisälinkin jälkeen.
+    if (paidSocialVisit()) return;
 
     let fired = false;
     let pending = false;
@@ -1260,7 +1282,8 @@ export default function NewsletterPopup({
                   />
                   <span style={{color:"#F9FAFB"}} className="text-white/70 text-xs leading-relaxed">
                     {D.consent}{' '}
-                    <a style={{color:"#BAE6FD",textDecoration:"underline"}}                       href={withSlash(localizedPrivacyHref(privacyHref, location.pathname))}
+                    <a style={{color:"#BAE6FD",textDecoration:"underline"}} 
+                      href={withSlash(localizedPrivacyHref(privacyHref, location.pathname))}
                       target="_blank"
                       rel="noopener"
                       onClick={(e) => e.stopPropagation()}
