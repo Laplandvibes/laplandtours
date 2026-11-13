@@ -83,13 +83,43 @@ function upsertCanonical(href: string) {
   el.setAttribute('href', href);
 }
 
-function upsertJsonLd(data: object | object[] | undefined, bcp47: string) {
+// Rakenteisen datan sisäiset osoitteet samaan muotoon kuin kanoninen, hreflang ja sivukartta:
+// sivun OMA kieliversio ja loppukauttaviiva. Sivujen schema-oliot kirjoittivat kauttaviivattomat osoitteet
+// (https://laplandtours.online/fi/lapland-holidays, joka ohjautuu 308). Mitattu 12.–13.11.2026, mittari lv-ops
+// scripts/audit_jsonld_osoitteet.mjs.
+// - polullinen osoite -> sivun kieliversio + kauttaviiva (/fi/lapland-holidays/); juuri -> https://laplandtours.online/
+// - tiedostot (.jpg), ankkurit (#travelagency) ja ulkoiset osoitteet jäävät ennalleen
+// Sivun oma BreadcrumbList ei tulostu: esirenderöijä kirjoittaa jokaiselle sivulle murupolun sivun kielellä ja
+// oikeilla osoitteilla (sama ratkaisu kuin laplandcarrental 25.9. ja laplandwellness 12.11.2026).
+const INTERNAL_URL = /^https:\/\/laplandtours\.online((?:\/[A-Za-z0-9_-]+)*)\/?$/;
+function localizeUrls(node: unknown, lang: Lang, key = ''): unknown {
+  if (typeof node === 'string') {
+    const m = INTERNAL_URL.exec(node);
+    if (!m) return node;
+    const raw = m[1] || '/';
+    if (raw === '/' && key !== 'item') return `${SITE_URL}/`;
+    const path = stripLocalePath(`${SITE_URL}${raw}`);
+    return `${SITE_URL}${URL_PREFIX_OF[lang]}${path === '/' ? '' : path}/`;
+  }
+  if (Array.isArray(node)) return node.map((n) => localizeUrls(n, lang, key));
+  if (node && typeof node === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(node as Record<string, unknown>)) out[k] = localizeUrls(v, lang, k);
+    return out;
+  }
+  return node;
+}
+const isBreadcrumbList = (x: unknown) =>
+  Boolean(x && typeof x === 'object' && (x as { '@type'?: unknown })['@type'] === 'BreadcrumbList');
+
+function upsertJsonLd(input: object | object[] | undefined, bcp47: string, lang: Lang) {
   const existing = document.head.querySelector<HTMLScriptElement>(`script#${JSONLD_ID}`);
-  if (!data) {
+  const data = Array.isArray(input) ? input.filter((x) => !isBreadcrumbList(x)) : isBreadcrumbList(input) ? undefined : input;
+  if (!data || (Array.isArray(data) && !data.length)) {
     if (existing) existing.remove();
     return;
   }
-  const localized = injectInLanguage(JSON.parse(JSON.stringify(data)), bcp47);
+  const localized = localizeUrls(injectInLanguage(JSON.parse(JSON.stringify(data)), bcp47), lang);
   const json = JSON.stringify(localized);
   if (existing) {
     existing.textContent = json;
@@ -150,7 +180,7 @@ export function setPageMeta(input: PageMetaInput): void {
   xd.setAttribute('data-seo-hreflang', 'true');
   document.head.appendChild(xd);
 
-  upsertJsonLd(input.jsonLd, bcp47);
+  upsertJsonLd(input.jsonLd, bcp47, lang);
 }
 
 const SITE_NAME = '#LaplandTours';
