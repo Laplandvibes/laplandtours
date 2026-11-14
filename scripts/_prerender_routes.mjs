@@ -17,6 +17,13 @@
  *   --locales=en,fi,de                      (optional) override locale list,
  *                                           comma-separated — for single-locale
  *                                           or 3-locale sites (ski, default 11)
+ *   --localeOverrides=zh-CN:bcp47=zh-Hant,og=zh_TW,hreflang=zh-Hant+zh
+ *                                           (optional) per-locale OUTPUT codes.
+ *                                           Blocks split by '/', fields by ',',
+ *                                           the hreflang list by '+'. Only
+ *                                           bcp47 / og / hreflang; a locale not
+ *                                           named keeps its defaults.
+ *                                           See [LV-LOCALE-OVERRIDES] below.
  *   --source=auto|meta|per-lang|nested|json|page-inline
  *                                           (optional) force a specific reader.
  *                                           Default "auto" tries readers in
@@ -29,6 +36,11 @@
  *                                           computed by its own generator (e.g. transport's
  *                                           scripts/generate-prerender-meta.mjs). Missing
  *                                           file/route/lang falls through to other readers.
+ *   --ogAlt=scripts/og-alt.json             (optional, this path is the default) site
+ *                                           card alt text per language:
+ *                                           { "<shell's English og:image:alt>": { "fi": "…", … } }
+ *                                           Used on pages that show the site card.
+ *                                           See [LV-OG-KORTTI-ALT-KIELI] below.
  *
  * routes.json schema:
  *   [
@@ -53,6 +65,12 @@
  *     { "path": "/privacy",          "copyKey": null,
  *       "fallbackTitle": "Privacy | LaplandHoteldeals" }
  *     // ↑ no per-route copy — use fallbackTitle (and optional fallbackDescription)
+ *
+ *     { "path": "/resorts", "copyKey": "resorts", "ogImage": "/og/resorts.jpg",
+ *       "ogCard": { "hero": "/images/…", "line": "…" } }
+ *     // ↑ page share card (scripts/og/gen_page_cards.mjs). Write the PATH only:
+ *     //   this script appends ?v=<sha256 of the card files, 8 hex> to og:image,
+ *     //   og:image:secure_url and twitter:image — [LV-OG-SIVUKORTTI-VERSIO].
  *   ]
  *
  * Idempotent. Safe to re-run after vite build.
@@ -241,6 +259,60 @@ if (existsSync(OG_ALT_TIEDOSTO)) {
 } else if (typeof args.ogAlt === 'string') {
   console.warn(`[prerender] WARN: --ogAlt ${OG_ALT_TIEDOSTO} puuttuu — sivustokortin alt jää englanniksi`);
 }
+// [LV-OG-MITAT 2026-09-23, canonical 2026-11-14] Kuoren og:image:width / height / type kuvaavat sivustokorttia
+// (1200×630 JPEG). Sivulla, jonka jakokuva on jokin muu tiedosto, ne pitävät paikkansa vain, jos tiedosto on
+// samankokoinen ja samaa tyyppiä; muuten kolme tagia kuvaavat väärää kuvaa ja ne poistetaan.
+//
+// 🔴 Miksi mitataan eikä päätellä polusta: laplandflights korjasi tämän omaan kopioonsa 23.9.2026 säännöllä
+// "muu kuin /og/-polku ⇒ pois" (uutisten CC BY-SA -valokuvat, joita ei saa muokata kortiksi). Sama sääntö olisi
+// 14.11.2026 kanoniseen vietynä poistanut OIKEAT mitat hubin /partners-sivulta 12 kielellä: sen jakokuva
+// /images/og-partners.jpg on aito 1200×630 JPEG -kortti toisessa kansiossa (mitattu ajamalla molemmat versiot hubin
+// syötteillä, scripts/vertaa_prerender_routes.mjs). Siksi:
+//   - sivustokortti (--defaultOg) ja generoitu /og/-sivukortti: mitat pitävät (kausifunktio tarjoilee saman muodon)
+//   - muu oman sivuston tiedosto: luetaan dist/<polku> ja verrataan JPEG-otsakkeen kokoa kuoren arvoihin
+//   - toisen sivuston osoite, muu tiedostotyyppi, puuttuva tai lukukelvoton tiedosto: ei voida todeta ⇒ pois
+// Testi: scripts/prerender_sivustojen_lisaykset.test.mjs.
+const KUOREN_OG_MITAT = {
+  leveys: kuorenMeta('property', 'og:image:width'),
+  korkeus: kuorenMeta('property', 'og:image:height'),
+  tyyppi: kuorenMeta('property', 'og:image:type'),
+};
+/** JPEG-tiedoston koko SOF-lohkosta; null jos tiedosto ei ole luettava JPEG. */
+function jpegKoko(tiedosto) {
+  let b;
+  try { b = readFileSync(tiedosto); } catch { return null; }
+  if (b.length < 4 || b[0] !== 0xff || b[1] !== 0xd8) return null;
+  let i = 2;
+  while (i + 9 < b.length) {
+    if (b[i] !== 0xff) return null;
+    const m = b[i + 1];
+    if (m === 0xff) { i++; continue; }                                   // täytetavu
+    if (m === 0x01 || (m >= 0xd0 && m <= 0xd8)) { i += 2; continue; }    // lohkot ilman pituutta
+    if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) {
+      return { korkeus: b.readUInt16BE(i + 5), leveys: b.readUInt16BE(i + 7) };
+    }
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  return null;
+}
+const OG_MITAT_PITAVAT = new Map();
+/** true = kuoren og:image:width/height/type ovat totta tälle jakokuvalle. */
+function kuorenMitatPitavat(img) {
+  if (img === DEFAULT_OG) return true;
+  let p = String(img || '');
+  if (/^https?:/i.test(p)) {
+    if (!p.startsWith(`${SITE}/`)) return false;
+    p = p.slice(SITE.length);
+  }
+  p = p.replace(/[?#].*$/, '');
+  if (/^\/og\//.test(p)) return true;
+  if (!OG_MITAT_PITAVAT.has(p)) {
+    const jpegKuori = KUOREN_OG_MITAT.tyyppi == null || /^image\/jpe?g$/i.test(KUOREN_OG_MITAT.tyyppi);
+    const koko = /\.jpe?g$/i.test(p) && jpegKuori ? jpegKoko(resolve(DIST, `.${p}`)) : null;
+    OG_MITAT_PITAVAT.set(p, !!koko && String(koko.leveys) === KUOREN_OG_MITAT.leveys && String(koko.korkeus) === KUOREN_OG_MITAT.korkeus);
+  }
+  return OG_MITAT_PITAVAT.get(p);
+}
 /** Sivustokortin alt kielellä lang; null = kuoren englanninkielinen alt jää. */
 function korttiAltKielella(lang) {
   if (!KORTTI_ALT_KIELET || lang === 'en') return null;
@@ -291,6 +363,64 @@ if (args.addLocales) {
   for (const key of args.addLocales.split(',').map((s) => s.trim())) {
     if (EXTRA_LOCALES[key] && !FULL_LOCALE_LIST.some((l) => l.lang === key)) {
       FULL_LOCALE_LIST.push(EXTRA_LOCALES[key]);
+    }
+  }
+}
+
+// [LV-LOCALE-OVERRIDES 2026-09-24] Opt-in per-locale output codes:
+//   --localeOverrides=zh-CN:bcp47=zh-Hant,og=zh_TW,hreflang=zh-Hant+zh
+// Locale blocks are separated by '/', fields by ',', and the hreflang list by
+// '+' — characters that need no quoting in sh or cmd, because the flag is
+// written on a site's package.json build line.
+//
+// Only the three OUTPUT fields can be overridden: bcp47 (<html lang>, JSON-LD
+// inLanguage), og (og:locale) and hreflang (rel=alternate codes; a locale may
+// publish SEVERAL). prefix/file/ident/jsonDir are deliberately NOT overridable:
+// they decide which files are read and which URLs are written, so overriding
+// them from the command line would move pages silently.
+//
+// 🔴🔴 Why this lives here: laplandstays translated its /cn/ copy into Taiwan
+// Traditional Chinese on 2026-09-17 (scripts/zh-hant.mjs) and had to patch its
+// VENDORED copy of this file (b6fd594) because the canonical had no such
+// concept. The next re-vendor would have dropped it — the same defect class as
+// the harvest limits on 2026-09-13, where routes.json keys went dead without a
+// single error (see [LV-HARVEST-LIMITS]). A locale that is not named here keeps
+// exactly its FULL_LOCALE_LIST codes; scripts/prerender_locale_overrides.test.mjs
+// runs this file against a fixture site and measures both halves.
+const LOCALE_OVERRIDE_FIELDS = new Set(['bcp47', 'og', 'hreflang']);
+if (args.localeOverrides && typeof args.localeOverrides === 'string') {
+  const warn = (msg) => console.warn(`[prerender] WARN: --localeOverrides ${msg}`);
+  for (const block of args.localeOverrides.split('/').map((s) => s.trim()).filter(Boolean)) {
+    const at = block.indexOf(':');
+    const lang = at < 0 ? '' : block.slice(0, at).trim();
+    const loc = FULL_LOCALE_LIST.find((l) => l.lang === lang);
+    if (!loc) {
+      warn(`unknown locale ${JSON.stringify(lang || block)} — block ignored`);
+      continue;
+    }
+    for (const pair of block.slice(at + 1).split(',').map((s) => s.trim()).filter(Boolean)) {
+      const eq = pair.indexOf('=');
+      const field = (eq < 0 ? pair : pair.slice(0, eq)).trim();
+      const value = eq < 0 ? '' : pair.slice(eq + 1).trim();
+      if (!LOCALE_OVERRIDE_FIELDS.has(field)) {
+        warn(`${lang}: unknown field ${JSON.stringify(field)} — ignored`);
+        continue;
+      }
+      // A silently-dropped value is how the harvest keys died on 2026-09-13.
+      if (!value) {
+        warn(`${lang}: empty value for ${field} — keeping the default ${JSON.stringify(loc[field] ?? loc.lang)}`);
+        continue;
+      }
+      if (field === 'hreflang') {
+        const codes = value.split('+').map((s) => s.trim()).filter(Boolean);
+        if (!codes.length) {
+          warn(`${lang}: empty value for hreflang — keeping the default ${JSON.stringify(loc.lang)}`);
+          continue;
+        }
+        loc.hreflang = codes;
+      } else {
+        loc[field] = value;
+      }
     }
   }
 }
@@ -704,7 +834,15 @@ function ensureDescriptionLength(desc, paragraphs, lang) {
     return (noSpaces ? head : head.replace(/\s+\S*$/, '')).replace(/[,;:\s]+$/, '');
   }
   if (riittava(d) || !Array.isArray(paragraphs) || !paragraphs.length) return desc;
-  const text = paragraphs.map((t) => String(t).replace(/\s+/g, ' ').trim()).filter(Boolean).join(' ');
+  // [LV-DESC-KOROSTUS 2026-09-21, canonical 2026-11-14] Strip [[…]] accent markers BEFORE the text
+  // extends a description. laplandflights marks the highlighted word of its hero H1 as [[word]]
+  // (renderAccent unwraps it in the browser); a short description was extended with the H1 as
+  // written, and the Japanese home page shipped "[[ラップランド]]行きの格安航空券。" in its meta
+  // description (measured live 21.9.2026; only ja leaked because its H1 STARTS with the marker).
+  // Fixed in that site's vendored copy and unknown here until 14.11.2026.
+  const text = paragraphs
+    .map((t) => String(t).replace(/\[\[(.+?)\]\]/g, '$1').replace(/\s+/g, ' ').trim())
+    .filter(Boolean).join(' ');
   const sentences = (noSpaces ? text.split(/(?<=[。！？])/) : text.split(/(?<=[.!?。！？])\s+/))
     .map((s) => s.trim())
     .filter((s) => s && s.length > 3);
@@ -1541,7 +1679,39 @@ function clampDescription(d, max = 160) {
   const cut = head.lastIndexOf(' ');
   return (cut > 60 ? head.slice(0, cut) : head).replace(/[\s,;:–—\-(]+$/u, '').trim();
 }
-function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, lang, internalLinks, paragraphs }) {
+
+// [LV-BC-VALITASO 2026-10-20] A breadcrumb's intermediate step is a real page of this site in the
+// same locale, named by that page's own title. It used to be the URL segment capitalised ("Route",
+// "City", "Destination") pointing at a path that is not a page: measured live 2026-10-20,
+// /fi/route/, /fi/city/, /fi/destination/ and /fi/destinations/ all answered 404, and Google showed
+// a Finnish searcher "laplandtransport.com › LaplandTransport › City" above a Finnish result.
+// The step is left out when routes.json has no such page for this locale, when the page
+// canonicalises to another locale (canonicalLocale / nativeLocales), or when this locale only has
+// the English fallback title. Built once, on the first breadcrumb, from the same meta cascade the
+// pages themselves use (resolveLocaleMeta is safe to call twice).
+let CRUMB_PAGES = null;
+function crumbPageName(lang, logicalPath) {
+  if (!CRUMB_PAGES) {
+    CRUMB_PAGES = new Map();
+    const enLoc = LOCALE_LIST.find((l) => l.lang === 'en') || LOCALE_LIST[0];
+    for (const r of routes) {
+      if (!r.path || r.path === '/') continue;
+      const enMeta = resolveRouteMeta(enLoc, r) || fallbackMeta(r.path, r);
+      const locs = Array.isArray(r.locales) ? LOCALE_LIST.filter((l) => r.locales.includes(l.lang)) : LOCALE_LIST;
+      for (const loc of locs) {
+        if (r.canonicalLocale && r.canonicalLocale !== loc.lang) continue;
+        if (Array.isArray(r.nativeLocales) && !r.nativeLocales.includes(loc.lang)) continue;
+        const { meta, localizedTitle } = resolveLocaleMeta(r, loc, enMeta);
+        if (loc.lang !== 'en' && !localizedTitle) continue;
+        const name = String(meta.title || '').replace(/\s*[|—–]\s.*$/, '').trim();
+        if (name) CRUMB_PAGES.set(`${loc.lang} ${r.path.replace(/\/+$/, '')}`, name);
+      }
+    }
+  }
+  return CRUMB_PAGES.get(`${lang} ${logicalPath}`) || null;
+}
+
+function injectShell({ shell, bcp47, og, canonical, title, description, hreflangs, ogImage, faq, article, lang, internalLinks, paragraphs }) {
   description = clampDescription(description);
   let html = shell;
   title = shortenTitle(title);
@@ -1602,15 +1772,18 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
     const localeRoot = hasLoc ? `${SITE}/${segs[0]}` : SITE;
     const pathSegs = hasLoc ? segs.slice(1) : segs;
     if (pathSegs.length > 0) {
+      const crumbLang = (LOCALE_LIST.find((l) => l.prefix === (hasLoc ? `/${segs[0]}` : '')) || {}).lang || 'en';
       const items = [{ name: SITE_NAME, url: `${localeRoot}/` }];
       let acc = localeRoot;
       pathSegs.forEach((seg, i) => {
         acc += `/${seg}`;
-        const last = i === pathSegs.length - 1;
-        const name = last
-          ? title.replace(/\s*[|—–]\s.*$/, '').trim()
-          : seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-        items.push({ name, url: `${acc}/` });
+        if (i === pathSegs.length - 1) {
+          items.push({ name: title.replace(/\s*[|—–]\s.*$/, '').trim(), url: `${acc}/` });
+          return;
+        }
+        // [LV-BC-VALITASO] Intermediate crumb only for a real page in this locale, see crumbPageName.
+        const name = crumbPageName(crumbLang, `/${pathSegs.slice(0, i + 1).join('/')}`);
+        if (name) items.push({ name, url: `${acc}/` });
       });
       const breadcrumb = {
         '@context': 'https://schema.org',
@@ -1645,6 +1818,34 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
       html = html.replace(/<\/head>/i, `${faqScript}\n  </head>`);
     }
   } catch { /* never block the build on FAQ derivation */ }
+
+  // [LV-ARTICLE 2026-11-04] Server-rendered Article JSON-LD, opt-in per route in routes.json:
+  //   { "path": "/x", "article": { "datePublished": "2025-01-15", "dateModified": "2026-11-04" } }
+  // laplandvisit kept its Article schema in React (StructuredData via react-helmet-async) and it never
+  // reached the page: measured live 4.11.2026, /when-to-visit/ carried only the shell's Organization +
+  // WebSite and this script's BreadcrumbList. Here the date sits in the first byte, where crawlers that
+  // run no JavaScript read it too. Headline, description and language are the page's own locale.
+  try {
+    if (article && article.dateModified) {
+      const lv = { '@type': 'Organization', name: 'LaplandVibes', url: 'https://laplandvibes.com' };
+      const art = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: String(title || '').replace(/\s*[|—–]\s.*$/, '').trim(),
+        description,
+        url: canonical,
+        mainEntityOfPage: canonical,
+        inLanguage: bcp47,
+        datePublished: article.datePublished || article.dateModified,
+        dateModified: article.dateModified,
+        author: article.author || lv,
+        publisher: article.publisher || lv,
+      };
+      if (ogImage) art.image = /^https?:/.test(ogImage) ? ogImage : `${SITE}${sivukorttiVersio(ogImage)}`;
+      const artScript = `    <script type="application/ld+json">${JSON.stringify(art).replace(/</g, '\u003c')}</script>`;
+      html = html.replace(/<\/head>/i, `${artScript}\n  </head>`);
+    }
+  } catch { /* never block the build on Article derivation */ }
 
   // Poistaa metan kokonaan. Avaimet ovat tassa tiedostossa kirjoitettuja
   // vakioita (`og:image:alt`), joten sailytetaan vain sanamerkit, kaksoispiste
@@ -1697,6 +1898,13 @@ function injectShell({ shell, bcp47, og, canonical, title, description, hreflang
     } else if (lang !== 'en' && KUOREN_KORTTI_ALT) {
       korttiAltTila.englanniksi++;
     }
+  }
+  // [LV-OG-MITAT] The shell's og:image:width / height / type are removed when they are not true
+  // for this page's share image; see kuorenMitatPitavat() above.
+  if (!kuorenMitatPitavat(ogImage)) {
+    poistaMeta('property', 'og:image:width');
+    poistaMeta('property', 'og:image:height');
+    poistaMeta('property', 'og:image:type');
   }
   setMeta('name', 'twitter:card', 'summary_large_image');
   setMeta('name', 'twitter:title', title);
@@ -1839,12 +2047,33 @@ for (const route of routes) {
     const hreflangLocales = nativeSet
       ? routeLocales.filter((l) => nativeSet.has(l.lang))
       : routeLocales
+    // hreflang codes per locale: the default is the locale's own lang, but a
+    // locale may publish SEVERAL (zh-CN → zh-Hant + zh, see LV-LOCALE-OVERRIDES).
+    const hreflangCodes = (l) => (Array.isArray(l.hreflang) ? l.hreflang : [l.lang])
+    // [LV-HREFLANG-KLUSTERI 2026-10-18, canonical 2026-11-14] A page whose language versions live
+    // at DIFFERENT paths (laplandstays: fi /fi/iglumajoitus ↔ en/de/ja /glass-igloos). Routes
+    // sharing a "hreflangCluster" key in routes.json list each other's locales as alternates, each
+    // at its own path, in LOCALE_LIST order; every such route names its "locales". Without the
+    // key nothing changes. Written in laplandstays' vendored copy on 18.10.2026 and unknown here
+    // until 14.11.2026: re-vendoring would have dropped the cluster without a single error.
+    const clusterAlts = route.hreflangCluster
+      ? LOCALE_LIST.flatMap((l) => {
+          const r = routes.find((x) => x.hreflangCluster === route.hreflangCluster && Array.isArray(x.locales) && x.locales.includes(l.lang))
+          return r ? [{ l, path: r.path === '/' ? '' : r.path }] : []
+        })
+      : null
     const hreflangs = consolidateTo
-      ? [{ hreflang: canonicalLoc.lang === 'en' ? 'en' : canonicalLoc.lang, url: canonical }]
-      : hreflangLocales.map((l) => ({
-          hreflang: l.lang === 'en' ? 'en' : l.lang,
-          url: `${SITE}${l.prefix}${cleanPath}`.replace(SLASH_END, '/'),
-        }))
+      ? hreflangCodes(canonicalLoc).map((code) => ({ hreflang: code, url: canonical }))
+      : clusterAlts
+        ? clusterAlts.flatMap(({ l, path }) =>
+            hreflangCodes(l).map((code) => ({ hreflang: code, url: `${SITE}${l.prefix}${path}`.replace(SLASH_END, '/') })),
+          )
+        : hreflangLocales.flatMap((l) =>
+          hreflangCodes(l).map((code) => ({
+            hreflang: code,
+            url: `${SITE}${l.prefix}${cleanPath}`.replace(SLASH_END, '/'),
+          })),
+        )
 
     const outPath =
       loc.prefix === '' && cleanPath === ''
@@ -1877,6 +2106,7 @@ for (const route of routes) {
       hreflangs,
       ogImage,
       faq,
+      article: route.article || null,
       internalLinks: INTERNAL_BY_LANG[loc.lang],
       paragraphs,
     });
