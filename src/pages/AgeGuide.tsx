@@ -1122,11 +1122,11 @@ function CellMark({ cell, lang }: { cell: Cell; lang: Lang }) {
  *  since 2026-08-23). Sources: hub gygCategories.ts VERIFIED, _gyg-catalog 30.7.,
  *  and the Santa Claus Village location the Worker itself uses for "santa". */
 const BANDS = [
-  { bg: 'linear-gradient(135deg,#13233A 0%,#101A2C 100%)', ink: '#7DD3FC', gyg: 'rovaniemi-l2653/family-friendly-activities-tc1094' },
-  { bg: 'linear-gradient(135deg,#1B2138 0%,#121826 100%)', ink: '#F9A8D4', gyg: 'santa-claus-village-l93203' },
-  { bg: 'linear-gradient(135deg,#10261F 0%,#0E1A22 100%)', ink: '#6EE7B7', gyg: 'rovaniemi-l2653/dog-sledding-husky-tours-tc118' },
-  { bg: 'linear-gradient(135deg,#1E1B33 0%,#141428 100%)', ink: '#C4B5FD', gyg: 'rovaniemi-l2653/snowmobile-tours-tc119' },
-  { bg: 'linear-gradient(135deg,#2A1A2B 0%,#181022 100%)', ink: '#FDBA74', gyg: 'saariselka-l181615/northern-lights-tc310' },
+  { bg: 'linear-gradient(135deg,#13233A 0%,#101A2C 100%)', ink: '#F9FAFB', gyg: 'rovaniemi-l2653/family-friendly-activities-tc1094' },
+  { bg: 'linear-gradient(135deg,#1B2138 0%,#121826 100%)', ink: '#F9FAFB', gyg: 'santa-claus-village-l93203' },
+  { bg: 'linear-gradient(135deg,#10261F 0%,#0E1A22 100%)', ink: '#F9FAFB', gyg: 'rovaniemi-l2653/dog-sledding-husky-tours-tc118' },
+  { bg: 'linear-gradient(135deg,#1E1B33 0%,#141428 100%)', ink: '#F9FAFB', gyg: 'rovaniemi-l2653/snowmobile-tours-tc119' },
+  { bg: 'linear-gradient(135deg,#2A1A2B 0%,#181022 100%)', ink: '#F9FAFB', gyg: 'saariselka-l181615/northern-lights-tc310' },
 ];
 const STATS: Record<CopyLang, { value: string; label: string }[]> = {
   en: [
@@ -1249,7 +1249,7 @@ export default function AgeGuide() {
             className="inline-block rounded-2xl bg-deep-night/95 px-4 py-3 font-heading text-snow leading-[1.2] tracking-tighter drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]"
             style={{ fontSize: 'clamp(3rem,10vw,8rem)' }}
           >
-            0&nbsp;–&nbsp;<span className="text-[#F9A8D4]">16+</span>
+            0&nbsp;–&nbsp;<span>16+</span>
           </h1>
           <p className="mt-6 max-lg:mx-auto max-lg:w-fit max-lg:text-left text-snow/90 text-lg sm:text-xl leading-relaxed font-body max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             {c.lead}

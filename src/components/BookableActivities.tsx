@@ -340,7 +340,7 @@ export default function BookableActivities() {
                 >
                   <span
                     className="flex items-center justify-center w-9 h-9 rounded-lg shrink-0"
-                    style={{ background: 'rgba(236,72,153,0.12)', border: '1px solid rgba(236,72,153,0.35)' }}
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.16)' }}
                   >
                     <card.icon className="w-4 h-4 text-vibe-pink" strokeWidth={1.6} aria-hidden="true" />
                   </span>

@@ -908,7 +908,7 @@ export default function PracticalInfo() {
                 <div className="flex items-center gap-4 mb-4">
                   <span
                     className="flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
-                    style={{ background: 'rgba(6,182,212,0.10)', border: '1px solid rgba(6,182,212,0.30)' }}
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.16)' }}
                   >
                     <Icon className="w-5 h-5 text-arctic-cyan" strokeWidth={1.6} aria-hidden="true" />
                   </span>

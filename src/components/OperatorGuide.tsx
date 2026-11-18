@@ -234,7 +234,7 @@ function StarRow({ value, max = 4 }: { value: number; max?: number }) {
       {Array.from({ length: max }).map((_, i) => (
         <span
           key={i}
-          className={`w-1.5 h-1.5 rounded-full ${i < value ? 'bg-vibe-pink' : 'bg-snow/15'}`}
+          className={`w-1.5 h-1.5 rounded-full ${i < value ? 'bg-[#BAE6FD]' : 'bg-snow/15'}`}
           aria-hidden="true"
         />
       ))}

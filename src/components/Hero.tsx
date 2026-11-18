@@ -187,7 +187,7 @@ export default function Hero() {
         <h1 className="font-heading tracking-tight leading-[0.95] text-snow text-[clamp(2.5rem,6vw,5rem)] break-words hyphens-auto [text-wrap:balance] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)] xl:text-[clamp(80px,1.25vw_+_64px,96px)]">
           {c.h1}
         </h1>
-        <p className="mt-3 sm:mt-4 font-heading tracking-wide text-[#F9A8D4] text-[clamp(1.5rem,4.5vw,3rem)] leading-tight break-words drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+        <p className="mt-3 sm:mt-4 font-heading tracking-wide text-snow text-[clamp(1.5rem,4.5vw,3rem)] leading-tight break-words drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
           {c.pinkLine}
         </p>
 

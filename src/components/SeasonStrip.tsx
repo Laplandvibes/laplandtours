@@ -284,6 +284,18 @@ interface Cell {
   label: string;
 }
 
+/** Solun numero luetaan solun omaa väriä vasten: vaalealla (pastelli × korkea taso) tumma numero,
+ *  tummalla valkoinen. Pohja = osion bg-deep-night #0F172A, johon solun väri sekoittuu läpinäkyvyydellään. */
+function inkOn(hex: string, opacity: number): string {
+  const ch = (i: number) => {
+    const c = (parseInt(hex.slice(i, i + 2), 16) * opacity + [15, 23, 42][(i - 1) / 2] * (1 - opacity)) / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  const L = 0.2126 * ch(1) + 0.7152 * ch(3) + 0.0722 * ch(5);
+  // Valkoinen vs. tumma: kumpi antaa suuremman kontrastin.
+  return (1.05 / (L + 0.05)) >= ((L + 0.05) / 0.0587) ? 'rgba(249,250,251,0.9)' : '#0F172A';
+}
+
 function HeatCell({ cell }: { cell: Cell }) {
   const opacity = cell.level === 0 ? 0.04 : 0.18 + cell.level * 0.18; // 0.36..0.9
   return (
@@ -292,7 +304,7 @@ function HeatCell({ cell }: { cell: Cell }) {
       style={{ background: `${cell.hex}${Math.round(opacity * 255).toString(16).padStart(2, '0')}` }}
       title={cell.label}
     >
-      <span className="cap-meta !text-[9px] !tracking-[0.15em] pb-1">{cell.level === 0 ? '—' : cell.level}</span>
+      <span className="cap-meta !text-[9px] !tracking-[0.15em] pb-1" style={{ color: inkOn(cell.hex, opacity) }}>{cell.level === 0 ? '—' : cell.level}</span>
     </div>
   );
 }
@@ -341,7 +353,7 @@ export default function SeasonStrip() {
               {aurora.map((lvl, i) => (
                 <HeatCell
                   key={i}
-                  cell={{ level: lvl, hex: '#06B6D4', label: `${months[i]}: ${c.aurora} ${lvl}/4` }}
+                  cell={{ level: lvl, hex: '#A7F3D0', label: `${months[i]}: ${c.aurora} ${lvl}/4` }}
                 />
               ))}
             </div>
@@ -363,7 +375,7 @@ export default function SeasonStrip() {
               {price.map((lvl, i) => (
                 <HeatCell
                   key={i}
-                  cell={{ level: lvl, hex: '#EC4899', label: `${months[i]}: ${c.price} ${lvl}/4` }}
+                  cell={{ level: lvl, hex: '#F8E3B0', label: `${months[i]}: ${c.price} ${lvl}/4` }}
                 />
               ))}
             </div>

@@ -179,7 +179,102 @@
   --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 }
 
+/* ── RAUHALLINEN VÄRILINJA ───────────────────────────────────────────────────
+   Pinkki jää logoon ja varausnappiin. Muu korostus tummalla pohjalla on valkoista
+   tai vaaleaa jäänsinistä, reunat neutraaleja, värillisiä hehkuja ei ole.
+
+   Samat luokat (text-vibe-pink, border-arctic-cyan/30 …) pysyvät koodissa, mutta
+   teksti, reuna ja täyttö saavat kukin oman arvonsa. Arvo on muuttuja, jonka lähin
+   pinta tai rooli asettaa (alla @layer base). `inline` on pakollinen: ilman sitä
+   muuttuja ratkeaisi :rootissa eikä elementissä, jossa sitä käytetään. */
+@theme inline {
+  --text-color-vibe-pink:    var(--lv-ink-pink);
+  --text-color-arctic-cyan:  var(--lv-ink-cyan);
+  --text-color-aurora-green: var(--lv-ink-green);
+
+  --border-color-vibe-pink:    var(--lv-line);
+  --border-color-arctic-cyan:  var(--lv-line);
+  --border-color-aurora-green: var(--lv-line);
+
+  --ring-color-vibe-pink:   var(--lv-line);
+  --ring-color-arctic-cyan: var(--lv-line);
+
+  /* Värillinen varjo (shadow-vibe-pink/25) on musta varjo: hehkuja ei ole. */
+  --box-shadow-color-vibe-pink:   #000000;
+  --box-shadow-color-arctic-cyan: #000000;
+
+  --background-color-vibe-pink:    var(--lv-fill-pink);
+  --background-color-arctic-cyan:  var(--lv-fill-cyan);
+  --background-color-aurora-green: var(--lv-fill-green);
+}
+
 @layer base {
+  /* RAUHALLINEN VÄRILINJA: oletus = tumma pohja. */
+  :root {
+    --lv-ink-pink:   #BAE6FD;   /* linkki, kuvake, korostus: jäänsininen */
+    --lv-ink-cyan:   #BAE6FD;
+    --lv-ink-green:  #A7F3D0;   /* tilaväri (sopii, auki) pastellina */
+    --lv-line:       #94A3B8;   /* korostusreuna neutraalina; läpikuultavuus tulee luokasta (/30) */
+    --lv-fill-pink:  #DB2777;   /* sivun ainoa pinkki täyttö: varausnappi */
+    --lv-fill-cyan:  #E2E8F0;   /* toissijainen täyttö: vaalea neutraali */
+    --lv-fill-green: #10B981;   /* tilapiste pitää värinsä: se on tietoa */
+  }
+  /* Sävytetty lasi (merkki, laatta, valittu rivi) on neutraalia, ei värillistä.
+     `~=` osuu koko luokkatunnukseen, joten umpinaisen napin hover:bg-…/90 ei osu. */
+  :where([class~="bg-vibe-pink/10"], [class~="bg-vibe-pink/12"], [class~="bg-vibe-pink/15"], [class~="bg-vibe-pink/20"],
+         [class~="hover:bg-vibe-pink/15"]) {
+    --lv-fill-pink: #CBD5E1;
+  }
+  :where([class~="bg-arctic-cyan/10"], [class~="bg-arctic-cyan/[0.06]"], [class~="bg-arctic-cyan/15"], [class~="bg-arctic-cyan/20"]) {
+    --lv-fill-cyan: #CBD5E1;
+  }
+  /* Muuttuja periytyy: sävylaatan SISÄLLÄ oleva umpinainen nappi saisi laatan harmaan.
+     Umpinainen täyttö asettaa siksi oman arvonsa itse. */
+  :where([class~="bg-vibe-pink"], [class~="bg-vibe-pink/90"]) {
+    --lv-fill-pink: #DB2777;
+  }
+  /* Pieni versaaliyläotsikko: himmennetty versio ympäröivästä tekstiväristä, joten sama
+     sääntö käy tummalle ja vaalealle pinnalle. Linkissä ja napissa vahvempi. */
+  :where(.uppercase) {
+    --lv-ink-pink: color-mix(in oklab, currentColor 66%, transparent);
+    --lv-ink-cyan: color-mix(in oklab, currentColor 66%, transparent);
+    --lv-ink-green: color-mix(in oklab, currentColor 66%, transparent);
+  }
+  :where(a.uppercase, button.uppercase, a .uppercase, button .uppercase) {
+    --lv-ink-pink: color-mix(in oklab, currentColor 86%, transparent);
+    --lv-ink-cyan: color-mix(in oklab, currentColor 86%, transparent);
+    --lv-ink-green: color-mix(in oklab, currentColor 86%, transparent);
+  }
+  /* Otsikon korostussana ja otsikkofontilla ladottu iso luku ovat ympäröivän tekstin väriä:
+     ei kaksivärisiä otsikoita eikä värillisiä lukuja. Versaalisäännön JÄLKEEN (versaaliotsikko on otsikko). */
+  :where(h1, h2, h3, h4, h5, h6, .font-heading) {
+    --lv-ink-pink: currentColor;
+    --lv-ink-cyan: currentColor;
+    --lv-ink-green: currentColor;
+  }
+  /* Vaalea pinta: korostus on syvä sävy (#BE185D 5,3:1 valkoisella). Uusi vaalea tausta lisätään tänne,
+     muuten sen korostusteksti jää tumman pohjan vaaleaan sävyyn. */
+  :where(.bg-white, .bg-snow, .lv-vaalea) {
+    --lv-ink-pink:  #BE185D;
+    --lv-ink-cyan:  #0E7490;
+    --lv-ink-green: #047857;
+    --lv-line:      #64748B;
+    --lv-yo-muste:  #F9FAFB;
+  }
+  /* Tumma esine vaalean pinnan sisällä palauttaa tumman oletuksen ja ilmoittaa tekstivärinsä. */
+  :where(.bg-deep-night, .bg-deeper-night, .bg-black, .lv-yo, [class*="bg-deep-night/"], [class~="bg-[#0F172A]"],
+         [class~="bg-[rgba(15,23,42,0.82)]"]) {
+    --lv-ink-pink:  #BAE6FD;
+    --lv-ink-cyan:  #BAE6FD;
+    --lv-ink-green: #A7F3D0;
+    --lv-line:      #94A3B8;
+    color: var(--lv-yo-muste);
+  }
+  /* Logo pitää pinkkinsä (yläpalkin piirros, heron ja tekstin sanamerkit). */
+  [data-lv-sanamerkki], .notranslate {
+    --lv-ink-pink: #EC4899;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     /* Pitkä yhdyssana katkeaa ennemmin kuin leikkautuu reunaan (auditti 4.8.:
        "Tietosuojaseloste" 411 px 311 px:n laatikossa @375). hyphens tuottaa
@@ -222,22 +317,23 @@
 /* Success-tila. Oma modifier eika text-aurora-green -utility, koska .cap-meta
    on kerroksettomana saantona Tailwindin utility-kerrosta vahvempi. */
 .cap-meta.is-success {
-  color: var(--color-aurora-green);
+  color: #A7F3D0;   /* rauhallinen värilinja: tilaväri pastellina */
 }
 
-/* Magazine drop cap — first letter floats large in vibe-pink. Apply to
-   the wrapping paragraph, NOT to a span. Used at the start of editorial
-   intros (PracticalInfo, LaplandHolidays). */
+/* Magazine drop cap — first letter floats large. Apply to the wrapping
+   paragraph, NOT to a span. Used at the start of editorial intros
+   (PracticalInfo, LaplandHolidays). Rauhallinen värilinja: iso kirjain on
+   tekstin väriä, ei pinkki. */
 .drop-cap::first-letter {
   float: left;
   font-family: var(--font-heading);
   font-size: 5.6em;
   line-height: 0.82;
   padding: 0.04em 0.18em 0 0;
-  color: var(--color-vibe-pink);
+  color: var(--color-snow);
 }
 
-/* Pull quote — italic Bebas, vibe-pink rule on left, oversized. */
+/* Pull quote — italic Bebas, neutral rule on left, oversized. */
 .pull-quote {
   font-family: var(--font-heading);
   font-style: italic;
@@ -245,7 +341,7 @@
   line-height: 1.04;
   letter-spacing: 0.01em;
   color: var(--color-snow);
-  border-left: 2px solid var(--color-vibe-pink);
+  border-left: 2px solid #94A3B8;
   padding-left: clamp(1rem, 2.5vw, 2rem);
 }
 
@@ -269,8 +365,8 @@
 .aurora-bg {
   background: linear-gradient(
     135deg,
-    #0F172A 0%, #0d2818 15%, #10B981 30%,
-    #06B6D4 50%, #1e1b4b 70%, #EC4899 85%, #0F172A 100%
+    #0F172A 0%, #0d2818 15%, #12324a 30%,
+    #16365a 50%, #1e1b4b 70%, #1c2a4a 85%, #0F172A 100%
   );
   background-size: 400% 400%;
   animation: aurora 12s ease infinite;

@@ -1009,7 +1009,7 @@ export default function CustomTourBuilder() {
                 </div>
                 <div className="mt-2 h-[3px] w-full rounded-full bg-white/12 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-vibe-pink transition-[width] duration-300 ease-out"
+                    className="h-full rounded-full bg-[#BAE6FD] transition-[width] duration-300 ease-out"
                     style={{ width: `${((step + 1) / STEPS) * 100}%` }}
                   />
                 </div>

@@ -115,7 +115,7 @@ function Stars({ n, max = 4, lang }: { n: number; max?: number; lang: Lang }) {
       {Array.from({ length: max }).map((_, i) => (
         <span
           key={i}
-          className={`w-1.5 h-1.5 rounded-full ${i < n ? 'bg-vibe-pink' : 'bg-snow/12'}`}
+          className={`w-1.5 h-1.5 rounded-full ${i < n ? 'bg-[#BAE6FD]' : 'bg-snow/12'}`}
           aria-hidden="true"
         />
       ))}
