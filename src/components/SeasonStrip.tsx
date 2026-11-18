@@ -375,7 +375,7 @@ export default function SeasonStrip() {
               {price.map((lvl, i) => (
                 <HeatCell
                   key={i}
-                  cell={{ level: lvl, hex: '#F8E3B0', label: `${months[i]}: ${c.price} ${lvl}/4` }}
+                  cell={{ level: lvl, hex: '#BAE6FD', label: `${months[i]}: ${c.price} ${lvl}/4` }}
                 />
               ))}
             </div>
