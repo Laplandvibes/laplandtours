@@ -947,7 +947,7 @@ export default function PracticalInfo() {
                     </>
                   )}
                   {i === 1 && (
-                    <AffiliateCTA partner="scandinavianoutdoor" sid="practical_gear" destination={lang === 'fi' ? 'https://scandinavianoutdoor.fi/' : 'https://scandinavianoutdoor.fi/en/'} className={PILL}>
+                    <AffiliateCTA partner="scandinavianoutdoor" sid="practical_gear" destination="https://scandinavianoutdoor.fi/" className={PILL}>
                       {act.gear}<span aria-hidden="true"> →</span>
                     </AffiliateCTA>
                   )}

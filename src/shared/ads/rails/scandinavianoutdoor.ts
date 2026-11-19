@@ -6,11 +6,16 @@ import type { RailPartner } from '../ProductRail'
 // or the advertiser's own page does not support. Finnish and English only —
 // the rail renders nothing in a locale it has no copy for, which is the
 // honest outcome for a Finland-market shop.
+//
+// The English "see the full range" link goes to the same Finland-market shop:
+// scandinavianoutdoor.fi has no /en/ path (404 on 19.11.2026), and its
+// English site is a separate domain (scandinavianoutdoor.com) outside this
+// Adtraction channel.
 const scandinavianoutdoor: RailPartner = {
   key: 'scandinavianoutdoor',
   categoryUrl: {
     fi: "https://scandinavianoutdoor.fi/",
-    en: "https://scandinavianoutdoor.fi/en/",
+    en: "https://scandinavianoutdoor.fi/",
   },
   accent: '#1F5F4B',
   accentDark: '#7FC0A8',
